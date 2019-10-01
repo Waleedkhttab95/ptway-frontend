@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import user from './user';
+// import user from './user';
+import university from './university';
 const reducers = combineReducers({
-    user
+    // user
+    university
 })
 export default reducers;

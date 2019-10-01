@@ -1,11 +1,16 @@
 import React from 'react';
+import { Provider, connect } from "react-redux";
+import Home from './Universities';
 import './App.scss';
 
-function App() {
+const App =(props)=> {
   return (
+    
+    <Provider store ={props.store} >
     <div className="App">
-      Hello there!
+      <Home />
     </div>
+   </Provider>
   );
 }
 
