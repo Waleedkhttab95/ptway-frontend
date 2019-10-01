@@ -1,14 +1,14 @@
 import React from 'react';
 import { Provider, connect } from "react-redux";
-import Home from './Universities';
-import './App.scss';
+import AdminLogin from './Login';
+
 
 const App =(props)=> {
   return (
     
     <Provider store ={props.store} >
     <div className="App">
-      <Home />
+      <AdminLogin />
     </div>
    </Provider>
   );
