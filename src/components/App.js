@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider, connect } from "react-redux";
 import AdminLogin from './Login';
-
+import './App.scss'
 
 const App =(props)=> {
   return (
