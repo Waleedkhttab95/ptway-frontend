@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
-import { connect } from "react-redux";
 import 'antd/dist/antd.css';
 import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
-import {adminLogin} from '../../store/actions/userAction'
+// import history from '../../_core/history'
 import './index.scss'
 class Login extends Component {
- 
+
   handleSubmit =  (e) => {
     e.preventDefault();
+    const { history } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
@@ -16,16 +16,18 @@ class Login extends Component {
         adminLogin({
           email: values.email,
           password: values.password
-        })
+        })  
+        
     }); 
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+
         <Row className='login-form'>
           <Col md={8} xs={20}>  
-      <Form onSubmit={this.handleSubmit} > 
+      <Form onSubmit= {this.handleSubmit } > 
         <Form.Item>
           {getFieldDecorator('email', {
             rules: [{ required: true, message: 'الرجاء ادخال اسم المستخدم' }],
@@ -67,20 +69,5 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps =({user})=>{
-return({
-  user
-})
-}
-const mapDispatchToProps = dispatch=> {
-  return {
-    adminLogin: (params)=> {
-      console.log('++++',params);
-      
-     return dispatch(adminLogin(params.email,params.password))
-    }
-  }
-}
-const AdminLogin = Form.create({ name: 'normal_login' })(Login);
+export default Login = Form.create({ name: 'normal_login' })(Login);
 
-export default connect(mapStateToProps,mapDispatchToProps)(AdminLogin);

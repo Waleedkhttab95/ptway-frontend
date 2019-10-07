@@ -14,7 +14,7 @@ export const adminLogin = (email,password)=>{
     console.log('params',email,password);
     
     return {
-        type: 'LOGIN_ADMIN_SUCCESS',
+        type: 'LOGIN_ADMIN',
         payload: adminServices.login(email,password)
         
     }
