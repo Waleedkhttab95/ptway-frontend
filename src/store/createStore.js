@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import promiseMiddleware from "redux-promise-middleware";
+import { createPromise } from "redux-promise-middleware";
 import thunkMiddleware from "redux-thunk";
 import { loadState } from "../_core/localStorage";
 import reducers from "./reducers";
@@ -10,8 +10,10 @@ const promiseTypeSuffixes = ["LOADING", "SUCCESS", "ERROR"];
 const persistedState = loadState();
 const store = createStore(reducers,persistedState,composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  promiseMiddleware
+  createPromise({
+    promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']
+  })
   
 )));
-// const store=createStore(reducers,{}, middleWare());
+
 export default store;
