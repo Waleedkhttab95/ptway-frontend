@@ -21,7 +21,6 @@ const HomePage = (props)=>{
 }
 
 const mapStateToProps =(state)=>{
-    console.log('mapStateToProps',state);
   return({
     user: state.user
   })
