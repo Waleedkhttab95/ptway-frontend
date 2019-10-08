@@ -5,7 +5,7 @@ const initialUser = {
   
   const user = (state = initialUser, action) => {        
     switch (action.type) {
-      case "LOGIN_ADMIN_FULFILLED":
+      case "LOGIN_ADMIN_SUCCESS":
         return {
           ...action.payload,
           loggedIn: true,
