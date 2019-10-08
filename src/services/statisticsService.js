@@ -9,7 +9,16 @@ const statatisticsService ={
         console.log('error',error);
         
        })
-    }
+    },
+    city: (params) =>{
+        return baseRequest.get(`get/UsersDepenedsOnArea?city=${params.city_id}&country=${params.country_id}`)
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+         
+        })
+     }
 }
 
 export default statatisticsService;
