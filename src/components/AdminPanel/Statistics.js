@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './index.scss';
 import baseRequest from '../../_core/index'
 import {ageStatistic, cityStatistic} from '../../store/actions/statisticsAction'
-import { Statistic, Col, Button, Cascader  } from 'antd';
+import { Statistic, Col, Button, Cascader,Input } from 'antd';
 
 class AgeStatistics extends React.Component{
     state={
@@ -75,20 +75,25 @@ countryChange =(value,selectedOptions)=>{
         
         const {age,city} = this.props.statistics; 
         return (
-            <div> 
+            <React.Fragment> 
        <Col md={6} className='statistic'>
-           <label> ادخل عمر المستخدم</label>
-            <input type="text" onChange={this.onChange}/>
-            <Button onClick={this.ageCount}> اضغط</Button>
               <Statistic title="عدد المستخدمين بناءً على العمر" value={age!=='' ? age : ''} />
+            <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange}/>
+            <Button onClick={this.ageCount}> اضغط</Button>
          </Col>
           <Col md={6} className='statistic'>
-          <Cascader options={this.state.countries} onChange={this.countryChange} placeholder="اختر الدولة" />
-          <Cascader options={this.state.cities} onChange={this.cityChange} placeholder="اختر المدينة" />
+          <Statistic title="عدد المستخدمين بناءً على المدينة" value={city !== undefined ? city.users : ''} />
+          <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الدولة" />
+          <Cascader className='dropdown-menu' options={this.state.cities} onChange={this.cityChange} placeholder="اختر المدينة" />
+          <Button onClick={this.getCountryCityData}> اضغط</Button>
+        </Col>
+        <Col md={6} className='statistic'>
+          <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الدولة" />
+          <Cascader className='dropdown-menu' options={this.state.cities} onChange={this.cityChange} placeholder="اختر المدينة" />
           <Button onClick={this.getCountryCityData}> اضغط</Button>
           <Statistic title="عدد المستخدمين بناءً على المدينة" value={city !== undefined ? city.users : ''} />
         </Col>
-        </div>
+        </React.Fragment>
             )
         
 }

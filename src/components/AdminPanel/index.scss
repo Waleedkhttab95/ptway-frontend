@@ -1,5 +1,42 @@
 .statistic{
-    border: solid 2px #1890ff;
-    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
     margin-top: 50px;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-container{
+    background-color: #f8f9fe;
+    height: 100vh;
+}
+.sidebar{
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar-title{
+    font-size: 26px;
+    // border-bottom: solid 2px;
+    height: 100px;
+}
+.sidebar-elm{
+    font-size: 20px;
+    height: 60px;
+    color: black;
+}
+
+.wrapp-container{
+    display: flex;
+    justify-content: center;
+}
+.dropdown-menu{
+    padding: 9px;
 }

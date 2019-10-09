@@ -1,19 +1,27 @@
-import React from 'react';
+import React,{Component} from 'react';
 import 'antd/dist/antd.css';
 import './index.scss';
-import { Statistic, Row, Col, Button } from 'antd';
-import AgeStatistics from './AgeStatistic'
+import { Row, Col } from 'antd';
+import Sidebar from './Sidebar';
 
-const AdminPanel = ()=>{
+const AdminPanel = (WrappedComponent) => {
+  const component = class extends Component {
+    render () {
+      return (
+  
+          <Row gutter={24} className='dashboard'>
+              <Col md={20} className='dashboard-container'>
+                <div className='wrapp-container'>
+                <WrappedComponent {...this.props} />
+                </div>
+              </Col>
 
-    return(
-        
-            <Row gutter={20} >
-            <Col md={2}></Col>
-        <AgeStatistics/>
+              <Sidebar />
+          </Row>
+      );
+    }
+  };
+  return component;
+};
 
-  </Row>
-       
-    )
-}
 export default AdminPanel;

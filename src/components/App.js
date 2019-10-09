@@ -1,12 +1,13 @@
 import React from 'react';
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
 import HomePage from './HomePage';
-
+import Statistics from './AdminPanel/Statistics';
+import AdminPanel from './AdminPanel';
 import './App.scss'
 
 const App =(props)=> {
@@ -21,16 +22,11 @@ const App =(props)=> {
         path='/'
         component={HomePage}
       />
-        {/* <Route
+        <Route
         exact
-        path='/admin'
-        component={AdminPanel}
-      /> */}
-       {/* <Route
-        exact
-        path='/user'
-        component={User}
-      /> */}
+        path='/admin/statistics'
+        component={AdminPanel(Statistics)}
+      />
         </Switch>
       </Router>
      
