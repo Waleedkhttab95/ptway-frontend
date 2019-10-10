@@ -1,8 +1,8 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom'
 import { connect } from "react-redux";
 import {adminLogin} from '../../store/actions/userAction';
 import Login from '../Login';
-import AdminPanel from '../AdminPanel';
 import User from '../User';
 const HomePage = (props)=>{
     const {loggedIn, isAdmin} = props.user;
@@ -11,7 +11,7 @@ const HomePage = (props)=>{
     return (
         loggedIn ? 
         isAdmin ? (
-           <AdminPanel />
+          <Redirect to='/admin/statistics' />
         ) : 
          <User  />
        
@@ -21,7 +21,6 @@ const HomePage = (props)=>{
 }
 
 const mapStateToProps =(state)=>{
-    console.log('mapStateToProps',state);
   return({
     user: state.user
   })

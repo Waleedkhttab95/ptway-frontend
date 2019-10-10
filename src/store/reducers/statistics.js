@@ -1,7 +1,8 @@
 const initialStatistics = {
     isLoading : false,
-    isData:false,
-    data:''
+    age:'',
+    city:'',
+    major: ''
   };
   
   const statistics = (state = initialStatistics, action) => {  
@@ -11,8 +12,18 @@ const initialStatistics = {
       case "AGE_STATISTIC_SUCCESS":
         return {
           ...state,
-         data:action.payload,
+         age: action.payload,
         };
+        case "CITY_STATISTIC_SUCCESS":
+            return {
+              ...state,
+             city: action.payload,
+            };
+        case "MAJOR_STATISTIC_SUCCESS":
+            return {
+              ...state,
+              major: action.payload,
+            };    
       default:
         return state;
     }

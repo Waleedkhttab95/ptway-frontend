@@ -1,24 +1,36 @@
-import React from 'react';
+import React,{Component} from 'react';
 import 'antd/dist/antd.css';
 import './index.scss';
-import { Statistic, Row, Col, Button } from 'antd';
-import AgeStatistics from './AgeStatistic'
+import { Row, Col,Button } from 'antd';
+import Sidebar from './Sidebar';
 
-const AdminPanel = ()=>{
+const AdminPanel = (WrappedComponent) => {
+  const component = class extends Component {
+    render () {
+      return (
+  
+          <Row gutter={24} className='dashboard'>
+              <Col md={20}>
+                <div  className='dashboard-container'>
+                  <div className='header'>
+                    <span className='header-title'>
+                    لوحة التحكم
+                    </span>
+                    <Button className='logout'>تسجيل خروج</Button>
+                    </div>
+                <div className='wrapp-container'>
+                <WrappedComponent {...this.props} />
+                </div>
 
-    return(
-        <div>
-            <Row gutter={20} >
-            <Col md={2}></Col>
-        <AgeStatistics/>
-   
-     <Col md={6} className='statistic'>
- 
-      <Statistic title="عدد المستخدمين بناءً على المدينة" value={112893} />
-      <Statistic title="Account Balance (CNY)" value={112893} precision={2} />
-    </Col>
-  </Row>
-        </div>
-    )
-}
+                </div>
+              </Col>
+
+              <Sidebar />
+          </Row>
+      );
+    }
+  };
+  return component;
+};
+
 export default AdminPanel;
