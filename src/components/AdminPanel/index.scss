@@ -18,7 +18,6 @@
 .sidebar{
     display: flex;
     justify-content: center;
-    top: 20px;
     flex-direction: column;
     align-items: center;
 }
@@ -32,6 +31,10 @@
     height: 60px;
     color: black;
 }
+.admin-logo > img{
+    height: 100px;
+    widows: 100px;
+}
 
 .wrapp-container{
     display: flex;
@@ -39,4 +42,34 @@
 }
 .dropdown-menu{
     padding: 9px;
+}
+.header{
+    height: 60px;
+    padding-top: 10px;
+    border-bottom: solid 1px #ced4da;
+   
+}
+.header-title{
+    padding: 20px;
+    font-size: 26px;
+
+}
+.logout{
+    float: left;
+    background-color: #40a9ff;
+    color: white;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.submit{
+    background-color: #40a9ff;
+    color: white; 
+    margin-top: 10px;
+}
+.submit :hover{
+    background-color: #40a9ff;
+    color: white; 
+}
+.dashboard-container{
+
 }
