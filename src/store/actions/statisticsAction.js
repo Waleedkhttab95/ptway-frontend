@@ -14,3 +14,10 @@ export const cityStatistic = (params)=>{
         payload: statatisticsService.city(params)
     }
 }
+
+export const majorStatistic =(params)=>{
+    return {
+        type: 'MAJOR_STATISTIC',
+        payload: statatisticsService.major(params)
+    }
+}

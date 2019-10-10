@@ -18,7 +18,16 @@ const statatisticsService ={
          console.log('error',error);
          
         })
-     }
+     },
+     major: (params) =>{
+            return baseRequest.get(`/get/UsersDepenedsOnMajor/?major=${params.major}&spMajor=${params.spMajor}`)
+          .then((result)=>{
+               return result;
+          }).catch((error)=>{
+           console.log('error',error);
+           
+          })
+       },
 }
 
 export default statatisticsService;
