@@ -17,7 +17,7 @@ class Percentage extends React.Component{
        const {growth} = this.props.statistics;
         
       const  dataInfo = {
-            labels: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'],
+            labels: ['الأسبوع الأول', 'الأسبوع الثاني', 'الأسبوع الثالث', 'الأسبوع الرابع', 'الأسبوع الخامس'],
             datasets: [
               {
                 label: 'معدل النمو أسبوعياً',
