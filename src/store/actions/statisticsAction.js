@@ -21,3 +21,10 @@ export const majorStatistic =(params)=>{
         payload: statatisticsService.major(params)
     }
 }
+
+export const weeklyGrowth =()=>{
+    return {
+        type: 'WEEKLY_GROWTH',
+        payload: statatisticsService.growth()
+    }
+}

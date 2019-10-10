@@ -27,7 +27,16 @@ const statatisticsService ={
            console.log('error',error);
            
           })
-       },
+     },
+     growth: () =>{
+          return baseRequest.get('/get/growthRate')
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+         
+        })
+     },
 }
 
 export default statatisticsService;

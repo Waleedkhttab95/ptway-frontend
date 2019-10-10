@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
+import Percentage from './AdminPanel/Percentage';
 import AdminPanel from './AdminPanel';
 import './App.scss'
 
@@ -26,6 +27,11 @@ const App =(props)=> {
         exact
         path='/admin/statistics'
         component={AdminPanel(Statistics)}
+      />
+      <Route
+        exact
+        path='/admin/percentage'
+        component={AdminPanel(Percentage)}
       />
         </Switch>
       </Router>

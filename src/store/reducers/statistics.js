@@ -2,7 +2,8 @@ const initialStatistics = {
     isLoading : false,
     age:'',
     city:'',
-    major: ''
+    major: '',
+    growth: ''
   };
   
   const statistics = (state = initialStatistics, action) => {  
@@ -23,7 +24,12 @@ const initialStatistics = {
             return {
               ...state,
               major: action.payload,
-            };    
+            };   
+        case "WEEKLY_GROWTH_SUCCESS":
+            return {
+              ...state,
+              growth: action.payload,
+            };   
       default:
         return state;
     }

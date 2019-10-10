@@ -12,8 +12,8 @@ const Sidebar = ()=>{
                 <div className='admin-logo'>
                 <img src={logo} alt=''/>
                 </div>
-              <Link to={'/admin/statistics'} className='sidebar-elm'>الإحصائيات</Link>
-              <Link to={'/statistics'} className='sidebar-elm'>العنصر الاول</Link>
+              <Link to={'/admin/statistics'} className='sidebar-elm'>احصائيات بقيم مدخلة</Link>
+              <Link to={'/admin/percentage'} className='sidebar-elm'>احصائيات بدون قيم مدخلة</Link>
               <Link to={'/statistics'} className='sidebar-elm'>العنصر الثاني</Link>
 
 
