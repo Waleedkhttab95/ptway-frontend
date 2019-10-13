@@ -12,7 +12,7 @@ const Sidebar = ()=>{
                 <div className='admin-logo'>
                 <img src={logo} alt=''/>
                 </div>
-              <Link to={'/admin/statistics'} className='sidebar-elm'>احصائيات بقيم مدخلة</Link>
+              <Link to={'/admin/statistics'} className='sidebar-elm'>احصائيات بالاعتماد على قيم مدخلة</Link>
               <Link to={'/admin/percentage'} className='sidebar-elm'>احصائيات بدون قيم مدخلة</Link>
               <Link to={'/statistics'} className='sidebar-elm'>العنصر الثاني</Link>
 

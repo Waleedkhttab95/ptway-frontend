@@ -9,7 +9,7 @@ const AdminPanel = (WrappedComponent) => {
     render () {
       return (
   
-          <Row gutter={24} className='dashboard'>
+          <Row className='dashboard'>
               <Col md={20}>
                 <div  className='dashboard-container'>
                   <div className='header'>
@@ -18,11 +18,9 @@ const AdminPanel = (WrappedComponent) => {
                     </span>
                     <Button className='logout'>تسجيل خروج</Button>
                     </div>
-                <div className='wrapp-container'>
                 <WrappedComponent {...this.props} />
-                </div>
 
-                </div>
+              </div>
               </Col>
 
               <Sidebar />
