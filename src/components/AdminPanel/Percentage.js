@@ -43,7 +43,7 @@ class Percentage extends React.Component{
           };
         return (
             <React.Fragment> 
-                    <Row className='user-percentages'>
+                <Row className='user-percentages'>
                         <Col md ={5}>
                             <div className='container' >
                             <Card className='card-body' title="عدد المستخدمين" bordered={false}>
@@ -73,7 +73,7 @@ class Percentage extends React.Component{
                             </div>
                         </Col>
                        
-                    </Row>
+                </Row>
                 
                 <Row >
                     <Col md={10} className='weekly-growth'>

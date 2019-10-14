@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './index.scss';
 import baseRequest from '../../_core/index'
 import {ageStatistic, cityStatistic, majorStatistic} from '../../store/actions/statisticsAction'
-import { Statistic, Col, Button, Cascader,Input } from 'antd';
+import { Statistic, Row, Col, Button, Cascader,Input } from 'antd';
 
 class AgeStatistics extends React.Component{
     state={
@@ -119,8 +119,8 @@ majorSpecialChange =(value,selectedOptions)=>{
     render(){  
         const {age,city, major} = this.props.statistics; 
         return (
-            <React.Fragment> 
-                <Col md={2}></Col>
+            <React.Fragment>
+            <Row className='user-statistics'> 
        <Col md={6} className='statistic'>
             <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange}/>
             <Button onClick={this.ageCount} className='submit'> اضغط</Button>
@@ -138,7 +138,9 @@ majorSpecialChange =(value,selectedOptions)=>{
           <Button onClick={this.getMajorAndSubMajorData} className='submit'> اضغط</Button>
           <Statistic title="عدد المستخدمين بناءً على التخصص" value={major !== undefined ? major.users : ''} />
         </Col>
-        </React.Fragment>
+        </Row>
+
+            </React.Fragment>
             )
         
 }
