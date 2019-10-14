@@ -14,7 +14,7 @@ const Sidebar = ()=>{
                 </div>
               <Link to={'/admin/statistics'} className='sidebar-elm'>احصائيات بالاعتماد على قيم مدخلة</Link>
               <Link to={'/admin/percentage'} className='sidebar-elm'>احصائيات بدون قيم مدخلة</Link>
-              <Link to={'/statistics'} className='sidebar-elm'>العنصر الثاني</Link>
+              <Link to={'/admin/company'} className='sidebar-elm'>احصائيات الشركات</Link>
 
 
             </Col>

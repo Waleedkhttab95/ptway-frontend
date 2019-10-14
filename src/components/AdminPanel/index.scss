@@ -14,6 +14,8 @@
 .dashboard-container{
     background-color: #f8f9fe;
     height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 50px;
 }
 .sidebar{
     display: flex;
@@ -93,6 +95,12 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.user-statistics{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 25px;
+}
 .container{
     background: white;
     padding: 10px;
@@ -104,4 +112,16 @@
 }
 .card-text{
     text-align: center;
+}
+.company-percentages{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.company-elm{
+    margin-right: 45px;
+}
+.company-details{
+    display: flex;
+    flex-direction: row;
 }
