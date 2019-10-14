@@ -23,22 +23,32 @@
 }
 .sidebar-title{
     font-size: 26px;
-    // border-bottom: solid 2px;
     height: 100px;
 }
 .sidebar-elm{
     font-size: 20px;
     height: 60px;
     color: black;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+.sidebar-elm:hover{
+    color: white;
+    background-color: #40a9ff;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+.sidebar-elm:visited{
+    background-color: #40a9ff;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
 }
 .admin-logo > img{
     height: 100px;
     widows: 100px;
-}
-
-.wrapp-container{
-    display: flex;
-    justify-content: center;
 }
 .dropdown-menu{
     padding: 9px;
@@ -69,4 +79,29 @@
 .submit :hover{
     background-color: #40a9ff;
     color: white; 
+}
+.weekly-growth{
+    background-color: white;
+    border-radius: 5%;
+    position: absolute;
+    right: 3%;
+    top: 60px;
+    width: 550px;
+}
+.user-percentages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.container{
+    background: white;
+    padding: 10px;
+    border-radius: 5%;
+    margin-top: 55px;
+}
+.card-body{
+    border-radius: 5%;
+}
+.card-text{
+    text-align: center;
 }

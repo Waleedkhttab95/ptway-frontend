@@ -120,6 +120,7 @@ majorSpecialChange =(value,selectedOptions)=>{
         const {age,city, major} = this.props.statistics; 
         return (
             <React.Fragment> 
+                <Col md={2}></Col>
        <Col md={6} className='statistic'>
             <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange}/>
             <Button onClick={this.ageCount} className='submit'> اضغط</Button>
