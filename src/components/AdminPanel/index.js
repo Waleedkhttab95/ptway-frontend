@@ -5,10 +5,9 @@ import { Row, Col,Button } from 'antd';
 import Sidebar from './Sidebar';
 
 const AdminPanel = (WrappedComponent) => {
-  const component = class extends Component {
-    render () {
+  const component = (props) =>{
       return (
-  
+        
           <Row className='dashboard'>
               <Col md={20}>
                 <div  className='dashboard-container'>
@@ -18,15 +17,14 @@ const AdminPanel = (WrappedComponent) => {
                     </span>
                     <Button className='logout'>تسجيل خروج</Button>
                     </div>
-                <WrappedComponent {...this.props} />
+                <WrappedComponent {...props} />
 
               </div>
               </Col>
 
               <Sidebar />
           </Row>
-      );
-    }
+      )
   };
   return component;
 };

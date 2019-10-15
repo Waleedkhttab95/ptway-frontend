@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {companyBCountry, companyBMajor, companyBCityMajor} from '../../store/actions/companyActions';
 import { Statistic, Row, Col, Cascader, Card } from 'antd';
-import baseRequest from '../../_core';
+import statatisticsService from '../../services/statisticsService';
+const {allCountries, allMajors, companiesInfo, allCities, sMajor} = statatisticsService;
 class CompaniesStatistics extends Component{
     state={
         value:'',
@@ -13,41 +14,19 @@ class CompaniesStatistics extends Component{
         companiesInfo: {}
     }
     componentDidMount(){
-        baseRequest.get('/getcountry')
-        .then((countries)=>{
-            const countryFormate= countries.map((elm)=>{
-                return {
-                    id: elm._id,
-                    value: elm.countryName,
-                    label: elm.countryName
-                }
-            })
-            this.setState({
-                countries:countryFormate
-            })
+        allCountries().then((data)=>{
+            this.setState({countries: data});
         });
 
-        baseRequest.get('/get/majors')
-        .then((majors)=>{
-            const majorsValues = majors.map((value)=>{
-                return {
-                    id: value._id,
-                    value: value.majorName,
-                    label:  value.majorName,
-                    key: value.key
-                }
-            })
-            this.setState({majors: majorsValues})
-        });
+       allMajors().then((majorsValues)=>{
+           this.setState({majors: majorsValues});
+       });
 
-        baseRequest.get('/get/companiesInfo')
-        .then((companiesInfo)=>{
-            console.log('companiesInfo',companiesInfo);
-            
-            this.setState({
-                companiesInfo
-            })
-        });
+       companiesInfo().then((companiesData)=>{
+           this.setState({
+               companiesInfo: companiesData
+           });
+       });
         
     }
     cityChange =(value,selectedOptions)=>{
@@ -79,19 +58,11 @@ class CompaniesStatistics extends Component{
         this.setState ({
             country: selectedOptions[0]
         },()=>{
-            baseRequest.get('/getcity')
-            .then((cityData)=>{
-            const cityFormate=cityData.map((elm)=>{
-                    return {
-                        id: elm._id,
-                        value: elm.cityName,
-                        label: elm.cityName
-                    }
-                })
+            allCities().then((cityFormate)=>{
                 this.setState({
                     cities:cityFormate
-                })
-            }) 
+                });
+            });
         }); 
     }
     majorChange =(value,selectedOptions)=>{
@@ -99,18 +70,8 @@ class CompaniesStatistics extends Component{
             major: selectedOptions[0]
         }, ()=>{
             const majorId = this.state.major.id;
-         baseRequest.get(`/get/spMajors?id=${majorId}`)
-        .then((specialMajor)=>{
-            const specialMajorRefactor= specialMajor.map((elm)=>{
-                return {
-                    id: elm._id,
-                    value: elm.majorName,
-                    label: elm.majorName,
-                };
-            });
-            this.setState({
-                    specialMajor:  specialMajorRefactor
-                 });
+            sMajor(majorId).then((specialMajor)=>{
+                this.setState({specialMajor});
             });
         }); 
     }
