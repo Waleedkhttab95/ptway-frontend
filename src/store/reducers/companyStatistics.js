@@ -1,6 +1,7 @@
 const initialState ={
     companyBCountry :'',
-    companyBMajor: ''
+    companyBMajor: '',
+    companyBCityMajor: ''
 }
 
 
@@ -15,7 +16,12 @@ const companyStatistics = (state = initialState, action) => {
             return {
               ...state,
               companyBMajor: action.payload,
-            }; 
+        }; 
+        case "COMPANY_CITY_MAJOR_STATISTIC_SUCCESS":
+            return {
+              ...state,
+              companyBCityMajor: action.payload,
+        }; 
       default:
         return state;
     }

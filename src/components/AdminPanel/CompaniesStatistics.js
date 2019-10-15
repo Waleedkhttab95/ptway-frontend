@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {companyBCountry, companyBMajor} from '../../store/actions/companyActions';
+import {companyBCountry, companyBMajor, companyBCityMajor} from '../../store/actions/companyActions';
 import { Statistic, Row, Col, Cascader, Card } from 'antd';
 import baseRequest from '../../_core';
 class CompaniesStatistics extends Component{
@@ -60,7 +60,20 @@ class CompaniesStatistics extends Component{
                 country_id: this.state.country.id
             })
         });
-        }
+    }
+    cityAndMajorChange =(value,selectedOptions)=>{
+        this.setState ({
+            city: selectedOptions[0]
+        },()=>{
+        const {companyBCityMajor} =this.props;
+        companyBCityMajor({
+                city_id: this.state.city.id,
+                country_id: this.state.country.id,
+                major_id: this.state.major.id,
+                smajor_id: this.state.sub_major.id
+            })
+        });
+    }
     
     countryChange =(value,selectedOptions)=>{
         this.setState ({
@@ -115,16 +128,15 @@ class CompaniesStatistics extends Component{
 };
 
     render(){
-        const {companyBCountry, companyBMajor} = this.props.companyStatistics;
+        const {companyBCountry, companyBMajor, companyBCityMajor} = this.props.companyStatistics;
         const {companiesInfo} = this.state;
-        console.log(this.state.companiesInfo);
         
         return (
             <React.Fragment>
                  <Row className='user-percentages'>
                         <Col md ={5}>
                             <div className='container' >
-                            <Card className='card-body' title="عدد الشركات" bordered={false}>
+                            <Card className='card-body' title="عدد الشركات" bordered={false} >
                                 <p className='card-text'>{companiesInfo ? companiesInfo.NumberOfCompanies: ''}</p>
                             </Card>
                             </div>
@@ -151,15 +163,6 @@ class CompaniesStatistics extends Component{
                             </div>
                         </Col>   
                 </Row>
-                <Row className='user-statistics'>
-                <Col md={6} className='statistic'>
-                    <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الشركة" />
-
-                    <Statistic title="عدد المشاريع" value={11} />
-                    <Statistic title="عدد عروض الأعمال" value={5} />
-
-                </Col>
-                </Row>
                 <Row className='user-statistics'> 
                 <Col md={6} className='statistic'>
                     <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الدولة" />
@@ -178,11 +181,21 @@ class CompaniesStatistics extends Component{
                     </div>
                     <div className='company-details'>
                     <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="الدولة" />
-                    <Cascader className='dropdown-menu' options={this.state.cities} onChange={this.cityChange} placeholder="المدينة" />
+                    <Cascader className='dropdown-menu' options={this.state.cities} onChange={this.cityAndMajorChange} placeholder="المدينة" />
                     </div>
-                    <Statistic title="عدد الشركات بناءً على الدولة والتخصص" value={companyBMajor!==null ? companyBMajor.result : '' } />
+                    <Statistic title="عدد الشركات بناءً على الدولة والتخصص" value={companyBCityMajor!==null ? companyBCityMajor.result : '' } />
                 </Col>
                 </Row>
+                <Row className='user-statistics'>
+                <Col md={6} className='statistic'>
+                    <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الشركة"  />
+
+                    <Statistic title="عدد المشاريع" value={11} />
+                    <Statistic title="عدد عروض الأعمال" value={5} />
+
+                </Col>
+                </Row>
+               
             </React.Fragment>
         )
     }
@@ -196,7 +209,8 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps = dispatch=> {
     return {
         companyBCountry:(params)=> dispatch(companyBCountry(params)),
-        companyBMajor:(params)=> dispatch(companyBMajor(params))
+        companyBMajor:(params)=> dispatch(companyBMajor(params)),
+        companyBCityMajor: (params) => dispatch(companyBCityMajor(params))
 
 
     }

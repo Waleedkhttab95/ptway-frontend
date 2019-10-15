@@ -14,3 +14,10 @@ export const companyBMajor = (params)=>{
         payload: companyStatistics.companyBMajor(params)
     }
 }
+
+export const companyBCityMajor = (params)=>{
+    return {
+        type: 'COMPANY_CITY_MAJOR_STATISTIC',
+        payload: companyStatistics.companyBCityMajor(params)
+    }
+}
