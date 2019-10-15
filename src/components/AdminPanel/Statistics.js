@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 import './index.scss';
-import baseRequest from '../../_core/index'
-import {ageStatistic, cityStatistic, majorStatistic} from '../../store/actions/statisticsAction'
-import { Statistic, Col, Button, Cascader,Input } from 'antd';
+import {ageStatistic, cityStatistic, majorStatistic} from '../../store/actions/statisticsAction';
+import { Statistic, Row, Col, Button, Cascader,Input } from 'antd';
+import statatisticsService from '../../services/statisticsService';
+const {allCountries, allMajors, sMajor, allCities} = statatisticsService;
 
 class AgeStatistics extends React.Component{
     state={
@@ -13,44 +14,13 @@ class AgeStatistics extends React.Component{
         cities:[],
     }
     componentDidMount(){
-        baseRequest.get('/getcountry ')
-        .then((countryData)=>{
-             baseRequest.get('/getcity')
-            .then((cityData)=>{
-                console.log('cityData',cityData);
-            const cityFormate=cityData.map((elm)=>{
-                    return {
-                        id: elm._id,
-                        value: elm.cityName,
-                        label: elm.cityName
-                    }
-                })
-                const countryFormate= countryData.map((elm)=>{
-                    return {
-                        id: elm._id,
-                        value: elm.countryName,
-                        label: elm.countryName
-                    }
-                })
-                this.setState({
-                    countries:countryFormate,
-                    cities:cityFormate
-                })
-            })
-        })
-        
-        baseRequest.get('/get/majors')
-        .then((majors)=>{
-            const majorsValues = majors.map((value)=>{
-                return {
-                    id: value._id,
-                    value: value.majorName,
-                    label:  value.majorName,
-                    key: value.key
-                }
-            })
-            this.setState({majors:majorsValues})
-        })
+        allCountries().then((data)=>{
+            this.setState({countries: data});
+        });
+
+       allMajors().then((majorsValues)=>{
+           this.setState({majors: majorsValues});
+       });
     }
 
     getCountryCityData =()=>{
@@ -78,6 +48,12 @@ class AgeStatistics extends React.Component{
     countryChange =(value,selectedOptions)=>{
     this.setState ({
         country: selectedOptions[0]
+    },()=>{
+        allCities().then((cityFormate)=>{
+            this.setState({
+                cities:cityFormate
+            });
+        });
     }); 
 }
     majorChange =(value,selectedOptions)=>{
@@ -85,18 +61,8 @@ class AgeStatistics extends React.Component{
         major: selectedOptions[0]
     }, ()=>{
         const majorId = this.state.major.id;
-     baseRequest.get(`/get/spMajors?id=${majorId}`)
-    .then((specialMajor)=>{
-        const specialMajorRefactor= specialMajor.map((elm)=>{
-            return {
-                id: elm._id,
-                value: elm.majorName,
-                label: elm.majorName,
-            };
-        });
-        this.setState({
-                specialMajor:  specialMajorRefactor
-             });
+        sMajor(majorId).then((specialMajor)=>{
+            this.setState({specialMajor});
         });
     }); 
     }
@@ -119,8 +85,8 @@ majorSpecialChange =(value,selectedOptions)=>{
     render(){  
         const {age,city, major} = this.props.statistics; 
         return (
-            <React.Fragment> 
-                <Col md={2}></Col>
+            <React.Fragment>
+            <Row className='user-statistics'> 
        <Col md={6} className='statistic'>
             <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange}/>
             <Button onClick={this.ageCount} className='submit'> اضغط</Button>
@@ -138,7 +104,9 @@ majorSpecialChange =(value,selectedOptions)=>{
           <Button onClick={this.getMajorAndSubMajorData} className='submit'> اضغط</Button>
           <Statistic title="عدد المستخدمين بناءً على التخصص" value={major !== undefined ? major.users : ''} />
         </Col>
-        </React.Fragment>
+        </Row>
+
+            </React.Fragment>
             )
         
 }

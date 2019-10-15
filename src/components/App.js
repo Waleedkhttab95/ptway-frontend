@@ -9,6 +9,7 @@ import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Percentage';
 import AdminPanel from './AdminPanel';
+import CompaniesStatistics from './AdminPanel/CompaniesStatistics';
 import './App.scss'
 
 const App =(props)=> {
@@ -32,6 +33,11 @@ const App =(props)=> {
         exact
         path='/admin/percentage'
         component={AdminPanel(Percentage)}
+      />
+      <Route
+        exact
+        path='/admin/company'
+        component={AdminPanel(CompaniesStatistics)}
       />
         </Switch>
       </Router>
