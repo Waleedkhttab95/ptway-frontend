@@ -10,14 +10,14 @@ const Sidebar = ()=>{
     return(
 
             <Col md={4} className='sidebar'>
-  <div className='admin-logo'>
-                <img src={logo} alt=''/>
+                <div className='admin-logo'>
+                 <img src={logo} alt=''/>
                 </div>
        <Menu
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode="inline"
-      >
+         >
         <SubMenu
           key="sub1"
           title={
@@ -45,12 +45,27 @@ const Sidebar = ()=>{
             </span>
           }
         >
-          <Menu.Item key="5">
+          <Menu.Item key="4">
           <Link to={'/admin/company'} >احصائيات الشركات</Link>
           </Menu.Item>
         </SubMenu>
+        <SubMenu
+          key="sub3"
+          title={
+            <span>
+              <Icon type="appstore" />
+              <span>البحث</span>
+            </span>
+          }
+        >
+          <Menu.Item key="6">
+          <Link to={'/admin/search/user'} >البحث عن المستخدمين</Link>
+          </Menu.Item>
+          <Menu.Item key="7">
+          <Link to={'/admin/search/company'} >البحث عن الشركات</Link>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
-
             </Col>
            
        

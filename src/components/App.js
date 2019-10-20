@@ -10,6 +10,8 @@ import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Percentage';
 import AdminPanel from './AdminPanel';
 import CompaniesStatistics from './AdminPanel/CompaniesStatistics';
+import CompanySearch from '../components/AdminPanel/CompanySearch';
+import UserSearch from '../components/AdminPanel/UserSearch';
 import './App.scss'
 
 const App =(props)=> {
@@ -38,6 +40,16 @@ const App =(props)=> {
         exact
         path='/admin/company'
         component={AdminPanel(CompaniesStatistics)}
+      />
+      <Route
+        exact
+        path='/admin/search/user'
+        component={AdminPanel(UserSearch)}
+      />
+      <Route
+        exact
+        path='/admin/search/company'
+        component={AdminPanel(CompanySearch)}
       />
         </Switch>
       </Router>

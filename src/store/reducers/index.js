@@ -1,10 +1,13 @@
 import {combineReducers} from 'redux';
 import user from './user';
 import statistics from './statistics';
-import companyStatistics from './companyStatistics'
+import companyStatistics from './companyStatistics';
+import adminSearch from './search';
+
 const reducers = combineReducers({
     user,
     statistics,
-    companyStatistics
+    companyStatistics,
+    search: adminSearch
 })
 export default reducers;
