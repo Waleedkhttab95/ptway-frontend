@@ -87,7 +87,7 @@ majorSpecialChange =(value,selectedOptions)=>{
         return (
             <React.Fragment>
             <Row className='user-statistics'> 
-       <Col md={6} className='statistic'>
+            <Col md={6} className='statistic'>
             <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange}/>
             <Button onClick={this.ageCount} className='submit'> اضغط</Button>
               <Statistic title="عدد المستخدمين بناءً على العمر" value={age!=='' ? age : ''} />
