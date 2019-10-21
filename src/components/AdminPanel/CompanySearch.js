@@ -40,10 +40,10 @@ class CompanySearch extends Component{
         const {companyById, companyByMail, companyByName} = this.props.search;
         return (
                 <React.Fragment>
-               <Row className='user-statistics'>
-               <Col md={12}>
+               <Row className='company-search'>
+               <Col md={16}>
                    <div className='input-container statistic'>
-            <Input placeholder="ادخل رقم المستخدم" onChange={this.handleChange}/>
+            <Input placeholder="ادخل رقم الشركة" onChange={this.handleChange}/>
             <img className ='search' src={search}/>
                    </div>
            {companyById &&
@@ -72,10 +72,10 @@ class CompanySearch extends Component{
             ) }
         </Col>
                </Row>
-               <Row className='user-statistics'>
-               <Col md={12} >
+               <Row className='company-search'>
+               <Col md={16} >
                    <div className='input-container statistic'>
-                    <Input placeholder="ادخل البريد الالكتروني للمستخدم" onChange={this.handleEmailChange}/>
+                    <Input placeholder="ادخل البريد الالكتروني للشركة" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search}/>
                    </div>
                          {companyByMail &&
@@ -93,10 +93,10 @@ class CompanySearch extends Component{
                              )}
                 </Col>
                </Row>
-               <Row className='user-statistics'>
-                <Col md={12} >
+               <Row className='company-search'>
+                <Col md={16} >
                     <div className='input-container statistic'>
-                <Input placeholder="ادخل اسم المستخدم" onChange={this.handleNameChange}/>
+                <Input placeholder="ادخل اسم الشركة" onChange={this.handleNameChange}/>
                 <img className ='search' src={search}/>
 
                     </div>
@@ -150,7 +150,7 @@ const mapStateToProps = ({search})=>{
 
 const mapDispatchToProps = dispatch=> {
     return {
-        companyBId: (params)=> dispatch(searchById(params)),
+      companyBId: (params)=> dispatch(searchById(params)),
       companyBMail: (params)=> dispatch(searchByEmail(params)),
       companyBName: (params)=> dispatch(searchByName(params)),
     }

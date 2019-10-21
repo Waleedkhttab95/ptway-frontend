@@ -173,3 +173,15 @@ vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertic
 .input-container{
     position: relative;
 }
+.company-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 25px;
+}
+.user-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 25px;
+}
