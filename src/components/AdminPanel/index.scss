@@ -185,3 +185,29 @@ vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertic
     justify-content: center;
     padding-right: 25px;
 }
+.update-user{
+    width: 30px;
+    margin: 0px 5px;
+}
+.delete-user{
+    width: 30px;
+    margin: 0px 5px;
+}
+.du-images{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-left: 10px;
+}
+.ant-modal-close {
+    left: 0;
+}
+button.ant-btn.ant-btn-primary {
+    float: left;
+}
+.ant-modal-footer {
+    padding: 5px 16px 40px 16px;
+}
+button.ant-btn {
+    float: left;
+}

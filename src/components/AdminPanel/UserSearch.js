@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Statistic, Row, Col, Button, Cascader,Input } from 'antd';
+import { Modal, Row, Col,Input } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/userSearchAction';
+import {deleteUser} from '../../store/actions/adminCRUD/userCRUDAction';
 import search from '../../images/search-icon.svg';
+import delete_icon from '../../images/delete.svg';
+import update_icon from '../../images/edit.svg';
 import _ from 'lodash';
 class UserSearch extends Component{
     state ={
         userId:'',
         username:'',
-        name:''
+        name:'',
+        visible: false,
+        id: ''
     }
 
     handleChange = (e)=> {
@@ -23,7 +28,7 @@ class UserSearch extends Component{
         this.setState({
             username: e.target.value
         },()=>{
-            this.props.searchBMail({email:this.state.username}) 
+            this.props.searchBMail({email:this.state.username})
         });
     }
      
@@ -34,6 +39,28 @@ class UserSearch extends Component{
             this.props.searchBName({name:this.state.name}) 
         });
     }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = async id => {
+   await this.props.deleteUser({id});
+    this.setState({
+      visible: false,
+      username: ''
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
 
     render(){
         const {userById, userByMail, userByName} = this.props.search;
@@ -48,6 +75,10 @@ class UserSearch extends Component{
                    </div>
            {userById &&
            ( <Row className='user-information'>
+               <div className='du-images'>
+                    <img className='delete-user' src={delete_icon} alt='' />
+                    <img className='update-user' src={update_icon} alt='' />
+                </div>
                 <div className='user-name'>
                    <span> اسم المستخدم :</span> 
                    <span>{ 
@@ -73,6 +104,18 @@ class UserSearch extends Component{
                    </div>
                          {userByMail &&
                            ( <Row className='user-information'>
+                               <div className='du-images'>
+                               <img className='delete-user' src={delete_icon} alt='' type="primary" onClick={this.showModal} />
+                               <img className='update-user' src={update_icon} alt='' />
+                               <Modal
+                                    title="هل أنت متأكد"
+                                    visible={this.state.visible}
+                                    onOk={()=>{this.handleOk(userByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
+                                    </Modal>
+                               </div>
                                 <div className='user-name'>
                                 <span> اسم المستخدم :</span> 
                                 <span>{ 
@@ -101,6 +144,10 @@ class UserSearch extends Component{
                         userByName.map((elm)=>{
                             return( 
                                 <Row className='user-information'>
+                                <div className='du-images'>
+                                    <img className='delete-user' src={delete_icon} alt='' />
+                                    <img className='update-user' src={update_icon} alt='' />
+                                 </div>
                                 <div className='user-name'>
                                 <span> اسم المستخدم :</span> 
                             <span>
@@ -128,24 +175,19 @@ class UserSearch extends Component{
     }
 }
 
-const mapStateToProps = ({search})=>{
+const mapStateToProps = ({search,adminSer})=>{
     return {
-        search
+        search,
+        adminSer
     }
 };
 
 const mapDispatchToProps = dispatch=> {
     return {
-        searchBId: (params)=> {
-        return dispatch(searchById(params))
-      },
-      searchBMail: (params)=> {
-        return dispatch(searchByEmail(params))
-      },
-      searchBName: (params)=> {
-        return dispatch(searchByName(params))
-      },
-
+      searchBId: (params)=> dispatch(searchById(params)),
+      searchBMail: (params)=> dispatch(searchByEmail(params)),
+      searchBName: (params)=> dispatch(searchByName(params)),
+      deleteUser :(params) => dispatch(deleteUser(params))
     }
   }
 
