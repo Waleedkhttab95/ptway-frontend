@@ -12,8 +12,7 @@ class UserSearch extends Component{
         userId:'',
         username:'',
         name:'',
-        visible: false,
-        id: ''
+        visible: false
     }
 
     handleChange = (e)=> {
@@ -49,8 +48,10 @@ class UserSearch extends Component{
   handleOk = async id => {
    await this.props.deleteUser({id});
     this.setState({
-      visible: false,
-      username: ''
+        userId:'',
+        username:'',
+        name:'',
+      visible: false
     });
   };
 
@@ -73,11 +74,19 @@ class UserSearch extends Component{
             <Input placeholder="ادخل رقم المستخدم" onChange={this.handleChange}/>
             <img className ='search' src={search}/>
                    </div>
-           {userById &&
+           {userById && this.state.userId !== '' &&
            ( <Row className='user-information'>
                <div className='du-images'>
-                    <img className='delete-user' src={delete_icon} alt='' />
+                    <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal}/>
                     <img className='update-user' src={update_icon} alt='' />
+                    <Modal
+                        title="هل أنت متأكد؟"
+                        visible={this.state.visible}
+                        onOk={()=>{this.handleOk(userById._id)}}
+                        onCancel={this.handleCancel}
+                        >
+                        <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
+                    </Modal>
                 </div>
                 <div className='user-name'>
                    <span> اسم المستخدم :</span> 
@@ -102,7 +111,7 @@ class UserSearch extends Component{
                     <Input placeholder="ادخل البريد الالكتروني للمستخدم" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search}/>
                    </div>
-                         {userByMail &&
+                         {userByMail && this.state.username !== '' &&
                            ( <Row className='user-information'>
                                <div className='du-images'>
                                <img className='delete-user' src={delete_icon} alt='' type="primary" onClick={this.showModal} />
@@ -145,8 +154,17 @@ class UserSearch extends Component{
                             return( 
                                 <Row className='user-information'>
                                 <div className='du-images'>
-                                    <img className='delete-user' src={delete_icon} alt='' />
+                                    <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal} />
                                     <img className='update-user' src={update_icon} alt='' />
+                                    <Modal
+                                    title="هل أنت متأكد"
+                                    visible={this.state.visible}
+                                    onOk={()=>{this.handleOk(elm._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
+                                    </Modal>
+                                    
                                  </div>
                                 <div className='user-name'>
                                 <span> اسم المستخدم :</span> 
