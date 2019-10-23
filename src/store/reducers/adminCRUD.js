@@ -1,5 +1,6 @@
 const initialState ={
-    user: ''
+    user: '',
+    company: ''
 }
 
 const adminCRUD = (state = initialState, action) => {  
@@ -9,6 +10,11 @@ const adminCRUD = (state = initialState, action) => {
           ...state,
           user: action.payload,
         }; 
+      case "DELETE_COMPANY_SUCCESS":
+        return {
+          ...state,
+          company: action.payload,
+      };  
       default:
         return state;
     }
