@@ -2,7 +2,10 @@ const initialValues = {
     isLoading : false,
     userById :'',
     userByMail:'',
-    userByName: ''
+    userByName: '',
+    companyById:'',
+    companyByMail: '',
+    companyByName: ''
   };
   
   const adminSearch = (state = initialValues, action) => {  
@@ -21,7 +24,22 @@ const initialValues = {
         return {
           ...state,
           userByName: action.payload,
-        };   
+        };
+        case "COMPANY_SEARCH_BY_ID_SUCCESS":
+          return {
+            ...state,
+            companyById: action.payload,
+          };
+        case "COMPANY_SEARCH_BY_EMAIL_SUCCESS":
+          return {
+            ...state,
+            companyByMail: action.payload,
+          };  
+        case "COMPANY_SEARCH_BY_NAME_SUCCESS":
+          return {
+            ...state,
+            companyByName: action.payload,
+          };     
       default:
         return state;
     }

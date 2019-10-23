@@ -127,19 +127,7 @@
     display: flex;
     flex-direction: row;
 }
-// .ant-menu {
-//     color: black;
-//     background: #696969;
-// }
-// .ant-menu-submenu > .ant-menu {
-//     background-color:#696969;
-// }
-// .ant-menu-item > a {
-//     display: block;
-//     color: black;
-//     font-size: 16px;
-//     font-weight: bold;
-// }
+
 vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-vertical-left .ant-menu-submenu-title, .ant-menu-vertical-right .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
     font-size: 18px;
     font-weight: bold;
@@ -157,7 +145,25 @@ vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertic
     margin-right: 33px;
     padding-right: 20px;
 }
+.company-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: right !important;
+    width: 89%;
+    background-color: white;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: -15px;
+    margin-right: 33px;
+    padding-right: 20px;
+}
 .user-name > span{
+    float: right;
+    padding: 15px 0;
+    font-size: 16px;
+}
+.company-name > span{
     float: right;
     padding: 15px 0;
     font-size: 16px;
@@ -172,4 +178,50 @@ vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertic
 }
 .input-container{
     position: relative;
+}
+.company-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 25px;
+}
+.user-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 25px;
+}
+.update-user{
+    width: 30px;
+    margin: 0px 5px;
+}
+.delete-user{
+    width: 30px;
+    margin: 0px 5px;
+}
+.du-images{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-left: 10px;
+}
+.ant-modal-close {
+    left: 0;
+}
+button.ant-btn.ant-btn-primary {
+    float: left;
+}
+.ant-modal-footer {
+    padding: 5px 16px 40px 16px;
+}
+button.ant-btn {
+    float: left;
+}
+.update-company{
+    width: 30px;
+    margin: 0px 5px;
+}
+.delete-company{
+    width: 30px;
+    margin: 0px 5px;
 }
