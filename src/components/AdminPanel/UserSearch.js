@@ -69,7 +69,9 @@ class UserSearch extends Component{
           type,
       })
     this.setState({
-      editedUser:'',
+        userId:'',
+        username:'',
+        name:'',
       editVisible: false
     })
   }
@@ -134,7 +136,7 @@ class UserSearch extends Component{
                     <Input placeholder="ادخل البريد الالكتروني للمستخدم" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search}/>
                    </div>
-                         {userByMail && this.state.username !== '' && this.state.editedUser !=='' &&
+                         {userByMail && this.state.username !== '' &&
                            ( <Row className='user-information'>
                                <div className='du-images'>
                                <img className='delete-user' src={delete_icon} alt='' type="primary" onClick={this.showModal} />
@@ -180,7 +182,7 @@ class UserSearch extends Component{
                 <img className ='search' src={search}/>
 
                     </div>
-                     {(_.isArray(userByName) || _.isObject(userByName) )&& this.state.name !==''&& this.state.editedUser !=='' ?
+                     {(_.isArray(userByName) || _.isObject(userByName) )&& this.state.name !=='' ?
                         userByName.map((elm)=>{
                             return( 
                                 <Row className='user-information'>
