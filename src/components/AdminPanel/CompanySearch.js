@@ -74,10 +74,10 @@ class CompanySearch extends Component{
             <img className ='search' src={search}/>
                    </div>
            {companyById && this.state.companyId !== '' &&
-           ( <Row className='user-information'>
+           ( <Row className='company-information'>
                 <div className='du-images'>
-                    <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal}/>
-                    <img className='update-user' src={update_icon} alt='' />
+                    <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
+                    <img className='update-company' src={update_icon} alt='' />
                     <Modal
                         title="هل أنت متأكد؟"
                         visible={this.state.visible}
@@ -87,22 +87,22 @@ class CompanySearch extends Component{
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
                 </div>
-                <div className='user-name'>
+                <div className='company-name'>
                    <span> اسم الشركة :</span> 
                    <span>{companyById.companyName }</span> 
                 </div>
 
-                <div className='user-name'>
+                <div className='company-name'>
                     <span>البريد الالكتروني للشركة :</span>
                     <span>{ companyById.email}</span>
 
                 </div>
-                <div className='user-name'>
+                <div className='company-name'>
                     <span>التخصص :</span>
                     <span>{ companyById.CompanySpecialist}</span>
 
                 </div>
-                <div className='user-name'>
+                <div className='company-name'>
                     <span>القطاع :</span>
                     <span>{ companyById.sector}</span>
 
@@ -118,10 +118,10 @@ class CompanySearch extends Component{
                     <img className ='search' src={search}/>
                    </div>
                          {companyByMail && this.state.companyMail !== '' &&
-                           ( <Row className='user-information'>
+                           ( <Row className='company-information'>
                                 <div className='du-images'>
-                                    <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal}/>
-                                    <img className='update-user' src={update_icon} alt='' />
+                                    <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
+                                    <img className='update-company' src={update_icon} alt='' />
                                     <Modal
                                         title="هل أنت متأكد؟"
                                         visible={this.state.visible}
@@ -131,11 +131,11 @@ class CompanySearch extends Component{
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
                                 </div>
-                                <div className='user-name'>
+                                <div className='company-name'>
                                 <span> اسم الشركة :</span> 
                                 <span>{companyByMail.companyName}</span> 
                                 </div>
-                                <div className='user-name'>
+                                <div className='company-name'>
                                     <span>البريد الالكتروني :</span>
                                     <span>{companyByMail.email}</span>
 
@@ -154,10 +154,10 @@ class CompanySearch extends Component{
                      {(_.isArray(companyByName) || _.isObject(companyByName) )&& this.state.companyName !=='' ?
                         companyByName.map((elm)=>{
                             return( 
-                                <Row className='user-information'>
+                                <Row className='company-information'>
                                     <div className='du-images'>
-                                    <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal}/>
-                                    <img className='update-user' src={update_icon} alt='' />
+                                    <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
+                                    <img className='update-company' src={update_icon} alt='' />
                                     <Modal
                                         title="هل أنت متأكد؟"
                                         visible={this.state.visible}
@@ -167,23 +167,23 @@ class CompanySearch extends Component{
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
                                 </div>
-                                <div className='user-name'>
+                                <div className='company-name'>
                                 <span> اسم الشركة :</span> 
                             <span>
                                     {elm.companyName} </span>
                                     
                                     </div>
-                                    <div className='user-name'>
+                                    <div className='company-name'>
                                     <span>البريد الالكتروني :</span>
                                     <span>{elm.email}</span>
                 
                                 </div>
-                                <div className='user-name'>
+                                <div className='company-name'>
                                     <span>التخصص :</span>
                                     <span>{elm.CompanySpecialist}</span>
                 
                                 </div>
-                                <div className='user-name'>
+                                <div className='company-name'>
                                     <span> القطاع:</span>
                                     <span>{elm.sector}</span>
                 
