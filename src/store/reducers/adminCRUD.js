@@ -1,6 +1,7 @@
 const initialState ={
     user: '',
-    company: ''
+    company: '',
+    updatedUser: ''
 }
 
 const adminCRUD = (state = initialState, action) => {  
@@ -14,6 +15,11 @@ const adminCRUD = (state = initialState, action) => {
         return {
           ...state,
           company: action.payload,
+      }; 
+      case "UPDATE_USER_SUCCESS":
+        return {
+          ...state,
+          updatedUser: action.payload,
       };  
       default:
         return state;

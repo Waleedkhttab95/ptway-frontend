@@ -9,6 +9,14 @@ const userCRUD ={
          console.log('error',error);
         })
      },
+     updateUser: (params) =>{
+        return baseRequest.put(`/put/writeOnUser/?updateType=${params.type}&value=${params.value}`,{user: {_id: params.id}})
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+        })
+     },
 }
 
 export default userCRUD;
