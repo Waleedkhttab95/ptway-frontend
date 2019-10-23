@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Row, Col,Input, Modal } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/companySearchAction';
-import {deleteCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
+import {deleteCompany, updateCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
@@ -13,7 +13,9 @@ class CompanySearch extends Component{
         companyId:'',
         companyMail:'',
         companyName:'',
-        visible: false
+        visible: false,
+        editVisible: false,
+        editedCompany: '',
     }
 
     handleChange = (e)=> {
@@ -46,6 +48,12 @@ class CompanySearch extends Component{
         });
       };
     
+      showEditModal = () => {
+        this.setState({
+          editVisible: true,
+        });
+      };
+     
       handleOk = async id => {
        await this.props.deleteCompany({id});
         this.setState({
@@ -53,15 +61,37 @@ class CompanySearch extends Component{
           companyMail:'',
           companyName:'',
           visible: false
+        },()=>{
+            // Modal.confirm();
         });
       };
+
+    handleEditOk = async (id,type) =>{
+        await this.props.updateCompany({
+            id,
+            value: this.state.editedCompany,
+            type,
+        })
+    this.setState({
+        companyId:'',
+        companyMail:'',
+        companyName:'',
+        editVisible: false
+    })
+    }
     
-      handleCancel = e => {
-        console.log(e);
+    handleCancel = e => {
+    console.log(e);
+    this.setState({
+        visible: false,
+    });
+    }; 
+
+    handleInputChange = (e)=>{
         this.setState({
-          visible: false,
-        });
-      }; 
+          editedCompany: e.target.value,
+        })
+    }
 
     render(){
         const {companyById, companyByMail, companyByName} = this.props.search;
@@ -77,7 +107,6 @@ class CompanySearch extends Component{
            ( <Row className='company-information'>
                 <div className='du-images'>
                     <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
-                    <img className='update-company' src={update_icon} alt='' />
                     <Modal
                         title="هل أنت متأكد؟"
                         visible={this.state.visible}
@@ -86,6 +115,8 @@ class CompanySearch extends Component{
                         >
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
+                    <img className='update-company' src={update_icon} alt='' />
+                   
                 </div>
                 <div className='company-name'>
                    <span> اسم الشركة :</span> 
@@ -121,7 +152,6 @@ class CompanySearch extends Component{
                            ( <Row className='company-information'>
                                 <div className='du-images'>
                                     <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
-                                    <img className='update-company' src={update_icon} alt='' />
                                     <Modal
                                         title="هل أنت متأكد؟"
                                         visible={this.state.visible}
@@ -129,6 +159,15 @@ class CompanySearch extends Component{
                                         onCancel={this.handleCancel}
                                         >
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
+                                    </Modal>
+                                    <img className='update-company' src={update_icon} alt='' onClick={this.showEditModal} />
+                                    <Modal
+                                        title="تعديل البريد الالكتروني للشركة"
+                                        visible={this.state.editVisible}
+                                        onOk={()=>{this.handleEditOk(companyByMail._id,'email')}}
+                                        onCancel={this.handleCancel}
+                                        >
+                                        <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
                                     </Modal>
                                 </div>
                                 <div className='company-name'>
@@ -157,7 +196,6 @@ class CompanySearch extends Component{
                                 <Row className='company-information'>
                                     <div className='du-images'>
                                     <img className='delete-company' src={delete_icon} alt='' onClick={this.showModal}/>
-                                    <img className='update-company' src={update_icon} alt='' />
                                     <Modal
                                         title="هل أنت متأكد؟"
                                         visible={this.state.visible}
@@ -165,6 +203,15 @@ class CompanySearch extends Component{
                                         onCancel={this.handleCancel}
                                         >
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
+                                    </Modal>
+                                    <img className='update-company' src={update_icon} alt='' onClick={this.showEditModal}/>
+                                    <Modal
+                                        title="تعديل اسم الشركة"
+                                        visible={this.state.editVisible}
+                                        onOk={()=>{this.handleEditOk(elm._id,'companyName')}}
+                                        onCancel={this.handleCancel}
+                                        >
+                                        <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
                                     </Modal>
                                 </div>
                                 <div className='company-name'>
@@ -216,7 +263,8 @@ const mapDispatchToProps = dispatch=> {
       companyBId: (params)=> dispatch(searchById(params)),
       companyBMail: (params)=> dispatch(searchByEmail(params)),
       companyBName: (params)=> dispatch(searchByName(params)),
-      deleteCompany :(params) => dispatch(deleteCompany(params))
+      deleteCompany :(params) => dispatch(deleteCompany(params)),
+      updateCompany :(params) => dispatch(updateCompany(params)),
     }
   }
 

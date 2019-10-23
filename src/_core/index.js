@@ -35,6 +35,7 @@ const baseRequest = {
   get: (path) => baseRequest.request("GET", path),
   post: (path, params) => baseRequest.request("POST", path, params),
   delete: (path, params) => baseRequest.request("delete", path, params),
+  put: (path, params) => baseRequest.request("put", path, params)
  
   
 };

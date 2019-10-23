@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Modal, Row, Col,Input } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/userSearchAction';
-import {deleteUser} from '../../store/actions/adminCRUD/userCRUDAction';
+import {deleteUser,updateUser} from '../../store/actions/adminCRUD/userCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
@@ -12,7 +12,9 @@ class UserSearch extends Component{
         userId:'',
         username:'',
         name:'',
-        visible: false
+        visible: false,
+      editVisible: false,
+      editedUser: '',
     }
 
     handleChange = (e)=> {
@@ -44,7 +46,12 @@ class UserSearch extends Component{
       visible: true,
     });
   };
-
+  showEditModal = () => {
+    this.setState({
+      editVisible: true,
+    });
+  };
+ 
   handleOk = async id => {
    await this.props.deleteUser({id});
     this.setState({
@@ -54,14 +61,31 @@ class UserSearch extends Component{
       visible: false
     });
   };
-
+  
+  handleEditOk = async (id,type) =>{
+      await this.props.updateUser({
+          id,
+          value: this.state.editedUser,
+          type,
+      })
+    this.setState({
+        userId:'',
+        username:'',
+        name:'',
+      editVisible: false
+    })
+  }
   handleCancel = e => {
     console.log(e);
     this.setState({
       visible: false,
     });
   };
-
+  handleInputChange = (e)=>{
+      this.setState({
+        editedUser: e.target.value,
+      })
+  }
 
     render(){
         const {userById, userByMail, userByName} = this.props.search;
@@ -78,7 +102,6 @@ class UserSearch extends Component{
            ( <Row className='user-information'>
                <div className='du-images'>
                     <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal}/>
-                    <img className='update-user' src={update_icon} alt='' />
                     <Modal
                         title="هل أنت متأكد؟"
                         visible={this.state.visible}
@@ -87,6 +110,8 @@ class UserSearch extends Component{
                         >
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
+                    <img className='update-user' src={update_icon} alt=''  />
+                   
                 </div>
                 <div className='user-name'>
                    <span> اسم المستخدم :</span> 
@@ -115,7 +140,6 @@ class UserSearch extends Component{
                            ( <Row className='user-information'>
                                <div className='du-images'>
                                <img className='delete-user' src={delete_icon} alt='' type="primary" onClick={this.showModal} />
-                               <img className='update-user' src={update_icon} alt='' />
                                <Modal
                                     title="هل أنت متأكد"
                                     visible={this.state.visible}
@@ -124,6 +148,15 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
+                               <img className='update-user' src={update_icon} alt='' onClick={this.showEditModal} />
+                               <Modal
+                                    title="تعديل البريد الالكتروني للمستخدم"
+                                    visible={this.state.editVisible}
+                                    onOk={()=>{this.handleEditOk(userByMail._id,'email')}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
+                                </Modal>
                                </div>
                                 <div className='user-name'>
                                 <span> اسم المستخدم :</span> 
@@ -155,7 +188,6 @@ class UserSearch extends Component{
                                 <Row className='user-information'>
                                 <div className='du-images'>
                                     <img className='delete-user' src={delete_icon} alt='' onClick={this.showModal} />
-                                    <img className='update-user' src={update_icon} alt='' />
                                     <Modal
                                     title="هل أنت متأكد"
                                     visible={this.state.visible}
@@ -164,6 +196,15 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
+                                    <img className='update-user' src={update_icon} alt='' onClick={this.showEditModal}/>
+                                    <Modal
+                                    title="تعديل اسم المستخدم"
+                                    visible={this.state.editVisible}
+                                    onOk={()=>{this.handleEditOk(elm._id,'firstName')}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
+                                </Modal>
                                     
                                  </div>
                                 <div className='user-name'>
@@ -205,7 +246,9 @@ const mapDispatchToProps = dispatch=> {
       searchBId: (params)=> dispatch(searchById(params)),
       searchBMail: (params)=> dispatch(searchByEmail(params)),
       searchBName: (params)=> dispatch(searchByName(params)),
-      deleteUser :(params) => dispatch(deleteUser(params))
+      deleteUser :(params) => dispatch(deleteUser(params)),
+      updateUser :(params) => dispatch(updateUser(params)),
+
     }
   }
 

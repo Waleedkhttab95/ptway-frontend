@@ -9,6 +9,14 @@ const companyCRUD ={
          console.log('error',error);
         })
      },
+     updateCompany: (params) =>{
+        return baseRequest.put(`/put/writeOnCompany/?updateType=${params.type}&value=${params.value}`,{company: {_id: params.id}})
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+        })
+     },
 }
 
 export default companyCRUD;

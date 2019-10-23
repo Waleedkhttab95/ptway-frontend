@@ -6,3 +6,10 @@ export const deleteUser = (params)=>{
         payload: userCRUD.deleteUser(params)
     }
 }
+
+export const updateUser = (params)=>{
+    return {
+        type: 'UPDATE_USER',
+        payload: userCRUD.updateUser(params)
+    }
+}

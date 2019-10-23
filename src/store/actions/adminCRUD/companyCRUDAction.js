@@ -6,3 +6,10 @@ export const deleteCompany = (params)=>{
         payload: companyCRUD.deleteCompany(params)
     }
 }
+
+export const updateCompany = (params)=>{
+    return {
+        type: 'UPDATE_COMPANY',
+        payload: companyCRUD.updateCompany(params)
+    }
+}
