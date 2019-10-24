@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Modal, Row, Col,Input } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/userSearchAction';
-import {deleteUser,updateUser} from '../../store/actions/adminCRUD/userCRUDAction';
+import {deleteUser,updateUser, confirmUser} from '../../store/actions/adminCRUD/userCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
+import confirm_icon from '../../images/confirmation.svg';
+import block_icon from '../../images/block.svg';
+
 import _ from 'lodash';
 class UserSearch extends Component{
     state ={
@@ -15,6 +18,7 @@ class UserSearch extends Component{
         visible: false,
       editVisible: false,
       editedUser: '',
+      confirmVisible: false
     }
 
     handleChange = (e)=> {
@@ -85,6 +89,22 @@ class UserSearch extends Component{
       this.setState({
         editedUser: e.target.value,
       })
+  };
+  showConfirmationModal = ()=>{
+    this.setState({
+        confirmVisible: true,
+      });
+  }
+  handleConfirmOk = async id=>{
+    console.log('e',id);
+    await this.props.confirmUser({id});
+    this.setState({
+        userId:'',
+        username:'',
+        name:'',
+        confirmVisible: false
+    });
+    
   }
 
     render(){
@@ -96,7 +116,7 @@ class UserSearch extends Component{
                <Col md={16}>
                    <div className='input-container statistic'>
             <Input placeholder="ادخل رقم المستخدم" onChange={this.handleChange}/>
-            <img className ='search' src={search}/>
+            <img className ='search' src={search} alt=''/>
                    </div>
            {userById && this.state.userId !== '' &&
            ( <Row className='user-information'>
@@ -110,8 +130,16 @@ class UserSearch extends Component{
                         >
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
-                    <img className='update-user' src={update_icon} alt=''  />
-                   
+                    <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(userByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
+                    <img className= 'block'src={block_icon} alt=''/>
                 </div>
                 <div className='user-name'>
                    <span> اسم المستخدم :</span> 
@@ -134,7 +162,7 @@ class UserSearch extends Component{
                <Col md={16} >
                    <div className='input-container statistic'>
                     <Input placeholder="ادخل البريد الالكتروني للمستخدم" onChange={this.handleEmailChange}/>
-                    <img className ='search' src={search}/>
+                    <img className ='search' src={search} alt=''/>
                    </div>
                          {userByMail && this.state.username !== '' &&
                            ( <Row className='user-information'>
@@ -157,6 +185,17 @@ class UserSearch extends Component{
                                     >
                                 <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
                                 </Modal>
+                                <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(userByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
+                                <img className= 'block'src={block_icon} alt=''/>
+
                                </div>
                                 <div className='user-name'>
                                 <span> اسم المستخدم :</span> 
@@ -205,6 +244,16 @@ class UserSearch extends Component{
                                     >
                                 <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
                                 </Modal>
+                                <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(elm._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
+                                <img className= 'block'src={block_icon} alt=''/>
                                     
                                  </div>
                                 <div className='user-name'>
@@ -248,6 +297,7 @@ const mapDispatchToProps = dispatch=> {
       searchBName: (params)=> dispatch(searchByName(params)),
       deleteUser :(params) => dispatch(deleteUser(params)),
       updateUser :(params) => dispatch(updateUser(params)),
+      confirmUser: (params) => dispatch(confirmUser(params))
 
     }
   }
