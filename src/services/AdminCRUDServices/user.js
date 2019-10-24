@@ -25,6 +25,14 @@ const userCRUD ={
            console.log('error',error);
           })
      },
+     blockUser: (params) =>{
+          return baseRequest.put(`/block/user/?id=${params.id}`)
+          .then((result)=>{
+               return result;
+          }).catch((error)=>{
+           console.log('error',error);
+          });
+     },
 }
 
 export default userCRUD;

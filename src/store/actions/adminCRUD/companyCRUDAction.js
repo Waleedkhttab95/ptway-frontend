@@ -19,4 +19,10 @@ export const confirmCompany = (params)=>{
         type: 'CONFIRM_COMPANY',
         payload: companyCRUD.confirmCompany(params)
     }
+};
+export const blockCompany = (params)=>{
+    return {
+        type: 'BLOCK_COMPANY',
+        payload: companyCRUD.blockCompany(params)
+    }
 }

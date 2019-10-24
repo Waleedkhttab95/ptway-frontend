@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Row, Col,Input, Modal } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/companySearchAction';
-import {deleteCompany, updateCompany, confirmCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
+import {deleteCompany, updateCompany, confirmCompany, blockCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
@@ -18,7 +18,8 @@ class CompanySearch extends Component{
         visible: false,
         editVisible: false,
         editedCompany: '',
-      confirmVisible: false
+      confirmVisible: false,
+      blockVisible: false
     }
 
     handleChange = (e)=> {
@@ -111,6 +112,20 @@ class CompanySearch extends Component{
         });
         
       }
+      showBlockModal =()=>{
+        this.setState({
+            blockVisible: true,
+          });
+      };
+      handleBlockOk = async id =>{
+        await this.props.blockCompany({id});
+        this.setState({
+            companyId:'',
+            companyMail:'',
+            companyName:'',
+            blockVisible: false
+        });
+      }  
 
     render(){
         const {companyById, companyByMail, companyByName} = this.props.search;
@@ -136,14 +151,24 @@ class CompanySearch extends Component{
                     </Modal>
                     <img className='update-company' src={update_icon} alt='' />
                     <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
-                                <Modal
-                                    title="رسالة تأكيد"
-                                    visible={this.state.confirmVisible}
-                                    onOk={()=>{this.handleConfirmOk(companyById._id)}}
-                                    onCancel={this.handleCancel}
-                                    >
-                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
-                                </Modal>
+                        <Modal
+                            title="رسالة تأكيد"
+                            visible={this.state.confirmVisible}
+                            onOk={()=>{this.handleConfirmOk(companyById._id)}}
+                            onCancel={this.handleCancel}
+                            >
+                            <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                        </Modal>
+                    <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                        <Modal
+                            title="رسالة تأكيد"
+                            visible={this.state.blockVisible}
+                            onOk={()=>{this.handleBlockOk(companyById._id)}}
+                            onCancel={this.handleCancel}
+                            >
+                            <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                        </Modal>            
+                                
                    
                 </div>
                 <div className='company-name'>
@@ -174,7 +199,7 @@ class CompanySearch extends Component{
                <Col md={16} >
                    <div className='input-container statistic'>
                     <Input placeholder="ادخل البريد الالكتروني للشركة" onChange={this.handleEmailChange}/>
-                    <img className ='search' src={search}/>
+                    <img className ='search' src={search} alt=''/>
                    </div>
                          {companyByMail && this.state.companyMail !== '' &&
                            ( <Row className='company-information'>
@@ -206,6 +231,15 @@ class CompanySearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في تفعيل الحساب؟</p>
                                 </Modal>
+                                <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                                    <Modal
+                                        title="رسالة تأكيد"
+                                        visible={this.state.blockVisible}
+                                        onOk={()=>{this.handleBlockOk(companyByMail._id)}}
+                                        onCancel={this.handleCancel}
+                                        >
+                                        <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                                    </Modal>
                                 </div>
                                 <div className='company-name'>
                                 <span> اسم الشركة :</span> 
@@ -259,6 +293,15 @@ class CompanySearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في تفعيل الحساب؟</p>
                                 </Modal>
+                                <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                                    <Modal
+                                        title="رسالة تأكيد"
+                                        visible={this.state.blockVisible}
+                                        onOk={()=>{this.handleBlockOk(elm._id)}}
+                                        onCancel={this.handleCancel}
+                                        >
+                                        <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                                    </Modal>   
                                 </div>
                                 <div className='company-name'>
                                 <span> اسم الشركة :</span> 
@@ -311,7 +354,9 @@ const mapDispatchToProps = dispatch=> {
       companyBName: (params)=> dispatch(searchByName(params)),
       deleteCompany :(params) => dispatch(deleteCompany(params)),
       updateCompany :(params) => dispatch(updateCompany(params)),
-      confirmCompany: (params) => dispatch(confirmCompany(params))
+      confirmCompany: (params) => dispatch(confirmCompany(params)),
+      blockCompany: (params) => dispatch(blockCompany(params)),
+
 
     }
   }
