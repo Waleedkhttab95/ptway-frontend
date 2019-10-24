@@ -2,7 +2,9 @@ const initialState ={
     user: '',
     company: '',
     updatedUser: '',
-    updatedCompany: ''
+    updatedCompany: '',
+    confirmUser: '',
+    confirmCompany: '',
 
 }
 
@@ -27,7 +29,17 @@ const adminCRUD = (state = initialState, action) => {
         return {
           ...state,
           updatedCompany: action.payload,
-      };    
+      };
+      case "CONFIRM_USER_SUCCESS":
+        return {
+          ...state,
+          confirmUser: action.payload,
+      };
+      case "CONFIRM_COMPANY_SUCCESS":
+        return {
+          ...state,
+          confirmCompany: action.payload,
+      };      
       default:
         return state;
     }

@@ -17,6 +17,14 @@ const companyCRUD ={
          console.log('error',error);
         })
      },
+     confirmCompany: (params) =>{
+          return baseRequest.put(`/confitm/company/?id=${params.id}`)
+          .then((result)=>{
+               return result;
+          }).catch((error)=>{
+           console.log('error',error);
+          })
+       },
 }
 
 export default companyCRUD;

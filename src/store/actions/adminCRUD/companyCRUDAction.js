@@ -13,3 +13,10 @@ export const updateCompany = (params)=>{
         payload: companyCRUD.updateCompany(params)
     }
 }
+
+export const confirmCompany = (params)=>{
+    return {
+        type: 'CONFIRM_COMPANY',
+        payload: companyCRUD.confirmCompany(params)
+    }
+}

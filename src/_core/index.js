@@ -25,8 +25,8 @@ const baseRequest = {
   },
   request: (method, path, params, responseType) => {
     return axios({ method, url: path, data: params, responseType }).then(result => {
-      if (result.data.message) {
-        throw new Error(result.data.message);
+      if (result.data.error) {
+        throw new Error(result.data.error);
       } else {
         return result.data;
       }

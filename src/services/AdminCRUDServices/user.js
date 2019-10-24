@@ -17,6 +17,14 @@ const userCRUD ={
          console.log('error',error);
         })
      },
+     confirmUser: (params) =>{
+          return baseRequest.put(`/confitm/user/?id=${params.id}`)
+          .then((result)=>{
+               return result;
+          }).catch((error)=>{
+           console.log('error',error);
+          })
+     },
 }
 
 export default userCRUD;

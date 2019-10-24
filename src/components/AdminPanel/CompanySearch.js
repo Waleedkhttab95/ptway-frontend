@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Row, Col,Input, Modal } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/companySearchAction';
-import {deleteCompany, updateCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
+import {deleteCompany, updateCompany, confirmCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
+import confirm_icon from '../../images/confirmation.svg';
+import block_icon from '../../images/block.svg';
 import _ from 'lodash';
 
 class CompanySearch extends Component{
@@ -16,6 +18,7 @@ class CompanySearch extends Component{
         visible: false,
         editVisible: false,
         editedCompany: '',
+      confirmVisible: false
     }
 
     handleChange = (e)=> {
@@ -92,6 +95,22 @@ class CompanySearch extends Component{
           editedCompany: e.target.value,
         })
     }
+    showConfirmationModal = ()=>{
+        this.setState({
+            confirmVisible: true,
+          });
+      }
+      handleConfirmOk = async id=>{
+        console.log('e',id);
+        await this.props.confirmCompany({id});
+        this.setState({
+            companyId:'',
+            companyMail:'',
+            companyName:'',
+            confirmVisible: false
+        });
+        
+      }
 
     render(){
         const {companyById, companyByMail, companyByName} = this.props.search;
@@ -101,7 +120,7 @@ class CompanySearch extends Component{
                <Col md={16}>
                    <div className='input-container statistic'>
             <Input placeholder="ادخل رقم الشركة" onChange={this.handleChange}/>
-            <img className ='search' src={search}/>
+            <img className ='search' src={search} alt=''/>
                    </div>
            {companyById && this.state.companyId !== '' &&
            ( <Row className='company-information'>
@@ -116,6 +135,15 @@ class CompanySearch extends Component{
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
                     <img className='update-company' src={update_icon} alt='' />
+                    <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(companyById._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
                    
                 </div>
                 <div className='company-name'>
@@ -169,6 +197,15 @@ class CompanySearch extends Component{
                                         >
                                         <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
                                     </Modal>
+                                    <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(companyByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
                                 </div>
                                 <div className='company-name'>
                                 <span> اسم الشركة :</span> 
@@ -187,7 +224,7 @@ class CompanySearch extends Component{
                 <Col md={16} >
                     <div className='input-container statistic'>
                 <Input placeholder="ادخل اسم الشركة" onChange={this.handleNameChange}/>
-                <img className ='search' src={search}/>
+                <img className ='search' src={search} alt=''/>
 
                     </div>
                      {(_.isArray(companyByName) || _.isObject(companyByName) )&& this.state.companyName !=='' ?
@@ -213,6 +250,15 @@ class CompanySearch extends Component{
                                         >
                                         <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
                                     </Modal>
+                                    <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.confirmVisible}
+                                    onOk={()=>{this.handleConfirmOk(elm._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                                </Modal>
                                 </div>
                                 <div className='company-name'>
                                 <span> اسم الشركة :</span> 
@@ -265,6 +311,8 @@ const mapDispatchToProps = dispatch=> {
       companyBName: (params)=> dispatch(searchByName(params)),
       deleteCompany :(params) => dispatch(deleteCompany(params)),
       updateCompany :(params) => dispatch(updateCompany(params)),
+      confirmCompany: (params) => dispatch(confirmCompany(params))
+
     }
   }
 
