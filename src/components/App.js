@@ -12,6 +12,8 @@ import AdminPanel from './AdminPanel';
 import CompaniesStatistics from './AdminPanel/CompaniesStatistics';
 import CompanySearch from '../components/AdminPanel/CompanySearch';
 import UserSearch from '../components/AdminPanel/UserSearch';
+import CitiesContent from '../components/AdminPanel/contentSection/CitiesContent';
+
 import './App.scss'
 
 const App =(props)=> {
@@ -50,6 +52,11 @@ const App =(props)=> {
         exact
         path='/admin/search/company'
         component={AdminPanel(CompanySearch)}
+      />
+      <Route
+        exact
+        path='/admin/content/cities'
+        component={AdminPanel(CitiesContent)}
       />
         </Switch>
       </Router>
