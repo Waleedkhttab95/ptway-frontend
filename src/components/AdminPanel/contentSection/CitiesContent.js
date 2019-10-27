@@ -4,16 +4,13 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './content.scss';
 import {connect} from 'react-redux';
-import {Row, Col, Table, Input, InputNumber, Popconfirm, Form } from 'antd';
-import {updateCity} from '../../../store/actions/adminContent/citiesContentAction';
+import {Table, Input, InputNumber, Popconfirm, Form } from 'antd';
+import {updateCity, deteteCity} from '../../../store/actions/adminContent/citiesContentAction';
 import statatisticsService from '../../../services/statisticsService';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
 
 const {allCities} = statatisticsService;
-
-
-
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
@@ -121,10 +118,8 @@ class EditableTable extends React.Component {
         title: 'حذف',
         dataIndex: 'operation',
         render: (text, record) => {
-          const { editingKey } = this.state;
-          const editable = this.isEditing(record);
           return (
-             <a  onClick={() => this.edit(record.key)}>
+             <a  onClick={() => this.delete(record.key)}>
               <img src={delete_icon} className='delete-icon' alt=''/>
             </a>)
         
@@ -143,9 +138,7 @@ class EditableTable extends React.Component {
     form.validateFields((error, row) => {
       if (error) {
         return;
-      }
-      console.log('form', form, 'row',row, 'key', key);
-     
+      };
       const newData = [...this.state.data];
       const index = newData.findIndex(item => key === item.key);
       if (index > -1) {
@@ -174,25 +167,22 @@ class EditableTable extends React.Component {
     this.setState({ editingKey: key });
   }
 
+  delete =(key)=>{
+      console.log('key',key);
+     this.props.deteteCity({
+      id: key
+     })   
+
+  }
+
   render() {
     const components = {
       body: {
         cell: EditableCell,
       },
     };
-    
-    // for (let i = 0; i < this.state.data.length; i++) {
-    //     this.state.data.push({
-    //     key: i.toString(),
-    //     name: `Edrward ${i}`,
-    //     age: 32,
-    //     address: `London Park no. ${i}`,
-    //   });
-    // }
 
     const columns = this.columns.map(col => {
-      console.log('this.state', this.state);
-      
       if (!col.editable) {
         return col;
       }
@@ -238,6 +228,7 @@ const mapStateToProps =({content})=>{
 const mapDispatchToProps =(dispatch)=>{
     return {
         updateCity: (props) => dispatch(updateCity(props)),
+        deteteCity: (props) => dispatch(deteteCity(props)),
     }
 }
 

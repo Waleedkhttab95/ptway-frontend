@@ -1,5 +1,6 @@
 const initialState ={
-    updatedCity: ''
+    updatedCity: '',
+    deleteCity: ''
 }
 
 const adminContent = (state = initialState, action) => {  
@@ -8,6 +9,11 @@ const adminContent = (state = initialState, action) => {
         return {
           ...state,
           updatedCity: action.payload,
+        }; 
+    case "DELETE_CITY_SUCCESS":
+        return {
+            ...state,
+            deleteCity: action.payload,
         };       
       default:
         return state;

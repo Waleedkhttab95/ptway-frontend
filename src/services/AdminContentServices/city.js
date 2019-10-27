@@ -1,14 +1,14 @@
 import baseRequest from '../../_core';
 
 const citiesContent ={
-    // deleteCity: (params) =>{
-    //     return baseRequest.delete('/delete/deleteCompany',{company: {_id: params.id}})
-    //     .then((result)=>{
-    //          return result;
-    //     }).catch((error)=>{
-    //      console.log('error',error);
-    //     })
-    //  },
+    deleteCity: (params) =>{
+        return baseRequest.delete('/delete/deleteCity',{city: {_id: params.id}})
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+        })
+     },
      updateCity: (params) =>{
         return baseRequest.put('/put/writeOnCity',
         {

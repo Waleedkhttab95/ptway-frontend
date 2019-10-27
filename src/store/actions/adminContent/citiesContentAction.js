@@ -6,3 +6,10 @@ export const updateCity =(params)=>{
         payload: citiesContent.updateCity(params)
     }
 }
+
+export const deteteCity =(params)=>{
+    return {
+        type: 'DELETE_CITY',
+        payload: citiesContent.deteteCity(params)
+    }
+}
