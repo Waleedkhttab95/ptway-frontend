@@ -20,3 +20,10 @@ export const confirmUser = (params)=>{
         payload: userCRUD.confirmUser(params)
     }
 };
+
+export const blockUser = (params)=>{
+    return {
+        type: 'BLOCK_USER',
+        payload: userCRUD.blockUser(params)
+    }
+};

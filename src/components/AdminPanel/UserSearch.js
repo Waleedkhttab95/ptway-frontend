@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Modal, Row, Col,Input } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/userSearchAction';
-import {deleteUser,updateUser, confirmUser} from '../../store/actions/adminCRUD/userCRUDAction';
+import {deleteUser,updateUser, confirmUser, blockUser} from '../../store/actions/adminCRUD/userCRUDAction';
 import search from '../../images/search-icon.svg';
 import delete_icon from '../../images/delete.svg';
 import update_icon from '../../images/edit.svg';
@@ -18,7 +18,8 @@ class UserSearch extends Component{
         visible: false,
       editVisible: false,
       editedUser: '',
-      confirmVisible: false
+      confirmVisible: false,
+      blockVisible: false
     }
 
     handleChange = (e)=> {
@@ -104,7 +105,20 @@ class UserSearch extends Component{
         name:'',
         confirmVisible: false
     });
-    
+  };
+  showBlockModal =()=>{
+    this.setState({
+        blockVisible: true,
+      });
+  };
+  handleBlockOk = async id =>{
+    await this.props.blockUser({id});
+    this.setState({
+        userId:'',
+        username:'',
+        name:'',
+        blockVisible: false
+    });
   }
 
     render(){
@@ -131,15 +145,23 @@ class UserSearch extends Component{
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
                     <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
-                                <Modal
-                                    title="رسالة تأكيد"
-                                    visible={this.state.confirmVisible}
-                                    onOk={()=>{this.handleConfirmOk(userByMail._id)}}
-                                    onCancel={this.handleCancel}
-                                    >
-                                    <p>هل ترغب حقاً في تفعيل الحساب؟</p>
-                                </Modal>
-                    <img className= 'block'src={block_icon} alt=''/>
+                        <Modal
+                            title="رسالة تأكيد"
+                            visible={this.state.confirmVisible}
+                            onOk={()=>{this.handleConfirmOk(userById._id)}}
+                            onCancel={this.handleCancel}
+                            >
+                            <p>هل ترغب حقاً في تفعيل الحساب؟</p>
+                        </Modal>
+                    <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                        <Modal
+                            title="رسالة تأكيد"
+                            visible={this.state.blockVisible}
+                            onOk={()=>{this.handleBlockOk(userById._id)}}
+                            onCancel={this.handleCancel}
+                            >
+                            <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                        </Modal>
                 </div>
                 <div className='user-name'>
                    <span> اسم المستخدم :</span> 
@@ -194,7 +216,15 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في تفعيل الحساب؟</p>
                                 </Modal>
-                                <img className= 'block'src={block_icon} alt=''/>
+                                <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.blockVisible}
+                                    onOk={()=>{this.handleBlockOk(userByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                                </Modal>
 
                                </div>
                                 <div className='user-name'>
@@ -218,8 +248,7 @@ class UserSearch extends Component{
                 <Col md={16} >
                     <div className='input-container statistic'>
                 <Input placeholder="ادخل اسم المستخدم" onChange={this.handleNameChange}/>
-                <img className ='search' src={search}/>
-
+                <img className ='search' src={search} alt=''/>
                     </div>
                      {(_.isArray(userByName) || _.isObject(userByName) )&& this.state.name !=='' ?
                         userByName.map((elm)=>{
@@ -253,7 +282,15 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في تفعيل الحساب؟</p>
                                 </Modal>
-                                <img className= 'block'src={block_icon} alt=''/>
+                                <img className= 'block' src={block_icon} alt='' onClick={this.showBlockModal}/>
+                                <Modal
+                                    title="رسالة تأكيد"
+                                    visible={this.state.blockVisible}
+                                    onOk={()=>{this.handleBlockOk(elm._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                    <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
+                                </Modal>
                                     
                                  </div>
                                 <div className='user-name'>
@@ -297,8 +334,8 @@ const mapDispatchToProps = dispatch=> {
       searchBName: (params)=> dispatch(searchByName(params)),
       deleteUser :(params) => dispatch(deleteUser(params)),
       updateUser :(params) => dispatch(updateUser(params)),
-      confirmUser: (params) => dispatch(confirmUser(params))
-
+      confirmUser: (params) => dispatch(confirmUser(params)),
+      blockUser: (params) => dispatch(blockUser(params)),
     }
   }
 

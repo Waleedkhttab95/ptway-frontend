@@ -65,6 +65,22 @@ const Sidebar = ()=>{
           <Link to={'/admin/search/company'} >البحث عن الشركات</Link>
           </Menu.Item>
         </SubMenu>
+        <SubMenu
+          key="sub4"
+          title={
+            <span>
+              <Icon type="appstore" />
+              <span>المحتوى</span>
+            </span>
+          }
+        >
+          <Menu.Item key="8">
+          <Link to={'/admin/content/cities'} >محتوى المدن</Link>
+          </Menu.Item>
+          {/* <Menu.Item key="9">
+          <Link to={'/admin/content/company'} >البحث عن الشركات</Link>
+          </Menu.Item> */}
+        </SubMenu>
       </Menu>
             </Col>
            

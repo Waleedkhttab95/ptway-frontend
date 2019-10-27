@@ -24,7 +24,15 @@ const companyCRUD ={
           }).catch((error)=>{
            console.log('error',error);
           })
-       },
+     },
+     blockCompany: (params) =>{
+          return baseRequest.put(`/block/company/?id=${params.id}`)
+          .then((result)=>{
+               return result;
+          }).catch((error)=>{
+           console.log('error',error);
+          })
+     },
 }
 
 export default companyCRUD;
