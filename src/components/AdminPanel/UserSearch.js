@@ -84,6 +84,9 @@ class UserSearch extends Component{
     console.log(e);
     this.setState({
       visible: false,
+      editVisible: false,
+      confirmVisible: false,
+      blockVisible: false
     });
   };
   handleInputChange = (e)=>{
