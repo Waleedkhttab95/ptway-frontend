@@ -10,6 +10,13 @@ export const updateCity =(params)=>{
 export const deteteCity =(params)=>{
     return {
         type: 'DELETE_CITY',
-        payload: citiesContent.deteteCity(params)
+        payload: citiesContent.deleteCity(params)
+    }
+}
+
+export const addCity =(params)=>{
+    return {
+        type: 'ADD_CITY',
+        payload: citiesContent.addCity(params)
     }
 }

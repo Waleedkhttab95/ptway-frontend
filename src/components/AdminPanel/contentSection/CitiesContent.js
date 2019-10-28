@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './content.scss';
 import {connect} from 'react-redux';
-import {Table, Input, InputNumber, Popconfirm, Form } from 'antd';
-import {updateCity, deteteCity} from '../../../store/actions/adminContent/citiesContentAction';
+import {Table, Input, InputNumber, Popconfirm, Form, Modal, Cascader } from 'antd';
+import {updateCity, deteteCity, addCity} from '../../../store/actions/adminContent/citiesContentAction';
 import statatisticsService from '../../../services/statisticsService';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
+import add_icon from '../../../images/plus.svg';
 
-const {allCities} = statatisticsService;
+const {allCities, allCountries} = statatisticsService;
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
@@ -60,8 +61,17 @@ class EditableCell extends React.Component {
 
 class EditableTable extends React.Component {
 
-    state = { data: [], editingKey: '' };
+    state = { data: [], editingKey: '',
+    visible: false,
+    city:'',
+    countries:[],
+    country:''
+  };
     componentDidMount (){
+        allCountries().then((data)=>{
+            this.setState({countries: data});
+        });
+
       allCities().then((result)=>{
           console.log('cityFormate',result);
         const formattedData= result.map((elm)=>{
@@ -167,15 +177,66 @@ class EditableTable extends React.Component {
     this.setState({ editingKey: key });
   }
 
-  delete =(key)=>{
+  delete =  async (key,name)=>{
+    const newData = this.state.data;
       console.log('key',key);
-     this.props.deteteCity({
+  
+    await newData.forEach( (i,index) => {
+      console.log('i.name === name || i.key === key',i.name === name || i.key === key);
+      
+        if (i.name === name || i.key === key )
+         newData.splice(index,i);
+      
+     })
+     await this.props.deteteCity({
       id: key
-     })   
+     });
+     this.setState({
+      data: newData,
+    });   
+     console.log('newData',this.state.data);
+     
 
   }
+  addCityModal =()=>{
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk= async (id) =>{
+    const newData = this.state.data;
+    console.log('id',id);
+    const {addCity} =this.props;
+    const {city} = this.state;
+    await addCity({
+      cityName: city,
+      countryId: id
+    });
+    await newData.push({name:city})
+    this.setState({
+      data: newData,
+      visible: false,
+    });
+
+  }
+  handleCancel = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+  handleInputChange = (e)=>{
+    this.setState({
+      city: e.target.value,
+    })
+}
+countryChange =(value,selectedOptions)=>{
+  this.setState ({
+      country: selectedOptions[0]
+  })
+}
 
   render() {
+    const country = this.state;
     const components = {
       body: {
         cell: EditableCell,
@@ -199,8 +260,18 @@ class EditableTable extends React.Component {
     });
 
     return (
+      <React.Fragment>
+                    <Cascader className='dropdown-menu country-dropmenu' options={this.state.countries} onChange={this.countryChange} placeholder="اختر الدولة"  />
+        <img src={add_icon} className='add-icon' alt='مدينة جديدة' onClick={this.addCityModal}/>
+        <Modal
+          title="اضافة مدينة جديدة"
+          visible={this.state.visible}
+          onOk={()=>{this.handleOk((country? country.id: '', country? country.name: ''))}}
+          onCancel={this.handleCancel}
+          >
+          <Input placeholder="اسم المدينة " onChange={this.handleInputChange}/>
+      </Modal>
       <EditableContext.Provider value={this.props.form}>
-
         <Table
           components={components}
           bordered
@@ -213,6 +284,7 @@ class EditableTable extends React.Component {
         />
 
       </EditableContext.Provider>
+      </React.Fragment>
     );
   }
 }
@@ -229,6 +301,8 @@ const mapDispatchToProps =(dispatch)=>{
     return {
         updateCity: (props) => dispatch(updateCity(props)),
         deteteCity: (props) => dispatch(deteteCity(props)),
+        addCity: (props) => dispatch(addCity(props)),
+
     }
 }
 

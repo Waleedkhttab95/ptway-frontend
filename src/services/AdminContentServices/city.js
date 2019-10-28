@@ -22,6 +22,18 @@ const citiesContent ={
          console.log('error',error);
         })
      },
+     addCity: (params) =>{
+        return baseRequest.post('/postcity',
+        {
+            cityName: params.cityName,
+            countryName: params.countryName
+        })
+        .then((result)=>{
+             return result;
+        }).catch((error)=>{
+         console.log('error',error);
+        })
+     },
 }
 
 export default citiesContent;
