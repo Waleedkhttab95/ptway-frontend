@@ -15,12 +15,7 @@ const adminContent = (state = initialState, action) => {
         return {
             ...state,
             deleteCity: action.payload,
-        }; 
-    case "ADD_CITY_SUCCESS":
-        return {
-            ...state,
-            addCity: action.payload,
-        };          
+        };         
       default:
         return state;
     }
