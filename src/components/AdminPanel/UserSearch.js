@@ -15,6 +15,7 @@ class UserSearch extends Component{
         userId:'',
         username:'',
         name:'',
+        type:'',
         visible: false,
       editVisible: false,
       editedUser: '',
@@ -51,9 +52,10 @@ class UserSearch extends Component{
       visible: true,
     });
   };
-  showEditModal = () => {
+  showEditModal = (type) => {
     this.setState({
       editVisible: true,
+      type
     });
   };
  
@@ -67,8 +69,10 @@ class UserSearch extends Component{
     });
   };
   
-  handleEditOk = async (id,type) =>{
-      await this.props.updateUser({
+  handleEditOk = async (id) =>{
+      const { type } = this.state;
+      const { updateUser } = this.props;
+      await updateUser({
           id,
           value: this.state.editedUser,
           type,
@@ -166,18 +170,51 @@ class UserSearch extends Component{
                             <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
                         </Modal>
                 </div>
+                <Modal
+                    title="تعديل بيانات المستخدم"
+                    visible={this.state.editVisible}
+                    onOk={()=>{this.handleEditOk(userById._id)}}
+                    onCancel={this.handleCancel}
+                    >
+                <Input placeholder="ادخل القيمة " onChange={this.handleInputChange}/>
+                </Modal>
                 <div className='user-name'>
-                   <span> اسم المستخدم :</span> 
+                   <span> اسم المستخدم الأول : </span> 
                    <span>{ 
-                       userById ? userById.firstName + " " + userById.lastName
+                       userById ? userById.firstName 
                      : null 
                      }</span> 
+                     <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('firstName')} />
+                </div>
+                <div className='user-name'>
+                   <span> اسم المستخدم الاخير : </span> 
+                   <span>{ 
+                       userById ? userById.lastName
+                     : null 
+                     }</span> 
+                     <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('lastName')} />
                 </div>
 
                 <div className='user-name'>
-                    <span>البريد الالكتروني :</span>
+                    <span>البريد الالكتروني : </span>
                     <span>{userById? userById.email: ''}</span>
+                    <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('email')} />
+                </div>
+                <div className='user-name'>
+                   <span> حالة التفعيل :</span> 
+                   <span>{ 
+                       userById ? userById.isConfirmed? 'مفعل' : 'غير مفعل'
+                     : null 
+                     }</span> 
+                    <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')} />
 
+                </div>
+                <div className='user-name'>
+                   <span> تاريخ الانشاء : </span> 
+                   <span>{ 
+                       userById ? userById.createDate 
+                     : null 
+                     }</span> 
                 </div>
             </Row>
             ) }
@@ -201,15 +238,6 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
-                               <img className='update-user' src={update_icon} alt='' onClick={this.showEditModal} />
-                               <Modal
-                                    title="تعديل البريد الالكتروني للمستخدم"
-                                    visible={this.state.editVisible}
-                                    onOk={()=>{this.handleEditOk(userByMail._id,'email')}}
-                                    onCancel={this.handleCancel}
-                                    >
-                                <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
-                                </Modal>
                                 <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
                                 <Modal
                                     title="رسالة تأكيد"
@@ -228,20 +256,49 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
                                 </Modal>
-
                                </div>
+                               <Modal
+                                    title="تعديل بيانات المستخدم"
+                                    visible={this.state.editVisible}
+                                    onOk={()=>{this.handleEditOk(userByMail._id)}}
+                                    onCancel={this.handleCancel}
+                                    >
+                                <Input placeholder="ادخل القيمة " onChange={this.handleInputChange}/>
+                                </Modal>
                                 <div className='user-name'>
-                                <span> اسم المستخدم :</span> 
+                                <span>  اسم المستخدم الأول : </span> 
                                 <span>{ 
-                                    userByMail ? userByMail.firstName + " " +userByMail.lastName
+                                    userByMail ? userByMail.firstName 
                                     : null 
                                     }</span> 
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('firstName')} />
+
+                                </div>
+                                <div className='user-name'>
+                                <span> اسم المستخدم الاخير :</span> 
+                                <span>{ 
+                                    userByMail ? userByMail.lastName
+                                    : null 
+                                    }</span> 
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('lastName')} />
+
                                 </div>
 
                                 <div className='user-name'>
-                                    <span>البريد الالكتروني :</span>
+                                    <span>البريد الالكتروني : </span>
                                     <span>{userByMail? userByMail.email: ''}</span>
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('email')} />
 
+                                </div>
+                                <div className='user-name'>
+                                    <span>حالة التفعيل : </span>
+                                    <span>{userByMail? userByMail.isConfirmed ? 'مفعل' : 'غير مفعل': ''}</span>
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')} />
+
+                                </div>
+                                <div className='user-name'>
+                                    <span>تاريخ الانشاء : </span>
+                                    <span>{userByMail? userByMail.createDate: ''}</span>
                                 </div>
                             </Row>
                              )}
@@ -267,14 +324,14 @@ class UserSearch extends Component{
                                     >
                                     <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
-                                    <img className='update-user' src={update_icon} alt='' onClick={this.showEditModal}/>
+
                                     <Modal
-                                    title="تعديل اسم المستخدم"
+                                    title="تعديل بيانات المستخدم"
                                     visible={this.state.editVisible}
-                                    onOk={()=>{this.handleEditOk(elm._id,'firstName')}}
+                                    onOk={()=>{this.handleEditOk(elm._id)}}
                                     onCancel={this.handleCancel}
                                     >
-                                <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
+                                <Input placeholder="ادخل القيمة " onChange={this.handleInputChange}/>
                                 </Modal>
                                 <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
                                 <Modal
@@ -297,15 +354,32 @@ class UserSearch extends Component{
                                     
                                  </div>
                                 <div className='user-name'>
-                                <span> اسم المستخدم :</span> 
-                            <span>
-                                    {elm.firstName + " " + elm.lastName} </span>
-                                    
+                                <span> اسم المستخدم الأول : </span> 
+                                 <span>
+                                    {elm.firstName} 
+                                    </span>
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('firstName')} />                                    
                                     </div>
                                     <div className='user-name'>
-                                    <span>البريد الالكتروني :</span>
+                                <span> اسم المستخدم الاخير : </span> 
+                                 <span>
+                                    {elm.lastName} 
+                                    </span>
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('lastName')} />                                    
+                                    </div>
+                                    <div className='user-name'>
+                                    <span>البريد الالكتروني : </span>
                                     <span>{elm.email}</span>
-                
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('email')} />                                                                    
+                                </div>
+                                <div className='user-name'>
+                                    <span>حالة التفعيل : </span>
+                                    <span>{elm.isConfirmed ? 'مفعل' : 'غير مفعل'}</span>
+                               <img className='update-user' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')} />                                                                    
+                                </div>
+                                <div className='user-name'>
+                                    <span>تاريخ الانشاء : </span>
+                                    <span>{elm.createDate}</span>                                                                  
                                 </div>
                                 </Row>
                          )
