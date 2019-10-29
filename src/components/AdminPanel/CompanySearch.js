@@ -136,7 +136,7 @@ class CompanySearch extends Component{
                 <React.Fragment>
                <Row className='company-search'>
                <Col md={16}>
-                   <div className='input-container statistic'>
+                   <div className='input-container search-container'>
             <Input placeholder="ادخل رقم الشركة" onChange={this.handleChange}/>
             <img className ='search' src={search} alt=''/>
                    </div>
@@ -200,7 +200,7 @@ class CompanySearch extends Component{
                </Row>
                <Row className='company-search'>
                <Col md={16} >
-                   <div className='input-container statistic'>
+                   <div className='input-container search-container'>
                     <Input placeholder="ادخل البريد الالكتروني للشركة" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search} alt=''/>
                    </div>
@@ -259,7 +259,7 @@ class CompanySearch extends Component{
                </Row>
                <Row className='company-search'>
                 <Col md={16} >
-                    <div className='input-container statistic'>
+                    <div className='input-container search-container'>
                 <Input placeholder="ادخل اسم الشركة" onChange={this.handleNameChange}/>
                 <img className ='search' src={search} alt=''/>
 

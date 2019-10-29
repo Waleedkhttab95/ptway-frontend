@@ -131,7 +131,7 @@ class UserSearch extends Component{
                 <React.Fragment>
                <Row className='user-search'>
                <Col md={16}>
-                   <div className='input-container statistic'>
+                   <div className='input-container search-container'>
             <Input placeholder="ادخل رقم المستخدم" onChange={this.handleChange}/>
             <img className ='search' src={search} alt=''/>
                    </div>
@@ -185,7 +185,7 @@ class UserSearch extends Component{
                </Row>
                <Row className='user-search'>
                <Col md={16} >
-                   <div className='input-container statistic'>
+                   <div className='input-container search-container'>
                     <Input placeholder="ادخل البريد الالكتروني للمستخدم" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search} alt=''/>
                    </div>
@@ -249,7 +249,7 @@ class UserSearch extends Component{
                </Row>
                <Row className='user-search'>
                 <Col md={16} >
-                    <div className='input-container statistic'>
+                    <div className='input-container search-container'>
                 <Input placeholder="ادخل اسم المستخدم" onChange={this.handleNameChange}/>
                 <img className ='search' src={search} alt=''/>
                     </div>

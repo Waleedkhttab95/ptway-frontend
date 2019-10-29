@@ -10,8 +10,10 @@ const companyStatistics ={
          
         })
      },
-     companyBMajor: (params) =>{
-        return baseRequest.get(`/get/count/company?sector=${params.sector_id}&sp=${params.s_major}`)
+     companyBMajorOrSector: (params) =>{
+          console.log('params',params);
+          
+        return baseRequest.get(`/get/count/company?sector=${params.sector}&sp=${params.s_major}`)
         .then((result)=>{
              return result;
         }).catch((error)=>{
