@@ -140,8 +140,8 @@ class CompaniesStatistics extends Component{
 
                 <Col md={10} className='statistic'>
                     <div className='company-details'>
-                    <Cascader className='dropdown-menu' options={this.state.majors} onChange={this.majorChange} placeholder=" التخصص العام" />
-                    <Cascader className='dropdown-menu' options={this.state.specialMajor} onChange={this.specialMajorChange} placeholder="الفرع الخاص" />
+                    <Cascader className='dropdown-menu' options={this.state.majors} onChange={this.majorChange} placeholder=" نشاط العمل" />
+                    <Cascader className='dropdown-menu' options={this.state.specialMajor} onChange={this.specialMajorChange} placeholder="القطاع" />
                     </div>
                     <div className='company-details'>
                     <Cascader className='dropdown-menu' options={this.state.countries} onChange={this.countryChange} placeholder="الدولة" />

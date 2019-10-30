@@ -112,7 +112,20 @@ const statatisticsService ={
                   }
               });
           });
-     }
+     },
+     getAllCompaniesBSpecialist: (params)=>{
+        return  baseRequest.get(`/get/searchCompanyByCompanySpecialist/?CompanySp=${params.CompanySp}`)
+        .then((result)=> result
+        ).catch((e)=> console.log(e)
+        );
+   },
+   getAllCompaniesBSector: (params)=>{
+    return  baseRequest.get(`/get/searchCompanyBySector/?sectorName=${params.sectorName}`)
+    .then((result)=> result
+    ).catch((e)=> console.log(e)
+    );
+},
+
 }
 
 export default statatisticsService;
