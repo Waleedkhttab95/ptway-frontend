@@ -54,7 +54,7 @@ class CompanySearch extends Component{
             sub_major: selectedOptions[0]
         },async()=>{
             const {sub_major} = this.state;
-            const allCompaniesBSector = await getAllCompaniesBSector({sectorName: sub_major.label});
+            const allCompaniesBSector = await getAllCompaniesBSector({sectorName: sub_major.key });
             this.setState({allCompaniesBSector})
         })
 };
