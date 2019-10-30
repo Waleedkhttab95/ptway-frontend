@@ -61,6 +61,19 @@ const statatisticsService ={
               })
           });
      },
+     getAllCompanyMajors: ()=>{
+        return  baseRequest.get('/getsectors')
+        .then((majors)=>{
+            return majors.map((value)=>{
+                return {
+                    id: value._id,
+                    value: value.sectorName,
+                    label:  value.sectorName,
+                    key: value.key
+                }
+            })
+        });
+   },
      sMajor:(majorId)=>{
           return  baseRequest.get(`/get/spMajors?id=${majorId}`)
           .then((specialMajor)=>{
@@ -73,6 +86,18 @@ const statatisticsService ={
               });
           });
      },
+     getCompanySMajor:()=>{
+        return  baseRequest.get('/getspec')
+        .then((specialMajor)=>{
+            return specialMajor.map((elm)=>{
+                return {
+                    id: elm._id,
+                    value: elm.specialistName,
+                    label: elm.specialistName,
+                };
+            });
+        });
+   },
      companiesInfo: ()=>{
           return baseRequest.get('/get/companiesInfo').then((companiesInfo)=> companiesInfo);
      },

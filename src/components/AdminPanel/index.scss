@@ -10,6 +10,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    float: right;
 }
 .dashboard-container{
     background-color: #f8f9fe;
@@ -25,11 +26,11 @@
     height: 100vh;
 }
 .sidebar-title{
-    font-size: 26px;
+    font-size: 18px;
     height: 100px;
 }
 .sidebar-elm{
-    font-size: 20px;
+    font-size: 16px;
     height: 60px;
     color: white;
     text-align: center;
@@ -194,6 +195,9 @@ vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertic
 .update-user{
     width: 30px;
     margin: 0px 5px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
 }
 .delete-user{
     width: 30px;
@@ -232,4 +236,17 @@ button.ant-btn {
 .block{
     width: 30px;
     margin: 0px 5px;
+}
+.search-container{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    margin-top: 50px;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
