@@ -83,11 +83,11 @@ const Sidebar = ()=>{
           }
         >
           <Menu.Item key="/admin/content/cities">
-          <Link to={'/admin/content/cities'} >محتوى المدن</Link>
+          <Link to={'/admin/content/cities'} > المدن</Link>
           </Menu.Item>
-          {/* <Menu.Item key="9">
-          <Link to={'/admin/content/company'} >البحث عن الشركات</Link>
-          </Menu.Item> */}
+          <Menu.Item key="9">
+          <Link to={'/admin/content/universities'} >الجامعات</Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
             </Col>

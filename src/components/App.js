@@ -13,6 +13,8 @@ import CompaniesStatistics from './AdminPanel/CompaniesStatistics';
 import CompanySearch from '../components/AdminPanel/CompanySearch';
 import UserSearch from '../components/AdminPanel/UserSearch';
 import CitiesContent from '../components/AdminPanel/contentSection/CitiesContent';
+import UniversityContent from '../components/AdminPanel/contentSection/UniversityContent';
+
 
 import './App.scss'
 
@@ -57,6 +59,11 @@ const App =(props)=> {
         exact
         path='/admin/content/cities'
         component={AdminPanel(CitiesContent)}
+      />
+      <Route
+        exact
+        path='/admin/content/universities'
+        component={AdminPanel(UniversityContent)}
       />
         </Switch>
       </Router>
