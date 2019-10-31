@@ -76,7 +76,7 @@ class EditableTable extends React.Component {
 
    columns = [
    	{
-   		title: 'اسم المدينة',
+   		title: 'اسم الجامعة',
    		dataIndex: 'name',
    		width: '25%',
    		editable: true,
