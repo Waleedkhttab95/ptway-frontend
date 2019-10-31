@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Row, Col,Input, Modal } from 'antd';
+import {Row, Col,Input, Modal, Cascader } from 'antd';
 import {searchById, searchByEmail, searchByName} from '../../store/actions/adminSearch/companySearchAction';
 import {deleteCompany, updateCompany, confirmCompany, blockCompany} from '../../store/actions/adminCRUD/companyCRUDAction';
 import search from '../../images/search-icon.svg';
@@ -9,18 +9,56 @@ import update_icon from '../../images/edit.svg';
 import confirm_icon from '../../images/confirmation.svg';
 import block_icon from '../../images/block.svg';
 import _ from 'lodash';
+import statatisticsService from '../../services/statisticsService';
+const {getCompanySMajor, getAllCompanyMajors, getAllCompaniesBSpecialist, getAllCompaniesBSector} = statatisticsService;
 
 class CompanySearch extends Component{
     state ={
         companyId:'',
         companyMail:'',
         companyName:'',
+        type: '',
         visible: false,
         editVisible: false,
         editedCompany: '',
       confirmVisible: false,
-      blockVisible: false
+      blockVisible: false,
+      majors:[],
+      specialMajor: [],
+      allCompaniesBSpecialist: ''
     }
+
+    async componentDidMount(){
+
+        const allMajorsData = await getAllCompanyMajors();
+        this.setState({majors: allMajorsData});
+
+        const getCompanySMajorData = await getCompanySMajor();
+        this.setState({specialMajor: getCompanySMajorData})
+    }
+
+    majorChange =(value,selectedOptions)=>{
+        console.log('selectedOptions',selectedOptions[0]);
+        
+        this.setState ({
+            major: selectedOptions[0]
+        }, async()=>{
+            const {major} = this.state;
+            const allCompaniesBSpecialist = await getAllCompaniesBSpecialist({CompanySp:major.label});
+            this.setState({allCompaniesBSpecialist})
+        }); 
+    }
+
+    specialMajorChange =(value,selectedOptions)=>{
+        this.setState ({
+            sub_major: selectedOptions[0]
+        },async()=>{
+            const {sub_major} = this.state;
+            const allCompaniesBSector = await getAllCompaniesBSector({sectorName: sub_major.key });
+            this.setState({allCompaniesBSector})
+        })
+};
+
 
     handleChange = (e)=> {
         this.setState({
@@ -52,8 +90,9 @@ class CompanySearch extends Component{
         });
       };
     
-      showEditModal = () => {
+      showEditModal = (type) => {
         this.setState({
+          type,
           editVisible: true,
         });
       };
@@ -70,10 +109,12 @@ class CompanySearch extends Component{
         });
       };
 
-    handleEditOk = async (id,type) =>{
-        await this.props.updateCompany({
+    handleEditOk = async (id) =>{
+        const { updateCompany } = this.props;
+        const { editedCompany, type } = this.state;
+        await updateCompany({
             id,
-            value: this.state.editedCompany,
+            value: editedCompany,
             type,
         })
     this.setState({
@@ -132,10 +173,66 @@ class CompanySearch extends Component{
 
     render(){
         const {companyById, companyByMail, companyByName} = this.props.search;
+        console.log('companyById',companyById);
+        const { allCompaniesBSpecialist, allCompaniesBSector } = this.state;
+        
         return (
-                <React.Fragment>
-               <Row className='company-search'>
-               <Col md={16}>
+               <React.Fragment>
+                   <Row>
+                   <Col md={12} className='company-search-left-side'>
+                         <Row>
+
+                    <Col md={18} className='statistic'>
+                    <Cascader className='dropdown-menu' options={this.state.specialMajor} onChange={this.majorChange} placeholder="نشاط العمل" />
+                    {(_.isArray(allCompaniesBSpecialist) || _.isObject(allCompaniesBSpecialist) )&& allCompaniesBSpecialist !=='' ?
+                        allCompaniesBSpecialist.map((elm)=>{
+                            return( 
+                                <Row className='company-search-information'>
+                                <div className='company-name'>
+                                    <span> اسم الشركة :</span> 
+                                    <span>{elm.companyName} </span>                                    
+                                    </div>
+                                    <div className='company-name'>
+                                    <span>البريد الالكتروني :</span>
+                                    <span>{elm.email}</span>                                   
+                                </div>
+                                </Row>
+                         )
+                    }) 
+                        
+                :null
+                }
+                </Col>
+                    
+                         </Row>
+                       <Row>
+                       <Col md={18} className='statistic'>
+                    <Cascader className='dropdown-menu' options={this.state.majors} onChange={this.specialMajorChange} placeholder=" القطاع" />
+                    {(_.isArray(allCompaniesBSector) || _.isObject(allCompaniesBSector) )&& allCompaniesBSector !=='' ?
+                        allCompaniesBSector.map((elm)=>{
+                            return( 
+                                <Row className='company-search-information'>
+                                <div className='company-name'>
+                                    <span> اسم الشركة :</span> 
+                                    <span>{elm.companyName} </span>                                    
+                                    </div>
+                                    <div className='company-name'>
+                                    <span>البريد الالكتروني :</span>
+                                    <span>{elm.email}</span>                                   
+                                </div>
+                                </Row>
+                         )
+                    }) 
+                        
+                :null
+                }
+                     </Col>
+                        </Row>  
+                     </Col>
+
+                     <Col md={12} className='company-search-right-side'>
+                     <Row className='company-search'>
+               <Col md={24}>
                    <div className='input-container search-container'>
             <Input placeholder="ادخل رقم الشركة" onChange={this.handleChange}/>
             <img className ='search' src={search} alt=''/>
@@ -152,7 +249,6 @@ class CompanySearch extends Component{
                         >
                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                     </Modal>
-                    <img className='update-company' src={update_icon} alt='' />
                     <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
                         <Modal
                             title="رسالة تأكيد"
@@ -177,29 +273,48 @@ class CompanySearch extends Component{
                 <div className='company-name'>
                    <span> اسم الشركة :</span> 
                    <span>{companyById.companyName }</span> 
+                <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('companyName')}/>                                                                                
                 </div>
-
                 <div className='company-name'>
                     <span>البريد الالكتروني للشركة :</span>
                     <span>{ companyById.email}</span>
-
-                </div>
-                <div className='company-name'>
-                    <span>التخصص :</span>
-                    <span>{ companyById.CompanySpecialist}</span>
-
+                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('email')}/>                                                                    
                 </div>
                 <div className='company-name'>
                     <span>القطاع :</span>
                     <span>{ companyById.sector}</span>
-
+                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isActive')}/>                                                                    
                 </div>
+                <div className='company-name'>
+                                    <span>التخصص :</span>
+                                    <span>{companyById.CompanySpecialist.specialistName}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('CompanySpecialist')}/>                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> القطاع:</span>
+                                    <span>{companyById.sector}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('sector')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التأكيد : </span>
+                                    <span>{companyById.isConfirmed ? 'مؤكد' : 'غير مؤكد'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التفعيل : </span>
+                                    <span>{companyById.isActive ? 'مفعل' : 'غير مفعل'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isActive')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> تاريخ الانشاء : </span>
+                                    <span>{companyById.createDate}</span>                                                                   
+                                </div>
             </Row>
             ) }
         </Col>
                </Row>
                <Row className='company-search'>
-               <Col md={16} >
+               <Col md={24} >
                    <div className='input-container search-container'>
                     <Input placeholder="ادخل البريد الالكتروني للشركة" onChange={this.handleEmailChange}/>
                     <img className ='search' src={search} alt=''/>
@@ -216,15 +331,7 @@ class CompanySearch extends Component{
                                         >
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
-                                    <img className='update-company' src={update_icon} alt='' onClick={this.showEditModal} />
-                                    <Modal
-                                        title="تعديل البريد الالكتروني للشركة"
-                                        visible={this.state.editVisible}
-                                        onOk={()=>{this.handleEditOk(companyByMail._id,'email')}}
-                                        onCancel={this.handleCancel}
-                                        >
-                                        <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
-                                    </Modal>
+
                                     <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
                                 <Modal
                                     title="رسالة تأكيد"
@@ -244,21 +351,54 @@ class CompanySearch extends Component{
                                         <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
                                     </Modal>
                                 </div>
+                                <Modal
+                                        title="تعديل البريد الالكتروني للشركة"
+                                        visible={this.state.editVisible}
+                                        onOk={()=>{this.handleEditOk(companyByMail._id)}}
+                                        onCancel={this.handleCancel}
+                                        >
+                                        <Input placeholder="ادخل البريد الالكتروني " onChange={this.handleInputChange}/>
+                                    </Modal>
                                 <div className='company-name'>
                                 <span> اسم الشركة :</span> 
                                 <span>{companyByMail.companyName}</span> 
+                                <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('companyName')}/>                                    
                                 </div>
                                 <div className='company-name'>
                                     <span>البريد الالكتروني :</span>
                                     <span>{companyByMail.email}</span>
-
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('email')}/>                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span>التخصص :</span>
+                                    <span>{companyByMail.CompanySpecialist.specialistName}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('CompanySpecialist')}/>                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> القطاع:</span>
+                                    <span>{companyByMail.sector}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('sector')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التأكيد : </span>
+                                    <span>{companyByMail.isConfirmed ? 'مؤكد' : 'غير مؤكد'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التفعيل : </span>
+                                    <span>{companyByMail.isActive ? 'مفعل' : 'غير مفعل'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isActive')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> تاريخ الانشاء : </span>
+                                    <span>{companyByMail.createDate}</span>                                                                   
                                 </div>
                             </Row>
                              )}
                 </Col>
                </Row>
                <Row className='company-search'>
-                <Col md={16} >
+                <Col md={24} >
                     <div className='input-container search-container'>
                 <Input placeholder="ادخل اسم الشركة" onChange={this.handleNameChange}/>
                 <img className ='search' src={search} alt=''/>
@@ -278,14 +418,13 @@ class CompanySearch extends Component{
                                         >
                                         <p>هل ترغب حقاً في حذف هذا العنصر؟</p>
                                     </Modal>
-                                    <img className='update-company' src={update_icon} alt='' onClick={this.showEditModal}/>
                                     <Modal
-                                        title="تعديل اسم الشركة"
+                                        title="تعديل بيانات الشركة"
                                         visible={this.state.editVisible}
-                                        onOk={()=>{this.handleEditOk(elm._id,'companyName')}}
+                                        onOk={()=>{this.handleEditOk(elm._id)}}
                                         onCancel={this.handleCancel}
                                         >
-                                        <Input placeholder="ادخل الاسم " onChange={this.handleInputChange}/>
+                                        <Input placeholder="ادخل القيمة " onChange={this.handleInputChange}/>
                                     </Modal>
                                     <img className= 'confirmation'src={confirm_icon} alt='' onClick={this.showConfirmationModal}/>
                                 <Modal
@@ -307,25 +446,38 @@ class CompanySearch extends Component{
                                     </Modal>   
                                 </div>
                                 <div className='company-name'>
-                                <span> اسم الشركة :</span> 
-                            <span>
-                                    {elm.companyName} </span>
-                                    
+                                    <span> اسم الشركة :</span> 
+                                    <span>{elm.companyName} </span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('companyName')}/>                                    
                                     </div>
                                     <div className='company-name'>
                                     <span>البريد الالكتروني :</span>
                                     <span>{elm.email}</span>
-                
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('email')}/>                                    
                                 </div>
                                 <div className='company-name'>
                                     <span>التخصص :</span>
-                                    <span>{elm.CompanySpecialist}</span>
-                
+                                    <span>{elm.CompanySpecialist.specialistName}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('CompanySpecialist')}/>                                    
                                 </div>
                                 <div className='company-name'>
                                     <span> القطاع:</span>
                                     <span>{elm.sector}</span>
-                
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('sector')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التأكيد : </span>
+                                    <span>{elm.isConfirmed ? 'مؤكد' : 'غير مؤكد'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isConfirmed')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> حالة التفعيل : </span>
+                                    <span>{elm.isActive ? 'مفعل' : 'غير مفعل'}</span>
+                                    <img className='update-company' src={update_icon} alt='' onClick={()=>this.showEditModal('isActive')}/>                                                                    
+                                </div>
+                                <div className='company-name'>
+                                    <span> تاريخ الانشاء : </span>
+                                    <span>{elm.createDate}</span>                                                                   
                                 </div>
                                 </Row>
                          )
@@ -336,6 +488,9 @@ class CompanySearch extends Component{
             </Col>
                 
                </Row>
+                         </Col>  
+                   </Row>
+               
 
               
                 </React.Fragment>
