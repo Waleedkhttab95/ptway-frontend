@@ -88,6 +88,9 @@ const Sidebar = ()=>{
           <Menu.Item key="9">
           <Link to={'/admin/content/universities'} >الجامعات</Link>
           </Menu.Item>
+          <Menu.Item key="10">
+          <Link to={'/admin/content/majors'} >التخصصات</Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
             </Col>
