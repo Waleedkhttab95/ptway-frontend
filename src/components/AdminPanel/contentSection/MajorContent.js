@@ -253,7 +253,6 @@ class EditableTable extends React.Component {
 
 render() {
 	const { majors, major, data } = this.state;
-	console.log('majoooor',major);
 	
 	const components = {
 		body: {
