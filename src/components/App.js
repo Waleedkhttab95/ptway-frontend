@@ -1,10 +1,6 @@
 import React from 'react';
-import { Provider } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Percentage';
@@ -16,68 +12,60 @@ import CitiesContent from '../components/AdminPanel/contentSection/CitiesContent
 import UniversityContent from '../components/AdminPanel/contentSection/UniversityContent';
 import MajorContent from '../components/AdminPanel/contentSection/MajorContent';
 
+import './App.scss';
 
-
-import './App.scss'
-
-const App =(props)=> {
+const App = props => {
   return (
-    
-    <Provider store ={props.store} >
-    <div className="App">
-      <Router>
-        <Switch>
-        <Route
-        exact
-        path='/'
-        component={HomePage}
-      />
-        <Route
-        exact
-        path='/admin/statistics'
-        component={AdminPanel(Statistics)}
-      />
-      <Route
-        exact
-        path='/admin/percentage'
-        component={AdminPanel(Percentage)}
-      />
-      <Route
-        exact
-        path='/admin/company'
-        component={AdminPanel(CompaniesStatistics)}
-      />
-      <Route
-        exact
-        path='/admin/search/user'
-        component={AdminPanel(UserSearch)}
-      />
-      <Route
-        exact
-        path='/admin/search/company'
-        component={AdminPanel(CompanySearch)}
-      />
-      <Route
-        exact
-        path='/admin/content/cities'
-        component={AdminPanel(CitiesContent)}
-      />
-      <Route
-        exact
-        path='/admin/content/universities'
-        component={AdminPanel(UniversityContent)}
-      />
-      <Route
-        exact
-        path='/admin/content/majors'
-        component={AdminPanel(MajorContent)}
-      />
-        </Switch>
-      </Router>
-     
-    </div>
-   </Provider>
+    <Provider store={props.store}>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/admin/statistics"
+              component={AdminPanel(Statistics)}
+            />
+            <Route
+              exact
+              path="/admin/percentage"
+              component={AdminPanel(Percentage)}
+            />
+            <Route
+              exact
+              path="/admin/company"
+              component={AdminPanel(CompaniesStatistics)}
+            />
+            <Route
+              exact
+              path="/admin/search/user"
+              component={AdminPanel(UserSearch)}
+            />
+            <Route
+              exact
+              path="/admin/search/company"
+              component={AdminPanel(CompanySearch)}
+            />
+            <Route
+              exact
+              path="/admin/content/cities"
+              component={AdminPanel(CitiesContent)}
+            />
+            <Route
+              exact
+              path="/admin/content/universities"
+              component={AdminPanel(UniversityContent)}
+            />
+            <Route
+              exact
+              path="/admin/content/majors"
+              component={AdminPanel(MajorContent)}
+            />
+          </Switch>
+        </Router>
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
