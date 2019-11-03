@@ -95,7 +95,25 @@ class EditableTable extends React.Component {
       title: 'التخصص العام ',
       dataIndex: 'major',
       width: '25%',
-      editable: true
+      render: (text, record) => {
+        const editable = this.isEditing(record);
+        return editable ? (
+          <Cascader
+            className="dropdown-menu "
+            options={this.state.majors}
+            onChange={this.majorChange}
+            placeholder="اختر التخصص"
+          />
+        ) : (
+          <h3>
+            {' '}
+            {this.state.data.reduce((acc, elm) => {
+              if (elm.key === record.key) acc = elm.major;
+              return elm.major;
+            }, '')}{' '}
+          </h3>
+        );
+      }
     },
     {
       title: ' تعديل التخصص',
@@ -169,7 +187,10 @@ class EditableTable extends React.Component {
           await updateSubMajor({
             id: key,
             type,
-            value: row.name === this.state.row.name ? row.major : row.name
+            value:
+              row.name === this.state.row.name
+                ? this.state.major.value
+                : row.name
           });
         });
       } else {
@@ -239,8 +260,7 @@ class EditableTable extends React.Component {
 
     if (major) {
       const allSubMajor = await getAllSubMajors({ name: major.value });
-      console.log('data', allSubMajor);
-      if (allSubMajor) {
+      if (allSubMajor.length !== 0) {
         const formattedData = allSubMajor.map(elm => {
           return {
             key: elm._id,
