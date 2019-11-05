@@ -81,6 +81,19 @@ const Sidebar = () => {
             <Link to={'/admin/content/majors'}>التخصصات</Link>
           </Menu.Item>
         </SubMenu>
+        <SubMenu
+          key="sub5"
+          title={
+            <span>
+              <Icon type="appstore" />
+              <span>العروض الوظيفية</span>
+            </span>
+          }
+        >
+          <Menu.Item key="/admin/ads/company">
+            <Link to={'/admin/ads/company'}> اعلانات الشركات</Link>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
     </Col>
   );
