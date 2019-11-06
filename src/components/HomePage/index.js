@@ -5,10 +5,9 @@ import { adminLogin } from '../../store/actions/userAction';
 import Login from '../Login';
 import User from '../User';
 const HomePage = props => {
-  const { loggedIn, isAdmin } = props.user;
-  console.log('loggedIn, isAdmin', loggedIn, isAdmin);
+  const { loggedIn, isAdmin, token } = props.user;
 
-  return loggedIn ? (
+  return loggedIn && token ? (
     isAdmin ? (
       <Redirect to="/admin/statistics" />
     ) : (
