@@ -5,12 +5,11 @@ const adminServices = {
       .post('/login', { email, password })
       .then(result => {
         baseRequest.addHeader(result);
-        console.log('result', result);
 
         return result;
       })
       .catch(e => {
-        console.log('errorrrrr', e.error);
+        return { error: e.response.data };
       })
 };
 

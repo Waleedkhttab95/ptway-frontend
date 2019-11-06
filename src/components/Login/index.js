@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Form, Icon, Input, Button, Row, Col } from 'antd';
+import { Form, Icon, Input, Button, Row, Col, Alert } from 'antd';
 // import history from '../../_core/history'
 import './index.scss';
 class Login extends Component {
@@ -21,9 +21,12 @@ class Login extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { token, error } = this.props.user;
+
     return (
       <Row className="login-form">
         <Col md={8} xs={20}>
+          {!token && error && <Alert message={error} type="info" />}
           <Form onSubmit={this.handleSubmit}>
             <Form.Item>
               {getFieldDecorator('email', {
