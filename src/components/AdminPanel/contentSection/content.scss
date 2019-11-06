@@ -1,0 +1,60 @@
+.ant-table-wrapper {
+    width: 900px;
+    background-color: white;
+    margin-top: 22px;
+    margin-right: 30px;
+
+}
+.ant-table-pagination.ant-pagination {
+    float: left;
+}
+.ant-table table {
+    text-align: center;
+}
+.ant-table-thead > tr > th {
+    text-align: center;
+}
+.td > a{
+    text-align: center;
+}
+.update-icon{
+    width: 30px;
+    margin: 0px 5px;
+}
+.delete-icon{
+    width: 30px;
+    margin: 0px 5px;
+}
+.add-icon{
+    width: 90px;
+    margin: 22px 40px 10px 10px; 
+}
+.major-add-icon{
+    width: 70px;
+    margin: 22px 40px 10px 10px;
+}
+.country-dropmenu{
+    margin-right: 50px;
+}
+.display-major-content{
+    color: #FFF;
+    width: 150px;
+    height: 37px;
+    background-color: #1890ff;
+    margin: 44px 15px 10px 10px;
+    align-items: center;
+}
+.display-major-content:hover{
+    color: #FFF;
+    background-color: #1890ff;
+}
+.major-dropmenu {
+    margin: 37px 50px 0 0;
+}
+li.ant-pagination-disabled.ant-pagination-next {
+    margin-right: 10px;
+}
+button.ant-modal-close{
+    left: 0 !important;
+    right: auto;
+}
