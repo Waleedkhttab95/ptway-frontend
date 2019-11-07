@@ -1,11 +1,16 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './ads.scss';
-import { Table, Input, Row, InputNumber, Form } from 'antd';
-import ads from '../../../services/adminAdsSection/companyAds';
+import { Table, Input, Row, InputNumber, Form, Cascader } from 'antd';
 import search from '../../../images/search-icon.svg';
+import statatisticsService from '../../../services/statisticsService';
+import ads from '../../../services/adminAdsSection/companyAds';
+import delete_icon from '../../../images/delete.svg';
+import update_icon from '../../../images/edit.svg';
 
-const { getJobByEmail } = ads;
+const { allCities } = statatisticsService;
+
+const { getJobByEmail, updateJob, deleteJob } = ads;
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
@@ -47,7 +52,6 @@ class EditableCell extends React.Component {
       </td>
     );
   };
-
   render() {
     return (
       <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>
@@ -58,11 +62,18 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
   state = {
     data: [],
+    editingKey: '',
     gender: 1,
+    cities: [],
     searchResult: []
   };
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    const allCitiesData = await allCities();
+    this.setState({
+      cities: allCitiesData
+    });
+  }
 
   columns = [
     {
@@ -79,7 +90,30 @@ class EditableTable extends React.Component {
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '15%'
+      width: '15%',
+      render: (text, record) => {
+        const editable = this.isEditing(record);
+        return editable ? (
+          <Cascader
+            className="dropdown-menu "
+            options={this.state.cities}
+            onChange={this.cityChange}
+            placeholder=" المدينة"
+          />
+        ) : (
+          <h3>
+            {' '}
+            {this.state.data.reduce((acc, elm) => {
+              console.log('elm', elm);
+
+              if (elm.key === record.key) {
+                acc = elm.city;
+              }
+              return acc;
+            }, '')}{' '}
+          </h3>
+        );
+      }
     },
     {
       title: 'تخصص الشركة',
@@ -123,15 +157,116 @@ class EditableTable extends React.Component {
     {
       title: ' ساعات العمل',
       dataIndex: 'work_hours',
-      width: '15%',
-      editable: true
+      width: '15%'
+      //   editable: true
+    },
+    // {
+    //   title: 'تاريخ الانشاء',
+    //   dataIndex: 'createDate',
+    //   width: '5%'
+    // },
+    {
+      title: 'تعديل',
+      dataIndex: 'operation',
+      render: (text, record) => {
+        const { editingKey } = this.state;
+        const editable = this.isEditing(record);
+        return editable ? (
+          <span>
+            <EditableContext.Consumer>
+              {form => (
+                <a
+                  onClick={() => this.save(form, record.key)}
+                  style={{ marginRight: 8 }}
+                >
+                  حفظ
+                </a>
+              )}
+            </EditableContext.Consumer>
+            {/* <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}> */}
+            <a
+              onClick={() => this.cancel(record.key)}
+              style={{ marginRight: 8 }}
+            >
+              الغاء
+            </a>
+            {/* </Popconfirm> */}
+          </span>
+        ) : (
+          <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+            <img className="update-icon" src={update_icon} alt="" />
+          </a>
+        );
+      }
     },
     {
-      title: 'تاريخ الانشاء',
-      dataIndex: 'createDate',
-      width: '5%'
+      title: 'حذف',
+      dataIndex: 'operation',
+      render: (text, record) => (
+        <a onClick={() => this.delete(record.key)}>
+          <img src={delete_icon} className="delete-icon" alt="" />
+        </a>
+      )
     }
   ];
+
+  isEditing = record => record.key === this.state.editingKey;
+
+  cancel = () => {
+    this.setState({ editingKey: '' });
+  };
+
+  save(form, key) {
+    form.validateFields((error, row) => {
+      if (error) {
+        return;
+      }
+      const newData = [...this.state.data];
+      const index = newData.findIndex(item => key === item.key);
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, {
+          ...item,
+          ...row
+        });
+        this.setState({ data: newData, editingKey: '' }, async () => {
+          const { cityId } = this.state;
+          console.log('cityId', cityId);
+
+          const { name, descreption, work_hours, work_days, salary } = row;
+          await updateJob({
+            id: key,
+            job_Name: name,
+            // country,
+            city: cityId,
+            work_hours,
+            work_days,
+            salary,
+            descreption
+            // required_Number,
+            // startDate: new Date()
+          });
+        });
+      } else {
+        newData.push(row);
+        this.setState({ data: newData, editingKey: '' });
+      }
+    });
+  }
+
+  edit(key) {
+    this.setState({ editingKey: key });
+  }
+
+  delete = async key => {
+    const { data } = this.state;
+    await deleteJob({
+      id: key
+    });
+    this.setState({
+      data: data.filter(job => job.key !== key)
+    });
+  };
 
   adSearchChange = e => {
     this.setState({
@@ -167,6 +302,11 @@ class EditableTable extends React.Component {
       searchResult: getSearchResult
     });
   };
+  cityChange = (value, selectedOptions) => {
+    this.setState({
+      cityId: selectedOptions[0].id
+    });
+  };
 
   render() {
     const { searchResult } = this.state;
@@ -186,8 +326,8 @@ class EditableTable extends React.Component {
           record,
           inputType: col.dataIndex === 'age' ? 'number' : 'text',
           dataIndex: col.dataIndex,
-          title: col.title
-          //   editing: this.isEditing(record)
+          title: col.title,
+          editing: this.isEditing(record)
         })
       };
     });
