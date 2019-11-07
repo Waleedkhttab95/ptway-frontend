@@ -97,6 +97,22 @@ const Sidebar = () => {
             <Link to={'/admin/ads/search'}> البحث </Link>
           </Menu.Item>
         </SubMenu>
+        <SubMenu
+          key="sub6"
+          title={
+            <span>
+              <Icon type="appstore" />
+              <span>الإعدادات</span>
+            </span>
+          }
+        >
+          <Menu.Item key="/admin/setting/user">
+            <Link to={'/admin/setting/user'}> الأفراد</Link>
+          </Menu.Item>
+          <Menu.Item key="/admin/setting/company">
+            <Link to={'/admin/setting/company'}> الشركات </Link>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
     </Col>
   );

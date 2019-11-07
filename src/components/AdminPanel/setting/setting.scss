@@ -1,0 +1,48 @@
+.activate-accounts-setting{
+    background-color: white;
+    width: 30%;
+    height: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 50px;
+    border-radius: 50px;
+    font-size: 18px;
+}
+.setting-switch{
+    width: 25%;
+    margin-right: 15px;
+}
+.add-admin{
+    background-color: white;
+    width: 40%;
+    height: 350px;
+    align-items: center;
+    padding: 10px;
+    margin: 0 50px;
+    border-radius: 20px;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.admin-information {
+    margin: 10px;
+    width: 300px;
+}
+label{
+    width: 36%;
+}
+.new-admin-title {
+    margin: 10px 10px 15px 10px;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    color: #414042;
+}
+.add-admin-button{
+    width: 150px;
+    color: white;
+    background-color: #1890ff;
+}
