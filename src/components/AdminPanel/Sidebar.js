@@ -93,6 +93,9 @@ const Sidebar = () => {
           <Menu.Item key="/admin/ads/company">
             <Link to={'/admin/ads/company'}> اعلانات الشركات</Link>
           </Menu.Item>
+          <Menu.Item key="/admin/ads/search">
+            <Link to={'/admin/ads/search'}> البحث </Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     </Col>

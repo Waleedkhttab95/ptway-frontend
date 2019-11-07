@@ -25,7 +25,7 @@ const {
   // getJob,
   deleteJob,
   addJob,
-  getAllProjects,
+  // getAllProjects,
   getAllContracts,
   updateJob
 } = ads;
@@ -89,47 +89,52 @@ class EditableTable extends React.Component {
 
   async componentDidMount() {
     const allJobAd = await getAllJobAd();
-
-    const allJobAdsData = allJobAd.map(elm => ({
-      key: elm._id,
-      name: elm.job_Name,
-      comany: elm.company,
-      project: elm.project ? elm.project.projectName : '',
-      city: elm.city ? elm.city.cityName : '',
-      work_days: elm.work_days,
-      work_hours: elm.work_hours,
-      salary: elm.salary,
-      descreption: elm.descreption,
-      gender: elm.gender,
-      isLock: elm.isLock ? 'مفعل' : ' غير مفعل',
-      contract: elm.contract ? elm.contract.contractName : '',
-      createDate: elm.createDate
-    }));
-    this.setState({ data: allJobAdsData });
+    if (allJobAd) {
+      const allJobAdsData = allJobAd.map(elm => ({
+        key: elm._id,
+        name: elm.job_Name,
+        comany: elm.company,
+        project: elm.project ? elm.project.projectName : '',
+        city: elm.city ? elm.city.cityName : '',
+        work_days: elm.work_days,
+        work_hours: elm.work_hours,
+        salary: elm.salary,
+        descreption: elm.descreption,
+        gender: elm.gender,
+        isLock: elm.isLock ? 'مفعل' : ' غير مفعل',
+        contract: elm.contract ? elm.contract.contractName : '',
+        createDate: elm.createDate
+      }));
+      this.setState({ data: allJobAdsData });
+    }
     // const job = await getJob({ id: '5dbffb0de7179a296647cd7a' });
     // console.log('jobjobjob', job);
-    await getAllProjects();
-    // const allProjectsData = allProjects.map(elm => {
-    //   return {
-    //     id: elm._id,
-    //     value: elm.projectName,
-    //     label: elm.projectName
-    //   };
-    // });
-    // this.setState({
-    //   projects: allProjectsData
-    // });
+    // const allProjects = await getAllProjects();
+    // if (allProjects) {
+    //   const allProjectsData = allProjects.map(elm => {
+    //     return {
+    //       id: elm._id,
+    //       value: elm.projectName,
+    //       label: elm.projectName
+    //     };
+    //   });
+    //   this.setState({
+    //     projects: allProjectsData
+    //   });
+    // }
     const allContract = await getAllContracts();
-    const contracts = allContract.map(elm => {
-      return {
-        id: elm._id,
-        value: elm.contractName,
-        label: elm.contractName
-      };
-    });
-    this.setState({
-      contracts
-    });
+    if (allContract) {
+      const contracts = allContract.map(elm => {
+        return {
+          id: elm._id,
+          value: elm.contractName,
+          label: elm.contractName
+        };
+      });
+      this.setState({
+        contracts
+      });
+    }
     const allCountriesData = await allCountries();
     this.setState({ countries: allCountriesData });
     const allCitiesData = await allCities();
@@ -149,12 +154,27 @@ class EditableTable extends React.Component {
       title: 'المشروع',
       dataIndex: 'project',
       width: '15%'
-    },
-    {
-      title: 'تاريخ الانشاء',
-      dataIndex: 'createDate',
-      width: '5%',
-      editable: true
+      // render: (text, record) => {
+      //   const editable = this.isEditing(record);
+      //   return editable ? (
+      //     <Cascader
+      //       className="dropdown-menu "
+      //       options={this.state.projects}
+      //       onChange={this.projectChange}
+      //       placeholder="المشروع"
+      //     />
+      //   ) : (
+      //     <h3>
+      //       {' '}
+      //       {this.state.data.reduce((acc, elm) => {
+      //         if (elm.key === record.key) {
+      //           acc = elm.project;
+      //         }
+      //         return acc;
+      //       }, '')}{' '}
+      //     </h3>
+      //   );
+      // }
     },
     {
       title: 'المدينة',
@@ -167,7 +187,7 @@ class EditableTable extends React.Component {
             className="dropdown-menu "
             options={this.state.cities}
             onChange={this.cityChange}
-            placeholder="اختر المدينة"
+            placeholder=" المدينة"
           />
         ) : (
           <h3>
@@ -242,6 +262,11 @@ class EditableTable extends React.Component {
       editable: true
     },
     {
+      title: 'تاريخ الانشاء',
+      dataIndex: 'createDate',
+      width: '5%'
+    },
+    {
       title: 'تعديل',
       dataIndex: 'operation',
       render: (text, record) => {
@@ -307,7 +332,6 @@ class EditableTable extends React.Component {
         });
         this.setState({ data: newData, editingKey: '' }, async () => {
           const { contractId, cityId } = this.state;
-          console.log('row', row);
           const { name, descreption, work_hours, work_days, salary } = row;
           await updateJob({
             id: key,
@@ -318,9 +342,9 @@ class EditableTable extends React.Component {
             work_hours,
             work_days,
             salary,
-            descreption,
+            descreption
             // required_Number,
-            startDate: new Date()
+            // startDate: new Date()
           });
         });
       } else {
@@ -450,6 +474,11 @@ class EditableTable extends React.Component {
     });
   };
 
+  // projectChange=(value,selectedOptions) =>{
+  //   this.setState({
+  //     projectId: selectedOptions[0].id
+  //   });
+  // }
   handleStatusChange = checked => {
     this.setState({
       active: checked
@@ -481,12 +510,14 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
-        <img
-          src={add_icon}
-          className="add-icon"
-          alt="وظيفة جديدة"
-          onClick={this.addJobModal}
-        />
+        <div className="ads-images-container">
+          <img
+            src={add_icon}
+            className="ads-add-icon"
+            alt="وظيفة جديدة"
+            onClick={this.addJobModal}
+          />
+        </div>
         <Modal
           title="اضافة وظيفة جديدة"
           visible={this.state.visible}

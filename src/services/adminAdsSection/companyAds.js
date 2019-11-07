@@ -10,7 +10,7 @@ const ads = {
   },
   getAllProjects: () => {
     return baseRequest
-      .get('/getprojects', loadState())
+      .get('/getAllProjects', loadState())
       .then(result => result)
       .catch(e => console.log(e));
   },
@@ -23,6 +23,12 @@ const ads = {
   getJob: params => {
     return baseRequest
       .get(`/preview/getjob/?id=${params.id}`, loadState())
+      .then(result => result)
+      .catch(e => console.log(e));
+  },
+  getJobByEmail: params => {
+    return baseRequest
+      .get(`/getjobsByEmail/?email=${params.email}`, loadState())
       .then(result => result)
       .catch(e => console.log(e));
   },
@@ -48,8 +54,8 @@ const ads = {
           work_days: params.work_days,
           salary: params.salary,
           descreption: params.descreption,
-          required_Number: params.required_Number,
-          startDate: params.startDate
+          required_Number: params.required_Number
+          //   startDate: params.startDate
         },
         loadState()
       )
