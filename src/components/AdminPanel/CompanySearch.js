@@ -396,22 +396,10 @@ class CompanySearch extends Component {
                       <span>
                         {companyById.isConfirmed ? 'مؤكد' : 'غير مؤكد'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isConfirmed')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> حالة التفعيل : </span>
                       <span>{companyById.isActive ? 'مفعل' : 'غير مفعل'}</span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isActive')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> تاريخ الانشاء : </span>
@@ -484,7 +472,7 @@ class CompanySearch extends Component {
                       </Modal>
                     </div>
                     <Modal
-                      title="تعديل البريد الالكتروني للشركة"
+                      title="تعديل بيانات للشركة"
                       visible={this.state.editVisible}
                       onOk={() => {
                         this.handleEditOk(companyByMail._id);
@@ -492,7 +480,7 @@ class CompanySearch extends Component {
                       onCancel={this.handleCancel}
                     >
                       <Input
-                        placeholder="ادخل البريد الالكتروني "
+                        placeholder="ادخل القيمة "
                         onChange={this.handleInputChange}
                       />
                     </Modal>
@@ -543,24 +531,12 @@ class CompanySearch extends Component {
                       <span>
                         {companyByMail.isConfirmed ? 'مؤكد' : 'غير مؤكد'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isConfirmed')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> حالة التفعيل : </span>
                       <span>
                         {companyByMail.isActive ? 'مفعل' : 'غير مفعل'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isActive')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> تاريخ الانشاء : </span>
@@ -692,22 +668,10 @@ class CompanySearch extends Component {
                           <div className="company-name">
                             <span> حالة التأكيد : </span>
                             <span>{elm.isConfirmed ? 'مؤكد' : 'غير مؤكد'}</span>
-                            <img
-                              className="update-company"
-                              src={update_icon}
-                              alt=""
-                              onClick={() => this.showEditModal('isConfirmed')}
-                            />
                           </div>
                           <div className="company-name">
                             <span> حالة التفعيل : </span>
                             <span>{elm.isActive ? 'مفعل' : 'غير مفعل'}</span>
-                            <img
-                              className="update-company"
-                              src={update_icon}
-                              alt=""
-                              onClick={() => this.showEditModal('isActive')}
-                            />
                           </div>
                           <div className="company-name">
                             <span> تاريخ الانشاء : </span>

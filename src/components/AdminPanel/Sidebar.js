@@ -27,10 +27,10 @@ const Sidebar = () => {
           }
         >
           <Menu.Item key="/admin/statistics">
-            <Link to="/admin/statistics">احصائيات بالاعتماد على قيم مدخلة</Link>
+            <Link to="/admin/statistics"> بالاعتماد على قيم مدخلة</Link>
           </Menu.Item>
           <Menu.Item key="/admin/percentage">
-            <Link to="/admin/percentage">احصائيات بدون قيم مدخلة</Link>
+            <Link to="/admin/percentage"> بدون قيم مدخلة</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

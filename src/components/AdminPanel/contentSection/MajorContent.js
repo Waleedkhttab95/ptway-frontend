@@ -109,7 +109,7 @@ class EditableTable extends React.Component {
             {' '}
             {this.state.data.reduce((acc, elm) => {
               if (elm.key === record.key) acc = elm.major;
-              return elm.major;
+              return acc;
             }, '')}{' '}
           </h3>
         );
@@ -181,7 +181,7 @@ class EditableTable extends React.Component {
           ...row
         });
         this.setState({ data: newData, editingKey: '' }, async () => {
-          this.state.row.major !== row.major
+          this.state.row.name === row.name
             ? (type = 'public_Major')
             : (type = 'majorName');
           await updateSubMajor({
@@ -322,7 +322,7 @@ class EditableTable extends React.Component {
           />
         </div>
         <Modal
-          title="اضافة مدينة جديدة"
+          title="اضافة تخصص دقيق"
           visible={this.state.visible}
           onOk={() => {
             this.handleOk(major);
