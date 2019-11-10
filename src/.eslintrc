@@ -33,7 +33,9 @@
       "react/prop-types": 0,
       "semi": ["error", "always"],
         "quotes": ["error", "single"],
-        "prettier/prettier": ["error", { "singleQuote": true }]
+        "prettier/prettier": ["error", { "singleQuote": true }],
+        "jsx-a11y/anchor-is-valid": "off",
+       "jsx-a11y/anchor-has-content": "off" 
     },
     "plugins": [
       "import",

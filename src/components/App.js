@@ -12,6 +12,9 @@ import CitiesContent from '../components/AdminPanel/contentSection/CitiesContent
 import UniversityContent from '../components/AdminPanel/contentSection/UniversityContent';
 import MajorContent from '../components/AdminPanel/contentSection/MajorContent';
 import CompanyAds from '../components/AdminPanel/AdsSection/Ads';
+import SearchAds from '../components/AdminPanel/AdsSection/AdsSearch';
+import UserSetting from '../components/AdminPanel/setting/User';
+import CompanySetting from '../components/AdminPanel/setting/Company';
 import './App.scss';
 
 const App = props => {
@@ -65,6 +68,21 @@ const App = props => {
               exact
               path="/admin/ads/company"
               component={AdminPanel(CompanyAds)}
+            />
+            <Route
+              exact
+              path="/admin/ads/search"
+              component={AdminPanel(SearchAds)}
+            />
+            <Route
+              exact
+              path="/admin/setting/user"
+              component={AdminPanel(UserSetting)}
+            />
+            <Route
+              exact
+              path="/admin/setting/company"
+              component={AdminPanel(CompanySetting)}
             />
           </Switch>
         </Router>

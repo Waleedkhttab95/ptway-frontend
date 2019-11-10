@@ -39,7 +39,9 @@ class CompanySearch extends Component {
     blockVisible: false,
     majors: [],
     specialMajor: [],
-    allCompaniesBSpecialist: ''
+    allCompaniesBSpecialist: '',
+    editMajorVisible: false,
+    editSectorVisible: false
   };
 
   async componentDidMount() {
@@ -51,16 +53,15 @@ class CompanySearch extends Component {
   }
 
   majorChange = (value, selectedOptions) => {
-    console.log('selectedOptions', selectedOptions[0]);
-
     this.setState(
       {
         major: selectedOptions[0]
       },
       async () => {
         const { major } = this.state;
+
         const allCompaniesBSpecialist = await getAllCompaniesBSpecialist({
-          CompanySp: major.label
+          CompanySp: major.value
         });
         this.setState({ allCompaniesBSpecialist });
       }
@@ -74,6 +75,7 @@ class CompanySearch extends Component {
       },
       async () => {
         const { sub_major } = this.state;
+
         const allCompaniesBSector = await getAllCompaniesBSector({
           sectorName: sub_major.key
         });
@@ -145,27 +147,31 @@ class CompanySearch extends Component {
 
   handleEditOk = async id => {
     const { updateCompany } = this.props;
-    const { editedCompany, type } = this.state;
+    const { editedCompany, type, major, sub_major } = this.state;
+
     await updateCompany({
       id,
-      value: editedCompany,
+      value: editedCompany ? editedCompany : major ? major.id : sub_major.value,
       type
     });
     this.setState({
       companyId: '',
       companyMail: '',
       companyName: '',
-      editVisible: false
+      editVisible: false,
+      editSectorVisible: false,
+      editMajorVisible: false
     });
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false,
       editVisible: false,
       confirmVisible: false,
-      blockVisible: false
+      blockVisible: false,
+      editMajorVisible: false,
+      editSectorVisible: false
     });
   };
 
@@ -180,7 +186,6 @@ class CompanySearch extends Component {
     });
   };
   handleConfirmOk = async id => {
-    console.log('e', id);
     await this.props.confirmCompany({ id });
     this.setState({
       companyId: '',
@@ -203,10 +208,21 @@ class CompanySearch extends Component {
       blockVisible: false
     });
   };
+  showEditMajorModal = type => {
+    this.setState({
+      editMajorVisible: true,
+      type
+    });
+  };
+  showEditSectorModal = type => {
+    this.setState({
+      editSectorVisible: true,
+      type
+    });
+  };
 
   render() {
     const { companyById, companyByMail, companyByName } = this.props.search;
-    console.log('companyById', companyById);
     const { allCompaniesBSpecialist, allCompaniesBSector } = this.state;
 
     return (
@@ -339,6 +355,21 @@ class CompanySearch extends Component {
                         <p>هل ترغب حقاً في حظر هذا الحساب؟</p>
                       </Modal>
                     </div>
+                    <Modal
+                      title="تعديل بيانات للشركة"
+                      visible={this.state.editMajorVisible}
+                      onOk={() => {
+                        this.handleEditOk(companyByMail._id);
+                      }}
+                      onCancel={this.handleCancel}
+                    >
+                      <Cascader
+                        className="dropdown-menu"
+                        options={this.state.specialMajor}
+                        onChange={this.majorChange}
+                        placeholder="نشاط العمل"
+                      />
+                    </Modal>
                     <div className="company-name">
                       <span> اسم الشركة :</span>
                       <span>{companyById.companyName}</span>
@@ -360,27 +391,37 @@ class CompanySearch extends Component {
                       />
                     </div>
                     <div className="company-name">
-                      <span>القطاع :</span>
-                      <span>{companyById.sector}</span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isActive')}
-                      />
-                    </div>
-                    <div className="company-name">
                       <span>التخصص :</span>
                       <span>
-                        {companyById.CompanySpecialist.specialistName}
+                        {companyById.CompanySpecialist
+                          ? companyById.CompanySpecialist.specialistName
+                          : ''}
                       </span>
+
                       <img
                         className="update-company"
                         src={update_icon}
                         alt=""
-                        onClick={() => this.showEditModal('CompanySpecialist')}
+                        onClick={() =>
+                          this.showEditMajorModal('CompanySpecialist')
+                        }
                       />
                     </div>
+                    <Modal
+                      title="تعديل بيانات للشركة"
+                      visible={this.state.editMajorVisible}
+                      onOk={() => {
+                        this.handleEditOk(companyById._id);
+                      }}
+                      onCancel={this.handleCancel}
+                    >
+                      <Cascader
+                        className="dropdown-menu"
+                        options={this.state.specialMajor}
+                        onChange={this.majorChange}
+                        placeholder="نشاط العمل"
+                      />
+                    </Modal>
                     <div className="company-name">
                       <span> القطاع:</span>
                       <span>{companyById.sector}</span>
@@ -388,30 +429,33 @@ class CompanySearch extends Component {
                         className="update-company"
                         src={update_icon}
                         alt=""
-                        onClick={() => this.showEditModal('sector')}
+                        onClick={() => this.showEditSectorModal('sector')}
                       />
                     </div>
+                    <Modal
+                      title="تعديل بيانات للشركة"
+                      visible={this.state.editSectorVisible}
+                      onOk={() => {
+                        this.handleEditOk(companyById._id);
+                      }}
+                      onCancel={this.handleCancel}
+                    >
+                      <Cascader
+                        className="dropdown-menu"
+                        options={this.state.majors}
+                        onChange={this.specialMajorChange}
+                        placeholder=" القطاع"
+                      />
+                    </Modal>
                     <div className="company-name">
                       <span> حالة التأكيد : </span>
                       <span>
                         {companyById.isConfirmed ? 'مؤكد' : 'غير مؤكد'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isConfirmed')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> حالة التفعيل : </span>
                       <span>{companyById.isActive ? 'مفعل' : 'غير مفعل'}</span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isActive')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> تاريخ الانشاء : </span>
@@ -484,7 +528,7 @@ class CompanySearch extends Component {
                       </Modal>
                     </div>
                     <Modal
-                      title="تعديل البريد الالكتروني للشركة"
+                      title="تعديل بيانات للشركة"
                       visible={this.state.editVisible}
                       onOk={() => {
                         this.handleEditOk(companyByMail._id);
@@ -492,7 +536,7 @@ class CompanySearch extends Component {
                       onCancel={this.handleCancel}
                     >
                       <Input
-                        placeholder="ادخل البريد الالكتروني "
+                        placeholder="ادخل القيمة "
                         onChange={this.handleInputChange}
                       />
                     </Modal>
@@ -519,15 +563,34 @@ class CompanySearch extends Component {
                     <div className="company-name">
                       <span>التخصص :</span>
                       <span>
-                        {companyByMail.CompanySpecialist.specialistName}
+                        {companyByMail.CompanySpecialist
+                          ? companyByMail.CompanySpecialist.specialistName
+                          : ''}
                       </span>
                       <img
                         className="update-company"
                         src={update_icon}
                         alt=""
-                        onClick={() => this.showEditModal('CompanySpecialist')}
+                        onClick={() =>
+                          this.showEditMajorModal('CompanySpecialist')
+                        }
                       />
                     </div>
+                    <Modal
+                      title="تعديل بيانات للشركة"
+                      visible={this.state.editMajorVisible}
+                      onOk={() => {
+                        this.handleEditOk(companyByMail._id);
+                      }}
+                      onCancel={this.handleCancel}
+                    >
+                      <Cascader
+                        className="dropdown-menu"
+                        options={this.state.specialMajor}
+                        onChange={this.majorChange}
+                        placeholder="نشاط العمل"
+                      />
+                    </Modal>
                     <div className="company-name">
                       <span> القطاع:</span>
                       <span>{companyByMail.sector}</span>
@@ -535,32 +598,36 @@ class CompanySearch extends Component {
                         className="update-company"
                         src={update_icon}
                         alt=""
-                        onClick={() => this.showEditModal('sector')}
+                        onClick={() => this.showEditSectorModal('sector')}
                       />
                     </div>
+                    <Modal
+                      title="تعديل بيانات للشركة"
+                      visible={this.state.editSectorVisible}
+                      onOk={() => {
+                        this.handleEditOk(companyByMail._id);
+                      }}
+                      onCancel={this.handleCancel}
+                    >
+                      <Cascader
+                        className="dropdown-menu"
+                        options={this.state.majors}
+                        onChange={this.specialMajorChange}
+                        placeholder=" القطاع"
+                      />
+                    </Modal>
+
                     <div className="company-name">
                       <span> حالة التأكيد : </span>
                       <span>
                         {companyByMail.isConfirmed ? 'مؤكد' : 'غير مؤكد'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isConfirmed')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> حالة التفعيل : </span>
                       <span>
                         {companyByMail.isActive ? 'مفعل' : 'غير مفعل'}
                       </span>
-                      <img
-                        className="update-company"
-                        src={update_icon}
-                        alt=""
-                        onClick={() => this.showEditModal('isActive')}
-                      />
                     </div>
                     <div className="company-name">
                       <span> تاريخ الانشاء : </span>
@@ -669,16 +736,35 @@ class CompanySearch extends Component {
                           </div>
                           <div className="company-name">
                             <span>التخصص :</span>
-                            <span>{elm.CompanySpecialist.specialistName}</span>
+                            <span>
+                              {elm.CompanySpecialist
+                                ? elm.CompanySpecialist.specialistName
+                                : ''}
+                            </span>
                             <img
                               className="update-company"
                               src={update_icon}
                               alt=""
                               onClick={() =>
-                                this.showEditModal('CompanySpecialist')
+                                this.showEditMajorModal('CompanySpecialist')
                               }
                             />
                           </div>
+                          <Modal
+                            title="تعديل بيانات للشركة"
+                            visible={this.state.editMajorVisible}
+                            onOk={() => {
+                              this.handleEditOk(elm._id);
+                            }}
+                            onCancel={this.handleCancel}
+                          >
+                            <Cascader
+                              className="dropdown-menu"
+                              options={this.state.specialMajor}
+                              onChange={this.majorChange}
+                              placeholder="نشاط العمل"
+                            />
+                          </Modal>
                           <div className="company-name">
                             <span> القطاع:</span>
                             <span>{elm.sector}</span>
@@ -686,28 +772,31 @@ class CompanySearch extends Component {
                               className="update-company"
                               src={update_icon}
                               alt=""
-                              onClick={() => this.showEditModal('sector')}
+                              onClick={() => this.showEditSectorModal('sector')}
                             />
                           </div>
+                          <Modal
+                            title="تعديل بيانات للشركة"
+                            visible={this.state.editSectorVisible}
+                            onOk={() => {
+                              this.handleEditOk(elm._id);
+                            }}
+                            onCancel={this.handleCancel}
+                          >
+                            <Cascader
+                              className="dropdown-menu"
+                              options={this.state.majors}
+                              onChange={this.specialMajorChange}
+                              placeholder=" القطاع"
+                            />
+                          </Modal>
                           <div className="company-name">
                             <span> حالة التأكيد : </span>
                             <span>{elm.isConfirmed ? 'مؤكد' : 'غير مؤكد'}</span>
-                            <img
-                              className="update-company"
-                              src={update_icon}
-                              alt=""
-                              onClick={() => this.showEditModal('isConfirmed')}
-                            />
                           </div>
                           <div className="company-name">
                             <span> حالة التفعيل : </span>
                             <span>{elm.isActive ? 'مفعل' : 'غير مفعل'}</span>
-                            <img
-                              className="update-company"
-                              src={update_icon}
-                              alt=""
-                              onClick={() => this.showEditModal('isActive')}
-                            />
                           </div>
                           <div className="company-name">
                             <span> تاريخ الانشاء : </span>

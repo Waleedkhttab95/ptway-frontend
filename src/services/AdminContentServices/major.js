@@ -33,6 +33,17 @@ const majorContent = {
         console.log('error', error);
       });
   },
+  addMajor: params => {
+    return baseRequest
+      .post('/post/major', {
+        majorName: params.majorName,
+        key: params.key
+      })
+      .then(result => result)
+      .catch(error => {
+        console.log('error', error);
+      });
+  },
   addSubMajor: params => {
     return baseRequest
       .post('/post/subMajor', {

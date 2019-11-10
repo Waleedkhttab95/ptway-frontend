@@ -5,7 +5,7 @@ import {
   companyBMajor,
   companyBCityMajor
 } from '../../store/actions/companyActions';
-import { Statistic, Row, Col, Cascader, Card } from 'antd';
+import { Statistic, Row, Col, Cascader, Card, Button } from 'antd';
 import statatisticsService from '../../services/statisticsService';
 const {
   allCountries,
@@ -44,30 +44,34 @@ class CompaniesStatistics extends Component {
       },
       () => {
         const { companyBCountry } = this.props;
-        companyBCountry({
-          city_id: this.state.city.id,
-          country_id: this.state.country.id
-        });
+        const { city, country } = this.state;
+        if (city && country) {
+          companyBCountry({
+            city_id: city.id,
+            country_id: country.id
+          });
+        }
       }
     );
   };
   cityAndMajorChange = (value, selectedOptions) => {
-    this.setState(
-      {
-        city: selectedOptions[0]
-      },
-      () => {
-        const { companyBCityMajor } = this.props;
-        companyBCityMajor({
-          city_id: this.state.city.id,
-          country_id: this.state.country.id,
-          major_id: this.state.major.id,
-          smajor_id: this.state.sub_major.id
-        });
-      }
-    );
+    this.setState({
+      city: selectedOptions[0]
+    });
   };
 
+  majorCountry = () => {
+    const { companyBCityMajor } = this.props;
+    const { city, country, major, sub_major } = this.state;
+    if (city && country && major && sub_major) {
+      companyBCityMajor({
+        city_id: city.id,
+        country_id: country.id,
+        major_id: major.id,
+        smajor_id: sub_major.id
+      });
+    }
+  };
   countryChange = (value, selectedOptions) => {
     this.setState(
       {
@@ -75,39 +79,34 @@ class CompaniesStatistics extends Component {
       },
       async () => {
         const allCitiesData = await allCities();
-        this.setState({ cities: allCitiesData });
+        if (allCitiesData) this.setState({ cities: allCitiesData });
       }
     );
   };
 
   majorChange = (value, selectedOptions) => {
-    console.log('selectedOptions', selectedOptions[0]);
+    this.setState({
+      major: selectedOptions[0]
+    });
+  };
 
-    this.setState(
-      {
-        major: selectedOptions[0]
-      },
-      () => {
-        const { companyBMajor } = this.props;
-        companyBMajor({
-          sector: this.state.major.id
-        });
-      }
-    );
+  sector = () => {
+    const { companyBMajor } = this.props;
+    companyBMajor({
+      sector: this.state.major.id
+    });
   };
 
   specialMajorChange = (value, selectedOptions) => {
-    this.setState(
-      {
-        sub_major: selectedOptions[0]
-      },
-      () => {
-        const { companyBMajor } = this.props;
-        companyBMajor({
-          s_major: this.state.sub_major.id
-        });
-      }
-    );
+    this.setState({
+      sub_major: selectedOptions[0]
+    });
+  };
+  specialMajor = () => {
+    const { companyBMajor } = this.props;
+    companyBMajor({
+      s_major: this.state.sub_major.id
+    });
   };
 
   render() {
@@ -186,10 +185,14 @@ class CompaniesStatistics extends Component {
               className="dropdown-menu"
               options={this.state.majors}
               onChange={this.majorChange}
-              placeholder="نشاط العمل"
+              placeholder="القطاع"
             />
+            <Button onClick={this.sector} className="sector-button">
+              {' '}
+              اضغط
+            </Button>
             <Statistic
-              title="عدد الشركات بناءً على نشاط العمل"
+              title="عدد الشركات بناءً على القطاع"
               value={companyBMajor ? companyBMajor.result.sector_result : ''}
             />
           </Col>
@@ -198,10 +201,14 @@ class CompaniesStatistics extends Component {
               className="dropdown-menu"
               options={this.state.specialMajor}
               onChange={this.specialMajorChange}
-              placeholder=" القطاع"
+              placeholder=" نشاط العمل"
             />
+            <Button onClick={this.specialMajor} className="smajor-button">
+              {' '}
+              اضغط
+            </Button>
             <Statistic
-              title="عدد الشركات بناءً على القطاع"
+              title="عدد الشركات بناءً على نشاط العمل"
               value={companyBMajor ? companyBMajor.result.sp_result : ''}
             />
           </Col>
@@ -213,13 +220,13 @@ class CompaniesStatistics extends Component {
                 className="dropdown-menu"
                 options={this.state.majors}
                 onChange={this.majorChange}
-                placeholder=" نشاط العمل"
+                placeholder=" القطاع"
               />
               <Cascader
                 className="dropdown-menu"
                 options={this.state.specialMajor}
                 onChange={this.specialMajorChange}
-                placeholder="القطاع"
+                placeholder="نشاط العمل"
               />
             </div>
             <div className="company-details">
@@ -236,6 +243,13 @@ class CompaniesStatistics extends Component {
                 placeholder="المدينة"
               />
             </div>
+            <Button
+              onClick={this.majorCountry}
+              className="major-country-button"
+            >
+              {' '}
+              اضغط
+            </Button>
             <Statistic
               title="عدد الشركات بناءً على الدولة والتخصص"
               value={companyBCityMajor !== null ? companyBCityMajor.result : ''}

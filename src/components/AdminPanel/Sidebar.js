@@ -27,10 +27,10 @@ const Sidebar = () => {
           }
         >
           <Menu.Item key="/admin/statistics">
-            <Link to="/admin/statistics">احصائيات بالاعتماد على قيم مدخلة</Link>
+            <Link to="/admin/statistics"> بالاعتماد على قيم مدخلة</Link>
           </Menu.Item>
           <Menu.Item key="/admin/percentage">
-            <Link to="/admin/percentage">احصائيات بدون قيم مدخلة</Link>
+            <Link to="/admin/percentage"> بدون قيم مدخلة</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu
@@ -92,6 +92,25 @@ const Sidebar = () => {
         >
           <Menu.Item key="/admin/ads/company">
             <Link to={'/admin/ads/company'}> اعلانات الشركات</Link>
+          </Menu.Item>
+          <Menu.Item key="/admin/ads/search">
+            <Link to={'/admin/ads/search'}> البحث </Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu
+          key="sub6"
+          title={
+            <span>
+              <Icon type="appstore" />
+              <span>الإعدادات</span>
+            </span>
+          }
+        >
+          <Menu.Item key="/admin/setting/user">
+            <Link to={'/admin/setting/user'}> الأفراد</Link>
+          </Menu.Item>
+          <Menu.Item key="/admin/setting/company">
+            <Link to={'/admin/setting/company'}> الشركات </Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
