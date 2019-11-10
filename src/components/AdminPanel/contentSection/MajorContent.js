@@ -5,13 +5,13 @@ import { Table, Input, InputNumber, Button, Form, Modal, Cascader } from 'antd';
 import majorContent from '../../../services/AdminContentServices/major';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
-import add_icon from '../../../images/plus.svg';
 
 const {
   getAllMajors,
   getAllSubMajors,
   updateSubMajor,
   deleteSubMajor,
+  addMajor,
   addSubMajor
 } = majorContent;
 const EditableContext = React.createContext();
@@ -68,6 +68,7 @@ class EditableTable extends React.Component {
     data: [],
     editingKey: '',
     visible: false,
+    majorVisible: false,
     subMajor: '',
     majors: [],
     major: ''
@@ -219,6 +220,12 @@ class EditableTable extends React.Component {
     });
   };
 
+  addPublicMajorModal = () => {
+    this.setState({
+      majorVisible: true
+    });
+  };
+
   handleOk = async smjor => {
     const { data, subMajor } = this.state;
     const addedSubMajorData = await addSubMajor({
@@ -237,9 +244,19 @@ class EditableTable extends React.Component {
     });
   };
 
+  handleMajorOk = async () => {
+    const { key, publicMajor } = this.state;
+    await addMajor({
+      majorName: publicMajor,
+      key
+    });
+    this.setState({ visible: false });
+  };
+
   handleCancel = e => {
     this.setState({
-      visible: false
+      visible: false,
+      majorVisible: false
     });
   };
 
@@ -276,6 +293,12 @@ class EditableTable extends React.Component {
       }
     }
   };
+  handlePMajorChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
     const { majors, major, data } = this.state;
@@ -311,15 +334,34 @@ class EditableTable extends React.Component {
             onChange={this.majorChange}
             placeholder="اختر التخصص"
           />
+          <Button className="add-major" onClick={this.addSubMajorModal}>
+            اضافة تخصص دقيق
+          </Button>
+          <Button className="add-smajor" onClick={this.addPublicMajorModal}>
+            اضافة تخصص عام
+          </Button>
+          <Modal
+            title="اضافة تخصص عام"
+            visible={this.state.majorVisible}
+            onOk={() => {
+              this.handleMajorOk(major);
+            }}
+            onCancel={this.handleCancel}
+          >
+            <Input
+              placeholder="value "
+              name="publicMajor"
+              onChange={this.handlePMajorChange}
+            />
+            <Input
+              placeholder="key "
+              name="key"
+              onChange={this.handlePMajorChange}
+            />
+          </Modal>
           <Button className="display-major-content" onClick={this.showSubMajor}>
             عرض
           </Button>
-          <img
-            src={add_icon}
-            className="major-add-icon"
-            alt="تخصص دقيق جديد"
-            onClick={this.addSubMajorModal}
-          />
         </div>
         <Modal
           title="اضافة تخصص دقيق"
@@ -331,6 +373,7 @@ class EditableTable extends React.Component {
         >
           <Input placeholder="القيمة " onChange={this.handleInputChange} />
         </Modal>
+
         {data.length !== 0 && (
           <EditableContext.Provider value={this.props.form}>
             <Table
