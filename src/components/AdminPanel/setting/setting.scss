@@ -64,3 +64,8 @@ label{
     background-color: #40a9ff;
     width: 90px;
 }
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1890ff;
+}

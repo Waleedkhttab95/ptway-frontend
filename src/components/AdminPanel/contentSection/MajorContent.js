@@ -76,13 +76,15 @@ class EditableTable extends React.Component {
 
   async componentDidMount() {
     const allMajor = await getAllMajors();
-    const allMajorData = allMajor.map(elm => ({
-      key: elm._id,
-      value: elm.majorName,
-      label: elm.majorName,
-      type: elm.key
-    }));
-    this.setState({ majors: allMajorData });
+    if (allMajor) {
+      const allMajorData = allMajor.map(elm => ({
+        key: elm._id,
+        value: elm.majorName,
+        label: elm.majorName,
+        type: elm.key
+      }));
+      this.setState({ majors: allMajorData });
+    }
   }
 
   columns = [

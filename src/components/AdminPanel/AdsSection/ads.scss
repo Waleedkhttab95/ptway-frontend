@@ -65,3 +65,8 @@ button.ant-modal-close {
     margin-top: 22px;
     margin: 0 10px;
 }
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1890ff;
+}

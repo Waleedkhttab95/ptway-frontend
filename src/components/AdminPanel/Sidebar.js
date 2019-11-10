@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.scss';
-import { Col, Menu, Icon } from 'antd';
+import { Col, Menu } from 'antd';
 import logo from '../../images/ptway.svg';
 import { Link } from 'react-router-dom';
 const { SubMenu } = Menu;
@@ -21,7 +21,6 @@ const Sidebar = () => {
           key="sub1"
           title={
             <span>
-              <Icon type="appstore" />
               <span>احصائيات المستخدمين</span>
             </span>
           }
@@ -37,7 +36,6 @@ const Sidebar = () => {
           key="sub2"
           title={
             <span>
-              <Icon type="appstore" />
               <span>احصائيات الشركات</span>
             </span>
           }
@@ -50,7 +48,6 @@ const Sidebar = () => {
           key="sub3"
           title={
             <span>
-              <Icon type="appstore" />
               <span>البحث</span>
             </span>
           }
@@ -66,7 +63,6 @@ const Sidebar = () => {
           key="sub4"
           title={
             <span>
-              <Icon type="appstore" />
               <span>المحتوى</span>
             </span>
           }
@@ -85,7 +81,6 @@ const Sidebar = () => {
           key="sub5"
           title={
             <span>
-              <Icon type="appstore" />
               <span>العروض الوظيفية</span>
             </span>
           }
@@ -101,7 +96,6 @@ const Sidebar = () => {
           key="sub6"
           title={
             <span>
-              <Icon type="appstore" />
               <span>الإعدادات</span>
             </span>
           }
