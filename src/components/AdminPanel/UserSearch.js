@@ -265,12 +265,6 @@ class UserSearch extends Component {
                         : 'غير مفعل'
                       : null}
                   </span>
-                  <img
-                    className="update-user"
-                    src={update_icon}
-                    alt=""
-                    onClick={() => this.showEditModal('isConfirmed')}
-                  />
                 </div>
                 <div className="user-name">
                   <span> تاريخ الانشاء : </span>
@@ -395,12 +389,6 @@ class UserSearch extends Component {
                         : 'غير مفعل'
                       : ''}
                   </span>
-                  <img
-                    className="update-user"
-                    src={update_icon}
-                    alt=""
-                    onClick={() => this.showEditModal('isConfirmed')}
-                  />
                 </div>
                 <div className="user-name">
                   <span>تاريخ الانشاء : </span>
@@ -521,12 +509,6 @@ class UserSearch extends Component {
                       <div className="user-name">
                         <span>حالة التفعيل : </span>
                         <span>{elm.isConfirmed ? 'مفعل' : 'غير مفعل'}</span>
-                        <img
-                          className="update-user"
-                          src={update_icon}
-                          alt=""
-                          onClick={() => this.showEditModal('isConfirmed')}
-                        />
                       </div>
                       <div className="user-name">
                         <span>تاريخ الانشاء : </span>
