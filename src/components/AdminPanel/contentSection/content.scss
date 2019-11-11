@@ -82,3 +82,11 @@ button.ant-modal-close{
     left: 0 !important;
     right: auto;
 }
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1890ff;
+}
+.ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    height: 40px;
+}
