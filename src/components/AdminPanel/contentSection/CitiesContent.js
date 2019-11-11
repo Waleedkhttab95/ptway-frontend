@@ -2,7 +2,16 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './content.scss';
 import { connect } from 'react-redux';
-import { Table, Input, InputNumber, Form, Modal, Cascader } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Form,
+  Modal,
+  Cascader,
+  Menu,
+  Dropdown
+} from 'antd';
 import {
   updateCity,
   deteteCity
@@ -134,11 +143,26 @@ class EditableTable extends React.Component {
     {
       title: 'حذف',
       dataIndex: 'operation',
-      render: (text, record) => (
-        <a onClick={() => this.delete(record.key)}>
-          <img src={delete_icon} className="delete-icon" alt="" />
-        </a>
-      )
+      render: (text, record) => {
+        const menu = (
+          <Menu>
+            <Menu.Item>
+              <a
+                rel="noopener noreferrer"
+                onClick={() => this.delete(record.key)}
+              >
+                <img src={delete_icon} className="delete-icon" alt="" />
+              </a>
+            </Menu.Item>
+          </Menu>
+        );
+
+        return (
+          <Dropdown overlay={menu} placement="topRight">
+            <span>...</span>
+          </Dropdown>
+        );
+      }
     }
   ];
 

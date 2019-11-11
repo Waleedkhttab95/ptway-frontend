@@ -13,7 +13,7 @@
     float: right;
 }
 .dashboard-container{
-    background-color: #f8f9fe;
+    background-color: #DCDDDD;
     height: 100vh;
     overflow-y: scroll;
     padding-bottom: 50px;
@@ -61,7 +61,7 @@
     height: 60px;
     padding-top: 10px;
     border-bottom: solid 1px #ced4da;
-    background-color: white;
+    background-color: #DCDDDD;
    
 }
 .header-title{
@@ -284,4 +284,17 @@ button.ant-modal-close{
 .major-country-button{
     background-color: #40a9ff;
     color: #fff;
+}
+.ant-menu-item > a{
+    font-size: 18px;
+    font-weight: 500;
+}
+.ant-menu-submenu-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1890ff;
 }
