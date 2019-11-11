@@ -1,7 +1,17 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './content.scss';
-import { Table, Input, InputNumber, Button, Form, Modal, Cascader } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Button,
+  Form,
+  Modal,
+  Cascader,
+  Menu,
+  Dropdown
+} from 'antd';
 import majorContent from '../../../services/AdminContentServices/major';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
@@ -155,11 +165,26 @@ class EditableTable extends React.Component {
     {
       title: 'حذف',
       dataIndex: 'operation',
-      render: (text, record) => (
-        <a onClick={() => this.delete(record.key)}>
-          <img src={delete_icon} className="delete-icon" alt="" />
-        </a>
-      )
+      render: (text, record) => {
+        const menu = (
+          <Menu>
+            <Menu.Item>
+              <a
+                rel="noopener noreferrer"
+                onClick={() => this.delete(record.key)}
+              >
+                <img src={delete_icon} className="delete-icon" alt="" />
+              </a>
+            </Menu.Item>
+          </Menu>
+        );
+
+        return (
+          <Dropdown overlay={menu} placement="topRight">
+            <span>...</span>
+          </Dropdown>
+        );
+      }
     }
   ];
 

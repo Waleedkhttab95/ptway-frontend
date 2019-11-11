@@ -9,7 +9,9 @@ import {
   Form,
   Modal,
   Radio,
-  Cascader
+  Cascader,
+  Menu,
+  Dropdown
 } from 'antd';
 import ads from '../../../services/adminAdsSection/companyAds';
 import statatisticsService from '../../../services/statisticsService';
@@ -303,11 +305,26 @@ class EditableTable extends React.Component {
     {
       title: 'حذف',
       dataIndex: 'operation',
-      render: (text, record) => (
-        <a onClick={() => this.delete(record.key)}>
-          <img src={delete_icon} className="delete-icon" alt="" />
-        </a>
-      )
+      render: (text, record) => {
+        const menu = (
+          <Menu>
+            <Menu.Item>
+              <a
+                rel="noopener noreferrer"
+                onClick={() => this.delete(record.key)}
+              >
+                <img src={delete_icon} className="delete-icon" alt="" />
+              </a>
+            </Menu.Item>
+          </Menu>
+        );
+
+        return (
+          <Dropdown overlay={menu} placement="topRight">
+            <span>...</span>
+          </Dropdown>
+        );
+      }
     }
   ];
 
