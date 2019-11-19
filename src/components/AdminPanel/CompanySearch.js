@@ -59,27 +59,34 @@ class CompanySearch extends Component {
       },
       async () => {
         const { major } = this.state;
-
-        const allCompaniesBSpecialist = await getAllCompaniesBSpecialist({
-          CompanySp: major.value
-        });
-        this.setState({ allCompaniesBSpecialist });
+        if (major) {
+          const allCompaniesBSpecialist = await getAllCompaniesBSpecialist({
+            CompanySp: major.value
+          });
+          this.setState({ allCompaniesBSpecialist });
+        }
       }
     );
   };
 
   specialMajorChange = (value, selectedOptions) => {
+    this.setState({
+      sub_major: selectedOptions[0]
+    });
+  };
+  cSectorChange = (value, selectedOptions) => {
     this.setState(
       {
         sub_major: selectedOptions[0]
       },
       async () => {
         const { sub_major } = this.state;
-
-        const allCompaniesBSector = await getAllCompaniesBSector({
-          sectorName: sub_major.key
-        });
-        this.setState({ allCompaniesBSector });
+        if (sub_major) {
+          const allCompaniesBSector = await getAllCompaniesBSector({
+            sectorName: sub_major.key
+          });
+          this.setState({ allCompaniesBSector });
+        }
       }
     );
   };
@@ -265,7 +272,7 @@ class CompanySearch extends Component {
                 <Cascader
                   className="dropdown-menu"
                   options={this.state.majors}
-                  onChange={this.specialMajorChange}
+                  onChange={this.cSectorChange}
                   placeholder=" القطاع"
                 />
                 {(_.isArray(allCompaniesBSector) ||
