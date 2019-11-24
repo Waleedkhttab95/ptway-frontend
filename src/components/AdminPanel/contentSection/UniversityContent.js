@@ -72,11 +72,13 @@ class EditableTable extends React.Component {
 
   async componentDidMount() {
     const allUniversities = await getAllUniversities();
-    const allUniversitiesData = allUniversities.map(elm => ({
-      key: elm._id,
-      name: elm.universtyName
-    }));
-    this.setState({ data: allUniversitiesData });
+    if (allUniversities) {
+      const allUniversitiesData = allUniversities.map(elm => ({
+        key: elm._id,
+        name: elm.universtyName
+      }));
+      this.setState({ data: allUniversitiesData });
+    }
   }
 
   columns = [

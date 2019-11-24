@@ -15,6 +15,7 @@ import CompanyAds from '../components/AdminPanel/AdsSection/Ads';
 import SearchAds from '../components/AdminPanel/AdsSection/AdsSearch';
 import UserSetting from '../components/AdminPanel/setting/User';
 import CompanySetting from '../components/AdminPanel/setting/Company';
+import generalStatistics from '../components/AdminPanel/generalStatistics';
 import './App.scss';
 
 const App = props => {
@@ -24,6 +25,11 @@ const App = props => {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/admin/general/statistics"
+              component={AdminPanel(generalStatistics)}
+            />
             <Route
               exact
               path="/admin/statistics"

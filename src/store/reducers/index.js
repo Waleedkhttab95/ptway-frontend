@@ -5,12 +5,14 @@ import companyStatistics from './companyStatistics';
 import adminSearch from './search';
 import adminCRUD from './adminCRUD';
 import adminContent from './adminContentSection';
+import generalStatistics from './generalStatistics';
 const reducers = combineReducers({
   user,
   statistics,
   companyStatistics,
   search: adminSearch,
   adminSer: adminCRUD,
-  adminContent
+  adminContent,
+  generalStatistics
 });
 export default reducers;
