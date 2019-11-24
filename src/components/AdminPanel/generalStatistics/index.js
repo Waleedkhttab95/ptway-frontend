@@ -9,7 +9,8 @@ import JobsGeneralStatistics from './jobs';
 import {
   dailyStatistics,
   weeklyStatistics,
-  monthlyStatistics
+  monthlyStatistics,
+  periodStatistics
 } from '../../../store/actions/generalStatistics';
 const { RangePicker } = DatePicker;
 
@@ -18,33 +19,44 @@ class generalStatistics extends React.Component {
     const { getDailyAds } = this.props;
     getDailyAds();
   }
-  weeklyChange = (date, dateString) => {
-    const result = this.props.getWeeklyAds({
+  weeklyChange = date => {
+    const { getWeeklyAds } = this.props;
+    getWeeklyAds({
       date
     });
-    console.log('result', result);
   };
-  monthlyChange = (date, dateString) => {
-    this.props.getMonthlyAds({
+  monthlyChange = date => {
+    const { getMonthlyAds } = this.props;
+    getMonthlyAds({
       date
+    });
+  };
+  periodChange = date => {
+    const { getPeriodAds } = this.props;
+    getPeriodAds({
+      start_date: date[0],
+      end_date: date[1]
     });
   };
   render() {
     return (
       <React.Fragment>
         <div style={{ padding: '40px 40px 0 0' }}>
+          <label>بحث أسبوعي :</label>
           <DatePicker
             onChange={this.weeklyChange}
             placeholder={'اختر التاريخ'}
             style={{ width: '250px', marginLeft: '20px' }}
           />
+          <label>بحث شهري :</label>
           <DatePicker
             onChange={this.monthlyChange}
             placeholder={'اختر التاريخ'}
             style={{ width: '250px', marginLeft: '20px' }}
           />
+          <label>بحث بين فترتين :</label>
           <RangePicker
-            onChange={this.onChange}
+            onChange={this.periodChange}
             style={{ width: '250px', marginLeft: '20px' }}
           />
         </div>
@@ -65,7 +77,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getDailyAds: () => dispatch(dailyStatistics()),
     getWeeklyAds: params => dispatch(weeklyStatistics(params)),
-    getMonthlyAds: params => dispatch(monthlyStatistics(params))
+    getMonthlyAds: params => dispatch(monthlyStatistics(params)),
+    getPeriodAds: params => dispatch(periodStatistics(params))
   };
 };
 

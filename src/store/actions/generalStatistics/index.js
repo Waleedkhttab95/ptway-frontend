@@ -1,4 +1,4 @@
-import generalStatistics from '../../../services/generalStatistics/dailyAds';
+import generalStatistics from '../../../services/generalStatistics';
 
 export const dailyStatistics = () => {
   return {
@@ -16,5 +16,11 @@ export const monthlyStatistics = params => {
   return {
     type: 'MONTHLY_STATISTIC',
     payload: generalStatistics.getMonthlyAds(params)
+  };
+};
+export const periodStatistics = params => {
+  return {
+    type: 'PERIOD_STATISTIC',
+    payload: generalStatistics.getPeriodAds(params)
   };
 };
