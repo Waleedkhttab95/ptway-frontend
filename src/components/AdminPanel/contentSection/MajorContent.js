@@ -267,7 +267,8 @@ class EditableTable extends React.Component {
     });
     this.setState({
       data,
-      visible: false
+      visible: false,
+      majorVisible: false
     });
   };
 
@@ -277,7 +278,7 @@ class EditableTable extends React.Component {
       majorName: publicMajor,
       key
     });
-    this.setState({ visible: false });
+    this.setState({ visible: false, majorVisible: false });
   };
 
   handleCancel = e => {

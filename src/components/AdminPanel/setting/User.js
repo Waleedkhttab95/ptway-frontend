@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Switch, Input, Button, Alert } from 'antd';
+import { Row, Input, Button, Alert } from 'antd';
 import userSetting from '../../../services/adminSetting/user';
 import _ from 'lodash';
 import './setting.scss';
@@ -9,16 +9,9 @@ class UserSetting extends React.Component {
   state = {
     status: false
   };
-  handleStatusChange = checked => {
-    this.setState(
-      {
-        status: checked
-      },
-      async () => {
-        const activate = await activateAccounts();
-        if (activate === 'Updated') alert('تم تفعيل جميع الحسابات');
-      }
-    );
+  handleStatus = async () => {
+    const activate = await activateAccounts();
+    if (activate === 'Updated') alert('تم تفعيل جميع الحسابات');
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -39,18 +32,26 @@ class UserSetting extends React.Component {
     });
   };
   render() {
-    const { status, newSubAdmin } = this.state;
+    const { newSubAdmin } = this.state;
     return (
       <React.Fragment>
         <Row>
           <div className="activate-accounts-setting">
             <label>تفعيل جميع الحسابات</label>
-            <Switch
+            {/* <Switch
               onChange={this.handleStatusChange}
               checked={status}
               name="status"
               className="setting-switch"
-            />
+            /> */}
+            <Button
+              onClick={this.handleStatus}
+              name="status"
+              className="activate-user-btn"
+            >
+              {' '}
+              تفعيل
+            </Button>
           </div>
         </Row>
         <Row>

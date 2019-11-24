@@ -67,7 +67,7 @@ class CompaniesStatistics extends Component {
       companyBCityMajor({
         city_id: city.id,
         country_id: country.id,
-        major_id: major.id,
+        major_id: major.key,
         smajor_id: sub_major.id
       });
     }
@@ -85,6 +85,8 @@ class CompaniesStatistics extends Component {
   };
 
   majorChange = (value, selectedOptions) => {
+    console.log('selectedOptions', selectedOptions[0]);
+
     this.setState({
       major: selectedOptions[0]
     });
@@ -92,8 +94,9 @@ class CompaniesStatistics extends Component {
 
   sector = () => {
     const { companyBMajor } = this.props;
+    const { major } = this.state;
     companyBMajor({
-      sector: this.state.major.id
+      sector: major.key
     });
   };
 
@@ -115,6 +118,7 @@ class CompaniesStatistics extends Component {
       companyBMajor,
       companyBCityMajor
     } = this.props.companyStatistics;
+
     const { companiesInfo } = this.state;
 
     return (
