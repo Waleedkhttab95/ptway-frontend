@@ -21,6 +21,18 @@ const Sidebar = () => {
           key="sub1"
           title={
             <span>
+              <span>احصائيات عامة</span>
+            </span>
+          }
+        >
+          <Menu.Item key="/admin/general/statistics">
+            <Link to="/admin/general/statistics"> اعلانات يومية</Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu
+          key="sub2"
+          title={
+            <span>
               <span>احصائيات المستخدمين</span>
             </span>
           }
@@ -33,7 +45,7 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="sub2"
+          key="sub3"
           title={
             <span>
               <span>احصائيات الشركات</span>
@@ -45,7 +57,7 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="sub3"
+          key="sub4"
           title={
             <span>
               <span>البحث</span>
@@ -60,7 +72,7 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="sub4"
+          key="sub5"
           title={
             <span>
               <span>المحتوى</span>
@@ -78,7 +90,7 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="sub5"
+          key="sub6"
           title={
             <span>
               <span>العروض الوظيفية</span>
@@ -93,7 +105,7 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="sub6"
+          key="sub7"
           title={
             <span>
               <span>الإعدادات</span>
