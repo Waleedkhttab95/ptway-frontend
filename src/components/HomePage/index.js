@@ -9,7 +9,7 @@ const HomePage = props => {
 
   return loggedIn && token ? (
     isAdmin ? (
-      <Redirect to="/admin/statistics" />
+      <Redirect to="/admin/general/statistics" />
     ) : (
       <User />
     )
