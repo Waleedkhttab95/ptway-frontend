@@ -16,14 +16,34 @@ class EditableTable extends React.Component {
         monthlyAds,
         periodAds
       } = this.props.generalStatistics;
+      const filteredData = fun => {
+        return fun.users.map(elm => {
+          return {
+            firstName: elm.firstName,
+            lastName: elm.lastName,
+            email: elm.email,
+            isConfirmed: elm.isConfirmed ? 'true' : 'false'
+          };
+        });
+      };
+      if (dailyAds) {
+        const dailyData = filteredData(dailyAds);
+        this.setState({ data: dailyData });
+      }
 
-      if (dailyAds) this.setState({ data: dailyAds.users });
+      if (monthlyAds) {
+        const monthlyData = filteredData(monthlyAds);
+        this.setState({ data: monthlyData });
+      }
 
-      if (monthlyAds) this.setState({ data: monthlyAds.users });
-
-      if (weeklyAds) this.setState({ data: weeklyAds.users });
-
-      if (periodAds) this.setState({ data: periodAds.users });
+      if (weeklyAds) {
+        const weeklyData = filteredData(weeklyAds);
+        this.setState({ data: weeklyData });
+      }
+      if (periodAds) {
+        const periodData = filteredData(periodAds);
+        this.setState({ data: periodData });
+      }
     }
   }
 

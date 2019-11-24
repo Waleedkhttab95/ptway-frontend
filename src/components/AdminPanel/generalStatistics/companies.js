@@ -5,10 +5,7 @@ const EditableContext = React.createContext();
 
 class EditableTable extends React.Component {
   state = {
-    data: [],
-    editingKey: '',
-    visible: false,
-    university: ''
+    data: []
   };
 
   componentDidUpdate(prevProps) {
@@ -19,14 +16,38 @@ class EditableTable extends React.Component {
         monthlyAds,
         periodAds
       } = this.props.generalStatistics;
+      const filteredData = fun => {
+        return fun.companies.map(elm => {
+          return {
+            companyName: elm.companyName,
+            email: elm.email,
+            sector: elm.sector,
+            CompanySpecialist: elm.CompanySpecialist
+              ? elm.CompanySpecialist.specialistName
+              : '',
+            isActive: elm.isActive ? 'true' : 'false',
+            isConfirmed: elm.isConfirmed ? 'true' : 'false'
+          };
+        });
+      };
+      if (dailyAds) {
+        const dailyData = filteredData(dailyAds);
+        this.setState({ data: dailyData });
+      }
 
-      if (dailyAds) this.setState({ data: dailyAds.companies });
+      if (monthlyAds) {
+        const monthlyData = filteredData(monthlyAds);
+        this.setState({ data: monthlyData });
+      }
 
-      if (monthlyAds) this.setState({ data: monthlyAds.companies });
-
-      if (weeklyAds) this.setState({ data: weeklyAds.companies });
-
-      if (periodAds) this.setState({ data: periodAds.companies });
+      if (weeklyAds) {
+        const weeklyData = filteredData(weeklyAds);
+        this.setState({ data: weeklyData });
+      }
+      if (periodAds) {
+        const periodData = filteredData(periodAds);
+        this.setState({ data: periodData });
+      }
     }
   }
 
@@ -48,7 +69,7 @@ class EditableTable extends React.Component {
     },
     {
       title: 'التخصص',
-      dataIndex: 'CompanySpecialist.specialistName',
+      dataIndex: 'CompanySpecialist',
       width: '15%'
     },
     {
@@ -63,12 +84,6 @@ class EditableTable extends React.Component {
     }
   ];
 
-  isEditing = record => record.key === this.state.editingKey;
-
-  cancel = () => {
-    this.setState({ editingKey: '' });
-  };
-
   render() {
     const columns = this.columns.map(col => {
       if (!col.editable) {
@@ -78,10 +93,9 @@ class EditableTable extends React.Component {
         ...col,
         onCell: record => ({
           record,
-          inputType: col.dataIndex === 'boolean' ? 'boolean' : 'text',
+          inputType: col.dataIndex === 'age' ? 'number' : 'text',
           dataIndex: col.dataIndex,
-          title: col.title,
-          editing: this.isEditing(record)
+          title: col.title
         })
       };
     });
