@@ -2,7 +2,8 @@ const initialStatistics = {
   isLoading: false,
   dailyAds: '',
   weeklyAds: '',
-  monthlyAds: ''
+  monthlyAds: '',
+  periodAds: ''
 };
 
 const generalStatistics = (state = initialStatistics, action) => {
@@ -21,6 +22,11 @@ const generalStatistics = (state = initialStatistics, action) => {
       return {
         ...state,
         monthlyAds: action.payload
+      };
+    case 'PERIOD_STATISTIC_SUCCESS':
+      return {
+        ...state,
+        periodAds: action.payload
       };
     default:
       return state;
