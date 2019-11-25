@@ -1,8 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.scss';
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 import Sidebar from './Sidebar';
+import Logout from './Logout';
 
 const AdminPanel = WrappedComponent => {
   const component = props => {
@@ -12,7 +13,7 @@ const AdminPanel = WrappedComponent => {
           <div className="dashboard-container">
             <div className="header">
               <span className="header-title">لوحة التحكم</span>
-              <Button className="logout">تسجيل خروج</Button>
+              <Logout />
             </div>
             <WrappedComponent {...props} />
           </div>
