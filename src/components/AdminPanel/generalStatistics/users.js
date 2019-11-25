@@ -3,6 +3,16 @@ import 'antd/dist/antd.css';
 import { Table, Form } from 'antd';
 const EditableContext = React.createContext();
 
+const filteredData = fun => {
+  return fun.users.map(elm => {
+    return {
+      firstName: elm.firstName,
+      lastName: elm.lastName,
+      email: elm.email,
+      isConfirmed: elm.isConfirmed ? 'true' : 'false'
+    };
+  });
+};
 class EditableTable extends React.Component {
   state = {
     data: []
@@ -16,16 +26,7 @@ class EditableTable extends React.Component {
         monthlyAds,
         periodAds
       } = this.props.generalStatistics;
-      const filteredData = fun => {
-        return fun.users.map(elm => {
-          return {
-            firstName: elm.firstName,
-            lastName: elm.lastName,
-            email: elm.email,
-            isConfirmed: elm.isConfirmed ? 'true' : 'false'
-          };
-        });
-      };
+
       if (dailyAds) {
         const dailyData = filteredData(dailyAds);
         this.setState({ data: dailyData });

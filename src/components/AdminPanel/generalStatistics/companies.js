@@ -3,6 +3,20 @@ import 'antd/dist/antd.css';
 import { Table, Form } from 'antd';
 const EditableContext = React.createContext();
 
+const filteredData = fun => {
+  return fun.companies.map(elm => {
+    return {
+      companyName: elm.companyName,
+      email: elm.email,
+      sector: elm.sector,
+      CompanySpecialist: elm.CompanySpecialist
+        ? elm.CompanySpecialist.specialistName
+        : '',
+      isActive: elm.isActive ? 'true' : 'false',
+      isConfirmed: elm.isConfirmed ? 'true' : 'false'
+    };
+  });
+};
 class EditableTable extends React.Component {
   state = {
     data: []
@@ -16,20 +30,7 @@ class EditableTable extends React.Component {
         monthlyAds,
         periodAds
       } = this.props.generalStatistics;
-      const filteredData = fun => {
-        return fun.companies.map(elm => {
-          return {
-            companyName: elm.companyName,
-            email: elm.email,
-            sector: elm.sector,
-            CompanySpecialist: elm.CompanySpecialist
-              ? elm.CompanySpecialist.specialistName
-              : '',
-            isActive: elm.isActive ? 'true' : 'false',
-            isConfirmed: elm.isConfirmed ? 'true' : 'false'
-          };
-        });
-      };
+
       if (dailyAds) {
         const dailyData = filteredData(dailyAds);
         this.setState({ data: dailyData });
