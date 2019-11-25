@@ -1,54 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Table, Input, InputNumber, Form } from 'antd';
+import { Table, Form } from 'antd';
 const EditableContext = React.createContext();
-
-class EditableCell extends React.Component {
-  getInput = () => {
-    if (this.props.inputType === 'number') {
-      return <InputNumber />;
-    }
-    return <Input />;
-  };
-
-  renderCell = ({ getFieldDecorator }) => {
-    const {
-      editing,
-      dataIndex,
-      title,
-      inputType,
-      record,
-      index,
-      children,
-      ...restProps
-    } = this.props;
-    return (
-      <td {...restProps}>
-        {editing ? (
-          <Form.Item style={{ margin: 0 }}>
-            {getFieldDecorator(dataIndex, {
-              rules: [
-                {
-                  required: true,
-                  message: `Please Input ${title}!`
-                }
-              ],
-              initialValue: record[dataIndex]
-            })(this.getInput())}
-          </Form.Item>
-        ) : (
-          children
-        )}
-      </td>
-    );
-  };
-
-  render() {
-    return (
-      <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>
-    );
-  }
-}
 
 class EditableTable extends React.Component {
   state = {
@@ -60,17 +13,20 @@ class EditableTable extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      const { dailyAds, weeklyAds, monthlyAds } = this.props.generalStatistics;
+      const {
+        dailyAds,
+        weeklyAds,
+        monthlyAds,
+        periodAds
+      } = this.props.generalStatistics;
 
-      if (dailyAds) {
-        this.setState({ data: dailyAds.companies });
-      }
-      if (monthlyAds) {
-        this.setState({ data: monthlyAds.companies });
-      }
-      if (weeklyAds) {
-        this.setState({ data: weeklyAds.companies });
-      }
+      if (dailyAds) this.setState({ data: dailyAds.companies });
+
+      if (monthlyAds) this.setState({ data: monthlyAds.companies });
+
+      if (weeklyAds) this.setState({ data: weeklyAds.companies });
+
+      if (periodAds) this.setState({ data: periodAds.companies });
     }
   }
 
@@ -114,12 +70,6 @@ class EditableTable extends React.Component {
   };
 
   render() {
-    const components = {
-      body: {
-        cell: EditableCell
-      }
-    };
-
     const columns = this.columns.map(col => {
       if (!col.editable) {
         return col;
@@ -128,21 +78,17 @@ class EditableTable extends React.Component {
         ...col,
         onCell: record => ({
           record,
-          inputType: col.dataIndex === 'age' ? 'number' : 'text',
+          inputType: col.dataIndex === 'boolean' ? 'boolean' : 'text',
           dataIndex: col.dataIndex,
           title: col.title,
           editing: this.isEditing(record)
         })
       };
     });
-    console.log('this.props after', this.props);
-
     return (
       <React.Fragment>
-        {/* <RangePicker onChange={this.onChange} />  */}
         <EditableContext.Provider value={this.props.form}>
           <Table
-            components={components}
             bordered
             dataSource={this.state.data}
             columns={columns}
