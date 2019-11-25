@@ -341,7 +341,7 @@ class EditableTable extends React.Component {
           <div>
             <Button onClick={() => this.exportJob(record.key)}>
               {' '}
-              ready to export
+              Download as XLS
             </Button>
             {ready && (
               <div>
@@ -351,7 +351,7 @@ class EditableTable extends React.Component {
                   table="table-to-xls"
                   filename="tablexls"
                   sheet="tablexls"
-                  buttonText="Download as XLS"
+                  buttonText="ready to export"
                 />
                 <table id="table-to-xls" style={{ display: 'none' }}>
                   <tr>
