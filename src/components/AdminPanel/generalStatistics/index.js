@@ -3,9 +3,9 @@ import 'antd/dist/antd.css';
 import './index.scss';
 import { connect } from 'react-redux';
 import { DatePicker } from 'antd';
-import UsergeneralStatistics from './users';
-import CompanyGeneralStatistics from './companies';
-import JobsGeneralStatistics from './jobs';
+import GeneralUserStatistics from './users';
+import GeneralCompanyStatistics from './companies';
+import GeneralJobsStatistics from './jobs';
 import {
   dailyStatistics,
   weeklyStatistics,
@@ -60,9 +60,9 @@ class generalStatistics extends React.Component {
             style={{ width: '250px', marginLeft: '20px' }}
           />
         </div>
-        <UsergeneralStatistics {...this.props} />
-        <CompanyGeneralStatistics {...this.props} />
-        <JobsGeneralStatistics {...this.props} />
+        <GeneralUserStatistics {...this.props} />
+        <GeneralCompanyStatistics {...this.props} />
+        <GeneralJobsStatistics {...this.props} />
       </React.Fragment>
     );
   }
