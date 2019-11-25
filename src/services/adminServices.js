@@ -10,7 +10,12 @@ const adminServices = {
       })
       .catch(e => {
         return { error: e.response.data };
-      })
+      }),
+  logout: () =>
+    baseRequest
+      .get('/logout')
+      .then(result => result)
+      .catch(e => console.log(e))
 };
 
 export default adminServices;

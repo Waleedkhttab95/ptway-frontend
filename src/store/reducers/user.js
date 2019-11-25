@@ -10,7 +10,7 @@ const user = (state = initialUser, action) => {
         ...action.payload,
         loggedIn: true
       };
-    case 'LOGOUT':
+    case 'LOGOUT_SUCCESS':
       return { roles: undefined, loggedIn: false, sessionToken: undefined };
     default:
       return state;
