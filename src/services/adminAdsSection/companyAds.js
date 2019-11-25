@@ -91,6 +91,12 @@ const ads = {
       .catch(error => {
         console.log('error', error);
       });
+  },
+  exportJobs: params => {
+    return baseRequest
+      .get(`/get/phonenumbers/?jobAd=${params.jobId}`)
+      .then(result => result)
+      .catch(e => console.log(e));
   }
 };
 

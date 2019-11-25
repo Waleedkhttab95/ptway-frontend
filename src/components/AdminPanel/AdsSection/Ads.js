@@ -11,8 +11,10 @@ import {
   Radio,
   Cascader,
   Menu,
-  Dropdown
+  Dropdown,
+  Button
 } from 'antd';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import ads from '../../../services/adminAdsSection/companyAds';
 import statatisticsService from '../../../services/statisticsService';
 import delete_icon from '../../../images/delete.svg';
@@ -29,7 +31,8 @@ const {
   addJob,
   // getAllProjects,
   getAllContracts,
-  updateJob
+  updateJob,
+  exportJobs
 } = ads;
 const EditableContext = React.createContext();
 
@@ -86,7 +89,8 @@ class EditableTable extends React.Component {
     editingKey: '',
     visible: false,
     gender: 1,
-    contracts: []
+    contracts: [],
+    ready: false
   };
 
   async componentDidMount() {
@@ -325,6 +329,53 @@ class EditableTable extends React.Component {
           </Dropdown>
         );
       }
+    },
+    {
+      title: 'تصدير',
+      dataIndex: 'operation',
+      render: (text, record) => {
+        const { excelData, ready } = this.state;
+        console.log('excelData', excelData);
+
+        return (
+          <div>
+            <Button onClick={() => this.exportJob(record.key)}>
+              {' '}
+              ready to export
+            </Button>
+            {ready && (
+              <div>
+                <ReactHTMLTableToExcel
+                  id="test-table-xls-button"
+                  className="download-table-xls-button"
+                  table="table-to-xls"
+                  filename="tablexls"
+                  sheet="tablexls"
+                  buttonText="Download as XLS"
+                />
+                <table id="table-to-xls" style={{ display: 'none' }}>
+                  <tr>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>number</th>
+                  </tr>
+                  {excelData
+                    ? excelData.map(elm => {
+                        return (
+                          <tr key={elm.email}>
+                            <td>{elm.name ? elm.name : ''}</td>
+                            <td>{elm.email ? elm.email : ''}</td>
+                            <td>{elm.number ? elm.number : ''}</td>
+                          </tr>
+                        );
+                      })
+                    : ''}
+                </table>
+              </div>
+            )}
+          </div>
+        );
+      }
     }
   ];
 
@@ -375,6 +426,12 @@ class EditableTable extends React.Component {
     this.setState({ editingKey: key });
   }
 
+  exportJob = async jobId => {
+    const getExportJobs = await exportJobs({
+      jobId
+    });
+    this.setState({ excelData: getExportJobs, ready: true });
+  };
   delete = async key => {
     const { data } = this.state;
     await deleteJob({
