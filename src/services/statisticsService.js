@@ -131,6 +131,45 @@ const statatisticsService = {
       .get(`/get/searchCompanyBySector/?sectorName=${params.sectorName}`)
       .then(result => result)
       .catch(e => console.log(e));
+  },
+  getAllCompanies: () => {
+    return baseRequest.get('/get/allCompanies').then(companies => {
+      return companies.map(value => {
+        return {
+          id: value._id,
+          value: value.companyName,
+          label: value.companyName
+        };
+      });
+    });
+  },
+  getCompanyProjects: params => {
+    return baseRequest
+      .get(`/getprojectsById/?_id=${params.id}`)
+      .then(projects => {
+        return projects.map(elm => {
+          return {
+            id: elm._id,
+            value: elm.projectName,
+            label: elm.projectName
+          };
+        });
+      })
+      .catch(e => console.log(e));
+  },
+  getAllUniversities: () => {
+    return baseRequest
+      .get('/get/allUniversty')
+      .then(result => {
+        return result.map(elm => {
+          return {
+            id: elm._id,
+            value: elm.universtyName,
+            label: elm.universtyName
+          };
+        });
+      })
+      .catch(e => console.log(e));
   }
 };
 
