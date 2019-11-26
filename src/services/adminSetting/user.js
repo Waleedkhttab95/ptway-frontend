@@ -23,6 +23,14 @@ const userSetting = {
       .catch(error => {
         console.log('error', error);
       });
+  },
+  exportCityMajorData: params => {
+    return baseRequest
+      .get(
+        `/get/phonenumbersByCityAndMajor/?city=${params.city}&major=${params.major}`
+      )
+      .then(result => result)
+      .catch(e => console.log('e', e));
   }
 };
 

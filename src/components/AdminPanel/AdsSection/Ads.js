@@ -21,7 +21,15 @@ import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
 import add_icon from '../../../images/plus.svg';
 
-const { allCities, allCountries } = statatisticsService;
+const {
+  allCities,
+  allCountries,
+  allMajors,
+  sMajor,
+  getAllCompanies,
+  getCompanyProjects,
+  getAllUniversities
+} = statatisticsService;
 
 const { TextArea } = Input;
 const {
@@ -141,12 +149,16 @@ class EditableTable extends React.Component {
         contracts
       });
     }
-    const allCountriesData = await allCountries();
-    this.setState({ countries: allCountriesData });
-    const allCitiesData = await allCities();
-    this.setState({
-      cities: allCitiesData
-    });
+    const countries = await allCountries();
+    if (countries) this.setState({ countries });
+    const cities = await allCities();
+    if (cities) this.setState({ cities });
+    const majors = await allMajors();
+    if (majors) this.setState({ majors });
+    const companies = await getAllCompanies();
+    if (companies) this.setState({ companies });
+    const universities = await getAllUniversities();
+    if (universities) this.setState({ universities });
   }
 
   columns = [
@@ -461,19 +473,27 @@ class EditableTable extends React.Component {
       contractId,
       countryId,
       cityId,
+      company,
+      projectId,
+      major,
+      universty,
+      sMajorId,
       // job_skills,
       active
     } = this.state;
+    console.log('projectId', projectId);
+
     const addedJob = await addJob({
       contract: contractId,
       job_Name: jobName,
       descreption: description,
-      // project: req.body.project,
-      // lockDate: lock_date,
-      // job_skills,
-      // public_Major: req.body.public_Major,
+      company: company.id,
+      project: projectId,
+      public_Major: major.id,
+      spMajor: sMajorId,
       country: countryId,
       city: cityId,
+      universty,
       work_hours: workHour,
       work_days: workDays,
       salary,
@@ -483,21 +503,24 @@ class EditableTable extends React.Component {
       required_Number: 10,
       startDate: new Date()
     });
-    await data.push({
-      name: addedJob.job_Name,
-      key: addedJob._id,
-      comany: addedJob.company,
-      project: addedJob.project ? addedJob.project.projectName : '',
-      city: addedJob.city ? addedJob.city.cityName : '',
-      work_days: addedJob.work_days,
-      work_hours: addedJob.work_hours,
-      salary: addedJob.salary,
-      descreption: addedJob.descreption,
-      gender: addedJob.gender,
-      isLock: addedJob.isLock ? 'مفعل' : ' غير مفعل',
-      contract: addedJob.contract ? addedJob.contract.contractName : '',
-      createDate: addedJob.createDate
-    });
+    if (addedJob) {
+      await data.push({
+        name: addedJob.job_Name,
+        key: addedJob._id,
+        comany: addedJob.company,
+        project: addedJob.project ? addedJob.project.projectName : '',
+        city: addedJob.city ? addedJob.city.cityName : '',
+        university: addedJob.university,
+        work_days: addedJob.work_days,
+        work_hours: addedJob.work_hours,
+        salary: addedJob.salary,
+        descreption: addedJob.descreption,
+        gender: addedJob.gender,
+        isLock: addedJob.isLock ? 'مفعل' : ' غير مفعل',
+        contract: addedJob.contract ? addedJob.contract.contractName : '',
+        createDate: addedJob.createDate
+      });
+    }
     this.setState({
       data,
       visible: false
@@ -548,14 +571,63 @@ class EditableTable extends React.Component {
     });
   };
 
-  // projectChange=(value,selectedOptions) =>{
-  //   this.setState({
-  //     projectId: selectedOptions[0].id
-  //   });
-  // }
   handleStatusChange = checked => {
     this.setState({
       active: checked
+    });
+  };
+
+  majorChange = (value, selectedOptions) => {
+    this.setState(
+      {
+        major: selectedOptions[0]
+      },
+      async () => {
+        const { major } = this.state;
+        const allSMajor = await sMajor(major.id);
+        this.setState({ sMajor: allSMajor });
+      }
+    );
+  };
+  sMajorChange = (value, selectedOptions) => {
+    this.setState({
+      sMajorId: selectedOptions[0].id
+    });
+  };
+
+  companyChange = (value, selectedOptions) => {
+    this.setState(
+      {
+        company: selectedOptions[0]
+      },
+      async () => {
+        const { company } = this.state;
+        console.log('id', company);
+        if (company) {
+          const companyProjects = await getCompanyProjects({
+            id: company.id
+          });
+          this.setState({ projects: companyProjects });
+        }
+      }
+    );
+  };
+
+  projectChange = (value, selectedOptions) => {
+    this.setState({
+      projectId: selectedOptions[0].id
+    });
+  };
+
+  universityChange = (value, selectedOptions) => {
+    this.setState({
+      universty: selectedOptions[0].id
+    });
+  };
+
+  sMajorChange = (value, selectedOptions) => {
+    this.setState({
+      sMajorId: selectedOptions[0].id
     });
   };
 
@@ -638,6 +710,36 @@ class EditableTable extends React.Component {
               <Radio value={2}>انثى</Radio>
             </Radio.Group>
           </div>
+          <Cascader
+            className="dropdown-menu"
+            options={this.state.companies}
+            onChange={this.companyChange}
+            placeholder="الشركة"
+          />
+          <Cascader
+            className="dropdown-menu"
+            options={this.state.projects}
+            onChange={this.projectChange}
+            placeholder="المشروع"
+          />
+          <Cascader
+            className="dropdown-menu"
+            options={this.state.majors}
+            onChange={this.majorChange}
+            placeholder="التخصص العام"
+          />
+          <Cascader
+            className="dropdown-menu"
+            options={this.state.sMajor}
+            onChange={this.sMajorChange}
+            placeholder="التخصص الدقيق"
+          />
+          <Cascader
+            className="dropdown-menu"
+            options={this.state.universities}
+            onChange={this.universityChange}
+            placeholder="الجامعة"
+          />
           <Cascader
             className="dropdown-menu"
             options={this.state.contracts}

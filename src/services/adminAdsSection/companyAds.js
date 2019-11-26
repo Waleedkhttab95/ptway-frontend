@@ -67,9 +67,10 @@ const ads = {
   addJob: params => {
     return baseRequest
       .post(
-        '/postjob',
+        '/post/jobAd',
         {
           contract: params.contract,
+          company: params.company,
           project: params.project,
           job_Name: params.job_Name,
           descreption: params.descreption,
@@ -77,6 +78,8 @@ const ads = {
           country: params.country,
           city: params.city,
           public_Major: params.public_Major,
+          spMajor: params.spMajor,
+          universty: params.universty,
           startDate: params.startDate,
           work_hours: params.work_hours,
           work_days: params.work_days,

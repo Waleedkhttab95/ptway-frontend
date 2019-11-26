@@ -75,3 +75,21 @@ label{
     color: #fff;
     background-color: #1890ff;
 }
+.export-city-major-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 20px 50px 40px 0;
+    height: 300px;
+    background: white;
+    border-radius: 20px;
+}
+
+.export-city-major-data .title{
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    color: #414042;
+}
