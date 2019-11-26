@@ -1,14 +1,28 @@
 import React from 'react';
-import { Row, Input, Button, Alert } from 'antd';
-import userSetting from '../../../services/adminSetting/user';
+import { Row, Input, Button, Alert, Cascader } from 'antd';
 import _ from 'lodash';
 import './setting.scss';
+import userSetting from '../../../services/adminSetting/user';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import statatisticsService from '../../../services/statisticsService';
 
-const { activateAccounts, addSubAdmin } = userSetting;
+const { allCities, allMajors } = statatisticsService;
+const { activateAccounts, addSubAdmin, exportCityMajorData } = userSetting;
 class UserSetting extends React.Component {
   state = {
-    status: false
+    status: false,
+    ready: false
   };
+
+  async componentDidMount() {
+    const majors = await allMajors();
+    this.setState({ majors });
+    const cities = await allCities();
+    this.setState({
+      cities
+    });
+  }
+
   handleStatus = async () => {
     const activate = await activateAccounts();
     if (activate === 'Updated') alert('تم تفعيل جميع الحسابات');
@@ -18,6 +32,27 @@ class UserSetting extends React.Component {
     this.setState({
       [name]: value
     });
+  };
+
+  cityChange = (value, selectedOptions) => {
+    this.setState({
+      city: selectedOptions[0].id
+    });
+  };
+
+  majorChange = (value, selectedOptions) => {
+    this.setState({
+      major: selectedOptions[0].id
+    });
+  };
+
+  exportCityMajorData = async () => {
+    const { city, major } = this.state;
+    await exportCityMajorData({
+      city,
+      major
+    });
+    this.setState({ ready: true });
   };
   addSubAdmin = async () => {
     const { firstName, lastName, email, password } = this.state;
@@ -32,7 +67,7 @@ class UserSetting extends React.Component {
     });
   };
   render() {
-    const { newSubAdmin } = this.state;
+    const { newSubAdmin, majors, cities, ready, excelData } = this.state;
     return (
       <React.Fragment>
         <Row>
@@ -52,6 +87,53 @@ class UserSetting extends React.Component {
               {' '}
               تفعيل
             </Button>
+          </div>
+        </Row>
+        <Row>
+          <div className="export-city-major-data">
+            <h3 className="title">تصدير بيانات المدن والتخصص</h3>
+            <Cascader
+              className="dropdown-menu"
+              options={majors}
+              onChange={this.majorChange}
+              placeholder=" التخصص العام"
+            />
+            <Cascader
+              className="dropdown-menu"
+              options={cities}
+              onChange={this.cityChange}
+              placeholder="اختر المدينة"
+            />
+            <Button onClick={this.exportCityMajorData}> Download as XLS</Button>
+            {ready && (
+              <div>
+                <ReactHTMLTableToExcel
+                  id="test-table-xls-button"
+                  className="download-table-xls-button"
+                  table="table-to-xls"
+                  filename="tablexls"
+                  sheet="tablexls"
+                  buttonText="ready to export"
+                />
+                <table id="table-to-xls" style={{ display: 'none' }}>
+                  <tr>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>number</th>
+                  </tr>
+                  {excelData
+                    ? excelData.map(elm => {
+                        return (
+                          <tr key={elm.number}>
+                            <td>{elm.name ? elm.name : ''}</td>
+                            <td>{elm.number ? elm.number : ''}</td>
+                          </tr>
+                        );
+                      })
+                    : ''}
+                </table>
+              </div>
+            )}
           </div>
         </Row>
         <Row>
