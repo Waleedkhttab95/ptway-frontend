@@ -98,17 +98,7 @@ class EditableTable extends React.Component {
     editingKey: '',
     visible: false,
     gender: 1,
-    contracts: [],
-    ready: false,
-    jobName: '',
-    description: '',
-    salary: '',
-    personal_skills: '',
-    workDays: '',
-    workHour: '',
-    required_Number: '',
-    // active
-    date: ''
+    ready: false
   };
 
   async componentDidMount() {
@@ -539,7 +529,14 @@ class EditableTable extends React.Component {
         workDays: '',
         workHour: '',
         required_Number: '',
-        date: '',
+        // date: new Date(),
+        cities: [],
+        universities: [],
+        countries: [],
+        companies: [],
+        majors: [],
+        sMajor: [],
+        contracts: [],
         visible: false
       });
     }
@@ -711,6 +708,7 @@ class EditableTable extends React.Component {
             className="add-job"
             placeholder="الوظيفة "
             name="jobName"
+            value={this.state.jobName}
             onChange={this.handleInputChange}
             required
           />
@@ -718,6 +716,7 @@ class EditableTable extends React.Component {
             className="add-job"
             placeholder="الوصف "
             name="description"
+            value={this.state.description}
             onChange={this.handleInputChange}
             required
           />
@@ -725,6 +724,7 @@ class EditableTable extends React.Component {
             placeholder="مهارات شخصية "
             onChange={this.handleInputChange}
             name="personal_skills"
+            value={this.state.personal_skills}
             className="add-job"
             required
           />
@@ -732,11 +732,15 @@ class EditableTable extends React.Component {
           <InputNumber
             onChange={this.handleReqNumberChange}
             className="add-job"
+            value={this.state.required_Number}
             required
           />
           <label>الراتب :</label>
-          required
-          <InputNumber className="add-job" onChange={this.handleSalaryChange} />
+          <InputNumber
+            className="add-job"
+            onChange={this.handleSalaryChange}
+            value={this.state.salary}
+          />
           <div className="gender">
             <label> الجنس : </label>
             <Radio.Group
@@ -802,16 +806,21 @@ class EditableTable extends React.Component {
             <InputNumber
               onChange={this.handleWorkDaysChange}
               className="work-days"
+              value={this.state.workDays}
             />
           </div>
           <div className="job-information">
             <label> ساعات العمل :</label>
-            <InputNumber onChange={this.handleWorkHoursChange} />
+            <InputNumber
+              onChange={this.handleWorkHoursChange}
+              value={this.state.workHour}
+            />
           </div>
           <label>تاريخ البدء : </label>
           <DatePicker
             onChange={this.dateChange}
             style={{ width: '200px', marginLeft: '20px' }}
+            // value={this.state.date}
           />
           {/* <div className="job-information">
             <label> حالة التفعيل :</label>
