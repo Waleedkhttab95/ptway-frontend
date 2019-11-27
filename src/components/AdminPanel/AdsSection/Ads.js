@@ -5,15 +5,16 @@ import {
   Table,
   Input,
   InputNumber,
-  Switch,
   Form,
   Modal,
   Radio,
   Cascader,
   Menu,
   Dropdown,
-  Button
+  Button,
+  DatePicker
 } from 'antd';
+import moment from 'moment';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import ads from '../../../services/adminAdsSection/companyAds';
 import statatisticsService from '../../../services/statisticsService';
@@ -98,7 +99,16 @@ class EditableTable extends React.Component {
     visible: false,
     gender: 1,
     contracts: [],
-    ready: false
+    ready: false,
+    jobName: '',
+    description: '',
+    salary: '',
+    personal_skills: '',
+    workDays: '',
+    workHour: '',
+    required_Number: '',
+    // active
+    date: ''
   };
 
   async componentDidMount() {
@@ -117,7 +127,7 @@ class EditableTable extends React.Component {
         gender: elm.gender,
         isLock: elm.isLock ? 'مفعل' : ' غير مفعل',
         contract: elm.contract ? elm.contract.contractName : '',
-        createDate: elm.createDate
+        createDate: moment(elm.createDate).format('MMM Do YY')
       }));
       this.setState({ data: allJobAdsData });
     }
@@ -165,13 +175,13 @@ class EditableTable extends React.Component {
     {
       title: ' الوظيفة',
       dataIndex: 'name',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
       title: 'المشروع',
       dataIndex: 'project',
-      width: '15%'
+      width: '10%'
       // render: (text, record) => {
       //   const editable = this.isEditing(record);
       //   return editable ? (
@@ -197,7 +207,7 @@ class EditableTable extends React.Component {
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '15%',
+      width: '10%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -223,7 +233,7 @@ class EditableTable extends React.Component {
     {
       title: 'العقد',
       dataIndex: 'contract',
-      width: '15%',
+      width: '10%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -247,13 +257,18 @@ class EditableTable extends React.Component {
     {
       title: 'الجنس',
       dataIndex: 'gender',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'الوصف',
       dataIndex: 'descreption',
-      width: '15%',
+      width: '10%',
       editable: true
+    },
+    {
+      title: 'تاريخ البدء',
+      dataIndex: 'createDate',
+      width: '15%'
     },
     {
       title: 'مفعل',
@@ -278,11 +293,6 @@ class EditableTable extends React.Component {
       dataIndex: 'work_hours',
       width: '15%',
       editable: true
-    },
-    {
-      title: 'تاريخ الانشاء',
-      dataIndex: 'createDate',
-      width: '5%'
     },
     {
       title: 'تعديل',
@@ -461,8 +471,8 @@ class EditableTable extends React.Component {
   };
 
   handleOk = async () => {
-    const { data } = this.state;
     const {
+      data,
       jobName,
       description,
       salary,
@@ -478,18 +488,17 @@ class EditableTable extends React.Component {
       major,
       universty,
       sMajorId,
-      // job_skills,
-      active
+      required_Number,
+      // active
+      date
     } = this.state;
-    console.log('projectId', projectId);
-
     const addedJob = await addJob({
       contract: contractId,
       job_Name: jobName,
       descreption: description,
-      company: company.id,
+      company: company ? company.id : '',
       project: projectId,
-      public_Major: major.id,
+      public_Major: major ? major.id : '',
       spMajor: sMajorId,
       country: countryId,
       city: cityId,
@@ -497,11 +506,11 @@ class EditableTable extends React.Component {
       work_hours: workHour,
       work_days: workDays,
       salary,
-      isLock: active,
+      // isLock: active,
       gender: gender === 1 ? 'male' : 'female',
       personal_Skills: personal_skills,
-      required_Number: 10,
-      startDate: new Date()
+      required_Number,
+      startDate: date
     });
     if (addedJob) {
       await data.push({
@@ -518,13 +527,22 @@ class EditableTable extends React.Component {
         gender: addedJob.gender,
         isLock: addedJob.isLock ? 'مفعل' : ' غير مفعل',
         contract: addedJob.contract ? addedJob.contract.contractName : '',
-        createDate: addedJob.createDate
+        createDate: addedJob.startDate
+      });
+      this.setState({
+        data,
+        jobName: '',
+        description: '',
+        salary: '',
+        personal_skills: '',
+        gender: 1,
+        workDays: '',
+        workHour: '',
+        required_Number: '',
+        date: '',
+        visible: false
       });
     }
-    this.setState({
-      data,
-      visible: false
-    });
   };
 
   handleCancel = e => {
@@ -555,6 +573,16 @@ class EditableTable extends React.Component {
       workDays: e
     });
   };
+  handleSalaryChange = e => {
+    this.setState({
+      salary: e
+    });
+  };
+  handleReqNumberChange = e => {
+    this.setState({
+      required_Number: e
+    });
+  };
   contractChange = (value, selectedOptions) => {
     this.setState({
       contractId: selectedOptions[0].id
@@ -571,11 +599,11 @@ class EditableTable extends React.Component {
     });
   };
 
-  handleStatusChange = checked => {
-    this.setState({
-      active: checked
-    });
-  };
+  // handleStatusChange = checked => {
+  //   this.setState({
+  //     active: checked
+  //   });
+  // };
 
   majorChange = (value, selectedOptions) => {
     this.setState(
@@ -614,23 +642,32 @@ class EditableTable extends React.Component {
   };
 
   projectChange = (value, selectedOptions) => {
-    this.setState({
-      projectId: selectedOptions[0].id
-    });
+    if (selectedOptions) {
+      this.setState({
+        projectId: selectedOptions[0].id
+      });
+    }
   };
 
   universityChange = (value, selectedOptions) => {
-    this.setState({
-      universty: selectedOptions[0].id
-    });
+    if (selectedOptions[0]) {
+      this.setState({
+        universty: selectedOptions[0].id
+      });
+    }
   };
 
   sMajorChange = (value, selectedOptions) => {
-    this.setState({
-      sMajorId: selectedOptions[0].id
-    });
+    if (selectedOptions[0]) {
+      this.setState({
+        sMajorId: selectedOptions[0].id
+      });
+    }
   };
 
+  dateChange = date => {
+    this.setState({ date });
+  };
   render() {
     const components = {
       body: {
@@ -675,31 +712,31 @@ class EditableTable extends React.Component {
             placeholder="الوظيفة "
             name="jobName"
             onChange={this.handleInputChange}
+            required
           />
           <TextArea
             className="add-job"
             placeholder="الوصف "
             name="description"
             onChange={this.handleInputChange}
+            required
           />
           <TextArea
             placeholder="مهارات شخصية "
             onChange={this.handleInputChange}
             name="personal_skills"
             className="add-job"
+            required
           />
-          <TextArea
-            placeholder="الخبرة "
-            onChange={this.handleInputChange}
-            name="job_skills"
+          <label>عدد المطلوبين :</label>
+          <InputNumber
+            onChange={this.handleReqNumberChange}
             className="add-job"
+            required
           />
-          <Input
-            className="add-job"
-            placeholder="الراتب "
-            name="salary"
-            onChange={this.handleInputChange}
-          />
+          <label>الراتب :</label>
+          required
+          <InputNumber className="add-job" onChange={this.handleSalaryChange} />
           <div className="gender">
             <label> الجنس : </label>
             <Radio.Group
@@ -715,12 +752,14 @@ class EditableTable extends React.Component {
             options={this.state.companies}
             onChange={this.companyChange}
             placeholder="الشركة"
+            required
           />
           <Cascader
             className="dropdown-menu"
             options={this.state.projects}
             onChange={this.projectChange}
             placeholder="المشروع"
+            required
           />
           <Cascader
             className="dropdown-menu"
@@ -769,14 +808,19 @@ class EditableTable extends React.Component {
             <label> ساعات العمل :</label>
             <InputNumber onChange={this.handleWorkHoursChange} />
           </div>
-          <div className="job-information">
+          <label>تاريخ البدء : </label>
+          <DatePicker
+            onChange={this.dateChange}
+            style={{ width: '200px', marginLeft: '20px' }}
+          />
+          {/* <div className="job-information">
             <label> حالة التفعيل :</label>
             <Switch
               onChange={this.handleStatusChange}
               name="status"
               className="job-activate"
             />
-          </div>
+          </div> */}
         </Modal>
         <EditableContext.Provider value={this.props.form}>
           <Table
