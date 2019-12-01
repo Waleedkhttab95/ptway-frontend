@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="125px" viewBox="0 0 160 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Line 01</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="79.8063871%" x2="59.4795044%" y2="16.9613698%" id="linearGradient-1">
+            <stop stop-color="#A0B5E3" stop-opacity="0.203234266" offset="0%"></stop>
+            <stop stop-color="#A0B5E3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-HomePage-02" transform="translate(-809.000000, -1006.000000)">
+            <g id="Line-01" transform="translate(809.000000, 1006.000000)">
+                <g id="Group-2" transform="translate(-0.000000, 0.000000)">
+                    <path d="M12,6.00763527 C74.0860561,3.15237058 111.51621,3.15237058 124.290462,6.00763527 C146.443239,10.9591615 159,39.2317044 159,69.3178073 C159,85.752425 159,103.766299 159,123.35943" id="Path-2" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <circle id="Oval" fill="#A0B5E3" cx="6" cy="6" r="6"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

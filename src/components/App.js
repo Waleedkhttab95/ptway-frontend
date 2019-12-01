@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from './HomePage';
+// import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Percentage';
 import AdminPanel from './AdminPanel';
@@ -16,6 +16,7 @@ import SearchAds from '../components/AdminPanel/AdsSection/AdsSearch';
 import UserSetting from '../components/AdminPanel/setting/User';
 import CompanySetting from '../components/AdminPanel/setting/Company';
 import generalStatistics from '../components/AdminPanel/generalStatistics';
+import LandingPage from '../components/landingPage';
 import './App.scss';
 
 const App = props => {
@@ -24,7 +25,7 @@ const App = props => {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={LandingPage} />
             <Route
               exact
               path="/admin/general/statistics"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="147px" height="90px" viewBox="0 0 147 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Line 02</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="68.3301075%" x2="59.4795044%" y2="29.682152%" id="linearGradient-1">
+            <stop stop-color="#A0B5E3" stop-opacity="0.203234266" offset="0%"></stop>
+            <stop stop-color="#A0B5E3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-HomePage-02" transform="translate(-1039.000000, -1117.000000)">
+            <g id="Line-02" transform="translate(1112.000000, 1162.500000) scale(1, -1) translate(-1112.000000, -1162.500000) translate(1039.000000, 1118.000000)">
+                <g id="Group-2">
+                    <path d="M12.5398773,5.44897959 C68.9073104,3.41611526 102.889847,3.41611526 114.487488,5.44897959 C134.599817,8.97432039 146,29.1035379 146,50.5239568 C146,62.2249204 146,75.0502681 146,89" id="Path-2" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <circle id="Oval" fill="#A0B5E3" cx="6" cy="6" r="6"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
