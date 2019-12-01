@@ -1,0 +1,57 @@
+.it-works-container{
+    padding-top: 116px;
+   .title{
+    font-family: DINNextLTW23;
+    font-size: 28px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #1f1f1f;
+    margin-bottom: 40px;
+   }
+   .steps{
+       display: flex;
+       flex-direction: row-reverse;
+       justify-content: space-around;
+   }
+   .steps .step{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .step-number{
+        width: 19px;
+        height: 19px;
+        background-color: #5792f9;
+        font-size: 11px;
+        font-weight: 900;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .step-title{
+        font-family: DINNextLTW23;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #1f1f1f;
+  padding-top: 13px;
+    }
+   }
+
+}

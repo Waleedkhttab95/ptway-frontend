@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { adminLogin } from '../../store/actions/userAction';
 import Login from '../Login';
-import User from '../User';
+// import User from '../User';
+import { Alert } from 'antd';
 const HomePage = props => {
   const { loggedIn, isAdmin, token } = props.user;
 
@@ -11,7 +12,8 @@ const HomePage = props => {
     isAdmin ? (
       <Redirect to="/admin/general/statistics" />
     ) : (
-      <User />
+      // <User />
+      <Alert message="you are not an admin"></Alert>
     )
   ) : (
     <Login {...props} />

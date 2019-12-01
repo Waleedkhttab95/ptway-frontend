@@ -1,0 +1,36 @@
+.partners{
+    .prt-title{
+        font-family: DINNextLTW23;
+        font-size: 28px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #1f1f1f;
+        margin-top: 146px;
+        margin-bottom: 40px;
+    }
+    .partners-names{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 113px;
+        .navigator{
+            width: 13px;
+            height: 34px;
+            font-family: Ionicons;
+            font-size: 26px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #858585;
+        }
+    }
+           .partners-names >img{
+                margin-right: 70px;
+            }
+}

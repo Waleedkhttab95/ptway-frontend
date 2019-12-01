@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>short</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="01-HomePage-02" transform="translate(-1087.000000, -2238.000000)" stroke="#4BAED0" stroke-width="3">
+            <g id="short" transform="translate(1089.000000, 2240.000000)">
+                <path d="M2.41512728,45 C1.66760375,43.1909109 1.07662965,41.3048394 0.665687394,39.3032941 C0.196039102,37.0323099 -0.0348713077,34.645852 0.00426604995,32.2209029 C0.301709968,14.1300124 15.4439536,-0.265717507 33.8267705,0.00372128768 C42.914465,0.157686313 51.090259,3.85284693 57,9.78050041" id="Path"></path>
+                <path d="M66,39 C62.9281941,54.6287913 49.1500685,66.2714514 32.8166699,65.9951849 C21.6799061,65.8373184 11.9088241,60.1541215 6,51.5898596" id="Path"></path>
+                <line x1="33" y1="0" x2="33" y2="8" id="Path"></line>
+                <path d="M33.2532662,58.1635434 L33.2532662,66 M7.73331771,32.7734242 L0,32.7734242 M66,32.7734242 L57.419884,32.7734242 M22.4614213,28.8551959 L32.1126018,38.6507666 L50.5217646,20" id="Stroke-3287"></path>
+            </g>
+        </g>
+    </g>
+</svg>
