@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="71px" height="68px" viewBox="0 0 71 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>long</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="01-HomePage-02" transform="translate(-685.000000, -2231.000000)" stroke="#6C8DE3" stroke-width="3">
+            <g id="long" transform="translate(687.000000, 2233.000000)">
+                <line x1="7" y1="26" x2="67" y2="26" id="Path"></line>
+                <path d="M17.6315789,7 L6.31210526,7 C2.82457895,7 0,10.170625 0,14.125 L0,56.875 C0,60.79375 2.82457895,64 6.31210526,64 L60.6914211,64 C64.1754211,64 67,60.79375 67,56.875 L67,14.125 C67,10.170625 64.1754211,7 60.6914211,7 L56.4210526,7" id="Path"></path>
+                <line x1="49" y1="0" x2="49" y2="15" id="Path"></line>
+                <line x1="18" y1="0" x2="18" y2="15" id="Path"></line>
+                <line x1="24" y1="7.04" x2="49" y2="6.96" id="Path"></line>
+                <line x1="11" y1="45" x2="20" y2="45" id="Path"></line>
+                <line x1="11" y1="55" x2="20" y2="55" id="Path"></line>
+                <line x1="29" y1="45" x2="38" y2="45" id="Path"></line>
+                <line x1="11" y1="35" x2="20" y2="35" id="Path"></line>
+                <line x1="29" y1="35" x2="38" y2="35" id="Path"></line>
+                <line x1="29" y1="55" x2="38" y2="55" id="Path"></line>
+                <line x1="48" y1="45" x2="57" y2="45" id="Path"></line>
+                <line x1="48" y1="35" x2="57" y2="35" id="Path"></line>
+                <line x1="48" y1="55" x2="57" y2="55" id="Path"></line>
+            </g>
+        </g>
+    </g>
+</svg>
