@@ -9,17 +9,20 @@ import {
   Form,
   Cascader,
   Menu,
-  Dropdown
+  Dropdown,
+  Modal,
+  Button
 } from 'antd';
 import search from '../../../images/search-icon.svg';
 import statatisticsService from '../../../services/statisticsService';
 import ads from '../../../services/adminAdsSection/companyAds';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const { allCities } = statatisticsService;
 
-const { getJobByEmail, updateJob, deleteJob } = ads;
+const { getJobByEmail, updateJob, deleteJob, exportJobs } = ads;
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
@@ -74,7 +77,9 @@ class EditableTable extends React.Component {
     editingKey: '',
     gender: 1,
     cities: [],
-    searchResult: []
+    searchResult: [],
+    deleteVisible: false,
+    ready: false
   };
 
   async componentDidMount() {
@@ -88,18 +93,18 @@ class EditableTable extends React.Component {
     {
       title: ' الوظيفة',
       dataIndex: 'name',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'اسم الشركة',
       dataIndex: 'company_name',
-      width: '15%'
+      width: '5%'
     },
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '15%',
+      width: '5%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -127,46 +132,46 @@ class EditableTable extends React.Component {
     {
       title: 'تخصص الشركة',
       dataIndex: 'company_sector',
-      width: '15%'
+      width: '5%'
     },
     {
       title: 'ايميل الشركة',
       dataIndex: 'company_email',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'الجنس',
       dataIndex: 'gender',
-      width: '15%'
+      width: '5%'
     },
     {
       title: 'الوصف',
       dataIndex: 'descreption',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
       title: 'مفعل',
       dataIndex: 'isLock',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'ايام العمل',
       dataIndex: 'work_days',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'الراتب',
       dataIndex: 'salary',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: ' ساعات العمل',
       dataIndex: 'work_hours',
-      width: '15%'
+      width: '5%'
       //   editable: true
     },
     // {
@@ -215,12 +220,19 @@ class EditableTable extends React.Component {
         const menu = (
           <Menu>
             <Menu.Item>
-              <a
-                rel="noopener noreferrer"
-                onClick={() => this.delete(record.key)}
-              >
+              <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
                 <img src={delete_icon} className="delete-icon" alt="" />
               </a>
+              <Modal
+                title="حذف عنصر"
+                visible={this.state.deleteVisible}
+                onOk={() => {
+                  this.delete(record.key);
+                }}
+                onCancel={this.handleCancel}
+              >
+                <p>هل ترغب حقاً في حذف هذا العنصر</p>
+              </Modal>
             </Menu.Item>
           </Menu>
         );
@@ -229,6 +241,51 @@ class EditableTable extends React.Component {
           <Dropdown overlay={menu} placement="topRight">
             <span>...</span>
           </Dropdown>
+        );
+      }
+    },
+    {
+      title: 'تصدير',
+      dataIndex: 'operation',
+      render: (text, record) => {
+        const { excelData, ready } = this.state;
+        return (
+          <div>
+            <Button onClick={() => this.exportJob(record.key)}>
+              {' '}
+              Download as XLS
+            </Button>
+            {ready && (
+              <div>
+                <ReactHTMLTableToExcel
+                  id="test-table-xls-button"
+                  className="download-table-xls-button"
+                  table="table-to-xls"
+                  filename="tablexls"
+                  sheet="tablexls"
+                  buttonText="ready to export"
+                />
+                <table id="table-to-xls" style={{ display: 'none' }}>
+                  <tr>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>number</th>
+                  </tr>
+                  {excelData
+                    ? excelData.map(elm => {
+                        return (
+                          <tr key={elm.email}>
+                            <td>{elm.name ? elm.name : ''}</td>
+                            <td>{elm.email ? elm.email : ''}</td>
+                            <td>{elm.number ? elm.number : ''}</td>
+                          </tr>
+                        );
+                      })
+                    : ''}
+                </table>
+              </div>
+            )}
+          </div>
         );
       }
     }
@@ -288,7 +345,8 @@ class EditableTable extends React.Component {
       id: key
     });
     this.setState({
-      data: data.filter(job => job.key !== key)
+      data: data.filter(job => job.key !== key),
+      deleteVisible: false
     });
   };
 
@@ -332,6 +390,24 @@ class EditableTable extends React.Component {
     });
   };
 
+  exportJob = async jobId => {
+    const getExportJobs = await exportJobs({
+      jobId
+    });
+    this.setState({ excelData: getExportJobs, ready: true });
+  };
+
+  showDeleteModal = () => {
+    this.setState({
+      deleteVisible: true
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      deleteVisible: false
+    });
+  };
   render() {
     const { searchResult } = this.state;
     const components = {
