@@ -15,6 +15,9 @@ import {
 const { RangePicker } = DatePicker;
 
 class generalStatistics extends React.Component {
+  state = {
+    daily: ''
+  };
   componentDidMount() {
     const { getDailyAds } = this.props;
     getDailyAds();
@@ -39,9 +42,26 @@ class generalStatistics extends React.Component {
     });
   };
   render() {
+    console.log('this state', this.props.generalStatistics);
+
+    const { dailyAds } = this.props.generalStatistics;
     return (
       <React.Fragment>
         <div style={{ padding: '40px 40px 0 0' }}>
+          <div style={{ display: 'flex', marginBottom: '20px' }}>
+            <div className="daily-stat">
+              <label>الشركات :</label>
+              <label> {dailyAds ? dailyAds.companiesCount : ''}</label>
+            </div>
+            <div className="daily-stat">
+              <label> المسستخدمين :</label>
+              <label>{dailyAds ? dailyAds.usersCount : ''}</label>
+            </div>
+            <div className="daily-stat">
+              <label> الوظائف :</label>
+              <label>{dailyAds ? dailyAds.jobsCount : ''}</label>
+            </div>
+          </div>
           <label>بحث أسبوعي :</label>
           <DatePicker
             onChange={this.weeklyChange}

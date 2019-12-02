@@ -35,6 +35,18 @@ const statatisticsService = {
         console.log('error', error);
       });
   },
+  getDataDependCityAndMajor: params => {
+    return baseRequest
+      .get(
+        `/get/UsersDepenedsOnAreaAndMajor/?country=${params.country}&city=${params.city}&major=${params.major}&spMajor=${params.spMajor}`
+      )
+      .then(result => {
+        return result;
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  },
   growth: () => {
     return baseRequest
       .get('/get/growthRate')
