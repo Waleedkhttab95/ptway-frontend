@@ -67,6 +67,7 @@ class EditableTable extends React.Component {
     data: [],
     editingKey: '',
     visible: false,
+    deleteVisible: false,
     university: ''
   };
 
@@ -129,12 +130,19 @@ class EditableTable extends React.Component {
         const menu = (
           <Menu>
             <Menu.Item>
-              <a
-                rel="noopener noreferrer"
-                onClick={() => this.delete(record.key)}
-              >
+              <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
                 <img src={delete_icon} className="delete-icon" alt="" />
               </a>
+              <Modal
+                title="حذف عنصر"
+                visible={this.state.deleteVisible}
+                onOk={() => {
+                  this.delete(record.key);
+                }}
+                onCancel={this.handleCancel}
+              >
+                <p>هل ترغب حقاً في حذف هذا العنصر</p>
+              </Modal>
             </Menu.Item>
           </Menu>
         );
@@ -190,7 +198,8 @@ class EditableTable extends React.Component {
       id: key
     });
     this.setState({
-      data: data.filter(university => university.key !== key)
+      data: data.filter(university => university.key !== key),
+      deleteVisible: false
     });
   };
 
@@ -218,13 +227,20 @@ class EditableTable extends React.Component {
 
   handleCancel = e => {
     this.setState({
-      visible: false
+      visible: false,
+      deleteVisible: false
     });
   };
 
   handleInputChange = e => {
     this.setState({
       university: e.target.value
+    });
+  };
+
+  showDeleteModal = () => {
+    this.setState({
+      deleteVisible: true
     });
   };
 

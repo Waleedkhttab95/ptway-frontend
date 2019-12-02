@@ -81,7 +81,8 @@ class EditableTable extends React.Component {
     majorVisible: false,
     subMajor: '',
     majors: [],
-    major: ''
+    major: '',
+    deleteVisible: false
   };
 
   async componentDidMount() {
@@ -169,12 +170,19 @@ class EditableTable extends React.Component {
         const menu = (
           <Menu>
             <Menu.Item>
-              <a
-                rel="noopener noreferrer"
-                onClick={() => this.delete(record.key)}
-              >
+              <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
                 <img src={delete_icon} className="delete-icon" alt="" />
               </a>
+              <Modal
+                title="حذف عنصر"
+                visible={this.state.deleteVisible}
+                onOk={() => {
+                  this.delete(record.key);
+                }}
+                onCancel={this.handleCancel}
+              >
+                <p>هل ترغب حقاً في حذف هذا العنصر</p>
+              </Modal>
             </Menu.Item>
           </Menu>
         );
@@ -237,7 +245,8 @@ class EditableTable extends React.Component {
       id: key
     });
     this.setState({
-      data: data.filter(subMajor => subMajor.key !== key)
+      data: data.filter(subMajor => subMajor.key !== key),
+      deleteVisible: false
     });
   };
 
@@ -284,7 +293,8 @@ class EditableTable extends React.Component {
   handleCancel = e => {
     this.setState({
       visible: false,
-      majorVisible: false
+      majorVisible: false,
+      deleteVisible: false
     });
   };
 
@@ -325,6 +335,12 @@ class EditableTable extends React.Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value
+    });
+  };
+
+  showDeleteModal = () => {
+    this.setState({
+      deleteVisible: true
     });
   };
 
