@@ -8,9 +8,11 @@ import line2 from '../../images/Line2.svg';
 import group from '../../images/group.svg';
 import laptopChart from '../../images/laptop-chart.svg';
 import signing from '../../images/signing.svg';
+import cloud1 from '../../images/Cloud1.png';
 const HowItWorks = () => {
   return (
-    <Row>
+    <Row style={{ marginTop: '37px' }}>
+      <img src={cloud1} className="how-works-cloud" alt="cloud1" />
       <div className="it-works-container">
         <h3 className="title"> كيف نعمل</h3>
         <div className="steps">
@@ -18,58 +20,86 @@ const HowItWorks = () => {
             <span className="step-number">1</span>
             <img src={signing} alt="certified" />
           </div>
-          <div className="step">
-            <img src={line2} alt="line" />
+          <div className="step-2">
+            <img
+              src={line2}
+              alt="line"
+              style={{ position: 'absolute', top: '30px' }}
+            />
             <img
               // style={{ paddingTop: '17px' }}
               src={laptopChart}
               alt="certified"
               style={{
-                paddingTop: '17px',
-                // position: 'absolute',
-                left: '100px',
+                // paddingTop: '17px',
+                position: 'absolute',
+                left: '75px',
                 top: '200px'
               }}
             />
-            <h4 className="step-title">اختر مايناسبك لتبدأ</h4>
-            <span className="step-number">2</span>
+            <h4
+              className="step-title"
+              style={{
+                // paddingTop: '17px',
+                position: 'absolute',
+                left: '60px',
+                top: '256px',
+                width: '100%'
+              }}
+            >
+              أضف إعلان توظيف
+            </h4>
+            <span
+              className="step-number"
+              style={{
+                // paddingTop: '17px',
+                position: 'absolute',
+                left: '105px',
+                top: '305px'
+              }}
+            >
+              2
+            </span>
           </div>
-          <div className="step">
+          <div className="step-3">
             <span className="step-number">3 </span>
-            <img style={{ paddingTop: '17px' }} src={group} alt="group" />
+            <img
+              style={{ paddingTop: '17px', marginLeft: '60px' }}
+              src={group}
+              alt="group"
+            />
             <h4 className="step-title">ستصلك سير الموظفين الذاتية</h4>
             <img
               src={line1}
               alt="line"
               style={{
-                // position: 'absolute',
-                right: '50px',
-                top: '185px'
+                marginTop: '30px',
+                marginRight: '80px'
               }}
             />
           </div>
           <div className="step">
-            <img src={line2} alt="line" />
+            <img
+              src={line2}
+              alt="line"
+              style={{ paddingRight: '50px', marginTop: '50px' }}
+            />
             <img
               // style={{ paddingTop: '17px' }}
               src={handShake}
               alt="certified"
               style={{
                 paddingTop: '17px',
-                // position: 'absolute',
-                left: '100px',
-                top: '200px',
-                width: '146px',
-                height: '89px'
+                marginLeft: '70px'
               }}
             />
             <h4 className="step-title">اختر مايناسبك لتبدأ</h4>
             <span className="step-number">4</span>
           </div>
-          <div className="step">
+          <div className="step-5">
             <span className="step-number">5</span>
             <img
-              style={{ paddingTop: '17px' }}
+              style={{ paddingTop: '21px', position: 'absolute', left: '55px' }}
               src={certified}
               alt="certified"
             />
@@ -78,11 +108,9 @@ const HowItWorks = () => {
               src={line1}
               alt="line"
               style={{
-                // position: 'absolute',
+                position: 'absolute',
                 right: '50px',
-                top: '185px',
-                width: '146px',
-                height: '89px'
+                top: '130px'
               }}
             />
           </div>
