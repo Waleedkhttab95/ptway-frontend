@@ -168,23 +168,25 @@ class EditableTable extends React.Component {
       dataIndex: 'operation',
       render: (text, record) => {
         const menu = (
-          <Menu>
-            <Menu.Item>
-              <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
-                <img src={delete_icon} className="delete-icon" alt="" />
-              </a>
-              <Modal
-                title="حذف عنصر"
-                visible={this.state.deleteVisible}
-                onOk={() => {
-                  this.delete(record.key);
-                }}
-                onCancel={this.handleCancel}
-              >
-                <p>هل ترغب حقاً في حذف هذا العنصر</p>
-              </Modal>
-            </Menu.Item>
-          </Menu>
+          <React.Fragment>
+            <Menu>
+              <Menu.Item>
+                <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
+                  <img src={delete_icon} className="delete-icon" alt="" />
+                </a>
+              </Menu.Item>
+            </Menu>
+            <Modal
+              title="حذف عنصر"
+              visible={this.state.deleteVisible}
+              onOk={() => {
+                this.delete(record.key);
+              }}
+              onCancel={this.handleCancel}
+            >
+              <p>هل ترغب حقاً في حذف هذا العنصر</p>
+            </Modal>
+          </React.Fragment>
         );
 
         return (
