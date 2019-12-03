@@ -8,17 +8,27 @@ import line2 from '../../images/Line2.svg';
 import group from '../../images/group.svg';
 import laptopChart from '../../images/laptop-chart.svg';
 import signing from '../../images/signing.svg';
-import cloud1 from '../../images/Cloud1.png';
+// import cloud1 from '../../images/Cloud1.png';
 const HowItWorks = () => {
   return (
     <Row style={{ marginTop: '37px' }}>
-      <img src={cloud1} className="how-works-cloud" alt="cloud1" />
+      {/* <img src={cloud1} className="how-works-cloud" alt="cloud1" /> */}
       <div className="it-works-container">
         <h3 className="title"> كيف نعمل</h3>
         <div className="steps">
           <div className="step">
             <span className="step-number">1</span>
             <img src={signing} alt="certified" />
+            <h4 className="step-title">انشيء حساب جديد</h4>
+            <img
+              src={line1}
+              alt="line"
+              style={{
+                position: 'absolute',
+                right: '50px',
+                top: '130px'
+              }}
+            />
           </div>
           <div className="step-2">
             <img
@@ -104,15 +114,6 @@ const HowItWorks = () => {
               alt="certified"
             />
             <h4 className="step-title">انجز عملك بمرونة</h4>
-            <img
-              src={line1}
-              alt="line"
-              style={{
-                position: 'absolute',
-                right: '50px',
-                top: '130px'
-              }}
-            />
           </div>
         </div>
       </div>

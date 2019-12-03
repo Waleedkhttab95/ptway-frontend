@@ -6,7 +6,7 @@ import userSetting from '../../../services/adminSetting/user';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import statatisticsService from '../../../services/statisticsService';
 
-const { allCities, allMajors } = statatisticsService;
+const { allCities, allMajors, sMajor } = statatisticsService;
 const { activateAccounts, addSubAdmin, exportCityMajorData } = userSetting;
 class UserSetting extends React.Component {
   state = {
@@ -41,16 +41,30 @@ class UserSetting extends React.Component {
   };
 
   majorChange = (value, selectedOptions) => {
+    this.setState(
+      {
+        major: selectedOptions[0].id
+      },
+      async () => {
+        const { major } = this.state;
+        const specialMajor = await sMajor(major);
+        this.setState({ specialMajor });
+      }
+    );
+  };
+
+  specialMajorChange = (value, selectedOptions) => {
     this.setState({
-      major: selectedOptions[0].id
+      sub_major: selectedOptions[0]
     });
   };
 
   exportCityMajorData = async () => {
-    const { city, major } = this.state;
+    const { city, major, sub_major } = this.state;
     await exportCityMajorData({
       city,
-      major
+      major,
+      sMajor: sub_major.id
     });
     this.setState({ ready: true });
   };
@@ -97,6 +111,12 @@ class UserSetting extends React.Component {
               options={majors}
               onChange={this.majorChange}
               placeholder=" التخصص العام"
+            />
+            <Cascader
+              className="dropdown-menu"
+              options={this.state.specialMajor}
+              onChange={this.specialMajorChange}
+              placeholder="التخصص الدقيق"
             />
             <Cascader
               className="dropdown-menu"
