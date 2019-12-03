@@ -27,7 +27,7 @@ const userSetting = {
   exportCityMajorData: params => {
     return baseRequest
       .get(
-        `/get/phonenumbersByCityAndMajor/?city=${params.city}&major=${params.major}`
+        `/get/phonenumbersByCityAndMajor/?city=${params.city}&major=${params.major}&spMajor=${params.sMajor}`
       )
       .then(result => result)
       .catch(e => console.log('e', e));

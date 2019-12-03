@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Table, Form } from 'antd';
+import { Table, Form, Card } from 'antd';
 const EditableContext = React.createContext();
 
 const filteredData = fun => {
@@ -29,21 +29,21 @@ class EditableTable extends React.Component {
 
       if (dailyAds) {
         const dailyData = filteredData(dailyAds);
-        this.setState({ data: dailyData });
+        this.setState({ data: dailyData, counts: dailyAds });
       }
 
       if (monthlyAds) {
         const monthlyData = filteredData(monthlyAds);
-        this.setState({ data: monthlyData });
+        this.setState({ data: monthlyData, counts: monthlyAds });
       }
 
       if (weeklyAds) {
         const weeklyData = filteredData(weeklyAds);
-        this.setState({ data: weeklyData });
+        this.setState({ data: weeklyData, counts: weeklyAds });
       }
       if (periodAds) {
         const periodData = filteredData(periodAds);
-        this.setState({ data: periodData });
+        this.setState({ data: periodData, counts: periodAds });
       }
     }
   }
@@ -76,6 +76,9 @@ class EditableTable extends React.Component {
   ];
 
   render() {
+    console.log('this state', this.props.generalStatistics);
+
+    const { counts } = this.state;
     const columns = this.columns.map(col => {
       if (!col.editable) {
         return col;
@@ -93,6 +96,17 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
+        <div className="daily-stat">
+          <Card className="card-body" title="المسستخدمين" bordered={false}>
+            <p className="card-text">{counts ? counts.usersCount : ''}</p>
+          </Card>
+          <Card className="card-body" title="الشركات" bordered={false}>
+            <p className="card-text">{counts ? counts.companiesCount : ''}</p>
+          </Card>
+          <Card className="card-body" title="الوظائف" bordered={false}>
+            <p className="card-text">{counts ? counts.jobsCount : ''}</p>
+          </Card>
+        </div>
         <EditableContext.Provider value={this.props.form}>
           <Table
             bordered
