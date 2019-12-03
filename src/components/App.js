@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import HomePage from './HomePage';
+import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Percentage';
 import AdminPanel from './AdminPanel';
@@ -31,6 +31,7 @@ const App = props => {
               path="/admin/general/statistics"
               component={AdminPanel(generalStatistics)}
             />
+            <Route exact path="/admin" component={HomePage} />
             <Route
               exact
               path="/admin/statistics"

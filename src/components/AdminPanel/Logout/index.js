@@ -10,7 +10,7 @@ const Logout = props => {
       className="logout"
       onClick={async () => {
         await logout();
-        history.push('/');
+        history.push('/admin');
       }}
     >
       تسجيل خروج
