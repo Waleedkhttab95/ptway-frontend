@@ -79,6 +79,7 @@ class EditableTable extends React.Component {
     data: [],
     editingKey: '',
     visible: false,
+    deleteVisible: false,
     city: '',
     countries: [],
     country: ''
@@ -145,16 +146,25 @@ class EditableTable extends React.Component {
       dataIndex: 'operation',
       render: (text, record) => {
         const menu = (
-          <Menu>
-            <Menu.Item>
-              <a
-                rel="noopener noreferrer"
-                onClick={() => this.delete(record.key)}
-              >
-                <img src={delete_icon} className="delete-icon" alt="" />
-              </a>
-            </Menu.Item>
-          </Menu>
+          <React.Fragment>
+            <Menu>
+              <Menu.Item>
+                <a rel="noopener noreferrer" onClick={this.showDeleteModal}>
+                  <img src={delete_icon} className="delete-icon" alt="" />
+                </a>
+              </Menu.Item>
+            </Menu>
+            <Modal
+              title="حذف عنصر"
+              visible={this.state.deleteVisible}
+              onOk={() => {
+                this.delete(record.key);
+              }}
+              onCancel={this.handleCancel}
+            >
+              <p>هل ترغب حقاً في حذف هذا العنصر</p>
+            </Modal>
+          </React.Fragment>
         );
 
         return (
@@ -209,7 +219,8 @@ class EditableTable extends React.Component {
       id: key
     });
     this.setState({
-      data: data.filter(city => city.key !== key)
+      data: data.filter(city => city.key !== key),
+      deleteVisible: false
     });
   };
 
@@ -236,7 +247,15 @@ class EditableTable extends React.Component {
 
   handleCancel = e => {
     this.setState({
-      visible: false
+      visible: false,
+      deleteVisible: false
+    });
+    console.log('++++', this.state);
+  };
+
+  showDeleteModal = () => {
+    this.setState({
+      deleteVisible: true
     });
   };
 
