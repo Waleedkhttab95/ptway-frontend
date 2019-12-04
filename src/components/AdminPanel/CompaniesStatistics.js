@@ -7,6 +7,8 @@ import {
 } from '../../store/actions/companyActions';
 import { Statistic, Row, Col, Cascader, Card, Button } from 'antd';
 import statatisticsService from '../../services/statisticsService';
+import store from '../../store/createStore';
+
 const {
   allCountries,
   getCompanySMajor,
@@ -35,6 +37,11 @@ class CompaniesStatistics extends Component {
 
     const getCompanySMajorData = await getCompanySMajor();
     this.setState({ specialMajor: getCompanySMajorData });
+  }
+  componentWillMount() {
+    store.getState().companyStatistics.companyBMajor = '';
+    store.getState().companyStatistics.companyBCityMajor = '';
+    store.getState().companyStatistics.companyBCountry = '';
   }
 
   cityChange = (value, selectedOptions) => {
@@ -120,6 +127,7 @@ class CompaniesStatistics extends Component {
     } = this.props.companyStatistics;
 
     const { companiesInfo } = this.state;
+    console.log('log state', store.getState());
 
     return (
       <React.Fragment>
