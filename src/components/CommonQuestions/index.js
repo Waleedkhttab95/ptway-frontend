@@ -1,7 +1,16 @@
 import React from 'react';
-import { Row } from 'antd';
+import { Row, Collapse } from 'antd';
 import './commonQ.scss';
 
+const { Panel } = Collapse;
+const text = (
+  <p style={{ paddingLeft: 24, paddingRight: '40px' }} className="qus-reply">
+    هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ
+    عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.
+    ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما-
+    للأحرف عوضاً عن استخدام هنا يوجد محتوى نصي
+  </p>
+);
 const CommonQuestions = () => {
   return (
     <Row>
@@ -9,7 +18,44 @@ const CommonQuestions = () => {
         <h3 className="com-title">الأسئلة الأكثر شيوعاً</h3>
         <div className="questions">
           <div className="question">
-            <div className="qus-name">
+            <Collapse bordered={false} defaultActiveKey={['1']}>
+              <Panel
+                className="qus-name"
+                header="ماهي الخطوات الأولية لتسجيل شركة جديدة في الموقع؟"
+                key="1"
+              >
+                {text}
+              </Panel>
+              <Panel
+                className="qus-name"
+                header="ماهي الخطوات الأولية لتسجيل شركة جديدة في الموقع؟"
+                key="2"
+              >
+                {text}
+              </Panel>
+              <Panel
+                className="qus-name"
+                header="ما هي اجراءات الاتفاق مع العميل وكيف تتم الاتفاقية وماهي بنود الحماية؟"
+                key="3"
+              >
+                {text}
+              </Panel>
+              <Panel
+                className="qus-name"
+                header="ماهي الخطوات الأولية لتسجيل شركة جديدة في الموقع؟"
+                key="4"
+              >
+                {text}
+              </Panel>
+              <Panel
+                className="qus-name"
+                header="ما الخطوات التي يجب أن اقوم بها كموظف اريد التسجيل في الموقع؟"
+                key="5"
+              >
+                {text}
+              </Panel>
+            </Collapse>
+            {/* <div className="qus-name">
               ماهي الخطوات الأولية لتسجيل شركة جديدة في الموقع؟
             </div>
             <div className="qus-reply">
@@ -20,8 +66,8 @@ const CommonQuestions = () => {
               تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام هنا يوجد
               محتوى نصي
             </div>
-          </div>
-          <div className="question">
+          </div> */}
+            {/* <div className="question">
             <div className="qus-name">
               ما هي الخطوات الأولية لتسجيل شركة جديدة في الموقع؟
             </div>
@@ -47,6 +93,7 @@ const CommonQuestions = () => {
               تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام هنا يوجد
               محتوى نصي
             </div>
+          */}
           </div>
         </div>
       </div>

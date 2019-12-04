@@ -16,11 +16,11 @@
     }
     .questions{
         width: 744px;
-    height: 626px;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
     background-color: #ffffff;
-    display: flex;
+    // display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
@@ -28,34 +28,41 @@
         margin: 30px 49px 30px 55px;
         box-shadow: 0 2px 0 0 #f0f0f0;
         background-color: #ffffff;
-        .qus-name{
-            font-family: DINNextLTW23;
-            font-size: 14px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: right;
-            color: #575757;
-            margin-right: 80px;
-            margin-top: 21px;
-        }
-        .qus-reply{
-            width: 468px;
-            font-family: DINNextLTW23;
-            font-size: 14px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: right;
-            color: #939393;
-            margin-right: 120px;
-            margin-top: 21px;
+        
+    }
+}
+}
+.qus-name{
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #575757;
+    padding: 20px 0;
+    // margin-right: 80px;
+    // margin-top: 21px;
+}
+.qus-reply{
+    width: 550px;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #939393;
+    // margin-right: 120px;
+    margin-top: 21px;
 
-        }
-    }
-    }
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow{
+    right: 0px;
+    left: auto;
+    color: #009ad0;
 }
