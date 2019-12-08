@@ -38,8 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "heroku-postbuild": "npm install && npm run build && npm start"
+    "lint:fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": "react-app"
