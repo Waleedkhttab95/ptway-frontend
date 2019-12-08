@@ -55,6 +55,12 @@
   color: #1f1f1f;
   padding-top: 13px;
     }
+    .step-line{
+            position: absolute;
+            right: 50px;
+            top: 130px;
+         
+    }
    }
    .steps .step-5{
     display: flex;
@@ -83,11 +89,11 @@
         position: absolute;
     left: 85px;
     }
-    // >img {
-    //     padding-top: 21px;
-    //     position: absolute;
-    //     left: 55px;
-    // }
+    .step5-img{
+        padding-top: 21px; position: absolute; left: 55px;
+
+    }
+    
     .step-title{
         font-family: DINNextLTW23;
   font-size: 18px;
@@ -128,6 +134,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+            // paddingTop: '17px',
+            position: absolute;
+            left: 105px;
+            top: 305px;
+         
     }
     .step-title{
         font-family: DINNextLTW23;
@@ -140,6 +151,22 @@
   text-align: center;
   color: #1f1f1f;
   padding-top: 13px;
+    // paddingTop: '17px',
+    position:absolute;
+    left: 60px;
+    top: 256px;
+    width: 100%;
+ 
+    }
+    .step2-line{
+         position: absolute; top: 30px;
+    }
+    .step2-img{
+            // paddingTop: '17px',
+            position: absolute;
+            left: 75px;
+            top: 200px;
+         
     }
    }
 
@@ -183,10 +210,126 @@
   padding-top: 13px;
   margin-left: 60px;
     }
+    .step3-img{
+         padding-top: 17px; margin-left: 60px;
+   }
+   .step3-line{
+        margin-top: 30px;
+        margin-right: 80px;
    }
    
 
 }
 .how-works-cloud{
     float: left;
+}
+}
+
+@media(max-width:320px){
+    .it-works-container .steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .step{
+            margin-left: 0;
+            .step-line{
+                display: none;
+            }
+            .step4-line{
+                display: none;
+            }
+        }
+        .step-2{
+            margin-right: 0;
+            width: auto;
+            align-items: center;
+            margin-bottom: 20px;
+            .step2-img{
+                position: initial;
+            }
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step2-line{
+                display: none;
+            }
+        }
+        .step-3{
+            margin-right: 55px;
+            .step3-line{
+                display: none;
+            }
+        }
+        .step-5{
+            margin-top: 20px;
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step5-img{
+                position: initial;
+
+            } 
+        }
+    }
+}
+@media (min-width:321px) and (max-width:768px){
+    .it-works-container .steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .step{
+            margin-left: 0;
+            .step-line{
+                display: none;
+            }
+            .step4-line{
+                display: none;
+            }
+        }
+        .step-2{
+            margin-right: 0;
+            width: auto;
+            align-items: center;
+            margin-bottom: 20px;
+            .step2-img{
+                position: initial;
+            }
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step2-line{
+                display: none;
+            }
+        }
+        .step-3{
+            margin-right: 55px;
+            .step3-line{
+                display: none;
+            }
+        }
+        .step-5{
+            margin-top: 20px;
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step5-img{
+                position: initial;
+
+            } 
+        }
+    }
 }

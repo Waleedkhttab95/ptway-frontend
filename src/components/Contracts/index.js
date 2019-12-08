@@ -8,7 +8,7 @@ const Contracts = () => {
   return (
     <Row className="contracts">
       <h3 className="cont-title">أنواع العقود</h3>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className="contracts-container">
         <div>
           <div className="contract">
             <img src={shContractIc} alt="shContract" />
