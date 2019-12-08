@@ -125,7 +125,7 @@
 
 @media (max-width:320px){
     .home-page-header > img {
-        height: auto !important;
+        height: 235px !important;
         width: 100% !important;
     }
     .home-page-header .right-side .navbar{
@@ -155,14 +155,14 @@
 
 @media (min-width:321px) and (max-width:768px){
     .home-page-header > img {
-        height: auto !important;
+        height: 235px !important;
         width: 100% !important;
     }
     .home-page-header .right-side .navbar{
         display: none;
     }
     .home-page-header .right-side {
-        right: 10;
+        right: 10px;
         >img{
             width: 100px;
         }
