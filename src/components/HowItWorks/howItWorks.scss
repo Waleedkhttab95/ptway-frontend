@@ -223,6 +223,10 @@
 .how-works-cloud{
     float: left;
 }
+.step4-img{
+    padding-top: 17px;
+    margin-left: 70px;
+}
 }
 
 @media(max-width:320px){
@@ -247,6 +251,7 @@
             margin-bottom: 20px;
             .step2-img{
                 position: initial;
+                margin-top: 40px;
             }
             .step-title{
                 position: initial;
@@ -278,6 +283,13 @@
             } 
         }
     }
+    .step4-img{
+        margin-left: 0 !important;
+        margin-top: 20px;
+    }
+    .step4-number{
+        position: absolute;
+    }
 }
 @media (min-width:321px) and (max-width:768px){
     .it-works-container .steps {
@@ -301,12 +313,15 @@
             margin-bottom: 20px;
             .step2-img{
                 position: initial;
+                margin-top: 40px;
             }
             .step-title{
                 position: initial;
             }
             .step-number{
-                position: initial;
+                position: absolute;
+                top: 0;
+                left: 50px;
             }
             .step2-line{
                 display: none;
@@ -331,5 +346,12 @@
 
             } 
         }
+    }
+    .step4-img{
+        margin-left: 0 !important;
+        margin-top: 20px;
+    }
+    .step4-number{
+        position: absolute;
     }
 }

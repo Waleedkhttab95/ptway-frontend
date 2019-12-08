@@ -46,17 +46,9 @@ const HowItWorks = () => {
               className="step4-line"
               style={{ paddingRight: '50px', marginTop: '50px' }}
             />
-            <img
-              // style={{ paddingTop: '17px' }}
-              src={handShake}
-              alt="certified"
-              style={{
-                paddingTop: '17px',
-                marginLeft: '70px'
-              }}
-            />
+            <img src={handShake} alt="certified" className="step4-img" />
             <h4 className="step-title">اختر مايناسبك لتبدأ</h4>
-            <span className="step-number">4</span>
+            <span className="step-number step4-number">4</span>
           </div>
           <div className="step-5">
             <span className="step-number">5</span>
