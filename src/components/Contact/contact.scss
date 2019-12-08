@@ -59,3 +59,57 @@
   color: #fff;
   margin-top: 20px;
 }
+.radio-options{
+    width: 300px; 
+    display: flex
+}
+
+@media (max-width:320px){
+    .contact-us{
+        width: 300px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .contact-us-img{
+        width: 200px;
+    }
+    .radio-options{
+        width: 200px; 
+        display: flex;
+        flex-direction: column;
+    }
+    .contact-form .contact-input{
+        width: 200px;
+    }
+    .contact-btn {
+        width: 200px;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px){
+
+    .contact-us{
+        width: 350px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    align-items: center;
+    }
+    .contact-us-img{
+        width: 280px;
+    }
+    .radio-options{
+        width: 250px; 
+        display: flex;
+        flex-direction: column;
+    }
+    .contact-form .contact-input{
+        width: 250px;
+    }
+    .contact-btn {
+        width: 250px;
+    }
+
+}

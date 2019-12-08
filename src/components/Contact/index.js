@@ -14,15 +14,13 @@ const ContactUs = () => {
             style={{ marginTop: '100px' }}
             src={Illustration_Digital}
             alt="Illustration_Digital"
+            className="contact-us-img"
           />
         </Col>
         <Col md={12}>
           <div className="element">
             <h4 className="element-title">سبب التواصل معنا</h4>
-            <Radio.Group
-              value={'مساعدة مالية'}
-              style={{ width: '300px', display: 'flex' }}
-            >
+            <Radio.Group value={'مساعدة مالية'} className="radio-options">
               <Radio value={1}>مساعدة عامة</Radio>
               <Radio value={2}>تبليغ عن مشكلة</Radio>
               <Radio value={3}>تواصل إعلاني</Radio>

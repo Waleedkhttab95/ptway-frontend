@@ -34,3 +34,29 @@
                 margin-right: 70px;
             }
 }
+
+@media(max-width:320px){
+    .partners .partners-names {
+        align-items: center;
+        flex-direction: column;
+        >img{
+            margin-bottom: 20px;
+        }
+        .navigator{
+            display: none;
+        }
+    }
+}
+@media (min-width:321px) and (max-width:768px){
+    .partners .partners-names {
+        align-items: center;
+        flex-direction: column;
+        >img{
+            margin-bottom: 20px;
+        }
+        .navigator{
+            display: none;
+        }
+    }
+
+}

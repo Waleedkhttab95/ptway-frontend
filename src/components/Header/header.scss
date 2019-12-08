@@ -122,3 +122,79 @@
         }
     }
 }
+
+@media (max-width:320px){
+    .home-page-header > img {
+        height: auto !important;
+        width: 100% !important;
+    }
+    .home-page-header .right-side .navbar{
+        display: none;
+    }
+    .home-page-header .right-side {
+        right: 10;
+        >img{
+            width: 100px;
+        }
+    }
+    .home-page-header .left-side .employeer-login-btn {
+        width: 100px;
+        height: 30px;
+        font-size: 11px;
+    }
+    .home-page-header .left-side .company-login-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 11px;
+    }
+    .home-page-header .middle-side {
+        top: 64px;
+        right: 10px;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px){
+    .home-page-header > img {
+        height: auto !important;
+        width: 100% !important;
+    }
+    .home-page-header .right-side .navbar{
+        display: none;
+    }
+    .home-page-header .right-side {
+        right: 10;
+        >img{
+            width: 100px;
+        }
+    }
+    .home-page-header .left-side {
+        left: 10px;
+    }
+    .home-page-header .left-side .employeer-login-btn {
+        width: 120px;
+        height: 30px;
+        font-size: 11px;
+        margin-left: 5px;
+    }
+    .home-page-header .left-side .company-login-btn{
+        width: 120px;
+        height: 30px;
+        font-size: 11px;
+    }
+    .home-page-header .middle-side {
+        top: 74px;
+        right: 10px;
+        .title{
+            font-size: 16px;
+        }
+        .description{
+            width: 246px;
+            font-size: 11px;
+        }
+        .start-now-btn{
+            width: 100px;
+            height: 30px;
+            font-size: 11px;
+        }
+    }
+}

@@ -1,5 +1,9 @@
 .contracts {
     margin-top: 30px;
+    .contracts-container{
+        display: flex;
+         justify-content: center;
+    }
 .cont-title{
     font-family: DINNextLTW23;
     font-size: 28px;
@@ -48,4 +52,48 @@
         color: #999999;
         margin: 10px 20px;
     }
+}
+
+@media (max-width:320px){
+    .contracts-container{
+        display: flex;
+        flex-direction: column;
+         justify-content: center;
+         align-items: center;
+    }
+    .contracts .cont-title {
+        margin-right: 0;
+    }
+    .contract{
+        width: 300px;
+        margin-right: 0px;  
+        margin-bottom: 20px;         
+       }
+       .contact-us .element {
+        margin: 39px 0px 0 0;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px){
+
+    .contracts {
+        .contracts-container{
+            display: flex;
+            flex-direction: column;
+             justify-content: center;
+             align-items: center;
+        }
+    
+    .cont-title {
+        margin-right: 0;
+    }
+}
+.contract{
+    width: 300px;
+ margin-right: 0px; 
+ margin-bottom: 20px;          
+}
+.contact-us .element {
+    margin: 39px 0px 0 0;
+}
 }

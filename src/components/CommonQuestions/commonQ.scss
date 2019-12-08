@@ -66,3 +66,27 @@
     left: auto;
     color: #009ad0;
 }
+
+@media(max-width:320px){
+    .com-questions .questions{
+        width: 344px;
+    }
+    .com-questions .questions .question{
+        margin: 0;
+    }
+    .ant-collapse-content.ant-collapse-content-inactive{
+        width: 340px;
+    }
+}
+@media (min-width:321px) and (max-width:768px){
+    .com-questions .questions{
+        width: 344px;
+        margin: 0;
+    }
+    .com-questions .questions .question{
+        margin: 0;
+    }
+    .ant-collapse-content.ant-collapse-content-inactive{
+        width: 340px;
+    }
+}

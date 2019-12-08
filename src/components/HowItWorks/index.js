@@ -20,78 +20,30 @@ const HowItWorks = () => {
             <span className="step-number">1</span>
             <img src={signing} alt="certified" />
             <h4 className="step-title">انشيء حساب جديد</h4>
-            <img
-              src={line1}
-              alt="line"
-              style={{
-                position: 'absolute',
-                right: '50px',
-                top: '130px'
-              }}
-            />
+            <img src={line1} alt="line" className="step-line" />
           </div>
           <div className="step-2">
-            <img
-              src={line2}
-              alt="line"
-              style={{ position: 'absolute', top: '30px' }}
-            />
+            <img src={line2} alt="line" className="step2-line" />
             <img
               // style={{ paddingTop: '17px' }}
               src={laptopChart}
               alt="certified"
-              style={{
-                // paddingTop: '17px',
-                position: 'absolute',
-                left: '75px',
-                top: '200px'
-              }}
+              className="step2-img"
             />
-            <h4
-              className="step-title"
-              style={{
-                // paddingTop: '17px',
-                position: 'absolute',
-                left: '60px',
-                top: '256px',
-                width: '100%'
-              }}
-            >
-              أضف إعلان توظيف
-            </h4>
-            <span
-              className="step-number"
-              style={{
-                // paddingTop: '17px',
-                position: 'absolute',
-                left: '105px',
-                top: '305px'
-              }}
-            >
-              2
-            </span>
+            <h4 className="step-title">أضف إعلان توظيف</h4>
+            <span className="step-number">2</span>
           </div>
           <div className="step-3">
             <span className="step-number">3 </span>
-            <img
-              style={{ paddingTop: '17px', marginLeft: '60px' }}
-              src={group}
-              alt="group"
-            />
+            <img className="step3-img" src={group} alt="group" />
             <h4 className="step-title">ستصلك سير الموظفين الذاتية</h4>
-            <img
-              src={line1}
-              alt="line"
-              style={{
-                marginTop: '30px',
-                marginRight: '80px'
-              }}
-            />
+            <img src={line1} alt="line" className="step3-line" />
           </div>
           <div className="step">
             <img
               src={line2}
               alt="line"
+              className="step4-line"
               style={{ paddingRight: '50px', marginTop: '50px' }}
             />
             <img
@@ -108,11 +60,7 @@ const HowItWorks = () => {
           </div>
           <div className="step-5">
             <span className="step-number">5</span>
-            <img
-              style={{ paddingTop: '21px', position: 'absolute', left: '55px' }}
-              src={certified}
-              alt="certified"
-            />
+            <img className="step5-img" src={certified} alt="certified" />
             <h4 className="step-title">انجز عملك بمرونة</h4>
           </div>
         </div>
