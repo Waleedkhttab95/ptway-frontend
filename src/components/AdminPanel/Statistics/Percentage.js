@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
-import './index.scss';
-import baseRequest from '../../_core/index';
-import { weeklyGrowth } from '../../store/actions/statisticsAction';
+import './statistics.scss';
+import baseRequest from '../../../_core/index';
+import { weeklyGrowth } from '../../../store/actions/statisticsAction';
 import { Row, Col, Card } from 'antd';
 import { HorizontalBar } from 'react-chartjs-2';
 
@@ -54,9 +54,9 @@ class Percentage extends React.Component {
       <React.Fragment>
         <Row className="user-percentages">
           <Col md={5}>
-            <div className="container">
+            <div className="container user-mun">
               <Card
-                className="card-body"
+                className="card-body user-mun"
                 title="عدد المستخدمين"
                 bordered={false}
               >
@@ -67,9 +67,9 @@ class Percentage extends React.Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
+            <div className="container male-user-num ">
               <Card
-                className="card-body"
+                className="card-body male-user-num"
                 title=" عدد المستخدمين الذكور"
                 bordered={false}
               >
@@ -80,9 +80,9 @@ class Percentage extends React.Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
+            <div className="container female-user-mun">
               <Card
-                className="card-body"
+                className="card-body female-user-mun"
                 title="عدد المستخدمين الاناث"
                 bordered={false}
               >
@@ -93,10 +93,10 @@ class Percentage extends React.Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
+            <div className="container cv-user-num">
               <Card
-                className="card-body"
-                title=" المستخدمين الذين لديهم سيرة ذاتية"
+                className="card-body cv-user-num"
+                title=" مستخدمون لديهم سيرة ذاتية"
                 bordered={false}
               >
                 <p className="card-text">
@@ -128,7 +128,4 @@ const mapDispatchToProps = dispatch => {
     growthPercentage: () => dispatch(weeklyGrowth())
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Percentage);
+export default connect(mapStateToProps, mapDispatchToProps)(Percentage);

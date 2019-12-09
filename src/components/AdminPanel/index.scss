@@ -13,55 +13,19 @@
     float: right;
 }
 .dashboard-container{
-    background-color: #DCDDDD;
+    background-color: #eee;
     height: 100vh;
     overflow-y: scroll;
     padding-bottom: 50px;
 }
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    height: 100vh;
-}
-.sidebar-title{
-    font-size: 18px;
-    height: 100px;
-}
-.sidebar-elm{
-    font-size: 16px;
-    height: 60px;
-    color: white;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-}
-.sidebar-elm:hover{
-    color: white;
-    background-color: #40a9ff;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-}
-.sidebar-elm:visited{
-    background-color: #40a9ff;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-}
-.admin-logo > img{
-    height: 100px;
-    widows: 100px;
-}
-.dropdown-menu{
-    padding: 9px;
-}
+
+
 .header{
     height: 60px;
     padding-top: 10px;
     border-bottom: solid 1px #ced4da;
-    background-color: #DCDDDD;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14)
    
 }
 .header-title{
@@ -85,25 +49,18 @@
     background-color: #40a9ff;
     color: white; 
 }
-.weekly-growth{
-    background-color: white;
-    border-radius: 5%;
-    position: absolute;
-    right: 3%;
-    top: 60px;
-    width: 550px;
-}
-.user-percentages{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.user-statistics{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding-right: 25px;
-}
+
+// .user-percentages{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
+// .user-statistics{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     padding-right: 25px;
+// }
 .container{
     background: white;
     padding: 10px;
@@ -129,10 +86,7 @@
     flex-direction: row;
 }
 
-vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-vertical-left .ant-menu-submenu-title, .ant-menu-vertical-right .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
-    font-size: 18px;
-    font-weight: bold;
-}
+
 .user-information{
     display: flex;
     flex-direction: column;
@@ -285,16 +239,34 @@ button.ant-modal-close{
     background-color: #40a9ff;
     color: #fff;
 }
-.ant-menu-item > a{
-    font-size: 18px;
-    font-weight: 500;
-}
-.ant-menu-submenu-title{
-    font-size: 20px;
-    font-weight: bold;
-}
+
 .ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
     text-decoration: none;
     color: #fff;
     background-color: #1890ff;
+}
+.ant-table-thead > tr >th{
+    background: #009ad0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    border-right: 1px solid #fff;
+}
+.ant-table-wrapper{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 25px !important;
+    border-bottom: solid 4px #e6f7ff;
+}
+
+.cv-user-num{
+    background: #66bb6a;
+}
+.female-user-mun{
+    background: #ef5350
+}
+.male-user-num{
+    background: #ffa726;
+}
+.user-mun{
+    background: #66bb6a;
 }
