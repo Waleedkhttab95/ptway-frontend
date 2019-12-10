@@ -26,8 +26,8 @@
     margin: 0px 5px;
 }
 .add-icon{
-    width: 90px;
-    margin: 22px 40px 10px 10px; 
+    width: 50px;
+    margin: 12px 40px 10px 10px;
 }
 .major-add-icon{
     width: 70px;
@@ -89,4 +89,28 @@ button.ant-modal-close{
 }
 .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
     height: 40px;
+}
+.city-body{
+    background: #fff;
+    margin: 40px 20px 0 0;
+    border-radius: 15px;
+    height: 250px;
+    .c-header{
+        display: flex;
+    font-size: 18px;
+    font-weight: 900;
+    align-items: center;
+    border-bottom: solid 1px #d1d1d1;
+    color: #d1d1d1;
+}
+        .input{
+            margin-right: 55px;
+        width: 250px;
+        }
+        .city-submit{
+            margin-right: 55px;
+    width: 250px;
+    float: right;
+    background: #009ad0;
+        }
 }
