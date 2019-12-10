@@ -227,24 +227,26 @@ class EditableTable extends React.Component {
     });
   };
 
-  addCityModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
+  // addCityModal = () => {
+  //   this.setState({
+  //     visible: true
+  //   });
+  // };
 
   handleOk = async countryId => {
-    const newData = this.state.data;
+    const { data } = this.state;
     const { city } = this.state;
     const addCityData = await addCity({
       cityName: city,
       countryId
     });
 
-    await newData.push({ name: addCityData.cityName, key: addCityData._id });
+    await data.push({ name: addCityData.cityName, key: addCityData._id });
     this.setState({
-      data: newData,
-      visible: false
+      data,
+      visible: false,
+      country: '',
+      city: ''
     });
   };
 
@@ -253,7 +255,6 @@ class EditableTable extends React.Component {
       visible: false,
       deleteVisible: false
     });
-    console.log('++++', this.state);
   };
 
   showDeleteModal = () => {
@@ -331,19 +332,6 @@ class EditableTable extends React.Component {
               >
                 حفظ
               </Button>
-              {/* <Modal
-                title="اضافة مدينة جديدة"
-                visible={this.state.visible}
-                onOk={() => {
-                  this.handleOk(country ? country.id : '');
-                }}
-                onCancel={this.handleCancel}
-              >
-                <Input
-                  placeholder="اسم المدينة "
-                  onChange={this.handleInputChange}
-                />
-              </Modal> */}
             </div>
           </Col>
           <Col md={14}>

@@ -1,7 +1,18 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './content.scss';
-import { Table, Input, InputNumber, Form, Modal, Menu, Dropdown } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Form,
+  Modal,
+  Menu,
+  Dropdown,
+  Row,
+  Col,
+  Button
+} from 'antd';
 import universitiesContent from '../../../services/AdminContentServices/universities';
 import delete_icon from '../../../images/delete.svg';
 import update_icon from '../../../images/edit.svg';
@@ -271,32 +282,52 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
-        <img
-          src={add_icon}
-          className="add-icon"
-          alt="جامعة جديدة"
-          onClick={this.addCityModal}
-        />
-        <Modal
-          title="اضافة جامعة جديدة"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <Input placeholder="اسم الجامعة " onChange={this.handleInputChange} />
-        </Modal>
-        <EditableContext.Provider value={this.props.form}>
-          <Table
-            components={components}
-            bordered
-            dataSource={this.state.data}
-            columns={columns}
-            rowClassName="editable-row"
-            pagination={{
-              onChange: this.cancel
-            }}
-          />
-        </EditableContext.Provider>
+        <Row style={{ display: 'flex' }}>
+          <Col md={8}>
+            <div className="university-body">
+              <div className="u-header">
+                <img
+                  src={add_icon}
+                  className="add-icon"
+                  alt="جامعة جديدة"
+                  onClick={this.addCityModal}
+                />
+                <span>اضافة جامعة جديدة</span>
+              </div>
+              <Input
+                placeholder="اسم الجامعة "
+                onChange={this.handleInputChange}
+                className="input"
+              />
+              <Button onClick={this.handleOk} className="university-submit">
+                {' '}
+                حفظ
+              </Button>
+            </div>
+            {/* <Modal
+              title="اضافة جامعة جديدة"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              
+            </Modal> */}
+          </Col>
+          <Col md={16}>
+            <EditableContext.Provider value={this.props.form}>
+              <Table
+                components={components}
+                bordered
+                dataSource={this.state.data}
+                columns={columns}
+                rowClassName="editable-row"
+                pagination={{
+                  onChange: this.cancel
+                }}
+              />
+            </EditableContext.Provider>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
