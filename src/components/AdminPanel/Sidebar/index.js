@@ -3,11 +3,11 @@ import 'antd/dist/antd.css';
 import './sidebar.scss';
 import { Col, Menu } from 'antd';
 import logo from '../../../images/ptway.svg';
-import { Link, NavLink } from 'react-router-dom';
-import history from '../../../_core/history';
+import { Link } from 'react-router-dom';
 const { SubMenu } = Menu;
+
 let selectedKeys = '';
-let openKey = '';
+
 const route = ({ item, key, keyPath, domEvent }) => {
   console.log(
     'item',
@@ -20,15 +20,9 @@ const route = ({ item, key, keyPath, domEvent }) => {
     domEvent
   );
   selectedKeys = key;
-  openKey = keyPath[1];
   return item.props.renderMenuItem(key);
 };
 const Sidebar = props => {
-  // const sideBarMenuKey = useSelector(
-  //   state => state.currentComponetReducer.sideBarMenuItemKey
-  // );
-  console.log('props+++', props);
-
   return (
     <Col md={4} className="sidebar">
       <div className="admin-logo">
@@ -120,7 +114,7 @@ const Sidebar = props => {
             الجامعات
           </Menu.Item>
           <Menu.Item key="10">
-            <Link to="/admin/jobs"></Link>
+            <Link to="/admin/content/majors"></Link>
             التخصصات
           </Menu.Item>
         </SubMenu>
@@ -132,8 +126,14 @@ const Sidebar = props => {
             </span>
           }
         >
-          <Menu.Item key="/admin/ads/company">اعلانات الشركات</Menu.Item>
-          <Menu.Item key="/admin/ads/search">البحث</Menu.Item>
+          <Menu.Item key="/admin/ads/company">
+            <Link to="/admin/ads/company"></Link>
+            اعلانات الشركات
+          </Menu.Item>
+          <Menu.Item key="/admin/ads/search">
+            <Link to="/admin/ads/search"></Link>
+            البحث
+          </Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub7"
@@ -143,8 +143,14 @@ const Sidebar = props => {
             </span>
           }
         >
-          <Menu.Item key="/admin/setting/user">الأفراد</Menu.Item>
-          <Menu.Item key="/admin/setting/company">الشركات</Menu.Item>
+          <Menu.Item key="/admin/setting/user">
+            <Link to="/admin/setting/user"></Link>
+            الأفراد
+          </Menu.Item>
+          <Menu.Item key="/admin/setting/company">
+            <Link to="/admin/setting/company"></Link>
+            الشركات
+          </Menu.Item>
         </SubMenu>
       </Menu>
     </Col>
