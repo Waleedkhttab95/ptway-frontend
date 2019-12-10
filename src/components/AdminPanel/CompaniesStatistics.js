@@ -133,8 +133,12 @@ class CompaniesStatistics extends Component {
       <React.Fragment>
         <Row className="user-percentages">
           <Col md={5}>
-            <div className="container">
-              <Card className="card-body" title="عدد الشركات" bordered={false}>
+            <div className="container company-num">
+              <Card
+                className="card-body company-num"
+                title="عدد الشركات"
+                bordered={false}
+              >
                 <p className="card-text">
                   {companiesInfo ? companiesInfo.NumberOfCompanies : ''}
                 </p>
@@ -142,10 +146,10 @@ class CompaniesStatistics extends Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
+            <div className="container company-info-num">
               <Card
-                className="card-body"
-                title=" عدد الشركات التي لها معلومات"
+                className="card-body company-info-num"
+                title=" شركات لها معلومات"
                 bordered={false}
               >
                 <p className="card-text">
@@ -155,8 +159,12 @@ class CompaniesStatistics extends Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
-              <Card className="card-body" title="عدد الوظائف" bordered={false}>
+            <div className="container jobs-num">
+              <Card
+                className="card-body jobs-num"
+                title="عدد الوظائف"
+                bordered={false}
+              >
                 <p className="card-text">
                   {companiesInfo ? companiesInfo.NumberOfJobs : ''}
                 </p>
@@ -164,8 +172,12 @@ class CompaniesStatistics extends Component {
             </div>
           </Col>
           <Col md={5}>
-            <div className="container">
-              <Card className="card-body" title="عدد المشاريع" bordered={false}>
+            <div className="container projects-num">
+              <Card
+                className="card-body projects-num"
+                title="عدد المشاريع"
+                bordered={false}
+              >
                 <p className="card-text">
                   {companiesInfo ? companiesInfo.NumberOfProjects : ''}
                 </p>

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
-import Percentage from './AdminPanel/Percentage';
+import Percentage from './AdminPanel/Statistics/Percentage';
 import AdminPanel from './AdminPanel';
 import CompaniesStatistics from './AdminPanel/CompaniesStatistics';
 import CompanySearch from '../components/AdminPanel/CompanySearch';

@@ -1,0 +1,53 @@
+.statistics{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    text-align: center;
+    align-items: center;
+    float: right;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
+    
+}
+.user-stc-button{
+    color: #1d1d1d !important;
+    background: #ecedf2 !important;
+    width: 200px !important;
+}
+.user-stc-header{
+    width: 100%;
+    background: #ecedf2;
+    height: 80px;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1d1d1d;
+    margin-bottom: 15px;
+}
+.user-stc-result{
+    font-size: 16px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+.weekly-growth{
+    background-color: white;
+    border-radius: 5%;
+    position: absolute;
+    right: 3%;
+    top: 60px;
+    width: 550px;
+}
+.user-percentages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.user-statistics{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 25px;
+}

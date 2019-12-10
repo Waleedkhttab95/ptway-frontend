@@ -1,0 +1,65 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    background-image: url('../../../images/sidebar-1.png');
+    background-size: cover;
+    background-position: center center;
+}
+.sidebar-menu{
+   height: 100vh;
+   background: transparent;
+}
+.ant-menu-sub.ant-menu-inline{
+    background: transparent;
+}
+// .ant-menu-sub.ant-menu-inline:active {
+//     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+// }
+.sidebar-title{
+    font-size: 18px;
+    height: 100px;
+}
+.sidebar-elm{
+    font-size: 16px;
+    height: 60px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+.sidebar-elm:hover{
+    color: white;
+    background-color: #40a9ff;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+.sidebar-elm:visited{
+    background-color: #40a9ff;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+}
+.admin-logo > img{
+    height: 100px;
+    widows: 100px;
+}
+.ant-menu-item > a{
+    font-size: 18px;
+    font-weight: 500;
+}
+.ant-menu-submenu-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-vertical-left .ant-menu-submenu-title, .ant-menu-vertical-right .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.dropdown-menu{
+    padding: 9px;
+}

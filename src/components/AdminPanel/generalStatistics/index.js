@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './index.scss';
 import { connect } from 'react-redux';
-import { DatePicker } from 'antd';
+import { DatePicker, Row, Col } from 'antd';
 import GeneralUserStatistics from './users';
 import GeneralCompanyStatistics from './companies';
 import GeneralJobsStatistics from './jobs';
@@ -44,28 +44,51 @@ class generalStatistics extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ padding: '40px 40px 0 0' }}>
-          <label>بحث أسبوعي :</label>
-          <DatePicker
-            onChange={this.weeklyChange}
-            placeholder={'اختر التاريخ'}
-            style={{ width: '250px', marginLeft: '20px' }}
-          />
-          <label>بحث شهري :</label>
-          <DatePicker
-            onChange={this.monthlyChange}
-            placeholder={'اختر التاريخ'}
-            style={{ width: '250px', marginLeft: '20px' }}
-          />
-          <label>بحث بين فترتين :</label>
-          <RangePicker
-            onChange={this.periodChange}
-            style={{ width: '250px', marginLeft: '20px' }}
-          />
-        </div>
-        <GeneralUserStatistics {...this.props} />
-        <GeneralCompanyStatistics {...this.props} />
-        <GeneralJobsStatistics {...this.props} />
+        <Row>
+          <div className="datepicker-container">
+            <div className="body">
+              <label>بحث أسبوعي :</label>
+              <DatePicker
+                onChange={this.weeklyChange}
+                placeholder={'اختر التاريخ'}
+                style={{ width: '250px', marginLeft: '20px' }}
+              />
+            </div>
+            <div className="body">
+              <label>بحث شهري :</label>
+              <DatePicker
+                onChange={this.monthlyChange}
+                placeholder={'اختر التاريخ'}
+                style={{ width: '250px', marginLeft: '20px' }}
+              />
+            </div>
+            <div className="body">
+              <label>بحث بين فترتين :</label>
+              <RangePicker
+                onChange={this.periodChange}
+                style={{ width: '250px', marginLeft: '20px' }}
+              />
+            </div>
+          </div>
+        </Row>
+        <Row>
+          <Col md={12}></Col>
+          <Col md={12}>
+            <GeneralUserStatistics {...this.props} />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}></Col>
+          <Col md={20}>
+            <GeneralJobsStatistics {...this.props} />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={8}></Col>
+          <Col md={16}>
+            <GeneralCompanyStatistics {...this.props} />
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
@@ -85,7 +108,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(generalStatistics);
+export default connect(mapStateToProps, mapDispatchToProps)(generalStatistics);

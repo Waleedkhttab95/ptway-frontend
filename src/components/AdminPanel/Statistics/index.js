@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
-import './index.scss';
+import './statistics.scss';
 import {
   ageStatistic,
   cityStatistic,
   majorStatistic
-} from '../../store/actions/statisticsAction';
-import { Statistic, Row, Col, Button, Cascader, Input } from 'antd';
-import statatisticsService from '../../services/statisticsService';
+} from '../../../store/actions/statisticsAction';
+import { Row, Col, Button, Cascader, Input } from 'antd';
+import statatisticsService from '../../../services/statisticsService';
 const {
   allCountries,
   allMajors,
@@ -105,18 +105,27 @@ class AgeStatistics extends React.Component {
     return (
       <React.Fragment>
         <Row className="user-statistics">
-          <Col md={6} className="statistic">
-            <Input placeholder="ادخل عمر المستخدم" onChange={this.onChange} />
-            <Button onClick={this.ageCount} className="submit">
+          <Col md={6} className="statistics">
+            <div className="user-stc-header">
               {' '}
-              اضغط
-            </Button>
-            <Statistic
-              title="عدد المستخدمين بناءً على العمر"
-              value={age !== '' ? age : ''}
+              عدد المستخدمين بناءً على العمر{' '}
+            </div>
+            <Input
+              placeholder="ادخل عمر المستخدم"
+              onChange={this.onChange}
+              style={{ width: '200px' }}
             />
+            <Button onClick={this.ageCount} className="submit user-stc-button">
+              {' '}
+              عرض
+            </Button>
+            <span className="user-stc-result">{age !== '' ? age : ''}</span>
           </Col>
-          <Col md={6} className="statistic">
+          <Col md={6} className="statistics">
+            <div className="user-stc-header">
+              {' '}
+              عدد المستخدمين بناءً على المدينة{' '}
+            </div>
             <Cascader
               className="dropdown-menu"
               options={this.state.countries}
@@ -129,18 +138,21 @@ class AgeStatistics extends React.Component {
               onChange={this.cityChange}
               placeholder="اختر المدينة"
             />
-            <Button onClick={this.getCountryCityData} className="submit">
+            <Button
+              onClick={this.getCountryCityData}
+              className="submit user-stc-button"
+            >
               {' '}
-              اضغط
+              عرض
             </Button>
-            <Statistic
-              title="عدد المستخدمين بناءً على المدينة"
-              value={city !== undefined ? city.users : ''}
-            />
+            <span className="user-stc-result">
+              {city !== undefined ? city.users : ''}
+            </span>
           </Col>
-        </Row>
-        <Row className="user-statistics">
-          <Col md={6} className="statistic">
+          <Col md={6} className="statistics">
+            <div className="user-stc-header">
+              عدد المستخدمين بناءً على التخصص{' '}
+            </div>
             <Cascader
               className="dropdown-menu"
               options={this.state.majors}
@@ -153,17 +165,23 @@ class AgeStatistics extends React.Component {
               onChange={this.majorSpecialChange}
               placeholder="الفرع الخاص"
             />
-            <Button onClick={this.getMajorAndSubMajorData} className="submit">
+            <Button
+              onClick={this.getMajorAndSubMajorData}
+              className="submit user-stc-button"
+            >
               {' '}
-              اضغط
+              عرض
             </Button>
-            <Statistic
-              title="عدد المستخدمين بناءً على التخصص"
-              value={major !== undefined ? major.users : ''}
-            />
+            <span className="user-stc-result">
+              {major !== undefined ? major.users : ''}{' '}
+            </span>
           </Col>
-
-          <Col md={6} className="statistic">
+        </Row>
+        <Row className="user-statistics">
+          <Col md={8} className="statistics">
+            <div className="user-stc-header">
+              عدد المستخدمين بناءً على التخصص والمدينة
+            </div>
             <Cascader
               className="dropdown-menu"
               options={this.state.countries}
@@ -189,14 +207,16 @@ class AgeStatistics extends React.Component {
               placeholder="التخصص الدقيق"
             />
 
-            <Button onClick={this.cityAndMajor} className="submit">
+            <Button
+              onClick={this.cityAndMajor}
+              className="submit user-stc-button"
+            >
               {' '}
-              اضغط
+              عرض
             </Button>
-            <Statistic
-              title="عدد المستخدمين بناءً على التخصص والمدينة"
-              value={cityAndMajor ? cityAndMajor.users : ''}
-            />
+            <span className="user-stc-result">
+              {cityAndMajor ? cityAndMajor.users : ''}{' '}
+            </span>
           </Col>
         </Row>
       </React.Fragment>
@@ -218,7 +238,4 @@ const mapDispatchToProps = dispatch => {
     major: params => dispatch(majorStatistic(params))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AgeStatistics);
+export default connect(mapStateToProps, mapDispatchToProps)(AgeStatistics);

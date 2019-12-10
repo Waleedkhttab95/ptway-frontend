@@ -10,7 +10,10 @@ import {
   Modal,
   Cascader,
   Menu,
-  Dropdown
+  Dropdown,
+  Row,
+  Col,
+  Button
 } from 'antd';
 import {
   updateCity,
@@ -224,24 +227,26 @@ class EditableTable extends React.Component {
     });
   };
 
-  addCityModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
+  // addCityModal = () => {
+  //   this.setState({
+  //     visible: true
+  //   });
+  // };
 
   handleOk = async countryId => {
-    const newData = this.state.data;
+    const { data } = this.state;
     const { city } = this.state;
     const addCityData = await addCity({
       cityName: city,
       countryId
     });
 
-    await newData.push({ name: addCityData.cityName, key: addCityData._id });
+    await data.push({ name: addCityData.cityName, key: addCityData._id });
     this.setState({
-      data: newData,
-      visible: false
+      data,
+      visible: false,
+      country: '',
+      city: ''
     });
   };
 
@@ -250,7 +255,6 @@ class EditableTable extends React.Component {
       visible: false,
       deleteVisible: false
     });
-    console.log('++++', this.state);
   };
 
   showDeleteModal = () => {
@@ -297,40 +301,54 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
-        <Cascader
-          className="dropdown-menu country-dropmenu"
-          options={this.state.countries}
-          onChange={this.countryChange}
-          placeholder="اختر الدولة"
-        />
-        <img
-          src={add_icon}
-          className="add-icon"
-          alt="مدينة جديدة"
-          onClick={this.addCityModal}
-        />
-        <Modal
-          title="اضافة مدينة جديدة"
-          visible={this.state.visible}
-          onOk={() => {
-            this.handleOk(country ? country.id : '');
-          }}
-          onCancel={this.handleCancel}
-        >
-          <Input placeholder="اسم المدينة " onChange={this.handleInputChange} />
-        </Modal>
-        <EditableContext.Provider value={this.props.form}>
-          <Table
-            components={components}
-            bordered
-            dataSource={this.state.data}
-            columns={columns}
-            rowClassName="editable-row"
-            pagination={{
-              onChange: this.cancel
-            }}
-          />
-        </EditableContext.Provider>
+        <Row style={{ display: 'flex' }}>
+          <Col md={10}>
+            <div className="city-body">
+              <div className="c-header">
+                <img
+                  src={add_icon}
+                  className="add-icon"
+                  alt="مدينة جديدة"
+                  onClick={this.addCityModal}
+                />
+                <spna> اضافة مدينة جديدة</spna>
+              </div>
+              <Cascader
+                className="dropdown-menu country-dropmenu"
+                options={this.state.countries}
+                onChange={this.countryChange}
+                placeholder="اختر الدولة"
+              />
+              <Input
+                placeholder="اسم المدينة "
+                onChange={this.handleInputChange}
+                className="input"
+              />
+              <Button
+                onClick={() => {
+                  this.handleOk(country ? country.id : '');
+                }}
+                className="city-submit"
+              >
+                حفظ
+              </Button>
+            </div>
+          </Col>
+          <Col md={14}>
+            <EditableContext.Provider value={this.props.form}>
+              <Table
+                components={components}
+                bordered
+                dataSource={this.state.data}
+                columns={columns}
+                rowClassName="editable-row"
+                pagination={{
+                  onChange: this.cancel
+                }}
+              />
+            </EditableContext.Provider>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
@@ -346,7 +364,4 @@ const mapDispatchToProps = dispatch => ({
   deteteCity: props => dispatch(deteteCity(props))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CitiesContent);
+export default connect(mapStateToProps, mapDispatchToProps)(CitiesContent);

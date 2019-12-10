@@ -19,7 +19,7 @@ const AdminPanel = WrappedComponent => {
           </div>
         </Col>
 
-        <Sidebar />
+        <Sidebar {...props} />
       </Row>
     );
   };
