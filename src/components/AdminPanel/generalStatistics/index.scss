@@ -10,6 +10,7 @@
     display: flex;
      margin-bottom: 20px;
       margin-top: 40px;
+      justify-content: center;
 }
 .ant-card.card-body{
     margin-left: 20px;
@@ -37,6 +38,7 @@
 .datepicker-container{
     padding: 40px 30px 0 0;
     display: flex;
+    justify-content: center;
     .body{
         display: flex;
         flex-direction: column;
@@ -61,4 +63,16 @@
 }
 a{
     float: inherit !important;
+}
+.u-ui{
+    background: #fff;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.ant-table-wrapper {
+    width: auto !important;
 }

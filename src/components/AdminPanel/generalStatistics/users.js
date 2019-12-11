@@ -97,9 +97,9 @@ class EditableTable extends React.Component {
     return (
       <React.Fragment>
         <div className="daily-stat">
-          <i className="fa fa-user" aria-hidden="true"></i>
+          {/* <i className="fa fa-user" aria-hidden="true"></i> */}
           <Card
-            className="card-body  user-card fa-fa-user"
+            className="card-body  user-card fa-fa-user "
             title="المسستخدمين"
             bordered={false}
           >
