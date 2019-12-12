@@ -26,8 +26,8 @@
     margin: 0px 5px;
 }
 .add-icon{
-    width: 90px;
-    margin: 22px 40px 10px 10px; 
+    width: 50px;
+    margin: 12px 40px 10px 10px;
 }
 .major-add-icon{
     width: 70px;
@@ -35,13 +35,15 @@
 }
 .country-dropmenu{
     margin-right: 50px;
+     width: 260px;
+    
 }
 .display-major-content{
     color: #FFF;
     width: 150px;
     height: 37px;
     background-color: #1890ff;
-    margin: 44px 15px 10px 10px;
+    margin: 14px 15px 10px 10px;
     align-items: center;
 }
 .add-smajor{
@@ -49,7 +51,7 @@
     width: 150px;
     height: 37px;
     background-color: #1890ff;
-    margin: 44px 15px 10px 10px;
+    margin: 14px 15px 10px 10px;
     align-items: center;
 }
 .add-smajor:hover{
@@ -61,7 +63,7 @@
     width: 150px;
     height: 37px;
     background-color: #1890ff;
-    margin: 44px 15px 10px 10px;
+    margin: 14px 15px 10px 10px;
     align-items: center;
 }
 .add-major:hover{
@@ -73,7 +75,7 @@
     background-color: #1890ff;
 }
 .major-dropmenu {
-    margin: 37px 50px 0 0;
+    // margin: 37px 50px 0 0;
 }
 li.ant-pagination-disabled.ant-pagination-next {
     margin-right: 10px;
@@ -89,4 +91,94 @@ button.ant-modal-close{
 }
 .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
     height: 40px;
+}
+.city-body{
+    background: #fff;
+    margin: 40px 20px 0 0;
+    border-radius: 15px;
+    height: 250px;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
+    .c-header{
+        display: flex;
+    font-size: 18px;
+    font-weight: 900;
+    align-items: center;
+    border-bottom: solid 1px #d1d1d1;
+    color: #d1d1d1;
+}
+        .input{
+            margin-right: 55px;
+        width: 250px;
+        }
+        .city-submit{
+            margin-right: 55px;
+            width: 250px;
+            float: right;
+            background: #009ad0;
+            margin-top: 20px;
+        }
+}
+.university-body{
+    background: #fff;
+    margin: 40px 20px 0 0;
+    border-radius: 15px;
+    height: 250px;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
+    .u-header{
+        display: flex;
+    font-size: 18px;
+    font-weight: 900;
+    align-items: center;
+    border-bottom: solid 1px #d1d1d1;
+    color: #d1d1d1;
+    margin-bottom: 20px;
+}
+        .input{
+            margin-right: 55px;
+        width: 250px;
+        }
+        .university-submit{
+            margin-right: 55px;
+            width: 250px;
+            float: right;
+            background: #009ad0;
+            margin-top: 20px;
+        }
+}
+
+.jobs-container {
+    display: flex;
+    .jobs-header{
+        background: #fff;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
+        margin: 40px;
+        border-radius: 15px;
+        padding: 10px 20px 0 0;
+        >span {
+            font-weight: 700;
+            color: #d1d1d1;
+            font-size: 16px;
+        }
+    }
+}
+.m-container{
+    display: flex;
+    margin: 20px;
+    .major-header{
+        background: #fff;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.09);
+        margin: 40px;
+        border-radius: 15px;
+        padding: 10px 20px 0 0;
+        height: 250px;
+        >span {
+            font-weight: 700;
+            color: #d1d1d1;
+            font-size: 16px;
+        }
+    }
 }

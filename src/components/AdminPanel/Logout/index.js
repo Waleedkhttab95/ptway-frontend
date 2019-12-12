@@ -28,7 +28,4 @@ const mapPropsToDispatch = dispatch => {
     logout: () => dispatch(logout())
   };
 };
-export default connect(
-  mapPropsToState,
-  mapPropsToDispatch
-)(Logout);
+export default connect(mapPropsToState, mapPropsToDispatch)(Logout);

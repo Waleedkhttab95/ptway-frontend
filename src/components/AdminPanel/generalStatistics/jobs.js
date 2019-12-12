@@ -31,43 +31,43 @@ class EditableTable extends React.Component {
     {
       title: 'الوظيفة ',
       dataIndex: 'job_Name',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'الشركة',
       dataIndex: 'company.companyName',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'الوصف',
       dataIndex: 'descreption',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
       title: 'ساعات العمل',
       dataIndex: 'work_hours',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'ايام العمل',
       dataIndex: 'work_days',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
       title: 'الراتب',
       dataIndex: 'salary',
-      width: '15%',
+      width: '5%',
       editable: true
     },
     {
