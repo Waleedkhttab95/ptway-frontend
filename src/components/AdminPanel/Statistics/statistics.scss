@@ -13,18 +13,18 @@
     
 }
 .user-stc-button{
-    color: #1d1d1d !important;
-    background: #ecedf2 !important;
+    color: #ffff !important;
+    background: #69696978 !important;
     width: 200px !important;
 }
 .user-stc-header{
     width: 100%;
-    background: #ecedf2;
+    background: #40a9ff;
     height: 80px;
     padding-top: 20px;
     font-weight: 700;
     font-size: 16px;
-    color: #1d1d1d;
+    color: #cce3f5;
     margin-bottom: 15px;
 }
 .user-stc-result{
@@ -48,6 +48,11 @@
 .user-statistics{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     padding-right: 25px;
+}
+.ant-btn:hover, .ant-btn:focus {
+    color: #40a9ff;
+    background-color: #fff;
+    border-color: #69696978;
 }

@@ -255,7 +255,7 @@ class EditableTable extends React.Component {
           <div>
             <Button onClick={() => this.exportJob(record.key)}>
               {' '}
-              Download as XLS
+              تصدير اكسل
             </Button>
             {ready && (
               <div>
