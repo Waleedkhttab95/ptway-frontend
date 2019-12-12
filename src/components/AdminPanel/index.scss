@@ -284,3 +284,35 @@ button.ant-modal-close{
 .projects-num{
     background: #ffa726;
 }
+.ant-input{
+    border: 1px solid #b9b9b9;
+}
+.ant-input::-webkit-input-placeholder {
+    color: #b6b4b4;
+}
+
+.company-stc-button{
+    color: #ffff !important;
+    background: #69696978 !important;
+    width: 200px !important;
+}
+.company-stc-header{
+    width: 100%;
+    background: #40a9ff;
+    height: 80px;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #cce3f5;
+    margin-bottom: 15px;
+}
+.company-stc-result{
+    font-size: 16px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+.stc-wraper{
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+}

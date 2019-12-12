@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './index.scss';
 import {
   companyBCountry,
   companyBMajor,
   companyBCityMajor
 } from '../../store/actions/companyActions';
-import { Statistic, Row, Col, Cascader, Card, Button } from 'antd';
+import { Row, Col, Cascader, Card, Button } from 'antd';
 import statatisticsService from '../../services/statisticsService';
 import store from '../../store/createStore';
 
@@ -92,8 +93,6 @@ class CompaniesStatistics extends Component {
   };
 
   majorChange = (value, selectedOptions) => {
-    console.log('selectedOptions', selectedOptions[0]);
-
     this.setState({
       major: selectedOptions[0]
     });
@@ -186,7 +185,8 @@ class CompaniesStatistics extends Component {
           </Col>
         </Row>
         <Row className="user-statistics">
-          <Col md={6} className="statistic">
+          <Col md={6} className="statistics">
+            <div className="company-stc-header">عدد الشركات حسب المدينة</div>
             <Cascader
               className="dropdown-menu"
               options={this.state.countries}
@@ -199,85 +199,94 @@ class CompaniesStatistics extends Component {
               onChange={this.cityChange}
               placeholder="اختر المدينة"
             />
-            <Statistic
-              title="عدد الشركات بناءً على المدينة"
+            <span className="company-stc-result">
+              {' '}
+              {companyBCountry ? companyBCountry.result : ''}
+            </span>
+            {/* <Statistic
+              title="عدد الشركات حسب المدينة"
               value={companyBCountry ? companyBCountry.result : ''}
-            />
+            /> */}
           </Col>
-          <Col md={6} className="statistic">
+          <Col md={6} className="statistics">
+            <div className="company-stc-header">عدد الشركات حسب القطاع</div>
             <Cascader
               className="dropdown-menu"
               options={this.state.majors}
               onChange={this.majorChange}
               placeholder="القطاع"
             />
-            <Button onClick={this.sector} className="sector-button">
+            <Button
+              onClick={this.sector}
+              className="sector-button company-stc-button"
+            >
               {' '}
               اضغط
             </Button>
-            <Statistic
-              title="عدد الشركات بناءً على القطاع"
-              value={companyBMajor ? companyBMajor.result.sector_result : ''}
-            />
+            <span className="company-stc-result">
+              {companyBMajor ? companyBMajor.result.sector_result : ''}
+            </span>
           </Col>
-          <Col md={6} className="statistic">
+          <Col md={6} className="statistics">
+            <div className="company-stc-header">عدد الشركات حسب نشاط العمل</div>
             <Cascader
               className="dropdown-menu"
               options={this.state.specialMajor}
               onChange={this.specialMajorChange}
               placeholder=" نشاط العمل"
             />
-            <Button onClick={this.specialMajor} className="smajor-button">
-              {' '}
-              اضغط
-            </Button>
-            <Statistic
-              title="عدد الشركات بناءً على نشاط العمل"
-              value={companyBMajor ? companyBMajor.result.sp_result : ''}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={10} className="statistic">
-            <div className="company-details">
-              <Cascader
-                className="dropdown-menu"
-                options={this.state.majors}
-                onChange={this.majorChange}
-                placeholder=" القطاع"
-              />
-              <Cascader
-                className="dropdown-menu"
-                options={this.state.specialMajor}
-                onChange={this.specialMajorChange}
-                placeholder="نشاط العمل"
-              />
-            </div>
-            <div className="company-details">
-              <Cascader
-                className="dropdown-menu"
-                options={this.state.countries}
-                onChange={this.countryChange}
-                placeholder="الدولة"
-              />
-              <Cascader
-                className="dropdown-menu"
-                options={this.state.cities}
-                onChange={this.cityAndMajorChange}
-                placeholder="المدينة"
-              />
-            </div>
             <Button
-              onClick={this.majorCountry}
-              className="major-country-button"
+              onClick={this.specialMajor}
+              className="smajor-button company-stc-button"
             >
               {' '}
               اضغط
             </Button>
-            <Statistic
-              title="عدد الشركات بناءً على الدولة والتخصص"
-              value={companyBCityMajor !== null ? companyBCityMajor.result : ''}
+            <span className="company-stc-result">
+              {companyBMajor ? companyBMajor.result.sp_result : ''}
+            </span>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={10} className="statistics stc-wraper">
+            {/* <div className="company-details"> */}
+            <div className="company-stc-header">
+              عدد الشركات حسب الدولة والتخصص
+            </div>
+            <Cascader
+              className="dropdown-menu"
+              options={this.state.majors}
+              onChange={this.majorChange}
+              placeholder=" القطاع"
             />
+            <Cascader
+              className="dropdown-menu"
+              options={this.state.specialMajor}
+              onChange={this.specialMajorChange}
+              placeholder="نشاط العمل"
+            />
+            <Cascader
+              className="dropdown-menu"
+              options={this.state.countries}
+              onChange={this.countryChange}
+              placeholder="الدولة"
+            />
+            <Cascader
+              className="dropdown-menu"
+              options={this.state.cities}
+              onChange={this.cityAndMajorChange}
+              placeholder="المدينة"
+            />
+            <Button
+              onClick={this.majorCountry}
+              className="major-country-button company-stc-button"
+            >
+              {' '}
+              اضغط
+            </Button>
+            <span className="company-stc-result">
+              {companyBCityMajor !== null ? companyBCityMajor.result : ''}
+            </span>
           </Col>
         </Row>
       </React.Fragment>

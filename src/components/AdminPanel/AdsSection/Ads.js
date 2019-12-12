@@ -172,33 +172,12 @@ class EditableTable extends React.Component {
     {
       title: 'المشروع',
       dataIndex: 'project',
-      width: '10%'
-      // render: (text, record) => {
-      //   const editable = this.isEditing(record);
-      //   return editable ? (
-      //     <Cascader
-      //       className="dropdown-menu "
-      //       options={this.state.projects}
-      //       onChange={this.projectChange}
-      //       placeholder="المشروع"
-      //     />
-      //   ) : (
-      //     <h3>
-      //       {' '}
-      //       {this.state.data.reduce((acc, elm) => {
-      //         if (elm.key === record.key) {
-      //           acc = elm.project;
-      //         }
-      //         return acc;
-      //       }, '')}{' '}
-      //     </h3>
-      //   );
-      // }
+      width: '5%'
     },
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '10%',
+      width: '5%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -248,7 +227,7 @@ class EditableTable extends React.Component {
     {
       title: 'الجنس',
       dataIndex: 'gender',
-      width: '10%'
+      width: '5%'
     },
     {
       title: 'الوصف',
@@ -259,12 +238,12 @@ class EditableTable extends React.Component {
     {
       title: 'تاريخ البدء',
       dataIndex: 'createDate',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'مفعل',
       dataIndex: 'isLock',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
@@ -276,13 +255,13 @@ class EditableTable extends React.Component {
     {
       title: 'الراتب',
       dataIndex: 'salary',
-      width: '15%',
+      width: '10%',
       editable: true
     },
     {
       title: ' ساعات العمل',
       dataIndex: 'work_hours',
-      width: '15%',
+      width: '20%',
       editable: true
     },
     {
@@ -363,7 +342,7 @@ class EditableTable extends React.Component {
           <div>
             <Button onClick={() => this.exportJob(record.key)}>
               {' '}
-              Download as XLS
+              تصدير اكسل
             </Button>
             {ready && (
               <div>
