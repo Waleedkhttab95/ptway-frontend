@@ -436,7 +436,7 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
-        <Row>
+        <Row style={{ justifyContent: 'center', display: 'flex' }}>
           <div className="input-container ads-search">
             <Input
               placeholder="بحث عن مشاريع شركة"

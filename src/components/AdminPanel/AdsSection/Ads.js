@@ -172,12 +172,12 @@ class EditableTable extends React.Component {
     {
       title: 'المشروع',
       dataIndex: 'project',
-      width: '5%'
+      width: '7%'
     },
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '5%',
+      width: '7%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -227,7 +227,7 @@ class EditableTable extends React.Component {
     {
       title: 'الجنس',
       dataIndex: 'gender',
-      width: '5%'
+      width: '7%'
     },
     {
       title: 'الوصف',
@@ -243,7 +243,7 @@ class EditableTable extends React.Component {
     {
       title: 'مفعل',
       dataIndex: 'isLock',
-      width: '10%',
+      width: '7%',
       editable: true
     },
     {
@@ -255,13 +255,13 @@ class EditableTable extends React.Component {
     {
       title: 'الراتب',
       dataIndex: 'salary',
-      width: '10%',
+      width: '7%',
       editable: true
     },
     {
       title: ' ساعات العمل',
       dataIndex: 'work_hours',
-      width: '20%',
+      width: '15%',
       editable: true
     },
     {
