@@ -72,20 +72,20 @@ class generalStatistics extends React.Component {
           </div>
         </Row>
         <Row>
-          <Col md={12}></Col>
-          <Col md={12}>
+          {/* <Col md={24}></Col> */}
+          <Col md={24}>
             <GeneralUserStatistics {...this.props} />
           </Col>
         </Row>
         <Row>
-          <Col md={4}></Col>
-          <Col md={20}>
+          {/* <Col md={4}></Col> */}
+          <Col md={24}>
             <GeneralJobsStatistics {...this.props} />
           </Col>
         </Row>
         <Row>
-          <Col md={8}></Col>
-          <Col md={16}>
+          {/* <Col md={8}></Col> */}
+          <Col md={24}>
             <GeneralCompanyStatistics {...this.props} />
           </Col>
         </Row>

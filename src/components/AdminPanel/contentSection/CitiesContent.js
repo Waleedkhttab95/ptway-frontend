@@ -334,7 +334,7 @@ class EditableTable extends React.Component {
               </Button>
             </div>
           </Col>
-          <Col md={14}>
+          <Col md={13}>
             <EditableContext.Provider value={this.props.form}>
               <Table
                 components={components}
@@ -348,6 +348,7 @@ class EditableTable extends React.Component {
               />
             </EditableContext.Provider>
           </Col>
+          <Col md={1}></Col>
         </Row>
       </React.Fragment>
     );
