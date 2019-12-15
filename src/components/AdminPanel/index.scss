@@ -106,11 +106,10 @@
     width: 89%;
     background-color: white;
     border-bottom: 2px solid white;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    margin-top: -15px;
-    margin-right: 33px;
+    margin-right: 30px;
     padding-right: 20px;
+    border: solid 1px #b9b9b9;
+    margin-bottom: 10px;
 }
 .user-name > span{
     float: right;
@@ -171,14 +170,14 @@ button.ant-btn {
     float: left;
 }
 .update-company{
-    width: 30px;
+    width: 25px;
     margin: 0px 5px;
     float: left;
     margin-left: 50px;
     margin-top: 10px;
 }
 .delete-company{
-    width: 30px;
+    width: 20px;
     margin: 0px 5px;
 }
 .confirmation{
