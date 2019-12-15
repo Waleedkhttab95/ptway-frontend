@@ -4,17 +4,11 @@ import { connect } from 'react-redux';
 import { adminLogin } from '../../store/actions/userAction';
 import Login from '../Login';
 // import User from '../User';
-import { Alert } from 'antd';
 const HomePage = props => {
   const { loggedIn, isAdmin, token } = props.user;
 
-  return loggedIn && token ? (
-    isAdmin ? (
-      <Redirect to="/admin/general/statistics" />
-    ) : (
-      // <User />
-      <Alert message="you are not an admin"></Alert>
-    )
+  return loggedIn && token && isAdmin ? (
+    <Redirect to="/admin/general/statistics" />
   ) : (
     <Login {...props} />
   );
@@ -33,7 +27,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

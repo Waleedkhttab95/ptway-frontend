@@ -151,8 +151,9 @@ class UserSearch extends Component {
 
     return (
       <React.Fragment>
-        <Row className="user-search">
-          <Col md={16}>
+        <div style={{ display: 'flex' }}>
+          {/* <Row className="user-search"> */}
+          <Col md={8}>
             <div className="input-container search-container">
               <Input
                 placeholder="ادخل رقم المستخدم"
@@ -273,9 +274,9 @@ class UserSearch extends Component {
               </Row>
             )}
           </Col>
-        </Row>
-        <Row className="user-search">
-          <Col md={16}>
+          {/* </Row> */}
+          {/* <Row className="user-search"> */}
+          <Col md={8}>
             <div className="input-container search-container">
               <Input
                 placeholder="ادخل البريد الالكتروني للمستخدم"
@@ -397,9 +398,9 @@ class UserSearch extends Component {
               </Row>
             )}
           </Col>
-        </Row>
-        <Row className="user-search">
-          <Col md={16}>
+          {/* </Row> */}
+          {/* <Row className="user-search"> */}
+          <Col md={8}>
             <div className="input-container search-container">
               <Input
                 placeholder="ادخل اسم المستخدم"
@@ -519,7 +520,8 @@ class UserSearch extends Component {
                 })
               : null}
           </Col>
-        </Row>
+          {/* </Row> */}
+        </div>
       </React.Fragment>
     );
   }
@@ -544,7 +546,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserSearch);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSearch);
