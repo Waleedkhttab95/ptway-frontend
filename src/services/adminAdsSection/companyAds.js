@@ -97,7 +97,7 @@ const ads = {
   },
   exportJobs: params => {
     return baseRequest
-      .get(`/get/phonenumbers/?jobAd=${params.jobId}`)
+      .get(`/get/phonenumbers/?jobAd=${params.jobId}`, loadState())
       .then(result => result)
       .catch(e => console.log(e));
   }

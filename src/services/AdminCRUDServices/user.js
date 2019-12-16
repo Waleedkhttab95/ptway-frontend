@@ -1,9 +1,10 @@
 import baseRequest from '../../_core';
+import { loadState } from '../../_core/localStorage';
 
 const userCRUD = {
   deleteUser: params => {
     return baseRequest
-      .delete('/delete/deleteUser', { user: { _id: params.id } })
+      .delete('/delete/deleteUser', { user: { _id: params.id } }, loadState())
       .then(result => {
         return result;
       })
@@ -15,7 +16,8 @@ const userCRUD = {
     return baseRequest
       .put(
         `/put/writeOnUser/?updateType=${params.type}&value=${params.value}`,
-        { user: { _id: params.id } }
+        { user: { _id: params.id } },
+        loadState()
       )
       .then(result => {
         return result;
@@ -26,7 +28,7 @@ const userCRUD = {
   },
   confirmUser: params => {
     return baseRequest
-      .put(`/confitm/user/?id=${params.id}`)
+      .put(`/confitm/user/?id=${params.id}`, loadState())
       .then(result => {
         return result;
       })
@@ -36,7 +38,7 @@ const userCRUD = {
   },
   blockUser: params => {
     return baseRequest
-      .put(`/block/user/?id=${params.id}`)
+      .put(`/block/user/?id=${params.id}`, loadState())
       .then(result => {
         return result;
       })
