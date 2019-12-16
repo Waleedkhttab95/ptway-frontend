@@ -9,7 +9,7 @@ const Header = () => {
     <Row className="home-page-header">
       <img src={headerBack} alt="header" className="img" />
       <div className="right-side">
-        <img src={headerLogo} className="logo" alt="logo" />
+        <img src={headerLogo} alt="logo" />
         <div className="navbar">
           <a>كيف نعمل</a>
           <a>الأسئلة الأكثر شيوعاً</a>
