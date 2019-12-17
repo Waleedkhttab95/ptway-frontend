@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "home": {
+            "title": "is it still working by the usual way",
+            "description": "All you have to do is registration in this platform in order to either find a suitable job for you or a find a suitable employee for you to work with ",
+            "startBtn": "Start Now!",
+            "companyLogin" : "Company Login",
+            "employeeLogin": "Employee Login",
+            "howWorks": "How we work",
+            "comQuestions" : "Common Questions",
+            "contact": "Contact Us"
+
+
+        }
+    }}
