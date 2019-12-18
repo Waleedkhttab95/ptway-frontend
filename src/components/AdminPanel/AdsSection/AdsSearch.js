@@ -93,18 +93,18 @@ class EditableTable extends React.Component {
     {
       title: ' الوظيفة',
       dataIndex: 'name',
-      width: '5%',
+      width: '7%',
       editable: true
     },
     {
-      title: 'اسم الشركة',
+      title: 'الشركة',
       dataIndex: 'company_name',
-      width: '5%'
+      width: '7%'
     },
     {
       title: 'المدينة',
       dataIndex: 'city',
-      width: '5%',
+      width: '7%',
       render: (text, record) => {
         const editable = this.isEditing(record);
         return editable ? (
@@ -130,14 +130,14 @@ class EditableTable extends React.Component {
       }
     },
     {
-      title: 'تخصص الشركة',
+      title: 'التخصص',
       dataIndex: 'company_sector',
-      width: '5%'
+      width: '7%'
     },
     {
-      title: 'ايميل الشركة',
+      title: 'البريد',
       dataIndex: 'company_email',
-      width: '10%'
+      width: '7%'
     },
     {
       title: 'الجنس',
@@ -153,25 +153,25 @@ class EditableTable extends React.Component {
     {
       title: 'مفعل',
       dataIndex: 'isLock',
-      width: '5%',
+      width: '7%',
       editable: true
     },
     {
       title: 'ايام العمل',
       dataIndex: 'work_days',
-      width: '5%',
+      width: '10%',
       editable: true
     },
     {
       title: 'الراتب',
       dataIndex: 'salary',
-      width: '5%',
+      width: '7%',
       editable: true
     },
     {
       title: ' ساعات العمل',
       dataIndex: 'work_hours',
-      width: '5%'
+      width: '10%'
       //   editable: true
     },
     // {
@@ -255,7 +255,7 @@ class EditableTable extends React.Component {
           <div>
             <Button onClick={() => this.exportJob(record.key)}>
               {' '}
-              Download as XLS
+              تصدير اكسل
             </Button>
             {ready && (
               <div>
@@ -436,7 +436,7 @@ class EditableTable extends React.Component {
 
     return (
       <React.Fragment>
-        <Row>
+        <Row style={{ justifyContent: 'center', display: 'flex' }}>
           <div className="input-container ads-search">
             <Input
               placeholder="بحث عن مشاريع شركة"

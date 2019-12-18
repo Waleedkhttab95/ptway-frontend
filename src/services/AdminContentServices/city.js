@@ -1,9 +1,10 @@
 import baseRequest from '../../_core';
+import { loadState } from '../../_core/localStorage';
 
 const citiesContent = {
   deleteCity: params => {
     return baseRequest
-      .delete('/delete/deleteCity', { city: { _id: params.id } })
+      .delete('/delete/deleteCity', { city: { _id: params.id } }, loadState())
       .then(result => {
         return result;
       })
@@ -13,11 +14,15 @@ const citiesContent = {
   },
   updateCity: params => {
     return baseRequest
-      .put('/put/writeOnCity', {
-        city: { _id: params.id },
-        type: params.type,
-        value: params.value
-      })
+      .put(
+        '/put/writeOnCity',
+        {
+          city: { _id: params.id },
+          type: params.type,
+          value: params.value
+        },
+        loadState()
+      )
       .then(result => {
         return result;
       })
@@ -27,10 +32,14 @@ const citiesContent = {
   },
   addCity: params => {
     return baseRequest
-      .post('/postcity', {
-        cityName: params.cityName,
-        countryName: params.countryName
-      })
+      .post(
+        '/postcity',
+        {
+          cityName: params.cityName,
+          countryName: params.countryName
+        },
+        loadState()
+      )
       .then(result => {
         return result;
       })
