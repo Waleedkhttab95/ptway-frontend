@@ -1,8 +1,10 @@
 import baseRequest from '../../_core';
+import { loadState } from '../../_core/localStorage';
+
 const companySearch = {
   companyById: params =>
     baseRequest
-      .get(`/get/searchCompanyById/?id=${params.id}`)
+      .get(`/get/searchCompanyById/?id=${params.id}`, loadState())
       .then(result => {
         return result;
       })
@@ -11,7 +13,7 @@ const companySearch = {
       }),
   companyByMail: params => {
     return baseRequest
-      .get(`/get/searchCompanyByEmail/?email=${params.email}`)
+      .get(`/get/searchCompanyByEmail/?email=${params.email}`, loadState())
       .then(result => {
         return result;
       })
@@ -21,7 +23,7 @@ const companySearch = {
   },
   companyByName: params => {
     return baseRequest
-      .get(`/get/searchCompanyByName/?companyName=${params.name}`)
+      .get(`/get/searchCompanyByName/?companyName=${params.name}`, loadState())
       .then(result => {
         return result;
       })

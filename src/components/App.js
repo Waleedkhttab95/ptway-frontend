@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AuthenticatedRoute from '../components/AuthenticatedRoute';
 import HomePage from './HomePage';
 import Statistics from './AdminPanel/Statistics';
 import Percentage from './AdminPanel/Statistics/Percentage';
@@ -17,6 +18,7 @@ import UserSetting from '../components/AdminPanel/setting/User';
 import CompanySetting from '../components/AdminPanel/setting/Company';
 import generalStatistics from '../components/AdminPanel/generalStatistics';
 import LandingPage from '../components/landingPage';
+import ErrorPage from '../components/ErrorPage';
 import './App.scss';
 
 const App = props => {
@@ -26,72 +28,72 @@ const App = props => {
         <Router>
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/general/statistics"
               component={AdminPanel(generalStatistics)}
             />
             <Route exact path="/admin" component={HomePage} />
-            <Route
-              exact
+            <AuthenticatedRoute
               path="/admin/statistics"
               component={AdminPanel(Statistics)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/percentage"
               component={AdminPanel(Percentage)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/company"
               component={AdminPanel(CompaniesStatistics)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/search/user"
               component={AdminPanel(UserSearch)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/search/company"
               component={AdminPanel(CompanySearch)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/content/cities"
               component={AdminPanel(CitiesContent)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/content/universities"
               component={AdminPanel(UniversityContent)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/content/majors"
               component={AdminPanel(MajorContent)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/ads/company"
               component={AdminPanel(CompanyAds)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/ads/search"
               component={AdminPanel(SearchAds)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/setting/user"
               component={AdminPanel(UserSetting)}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path="/admin/setting/company"
               component={AdminPanel(CompanySetting)}
             />
+            <Route to="*" component={ErrorPage} />
           </Switch>
         </Router>
       </div>
