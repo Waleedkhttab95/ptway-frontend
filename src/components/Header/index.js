@@ -84,6 +84,13 @@ class Header extends React.Component {
                 <a>{i18n.t('home.comQuestions')}</a>
                 <a>{i18n.t('home.comQuestions')}</a>
                 <a>{i18n.t('home.contact')}</a>
+                <a className="employeer-login-btn-mob">
+                  {i18n.t('home.employeeLogin')}
+                </a>
+                <a className="company-login-btn-mob">
+                  {' '}
+                  {i18n.t('home.companyLogin')}
+                </a>
               </div>
             </Drawer>
           </div>

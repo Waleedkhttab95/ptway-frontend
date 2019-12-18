@@ -137,9 +137,9 @@
     .home-page-header .right-side {
         right: 10px;
         >img{
-            width: 50px;
+            width: 100px;
             margin-right: 33px;
-            margin-top: 5px;
+            // margin-top: 5px;
         }
     }
     .home-page-header .left-side {
@@ -185,7 +185,7 @@
         background: #010f21;
     }
     .ant-drawer-content-wrapper{
-        width: 165px !important;
+        width: 175px !important;
     }
     .ant-drawer-wrapper-body{
         background: #011326 !important;
@@ -214,24 +214,26 @@
     .home-page-header .right-side {
         right: 10px;
         >img{
-            width: 70px;
+            width: 100px;
             margin-right: 33px;
-            margin-top: 5px;
+            // margin-top: 5px;
         }
     }
     .home-page-header .left-side {
         left: 10px;
     }
     .home-page-header .left-side .employeer-login-btn {
-        width: 110px;
-        height: 30px;
-        font-size: 11px;
-        margin-left: 5px;
+        // width: 110px;
+        // height: 30px;
+        // font-size: 11px;
+        // margin-left: 5px;
+        display: none;
     }
     .home-page-header .left-side .company-login-btn{
-        width: 110px;
-        height: 30px;
-        font-size: 11px;
+        // width: 110px;
+        // height: 30px;
+        // font-size: 11px;
+        display: none;
     }
     .home-page-header .middle-side {
         top: 74px;
@@ -256,7 +258,7 @@
         font-size: 28px;
     }
     .ant-drawer-content-wrapper{
-        width: 165px !important;
+        width: 175px !important;
     }
     .ant-drawer-header {
         background: #010f21;
