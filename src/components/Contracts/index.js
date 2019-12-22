@@ -4,41 +4,44 @@ import './contracts.scss';
 import shContractIc from '../../images/short.svg';
 import lngContract from '../../images/long.svg';
 import cuntContract from '../../images/continue.svg';
-const Contracts = () => {
+import { withTranslation } from 'react-i18next';
+
+const Contracts = props => {
+  const { i18n } = props;
   return (
     <Row className="contracts">
-      <h3 className="cont-title">أنواع العقود</h3>
+      <h3 className="cont-title">{i18n.t('home.contracts.title')}</h3>
       <div className="contracts-container">
         <div>
           <div className="contract">
             <img src={shContractIc} alt="shContract" />
-            <h4 className="cnt-sub-title"> عقود قصيرة</h4>
-            <p className="cnt-des">
+            <h4 className="cnt-sub-title">
               {' '}
-              هي عقود يتم الاتفاق عليها على أساس العمل لأيام إلى حد أقصى 30 يوم{' '}
-            </p>
+              {i18n.t('home.contracts.types.short')}
+            </h4>
+            <p className="cnt-des"> {i18n.t('home.contracts.types.sDesc')} </p>
           </div>
         </div>
         <div md={7}>
           <div className="contract">
             <img src={lngContract} alt="lngContract" />
-            <h4 className="cnt-sub-title"> عقود طويلة</h4>
+            <h4 className="cnt-sub-title">
+              {i18n.t('home.contracts.types.long')}{' '}
+            </h4>
             <p className="cnt-des">
               {' '}
-              هي عقود يتم الاتفاق عليها على أساس العمل لعدة اشهر إلى أن تصل كحد
-              أقصى ل6 اشهر{' '}
+              {i18n.t('home.contracts.types.longDesc')}{' '}
             </p>
           </div>
         </div>
         <div md={7}>
           <div className="contract">
             <img src={cuntContract} alt="cuntContract" />
-            <h4 className="cnt-sub-title"> عقود مستمرة</h4>
-            <p className="cnt-des">
+            <h4 className="cnt-sub-title">
               {' '}
-              هي العقود يتم الاتفاق عليها على اساس العمل بشكل سنوي ولايوجد حد
-              اقصى{' '}
-            </p>
+              {i18n.t('home.contracts.types.continuous')}
+            </h4>
+            <p className="cnt-des"> {i18n.t('home.contracts.types.cDesc')} </p>
           </div>
         </div>
       </div>
@@ -46,4 +49,4 @@ const Contracts = () => {
   );
 };
 
-export default Contracts;
+export default withTranslation()(Contracts);
