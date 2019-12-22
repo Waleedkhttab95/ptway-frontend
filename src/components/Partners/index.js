@@ -6,11 +6,14 @@ import amazon from '../../images/amazon.svg';
 import microsoft from '../../images/microsoft.svg';
 import uber from '../../images/uber.svg';
 import starbucks from '../../images/starbucks.svg';
-const Partners = () => {
+import { withTranslation } from 'react-i18next';
+
+const Partners = props => {
+  const { i18n } = props;
   return (
     <Row>
       <div className="partners">
-        <h3 className="prt-title">شركائنا</h3>
+        <h3 className="prt-title">{i18n.t('home.partners')}</h3>
         <div className="partners-names">
           <span className="navigator"> {'<'} </span>
           <img src={google} alt="google" />
@@ -27,4 +30,4 @@ const Partners = () => {
   );
 };
 
-export default Partners;
+export default withTranslation()(Partners);
