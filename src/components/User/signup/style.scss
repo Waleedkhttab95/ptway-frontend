@@ -193,3 +193,6 @@ input.ant-calendar-picker-input.ant-input{
     border: solid 1px #d9d9d9 !important;
     
 }
+.ant-steps-item-title::after {
+    right: 100%;
+  }

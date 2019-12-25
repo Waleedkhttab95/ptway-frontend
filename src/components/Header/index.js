@@ -104,7 +104,7 @@ class Header extends React.Component {
           </div>
         </div>
         <div className="left-side">
-          <Link className="employeer-login-btn" to="/user/signup/step1">
+          <Link className="employeer-login-btn" to="/user/signup">
             {i18n.t('home.employeeLogin')}
           </Link>
           <button className="company-login-btn">

@@ -96,7 +96,7 @@ const App = props => {
             />
             <AuthenticatedRoute
               exact
-              path="/user/signup/step1"
+              path="/user/signup"
               component={UserRegistration}
             />
 
