@@ -1,0 +1,195 @@
+.user-container{
+    background-color: #f3f3f3;
+    height: 100%;
+    width: 100%;
+}
+.signup-form{
+    padding-top: 60px;
+    // padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.steps-form{
+    width: 648px;
+  height: 351px;
+  border-radius: 10px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  margin-top: 60px;
+  .form-content{
+      padding: 30px 123px 0 0;
+      .f-title{
+          padding-right: 6px;
+          margin-top: 6px;
+          font-family: DINNextLTW23;
+            font-size: 18px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.22;
+            letter-spacing: normal;
+            text-align: right;
+            color: #000000;
+      }
+      .line{
+        width: 1440px;
+        height: 2px;
+        background-color: #f3f3f3;
+      }
+      
+  }
+}
+.form-fields{
+    display: flex;
+    flex-direction: column;
+    .info-label{
+    font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: right;
+  color: #b5b5b5;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  width: 100%;
+    }
+    .country-text{
+    width: 341px;
+    height: 32px;
+    }
+    .first-row{
+        display: flex;
+        .elements{
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+            .name-text{
+                width: 241px;
+                height: 32px;
+                border: solid 1px #d9d9d9 !important;
+            }
+            
+        }
+    }
+    .major-text{
+        height: 32px;
+        width:510px;
+        border: solid 1px #d9d9d9 !important;
+    }
+}
+.steps-action{
+    position: absolute;
+    bottom: 20px;
+    width: 191px;
+    height: 35px;
+    top: 60%;
+    right: 36%;
+    border-radius: 6px;
+    background-color: #3598d4;
+}
+// .steps-header-line{
+//     width: 112px;
+//     height: 47px;
+//     border-bottom: 1px solid black;
+//     position: absolute;
+// }
+.steps-header{
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+    text-align: center;
+    >span{
+        display: flex;
+        justify-content: center;
+        width: 70%;
+        font-family: DINNextLTW23;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.57;
+      letter-spacing: normal;
+      text-align: center;
+      color: #000000;
+      margin-top: 10px;
+    }
+}
+
+
+.ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
+    width: 450px;
+}
+.ant-select-arrow {
+    right:auto;
+    left: 11px;
+}
+.ant-select-selection__placeholder, .ant-select-search__field__placeholder {
+    right: 3px;
+    left: auto;
+}
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+.first-step-btn{
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    padding-right: 10px;
+    border-color: transparent;
+    float: right !important;
+}
+.last-step-btn{
+    width: 255px;
+  height: 35px;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    padding-right: 10px;
+    border-color: transparent;
+    border-radius: 6px !important;
+  background-color: #3598d4 !important;
+     
+}
+button.ant-btn {
+    background-color: transparent;
+}
+.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+    background-color: transparent;
+}
+.ant-select-dropdown-menu-item-active:hover:not(.ant-select-dropdown-menu-item-disabled) {
+    // background-color: transparent;
+    width: 100%
+}
+.ant-select-selection-selected-value {
+    float: right;
+}
+.user-signup-datepicker{
+    width: 341px;
+  height: 32px;
+  border-radius: 5px;
+  background-color: #fdfdfd;
+}
+input.ant-calendar-picker-input.ant-input{
+    border: solid 1px #d9d9d9 !important;
+    
+}

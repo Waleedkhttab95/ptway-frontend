@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Drawer } from 'antd';
+import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import headerBack from '../../images/header.png';
 import './header.scss';
@@ -103,9 +104,9 @@ class Header extends React.Component {
           </div>
         </div>
         <div className="left-side">
-          <button className="employeer-login-btn">
+          <Link className="employeer-login-btn" to="/user/signup/step1">
             {i18n.t('home.employeeLogin')}
-          </button>
+          </Link>
           <button className="company-login-btn">
             {' '}
             {i18n.t('home.companyLogin')}
