@@ -5,6 +5,17 @@ const initialUser = {
 
 const user = (state = initialUser, action) => {
   switch (action.type) {
+    case 'USER_SIGNUP_SUCCESS':
+      return {
+        ...state,
+        token: action.payload.token,
+        loggedIn: true
+      };
+    case 'USER_INFO_SUCCESS':
+      return {
+        ...state,
+        userInfo: action.payload
+      };
     case 'LOGIN_ADMIN_SUCCESS':
       return {
         ...action.payload,

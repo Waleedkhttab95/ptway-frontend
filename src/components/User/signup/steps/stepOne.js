@@ -1,41 +1,54 @@
 import React from 'react';
 import { Select } from 'antd';
 import countryIcon from '../../../../images/home-country-icon.svg';
-
+import _ from 'lodash';
 const { Option } = Select;
-class step1Form extends React.Component {
-  render() {
-    return (
-      <div className="steps-form">
-        <div className="form-content">
-          <img src={countryIcon} />
-          <span className="f-title">الدولة ومكان السكن</span>
-          <span className="line"></span>
-          <div className="form-fields">
-            <label className="info-label">الدولة</label>
-            <Select
-              //   placeholder="الدولة"
-              onChange={this.handleSelectChange}
-              className="country-text"
-            >
-              <Option value="male">المملكة العربية السعودية</Option>
-              {/* <Option value="female">female</Option> */}
-            </Select>
-            <label className="info-label">المدينة</label>
-            <Select
-              //   placeholder="المدينة"
-              onChange={this.handleSelectChange}
-              className="country-text"
-            >
-              <Option value="الرياض">الرياض</Option>
-
-              <Option value="الدماما">الدمام</Option>
-            </Select>
-          </div>
+const step1Form = props => {
+  console.log('props', props);
+  const { handleChange, countries, cities } = props;
+  return (
+    <div className="steps-form">
+      <div className="form-content">
+        <img src={countryIcon} />
+        <span className="f-title">الدولة ومكان السكن</span>
+        <span className="line"></span>
+        <div className="form-fields">
+          <label className="info-label">الدولة</label>
+          <Select
+            onChange={value => handleChange(value, 'country')}
+            name="country"
+            className="country-text"
+          >
+            {_.isArray(countries)
+              ? countries.map(elm => {
+                  return (
+                    <Option value={elm.id} key={elm.id}>
+                      {elm.value}
+                    </Option>
+                  );
+                })
+              : null}
+          </Select>
+          <label className="info-label">المدينة</label>
+          <Select
+            name="city"
+            onChange={value => handleChange(value, 'city')}
+            className="country-text"
+          >
+            {_.isArray(cities)
+              ? cities.map(elm => {
+                  return (
+                    <Option value={elm.id} key={elm.id}>
+                      {elm.value}
+                    </Option>
+                  );
+                })
+              : ''}
+          </Select>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default step1Form;

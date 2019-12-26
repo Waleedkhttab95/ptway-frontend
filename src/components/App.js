@@ -20,6 +20,7 @@ import generalStatistics from '../components/Admin/generalStatistics';
 import LandingPage from '../components/pages/landingPage';
 import ErrorPage from '../components/pages/ErrorPage';
 import UserRegistration from './User/signup/index';
+import UserHome from './User/index';
 import './App.scss';
 
 const App = props => {
@@ -94,11 +95,8 @@ const App = props => {
               path="/admin/setting/company"
               component={AdminPanel(CompanySetting)}
             />
-            <AuthenticatedRoute
-              exact
-              path="/user/signup"
-              component={UserRegistration}
-            />
+            <Route exact path="/user/signup" component={UserRegistration} />
+            <Route exact path="/user/home" component={UserHome} />
 
             <Route to="*" component={ErrorPage} />
           </Switch>
