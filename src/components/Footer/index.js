@@ -8,7 +8,7 @@ import ptwayLogoFooter from '../../images/ptwayLogoFooter.png';
 
 const Footer = () => {
   return (
-    <Row>
+    <Row className="footer-container">
       <div className="footer">
         <div className="footer-logo">
           <img src={ptwayLogoFooter} alt="ptwayLogoFooter" />

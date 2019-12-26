@@ -41,9 +41,26 @@
                     "accounting" :"Accounting"
                 }
             },
-            "partners" : "Partners"
+            "partners" : "Partners",
+            "contact-reason" : "why are you contacting?",
+            "contact-report" : "Report ",
+            "contact-ads": "advertising ",
+            "general-help": "general help ",
+            "contact-fullname": "full name",
+            "contact-email":"email",
+            "contact-message" : "message",
+            "contact-title": "title",
+            "contact-send-btn": "send ",
+            "coQuestions":{
+                "question1" :"what are the inital steps to register a new  company in the website",
+                "question2" :"what are the inital steps to register a new  employee in the website",
+                "question3": "what are the inital steps to register a new  company in the website",
+                "question4": "what are the inital steps to register a new  company in the website",
+                "question5": "what are the inital steps to register a new  company in the website"
+            }
 
 
 
         }
-    }}
+    }
+}

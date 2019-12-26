@@ -23,8 +23,6 @@ i18n
     }
   })
   .then(() => {
-    console.log('heeeeeere :((');
-
     store.subscribe(() => {
       saveState({
         user: store.getState().user
