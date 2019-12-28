@@ -17,6 +17,7 @@ const step4Form = props => {
                 className="name-text"
                 name="email"
                 onChange={handleChange}
+                type="email"
               />
             </div>
             <div className="elements">
@@ -25,6 +26,7 @@ const step4Form = props => {
                 className="name-text"
                 name="re-email"
                 onChange={handleChange}
+                type="email"
               />
             </div>
           </div>
@@ -35,6 +37,7 @@ const step4Form = props => {
                 className="name-text"
                 name="password"
                 onChange={handleChange}
+                type="password"
               />
             </div>
             <div className="elements">
@@ -43,6 +46,7 @@ const step4Form = props => {
                 className="name-text"
                 name="re-password"
                 onChange={handleChange}
+                type="password"
               />
             </div>
           </div>
