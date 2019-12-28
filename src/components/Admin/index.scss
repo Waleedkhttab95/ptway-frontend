@@ -33,6 +33,19 @@
     font-size: 26px;
 
 }
+.admin-login-logo {
+    width: 600px;
+    height: 300px;
+}
+.admin-logo-container{
+    display: flex;
+    justify-content: center;
+}
+.login-form{
+    display: flex;
+    justify-content: center;
+    // flex-direction: column
+}
 .logout{
     float: left;
     background-color: #40a9ff;

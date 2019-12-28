@@ -87,7 +87,7 @@
     // bottom: 20px;
     width: 191px;
     height: 35px;
-    top: 60%;
+    top: 500px;
     right: 36%;
     border-radius: 6px;
     background-color: #3598d4;
@@ -198,3 +198,9 @@ input.ant-calendar-picker-input.ant-input{
 .ant-steps-item-title::after {
     right: 100%;
   }
+
+.registration-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

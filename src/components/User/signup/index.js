@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Steps, Button } from 'antd';
+import { Steps, Button, Layout } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
 import Step3 from './steps/stepThree';
@@ -123,49 +123,52 @@ class UserSignup extends React.Component {
     ];
     return (
       <React.Fragment>
-        <div className="user-container">
-          <div className="signup-form">
-            <Steps current={current}>
-              {steps.map(item => (
-                <Step key={item.title} />
-              ))}
-            </Steps>
-            <div className="steps-header">
-              <span> الدولة والمدينة</span>
-              <span>معلومات شخصية</span>
-              <span>معلومات شخصية اخرى</span>
-              <span>معلومات الحساب</span>
-            </div>
-            <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action">
-              {current < steps.length - 1 && (
-                <Button
-                  className="first-step-btn"
-                  type="primary"
-                  onClick={() => this.next()}
-                >
-                  الانتقال للخطوة التالية
-                </Button>
-              )}
-              {current === steps.length - 1 && (
-                <Button
-                  type="primary"
-                  className="last-step-btn"
-                  onClick={this.signup}
-                >
-                  الانتهاء والانتقال للصفحة الرئيسية
-                </Button>
-              )}
-              {/* {current > 0 && (
+        <Layout style={{ background: '#f3f3f3', height: '100%' }}>
+          <div className="user-container">
+            <div className="signup-form">
+              <Steps current={current}>
+                {steps.map(item => (
+                  <Step key={item.title} />
+                ))}
+              </Steps>
+              <div className="steps-header">
+                <span> الدولة والمدينة</span>
+                <span>معلومات شخصية</span>
+                <span>معلومات شخصية اخرى</span>
+                <span>معلومات الحساب</span>
+              </div>
+              <div className="steps-content">{steps[current].content}</div>
+              <div className="steps-action">
+                {current < steps.length - 1 && (
+                  <Button
+                    className="first-step-btn"
+                    type="primary"
+                    onClick={() => this.next()}
+                  >
+                    الانتقال للخطوة التالية
+                  </Button>
+                )}
+                {current === steps.length - 1 && (
+                  <Button
+                    type="primary"
+                    className="last-step-btn"
+                    onClick={this.signup}
+                  >
+                    الانتهاء والانتقال للصفحة الرئيسية
+                  </Button>
+                )}
+                {/* {current > 0 && (
                 <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
                   Previous
-                </Button>
-              )} */}
+                  </Button>
+                )} */}
+              </div>
             </div>
           </div>
-        </div>
-
-        <Footer />
+          <div className="registration-footer">
+            <Footer />
+          </div>
+        </Layout>
       </React.Fragment>
     );
   }
