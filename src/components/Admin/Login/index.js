@@ -25,8 +25,8 @@ class Login extends Component {
 
     return (
       <React.Fragment>
-        <Row className="logo-container">
-          <img src={logo} alt="logo" className="logo" />
+        <Row className="admin-logo-container">
+          <img src={logo} alt="logo" className="admin-login-logo" />
         </Row>
         <Row className="login-form">
           <Col md={8} xs={20}>
