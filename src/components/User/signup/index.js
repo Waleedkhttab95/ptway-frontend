@@ -50,7 +50,8 @@ class UserSignup extends React.Component {
       case 0:
         if (!country || !city) {
           this.setState({
-            err: 'هذا الحقل مطلوب'
+            countryError: 'هذا الحقل مطلوب',
+            cityError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -60,7 +61,8 @@ class UserSignup extends React.Component {
       case 1:
         if (!gender || !birthDate) {
           this.setState({
-            err: 'هذا الحقل مطلوب'
+            genderError: 'هذا الحقل مطلوب',
+            dateError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -70,7 +72,9 @@ class UserSignup extends React.Component {
       case 2:
         if (!firstName || !lastName || !major) {
           this.setState({
-            err: 'هذا الحقل مطلوب'
+            firstNameError: 'هذا الحقل مطلوب',
+            lastNameError: 'هذا الحقل مطلوب',
+            majorError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -110,11 +114,19 @@ class UserSignup extends React.Component {
       birthDate,
       country,
       city,
-      major
+      major,
+      reEmail,
+      rePassword
     } = this.state;
     if (!email || !password) {
       this.setState({
-        err: 'هذا الحقل مطلوب'
+        emailError: 'هذا الحقل مطلوب',
+        passwordError: 'هذا الحقل مطلوب'
+      });
+    } else if (email !== reEmail || password !== rePassword) {
+      this.setState({
+        emailMatchError: 'البريد الالكتروني غير متطابق',
+        passwordMatchError: 'كلمة المرور غير متطابقة'
       });
     } else {
       await register({
@@ -123,7 +135,6 @@ class UserSignup extends React.Component {
         email,
         password
       });
-      console.log('heeell', user.token);
 
       if (user.token) {
         await userExtraInfo({
@@ -152,19 +163,12 @@ class UserSignup extends React.Component {
             countries={countries}
             cities={cities}
             state={this.state}
-            error={this.state.err}
           />
         )
       },
       {
         title: 'معلومات شخصية',
-        content: (
-          <Step2
-            handleChange={this.handleChange}
-            error={this.state.err}
-            state={this.state}
-          />
-        )
+        content: <Step2 handleChange={this.handleChange} state={this.state} />
       },
       {
         // title: 'معلومات شخصية اخرى',
@@ -174,18 +178,13 @@ class UserSignup extends React.Component {
             handleSelect={this.handleChange}
             majors={majors}
             state={this.state}
-            error={this.state.err}
           />
         )
       },
       {
         title: 'معلومات الحساب',
         content: (
-          <Step4
-            handleChange={this.handleInputsChange}
-            state={this.state}
-            error={this.state.err}
-          />
+          <Step4 handleChange={this.handleInputsChange} state={this.state} />
         )
       }
     ];
