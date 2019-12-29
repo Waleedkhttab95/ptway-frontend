@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 
 const step4Form = props => {
-  const { handleChange } = props;
+  const { handleChange, error, state } = props;
   return (
     <div className="steps-form">
       <div className="form-content" style={{ padding: '30px 53px 0 0' }}>
@@ -19,6 +19,9 @@ const step4Form = props => {
                 onChange={handleChange}
                 type="email"
               />
+              <span style={{ color: 'red' }}>
+                {error && !state.email ? error : ''}
+              </span>
             </div>
             <div className="elements">
               <label className="info-label">تأكيد البريد الالكتروني</label>
@@ -28,6 +31,7 @@ const step4Form = props => {
                 onChange={handleChange}
                 type="email"
               />
+              {/* <span style={{ color: 'red' }}>{error ? error : ''}</span> */}
             </div>
           </div>
           <div className="first-row">
@@ -39,6 +43,9 @@ const step4Form = props => {
                 onChange={handleChange}
                 type="password"
               />
+              <span style={{ color: 'red' }}>
+                {error && !state.password ? error : ''}
+              </span>
             </div>
             <div className="elements">
               <label className="info-label">تأكيد كلمة المرور</label>
@@ -48,6 +55,7 @@ const step4Form = props => {
                 onChange={handleChange}
                 type="password"
               />
+              {/* <span style={{ color: 'red' }}>{error ? error : ''}</span> */}
             </div>
           </div>
         </div>
