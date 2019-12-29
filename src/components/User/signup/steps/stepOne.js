@@ -5,7 +5,9 @@ import _ from 'lodash';
 const { Option } = Select;
 const step1Form = props => {
   console.log('props', props);
-  const { handleChange, countries, cities } = props;
+  const { handleChange, countries, cities, error, state } = props;
+  console.log('errror', error, state);
+
   return (
     <div className="steps-form">
       <div className="form-content">
@@ -29,6 +31,9 @@ const step1Form = props => {
                 })
               : null}
           </Select>
+          <span style={{ color: 'red' }}>
+            {error && !state.country ? error : ''}
+          </span>
           <label className="info-label">المدينة</label>
           <Select
             name="city"
@@ -45,6 +50,9 @@ const step1Form = props => {
                 })
               : ''}
           </Select>
+          <span style={{ color: 'red' }}>
+            {error && !state.city ? error : ''}
+          </span>
         </div>
       </div>
     </div>

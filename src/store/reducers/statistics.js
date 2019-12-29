@@ -28,6 +28,11 @@ const statistics = (state = initialStatistics, action) => {
         ...state,
         growth: action.payload
       };
+    case 'USER_INFO_SUCCESS':
+      return {
+        // ...state,
+        userInfo: action.payload
+      };
     default:
       return state;
   }

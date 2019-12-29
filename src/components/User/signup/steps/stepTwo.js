@@ -4,7 +4,7 @@ import personalInfoIcon from '../../../../images/personal-info-icon.svg';
 
 const { Option } = Select;
 const step2Form = props => {
-  const { handleChange } = props;
+  const { handleChange, error, state } = props;
   return (
     <div className="steps-form">
       <div className="form-content">
@@ -20,12 +20,18 @@ const step2Form = props => {
             <Option value="ذكر">ذكر</Option>
             <Option value="أنثى">أنثى</Option>
           </Select>
+          <span style={{ color: 'red' }}>
+            {error && !state.gender ? error : ''}
+          </span>
           <label className="info-label">تاريخ الميلاد</label>
           <DatePicker
             className="user-signup-datepicker"
             placeholder="اختر التاريخ"
             onChange={value => handleChange(value, 'birthDate')}
           />
+          <span style={{ color: 'red' }}>
+            {error && !state.birthDate ? error : ''}
+          </span>
         </div>
       </div>
     </div>

@@ -93,6 +93,12 @@
     border-radius: 6px;
     background-color: #3598d4;
 }
+.first-step-btn:hover{
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent !important;
+}
 // .steps-header-line{
 //     width: 112px;
 //     height: 47px;
@@ -133,12 +139,12 @@
     right: 3px;
     left: auto;
 }
-.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
-    text-decoration: none;
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-}
+// .ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+//     text-decoration: none;
+//     color: #fff;
+//     background-color: transparent;
+//     border-color: transparent;
+// }
 .first-step-btn{
     font-family: DINNextLTW23;
     font-size: 14px;

@@ -15,11 +15,12 @@ const baseRequest = {
   addHeader: token => {
     let sessionToken = null;
     if (isUserLoggedIn()) {
-      sessionToken = loadState().user.token;
+      console.log('token', token);
+
+      sessionToken = loadState().user;
     }
 
-    axios.defaults.headers.common['Authorization'] =
-      'Bearer ' + (sessionToken || token);
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
   },
   clearHeader: () => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ';

@@ -32,6 +32,7 @@ const userServices = {
         loadState()
       )
       .then(result => {
+        console.log('loadState', loadState());
         return result;
       })
       .catch(e => {

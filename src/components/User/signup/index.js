@@ -19,7 +19,9 @@ class UserSignup extends React.Component {
   state = {
     current: 0,
     city: '',
-    country: ''
+    country: '',
+    countryErr: '',
+    cityError: ''
   };
 
   componentDidMount = async () => {
@@ -34,8 +36,48 @@ class UserSignup extends React.Component {
   };
 
   next = () => {
-    const current = this.state.current + 1;
-    this.setState({ current });
+    const {
+      country,
+      city,
+      gender,
+      birthDate,
+      firstName,
+      lastName,
+      major
+    } = this.state;
+    let current = this.state.current;
+    switch (current) {
+      case 0:
+        if (!country || !city) {
+          this.setState({
+            err: 'هذا الحقل مطلوب'
+          });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
+        }
+        break;
+      case 1:
+        if (!gender || !birthDate) {
+          this.setState({
+            err: 'هذا الحقل مطلوب'
+          });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
+        }
+        break;
+      case 2:
+        if (!firstName || !lastName || !major) {
+          this.setState({
+            err: 'هذا الحقل مطلوب'
+          });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
+        }
+        break;
+    }
   };
 
   prev = () => {
@@ -57,8 +99,8 @@ class UserSignup extends React.Component {
     });
   };
 
-  signup = () => {
-    const { register, userExtraInfo, user } = this.props;
+  signup = async () => {
+    const { register, userExtraInfo, user, userInfo } = this.props;
     const {
       firstName,
       lastName,
@@ -70,22 +112,32 @@ class UserSignup extends React.Component {
       city,
       major
     } = this.state;
-    register({
-      firstName,
-      lastName,
-      email,
-      password
-    });
-    userExtraInfo({
-      gender,
-      birthDate,
-      country,
-      city,
-      major,
-      fullName: firstName + lastName
-    });
-    if (user.userInfo) {
-      history.push('/user/home');
+    if (!email || !password) {
+      this.setState({
+        err: 'هذا الحقل مطلوب'
+      });
+    } else {
+      await register({
+        firstName,
+        lastName,
+        email,
+        password
+      });
+      console.log('heeell', user.token);
+
+      if (user.token) {
+        await userExtraInfo({
+          gender,
+          birthDate,
+          country,
+          city,
+          major,
+          fullName: firstName + ' ' + lastName
+        });
+        if (userInfo) {
+          history.push('/user/home');
+        }
+      }
     }
   };
 
@@ -99,12 +151,20 @@ class UserSignup extends React.Component {
             handleChange={this.handleChange}
             countries={countries}
             cities={cities}
+            state={this.state}
+            error={this.state.err}
           />
         )
       },
       {
         title: 'معلومات شخصية',
-        content: <Step2 handleChange={this.handleChange} />
+        content: (
+          <Step2
+            handleChange={this.handleChange}
+            error={this.state.err}
+            state={this.state}
+          />
+        )
       },
       {
         // title: 'معلومات شخصية اخرى',
@@ -113,12 +173,20 @@ class UserSignup extends React.Component {
             handleChange={this.handleInputsChange}
             handleSelect={this.handleChange}
             majors={majors}
+            state={this.state}
+            error={this.state.err}
           />
         )
       },
       {
         title: 'معلومات الحساب',
-        content: <Step4 handleChange={this.handleInputsChange} />
+        content: (
+          <Step4
+            handleChange={this.handleInputsChange}
+            state={this.state}
+            error={this.state.err}
+          />
+        )
       }
     ];
     return (
@@ -175,7 +243,8 @@ class UserSignup extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    userInfo: state.statistics
   };
 };
 const mapDispatchToProps = dispatch => {
