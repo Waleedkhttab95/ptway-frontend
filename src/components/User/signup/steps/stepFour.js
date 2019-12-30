@@ -38,7 +38,9 @@ const step4Form = props => {
                 type="email"
               />
               <span style={{ color: 'red' }}>
-                {emailMatchError && !state.reEmail ? emailMatchError : ''}
+                {state.email !== state.reEmail || !state.reEmail
+                  ? emailMatchError
+                  : ''}
               </span>
             </div>
           </div>
@@ -64,7 +66,7 @@ const step4Form = props => {
                 type="password"
               />
               <span style={{ color: 'red' }}>
-                {passwordMatchError && !state.rePassword
+                {state.password !== state.rePassword || !state.rePassword
                   ? passwordMatchError
                   : ''}
               </span>

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { loadState } from './localStorage';
+import { loadState, saveState } from './localStorage';
 import config from './config';
 
-const isUserLoggedIn = () => !!(loadState().user && loadState().user.loggedIn);
+// const isUserLoggedIn = () => !!(loadState().user && loadState().user.loggedIn);
 
 const baseUrl = config.getBasePublicUrl() + 'api';
 
@@ -12,15 +12,22 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const baseRequest = {
-  addHeader: token => {
+  addHeader: () => {
     let sessionToken = null;
-    if (isUserLoggedIn()) {
-      console.log('token', token);
+    // if (isUserLoggedIn()) {
+    sessionToken = loadState().token;
+    // }
 
-      sessionToken = loadState().user;
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionToken;
+  },
+  setLocalStorage: token => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.token;
+      // console.log('iam here', store.getState().user);
+      // store.subscribe(() => {
+      saveState(token);
+      // });
     }
-
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
   },
   clearHeader: () => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ';

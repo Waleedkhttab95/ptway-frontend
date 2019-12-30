@@ -31,7 +31,12 @@ const statistics = (state = initialStatistics, action) => {
     case 'USER_INFO_SUCCESS':
       return {
         // ...state,
-        userInfo: action.payload
+        result: action.payload
+      };
+    case 'USER_INFO_ERROR':
+      return {
+        // ...state,
+        error: action.payload
       };
     default:
       return state;

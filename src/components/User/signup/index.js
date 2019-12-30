@@ -1,14 +1,12 @@
 import React from 'react';
 import './style.scss';
-import { Steps, Button, Layout } from 'antd';
+import { Steps, Button, Layout, Alert } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
 import Step3 from './steps/stepThree';
 import Step4 from './steps/stepFour';
 import Footer from '../../Footer';
 import { connect } from 'react-redux';
-import history from '../../../_core/history';
-
 import { userSignup, userInfo } from '../../../store/actions/userAction';
 import statatisticsService from '../../../services/statisticsService';
 
@@ -123,9 +121,12 @@ class UserSignup extends React.Component {
         emailError: 'هذا الحقل مطلوب',
         passwordError: 'هذا الحقل مطلوب'
       });
-    } else if (email !== reEmail || password !== rePassword) {
+    } else if (email !== reEmail) {
       this.setState({
-        emailMatchError: 'البريد الالكتروني غير متطابق',
+        emailMatchError: 'البريد الالكتروني غير متطابق'
+      });
+    } else if (password !== rePassword) {
+      this.setState({
         passwordMatchError: 'كلمة المرور غير متطابقة'
       });
     } else {
@@ -135,25 +136,28 @@ class UserSignup extends React.Component {
         email,
         password
       });
+      console.log('userrr', user.token);
 
-      if (user.token) {
-        await userExtraInfo({
-          gender,
-          birthDate,
-          country,
-          city,
-          major,
-          fullName: firstName + ' ' + lastName
-        });
-        if (userInfo) {
-          history.push('/user/home');
-        }
-      }
+      // if (user.token) {
+      await userExtraInfo({
+        gender,
+        birthDate,
+        country,
+        city,
+        major,
+        fullName: firstName + ' ' + lastName
+      });
+      console.log('userInfo.result', userInfo);
+
+      const { history } = this.props;
+      history.push('/user/home');
     }
   };
 
   render() {
     const { current, countries, cities, majors } = this.state;
+    const { user } = this.props;
+
     const steps = [
       {
         title: 'الدولة',
@@ -205,6 +209,15 @@ class UserSignup extends React.Component {
                 <span>معلومات الحساب</span>
               </div>
               <div className="steps-content">{steps[current].content}</div>
+              {user.error ? (
+                <Alert
+                  message={user.error.response.data}
+                  type="error"
+                  className="error-alert"
+                />
+              ) : (
+                ''
+              )}
               <div className="steps-action">
                 {current < steps.length - 1 && (
                   <Button
