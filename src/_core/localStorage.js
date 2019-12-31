@@ -10,10 +10,8 @@ export const loadState = () => {
 
 export const saveState = value => {
   try {
-    if (!value.user.error) {
-      const state = JSON.stringify(value);
-      localStorage.setItem('state', state);
-    }
+    const state = JSON.stringify(value);
+    localStorage.setItem('state', state);
   } catch (err) {
     return { err };
   }

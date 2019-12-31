@@ -6,7 +6,7 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      loadState().user.isAdmin ? (
+      loadState().isAdmin ? (
         <Component {...props} />
       ) : (
         <Redirect
