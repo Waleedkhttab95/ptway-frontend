@@ -1,0 +1,337 @@
+.user-home{
+    padding: 32px 135px;
+    .user-profile{
+        display: flex;
+        .right-section{
+            margin-top: 17px;
+            margin-left: 20px;
+            .personal-info {
+                width: 287px;
+                height: 388px;
+                border-radius: 7px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #ffffff;
+                margin-bottom: 20px;
+                .user-pic-info{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .u-pic{
+                    //   width: 106px;
+                    //    height: 106px;
+                       font-size: 100px;
+                       margin-top:28px;
+                    }
+                    .fullname{
+                        font-family: DINNextLTW23;
+                        font-size: 16px;
+                        font-weight: bold;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: normal;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #343434;
+                    }
+                    .job-date{
+                        font-family: DINNextLTW23;
+                        font-size: 14px;
+                        font-weight: 500;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.71;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #bdbdbd;
+                    }
+                    .job-type{
+                        font-family: DINNextLTW23;
+                        font-size: 14px;
+                        font-weight: 500;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.71;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #009ad0;
+                    }
+                }
+                .details-user-info{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    padding-right: 21px;
+                    >span{
+                        font-family: DINNextLTW23;
+                        font-size: 14px;
+                        font-weight: 500;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: normal;
+                        letter-spacing: normal;
+                        text-align: right;
+                        color: #898989;
+                        margin-top: 10px;
+                        > i{
+                            padding-left: 15px;
+                        }
+                    }
+                }
+            }
+            .user-profile-complete {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 287px;
+                height: 262px;
+                border-radius: 7px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #ffffff;
+                .u-p-title{
+                    font-family: DINNextLTW23;
+                    font-size: 14px;
+                    font-weight: 500;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #333333;
+                }
+                .u-p-desc{
+                    font-family: DINNextLTW23;
+                    font-size: 12px;
+                    font-weight: 500;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #bababa;
+                }
+                .completion-chart{
+                    width: 110px;
+                // height: 110px;
+                // transform: rotate(180deg);
+                // box-shadow: -7px -9px 12px 0 rgba(0, 0, 0, 0.12);
+                // border: solid 4px #009ad0;
+                width: 110px;
+  height: 110px;
+  transform: rotate(180deg);
+  box-shadow: -7px -9px 12px 0 rgba(0, 0, 0, 0.12);
+  border: solid 4px #009ad0;
+                }
+            }
+            .update-profile-btn{
+                width: 287px;
+                height: 55px;
+                border-radius: 6px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #3b3b3b;
+                margin-top: 20px;
+                font-family: DINNextLTW23;
+                font-size: 14px;
+                font-weight: bold;
+                color:#fff;
+                cursor: pointer;
+            }
+
+        }
+    .left-section{
+        margin-top: 17px;
+        .user-progress{
+            display: flex;
+            .user-hours-work{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 275px;
+                height: 112px;
+                border-radius: 7px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #009ad0;
+                margin-left: 20px;
+                font-family: DINNextLTW23;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: right;
+                color: #ffffff;
+            }
+            .user-jobs{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 275px;
+                height: 112px;
+                border-radius: 7px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #34add9;
+                margin-left: 20px;
+                font-family: DINNextLTW23;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: right;
+                color: #ffffff;
+
+            }
+            .user-profile-seen {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 275px;
+                height: 112px;
+                border-radius: 7px;
+                box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+                background-color: #68c3e3;
+                font-family: DINNextLTW23;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: right;
+                color: #ffffff;
+            }
+        }
+        .skills-general-info{
+            width: 863px;
+            height: 1104px;
+            border-radius: 10px;
+            box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+            background-color: #ffffff;
+            margin-top: 20px;
+            padding: 30px 50px 0 125px;
+            .preif-section{
+                .p-title {
+                    border-bottom: solid 1px #d4d4d4;
+                    padding-bottom: 12px;
+                }
+                .p-subject{
+                    font-family: DINNextLTW23;
+                    font-size: 14px;
+                    font-weight: 500;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.71;
+                    letter-spacing: normal;
+                    text-align: right;
+                    color: #898989;
+                    padding-top: 19px;
+                    padding-bottom: 54px;
+                }
+            }
+            .education-section{
+                .e-title{
+                    border-bottom: solid 1px #d4d4d4;
+                    padding-bottom: 12px;   
+                }
+            }
+            .general-section{
+                .g-title{
+                    border-bottom: solid 1px #d4d4d4;
+                    padding-bottom: 12px;     
+                }
+                .g-body{
+                    padding-top: 18px;
+                    padding-right: 25px;
+                    display: flex;
+                    .skills-hobbies, .tech-lang{
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                    }
+                }
+            }
+            .general-skills{
+                padding-top: 55px;
+                .sk-title{
+                    border-bottom: solid 1px #d4d4d4;
+                    padding-bottom: 12px;   
+                }
+            }
+        }
+    }
+    }
+}
+.h-title{
+    font-family: DINNextLTW23;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #222222;
+    >i{
+        padding-left: 10px;
+    }
+
+}
+.sub-h-title{
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #343434;
+    padding-top: 25px;
+
+}
+.sub-desc{
+    font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: right;
+  color: #898989;
+}
+.user-stc-number{
+    font-size: 30px;
+}
+.warning-alert {
+    margin-bottom: 10px;
+    border-color: transparent;
+    >span {
+        font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #e9aa5d;
+}
+}
+.info-alert {
+    border-color: transparent;
+    >span {
+        font-family: DINNextLTW23;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #62b1dc;
+    }
+}

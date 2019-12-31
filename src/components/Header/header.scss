@@ -128,7 +128,62 @@
 .drawer-mobile{
     display: none;
 }
+.user-header{
+    height: 76px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .user-right-side {
+        padding-right: 135px;
+        >a{
+            font-family: DINNextLTW23;
+            font-size: 16px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #343434;
+            padding-right: 40px;
+        }
+    }
+    .user-left-side{
+        display: flex;
+        padding-left: 135px;
+        .user-header-btn{
+            margin-right: 29px;
+            width: 80px;
+            font-family: DINNextLTW23;
+            font-size: 16px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #343434;
+            background: transparent;
+            border-color: transparent;
+            box-shadow: 0 2px 11px 0 #fff;
+
+            
+        }
+       .user-header-btn:hover{
+        height: 32px;
+        border-radius: 6px;
+        color: #fff;
+        background-color: #3b96d9;
+       } 
+
+    }
+}
+.plus-icon{
+    color: #fff;
+    padding-left: 6px;
+}
 @media (max-width:320px){
     .home-page-header > img {
         height: 235px !important;
