@@ -7,8 +7,6 @@ const initialStatistics = {
 };
 
 const statistics = (state = initialStatistics, action) => {
-  console.log('action', action.type, action.payload);
-
   switch (action.type) {
     case 'AGE_STATISTIC_SUCCESS':
       return {
@@ -29,6 +27,16 @@ const statistics = (state = initialStatistics, action) => {
       return {
         ...state,
         growth: action.payload
+      };
+    case 'USER_INFO_SUCCESS':
+      return {
+        // ...state,
+        result: action.payload
+      };
+    case 'USER_INFO_ERROR':
+      return {
+        // ...state,
+        error: action.payload
       };
     default:
       return state;

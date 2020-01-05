@@ -1,0 +1,325 @@
+.statistic{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    margin-top: 50px;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    float: right;
+}
+.dashboard-container{
+    background-color: #eee;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 50px;
+}
+
+
+.header{
+    height: 60px;
+    padding-top: 10px;
+    border-bottom: solid 1px #ced4da;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14)
+   
+}
+.header-title{
+    padding: 20px;
+    font-size: 26px;
+
+}
+.admin-login-logo {
+    width: 600px;
+    height: 300px;
+}
+.admin-logo-container{
+    display: flex;
+    justify-content: center;
+}
+.login-form{
+    display: flex;
+    justify-content: center;
+    // flex-direction: column
+}
+.logout{
+    float: left;
+    background-color: #40a9ff;
+    color: white;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.submit{
+    background-color: #40a9ff;
+    color: white; 
+    margin-top: 10px;
+}
+.submit :hover{
+    background-color: #40a9ff;
+    color: white; 
+}
+
+// .user-percentages{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
+// .user-statistics{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     padding-right: 25px;
+// }
+.container{
+    background: white;
+    padding: 10px;
+    border-radius: 5%;
+    margin-top: 55px;
+}
+.card-body{
+    border-radius: 5%;
+}
+.card-text{
+    text-align: center;
+}
+.company-percentages{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.company-elm{
+    margin-right: 45px;
+}
+.company-details{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.user-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: right !important;
+    width: 89%;
+    background-color: white;
+    border-bottom: 2px solid white;
+    margin-right: 23px;
+    padding-right: 20px;
+    border: solid 1px #b9b9b9;
+    margin-bottom: 10px;
+}
+.company-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: right !important;
+    width: 89%;
+    background-color: white;
+    border-bottom: 2px solid white;
+    margin-right: 30px;
+    padding-right: 20px;
+    border: solid 1px #b9b9b9;
+    margin-bottom: 10px;
+}
+.user-name > span{
+    float: right;
+    padding: 15px 0;
+    font-size: 16px;
+}
+.company-name > span{
+    float: right;
+    padding: 15px 0;
+    font-size: 16px;
+}
+.search {
+    position: absolute;
+    left: 11px;
+    width: 40px;
+    height: 30px;
+    background-color: #1890ff;
+    // top: 26px;
+}
+.input-container{
+    position: relative;
+}
+.user-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 25px;
+}
+.update-user{
+    width: 25px;
+    margin: 0px 5px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.delete-user{
+    width: 20px;
+    margin: 0px 5px;
+}
+.du-images{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-left: 10px;
+    padding-top: 10px;
+    // border-bottom: solid 1px #b9b9b9;
+}
+.ant-modal-close {
+    left: 0;
+}
+button.ant-btn.ant-btn-primary {
+    float: left;
+}
+.ant-modal-footer {
+    padding: 5px 16px 40px 16px;
+}
+button.ant-btn {
+    float: left;
+}
+.update-company{
+    width: 25px;
+    margin: 0px 5px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.delete-company{
+    width: 20px;
+    margin: 0px 5px;
+}
+.confirmation{
+    width: 20px;
+    margin: 0px 5px;
+}
+.block{
+    width: 20px;
+    margin: 0px 5px;
+}
+.search-container{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    margin-top: 50px;
+    background-color: white;
+    // border: 2px solid white;
+    border-radius: 9px;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.company-search-right-side{
+    padding-right: 30px;
+}
+.company-search-left-side{
+    padding-right: 30px;
+}
+.company-search-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: right !important;
+    width: 89%;
+    background-color: white;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+button.ant-modal-close{
+    left: 0 !important;
+    right: auto;
+}
+.smajor-button {
+    background-color: #40a9ff;
+    color: #fff;
+}
+.sector-button{
+    background-color: #40a9ff;
+    color: #fff;
+}
+.major-country-button{
+    background-color: #40a9ff;
+    color: #fff;
+}
+
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #1890ff;
+}
+.ant-table-thead > tr >th{
+    background: #009ad0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    border-right: 1px solid #fff;
+}
+.ant-table-wrapper{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 25px !important;
+    border-bottom: solid 4px #e6f7ff;
+    margin-right: 30px !important;
+}
+
+.cv-user-num{
+    background: #66bb6a;
+}
+.female-user-mun{
+    background: #ef5350;
+}
+.male-user-num{
+    background: #ffa726;
+}
+.user-mun{
+    background: #66bb6a;
+}
+.company-num{
+    background: #66bb6a;
+}
+.company-info-num{
+    background: #ef5350;
+
+}
+.jobs-num{
+    background: #66bb6a;
+}
+.projects-num{
+    background: #ffa726;
+}
+.ant-input{
+    border: 1px solid #b9b9b9;
+}
+.ant-input::-webkit-input-placeholder {
+    color: #b6b4b4;
+}
+
+.company-stc-button{
+    color: #ffff !important;
+    background: #69696978 !important;
+    width: 200px !important;
+}
+.company-stc-header{
+    width: 100%;
+    background: #40a9ff;
+    height: 80px;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #cce3f5;
+    margin-bottom: 15px;
+}
+.company-stc-result{
+    font-size: 16px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+.stc-wraper{
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+}

@@ -2,8 +2,16 @@
   font-family: "DINNextLTW23";
   src: url("/public/fonts/din-next-lt-w23-regular.ttf");
 }
+#root{
+  height: 100%;
+}
 body{
   direction: rtl;
+  // background-color: #f3f3f3;
+  height: 100vh;
+}
+.App{
+  height: 100%;
 }
 a{
   float: right;

@@ -8,8 +8,59 @@
             "employeeLogin": "Employee Login",
             "howWorks": "How we work",
             "comQuestions" : "Common Questions",
-            "contact": "Contact Us"
+            "contact": "Contact Us",
+            "contracts":{
+                "title": "Contracts Types",
+                "types":{
+                    "short": "Short Contracts",
+                    "sDesc":"Contracts that are agreed to work on up to 30 days",
+                    "long":"Long Contracts",
+                    "longDesc":"Contracts that are agreed to work on up to 6 months",
+                    "continuous": "Continuous Contracts",
+                    "cDesc":"Contracts that are agreed to work on annual with no limit time"
+                }
+            },
+            "works":{
+                "title": "how it works",
+                "steps": {
+                    "title-s1" : "Create an account",
+                    "title-s2": "Add an employment ads",
+                    "title-s3" : "You will get employees CV ",
+                    "title-s4":"Choose what you like to start!",
+                    "title-s5":"Finish your job smoothly"
+                }
+            },
+            "jobs": {
+                "title" : "Job Types",
+                "types":{
+                    "services" :"Customer Services ",
+                    "security" :"Information Security",
+                    "analysis": "Data Analysis",
+                    "development" : "Application Development",
+                    "entry" : "Data Entry",
+                    "accounting" :"Accounting"
+                }
+            },
+            "partners" : "Partners",
+            "contact-reason" : "why are you contacting?",
+            "contact-report" : "Report ",
+            "contact-ads": "advertising ",
+            "general-help": "general help ",
+            "contact-fullname": "full name",
+            "contact-email":"email",
+            "contact-message" : "message",
+            "contact-title": "title",
+            "contact-send-btn": "send ",
+            "coQuestions":{
+                "question1" :"what are the inital steps to register a new  company in the website",
+                "question2" :"what are the inital steps to register a new  employee in the website",
+                "question3": "what are the inital steps to register a new  company in the website",
+                "question4": "what are the inital steps to register a new  company in the website",
+                "question5": "what are the inital steps to register a new  company in the website"
+            }
+
 
 
         }
-    }}
+    }
+}
