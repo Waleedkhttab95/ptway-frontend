@@ -75,7 +75,9 @@ class Header extends React.Component {
                 style={{ width: '140px', height: '44px' }}
               />
               <a>سيرتي الذاتية </a>
-              <a>فرص العمل </a>
+              <Link to="/user/jobs">
+                <a>فرص العمل </a>
+              </Link>
               {/* <a>المتقدمين </a> */}
             </div>
             <div className="user-left-side">
