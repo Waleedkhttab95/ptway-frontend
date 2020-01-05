@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Drawer, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
-import userLogo from '../../images/ptway.svg';
+import userLogo from '../../images/transparent-colored.png';
 
 import headerBack from '../../images/header.png';
 import './header.scss';
@@ -69,11 +69,7 @@ class Header extends React.Component {
           <div className="user-header">
             <div className="user-right-side">
               {/* <img src={headerLogo} alt="logo" /> */}
-              <img
-                src={userLogo}
-                alt="logo"
-                style={{ width: '140px', height: '44px' }}
-              />
+              <img src={userLogo} alt="logo" style={{ width: '140px' }} />
               <a>سيرتي الذاتية </a>
               <Link to="/user/jobs">
                 <a>فرص العمل </a>
