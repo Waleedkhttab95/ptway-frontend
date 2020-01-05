@@ -249,12 +249,20 @@
   margin-top: 60px;
   margin-bottom: 40px !important;
 }
-// .job-post:hover, .job-post:focus, .job-post:active {
-//     background-color: #34add9;
-// }
-// .job-post:hover .post-header .job-owner-info .job-owner-title:hover{
-//             color: #fff;
-//         }
-//         .post-descriptipn{
-//             color: #fff;
-//         }
+.job-post:hover, .job-post:focus, .job-post:active {
+    background-color: #34add9;
+}
+.job-post:hover .job-owner-title, .job-post:hover .job-owner-location, .job-post:hover .job-owner-mobile, .job-post:hover .post-description,
+.job-post:hover .post-status{
+            color: #fff !important;
+}
+
+.job-post:hover .apply-job-btn{
+    background: #fff !important;
+    border-color: #fff !important;
+    color: #009ad0 !important;
+}
+
+.job-post:hover .post-status{
+    background: #2e9bc3 !important;
+}
