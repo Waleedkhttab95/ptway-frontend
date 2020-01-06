@@ -95,6 +95,8 @@
     margin-top: 5px;
     direction: rtl;
     .job-post{
+        display: flex;
+    flex-direction: column;
         width: 270px;
         height: 413px;
         border-radius: 5px;
@@ -104,7 +106,7 @@
         margin-top: 25px;
         padding-top: 20px;
         padding-right: 25px;
-        padding-left: 25px;
+        padding-left: 10px;
 
         .post-header{
             display: flex;
