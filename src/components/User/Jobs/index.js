@@ -35,7 +35,16 @@ const Jobs = props => {
               return (
                 <Col md={6} className="job-post" key={elm}>
                   <div className="post-header">
-                    <img src="" alt="" className="post-img" />
+                    {/* <img src="" alt="" className="post-img" /> */}
+                    <i
+                      className="fa fa-picture-o"
+                      aria-hidden="true"
+                      style={{
+                        fontSize: '45px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    ></i>
                     <div className="job-owner-info">
                       <span className="job-owner-title">
                         محاسب في شركة بيتزا هت

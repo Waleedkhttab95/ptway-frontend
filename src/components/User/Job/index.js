@@ -10,7 +10,12 @@ const Job = () => {
       <Header />
       <Row className="job-section">
         <Col md={6} className="right-section">
-          <img />
+          {/* <img /> */}
+          <i
+            className="fa fa-picture-o"
+            aria-hidden="true"
+            style={{ fontSize: '45px', display: 'flex', alignItems: 'center' }}
+          ></i>
           <span className="job-owner-name">شركة بيتزا هت للبيتزا</span>
           <div className="job-owner-info">
             <p>
@@ -79,6 +84,7 @@ const Job = () => {
             </div>
           </div>
           <button className="applay-job-btn">تقدم للوظيفة</button>
+          <button className="not-intersted-btn">غير مهتم</button>
         </Col>
       </Row>
       <Footer />
