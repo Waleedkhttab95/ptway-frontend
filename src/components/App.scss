@@ -3,15 +3,15 @@
   src: url("/public/fonts/din-next-lt-w23-regular.ttf");
 }
 #root{
-  height: 100%;
+  height: auto;
 }
 body{
   direction: rtl;
   // background-color: #f3f3f3;
-  height: 100vh;
+  height: auto;
 }
 .App{
-  height: 100%;
+  height: auto;
 }
 a{
   float: right;

@@ -177,8 +177,8 @@
                 position: absolute;
                 bottom: 30px;
             }
-            .post-status{
-                margin-bottom: 30px;
+            .post-status {
+                margin-bottom: 10px;
                 width: 113px;
                 height: 32px;
                 border-radius: 5px;
@@ -234,22 +234,22 @@
 }
 .display-more{
     width: 140px;
-  height: 35px;
-  border-radius: 6px;
-  background-color: #3b3b3b;
-  font-family: DINNextLTW23;
-  font-size: 14px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.57;
-  letter-spacing: normal;
-  text-align: center;
-  color: #ffffff;
-  margin: auto;
-  display: block;
-  margin-top: 60px;
-  margin-bottom: 40px !important;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #3b3b3b;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin: auto;
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 40px !important;
 }
 .job-post:hover, .job-post:focus, .job-post:active {
     background-color: #34add9;

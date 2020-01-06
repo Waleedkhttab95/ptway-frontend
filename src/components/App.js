@@ -21,6 +21,8 @@ import ErrorPage from '../components/pages/ErrorPage';
 import UserRegistration from './User/signup/index';
 import UserHome from './User/index';
 import Jobs from './User/Jobs';
+import Job from './User/Job';
+
 import './App.scss';
 
 const App = () => {
@@ -97,6 +99,7 @@ const App = () => {
           <Route exact path="/user/signup" component={UserRegistration} />
           <Route exact path="/user/home" component={UserHome} />
           <Route exact path="/user/jobs" component={Jobs} />
+          <Route exact path="/user/job" component={Job} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
