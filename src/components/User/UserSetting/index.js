@@ -19,21 +19,15 @@ const Setting = () => {
               <Input className="account-input" type="password" />
               <span>تأكيد كلمة المرور</span>
               <Input className="account-input" type="password" />
-              <span>تعديل رقم الجوال</span>
-              <Input className="account-input" />
             </div>
           </Col>
           <Col className="account-options">
             <h4 className="heading">خيارات الحساب</h4>
             <div className="email-setting">
-              <h6>وسائل التواصل المفضلة (ارسال الاشعارات)</h6>
+              <h6>ارسال الاشعارات عن طريق الايميل</h6>
               <div className="checkbox-options">
-                <Checkbox className="check-option">
-                  التواصل معي على الإيميل
-                </Checkbox>
-                <Checkbox className="check-option">
-                  التواصل عن طريق الرسائل
-                </Checkbox>
+                <Checkbox className="check-option">نعم</Checkbox>
+                <Checkbox className="check-option">لا</Checkbox>
               </div>
             </div>
           </Col>
