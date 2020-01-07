@@ -13,10 +13,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
@@ -32,10 +32,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
@@ -54,10 +54,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
@@ -73,10 +73,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
@@ -95,10 +95,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
@@ -114,10 +114,10 @@ const Notifications = () => {
           <div className="notification">
             <div className="notification-msg">
               <i
-                className="fa fa-picture-o"
+                className="fa fa-bell-o"
                 aria-hidden="true"
                 style={{
-                  fontSize: '45px',
+                  fontSize: '25px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '0 30px 0 10px'
