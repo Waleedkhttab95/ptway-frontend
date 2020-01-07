@@ -73,9 +73,9 @@ class Header extends React.Component {
               {/* <img src={headerLogo} alt="logo" /> */}
               <img src={userLogo} alt="logo" style={{ width: '140px' }} />
               <a>سيرتي الذاتية </a>
-              <Link to="/user/jobs">
-                <a>فرص العمل </a>
-              </Link>
+              {/* <a> */}
+              <Link to="/user/jobs">فرص العمل</Link>
+              {/* </a> */}
               {/* <a>المتقدمين </a> */}
             </div>
             <div className="user-left-side">
@@ -89,7 +89,9 @@ class Header extends React.Component {
               >
                 <Link to="/user/account/setting">حسابي</Link>
               </Button>
-              <Button className="user-header-btn">تنبيهات</Button>
+              <Button className="user-header-btn">
+                <Link to="/user/notifications">تنبيهات</Link>
+              </Button>
               <Button className="user-header-btn">خروج</Button>
             </div>
           </div>

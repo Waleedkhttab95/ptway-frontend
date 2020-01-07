@@ -23,6 +23,7 @@ import UserHome from './User/index';
 import Jobs from './User/Jobs';
 import Job from './User/Job';
 import UserSetting from './User/UserSetting';
+import Notifications from './User/Notifications';
 
 import './App.scss';
 
@@ -102,6 +103,7 @@ const App = () => {
           <Route exact path="/user/jobs" component={Jobs} />
           <Route exact path="/user/job" component={Job} />
           <Route exact path="/user/account/setting" component={UserSetting} />
+          <Route exact path="/user/notifications" component={Notifications} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
