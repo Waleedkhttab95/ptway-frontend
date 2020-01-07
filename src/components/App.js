@@ -13,7 +13,7 @@ import UniversityContent from '../components/Admin/contentSection/UniversityCont
 import MajorContent from '../components/Admin/contentSection/MajorContent';
 import CompanyAds from '../components/Admin/AdsSection/Ads';
 import SearchAds from '../components/Admin/AdsSection/AdsSearch';
-import UserSetting from '../components/Admin/setting/User';
+import AdminSetting from '../components/Admin/setting/User';
 import CompanySetting from '../components/Admin/setting/Company';
 import generalStatistics from '../components/Admin/generalStatistics';
 import LandingPage from '../components/pages/landingPage';
@@ -22,6 +22,7 @@ import UserRegistration from './User/signup/index';
 import UserHome from './User/index';
 import Jobs from './User/Jobs';
 import Job from './User/Job';
+import UserSetting from './User/UserSetting';
 
 import './App.scss';
 
@@ -89,7 +90,7 @@ const App = () => {
           <AuthenticatedRoute
             exact
             path="/admin/setting/user"
-            component={AdminPanel(UserSetting)}
+            component={AdminPanel(AdminSetting)}
           />
           <AuthenticatedRoute
             exact
@@ -100,6 +101,7 @@ const App = () => {
           <Route exact path="/user/home" component={UserHome} />
           <Route exact path="/user/jobs" component={Jobs} />
           <Route exact path="/user/job" component={Job} />
+          <Route exact path="/user/account/setting" component={UserSetting} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

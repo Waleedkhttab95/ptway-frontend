@@ -63,6 +63,8 @@ class Header extends React.Component {
   render() {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
+    console.log('props+++', this.props);
+
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -81,7 +83,12 @@ class Header extends React.Component {
                 <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
                 أضف
               </Button> */}
-              <Button className="user-header-btn">حسابي</Button>
+              <Button
+                className="user-header-btn"
+                // onClick={() => this.props.history.push('/user/account/setting')}
+              >
+                <Link to="/user/account/setting">حسابي</Link>
+              </Button>
               <Button className="user-header-btn">تنبيهات</Button>
               <Button className="user-header-btn">خروج</Button>
             </div>
