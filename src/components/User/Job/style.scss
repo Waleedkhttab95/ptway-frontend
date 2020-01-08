@@ -164,3 +164,107 @@
     color: #ff6666;
     margin-top: 10px !important;
 }
+.success-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    >h2{
+        font-family: DINNextLTW23;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #222222;
+    }
+    >p{
+        font-family: DINNextLTW23;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.69;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ababab;
+    }
+    >button{
+        width: 190px;
+        height: 35px;
+        border-radius: 6px;
+        background-color: #3598d4;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        
+    }
+}
+.check-icon{
+    font-size: 80px;
+    color: #3bd2a1;
+    margin-bottom: 20px;
+}
+.job-info-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    >h2{
+        font-family: DINNextLTW23;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #222222;
+        margin: 0 25px 23px 25px;
+    }
+    .send-info-btn {
+        width: 190px;
+        height: 35px;
+        border-radius: 6px;
+        background-color: #3598d4;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        margin-top: 50px;
+    }
+}
+.ques-mark-icon{
+    font-size: 80px;
+    color: #ffd781;
+    margin-bottom: 15px;
+
+}
+.radio-option{
+    width: 100%;
+    text-align: center !important;
+    font-family: DINNextLTW23;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #000000;
+}
