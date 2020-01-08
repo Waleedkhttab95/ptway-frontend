@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Col, Input, Checkbox } from 'antd';
+import { Col, Input, Radio } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
 
@@ -26,8 +26,9 @@ const Setting = () => {
             <div className="email-setting">
               <h6>ارسال الاشعارات عن طريق الايميل</h6>
               <div className="checkbox-options">
-                <Checkbox className="check-option">نعم</Checkbox>
-                <Checkbox className="check-option">لا</Checkbox>
+                <Radio.Group options={['نعم', 'لا']} className="check-option" />
+                {/* <Checkbox className="check-option">نعم</Checkbox>
+                <Checkbox className="check-option">لا</Checkbox> */}
               </div>
             </div>
           </Col>
