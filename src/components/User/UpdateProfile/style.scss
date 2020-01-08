@@ -5,7 +5,7 @@
 }
 .profile-updating {
     width: 948px;
-    height: 1251px;
+    // height: 1251px;
     border-radius: 10px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
@@ -117,4 +117,22 @@
 }
 .ant-collapse-item.ant-collapse-item-active.section-heading{
     position: relative;
+}
+.save-changes-btn {
+    display: block;
+    margin: auto;
+    width: 191px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #3598d4;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 50px !important;
 }

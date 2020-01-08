@@ -14,7 +14,6 @@ const UpdateProfile = () => {
       <div className="updating-container">
         <div className="profile-updating">
           <Avatar />
-          {/* <button className="upload-img-btn">رفع صورة شخصية</button> */}
           <Collapse bordered={false} defaultActiveKey={['1', '2', '3', '5']}>
             <Panel header="معلومات شخصية" key="1" className="section-heading">
               <div className="collapse-line"></div>
@@ -87,6 +86,7 @@ const UpdateProfile = () => {
               </div>
             </Panel>
           </Collapse>
+          <button className="save-changes-btn">حفظ</button>
         </div>
       </div>
       <Footer />
