@@ -47,7 +47,7 @@ const colourStyles = {
   })
 };
 class Header extends React.Component {
-  state = { visible: false };
+  state = { visible: false, notification: false };
 
   showDrawer = () => {
     this.setState({
@@ -60,11 +60,17 @@ class Header extends React.Component {
       visible: false
     });
   };
+
+  notificationMenu = () => {
+    this.setState({
+      notification: true
+    });
+  };
   render() {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     console.log('props+++', this.props);
-
+    const list = [1, 2, 3, 4];
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -89,9 +95,38 @@ class Header extends React.Component {
               >
                 <Link to="/user/account/setting">حسابي</Link>
               </Button>
-              <Button className="user-header-btn">
-                <Link to="/user/notifications">تنبيهات</Link>
+              <Button
+                className="user-header-btn"
+                onClick={this.notificationMenu}
+              >
+                تنبيهات
               </Button>
+              {this.state.notification && (
+                <div className="notifications-dropdown">
+                  <h5>اليوم</h5>
+                  {list.map(elm => {
+                    return (
+                      <div className="notification-drop-menu" key={elm}>
+                        <i
+                          className="fa fa-picture-o"
+                          aria-hidden="true"
+                          style={{
+                            fontSize: '45px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            paddingLeft: '10px'
+                          }}
+                        ></i>
+                        <span>
+                          لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
+                          هت للبيتزا
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <u className="more-notification-btn">مشاهدة الكل</u>
+                </div>
+              )}
               <Button className="user-header-btn">خروج</Button>
             </div>
           </div>

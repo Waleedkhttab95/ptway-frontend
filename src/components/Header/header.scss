@@ -154,6 +154,7 @@
     .user-left-side{
         display: flex;
         padding-left: 135px;
+        position: relative;
         .user-header-btn{
             margin-right: 29px;
             width: 80px;
@@ -183,6 +184,50 @@
 .plus-icon{
     color: #fff;
     padding-left: 6px;
+}
+.notifications-dropdown{
+  width: 356px;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+  z-index: 1000;
+  position: absolute;
+  top: 70px;
+  left: 240px;
+  >h5 {
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #a8a8a8;
+    margin: 10px;
+  }
+  .notification-drop-menu {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 15px;
+    margin-top: 5px;
+  }
+}
+.more-notification-btn {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 17px;
+    cursor: pointer;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
 }
 @media (max-width:320px){
     .home-page-header > img {
