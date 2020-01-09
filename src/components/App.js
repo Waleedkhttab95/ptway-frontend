@@ -13,7 +13,7 @@ import UniversityContent from '../components/Admin/contentSection/UniversityCont
 import MajorContent from '../components/Admin/contentSection/MajorContent';
 import CompanyAds from '../components/Admin/AdsSection/Ads';
 import SearchAds from '../components/Admin/AdsSection/AdsSearch';
-import UserSetting from '../components/Admin/setting/User';
+import AdminSetting from '../components/Admin/setting/User';
 import CompanySetting from '../components/Admin/setting/Company';
 import generalStatistics from '../components/Admin/generalStatistics';
 import LandingPage from '../components/pages/landingPage';
@@ -21,6 +21,11 @@ import ErrorPage from '../components/pages/ErrorPage';
 import UserRegistration from './User/signup/index';
 import UserHome from './User/index';
 import Jobs from './User/Jobs';
+import Job from './User/Job';
+import UserSetting from './User/UserSetting';
+import Notifications from './User/Notifications';
+import UpdateProfile from './User/UpdateProfile';
+
 import './App.scss';
 
 const App = () => {
@@ -87,7 +92,7 @@ const App = () => {
           <AuthenticatedRoute
             exact
             path="/admin/setting/user"
-            component={AdminPanel(UserSetting)}
+            component={AdminPanel(AdminSetting)}
           />
           <AuthenticatedRoute
             exact
@@ -97,6 +102,10 @@ const App = () => {
           <Route exact path="/user/signup" component={UserRegistration} />
           <Route exact path="/user/home" component={UserHome} />
           <Route exact path="/user/jobs" component={Jobs} />
+          <Route exact path="/user/job" component={Job} />
+          <Route exact path="/user/account/setting" component={UserSetting} />
+          <Route exact path="/user/notifications" component={Notifications} />
+          <Route exact path="/user/profile/update" component={UpdateProfile} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

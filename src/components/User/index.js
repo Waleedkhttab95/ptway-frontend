@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import { Layout, Alert, Col } from 'antd';
 import './style.scss';
 const { Content } = Layout;
-const User = () => {
+const User = props => {
   return (
     <div>
       <Header />
@@ -59,7 +59,10 @@ const User = () => {
                   لتحصل على أفضل الفرص عليك إكمال ملفك الشخصي
                 </span>
               </div>
-              <button className="update-profile-btn">
+              <button
+                className="update-profile-btn"
+                onClick={() => props.history.push('/user/profile/update')}
+              >
                 تعديل معلومات الحساب
               </button>
             </Col>

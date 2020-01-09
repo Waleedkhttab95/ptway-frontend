@@ -47,7 +47,7 @@ const colourStyles = {
   })
 };
 class Header extends React.Component {
-  state = { visible: false };
+  state = { visible: false, notification: false };
 
   showDrawer = () => {
     this.setState({
@@ -60,9 +60,23 @@ class Header extends React.Component {
       visible: false
     });
   };
+
+  notificationMenu = () => {
+    this.setState({
+      notification: !this.state.notification
+    });
+  };
+
+  close = () => {
+    console.log('hereeee');
+
+    this.setState({ notification: false });
+  };
   render() {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
+    console.log('props+++', this.props);
+    const list = [1, 2, 3, 4];
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -70,10 +84,11 @@ class Header extends React.Component {
             <div className="user-right-side">
               {/* <img src={headerLogo} alt="logo" /> */}
               <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-              <a>سيرتي الذاتية </a>
-              <Link to="/user/jobs">
-                <a>فرص العمل </a>
-              </Link>
+              {/* <a>سيرتي الذاتية </a> */}
+              <Link to="/user/home">سيرتي الذاتية </Link>
+              {/* <a> */}
+              <Link to="/user/jobs">فرص العمل</Link>
+              {/* </a> */}
               {/* <a>المتقدمين </a> */}
             </div>
             <div className="user-left-side">
@@ -81,8 +96,53 @@ class Header extends React.Component {
                 <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
                 أضف
               </Button> */}
-              <Button className="user-header-btn">حسابي</Button>
-              <Button className="user-header-btn">تنبيهات</Button>
+              <Button
+                className="user-header-btn"
+                // onClick={() => this.props.history.push('/user/account/setting')}
+              >
+                <Link to="/user/account/setting">حسابي</Link>
+              </Button>
+              <Button
+                className="user-header-btn"
+                onClick={this.notificationMenu}
+              >
+                تنبيهات
+              </Button>
+              <div onBlur={this.close} tabIndex="0">
+                {this.state.notification && (
+                  <div className="notifications-dropdown">
+                    <h5>اليوم</h5>
+                    {list.map(elm => {
+                      return (
+                        <div className="notification-drop-menu" key={elm}>
+                          <i
+                            className="fa fa-picture-o"
+                            aria-hidden="true"
+                            style={{
+                              fontSize: '45px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              paddingLeft: '10px'
+                            }}
+                          ></i>
+                          <span>
+                            لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
+                            هت للبيتزا
+                          </span>
+                        </div>
+                      );
+                    })}
+                    <u className="more-notification-btn">
+                      <Link
+                        to="/user/notifications"
+                        className="more-notification-btn"
+                      >
+                        مشاهدة الكل
+                      </Link>
+                    </u>
+                  </div>
+                )}
+              </div>
               <Button className="user-header-btn">خروج</Button>
             </div>
           </div>
