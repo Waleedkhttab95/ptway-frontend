@@ -63,8 +63,14 @@ class Header extends React.Component {
 
   notificationMenu = () => {
     this.setState({
-      notification: true
+      notification: !this.state.notification
     });
+  };
+
+  close = () => {
+    console.log('hereeee');
+
+    this.setState({ notification: false });
   };
   render() {
     const { i18n } = this.props;
@@ -78,7 +84,8 @@ class Header extends React.Component {
             <div className="user-right-side">
               {/* <img src={headerLogo} alt="logo" /> */}
               <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-              <a>سيرتي الذاتية </a>
+              {/* <a>سيرتي الذاتية </a> */}
+              <Link to="/user/home">سيرتي الذاتية </Link>
               {/* <a> */}
               <Link to="/user/jobs">فرص العمل</Link>
               {/* </a> */}
@@ -101,32 +108,41 @@ class Header extends React.Component {
               >
                 تنبيهات
               </Button>
-              {this.state.notification && (
-                <div className="notifications-dropdown">
-                  <h5>اليوم</h5>
-                  {list.map(elm => {
-                    return (
-                      <div className="notification-drop-menu" key={elm}>
-                        <i
-                          className="fa fa-picture-o"
-                          aria-hidden="true"
-                          style={{
-                            fontSize: '45px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            paddingLeft: '10px'
-                          }}
-                        ></i>
-                        <span>
-                          لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
-                          هت للبيتزا
-                        </span>
-                      </div>
-                    );
-                  })}
-                  <u className="more-notification-btn">مشاهدة الكل</u>
-                </div>
-              )}
+              <div onBlur={this.close} tabIndex="0">
+                {this.state.notification && (
+                  <div className="notifications-dropdown">
+                    <h5>اليوم</h5>
+                    {list.map(elm => {
+                      return (
+                        <div className="notification-drop-menu" key={elm}>
+                          <i
+                            className="fa fa-picture-o"
+                            aria-hidden="true"
+                            style={{
+                              fontSize: '45px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              paddingLeft: '10px'
+                            }}
+                          ></i>
+                          <span>
+                            لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
+                            هت للبيتزا
+                          </span>
+                        </div>
+                      );
+                    })}
+                    <u className="more-notification-btn">
+                      <Link
+                        to="/user/notifications"
+                        className="more-notification-btn"
+                      >
+                        مشاهدة الكل
+                      </Link>
+                    </u>
+                  </div>
+                )}
+              </div>
               <Button className="user-header-btn">خروج</Button>
             </div>
           </div>
