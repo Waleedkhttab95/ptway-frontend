@@ -190,7 +190,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="left-side">
-              <Link className="employeer-login-btn" to="/user/signup">
+              <Link className="employeer-login-btn" to="/user/login">
                 {i18n.t('home.employeeLogin')}
               </Link>
               <button className="company-login-btn">
@@ -214,7 +214,9 @@ class Header extends React.Component {
               <h3 className="title"> {i18n.t('home.title')}</h3>
               <p className="description">{i18n.t('home.description')}</p>
               <button className="start-now-btn">
-                {i18n.t('home.startBtn')}
+                <Link to="/user/signup" className="start-now-btn">
+                  {i18n.t('home.startBtn')}
+                </Link>
               </button>
             </div>
           </Row>

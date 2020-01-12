@@ -25,6 +25,7 @@ import Job from './User/Job';
 import UserSetting from './User/UserSetting';
 import Notifications from './User/Notifications';
 import UpdateProfile from './User/UpdateProfile';
+import UserLogin from './User/login';
 
 import './App.scss';
 
@@ -106,6 +107,7 @@ const App = () => {
           <Route exact path="/user/account/setting" component={UserSetting} />
           <Route exact path="/user/notifications" component={Notifications} />
           <Route exact path="/user/profile/update" component={UpdateProfile} />
+          <Route exact path="/user/login" component={UserLogin} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
