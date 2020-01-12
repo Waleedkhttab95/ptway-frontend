@@ -232,8 +232,8 @@ class UserSignup extends React.Component {
                   <Button
                     type="primary"
                     className="last-step-btn"
-                    // onClick={this.signup}
-                    onClick={() => this.props.history.push('/user/home')}
+                    onClick={this.signup}
+                    // onClick={() => this.props.history.push('/user/home')}
                   >
                     الانتهاء والانتقال للصفحة الرئيسية
                   </Button>
