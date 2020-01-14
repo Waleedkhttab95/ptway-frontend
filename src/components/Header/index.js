@@ -272,10 +272,9 @@ class Header extends React.Component {
               <Link className="employeer-login-btn" to="/user/login">
                 {i18n.t('home.employeeLogin')}
               </Link>
-              <button className="company-login-btn">
-                {' '}
+              <Link className="employeer-login-btn" to="/company/login">
                 {i18n.t('home.companyLogin')}
-              </button>
+              </Link>
               <Select
                 className="basic-single"
                 styles={colourStyles}

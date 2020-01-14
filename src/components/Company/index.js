@@ -5,7 +5,7 @@ import { Input, Select } from 'antd';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const AddNewAd = () => {
+const AddNewAd = props => {
   return (
     <React.Fragment>
       <div className="company-container">
@@ -60,7 +60,12 @@ const AddNewAd = () => {
               </div>
             </div>
           </div>
-          <button className="add-new-ad-btn">أضف الإعلان الوظيفي</button>
+          <button
+            className="add-new-ad-btn"
+            onClick={() => props.history.push('/company/login')}
+          >
+            أضف الإعلان الوظيفي
+          </button>
         </div>
       </div>
       <Footer />
