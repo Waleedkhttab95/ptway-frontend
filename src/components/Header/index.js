@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Drawer, Button } from 'antd';
+import { Row, Drawer, Button, Modal, Input, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
@@ -9,11 +9,15 @@ import './header.scss';
 import { withTranslation } from 'react-i18next';
 import Select from 'react-select';
 import { loadState } from '../../_core/localStorage';
+import shContractIc from '../../images/short.svg';
+import lngContract from '../../images/long.svg';
+import cuntContract from '../../images/continue.svg';
+
 const options = [
   { value: 'en', label: 'En' },
   { value: 'ar', label: 'Ar' }
 ];
-
+const { TextArea } = Input;
 const colourStyles = {
   input: () => ({
     width: '75px'
@@ -47,7 +51,12 @@ const colourStyles = {
   })
 };
 class Header extends React.Component {
-  state = { visible: false, notification: false };
+  state = {
+    visible: false,
+    notification: false,
+    postJobPopup: false,
+    newAdPopUp: false
+  };
 
   showDrawer = () => {
     this.setState({
@@ -68,10 +77,22 @@ class Header extends React.Component {
   };
 
   close = () => {
-    console.log('hereeee');
-
     this.setState({ notification: false });
   };
+
+  postJob = () => {
+    this.setState({
+      postJobPopup: true
+    });
+  };
+
+  newAd = () => {
+    this.setState({
+      postJobPopup: false,
+      newAdPopUp: true
+    });
+  };
+
   render() {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
@@ -186,8 +207,66 @@ class Header extends React.Component {
                 <a>{i18n.t('home.howWorks')}</a>
                 <a>{i18n.t('home.comQuestions')}</a>
                 <a>{i18n.t('home.comQuestions')}</a>
-                <a>{i18n.t('home.contact')}</a>
+                <a onClick={this.postJob}>{i18n.t('home.postJob')}</a>
               </div>
+              <Modal
+                visible={this.state.postJobPopup}
+                closable={false}
+                footer={false}
+              >
+                <div className="new-project">
+                  <h2 className="p-heading">انشئ مشروع جديد</h2>
+                  <p className="p-description">
+                    أولاً قم بانشاء مشروع جديد الذي سيندرج تحته عدة إعلانات
+                    وظيفية مختلفة
+                  </p>
+                  <div className="new-project-form">
+                    <label>اسم المشروع</label>
+                    <Input />
+                    <label>وصف المشروع</label>
+                    <TextArea row={4} />
+                    <button className="new-project-btn" onClick={this.newAd}>
+                      انشاء مشروع جديد
+                    </button>
+                  </div>
+                </div>
+              </Modal>
+              <Modal
+                visible={this.state.newAdPopUp}
+                closable={false}
+                footer={false}
+                className="ad-modal"
+              >
+                <div className="new-ad">
+                  <h2 className="p-heading">إضافة إعلان جديد</h2>
+                  <p className="p-description">
+                    ثانياً قم باختيار نوع عقد العمل للإعلان الوظيفي الجديد الذي
+                    سوف تضيفه
+                  </p>
+                  <div className="ad-contract">
+                    <Col md={8} className="cont-type">
+                      <img src={shContractIc} alt="shContract" />
+                      <h4 className="cnt-sub-title">عقود قصيرة</h4>
+                      <p className="cnt-des"> مهمات لاتزيد عن 30 يوم </p>
+                    </Col>
+                    <Col md={8} className="cont-type">
+                      <img src={lngContract} alt="shContract" />
+                      <h4 className="cnt-sub-title">عقود طويلة</h4>
+                      <p className="cnt-des"> مهمات لا تزيد عن 6 أشهر </p>
+                    </Col>
+                    <Col md={8} className="cont-type">
+                      <img src={cuntContract} alt="shContract" />
+                      <h4 className="cnt-sub-title">عقود مستمرة</h4>
+                      <p className="cnt-des"> مهمات بعقود سنوية وتجدد </p>
+                    </Col>
+                  </div>
+                </div>
+                <button className="ad-next-btn">
+                  <Link to="/company/new/ad" style={{ color: '#fff' }}>
+                    التالي
+                  </Link>
+                </button>
+              </Modal>
             </div>
             <div className="left-side">
               <Link className="employeer-login-btn" to="/user/login">
