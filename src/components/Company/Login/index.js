@@ -9,9 +9,9 @@ class CompanyLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const { history } = this.props;
+        history.push('/company/home');
       }
-      //   const { history } = this.props;
-      //   history.push('/company/home');
     });
   };
 

@@ -1,125 +1,208 @@
-.company-container{
-    background-color: #f3f3f3;
-    height: auto;
-    width: 100%;
-    padding-top: 60px;
-    padding-bottom: 80px;
-}
-.new-ad-form {
-    width: 948px;
-    border-radius: 10px;
-    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-    display: block;
-    margin: auto;
-    padding: 62px 123px;
-    .new-ad-title{
+
+.company-progress{
+    display: flex;
+    margin-top: 25px;
+    .opened-projects{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 275px;
+        height: 112px;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #008bbc;
+        margin-left: 20px;
         font-family: DINNextLTW23;
-        font-size: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+    }
+    .total-offers{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 275px;
+        height: 112px;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #009ad0;
+        margin-left: 20px;
+        font-family: DINNextLTW23;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+    }
+    .user-hired{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 275px;
+        height: 112px;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #34add9;
+        margin-left: 20px;
+        font-family: DINNextLTW23;
+        font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
         letter-spacing: normal;
         text-align: center;
-        color: #222222;
+        color: #ffffff;
+
     }
-    >p {
+    .user-rejected {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 275px;
+        height: 112px;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #68c3e3;
         font-family: DINNextLTW23;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
-        line-height: 1.5;
+        line-height: normal;
         letter-spacing: normal;
         text-align: center;
-        color: #ababab;
-        padding-bottom: 53px;
+        color: #ffffff;
     }
 }
+.right-section{
+    margin-top: 17px;
+    margin-left: 20px;
+    .company-info {
+        width: 287px;
+        height: 388px;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        .company-pic-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .c-pic{
+               font-size: 100px;
+               margin-top:28px;
+            }
+            .company-name {
+                font-family: DINNextLTW23;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                color: #343434;
+            }
+        }
+        .company-details-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-right: 21px;
+            >span {
+                font-family: DINNextLTW23;
+                font-size: 14px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: right;
+                color: #898989;
+                margin-top: 10px;
+                padding: 0 10px;
 
-.new-ad-details {
-    >label {
+                > i {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+   .update-profile-btn{
+        width: 287px;
+        height: 55px;
+        border-radius: 6px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #3b3b3b;
+        margin-top: 20px;
         font-family: DINNextLTW23;
         font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.57;
-        letter-spacing: normal;
-        text-align: right;
-        color: #b5b5b5;
-        
+        font-weight: bold;
+        color:#fff;
+        cursor: pointer;
     }
-    > textarea {
-        height: 150px;
-        border-radius: 6px;
-        border: solid 1px #d9d9d9;
-        background-color: #fdfdfd;
-        margin-bottom: 30px !important;
-    }
-    >input{
-        border-radius: 4px;
-        border: solid 1px #d9d9d9;
-        background-color: #fdfdfd;
-        margin-bottom: 30px !important;
-    }
-    .project-selection{
-        margin-bottom: 30px !important;
-    }
-}
-.group-questions, .last-ad-group{
-    display: flex;
-    width: 100%;
-    .left-side, .right-side {
-        >label {
-            font-family: DINNextLTW23;
-            font-size: 14px;
-            font-weight: 500;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.57;
-            letter-spacing: normal;
-            text-align: right;
-            color: #b5b5b5;
-        }
-        >input {
-            width: 341px;
-            border-radius: 5px;
-            border: solid 1px #d9d9d9;
-            background-color: #fdfdfd;
-           margin-bottom: 30px !important;
 
-        }
-    }
 }
-
-.sub-heading{
+.company-left-section h2 {
     font-family: DINNextLTW23;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.57;
-  letter-spacing: normal;
-  text-align: right;
-  color: #b5b5b5;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    text-align: right;
+    color: #000000;
+    margin-top: 30px;
 }
-.add-new-ad-btn {
-  display: block;
-  margin: auto;
-  width: 191px;
-  height: 35px;
-  border-radius: 6px;
-  background-color: #3598d4;
-  font-family: DINNextLTW23;
-  font-size: 14px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.57;
-  letter-spacing: normal;
-  text-align: center;
-  color: #ffffff;
-  margin-top: 60px !important;
+.projects-offers-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 863px;
+    height: 38px;
+    border-radius: 5px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+}
+.project-offer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 863px;
+    height: 87px;
+    border-radius: 5px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    margin-top: 10px;
+}
+.more-projects-offers-btn {
+    display: block;
+    margin: auto;
+    margin-top: 70px !important;
+    width: 140px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #3b3b3b;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
 }

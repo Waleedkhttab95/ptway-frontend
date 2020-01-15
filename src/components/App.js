@@ -27,8 +27,9 @@ import Notifications from './User/Notifications';
 import UpdateProfile from './User/UpdateProfile';
 import UserLogin from './User/login';
 import CompanyLogin from './Company/Login';
-import CompanyNewAd from './Company';
+import CompanyNewAd from './Company/newAd';
 import CompanySignup from './Company/SignUp';
+import CompanyHome from './Company';
 import './App.scss';
 
 const App = () => {
@@ -113,6 +114,7 @@ const App = () => {
           <Route exact path="/company/login" component={CompanyLogin} />
           <Route exact path="/company/new/ad" component={CompanyNewAd} />
           <Route exact path="/company/signup" component={CompanySignup} />
+          <Route exact path="/company/home" component={CompanyHome} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
