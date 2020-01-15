@@ -28,6 +28,7 @@ import UpdateProfile from './User/UpdateProfile';
 import UserLogin from './User/login';
 import CompanyLogin from './Company/Login';
 import CompanyNewAd from './Company';
+import CompanySignup from './Company/SignUp';
 import './App.scss';
 
 const App = () => {
@@ -111,6 +112,7 @@ const App = () => {
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/company/login" component={CompanyLogin} />
           <Route exact path="/company/new/ad" component={CompanyNewAd} />
+          <Route exact path="/company/signup" component={CompanySignup} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
