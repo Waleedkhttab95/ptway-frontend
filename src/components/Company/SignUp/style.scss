@@ -1,0 +1,22 @@
+.company-signup-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #f3f3f3;
+    width: 100%;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 112px;
+    padding: 50px 40px;
+    width: 490px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+}
