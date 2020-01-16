@@ -4,7 +4,7 @@ config.getBasePublicUrl = () => {
   if (process.env.NODE_ENV === 'development') {
     baseUrl = 'http://localhost:80/';
   } else if (process.env.NODE_ENV === 'production') {
-    baseUrl = '/';
+    baseUrl = 'https://ptway.net/';
   } else {
     baseUrl = 'https://ptway.net/';
   }
