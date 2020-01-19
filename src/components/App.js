@@ -32,6 +32,7 @@ import CompanyNewAd from './Company/newAd';
 import CompanySignup from './Company/SignUp';
 import CompanyHome from './Company';
 import CompanyProjects from './Company/Projects';
+import Applicants from './Company/Applicants';
 
 const App = () => {
   return (
@@ -117,6 +118,7 @@ const App = () => {
           <Route exact path="/company/signup" component={CompanySignup} />
           <Route exact path="/company/home" component={CompanyHome} />
           <Route exact path="/company/projects" component={CompanyProjects} />
+          <Route exact path="/company/applicants" component={Applicants} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
