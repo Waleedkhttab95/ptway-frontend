@@ -40,6 +40,10 @@ const Applicant = () => {
                 </span>
               </div>
             </div>
+            <div className="hour-work">
+              <h3>عدد ساعات العمل</h3>
+              <div className="hours-num">2,315</div>
+            </div>
           </Col>
           <Col md={18} className="applicant-details">
             <div>
