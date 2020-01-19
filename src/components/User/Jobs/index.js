@@ -3,6 +3,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import './style.scss';
 import { Row, Col } from 'antd';
+import FilterAndSearch from '../../Filter';
 const Jobs = props => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
@@ -10,26 +11,7 @@ const Jobs = props => {
       <Header />
       <div className="user-container">
         <div className="user-jobs">
-          <div className="jobs-actions">
-            <div className="action-right-side">
-              <div className="grid-option">
-                <i className="fa fa-th-large" aria-hidden="true"></i>
-              </div>
-              <i className="fa fa-th-list list-option" aria-hidden="true"></i>
-              <div style={{ position: 'relative' }}>
-                <input className="jobs-search" placeholder="بحث" />
-                <i
-                  className="fa fa-search jobs-search-icon"
-                  aria-hidden="true"
-                ></i>
-              </div>
-            </div>
-            <div className="action-left-side">
-              <span className="filter-title">الترتيب :</span>
-              <input placeholder="الاحدث" className="filter-options" />
-              <button className="filter-btn">فلترة</button>
-            </div>
-          </div>
+          <FilterAndSearch />
           <Row className="jobs-details">
             {array.map(elm => {
               return (

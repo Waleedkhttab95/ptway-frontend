@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.scss';
 import AuthenticatedRoute from '../components/AuthenticatedRoute';
 import HomePage from './Admin/HomePage';
 import Statistics from './Admin/Statistics';
@@ -30,7 +31,7 @@ import CompanyLogin from './Company/Login';
 import CompanyNewAd from './Company/newAd';
 import CompanySignup from './Company/SignUp';
 import CompanyHome from './Company';
-import './App.scss';
+import CompanyProjects from './Company/Projects';
 
 const App = () => {
   return (
@@ -115,6 +116,7 @@ const App = () => {
           <Route exact path="/company/new/ad" component={CompanyNewAd} />
           <Route exact path="/company/signup" component={CompanySignup} />
           <Route exact path="/company/home" component={CompanyHome} />
+          <Route exact path="/company/projects" component={CompanyProjects} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

@@ -1,0 +1,70 @@
+.company-project {
+    // height: 378px;
+    border-radius: 5px;
+    // box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    .project-header {
+        display: flex !important;
+        justify-content: space-around !important;
+        border-bottom: solid 1px #e7e7e7;
+        >h3 {
+            font-family: DINNextLTW23;
+            font-size: 14px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.71;
+            letter-spacing: normal;
+            text-align: right;
+            color: #a6a6a6;
+        }
+    }
+}
+
+.project {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    >h4 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: right;
+        color: #000000;
+    }
+    .applicants-btn {
+        width: 107px;
+        height: 32px;
+        border-radius: 6px;
+        background-color: #636363;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+    .accepted-btn {
+        width: 107px;
+        height: 32px;
+        border-radius: 6px;
+        background-color: #3b96d9;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+}
