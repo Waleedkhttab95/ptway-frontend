@@ -33,6 +33,7 @@ import CompanySignup from './Company/SignUp';
 import CompanyHome from './Company';
 import CompanyProjects from './Company/Projects';
 import Applicants from './Company/Applicants';
+import Applicant from './Company/Applicant';
 
 const App = () => {
   return (
@@ -119,6 +120,11 @@ const App = () => {
           <Route exact path="/company/home" component={CompanyHome} />
           <Route exact path="/company/projects" component={CompanyProjects} />
           <Route exact path="/company/applicants" component={Applicants} />
+          <Route
+            exact
+            path="/company/applicant/profile"
+            component={Applicant}
+          />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

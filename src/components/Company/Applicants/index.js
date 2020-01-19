@@ -5,7 +5,7 @@ import Filter from '../../Filter';
 import Footer from '../../Footer';
 
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
-const Applicants = () => {
+const Applicants = props => {
   return (
     <React.Fragment>
       <Header />
@@ -21,7 +21,12 @@ const Applicants = () => {
         {array.map(elm => (
           <div className="applicant" key={elm}>
             <h4>ياسر أحمد القحطاني</h4>
-            <button className="display-cv">عرض</button>
+            <button
+              className="display-cv"
+              onClick={() => props.history.push('/company/applicant/profile')}
+            >
+              عرض
+            </button>
             <h4>مشروع تأمين أفرع الشركة التجارية </h4>
             <h4>محاسب في شركة بيتزا هت</h4>
             <h4>قيد الانتظار</h4>
