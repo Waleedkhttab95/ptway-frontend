@@ -23,6 +23,23 @@ const user = (state = initialUser, action) => {
         // ...state,
         error: action.payload
       };
+    case 'COMPANY_SIGNUP_SUCCESS':
+      baseRequest.setLocalStorage({
+        ...action.payload,
+        isAdmin: false,
+        loggedIn: true,
+        role: 'company'
+      });
+      return {
+        // ...state,
+        ...action.payload,
+        loggedIn: true
+      };
+    case 'COMPANY_SIGNUP_ERROR':
+      return {
+        // ...state,
+        error: action.payload
+      };
     case 'LOGIN_ADMIN_SUCCESS':
       baseRequest.setLocalStorage({
         ...action.payload,

@@ -3,7 +3,7 @@ import { Row, Drawer, Button, Modal, Input, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
-
+import { logout } from '../../store/actions/userAction';
 import headerBack from '../../images/header.png';
 import './header.scss';
 import { withTranslation } from 'react-i18next';
@@ -12,6 +12,8 @@ import { loadState } from '../../_core/localStorage';
 import shContractIc from '../../images/short.svg';
 import lngContract from '../../images/long.svg';
 import cuntContract from '../../images/continue.svg';
+import { connect } from 'react-redux';
+import history from '../../_core/history';
 
 const options = [
   { value: 'en', label: 'En' },
@@ -96,27 +98,17 @@ class Header extends React.Component {
   render() {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
-    console.log('props+++', this.props);
     const list = [1, 2, 3, 4];
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
           <div className="user-header">
             <div className="user-right-side">
-              {/* <img src={headerLogo} alt="logo" /> */}
               <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-              {/* <a>سيرتي الذاتية </a> */}
               <Link to="/user/home">سيرتي الذاتية </Link>
-              {/* <a> */}
               <Link to="/user/jobs">فرص العمل</Link>
-              {/* </a> */}
-              {/* <a>المتقدمين </a> */}
             </div>
             <div className="user-left-side">
-              {/* <Button className="user-header-btn">
-                <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
-                أضف
-              </Button> */}
               <Button
                 className="user-header-btn"
                 // onClick={() => this.props.history.push('/user/account/setting')}
@@ -164,7 +156,81 @@ class Header extends React.Component {
                   </div>
                 )}
               </div>
-              <Button className="user-header-btn">خروج</Button>
+              <Button
+                className="user-header-btn"
+                onClick={async () => {
+                  await this.props.logout();
+                  history.push('/');
+                }}
+              >
+                خروج
+              </Button>
+            </div>
+          </div>
+        ) : loggedIn && role === 'company' ? (
+          <div className="user-header">
+            <div className="user-right-side">
+              <img src={userLogo} alt="logo" style={{ width: '140px' }} />
+              <Link to="/company/home">الرئيسية </Link>
+              <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+              <a>المتقدمين </a>
+            </div>
+            <div className="user-left-side">
+              <Button className="user-header-btn">
+                <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
+                أضف
+              </Button>
+              <Button
+                className="user-header-btn"
+                // onClick={() => this.props.history.push('/user/account/setting')}
+              >
+                <Link>حسابي</Link>
+              </Button>
+              <Button
+                className="user-header-btn"
+                onClick={this.notificationMenu}
+              >
+                تنبيهات
+              </Button>
+              <div onBlur={this.close} tabIndex="0">
+                {this.state.notification && (
+                  <div className="notifications-dropdown">
+                    <h5>اليوم</h5>
+                    {list.map(elm => {
+                      return (
+                        <div className="notification-drop-menu" key={elm}>
+                          <i
+                            className="fa fa-picture-o"
+                            aria-hidden="true"
+                            style={{
+                              fontSize: '45px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              paddingLeft: '10px'
+                            }}
+                          ></i>
+                          <span>
+                            لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
+                            هت للبيتزا
+                          </span>
+                        </div>
+                      );
+                    })}
+                    <u className="more-notification-btn">
+                      <Link className="more-notification-btn">مشاهدة الكل</Link>
+                    </u>
+                  </div>
+                )}
+              </div>
+              <Button
+                className="user-header-btn"
+                onClick={async () => {
+                  await this.props.logout();
+                  history.push('/');
+                }}
+              >
+                خروج
+              </Button>
             </div>
           </div>
         ) : (
@@ -304,4 +370,17 @@ class Header extends React.Component {
   }
 }
 
-export default withTranslation()(Header);
+const mapPropsToState = ({ user }) => {
+  return {
+    user
+  };
+};
+const mapPropsToDispatch = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+
+const HeaderWrapper = connect(mapPropsToState, mapPropsToDispatch)(Header);
+
+export default withTranslation()(HeaderWrapper);
