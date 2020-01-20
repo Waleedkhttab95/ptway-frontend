@@ -34,6 +34,7 @@ import CompanyHome from './Company';
 import CompanyProjects from './Company/Projects';
 import Applicants from './Company/Applicants';
 import Applicant from './Company/Applicant';
+import CompSetting from './Company/Setting';
 
 const App = () => {
   return (
@@ -125,6 +126,8 @@ const App = () => {
             path="/company/applicant/profile"
             component={Applicant}
           />
+
+          <Route exact path="/company/setting" component={CompSetting} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

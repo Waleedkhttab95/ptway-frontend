@@ -1,0 +1,54 @@
+.company-info {
+    width: 287px;
+    height: 388px;
+    border-radius: 7px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    .company-pic-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .c-pic{
+           font-size: 100px;
+           margin-top:28px;
+        }
+        .company-name {
+            font-family: DINNextLTW23;
+            font-size: 16px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #343434;
+        }
+    }
+    .company-details-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-right: 21px;
+        >span {
+            font-family: DINNextLTW23;
+            font-size: 14px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: right;
+            color: #898989;
+            margin-top: 10px;
+            padding: 0 10px;
+
+            > i {
+                padding-left: 10px;
+            }
+        }
+    }
+}

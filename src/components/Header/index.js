@@ -184,7 +184,7 @@ class Header extends React.Component {
                 className="user-header-btn"
                 // onClick={() => this.props.history.push('/user/account/setting')}
               >
-                <Link>حسابي</Link>
+                <Link to="/company/setting">حسابي</Link>
               </Button>
               <Button
                 className="user-header-btn"
