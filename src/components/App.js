@@ -35,6 +35,7 @@ import CompanyProjects from './Company/Projects';
 import Applicants from './Company/Applicants';
 import Applicant from './Company/Applicant';
 import CompSetting from './Company/Setting';
+import UpdateCompanyProfile from './Company/UpdateProfile';
 
 const App = () => {
   return (
@@ -128,6 +129,11 @@ const App = () => {
           />
 
           <Route exact path="/company/setting" component={CompSetting} />
+          <Route
+            exact
+            path="/company/profile/update"
+            component={UpdateCompanyProfile}
+          />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

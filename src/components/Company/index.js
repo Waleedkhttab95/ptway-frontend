@@ -6,7 +6,7 @@ import './style.scss';
 import CompanyInfo from './CompanyInfo';
 
 const { Content } = Layout;
-const CompanyHome = () => {
+const CompanyHome = props => {
   return (
     <div>
       <Header />
@@ -47,7 +47,7 @@ const CompanyHome = () => {
               <CompanyInfo />
               <button
                 className="update-profile-btn"
-                // onClick={() => props.history.push('/user/profile/update')}
+                onClick={() => props.history.push('/company/profile/update')}
               >
                 تعديل المعلومات
               </button>

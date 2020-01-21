@@ -56,7 +56,7 @@ const Tab1 = () => {
         ></i>
         الدولة وموقع الشركة
       </h4>
-      <div className="location-info">
+      <div className="comp-location-info">
         <div>
           <h5 className="sub-title">البريد الالكتروني</h5>
           <p className="sub-desc">info@pizzahutforpizza.com</p>
