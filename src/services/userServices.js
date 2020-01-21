@@ -36,6 +36,15 @@ const userServices = {
     baseRequest.post('/login', { email, password }).then(result => {
       // baseRequest.addHeader(result.data.sessionToken);
       return result;
+    }),
+  companyRegistration: params =>
+    baseRequest.post('/companyRegistreing', {
+      companyName: params.companyName,
+      email: params.email,
+      password: params.password,
+      sector: params.sector,
+      CompanySpecialist: params.specialist,
+      isActive: params.status
     })
 };
 

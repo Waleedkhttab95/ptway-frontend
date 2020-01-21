@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 1170px;
+    // width: 1170px;
     height: 38px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -68,7 +68,6 @@
         width: 740px; 
     }
 }
-
 .offers-num {
 display: flex;
 justify-content: center;
@@ -77,4 +76,91 @@ width: 71px;
 height: 32px;
 border-radius: 6px;
 background-color: #f3f3f3;
+}
+.options-menu {
+    font-weight: bold;
+    font-size: 16px;
+}
+.project-options{
+    display: flex;
+    justify-content: space-around;
+    >i {
+        margin-left: 5px;
+    }
+}
+.delete-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > h3 {
+        font-family: DINNextLTW23;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #222222;
+        margin-top: 15px;
+    }
+    > p {
+        font-family: DINNextLTW23;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.69;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ababab;
+    }
+    .delete-icon {
+        width: 82px;
+        height: 82px;
+        background-color: #ff6565;
+        color: #fff;
+        font-size: 28px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-btns {
+        display: flex;
+        .del-btn {
+            width: 140px;
+            height: 35px;
+            border-radius: 6px;
+            background-color: #ff6565;
+            font-family: DINNextLTW23;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+            margin-left: 10px;
+        }
+        .cancel-btn {
+            width: 140px;
+            height: 35px;
+            border-radius: 6px;
+            background-color: #3b3b3b;
+            font-family: DINNextLTW23;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+
+        }
+
+    }
 }
