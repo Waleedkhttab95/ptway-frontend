@@ -84,18 +84,16 @@ class Header extends React.Component {
   };
 
   postJob = () => {
-    console.log('here');
-
     this.setState({
+      addProject: false,
       postJobPopup: true
     });
   };
 
   newAd = () => {
-    console.log('here2');
-
     this.setState({
       postJobPopup: false,
+      addProject: false,
       newAdPopUp: true
     });
   };
@@ -182,7 +180,7 @@ class Header extends React.Component {
             </div>
             <div className="user-left-side">
               <Button
-                className="user-header-btn"
+                className="my-account-btn"
                 onClick={() =>
                   this.setState({ addProject: !this.state.addProject })
                 }

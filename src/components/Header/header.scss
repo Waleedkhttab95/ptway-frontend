@@ -172,11 +172,20 @@
 
             
         }
-       .user-header-btn:hover, .user-header-btn:focus, .user-header-btn:visited{
+       .my-account-btn {
         height: 32px;
         border-radius: 6px;
         color: #fff;
         background-color: #3b96d9;
+        margin-right: 29px;
+        width: 80px;
+        font-family: DINNextLTW23;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
        } 
 
     }
