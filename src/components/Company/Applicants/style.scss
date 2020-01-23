@@ -1,0 +1,77 @@
+.company-container {
+    padding: 60px 135px;
+}
+.applicant-header {
+    height: 38px;
+    border-radius: 5px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+    > h3 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #3b3b3b;
+    }
+}
+.applicant {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 87px;
+    border-radius: 5px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    margin-top: 10px;
+    > h4 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: right;
+        color: #000000;
+    }
+}
+.display-cv {
+    width: 107px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    border-color: #f3f3f3;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #626262;
+  } 
+.display-cv:hover, .display-cv:focus {
+  width: 107px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #3598d4;
+  font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}

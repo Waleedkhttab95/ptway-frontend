@@ -1,9 +1,12 @@
 import React from 'react';
 import './style.scss';
-import { Form, Icon, Input, Button, Checkbox, Select } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Select, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import Footer from '../../Footer';
 import statatisticsService from '../../../services/statisticsService';
+import { companySignup } from '../../../store/actions/userAction';
+
+import { connect } from 'react-redux';
 
 const { getAllCompanyMajors, getCompanySMajor } = statatisticsService;
 const { Option } = Select;
@@ -21,12 +24,22 @@ class CompanySignupForm extends React.Component {
       jobTypes
     });
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        const { history } = this.props;
+
+        const { register, history } = this.props;
+        await register({
+          companyName: values.companyname,
+          email: values.email,
+          password: values.password,
+          sector: values.sector,
+          specialist: values.type,
+          status: values.sector === '5c56c3572e168a2c30fe5dde' ? false : true
+        });
+
         history.push('/company/home');
       }
     });
@@ -35,10 +48,20 @@ class CompanySignupForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { jobTypes, sectors } = this.state;
+    const { user } = this.props;
     return (
       <div className="company-signup-container">
         <div className="form-container">
           <h3 className="login-form-title">انشاء حساب جديد</h3>
+          {user.error ? (
+            <Alert
+              message={user.error.response.data}
+              type="error"
+              style={{ width: '100%' }}
+            />
+          ) : (
+            ''
+          )}
           <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
             <label className="login-form-label">اسم الجهة</label>
             <Form.Item>
@@ -48,7 +71,7 @@ class CompanySignupForm extends React.Component {
             </Form.Item>
             <label className="login-form-label">البريد الالكتروني</label>
             <Form.Item>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('email', {
                 rules: [
                   { required: true, message: 'الرجاء ادخال البريد الالكتروني' }
                 ]
@@ -120,7 +143,23 @@ class CompanySignupForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    register: params => {
+      return dispatch(companySignup(params));
+    }
+  };
+};
+
 const CompanyRegistration = Form.create({ name: 'CompanySignupForm' })(
   CompanySignupForm
 );
-export default CompanyRegistration;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CompanyRegistration);

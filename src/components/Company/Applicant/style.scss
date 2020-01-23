@@ -1,0 +1,74 @@
+.company-container{
+    padding: 60px 135px;
+}
+.applicant-profile {
+    display: flex;
+    margin-top: 32px;
+    .applicant-right-section {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.applicant-details {
+  height: 950px;
+  border-radius: 10px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  margin-right: 20px;
+  padding: 30px 50px;
+}
+.accept-applicant {
+    width: 288px;
+  height: 55px;
+  border-radius: 6px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #3598d4;
+  font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+.reject-applicant {
+  width: 288px;
+  height: 55px;
+  border-radius: 6px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #3b3b3b;
+  font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.hour-work {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 287px;
+  height: 149px;
+  border-radius: 7px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+}
+.hours-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 107px;
+    height: 42px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+}

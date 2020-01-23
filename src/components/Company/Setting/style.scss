@@ -1,0 +1,209 @@
+.company-setting {
+    display: flex;
+    .right-side {
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        padding-right: 53px;
+        margin-right: 20px;
+    }
+}
+.contact-info, .social-info, .comp-location-info {
+    display: flex;
+    >div {
+        width: 100%
+    }
+}
+.sub-title {
+    font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #343434;
+}
+.sub-desc {
+    font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: right;
+  color: #898989;
+  margin-bottom: 25px;
+}
+.sub-accounts {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 0;
+}
+.sub-account-btn {
+    width: 161px;
+  height: 35px;
+  border-radius: 6px;
+  background-color: #3598d4;
+  font-family: DINNextLTW23;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+//   margin-right: 30px;
+}
+.filter-input {
+    width: 251px;
+  height: 35px;
+  border-radius: 5px;
+  border: solid 1px #d9d9d9;
+  background-color: #fcfcfc;
+}
+.sub-accounts-header {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: solid 1px #e3e3e3;
+    >h3 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #3b3b3b;
+    }
+}
+.sub-account {
+    height: 64px;
+//   opacity: 0.5;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  >h3 {
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3b3b3b;
+  }
+}
+.sub-account-odd {
+    height: 64px;
+    // opacity: 0.5;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    >h3 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #3b3b3b;
+      }
+}
+.account-setting {
+    padding-top: 50px;
+    padding-right: 50px;
+    .account-info{
+        display: flex;
+        flex-direction: column;
+        > input {
+             width: 414px;
+             height: 32px;
+             border-radius: 4px;
+             border: solid 1px #d9d9d9;
+             margin-bottom: 30px;
+         }
+    }
+}
+
+.contact-way {
+    margin-bottom: 60px;
+}
+
+.new-sub-acc {
+    > h3 {
+        font-family: DINNextLTW23;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #222222;
+        margin-top: 30px;
+    }
+    >p {
+        font-family: DINNextLTW23;
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ababab;
+    }
+    .sub-account-btn {
+        width: 234px;
+        height: 35px;
+        border-radius: 6px;
+        background-color: #3598d4;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        display: block;
+        margin: auto;
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+    
+    }
+}
+.new-sub-form {
+    display: flex;
+    >div {
+        margin-left: 15px;
+        > label {
+            font-family: DINNextLTW23;
+            font-size: 14px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.57;
+            letter-spacing: normal;
+            text-align: right;
+            color: #b5b5b5;
+        }
+        >input {
+            width: 219px;
+             border: solid 1px #d9d9d9;
+             margin-bottom: 15px;
+        }
+    }
+}

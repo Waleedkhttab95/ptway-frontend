@@ -8,6 +8,13 @@ export const userSignup = params => {
   };
 };
 
+export const companySignup = params => {
+  return {
+    type: 'COMPANY_SIGNUP',
+    payload: userServices.companyRegistration(params)
+  };
+};
+
 export const userInfo = params => {
   return {
     type: 'USER_INFO',
