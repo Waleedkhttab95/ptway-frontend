@@ -207,3 +207,119 @@
         }
     }
 }
+.search-mob {
+    width: 250px;
+}
+
+@media (max-width:320px) {
+    .company-container {
+        padding: 30px 20px; 
+        .company-setting {
+           display: block; 
+           .right-side {
+            padding-right: 0px;
+          margin-right: 0px;
+        } 
+        }
+    }
+    .contact-info, .social-info, .comp-location-info {
+        flex-direction: column;
+        padding-right: 15px;
+    }
+    .sub-accounts {
+        flex-direction: column;
+    }
+    .search-mob {
+        width: 300px;
+        text-align: center;
+    }
+    .jobs-search-icon {
+        right: 10px;
+    }
+    .filter-title{
+        margin-top: 10px;
+    }
+    .filter-input {
+        margin-top: 10px;
+    }
+    .sub-account-btn{
+        margin-top: 10px;
+    }
+    .sub-account-odd{
+        height: auto;
+        flex-direction: column;
+        justify-content: right;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .sub-account{
+        height: auto;
+        flex-direction: column;
+        justify-content: right;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .sub-accounts-header{
+        display: none;
+    }
+    .heading {
+        padding-right: 13px;
+    }
+}
+
+@media (min-width:321px) and (max-width:678px) {
+    .company-container {
+        padding: 30px 20px; 
+        .company-setting {
+            display: block;
+            .right-side {
+                padding-right: 0px;
+              margin-right: 0px;
+            } 
+         }
+    }
+    .search-mob {
+        width: 300px;
+        text-align: center;
+    }
+    .jobs-search-icon {
+        right: 10px;
+    }
+
+    .contact-info, .social-info, .comp-location-info {
+        flex-direction: column;
+        padding-right: 15px;
+    }
+    .sub-accounts {
+        flex-direction: column;
+    }
+    .filter-title{
+        margin-top: 10px;
+    }
+    .filter-input {
+        margin-top: 10px;
+    }
+    .sub-account-btn{
+        margin-top: 10px;
+    }
+    .sub-account-odd{
+        height: auto;
+        flex-direction: column;
+        justify-content: right;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .sub-account{
+        height: auto;
+        flex-direction: column;
+        justify-content: right;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .sub-accounts-header{
+        display: none;
+    }
+    .heading {
+        padding-right: 13px;
+    }
+}
