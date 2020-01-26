@@ -67,8 +67,11 @@
     .project-selection{
         margin-bottom: 30px !important;
     }
+    .selector {
+        width: 702px;
+    }
 }
-.group-questions, .last-ad-group{
+.group-questions, .last-ad-group {
     display: flex;
     width: 100%;
     .left-side, .right-side {
@@ -92,9 +95,12 @@
 
         }
     }
+    .selector {
+        width: 341px;
+    }
 }
 
-.sub-heading{
+.sub-heading {
     font-family: DINNextLTW23;
   font-size: 14px;
   font-weight: 500;
@@ -122,4 +128,39 @@
   text-align: center;
   color: #ffffff;
   margin-top: 60px !important;
+}
+
+@media (max-width: 320px) {
+    .new-ad-form {
+        width: auto;
+        padding: 12px 23px;
+    }
+    .group-questions, .last-ad-group {
+        flex-direction: column;
+    }
+    .group-questions .left-side > input, .group-questions .right-side > input, .last-ad-group .left-side > input, .last-ad-group .right-side > input {
+        width: 140px;
+    }
+    .new-ad-details .selector {
+        width: 302px;
+    }
+    .last-ad-group .selector {
+        width: 130px;
+    }
+}
+
+@media (min-width:321px) and (max-width: 768px){
+    .new-ad-form {
+        width: auto;
+        padding: 12px 23px;
+    }
+    .group-questions .left-side > input, .group-questions .right-side > input, .last-ad-group .left-side > input, .last-ad-group .right-side > input {
+        width: 140px;
+    }
+    .new-ad-details .selector {
+        width: 302px;
+    }
+    .last-ad-group .selector {
+        width: 130px;
+    }
 }
