@@ -10,8 +10,10 @@ const Applicant = () => {
       <div className="company-container">
         <div className="applicant-profile">
           <Col md={6} className="applicant-right-section">
-            <button className="accept-applicant">قبول المتقدم</button>
-            <button className="reject-applicant">رفض المتقدم</button>
+            <div className="btns-container">
+              <button className="accept-applicant">قبول المتقدم</button>
+              <button className="reject-applicant">رفض المتقدم</button>
+            </div>
             <div className="personal-info">
               <div className="user-pic-info">
                 <i className="fa fa-user u-pic" aria-hidden="true"></i>
