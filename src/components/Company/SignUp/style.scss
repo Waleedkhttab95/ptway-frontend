@@ -20,3 +20,24 @@
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
 }
+.type-selector, .sector-selector {
+    width: 402px;
+}
+
+@media (max-width:320px) {
+    .form-container {
+        width: 290px;
+    }
+    .type-selector, .sector-selector {
+        width: 282px;
+    }
+}
+
+@media (min-width:321px) and (max-width: 768px) {
+    .form-container {
+        width: 350px;
+    }
+    .type-selector, .sector-selector {
+        width: 322px;
+    }
+}

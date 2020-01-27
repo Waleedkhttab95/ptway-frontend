@@ -82,7 +82,7 @@ class CompanySignupForm extends React.Component {
               {getFieldDecorator('type', {
                 rules: [{ required: true, message: 'الرجاء ادخال نشاط العمل' }]
               })(
-                <Select style={{ width: '402px' }}>
+                <Select className="type-selector">
                   {jobTypes.map(elm => {
                     return (
                       <Option value={elm.id} key={elm.id}>
@@ -98,7 +98,7 @@ class CompanySignupForm extends React.Component {
               {getFieldDecorator('sector', {
                 rules: [{ required: true, message: 'الرجاء ادخال قطاع العمل' }]
               })(
-                <Select style={{ width: '402px' }}>
+                <Select className="sector-selector">
                   {sectors.map(elm => {
                     return (
                       <Option value={elm.id} key={elm.id}>
