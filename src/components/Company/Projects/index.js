@@ -131,8 +131,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown
@@ -153,8 +157,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown
@@ -174,8 +182,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown

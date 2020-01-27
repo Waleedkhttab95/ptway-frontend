@@ -18,9 +18,9 @@ class Tab2 extends React.Component {
           <div>
             <div style={{ position: 'relative' }}>
               <input
-                className="jobs-search"
+                className="jobs-search search-mob"
                 placeholder="بحث"
-                style={{ marginRight: '0', width: '250px' }}
+                style={{ marginRight: '0' }}
               />
               <i
                 className="fa fa-search jobs-search-icon"

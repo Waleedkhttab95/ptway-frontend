@@ -20,7 +20,7 @@ const AddNewAd = props => {
             <label>تفاصيل الإعلان الوظيفي</label>
             <TextArea row={6} />
             <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
-            <Select style={{ width: '702px' }} className="project-selection">
+            <Select className="project-selection selector">
               <Option value="jack">Option 1</Option>
             </Select>
             <label>المسمى الوظيفي المطلوب</label>
@@ -49,16 +49,12 @@ const AddNewAd = props => {
             <Input />
             <div className="last-ad-group">
               <div>
-                <label className="sub-heading">
-                  المشروع الأساسي الذي سيندرج تحته الإعلان
-                </label>
-                <Select style={{ width: '341px' }}></Select>
+                <label className="sub-heading">الدولة</label>
+                <Select className="selector"></Select>
               </div>
               <div>
-                <label className="sub-heading">
-                  المشروع الأساسي الذي سيندرج تحته الإعلان
-                </label>
-                <Select style={{ width: '341px' }}></Select>
+                <label className="sub-heading">المدينة</label>
+                <Select className="selector"></Select>
               </div>
             </div>
           </div>

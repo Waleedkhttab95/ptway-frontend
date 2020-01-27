@@ -164,3 +164,45 @@ background-color: #f3f3f3;
 
     }
 }
+.applicant-num-mob {
+    display: none
+}
+
+@media (max-width:320px) {
+    .company-projects {
+        margin: 0px;
+   }
+
+   .projects-header {
+       display: none !important;
+   }
+   .company-project .project-header{
+    display: none !important;
+}
+.panel-mob {
+    padding-right: 10px;
+    display: block !important;
+}
+.applicant-num-mob {
+    display: block
+}
+}
+
+@media (min-width: 321px) and (max-width:768px) {
+    .company-projects {
+         margin: 0px;
+    }
+    .projects-header {
+        display: none !important;
+    }
+    .company-project .project-header{
+        display: none !important;
+    }
+    .panel-mob {
+        padding-right: 10px;
+        display: block !important;
+    }
+    .applicant-num-mob {
+        display: block
+    }
+}
