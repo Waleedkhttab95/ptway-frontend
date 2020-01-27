@@ -67,4 +67,134 @@
         text-align: center;
         color: #ffffff;
     }
+    .project-num-mob, .project-date-mob {
+        display: none;
+    }
+}
+.applicants-btn-mob, .accepted-btn-mob {
+    display: none;
+}
+
+@media (max-width:320px) {
+   .company-project .project-header{
+    display: none !important;
+  }
+  .project {
+    display: block;
+    border-bottom: 1px solid #f4f4f4;
+    padding-bottom: 15px;
+    .project-num-mob, .project-date-mob {
+      display: block;
+  }
+  >h4:nth-child(1) {
+    font-weight: bold;
+}
+  }
+  .applicants-btn, .accepted-btn {
+    display: none;
+}
+.applicants-btn-mob {
+    display: block;
+    width: 140px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #636363;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+.accepted-btn-mob {
+    display: block;
+    width: 140px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #3b96d9;
+    font-family: DINNextLTW23;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+.date-mob, .num-mob {
+    display: flex;
+}
+  .projects-collapse > div > div {
+    border-top: 1px solid #f3f3f3 !important;
+    padding: 10px 0 !important;
+}
+.btns-mob {
+    display: flex
+}
+}
+
+@media (min-width: 321px) and (max-width:768px) {
+    .company-project .project-header{
+        display: none !important;
+    }
+    .project {
+        display: block;
+        border-bottom: 1px solid #f4f4f4;
+        padding-bottom: 15px;
+        .project-num-mob, .project-date-mob {
+            display: block;
+        }
+        >h4:nth-child(1) {
+            font-weight: bold;
+        }
+    }
+    .applicants-btn, .accepted-btn {
+        display: none;
+    }
+    .applicants-btn-mob {
+        display: block;
+        width: 140px;
+        height: 32px;
+        border-radius: 6px;
+        background-color: #636363;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+    .accepted-btn-mob {
+        display: block;
+        width: 140px;
+        height: 32px;
+        border-radius: 6px;
+        background-color: #3b96d9;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+    .date-mob, .num-mob {
+        display: flex;
+    }
+    .projects-collapse > div > div {
+        border-top: 1px solid #f3f3f3 !important;
+        padding: 10px 0 !important;
+    }
+    .btns-mob {
+        display: flex
+    }
 }
