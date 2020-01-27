@@ -29,7 +29,7 @@ const step4Form = props => {
                 {emailError && !state.email ? emailError : ''}
               </span>
             </div>
-            <div className="elements">
+            <div className="elements elm-mob">
               <label className="info-label">تأكيد البريد الالكتروني</label>
               <Input
                 className="name-text"

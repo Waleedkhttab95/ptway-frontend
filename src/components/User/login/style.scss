@@ -85,3 +85,89 @@
         text-decoration: underline;
     }
 }
+
+@media (max-width:320px) {
+  .user-login-container {
+    height: auto;
+  }
+  .registration-footer {
+    position: relative;
+  }
+  .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
+    display: flex;
+    width: auto
+  }
+  .steps-form .form-content {
+    padding: 30px 13px;
+}
+.steps-form {
+  width: auto;
+  height: 381px;
+}
+.steps-header {
+  display: none;
+}
+.user-signup-datepicker {
+  width: 241px; 
+}
+.form-fields .country-text {
+  width: 241px;
+}
+.steps-action {
+  width: auto;
+  right: auto;
+  top: 500px;
+}
+.form-fields .major-text {
+  width: 250px;
+}
+.form-fields .first-row {
+  flex-direction: column;
+}
+// .elm-mob {
+//   display: none;
+// }
+}
+
+@media (min-width:321px) and (max-width:768px) {
+  .user-login-container {
+    height: auto;
+  }
+  .registration-footer {
+    position: relative;
+  }
+  .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
+    display: flex;
+    width: auto
+  }
+  .steps-form .form-content {
+    padding: 30px 13px;
+}
+.steps-form {
+  width: auto;
+  height: 381px;
+}
+.steps-header {
+  display: none;
+}
+.user-signup-datepicker {
+  width: 301px; 
+}
+.form-fields .country-text {
+  width: 301px;
+}
+.steps-action {
+  width: auto;
+  right: auto;
+  top: 500px;
+}
+.form-fields .major-text {
+  width: 250px;
+}
+.form-fields .first-row {
+  flex-direction: column;
+}
+// .elm-mob {
+//   display: none !important;
+// }
+}
