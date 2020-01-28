@@ -54,3 +54,27 @@
   text-align: center;
   color: #ffffff;
 }
+
+@media (max-width:320px) {
+    .notifications {
+        padding: 50px 15px;
+        .notification .notification-msg {
+            width: auto;
+        }
+    }
+    .notification-close {
+        display: none;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px) {
+    .notifications {
+        padding: 50px 15px;
+        .notification .notification-msg {
+            width: auto;
+        }
+    }
+    .notification-close {
+        display: none;
+    }
+}
