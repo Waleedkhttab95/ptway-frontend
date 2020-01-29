@@ -337,3 +337,63 @@
       color: #62b1dc;
     }
 }
+
+@media (max-width:320px) {
+.user-home .user-profile .left-section .skills-general-info {
+    width: auto;
+    padding: 30px 20px 0 15px;
+    height: auto;
+}
+.user-home .user-profile .left-section .user-progress {
+    flex-direction: column;
+    align-items: center;
+    .user-hours-work, .user-jobs {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+}
+.user-home .user-profile {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+.user-home .user-profile .right-section {
+    margin-left: 0px;
+}
+.personal-info{
+    width: auto;
+}
+.user-home .user-profile .right-section .user-profile-complete {
+    width: auto;
+}
+}
+
+@media (min-width:321px) and (max-width:768px) {
+.user-home .user-profile .left-section .skills-general-info {
+     width: auto;
+     padding: 30px 20px 0 15px;
+     height: auto;
+}
+.user-home .user-profile .left-section .user-progress {
+    flex-direction: column;
+    align-items: center;
+    .user-hours-work, .user-jobs {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+}
+.user-home .user-profile {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+.user-home .user-profile .right-section {
+    margin-left: 0px;
+}
+.personal-info {
+    width: auto;
+}
+.user-home .user-profile .right-section .user-profile-complete {
+    width: auto;
+}
+}

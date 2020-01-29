@@ -268,3 +268,35 @@
     text-align: right;
     color: #000000;
 }
+
+@media (max-width:320px) {
+    .job-section {
+        display: flex;
+        margin: 32px 15px;
+        flex-direction: column;
+        .right-section {
+            width: auto;
+            height: auto;
+        }
+    }
+}
+
+@media (min-width:321px) and (max-width:768px) {
+    .job-section {
+        display: flex;
+        margin: 32px 15px;
+        flex-direction: column;
+        .right-section{
+            width: auto;
+            // height: auto;
+            margin-left: 0px;
+        }
+         .left-section {
+            width: auto;
+            height: auto;
+            margin-right: 0px; 
+            margin-top: 20px;
+            padding: 60px 20px;
+        }
+    }
+}

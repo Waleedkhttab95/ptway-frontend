@@ -181,3 +181,23 @@
 .job-post:hover .post-status{
     background: #2e9bc3 !important;
 }
+
+@media (max-width:320px){
+    .jobs-details .job-post {
+        width: auto;
+        margin-left: 0px;
+    }
+    .user-jobs {
+        padding: 56px 35px;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px){
+    .jobs-details .job-post {
+        width: auto;
+        margin-left: 0px;
+    }
+    .user-jobs {
+        padding: 56px 35px;
+    }
+}
