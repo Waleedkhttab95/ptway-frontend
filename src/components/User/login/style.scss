@@ -95,14 +95,17 @@
   }
   .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
     display: flex;
-    width: auto
+    width: 100px;
+    justify-content: center;
+    align-items: center;
   }
   .steps-form .form-content {
     padding: 30px 13px;
 }
 .steps-form {
   width: auto;
-  height: 381px;
+  height: auto;
+  padding-bottom: 50px;
 }
 .steps-header {
   display: none;
@@ -138,14 +141,17 @@
   }
   .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
     display: flex;
-    width: auto
+    width: 100px;
+    justify-content: center;
+    align-items: center;
   }
   .steps-form .form-content {
     padding: 30px 13px;
 }
 .steps-form {
   width: auto;
-  height: 381px;
+  height: auto;
+  padding-bottom: 50px;
 }
 .steps-header {
   display: none;

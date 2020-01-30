@@ -216,3 +216,15 @@ input.ant-calendar-picker-input.ant-input{
     bottom: 0;
     width: 100%;
 }
+
+@media (max-width:320px) {
+    .ant-steps-horizontal:not(.ant-steps-label-vertical) .ant-steps-item-tail {
+        display: none !important;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px) {
+    .ant-steps-horizontal:not(.ant-steps-label-vertical) .ant-steps-item-tail {
+        display: none !important;
+    }
+}
