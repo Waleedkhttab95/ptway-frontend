@@ -67,9 +67,11 @@
         }
     .left-section{
         margin-top: 17px;
-        .user-progress{
+    }
+        .user-progress, .company-progress{
             display: flex;
-            .user-hours-work{
+        }
+            .user-hours-work {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -129,7 +131,7 @@
                 text-align: right;
                 color: #ffffff;
             }
-        }
+        
         .skills-general-info{
             width: 863px;
             height: 1104px;
@@ -186,7 +188,7 @@
                     padding-bottom: 12px;   
                 }
             }
-        }
+        
     }
     }
 }
@@ -337,6 +339,9 @@
       color: #62b1dc;
     }
 }
+.user-progress-mob{
+    display: none;
+}
 
 @media (max-width:320px) {
 .user-home .user-profile .left-section .skills-general-info {
@@ -365,6 +370,12 @@
 }
 .user-home .user-profile .right-section .user-profile-complete {
     width: auto;
+}
+.user-progress-mob {
+    display: flex;
+}
+.company-progress{
+    display: none !important;
 }
 }
 
@@ -395,5 +406,21 @@
 }
 .user-home .user-profile .right-section .user-profile-complete {
     width: auto;
+}
+.user-progress-mob {
+    display: flex;
+    .user-hours-work,.user-jobs, .user-profile-seen {
+        flex-direction: column !important;
+        font-size: 14px;
+        text-align: center !important;
+        width: auto !important;
+        padding: 5px !important;
+        .user-stc-number{
+            font-size: 18px;
+        }
+    }
+}
+.company-progress{
+    display: none !important;
 }
 }

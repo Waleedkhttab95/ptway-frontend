@@ -23,6 +23,21 @@ const User = props => {
             />
           </div>
           <div className="user-profile">
+            <div className="user-progress-mob">
+              <div className="user-hours-work">
+                <div>عدد ساعات العمل</div>
+                <div className="user-stc-number">2,315</div>
+              </div>
+              <div className="user-jobs">
+                <div>وظائف تقدمت عليها</div>
+                <div className="user-stc-number">1,024</div>
+              </div>
+              <div className="user-profile-seen">
+                <div>عدد مشاهدات الحساب</div>
+                <div className="user-stc-number">7,213</div>
+              </div>
+            </div>
+
             <Col md={6} className="right-section">
               <div className="personal-info">
                 <div className="user-pic-info">
@@ -67,7 +82,7 @@ const User = props => {
               </button>
             </Col>
             <Col md={18} className="left-section">
-              <div className="user-progress">
+              <div className="company-progress">
                 <div className="user-hours-work">
                   <div>عدد ساعات العمل</div>
                   <div className="user-stc-number">2,315</div>
@@ -81,6 +96,7 @@ const User = props => {
                   <div className="user-stc-number">7,213</div>
                 </div>
               </div>
+
               <div className="skills-general-info">
                 <div className="preif-section">
                   <div className="h-title p-title">
