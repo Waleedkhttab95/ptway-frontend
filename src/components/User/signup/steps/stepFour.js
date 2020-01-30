@@ -6,7 +6,7 @@ const step4Form = props => {
   const {
     emailError,
     passwordError,
-    emailMatchError,
+    // emailMatchError,
     passwordMatchError
   } = state;
   return (
@@ -29,7 +29,7 @@ const step4Form = props => {
                 {emailError && !state.email ? emailError : ''}
               </span>
             </div>
-            <div className="elements elm-mob">
+            {/* <div className="elements elm-mob">
               <label className="info-label">تأكيد البريد الالكتروني</label>
               <Input
                 className="name-text"
@@ -42,7 +42,7 @@ const step4Form = props => {
                   ? emailMatchError
                   : ''}
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="first-row">
             <div className="elements">

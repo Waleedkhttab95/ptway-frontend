@@ -113,7 +113,7 @@ class UserSignup extends React.Component {
       country,
       city,
       major,
-      reEmail,
+      // reEmail,
       rePassword
     } = this.state;
     if (!email || !password) {
@@ -121,10 +121,10 @@ class UserSignup extends React.Component {
         emailError: 'هذا الحقل مطلوب',
         passwordError: 'هذا الحقل مطلوب'
       });
-    } else if (email !== reEmail) {
-      this.setState({
-        emailMatchError: 'البريد الالكتروني غير متطابق'
-      });
+      // } else if (email !== reEmail) {
+      //   this.setState({
+      //     emailMatchError: 'البريد الالكتروني غير متطابق'
+      //   });
     } else if (password !== rePassword) {
       this.setState({
         passwordMatchError: 'كلمة المرور غير متطابقة'
