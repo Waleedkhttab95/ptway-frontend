@@ -37,10 +37,11 @@ const CompanyHome = props => {
               <div>الذين تم توظيفهم</div>
               <div className="user-stc-number">1,024</div>
             </div>
-            <div className="user-rejected">
+            {/* <div className="user-rejected">
               <div>الذين تم رفضهم</div>
               <div className="user-stc-number">7,213</div>
             </div>
+          */}
           </div>
           <div className="user-profile">
             <Col md={6} className="right-section">

@@ -235,7 +235,7 @@ class UserSignup extends React.Component {
                     onClick={this.signup}
                     // onClick={() => this.props.history.push('/user/home')}
                   >
-                    الانتهاء والانتقال للصفحة الرئيسية
+                    الانتقال للصفحة الرئيسية
                   </Button>
                 )}
                 {/* {current > 0 && (
