@@ -21,10 +21,10 @@ export const userInfo = params => {
     payload: userServices.userInfo(params)
   };
 };
-export const userLogin = (email, password) => {
+export const userLogin = params => {
   return {
-    type: 'LOGIN_USER_SUCCESS',
-    payload: userServices.login(email, password)
+    type: 'USER_LOGIN',
+    payload: userServices.login(params)
   };
 };
 
