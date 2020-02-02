@@ -82,7 +82,7 @@ const User = props => {
               </button>
             </Col>
             <Col md={18} className="left-section">
-              <div className="company-progress-mob">
+              <div className="user-progress">
                 <div className="user-hours-work">
                   <div>عدد ساعات العمل</div>
                   <div className="user-stc-number">2,315</div>

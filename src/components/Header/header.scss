@@ -516,6 +516,15 @@
             margin-bottom: -5px;
             height: 50px;
         }
+        .new-project {
+            width: auto;
+        }
+        .ad-contract {
+            flex-direction: column;
+            >div {
+                margin-bottom: 10px;
+            }
+        }
 }
 
 @media (min-width:321px) and (max-width:768px){
@@ -657,6 +666,15 @@
         background: #f3f3f3;
         margin-bottom: -5px;
         height: 50px;
+    }
+    .new-project {
+        width: auto;
+    }
+    .ad-contract {
+        flex-direction: column;
+        >div {
+            margin-bottom: 10px;
+        }
     }
 
 }

@@ -377,6 +377,9 @@
 .company-progress-mob{
     display: none !important;
 }
+.user-progress {
+    display: none !important;
+}
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -421,6 +424,9 @@
     }
 }
 .company-progress-mob{
+    display: none !important;
+}
+.user-progress {
     display: none !important;
 }
 }
