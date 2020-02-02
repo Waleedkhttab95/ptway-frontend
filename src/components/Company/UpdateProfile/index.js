@@ -26,12 +26,12 @@ const UpdateCompanyProfile = () => {
                   <div className="first-section">
                     <div style={{ marginLeft: '20px' }}>
                       <h5 className="title-field">الدولة</h5>
-                      <Input className="input-field" />
+                      <Input className="input-field input-filed-mob" />
                     </div>
                     <div>
                       <h5 className="title-field">المدينة</h5>
 
-                      <Input className="input-field" />
+                      <Input className="input-field input-filed-mob" />
                     </div>
                   </div>
                   <h5 className="title-field">عنوان السكن الحالي</h5>
