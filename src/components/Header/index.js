@@ -513,7 +513,7 @@ class Header extends React.Component {
                     <a>{i18n.t('home.howWorks')}</a>
                     <a>{i18n.t('home.comQuestions')}</a>
                     <a>{i18n.t('home.comQuestions')}</a>
-                    <a>{i18n.t('home.postJob')}</a>
+                    <a onClick={this.postJob}>{i18n.t('home.postJob')}</a>
                     <a>
                       <Link
                         className="employeer-login-btn-mob"
