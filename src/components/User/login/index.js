@@ -3,15 +3,26 @@ import './style.scss';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import Footer from '../../Footer';
+import { connect } from 'react-redux';
+import { userLogin } from '../../../store/actions/userAction';
+
 class UserLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const { username, password } = values;
+        console.log('props---', this.props.user);
+
+        const { login } = this.props;
+        await login({
+          username,
+          password
+        });
+        const { history } = this.props;
+        history.push('/user/home');
       }
-      const { history } = this.props;
-      history.push('/user/home');
     });
   };
 
@@ -66,5 +77,19 @@ class UserLoginForm extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user }) => {
+  return {
+    user
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    login: params => {
+      return dispatch(userLogin(params));
+    }
+  };
+};
+
 const UserLogin = Form.create({ name: 'UserLoginForm' })(UserLoginForm);
-export default UserLogin;
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
