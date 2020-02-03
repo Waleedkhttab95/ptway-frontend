@@ -526,6 +526,20 @@
             }
         }
 }
+.offers-notification{
+    position: absolute;
+    top: 0;
+    z-index: 10000;
+    border-radius: 50%;
+    background: #f44336;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
 
 @media (min-width:321px) and (max-width:768px){
     .home-page-header > img {

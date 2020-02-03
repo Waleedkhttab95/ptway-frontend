@@ -91,7 +91,7 @@
                 text-align: right;
                 color: #ffffff;
             }
-            .user-jobs{
+            .user-job{
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -134,7 +134,7 @@
         
         .skills-general-info{
             width: 863px;
-            height: 1104px;
+            height: 900px;
             border-radius: 10px;
             box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
             background-color: #ffffff;
@@ -181,8 +181,11 @@
                     }
                 }
             }
-            .general-skills{
+            .user-general-skills{
                 padding-top: 55px;
+                display: flex;
+                justify-content: right;
+                width: 100%;
                 .sk-title{
                     border-bottom: solid 1px #d4d4d4;
                     padding-bottom: 12px;   
@@ -209,7 +212,7 @@
         .u-pic{
         //   width: 106px;
         //    height: 106px;
-           font-size: 100px;
+           font-size: 18px;
            margin-top:28px;
         }
         .fullname{
@@ -352,7 +355,7 @@
 .user-home .user-profile .left-section .user-progress {
     flex-direction: column;
     align-items: center;
-    .user-hours-work, .user-jobs {
+    .user-hours-work, .user-job {
         margin-left: 0px;
         margin-bottom: 10px;
     }
@@ -391,7 +394,7 @@
 .user-home .user-profile .left-section .user-progress {
     flex-direction: column;
     align-items: center;
-    .user-hours-work, .user-jobs {
+    .user-hours-work, .user-job {
         margin-left: 0px;
         margin-bottom: 10px;
     }
@@ -412,7 +415,7 @@
 }
 .user-progress-mob {
     display: flex;
-    .user-hours-work,.user-jobs, .user-profile-seen {
+    .user-hours-work,.user-job, .user-profile-seen {
         flex-direction: column !important;
         font-size: 14px;
         text-align: center !important;
