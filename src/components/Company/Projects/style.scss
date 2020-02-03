@@ -164,3 +164,66 @@ background-color: #f3f3f3;
 
     }
 }
+.applicant-num-mob {
+    display: none
+}
+.new-job-btn-mob{
+    display: none;
+}
+
+@media (max-width:320px) {
+    .company-projects {
+        margin: 0px;
+   }
+
+   .projects-header {
+       display: none !important;
+   }
+   .company-project .project-header{
+    display: none !important;
+}
+.panel-mob {
+    padding-right: 10px;
+    display: block !important;
+}
+.applicant-num-mob {
+    display: block
+}
+.projects-collapse{
+    margin-top: 70px !important;
+}
+.new-job-btn-mob{
+    display: block;
+    background: #3498d4 !important;
+    float: right !important;
+    margin-top: 20px !important;
+}
+}
+
+@media (min-width: 321px) and (max-width:768px) {
+    .company-projects {
+         margin: 0px;
+    }
+    .projects-header {
+        display: none !important;
+    }
+    .company-project .project-header{
+        display: none !important;
+    }
+    .panel-mob {
+        padding-right: 10px;
+        display: block !important;
+    }
+    .applicant-num-mob {
+        display: block
+    }
+    .projects-collapse{
+        margin-top: 70px !important;
+    }
+    .new-job-btn-mob{
+        display: block;
+        background: #3498d4 !important;
+        float: right !important;
+        margin-top: 20px !important;
+    }
+}

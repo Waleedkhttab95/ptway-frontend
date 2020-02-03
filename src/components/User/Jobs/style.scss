@@ -181,3 +181,51 @@
 .job-post:hover .post-status{
     background: #2e9bc3 !important;
 }
+
+@media (max-width:320px){
+    .jobs-details .job-post {
+        width: auto;
+        margin-left: 0px;
+        padding-right: 10px;
+    }
+    .user-jobs {
+        padding: 10px 35px;
+    }
+    .jobs-details .job-post .post-body .post-description{
+        text-align: center;
+    }
+    .jobs-details .job-post .post-body .post-actions-btns {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .jobs-details .job-post .post-body .post-status {
+        width: 180px;
+    }
+    .jobs-details .job-post .post-body .apply-job-btn , .jobs-details .job-post .post-body .details-btn {
+        width: 180px;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px){
+    .jobs-details .job-post {
+        width: auto;
+        margin-left: 0px;
+        padding-right: 10px;
+    }
+    .user-jobs {
+        padding: 10px 35px;
+    }
+    .jobs-details .job-post .post-body .post-description{
+        text-align: center;
+    }
+    .jobs-details .job-post .post-body .post-actions-btns {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .jobs-details .job-post .post-body .post-status {
+        width: 223px;
+    }
+
+}

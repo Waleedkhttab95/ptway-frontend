@@ -15,7 +15,7 @@ const FilterAndSearch = () => {
         </div>
       </div>
       <div className="action-left-side">
-        <span className="filter-title">الترتيب :</span>
+        <span className="filter-title">الترتيب</span>
         <input placeholder="الاحدث" className="filter-options" />
         <button className="filter-btn">فلترة</button>
       </div>

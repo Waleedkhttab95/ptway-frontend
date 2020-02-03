@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Collapse, Dropdown, Menu, Modal } from 'antd';
+import { Collapse, Dropdown, Menu, Modal, Button } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../../Filter';
 
@@ -122,6 +122,18 @@ class Projects extends React.Component {
               <h2>عدد العروض الوظيفية</h2>
               <div></div>
             </div>
+            <Button
+              className="new-job-btn-mob"
+              onClick={() => this.props.history.push('/comany/new/project')}
+            >
+              <i
+                className="fa fa-plus plus-icon"
+                aria-hidden="true"
+                style={{ marginLeft: '7px' }}
+              ></i>
+              أضف عرض وظيفي جديد
+            </Button>
+
             <Collapse
               // defaultActiveKey={['1']}
               onChange={callback}
@@ -131,8 +143,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown
@@ -153,8 +169,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown
@@ -174,8 +194,12 @@ class Projects extends React.Component {
               <Panel
                 header={
                   <div className="panel-title">
-                    <div>
+                    <div className="panel-mob">
                       <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
+                      <span className="applicant-num-mob">
+                        {' '}
+                        عدد المتقدمين :
+                      </span>
                       <div className="offers-num">294</div>
                     </div>
                     <Dropdown

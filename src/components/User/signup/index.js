@@ -113,7 +113,7 @@ class UserSignup extends React.Component {
       country,
       city,
       major,
-      reEmail,
+      // reEmail,
       rePassword
     } = this.state;
     if (!email || !password) {
@@ -121,10 +121,10 @@ class UserSignup extends React.Component {
         emailError: 'هذا الحقل مطلوب',
         passwordError: 'هذا الحقل مطلوب'
       });
-    } else if (email !== reEmail) {
-      this.setState({
-        emailMatchError: 'البريد الالكتروني غير متطابق'
-      });
+      // } else if (email !== reEmail) {
+      //   this.setState({
+      //     emailMatchError: 'البريد الالكتروني غير متطابق'
+      //   });
     } else if (password !== rePassword) {
       this.setState({
         passwordMatchError: 'كلمة المرور غير متطابقة'
@@ -157,6 +157,7 @@ class UserSignup extends React.Component {
   render() {
     const { current, countries, cities, majors } = this.state;
     const { user } = this.props;
+    console.log('current', current);
 
     const steps = [
       {
@@ -218,7 +219,13 @@ class UserSignup extends React.Component {
               ) : (
                 ''
               )}
-              <div className="steps-action">
+              <div
+                className={
+                  current == 2 || current == 3
+                    ? 'steps-action-mob steps-action'
+                    : 'steps-action-mob-2 steps-action'
+                }
+              >
                 {current < steps.length - 1 && (
                   <Button
                     className="first-step-btn"
@@ -235,7 +242,7 @@ class UserSignup extends React.Component {
                     onClick={this.signup}
                     // onClick={() => this.props.history.push('/user/home')}
                   >
-                    الانتهاء والانتقال للصفحة الرئيسية
+                    الانتقال للصفحة الرئيسية
                   </Button>
                 )}
                 {/* {current > 0 && (

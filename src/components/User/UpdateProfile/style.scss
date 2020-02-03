@@ -136,3 +136,75 @@
     color: #ffffff;
     margin-top: 50px !important;
 }
+
+@media (max-width:320px) {
+    .collapse-line{
+        width: 35%;
+    }
+    .profile-updating {
+        width: 300px;
+        padding: 10px 0px;
+        margin: 0;
+     }
+     .input-field{
+        width: 250px; 
+    }
+    .upload-img-btn{
+        width: auto;
+    }
+    .personal-info {
+        padding: 10px 20px;
+        height: auto;
+        border-radius: none; 
+        box-shadow: none;
+    }
+    .user-home .user-profile .right-section .update-profile-btn {
+        margin: auto;
+       display: block;
+       margin-top: 20px !important;
+       height: 40px;
+    }
+    .updating-container{
+        margin: 40px 0;
+    }
+    .input-filed-mob {
+        width: 150px !important;
+    }
+}
+
+@media (min-width:321px) and (max-width:768px) {
+    .collapse-line{
+        width: 45%;
+    }
+    .profile-updating {
+        width: 350px;
+        padding: 10px 0px;
+        margin: 0;
+     }
+
+     .input-field{
+        width: 300px; 
+    }
+    .upload-img-btn{
+        width: auto;
+    }
+    .personal-info {
+        padding: 10px 20px;
+        height: auto;
+        border-radius: none; 
+        box-shadow: none;
+    }
+    .user-home .user-profile .right-section .update-profile-btn {
+        margin: auto;
+       display: block;
+       margin-top: 20px !important;
+       height: 45px;
+    }
+    .updating-container{
+        margin: 40px 0;
+    }
+    .input-filed-mob {
+        width: 150px !important;
+    }
+
+}

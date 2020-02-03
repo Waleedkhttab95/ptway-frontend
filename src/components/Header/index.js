@@ -58,7 +58,9 @@ class Header extends React.Component {
     notification: false,
     postJobPopup: false,
     newAdPopUp: false,
-    addProject: false
+    addProject: false,
+    userVisible: false,
+    companyVisible: false
   };
 
   showDrawer = () => {
@@ -66,10 +68,21 @@ class Header extends React.Component {
       visible: true
     });
   };
-
+  showCompanyDrawer = () => {
+    this.setState({
+      companyVisible: true
+    });
+  };
+  showUserDrawer = () => {
+    this.setState({
+      userVisible: true
+    });
+  };
   onClose = () => {
     this.setState({
-      visible: false
+      visible: false,
+      userVisible: false,
+      companyVisible: false
     });
   };
 
@@ -105,162 +118,370 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
-          <div className="user-header">
-            <div className="user-right-side">
-              <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-              <Link to="/user/home">سيرتي الذاتية </Link>
-              <Link to="/user/jobs">فرص العمل</Link>
+          <React.Fragment>
+            <div className="user-header">
+              <div className="user-right-side">
+                <img src={userLogo} alt="logo" style={{ width: '140px' }} />
+                <Link to="/user/home">سيرتي الذاتية </Link>
+                <Link to="/user/jobs">فرص العمل</Link>
+              </div>
+              <div className="user-left-side">
+                <Button
+                  className="user-header-btn"
+                  // onClick={() => this.props.history.push('/user/account/setting')}
+                >
+                  <Link to="/user/account/setting">حسابي</Link>
+                </Button>
+                <Button
+                  className="user-header-btn"
+                  onClick={this.notificationMenu}
+                >
+                  تنبيهات
+                </Button>
+                <div onBlur={this.close} tabIndex="0">
+                  {this.state.notification && (
+                    <div className="notifications-dropdown">
+                      <h5>اليوم</h5>
+                      {list.map(elm => {
+                        return (
+                          <div className="notification-drop-menu" key={elm}>
+                            <i
+                              className="fa fa-picture-o"
+                              aria-hidden="true"
+                              style={{
+                                fontSize: '45px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                paddingLeft: '10px'
+                              }}
+                            ></i>
+                            <span>
+                              لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة
+                              بيتزا هت للبيتزا
+                            </span>
+                          </div>
+                        );
+                      })}
+                      <u className="more-notification-btn">
+                        <Link
+                          to="/user/notifications"
+                          className="more-notification-btn"
+                        >
+                          مشاهدة الكل
+                        </Link>
+                      </u>
+                    </div>
+                  )}
+                </div>
+                <Button
+                  className="user-header-btn"
+                  onClick={async () => {
+                    await this.props.logout();
+                    history.push('/');
+                  }}
+                >
+                  خروج
+                </Button>
+              </div>
             </div>
-            <div className="user-left-side">
-              <Button
-                className="user-header-btn"
-                // onClick={() => this.props.history.push('/user/account/setting')}
-              >
-                <Link to="/user/account/setting">حسابي</Link>
-              </Button>
-              <Button
-                className="user-header-btn"
-                onClick={this.notificationMenu}
-              >
-                تنبيهات
-              </Button>
-              <div onBlur={this.close} tabIndex="0">
-                {this.state.notification && (
-                  <div className="notifications-dropdown">
-                    <h5>اليوم</h5>
-                    {list.map(elm => {
-                      return (
-                        <div className="notification-drop-menu" key={elm}>
-                          <i
-                            className="fa fa-picture-o"
-                            aria-hidden="true"
-                            style={{
-                              fontSize: '45px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              paddingLeft: '10px'
-                            }}
-                          ></i>
-                          <span>
-                            لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
-                            هت للبيتزا
-                          </span>
-                        </div>
-                      );
-                    })}
-                    <u className="more-notification-btn">
-                      <Link
-                        to="/user/notifications"
-                        className="more-notification-btn"
-                      >
-                        مشاهدة الكل
-                      </Link>
-                    </u>
+            <div className="menu-mobile">
+              <div className="user-drawer-mobile">
+                <i
+                  className="fa fa-bars"
+                  aria-hidden="true"
+                  type="primary"
+                  onClick={this.showUserDrawer}
+                ></i>
+                <Drawer
+                  title={
+                    <div className="drawer-title-con">
+                      <i
+                        className="fa fa-times drawer-close"
+                        aria-hidden="true"
+                        onClick={this.onClose}
+                      ></i>
+                      <img src={userLogo} alt="logo" style={{ width: '40%' }} />
+                    </div>
+                  }
+                  placement="right"
+                  closable={false}
+                  onClose={this.onClose}
+                  visible={this.state.userVisible}
+                >
+                  <div className="navbar-user-mobile">
+                    <Link to="/user/home">سيرتي الذاتية </Link>
+                    <Link to="/user/jobs">فرص العمل</Link>
+
+                    <Link to="/user/account/setting">حسابي</Link>
+                    <Link to="/user/notifications">تنبيهات</Link>
+                    <div onBlur={this.close} tabIndex="0"></div>
+                    <a
+                      onClick={async () => {
+                        await this.props.logout();
+                        history.push('/');
+                      }}
+                    >
+                      تسجيل الخروج
+                    </a>
+                  </div>
+                </Drawer>
+              </div>
+              <div>
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '40%', float: 'left' }}
+                />
+              </div>
+            </div>
+          </React.Fragment>
+        ) : loggedIn && role === 'company' ? (
+          <React.Fragment>
+            <div className="user-header">
+              <div className="user-right-side">
+                <img src={userLogo} alt="logo" style={{ width: '140px' }} />
+                <Link to="/company/home">الرئيسية </Link>
+                <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+                <Link to="/company/applicants">المتقدمين</Link>
+              </div>
+              <div className="user-left-side">
+                <Button
+                  className="my-account-btn"
+                  onClick={() =>
+                    this.setState({ addProject: !this.state.addProject })
+                  }
+                >
+                  <i
+                    className="fa fa-plus plus-icon"
+                    aria-hidden="true"
+                    style={{ marginLeft: '7px' }}
+                  ></i>
+                  أضف
+                </Button>
+                {this.state.addProject && (
+                  <div className="add-project-popup">
+                    <div onClick={this.newAd}>
+                      <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                      إضافة إعلان بمشروع سابق
+                    </div>
+                    <div onClick={this.postJob}>
+                      <i
+                        className="fa fa-plus-circle"
+                        aria-hidden="true"
+                        style={{ marginLeft: '7px' }}
+                      ></i>
+                      إضافة إعلان بمشروع جديد
+                    </div>
                   </div>
                 )}
+                <Button
+                  className="user-header-btn"
+                  // onClick={() => this.props.history.push('/user/account/setting')}
+                >
+                  <Link to="/company/setting">حسابي</Link>
+                </Button>
+                <Button
+                  className="user-header-btn"
+                  onClick={this.notificationMenu}
+                >
+                  تنبيهات
+                </Button>
+                <div onBlur={this.close} tabIndex="0">
+                  {this.state.notification && (
+                    <div className="notifications-dropdown">
+                      <h5>اليوم</h5>
+                      {list.map(elm => {
+                        return (
+                          <div className="notification-drop-menu" key={elm}>
+                            <i
+                              className="fa fa-picture-o"
+                              aria-hidden="true"
+                              style={{
+                                fontSize: '45px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                paddingLeft: '10px'
+                              }}
+                            ></i>
+                            <span>
+                              لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة
+                              بيتزا هت للبيتزا
+                            </span>
+                          </div>
+                        );
+                      })}
+                      <u className="more-notification-btn">
+                        <Link className="more-notification-btn">
+                          مشاهدة الكل
+                        </Link>
+                      </u>
+                    </div>
+                  )}
+                </div>
+                <Button
+                  className="user-header-btn"
+                  onClick={async () => {
+                    await this.props.logout();
+                    history.push('/');
+                  }}
+                >
+                  خروج
+                </Button>
               </div>
-              <Button
-                className="user-header-btn"
-                onClick={async () => {
-                  await this.props.logout();
-                  history.push('/');
-                }}
-              >
-                خروج
-              </Button>
-            </div>
-          </div>
-        ) : loggedIn && role === 'company' ? (
-          <div className="user-header">
-            <div className="user-right-side">
-              <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-              <Link to="/company/home">الرئيسية </Link>
-              <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
-              <Link to="/company/applicants">المتقدمين</Link>
-            </div>
-            <div className="user-left-side">
-              <Button
-                className="my-account-btn"
-                onClick={() =>
-                  this.setState({ addProject: !this.state.addProject })
+              <Drawer
+                title={
+                  <img src={headerLogo} alt="logo" style={{ width: '90%' }} />
                 }
+                placement="right"
+                closable={false}
+                onClose={this.onClose}
+                visible={this.state.visible}
               >
-                <i
-                  className="fa fa-plus plus-icon"
-                  aria-hidden="true"
-                  style={{ marginLeft: '7px' }}
-                ></i>
-                أضف
-              </Button>
-              {this.state.addProject && (
-                <div className="add-project-popup">
-                  <div onClick={this.newAd}>
-                    <i className="fa fa-plus-circle" aria-hidden="true"></i>
-                    إضافة إعلان بمشروع سابق
-                  </div>
-                  <div onClick={this.postJob}>
+                <div className="navbar-mobile">
+                  <Link to="/company/home">الرئيسية </Link>
+                  <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+                  <Link to="/company/applicants">المتقدمين</Link>
+                </div>
+                <div className="user-left-side">
+                  <Button
+                    className="my-account-btn"
+                    onClick={() =>
+                      this.setState({ addProject: !this.state.addProject })
+                    }
+                  >
                     <i
-                      className="fa fa-plus-circle"
+                      className="fa fa-plus plus-icon"
                       aria-hidden="true"
                       style={{ marginLeft: '7px' }}
                     ></i>
-                    إضافة إعلان بمشروع جديد
+                    أضف
+                  </Button>
+                  {this.state.addProject && (
+                    <div className="add-project-popup">
+                      <div onClick={this.newAd}>
+                        <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                        إضافة إعلان بمشروع سابق
+                      </div>
+                      <div onClick={this.postJob}>
+                        <i
+                          className="fa fa-plus-circle"
+                          aria-hidden="true"
+                          style={{ marginLeft: '7px' }}
+                        ></i>
+                        إضافة إعلان بمشروع جديد
+                      </div>
+                    </div>
+                  )}
+                  <Button
+                    className="user-header-btn"
+                    // onClick={() => this.props.history.push('/user/account/setting')}
+                  >
+                    <Link to="/company/setting">حسابي</Link>
+                  </Button>
+                  <Button
+                    className="user-header-btn"
+                    onClick={this.notificationMenu}
+                  >
+                    تنبيهات
+                  </Button>
+                  <div onBlur={this.close} tabIndex="0">
+                    {this.state.notification && (
+                      <div className="notifications-dropdown">
+                        <h5>اليوم</h5>
+                        {list.map(elm => {
+                          return (
+                            <div className="notification-drop-menu" key={elm}>
+                              <i
+                                className="fa fa-picture-o"
+                                aria-hidden="true"
+                                style={{
+                                  fontSize: '45px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  paddingLeft: '10px'
+                                }}
+                              ></i>
+                              <span>
+                                لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة
+                                بيتزا هت للبيتزا
+                              </span>
+                            </div>
+                          );
+                        })}
+                        <u className="more-notification-btn">
+                          <Link className="more-notification-btn">
+                            مشاهدة الكل
+                          </Link>
+                        </u>
+                      </div>
+                    )}
                   </div>
+                  <Button
+                    className="user-header-btn"
+                    onClick={async () => {
+                      await this.props.logout();
+                      history.push('/');
+                    }}
+                  >
+                    خروج
+                  </Button>
                 </div>
-              )}
-              <Button
-                className="user-header-btn"
-                // onClick={() => this.props.history.push('/user/account/setting')}
-              >
-                <Link to="/company/setting">حسابي</Link>
-              </Button>
-              <Button
-                className="user-header-btn"
-                onClick={this.notificationMenu}
-              >
-                تنبيهات
-              </Button>
-              <div onBlur={this.close} tabIndex="0">
-                {this.state.notification && (
-                  <div className="notifications-dropdown">
-                    <h5>اليوم</h5>
-                    {list.map(elm => {
-                      return (
-                        <div className="notification-drop-menu" key={elm}>
-                          <i
-                            className="fa fa-picture-o"
-                            aria-hidden="true"
-                            style={{
-                              fontSize: '45px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              paddingLeft: '10px'
-                            }}
-                          ></i>
-                          <span>
-                            لقد تم قبول طلب تقدمك لعرض وظيفة محاسب في شركة بيتزا
-                            هت للبيتزا
-                          </span>
-                        </div>
-                      );
-                    })}
-                    <u className="more-notification-btn">
-                      <Link className="more-notification-btn">مشاهدة الكل</Link>
-                    </u>
-                  </div>
-                )}
-              </div>
-              <Button
-                className="user-header-btn"
-                onClick={async () => {
-                  await this.props.logout();
-                  history.push('/');
-                }}
-              >
-                خروج
-              </Button>
+              </Drawer>
             </div>
-          </div>
+            <div className="menu-mobile">
+              <div className="user-drawer-mobile">
+                <i
+                  className="fa fa-bars"
+                  aria-hidden="true"
+                  type="primary"
+                  onClick={this.showUserDrawer}
+                ></i>
+                <Drawer
+                  title={
+                    <div className="drawer-title-con">
+                      <i
+                        className="fa fa-times drawer-close"
+                        aria-hidden="true"
+                        onClick={this.onClose}
+                      ></i>
+                      <img src={userLogo} alt="logo" style={{ width: '40%' }} />
+                    </div>
+                  }
+                  placement="right"
+                  closable={false}
+                  onClose={this.onClose}
+                  visible={this.state.userVisible}
+                >
+                  <div className="navbar-user-mobile">
+                    <Link to="/company/home">الرئيسية </Link>
+                    <Link to="/company/projects">
+                      المشاريع والعروض الوظيفية
+                    </Link>
+                    <Link to="/company/applicants">المتقدمين</Link>
+
+                    <Link to="/company/setting">حسابي</Link>
+                    <Link to="/user/notifications">تنبيهات</Link>
+                    <div onBlur={this.close} tabIndex="0"></div>
+                    <a
+                      onClick={async () => {
+                        await this.props.logout();
+                        history.push('/');
+                      }}
+                    >
+                      تسجيل الخروج
+                    </a>
+                  </div>
+                </Drawer>
+              </div>
+              <div>
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '40%', float: 'left' }}
+                />
+              </div>
+            </div>
+          </React.Fragment>
         ) : (
           <Row className="home-page-header">
             <img src={headerBack} alt="header" className="img" />
@@ -274,7 +495,14 @@ class Header extends React.Component {
                 ></i>
                 <Drawer
                   title={
-                    <img src={headerLogo} alt="logo" style={{ width: '90%' }} />
+                    <div className="drawer-title-con">
+                      <i
+                        className="fa fa-times drawer-close"
+                        aria-hidden="true"
+                        onClick={this.onClose}
+                      ></i>
+                      <img src={userLogo} alt="logo" style={{ width: '50%' }} />
+                    </div>
                   }
                   placement="right"
                   closable={false}
@@ -285,13 +513,25 @@ class Header extends React.Component {
                     <a>{i18n.t('home.howWorks')}</a>
                     <a>{i18n.t('home.comQuestions')}</a>
                     <a>{i18n.t('home.comQuestions')}</a>
-                    <a>{i18n.t('home.contact')}</a>
-                    <a className="employeer-login-btn-mob">
-                      {i18n.t('home.employeeLogin')}
+                    <a onClick={this.postJob}>{i18n.t('home.postJob')}</a>
+                    <a>
+                      <Link
+                        className="employeer-login-btn-mob"
+                        to="/user/login"
+                      >
+                        {' '}
+                        {i18n.t('home.employeeLogin')}
+                      </Link>
                     </a>
-                    <a className="company-login-btn-mob">
+                    <a>
                       {' '}
-                      {i18n.t('home.companyLogin')}
+                      <Link
+                        className="company-login-btn-mob"
+                        to="/company/login"
+                      >
+                        {' '}
+                        {i18n.t('home.companyLogin')}
+                      </Link>
                     </a>
                   </div>
                 </Drawer>

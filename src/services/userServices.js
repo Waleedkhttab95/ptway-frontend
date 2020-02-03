@@ -32,11 +32,14 @@ const userServices = {
       gender: params.gender,
       fullName: params.fullName
     }),
-  login: (email, password) =>
-    baseRequest.post('/login', { email, password }).then(result => {
-      // baseRequest.addHeader(result.data.sessionToken);
-      return result;
-    }),
+  login: params =>
+    baseRequest
+      .post('/login', { email: params.username, password: params.password })
+      .then(result => {
+        console.log('result', result);
+
+        return result;
+      }),
   companyRegistration: params =>
     baseRequest.post('/companyRegistreing', {
       companyName: params.companyName,

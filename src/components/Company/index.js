@@ -37,10 +37,11 @@ const CompanyHome = props => {
               <div>الذين تم توظيفهم</div>
               <div className="user-stc-number">1,024</div>
             </div>
-            <div className="user-rejected">
+            {/* <div className="user-rejected">
               <div>الذين تم رفضهم</div>
               <div className="user-stc-number">7,213</div>
             </div>
+          */}
           </div>
           <div className="user-profile">
             <Col md={6} className="right-section">
@@ -62,40 +63,40 @@ const CompanyHome = props => {
                 <div>عدد المتقدمين</div>
               </div>
               <div className="project-offer">
-                <div style={{ width: '170px' }}>
+                <div className="project-offer-title">
                   مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
                 </div>
                 <div>02/10/2019</div>
                 <div>0002163477555</div>
-                <div>مشروع للإنطلاق الجديد</div>
-                <div>321</div>
+                <div className="project-status">مشروع للإنطلاق الجديد</div>
+                <div className="applicants-num">321</div>
               </div>
               <div className="project-offer">
-                <div style={{ width: '170px' }}>
+                <div className="project-offer-title">
                   مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
                 </div>
                 <div>02/10/2019</div>
                 <div>0002163477555</div>
-                <div>مشروع للإنطلاق الجديد</div>
-                <div>321</div>
+                <div className="project-status">مشروع للإنطلاق الجديد</div>
+                <div className="applicants-num">321</div>
               </div>
               <div className="project-offer">
-                <div style={{ width: '170px' }}>
+                <div className="project-offer-title">
                   مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
                 </div>
                 <div>02/10/2019</div>
                 <div>0002163477555</div>
-                <div>مشروع للإنطلاق الجديد</div>
-                <div>321</div>
+                <div className="project-status">مشروع للإنطلاق الجديد</div>
+                <div className="applicants-num">321</div>
               </div>
               <div className="project-offer">
-                <div style={{ width: '170px' }}>
+                <div className="project-offer-title">
                   مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
                 </div>
                 <div>02/10/2019</div>
                 <div>0002163477555</div>
-                <div>مشروع للإنطلاق الجديد</div>
-                <div>321</div>
+                <div className="project-status">مشروع للإنطلاق الجديد</div>
+                <div className="applicants-num">321</div>
               </div>
               <button className="more-projects-offers-btn">عرض المزيد</button>
             </Col>

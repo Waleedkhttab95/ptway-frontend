@@ -28,8 +28,18 @@ const Applicants = props => {
               عرض
             </button>
             <h4>مشروع تأمين أفرع الشركة التجارية </h4>
-            <h4>محاسب في شركة بيتزا هت</h4>
+            <h4>
+              {' '}
+              <span>اسم العرض : </span>
+              محاسب في شركة بيتزا هت
+            </h4>
             <h4>قيد الانتظار</h4>
+            <button
+              className="display-cv-mob"
+              onClick={() => props.history.push('/company/applicant/profile')}
+            >
+              عرض السيرة الذاتية
+            </button>
           </div>
         ))}
       </div>
