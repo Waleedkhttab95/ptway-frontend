@@ -7,6 +7,7 @@ import adminCRUD from './adminCRUD';
 import adminContent from './adminContentSection';
 import generalStatistics from './generalStatistics';
 import userHome from './userSection/home';
+import jobOffers from './userSection/jobOffers';
 
 const reducers = combineReducers({
   user,
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   adminSer: adminCRUD,
   adminContent,
   generalStatistics,
-  userS: userHome
+  userS: userHome,
+  jobOffers
 });
 export default reducers;

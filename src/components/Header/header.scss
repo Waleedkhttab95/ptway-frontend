@@ -528,13 +528,13 @@
 }
 .offers-notification{
     position: absolute;
-    top: 0;
+    bottom: 8px;
     z-index: 10000;
     border-radius: 50%;
     background: #f44336;
     width: 20px;
     height: 20px;
-    right: 0;
+    right: 29px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -129,17 +129,20 @@ class Header extends React.Component {
               <div className="user-right-side">
                 <img src={userLogo} alt="logo" style={{ width: '140px' }} />
                 <Link to="/user/home">سيرتي الذاتية </Link>
-                <Link to="/user/jobs">فرص العمل</Link>
-              </div>
-              <div className="user-left-side">
-                <Button className="user-header-btn">
+                <Link to="/user/jobs" style={{ position: 'relative' }}>
                   <span className="offers-notification">
                     {' '}
                     {unreadOffers.count}
                   </span>
                   <i className="fa fa-bell" aria-hidden="true"></i>
+                  فرص العمل
+                </Link>
+              </div>
+              <div className="user-left-side">
+                {/* <Button className="user-header-btn">
+                 
                   <Link style={{ color: '#343434' }}>فرص العمل</Link>
-                </Button>
+                </Button> */}
                 <Button
                   className="user-header-btn"
                   // onClick={() => this.props.history.push('/user/account/setting')}

@@ -13,9 +13,3 @@ export const unreadJobOffers = () => {
     payload: homeServices.getUnreadJobOffers()
   };
 };
-export const jobOffers = () => {
-  return {
-    type: 'JOB_OFFERS',
-    payload: homeServices.getJobOffers()
-  };
-};

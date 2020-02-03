@@ -3,10 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import { Layout, Alert, Col } from 'antd';
 import { connect } from 'react-redux';
-import {
-  userInformation,
-  jobOffers
-} from '../../store/actions/user/HomeActions';
+import { userInformation } from '../../store/actions/user/HomeActions';
 import './style.scss';
 import _ from 'lodash';
 const { Content } = Layout;
@@ -240,8 +237,7 @@ const mapStateToProps = ({ userS }) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    userInformation: () => dispatch(userInformation()),
-    jobOffers: () => dispatch(jobOffers())
+    userInformation: () => dispatch(userInformation())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(User);
