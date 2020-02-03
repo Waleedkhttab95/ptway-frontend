@@ -3,15 +3,19 @@ import Header from '../Header';
 import Footer from '../Footer';
 import { Layout, Alert, Col } from 'antd';
 import { connect } from 'react-redux';
-import { userInformation } from '../../store/actions/user/HomeActions';
+import {
+  userInformation,
+  jobOffers
+} from '../../store/actions/user/HomeActions';
 import './style.scss';
 import _ from 'lodash';
 const { Content } = Layout;
 
 class User extends React.Component {
   async componentDidMount() {
-    const { userInformation } = this.props;
+    const { userInformation, jobOffers } = this.props;
     await userInformation();
+    await jobOffers();
   }
   render() {
     const {
@@ -29,7 +33,7 @@ class User extends React.Component {
       skills,
       personal_Skills,
       hoppies
-    } = this.props.user;
+    } = this.props.user.userInfo;
     return (
       <div>
         <Header />
@@ -236,7 +240,8 @@ const mapStateToProps = ({ userS }) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    userInformation: () => dispatch(userInformation())
+    userInformation: () => dispatch(userInformation()),
+    jobOffers: () => dispatch(jobOffers())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(User);

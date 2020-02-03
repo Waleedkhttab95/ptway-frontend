@@ -1,5 +1,7 @@
 const initialState = {
-  userInfo: ''
+  userInfo: '',
+  unreadOffers: '',
+  jobOffers: ''
 };
 
 const userHome = (state = initialState, action) => {
@@ -7,7 +9,17 @@ const userHome = (state = initialState, action) => {
     case 'USER_INFORMATION_SUCCESS':
       return {
         ...state,
-        ...action.payload
+        userInfo: action.payload
+      };
+    case 'UNREAD_JOB_OFFERS_SUCCESS':
+      return {
+        ...state,
+        unreadOffers: action.payload
+      };
+    case 'JOB_OFFERS_SUCCESS':
+      return {
+        ...state,
+        jobOffers: action.payload
       };
     default:
       return state;

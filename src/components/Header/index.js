@@ -13,6 +13,7 @@ import shContractIc from '../../images/short.svg';
 import lngContract from '../../images/long.svg';
 import cuntContract from '../../images/continue.svg';
 import { connect } from 'react-redux';
+import { unreadJobOffers } from '../../store/actions/user/HomeActions';
 import history from '../../_core/history';
 
 const options = [
@@ -63,6 +64,10 @@ class Header extends React.Component {
     companyVisible: false
   };
 
+  async componentDidMount() {
+    const { unreadJobOffers } = this.props;
+    await unreadJobOffers();
+  }
   showDrawer = () => {
     this.setState({
       visible: true
@@ -115,6 +120,7 @@ class Header extends React.Component {
     const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
+    const { unreadOffers } = this.props.userS;
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -126,6 +132,14 @@ class Header extends React.Component {
                 <Link to="/user/jobs">فرص العمل</Link>
               </div>
               <div className="user-left-side">
+                <Button className="user-header-btn">
+                  <span className="offers-notification">
+                    {' '}
+                    {unreadOffers.count}
+                  </span>
+                  <i className="fa fa-bell" aria-hidden="true"></i>
+                  <Link style={{ color: '#343434' }}>فرص العمل</Link>
+                </Button>
                 <Button
                   className="user-header-btn"
                   // onClick={() => this.props.history.push('/user/account/setting')}
@@ -638,14 +652,16 @@ class Header extends React.Component {
   }
 }
 
-const mapPropsToState = ({ user }) => {
+const mapPropsToState = ({ user, userS }) => {
   return {
-    user
+    user,
+    userS
   };
 };
 const mapPropsToDispatch = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    unreadJobOffers: () => dispatch(unreadJobOffers())
   };
 };
 
