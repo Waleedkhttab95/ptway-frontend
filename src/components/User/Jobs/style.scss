@@ -9,7 +9,7 @@
     direction: rtl;
     .job-post{
         display: flex;
-    flex-direction: column;
+        flex-direction: column;
         width: 270px;
         height: 413px;
         border-radius: 5px;
@@ -20,6 +20,7 @@
         padding-top: 20px;
         padding-right: 25px;
         padding-left: 10px;
+        float: right;
 
         .post-header{
             display: flex;
