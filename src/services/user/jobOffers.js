@@ -11,6 +11,11 @@ const Jobs = {
     return baseRequest
       .get(`/getcompanyinfoById?id=${params.id}`)
       .then(result => result);
+  },
+  applyJob: params => {
+    return baseRequest
+      .post('/postBodyC', { jobAd: params.jobId })
+      .then(result => result);
   }
 };
 

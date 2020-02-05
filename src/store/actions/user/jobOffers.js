@@ -18,3 +18,9 @@ export const companyDetails = params => {
     payload: Jobs.getCompany(params)
   };
 };
+export const applyJob = params => {
+  return {
+    type: 'APPLY_JOB',
+    payload: Jobs.applyJob(params)
+  };
+};

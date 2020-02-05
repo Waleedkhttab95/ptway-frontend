@@ -1,7 +1,8 @@
 const initialState = {
   jobOffers: '',
   jobOffer: '',
-  company: ''
+  company: '',
+  job: ''
 };
 
 const Jobs = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const Jobs = (state = initialState, action) => {
       return {
         ...state,
         company: action.payload
+      };
+    case 'APPLY_JOB_SUCCESS':
+      return {
+        ...state,
+        job: action.payload
       };
     default:
       return state;

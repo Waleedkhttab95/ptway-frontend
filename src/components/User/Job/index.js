@@ -5,7 +5,8 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import {
   jobOffer,
-  companyDetails
+  companyDetails,
+  applyJob
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
 
@@ -22,7 +23,7 @@ class Job extends React.Component {
     await company({ id: job.value.job.company });
   }
 
-  applyJob = () => {
+  applyJobSuccessMsg = () => {
     this.setState({
       jobInfo: false,
       jobStatus: true
@@ -33,6 +34,16 @@ class Job extends React.Component {
     this.setState({
       jobInfo: true
     });
+  };
+
+  applyJob = async jobId => {
+    const { applyJob } = this.props;
+    const result = await applyJob({ jobId });
+    if (result) {
+      this.setState({
+        jobStatus: true
+      });
+    }
   };
 
   render() {
@@ -125,7 +136,11 @@ class Job extends React.Component {
                 لقد تقدمت للوظيفة سابقاً
               </button>
             ) : (
-              <button className="applay-job-btn" onClick={this.jobInfo}>
+              <button
+                className="applay-job-btn"
+                // onClick={this.jobInfo}
+                onClick={() => this.applyJob(job._id)}
+              >
                 تقدم للوظيفة
               </button>
             )}
@@ -189,7 +204,8 @@ const mapStateToProps = ({ jobOffers }) => {
 const mapDispatchToProps = dispatch => {
   return {
     jobOffer: params => dispatch(jobOffer(params)),
-    company: params => dispatch(companyDetails(params))
+    company: params => dispatch(companyDetails(params)),
+    applyJob: params => dispatch(applyJob(params))
   };
 };
 
