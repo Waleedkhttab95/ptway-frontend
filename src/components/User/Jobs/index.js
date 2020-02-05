@@ -4,7 +4,7 @@ import Footer from '../../Footer';
 import './style.scss';
 import { Row, Col } from 'antd';
 import { connect } from 'react-redux';
-import { jobOffers } from '../../../store/actions/user/jobOffers';
+import { jobOffers, applyJob } from '../../../store/actions/user/jobOffers';
 import _ from 'lodash';
 import FilterAndSearch from '../../Filter';
 
@@ -18,6 +18,17 @@ class Jobs extends React.Component {
     const { jobOffer } = this.props;
     await jobOffer(id);
   };
+
+  applyJob = async jobId => {
+    const { applyJob } = this.props;
+    const result = await applyJob({ jobId });
+    if (result) {
+      this.setState({
+        jobStatus: true
+      });
+    }
+  };
+
   render() {
     console.log('jobs props', this.props.offers.jobOffers);
     const { offers } = this.props;
@@ -62,14 +73,20 @@ class Jobs extends React.Component {
                           <div className="post-actions-btns">
                             <div className="post-status">
                               {elm.status ? (
-                                <span>تم التقدم</span>
+                                <span>تم التقدم للعمل</span>
                               ) : (
-                                <span>لم يتم التقدم</span>
+                                <React.Fragment>
+                                  <span>لم يتم التقدم</span>
+                                  <button
+                                    className="apply-job-btn"
+                                    onClick={() => this.applyJob(elm.jobAd._id)}
+                                  >
+                                    التقدم للعمل
+                                  </button>
+                                </React.Fragment>
                               )}
                             </div>
-                            <button className="apply-job-btn">
-                              التقدم للعمل
-                            </button>
+
                             <button
                               className="details-btn"
                               onClick={() =>
@@ -103,7 +120,8 @@ const mapStateToProps = ({ jobOffers }) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    jobOffers: () => dispatch(jobOffers())
+    jobOffers: () => dispatch(jobOffers()),
+    applyJob: params => dispatch(applyJob(params))
   };
 };
 
