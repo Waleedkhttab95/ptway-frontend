@@ -16,11 +16,6 @@ const userHome = (state = initialState, action) => {
         ...state,
         unreadOffers: action.payload
       };
-    case 'JOB_OFFERS_SUCCESS':
-      return {
-        ...state,
-        jobOffers: action.payload
-      };
     default:
       return state;
   }

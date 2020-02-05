@@ -111,7 +111,7 @@ const App = () => {
           <Route exact path="/user/signup" component={UserRegistration} />
           <Route exact path="/user/home" component={UserHome} />
           <Route exact path="/user/jobs" component={Jobs} />
-          <Route exact path="/user/job" component={Job} />
+          <Route exact path="/user/job/:id" component={Job} />
           <Route exact path="/user/account/setting" component={UserSetting} />
           <Route exact path="/user/notifications" component={Notifications} />
           <Route exact path="/user/profile/update" component={UpdateProfile} />
