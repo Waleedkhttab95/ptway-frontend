@@ -10,9 +10,8 @@ const { Content } = Layout;
 
 class User extends React.Component {
   async componentDidMount() {
-    const { userInformation, jobOffers } = this.props;
+    const { userInformation } = this.props;
     await userInformation();
-    await jobOffers();
   }
   render() {
     const {
@@ -162,7 +161,7 @@ class User extends React.Component {
                           <div className="sub-desc">
                             {_.isArray(personal_Skills)
                               ? personal_Skills.map(skill => {
-                                  return { skill };
+                                  return skill;
                                 })
                               : ''}
                           </div>
@@ -176,7 +175,7 @@ class User extends React.Component {
                           <div className="sub-desc">
                             {_.isArray(hoppies)
                               ? hoppies.map(hoppy => {
-                                  return { hoppy };
+                                  return hoppy;
                                 })
                               : ''}
                           </div>
@@ -198,7 +197,7 @@ class User extends React.Component {
                           <div className="sub-desc">
                             {_.isArray(languages)
                               ? languages.map(language => {
-                                  return { language };
+                                  return language;
                                 })
                               : ''}
                           </div>
@@ -208,14 +207,16 @@ class User extends React.Component {
                   </div>
 
                   <div className="user-general-skills">
-                    <div className="h-title sk-title">
+                    <div>
                       <i className="fa fa-star-o" aria-hidden="true"></i>
-                      مهارات عامة
-                      {_.isArray(skills)
-                        ? skills.map(skill => {
-                            return { skill };
-                          })
-                        : ''}
+                      <div className="h-title sk-title"> مهارات عامة</div>
+                      <div className="sub-desc">
+                        {_.isArray(skills)
+                          ? skills.map(skill => {
+                              return skill;
+                            })
+                          : ''}
+                      </div>
                     </div>
                     <div className="sk-content"></div>
                   </div>

@@ -1,17 +1,29 @@
 const initialState = {
-  jobOffers: ''
+  jobOffers: '',
+  jobOffer: '',
+  company: ''
 };
 
-const userHome = (state = initialState, action) => {
+const Jobs = (state = initialState, action) => {
   switch (action.type) {
     case 'JOB_OFFERS_SUCCESS':
       return {
         ...state,
         jobOffers: action.payload
       };
+    case 'JOB_OFFER_SUCCESS':
+      return {
+        ...state,
+        jobOffer: action.payload
+      };
+    case 'COMPANY_DETAILS_SUCCESS':
+      return {
+        ...state,
+        company: action.payload
+      };
     default:
       return state;
   }
 };
 
-export default userHome;
+export default Jobs;

@@ -13,6 +13,11 @@ class Jobs extends React.Component {
     const { jobOffers } = this.props;
     await jobOffers();
   }
+
+  jobOffer = async id => {
+    const { jobOffer } = this.props;
+    await jobOffer(id);
+  };
   render() {
     console.log('jobs props', this.props.offers.jobOffers);
     const { offers } = this.props;
@@ -26,7 +31,7 @@ class Jobs extends React.Component {
               {_.isArray(offers.jobOffers.result)
                 ? offers.jobOffers.result.map(elm => {
                     return (
-                      <Col md={6} className="job-post" key={elm[0]._id}>
+                      <Col md={6} className="job-post" key={elm.jobAd._id}>
                         <div className="post-header">
                           {/* <img src="" alt="" className="post-img" /> */}
                           <i
@@ -40,7 +45,7 @@ class Jobs extends React.Component {
                           ></i>
                           <div className="job-owner-info">
                             <span className="job-owner-title">
-                              {elm[0].job_Name}
+                              {elm.jobAd.job_Name}
                             </span>
                             <span className="job-owner-location">
                               في مقر الشركة
@@ -52,17 +57,25 @@ class Jobs extends React.Component {
                         </div>
                         <div className="post-body">
                           <span className="post-description">
-                            {elm[0].descreption}
+                            {elm.jobAd.descreption}
                           </span>
                           <div className="post-actions-btns">
-                            <div className="post-status">لم يتم التقدم</div>
+                            <div className="post-status">
+                              {elm.status ? (
+                                <span>تم التقدم</span>
+                              ) : (
+                                <span>لم يتم التقدم</span>
+                              )}
+                            </div>
                             <button className="apply-job-btn">
                               التقدم للعمل
                             </button>
                             <button
                               className="details-btn"
                               onClick={() =>
-                                this.props.history.push('/user/job')
+                                this.props.history.push(
+                                  `/user/job/${elm.jobAd._id}`
+                                )
                               }
                             >
                               التفاصيل

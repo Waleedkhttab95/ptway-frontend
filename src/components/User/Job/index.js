@@ -3,12 +3,24 @@ import './style.scss';
 import { Row, Col, Modal, Radio } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
+import {
+  jobOffer,
+  companyDetails
+} from '../../../store/actions/user/jobOffers';
+import { connect } from 'react-redux';
 
 class Job extends React.Component {
   state = {
     jobStatus: false,
     jobInfo: false
   };
+
+  async componentDidMount() {
+    const { jobOffer, company } = this.props;
+    const { id } = this.props.match.params;
+    const job = await jobOffer({ id });
+    await company({ id: job.value.job.company });
+  }
 
   applyJob = () => {
     this.setState({
@@ -24,13 +36,17 @@ class Job extends React.Component {
   };
 
   render() {
+    const { offer } = this.props;
+    console.log('offers', offer);
+    const { Country, City, Contract, apply, job } = offer.jobOffer;
+    const { compnayName, imagePath, address, info } = offer.company;
     return (
       <div className="user-container">
         <Header />
         <Row className="job-section">
           <Col md={6} className="right-section">
-            {/* <img /> */}
-            <i
+            <img src={imagePath} />
+            {/* <i
               className="fa fa-picture-o"
               aria-hidden="true"
               style={{
@@ -38,13 +54,12 @@ class Job extends React.Component {
                 display: 'flex',
                 alignItems: 'center'
               }}
-            ></i>
-            <span className="job-owner-name">شركة بيتزا هت للبيتزا</span>
+            ></i> */}
+            <span className="job-owner-name">{compnayName}</span>
             <div className="job-owner-info">
               <p>
                 <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
-                تقدم شركة بيتزا هت انواع البيتزا الفاخرة والتي تقدمها عبر آلاف
-                الأفرع حول العالم لتصلك البيتزا ساحنة
+                {info}
               </p>
               <p>
                 <i className="fa fa-envelope" aria-hidden="true"></i>
@@ -52,13 +67,12 @@ class Job extends React.Component {
               </p>
               <p>
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
-                المملكة العربية السعودية، مدينة الرياض الأخضر، شارع الفرقان،
-                بناء 21 مكتب 421
+                {Country}, {City}, {address}
               </p>
             </div>
           </Col>
           <Col md={20} className="left-section">
-            <h5 className="job-title">محاسب في شركة بيتزا هت</h5>
+            <h5 className="job-title">{job ? job.job_Name : ''}</h5>
             <h6 className="job-contact-number">الرقم : 046263477555</h6>
             <div>
               <div className="job-heading">
@@ -68,13 +82,11 @@ class Job extends React.Component {
               <div className="main-info-details">
                 <div className="job-sub-heading">المسمى الوظيفي</div>
                 <span className="main-info-desc">
-                  قسم المحاسبة والتعاملات المالية في الفرع الاساسي
+                  {job ? job.job_Name : ''}
                 </span>
                 <div className="job-sub-heading">وصف الوظيفة</div>
                 <span className="main-info-desc">
-                  ستقوم بعمليات الحسابية للفرع الرئيسية لبيتزا هت كما ستقوم
-                  بالجرد الشهري بالإضافة للجرد السنوي لجميع الأفرع الفرعية
-                  وستقوم بعمل جداول لرواتب الموظفين في جميع الأفرع
+                  {job ? job.descreption : ''}
                 </span>
               </div>
             </div>
@@ -86,31 +98,37 @@ class Job extends React.Component {
               <div className="main-info-details extra-details">
                 <div>
                   <div className="job-sub-heading">الموقع</div>
-                  <p className="main-info-desc">بيتزا هت فرع الرياض الرئيسي</p>
-                  <div className="job-sub-heading">عدد أيام العمل</div>
                   <p className="main-info-desc">
-                    5 أيام عمل و السبت والأحد عطلة
+                    {Country}, {City}, {address}
                   </p>
+                  <div className="job-sub-heading">عدد أيام العمل</div>
+                  <p className="main-info-desc">{job ? job.work_days : ''}</p>
                   <div className="job-sub-heading">مبلغ الراتب</div>
-                  <p className="main-info-desc">راتب شهري وقدره 3000 ريال</p>
+                  <p className="main-info-desc">{job ? job.salary : ''}</p>
                   <div className="job-sub-heading">الجنس</div>
-                  <p className="main-info-desc">ذكر أو انثى</p>
+                  <p className="main-info-desc">{job ? job.gender : ''}</p>
                 </div>
                 <div>
                   <div className="job-sub-heading">نوع العقد</div>
-                  <p className="main-info-desc">عقد طويل الأمد</p>
+                  <p className="main-info-desc">{Contract}</p>
                   <div className="job-sub-heading">ساعات العمل اليومية</div>
-                  <p className="main-info-desc">9 ساعات عمل من 09:00 - 18:00</p>
+                  <p className="main-info-desc">{job ? job.work_hours : ''}</p>
                   <div className="job-sub-heading">تاريخ بدء العمل</div>
-                  <p className="main-info-desc">01/10/2019</p>
+                  <p className="main-info-desc">{job ? job.startDate : ''}</p>
                   <div className="job-sub-heading">اللباس</div>
                   <p className="main-info-desc">زي رسمي تقدمه الشركة</p>
                 </div>
               </div>
             </div>
-            <button className="applay-job-btn" onClick={this.jobInfo}>
-              تقدم للوظيفة
-            </button>
+            {apply ? (
+              <button className="not-intersted-btn">
+                لقد تقدمت للوظيفة سابقاً
+              </button>
+            ) : (
+              <button className="applay-job-btn" onClick={this.jobInfo}>
+                تقدم للوظيفة
+              </button>
+            )}
 
             <Modal visible={this.state.jobInfo} closable={false} footer={false}>
               <div className="job-info-modal">
@@ -155,7 +173,6 @@ class Job extends React.Component {
                 </button>
               </div>
             </Modal>
-            <button className="not-intersted-btn">غير مهتم</button>
           </Col>
         </Row>
         <Footer />
@@ -164,4 +181,16 @@ class Job extends React.Component {
   }
 }
 
-export default Job;
+const mapStateToProps = ({ jobOffers }) => {
+  return {
+    offer: jobOffers
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    jobOffer: params => dispatch(jobOffer(params)),
+    company: params => dispatch(companyDetails(params))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Job);
