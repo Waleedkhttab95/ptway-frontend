@@ -53,6 +53,7 @@ class UpdateProfile extends React.Component {
   handleMajorChange = async (value, option) => {
     const subMajor = await getSubMajor({ id: option.key });
     this.setState({
+      public_major: option.key,
       subMajor
     });
   };

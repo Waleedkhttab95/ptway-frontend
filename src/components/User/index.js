@@ -23,8 +23,8 @@ class User extends React.Component {
       // birthDate,
       work_Hours,
       city,
-      // public_Major,
-      // spicifc_Major,
+      public_Major,
+      spicifc_Major,
       languages,
       skills,
       personal_Skills,
@@ -168,7 +168,7 @@ class User extends React.Component {
                         </div>
                         <div>
                           <h3 className="sub-h-title">التخصص العام</h3>
-                          {/* <p>{public_Major} </p> */}
+                          <p>{public_Major} </p>
                         </div>
                         <div>
                           <div className="sub-h-title">الهوايات</div>
@@ -190,7 +190,7 @@ class User extends React.Component {
                         </div>
                         <div>
                           <h3 className="sub-h-title"> التخصص الدقيق</h3>
-                          {/* <p>{spicifc_Major}</p> */}
+                          <p>{spicifc_Major}</p>
                         </div>
                         <div>
                           <div className="sub-h-title">اللغات</div>
