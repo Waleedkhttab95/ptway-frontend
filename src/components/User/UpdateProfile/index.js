@@ -61,23 +61,7 @@ class UpdateProfile extends React.Component {
                     <Input className="input-field" />
                     <h5 className="title-field">الجنس</h5>
 
-
-                  <Input className="input-field" />
-                </div>
-              </div>
-            </Panel>
-            <Panel
-              header="الدولة ومكان السكن"
-              key="2"
-              className="section-heading"
-            >
-              <div className="collapse-line"></div>
-              <div className="location-info">
-                <div className="first-section">
-                  <div style={{ marginLeft: '20px' }}>
-                    <h5 className="title-field">الدولة</h5>
-                    <Input className="input-field input-filed-mob" />
-
+                    <Input className="input-field" />
                   </div>
                   <div>
                     <h5 className="title-field">تاريخ الميلاد</h5>
@@ -85,7 +69,7 @@ class UpdateProfile extends React.Component {
                     <Input className="input-field" />
                     <h5 className="title-field">الحالة الاجتماعية</h5>
 
-                    <Input className="input-field input-filed-mob" />
+                    <Input className="input-field" />
                   </div>
                 </div>
               </Panel>
@@ -206,7 +190,6 @@ class UpdateProfile extends React.Component {
               {/* 
               <Panel header="مهارات عامة" key="5" className="section-heading">
                 <div className="collapse-line"></div>
-
                 <div className="general-skills">
                   <i className="fa fa-book" aria-hidden="true"></i>
                   <i className="fa fa-cutlery" aria-hidden="true"></i>

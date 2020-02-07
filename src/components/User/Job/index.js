@@ -72,10 +72,7 @@ class Job extends React.Component {
                 <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {info}
               </p>
-              <p>
-                <i className="fa fa-envelope" aria-hidden="true"></i>
-                yasser.qahtani@gmail.com
-              </p>
+          
               <p>
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 {Country}, {City}, {address}
@@ -84,7 +81,7 @@ class Job extends React.Component {
           </Col>
           <Col md={20} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
-            <h6 className="job-contact-number">الرقم : 046263477555</h6>
+          
             <div>
               <div className="job-heading">
                 <i className="fa fa-suitcase" aria-hidden="true"></i>
@@ -126,8 +123,7 @@ class Job extends React.Component {
                   <p className="main-info-desc">{job ? job.work_hours : ''}</p>
                   <div className="job-sub-heading">تاريخ بدء العمل</div>
                   <p className="main-info-desc">{job ? job.startDate : ''}</p>
-                  <div className="job-sub-heading">اللباس</div>
-                  <p className="main-info-desc">زي رسمي تقدمه الشركة</p>
+                
                 </div>
               </div>
             </div>
