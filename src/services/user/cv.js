@@ -28,7 +28,6 @@ const CV = {
       mobile,
       birthDate,
       social_Status,
-      languages,
       city,
       country,
       public_major,
@@ -37,7 +36,13 @@ const CV = {
       education_degree,
       skill,
       about,
-      per_skill
+      per_skill,
+      study_degree,
+      language,
+      personal_web,
+      facebook,
+      linkedin,
+      twitter
     } = params;
     return baseRequest
       .put('/put/userinfo', {
@@ -46,7 +51,7 @@ const CV = {
         mobile,
         birthDate,
         social_Status,
-        languages,
+        languages: language,
         city,
         country,
         public_Major: public_major,
@@ -55,7 +60,12 @@ const CV = {
         education_degree,
         skills: skill,
         personal_Skills: per_skill,
-        about
+        about,
+        study_degree,
+        personal_web,
+        facebook,
+        linkedin,
+        twitter
       })
       .then(result => result);
   }
