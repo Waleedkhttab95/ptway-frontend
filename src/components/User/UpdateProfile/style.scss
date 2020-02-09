@@ -91,14 +91,16 @@
   display: block;
   margin: auto;
 }
-.location-info .first-section{
+ .first-section{
     display: flex;
 
 }
-.general-skills{
+.general-skills {
+  
     display: flex;
-    justify-content: space-around;
-    >i{
+   
+    // justify-content: space-around;
+    >i {
         font-size: 25px;
     }
 }

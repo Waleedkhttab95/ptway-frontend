@@ -40,14 +40,35 @@ class UpdateProfile extends React.Component {
     const countries = await allCountries();
     const cities = await allCities();
 
+    const info = userInfo.info;
+    console.log('infoinfo', info);
+
     this.setState({
       skills,
       pSkills,
       major,
       universities,
-      userInfo: userInfo.info,
+      userInfo: info,
       countries,
-      cities
+      cities,
+      fullName: info.fullName,
+      gender: info.gender,
+      mobile: info.mobile,
+      birthDate: info.birthDate,
+      university: info.universty,
+      public_major: info.public_Major,
+      s_Major: info.spMajor,
+      city: info.city,
+      country: info.country,
+      social_Status: info.social_Status,
+      about: info.about,
+      Education_level: info.Education_level,
+      study_degree: info.study_degree,
+      language: info.languages,
+      personal_web: info.personal_web,
+      facebook: info.facebook,
+      linkedin: info.linkedin,
+      twitter: info.twitter
     });
   }
   handleMajorChange = async (value, option) => {
@@ -97,7 +118,6 @@ class UpdateProfile extends React.Component {
       mobile,
       birthDate,
       social_Status,
-      languages,
       city,
       country,
       public_major,
@@ -105,15 +125,22 @@ class UpdateProfile extends React.Component {
       s_Major,
       education_degree,
       skill,
-      per_skill
+      per_skill,
+      study_degree,
+      language,
+      about,
+      personal_web,
+      facebook,
+      linkedin,
+      twitter
     } = this.state;
+
     const cvMsg = await updateCV({
       fullName,
       gender,
       mobile,
       birthDate,
       social_Status,
-      languages,
       city,
       country,
       public_major,
@@ -121,11 +148,16 @@ class UpdateProfile extends React.Component {
       s_Major,
       education_degree,
       skill,
-      per_skill
+      per_skill,
+      study_degree,
+      language,
+      about,
+      personal_web,
+      facebook,
+      linkedin,
+      twitter
     });
     if (cvMsg) {
-      console.log('herrrrrre');
-
       this.setState({
         updateSuccessMsg: true
       });
@@ -152,7 +184,10 @@ class UpdateProfile extends React.Component {
         <div className="updating-container">
           <div className="profile-updating">
             <Avatar img={userInfo ? userInfo.imagePath : ''} />
-            <Collapse bordered={false} defaultActiveKey={['1', '2', '3', '4']}>
+            <Collapse
+              bordered={false}
+              defaultActiveKey={['1', '2', '3', '4', '5']}
+            >
               <Panel header="معلومات شخصية" key="1" className="section-heading">
                 <div className="collapse-line"></div>
                 <div className="cv-personal-info">
@@ -161,7 +196,7 @@ class UpdateProfile extends React.Component {
                     <h5 className="title-field">الاسم الثلاثي الكامل</h5>
                     <Input
                       className="input-field"
-                      placeholder={userInfo ? userInfo.fullName : ''}
+                      placeholder={this.state.fullName}
                       onChange={this.handleInputChange}
                       name="fullName"
                     />
@@ -169,7 +204,7 @@ class UpdateProfile extends React.Component {
 
                     <Select
                       className="input-field"
-                      placeholder={userInfo ? userInfo.gender : ''}
+                      placeholder={this.state.gender}
                       onChange={this.handleChange}
                     >
                       <Option name="gender" value="male" key="ذكر">
@@ -183,7 +218,7 @@ class UpdateProfile extends React.Component {
 
                     <Input
                       className="input-field"
-                      placeholder={userInfo ? userInfo.mobile : ''}
+                      placeholder={this.state.mobile}
                       onChange={this.handleInputChange}
                       name="mobile"
                     />
@@ -195,40 +230,48 @@ class UpdateProfile extends React.Component {
                       className="input-field"
                       placeholder={
                         userInfo
-                          ? moment(userInfo.birthDate).format('MMM-d-YY')
+                          ? moment(this.state.birthDate).format('MMM-d-YY')
                           : ''
                       }
                     />
 
                     <h5 className="title-field">الحالة الاجتماعية</h5>
 
-                    <Input
+                    <Select
                       className="input-field"
-                      placeholder={userInfo ? userInfo.social_Status : ''}
-                      onChange={this.handleInputChange}
-                      name="social_Status"
-                    />
+                      placeholder={this.state.social_Status}
+                      onChange={this.handleChange}
+                    >
+                      <Option name="social_Status" value="single" key="أعزب">
+                        أعزب{' '}
+                      </Option>
+                      <Option name="social_Status" value="married" key="متزوج">
+                        متزوج{' '}
+                      </Option>
+                    </Select>
                     <h5 className="title-field">اللغات</h5>
-
-                    <Input
+                    <Select
                       className="input-field"
-                      placeholder={
-                        userInfo
-                          ? userInfo.languages
-                            ? userInfo.languages[0]
-                            : ''
-                          : ''
-                      }
-                      onChange={this.handleInputChange}
-                      name="languages"
-                    />
+                      placeholder={this.state.language}
+                      onChange={this.handleChange}
+                    >
+                      <Option name="language" value="arabic" key="العربية">
+                        العربية{' '}
+                      </Option>
+                      <Option name="language" value="english" key="الانجليزية">
+                        الانجليزية{' '}
+                      </Option>
+                      <Option name="language" value="france" key="الفرنسية">
+                        الفرنسية{' '}
+                      </Option>
+                    </Select>
                   </div>
                 </div>
                 <h5 className="title-field">الوصف الوظيفي</h5>
                 <TextArea
                   rows={4}
                   className="textarea-field"
-                  placeholder={userInfo ? userInfo.about : ''}
+                  placeholder={this.state.about}
                   onChange={this.handleInputChange}
                   name="about"
                 />
@@ -246,10 +289,8 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          userInfo
-                            ? userInfo.country
-                              ? userInfo.country.countryName
-                              : ''
+                          this.state.country
+                            ? this.state.country.countryName
                             : ''
                         }
                         onChange={this.handleChange}
@@ -275,11 +316,7 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          userInfo
-                            ? userInfo.city
-                              ? userInfo.city.cityName
-                              : ''
-                            : ''
+                          this.state.city ? this.state.city.cityName : ''
                         }
                         onChange={this.handleChange}
                       >
@@ -312,10 +349,8 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          userInfo
-                            ? userInfo.universty
-                              ? userInfo.universty.universtyName
-                              : ''
+                          this.state.university
+                            ? this.state.university.universtyName
                             : ''
                         }
                         onChange={this.handleChange}
@@ -336,13 +371,36 @@ class UpdateProfile extends React.Component {
                       </Select>
                     </div>
                     <div>
-                      <h5 className="title-field">المستوى التعليمي</h5>
-                      <Input
+                      <h5 className="title-field">المرحلة الدراسية الحالية</h5>
+                      <Select
                         className="input-field"
-                        placeholder={userInfo ? userInfo.Education_level : ''}
-                        onChange={this.handleInputChange}
-                        name="education_degree"
-                      />
+                        placeholder={this.state.study_degree}
+                        onChange={this.handleChange}
+                      >
+                        <Option
+                          name="study_degree"
+                          value="high_school"
+                          key="ثانوية عامة"
+                        >
+                          ثانوية عامة{' '}
+                        </Option>
+                        <Option name="study_degree" value="diplome" key="دبلوم">
+                          دبلوم{' '}
+                        </Option>
+                        <Option
+                          name="study_degree"
+                          value="bachelor"
+                          key="بكالوريس"
+                        >
+                          بكالوريس{' '}
+                        </Option>
+                        <Option name="study_degree" value="graduate" key="خريج">
+                          خريج{' '}
+                        </Option>
+                        <Option name="social_Status" value="master" key="ماستر">
+                          ماستر{' '}
+                        </Option>
+                      </Select>
                     </div>
                   </div>
                   <div className="first-section">
@@ -353,10 +411,8 @@ class UpdateProfile extends React.Component {
                         className="input-field"
                         onChange={this.handleMajorChange}
                         placeholder={
-                          userInfo
-                            ? userInfo.public_Major
-                              ? userInfo.public_Major.majorName
-                              : ''
+                          this.state.public_major
+                            ? this.state.public_major.majorName
                             : ''
                         }
                       >
@@ -380,11 +436,7 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          userInfo
-                            ? userInfo.spMajor
-                              ? userInfo.spMajor.majorName
-                              : ''
-                            : ''
+                          this.state.s_Major ? this.state.s_Major.majorName : ''
                         }
                         onChange={this.handleChange}
                       >
@@ -408,86 +460,140 @@ class UpdateProfile extends React.Component {
               </Panel>
               <Panel header="المهارات " key="4" className="section-heading">
                 <div className="collapse-line"></div>
-                <div style={{ marginLeft: '20px' }}>
-                  <h5 className="title-field">مهارات شخصية</h5>
-                  <Select
-                    className="input-field"
-                    mode="multiple"
-                    onChange={this.handlePersonalSkillsChange}
-                  >
-                    {_.isArray(pSkills)
-                      ? pSkills.map(elm => {
-                          return (
-                            <Option
-                              value={elm.skillName}
-                              key={elm._id}
-                              name="p_skill"
-                            >
-                              {elm.skillName}
-                            </Option>
-                          );
-                        })
-                      : ''}
-                  </Select>
-                </div>
-                <div style={{ marginLeft: '20px' }}>
-                  <h5 className="title-field">مهارات عامة</h5>
-                  <Select
-                    className="input-field"
-                    mode="multiple"
-                    // value={
-                    //   skills ? skills[userInfo ? userInfo.skills[0] : ''] : ''
-                    // }
-                    onChange={this.handleSkillsChange}
-                  >
-                    {_.isArray(skills)
-                      ? skills.map(elm => {
-                          // skObj[elm._id] = elm.skillName;
+                <div className="first-section">
+                  <div style={{ marginLeft: '20px' }}>
+                    <h5 className="title-field">مهارات شخصية</h5>
+                    <Select
+                      className="input-field"
+                      mode="multiple"
+                      onChange={this.handlePersonalSkillsChange}
+                    >
+                      {_.isArray(pSkills)
+                        ? pSkills.map(elm => {
+                            return (
+                              <Option
+                                value={elm.skillName}
+                                key={elm._id}
+                                name="p_skill"
+                              >
+                                {elm.skillName}
+                              </Option>
+                            );
+                          })
+                        : ''}
+                    </Select>
+                  </div>
+                  <div>
+                    <h5 className="title-field">مهارات عامة</h5>
+                    <Select
+                      className="input-field"
+                      mode="multiple"
+                      // value={
+                      //   skills ? skills[userInfo ? userInfo.skills[0] : ''] : ''
+                      // }
+                      onChange={this.handleSkillsChange}
+                    >
+                      {_.isArray(skills)
+                        ? skills.map(elm => {
+                            // skObj[elm._id] = elm.skillName;
 
-                          return (
-                            <Option
-                              value={elm.skillName}
-                              key={elm._id}
-                              name="skill"
-                            >
-                              {elm.skillName}
-                            </Option>
-                          );
-                        })
-                      : ''}
-                  </Select>
+                            return (
+                              <Option
+                                value={elm.skillName}
+                                key={elm._id}
+                                name="skill"
+                              >
+                                {elm.skillName}
+                              </Option>
+                            );
+                          })
+                        : ''}
+                    </Select>
+                  </div>
                 </div>
-                <div style={{ marginLeft: '20px' }}>
-                  <h5 className="title-field">الهوايات</h5>
-                  <Select className="input-field" mode="multiple">
-                    {_.isArray(skills)
-                      ? skills.map(elm => {
-                          return (
-                            <Option
-                              value={elm.skillName}
-                              key={elm._id}
-                              name="hoppies"
-                            >
-                              {elm.skillName}
-                            </Option>
-                          );
-                        })
-                      : ''}
-                  </Select>
+                <div className="first-section">
+                  <div style={{ marginLeft: '20px' }}>
+                    <h5 className="title-field">مهارات العمل</h5>
+                    <Select className="input-field" mode="multiple">
+                      {_.isArray(skills)
+                        ? skills.map(elm => {
+                            return (
+                              <Option
+                                value={elm.skillName}
+                                key={elm._id}
+                                name="hoppies"
+                              >
+                                {elm.skillName}
+                              </Option>
+                            );
+                          })
+                        : ''}
+                    </Select>
+                  </div>
+
+                  <div>
+                    <h5 className="title-field">الهوايات</h5>
+                    <Select className="input-field" mode="multiple">
+                      {_.isArray(skills)
+                        ? skills.map(elm => {
+                            return (
+                              <Option
+                                value={elm.skillName}
+                                key={elm._id}
+                                name="hoppies"
+                              >
+                                {elm.skillName}
+                              </Option>
+                            );
+                          })
+                        : ''}
+                    </Select>
+                  </div>
                 </div>
               </Panel>
-              {/* 
-              <Panel header="مهارات عامة" key="5" className="section-heading">
+              <Panel
+                header="التواصل الاجتماعي"
+                key="5"
+                className="section-heading"
+              >
                 <div className="collapse-line"></div>
                 <div className="general-skills">
-                  <i className="fa fa-book" aria-hidden="true"></i>
-                  <i className="fa fa-cutlery" aria-hidden="true"></i>
-                  <i className="fa fa-book" aria-hidden="true"></i>
-                  <i className="fa fa-cutlery" aria-hidden="true"></i>
-                  <i className="fa fa-book" aria-hidden="true"></i>
-                  <i className="fa fa-cutlery" aria-hidden="true"></i>
+                  <div>
+                    <h5 className="title-field">الموقع الشخصي</h5>
+                    <Input
+                      className="input-field"
+                      style={{ marginLeft: '20px' }}
+                      placeholder={this.state.personal_web}
+                      onChange={this.handleInputChange}
+                      name="personal_web"
+                    />
+                    <h5 className="title-field">رابط linkedin</h5>
+                    <Input
+                      className="input-field"
+                      placeholder={this.state.linkedin}
+                      onChange={this.handleInputChange}
+                      name="linkedin"
+                    />
+                  </div>
+                  <div>
+                    <h5 className="title-field">رابط الفيسبوك</h5>
+                    <Input
+                      className="input-field"
+                      style={{ marginLeft: '20px' }}
+                      placeholder={this.state.facebook}
+                      onChange={this.handleInputChange}
+                      name="facebook"
+                    />
+                    <h5 className="title-field">رابط تويتر</h5>
+                    <Input
+                      className="input-field"
+                      placeholder={this.state.twitter}
+                      onChange={this.handleInputChange}
+                      name="twitter"
+                    />
+                  </div>
                 </div>
-              </Panel> */}
+              </Panel>
             </Collapse>
             <button className="save-changes-btn" onClick={this.updateCV}>
               حفظ
