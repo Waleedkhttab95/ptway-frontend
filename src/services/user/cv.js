@@ -48,7 +48,7 @@ const CV = {
     } = params;
 
     let formData = new FormData();
-    formData.append('image', file, file.image);
+    formData.append('image', file);
     formData.append('fullName', fullName);
     formData.append('gender', gender);
     formData.append('mobile', mobile);

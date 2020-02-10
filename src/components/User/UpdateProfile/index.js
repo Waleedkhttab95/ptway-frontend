@@ -72,9 +72,9 @@ class UpdateProfile extends React.Component {
       facebook: info.facebook,
       linkedin: info.linkedin,
       twitter: info.twitter,
-      file: info.imagePath,
-      per_skill: info.personal_Skills,
-      skill: info.skills
+      file: info.imagePath ? info.imagePath : null
+      // per_skill: info.personal_Skills,
+      // skill: info.skills
     });
   }
   handleMajorChange = async (value, option) => {
@@ -107,6 +107,13 @@ class UpdateProfile extends React.Component {
     });
   };
 
+  handleLanguageChange = (value, option) => {
+    const ids = option.map(elm => elm.key);
+    this.setState({
+      language: ids
+    });
+  };
+
   handlePersonalSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -126,7 +133,7 @@ class UpdateProfile extends React.Component {
     this.setState({ birthDate: date });
   };
 
-  studyDegreeHandle = async (value, option) => {
+  educationDegreeHandle = async (value, option) => {
     console.log('value', option);
 
     const education_levels = await educationLevel(option.key);
@@ -218,6 +225,13 @@ class UpdateProfile extends React.Component {
       { value: 'diploma', viewValue: 'دبلوم' },
       { value: 'noncertificate', viewValue: 'لايوجد' }
     ];
+    const education_degree = [
+      { value: 'HS', viewValue: 'ثانوية عامة' },
+      { value: 'BHO', viewValue: 'بكالوريوس' },
+      { value: 'MASTER', viewValue: 'ماستر' },
+      { value: 'diploma', viewValue: 'دبلوم' },
+      { value: 'Undergraduate', viewValue: 'خريج' }
+    ];
 
     return (
       <div className="user-container">
@@ -301,8 +315,9 @@ class UpdateProfile extends React.Component {
                     <h5 className="title-field">اللغات</h5>
                     <Select
                       className="input-field"
-                      placeholder={this.state.language}
-                      onChange={this.handleChange}
+                      // placeholder={this.state.language}
+                      onChange={this.handleLanguageChange}
+                      mode="multiple"
                     >
                       <Option name="language" value="arabic" key="العربية">
                         العربية{' '}
@@ -428,45 +443,11 @@ class UpdateProfile extends React.Component {
                       </Select>
                     </div>
                     <div>
-                      <h5 className="title-field">المرحلة الدراسية الحالية</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={this.state.study_degree}
-                        onChange={this.handleChange}
-                      >
-                        <Option
-                          name="study_degree"
-                          value="HS"
-                          key="ثانوية عامة"
-                        >
-                          ثانوية عامة{' '}
-                        </Option>
-                        <Option name="study_degree" value="diploma" key="دبلوم">
-                          دبلوم{' '}
-                        </Option>
-                        <Option name="study_degree" value="BHO" key="بكالوريس">
-                          بكالوريس{' '}
-                        </Option>
-                        <Option
-                          name="study_degree"
-                          value="Undergraduate"
-                          key="خريج"
-                        >
-                          خريج{' '}
-                        </Option>
-                        <Option name="social_Status" value="MASTER" key="ماستر">
-                          ماستر{' '}
-                        </Option>
-                      </Select>
-                    </div>
-                  </div>
-                  <div className="first-section">
-                    <div style={{ marginLeft: '20px' }}>
                       <h5 className="title-field">الشهادة التي تحملها</h5>
                       <Select
                         className="input-field"
-                        placeholder={userInfo ? userInfo.Education_degree : ''}
-                        onChange={this.studyDegreeHandle}
+                        placeholder={userInfo ? userInfo.study_degrees : ''}
+                        onChange={this.handleChange}
                       >
                         {_.isArray(certificate)
                           ? certificate.map(elm => {
@@ -474,7 +455,31 @@ class UpdateProfile extends React.Component {
                                 <Option
                                   value={elm.viewValue}
                                   key={elm.value}
-                                  name="education_degree "
+                                  name="study_degree"
+                                >
+                                  {elm.viewValue}
+                                </Option>
+                              );
+                            })
+                          : ''}
+                      </Select>
+                    </div>
+                  </div>
+                  <div className="first-section">
+                    <div style={{ marginLeft: '20px' }}>
+                      <h5 className="title-field">المرحلة الدراسية الحالية</h5>
+                      <Select
+                        className="input-field"
+                        placeholder={userInfo ? userInfo.Education_degree : ''}
+                        onChange={this.educationDegreeHandle}
+                      >
+                        {_.isArray(education_degree)
+                          ? education_degree.map(elm => {
+                              return (
+                                <Option
+                                  value={elm.viewValue}
+                                  key={elm.value}
+                                  name="education_degree"
                                 >
                                   {elm.viewValue}
                                 </Option>
@@ -487,7 +492,7 @@ class UpdateProfile extends React.Component {
                       <h5 className="title-field"> المستوى التعليمي</h5>
                       <Select
                         className="input-field"
-                        placeholder={userInfo ? userInfo.education_level : ''}
+                        placeholder={userInfo ? userInfo.Education_level : ''}
                         onChange={this.educationLevelHandle}
                       >
                         {_.isArray(education_levels)
