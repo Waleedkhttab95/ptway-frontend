@@ -42,32 +42,38 @@ const CV = {
       personal_web,
       facebook,
       linkedin,
-      twitter
+      twitter,
+      file
     } = params;
-    return baseRequest
-      .put('/put/userinfo', {
-        fullName,
-        gender,
-        mobile,
-        birthDate,
-        social_Status,
-        languages: language,
-        city,
-        country,
-        public_Major: public_major,
-        universty: university,
-        spMajor: s_Major,
-        education_degree,
-        skills: skill,
-        personal_Skills: per_skill,
-        about,
-        study_degree,
-        personal_web,
-        facebook,
-        linkedin,
-        twitter
-      })
-      .then(result => result);
+
+    let formData = new FormData();
+    formData.append('image', file, file.image);
+    formData.append('fullName', fullName);
+    formData.append('gender', gender);
+    formData.append('mobile', mobile);
+    formData.append('birthDate', birthDate);
+    formData.append('social_Status', social_Status);
+    formData.append('languages', language);
+    formData.append('city', city);
+    formData.append('country', country);
+    formData.append('public_Major', public_major);
+    formData.append('universty', university);
+    formData.append('spMajor', s_Major);
+    formData.append('education_degree', education_degree);
+    formData.append('skills', skill);
+    formData.append('personal_Skills', per_skill);
+    formData.append('about', about);
+    formData.append('study_degree', study_degree);
+    formData.append('personal_web', personal_web);
+    formData.append('facebook', facebook);
+    formData.append('linkedin', linkedin);
+    formData.append('twitter', twitter);
+
+    return baseRequest.put('/put/userinfo', formData).then(result => {
+      console.log('result', result);
+
+      return result;
+    });
   }
 };
 

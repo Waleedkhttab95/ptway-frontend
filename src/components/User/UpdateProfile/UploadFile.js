@@ -22,6 +22,7 @@ function beforeUpload(file) {
 class Avatar extends React.Component {
   state = {
     loading: false
+    // imageUrl: this.props.img
   };
 
   handleChange = info => {
@@ -32,14 +33,25 @@ class Avatar extends React.Component {
     if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl =>
-        this.setState({
-          imageUrl,
-          loading: false
-        })
+        this.setState(
+          {
+            imageUrl,
+            loading: false
+          },
+          () => {
+            console.log('image ++++', info.file.originFileObj);
+            this.props.getImage && this.props.getImage(info.file.originFileObj);
+          }
+        )
       );
     }
   };
 
+  dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
   render() {
     const uploadButton = (
       <div>
@@ -50,11 +62,11 @@ class Avatar extends React.Component {
     const { imageUrl } = this.state;
     return (
       <Upload
-        name="avatar"
+        name="image"
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        customRequest={this.dummyRequest}
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >

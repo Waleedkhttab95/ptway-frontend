@@ -55,11 +55,11 @@ class UpdateProfile extends React.Component {
       gender: info.gender,
       mobile: info.mobile,
       birthDate: info.birthDate,
-      university: info.universty,
-      public_major: info.public_Major,
-      s_Major: info.spMajor,
-      city: info.city,
-      country: info.country,
+      university: info.universty ? info.universty._id : '',
+      public_major: info.public_Major ? info.public_Major._id : '',
+      s_Major: info.spMajor ? info.spMajor._id : '',
+      city: info.city ? info.city._id : '',
+      country: info.country ? info.country._id : '',
       social_Status: info.social_Status,
       about: info.about,
       Education_level: info.Education_level,
@@ -68,7 +68,10 @@ class UpdateProfile extends React.Component {
       personal_web: info.personal_web,
       facebook: info.facebook,
       linkedin: info.linkedin,
-      twitter: info.twitter
+      twitter: info.twitter,
+      file: info.imagePath,
+      per_skill: info.personal_Skills[0],
+      skill: info.skills[0]
     });
   }
   handleMajorChange = async (value, option) => {
@@ -76,6 +79,14 @@ class UpdateProfile extends React.Component {
     this.setState({
       public_major: option.key,
       subMajor
+    });
+  };
+
+  fileChangedHandler = ev => {
+    console.log('*****', ev.target.files);
+
+    this.setState({
+      file: ev.target.files[0]
     });
   };
 
@@ -132,7 +143,8 @@ class UpdateProfile extends React.Component {
       personal_web,
       facebook,
       linkedin,
-      twitter
+      twitter,
+      file
     } = this.state;
 
     const cvMsg = await updateCV({
@@ -155,7 +167,8 @@ class UpdateProfile extends React.Component {
       personal_web,
       facebook,
       linkedin,
-      twitter
+      twitter,
+      file
     });
     if (cvMsg) {
       this.setState({
@@ -174,16 +187,21 @@ class UpdateProfile extends React.Component {
       countries,
       cities
     } = this.state;
-    console.log('userInfo', userInfo);
-    // let skObj;
-    console.log('skObj', this.state);
 
     return (
       <div className="user-container">
         <Header />
         <div className="updating-container">
           <div className="profile-updating">
-            <Avatar img={userInfo ? userInfo.imagePath : ''} />
+            <Avatar
+              img={this.state.image}
+              getImage={file => this.setState({ file })}
+            />
+            {/* <input
+              type="file"
+              accept="image/*"
+              onChange={this.fileChangedHandler}
+            /> */}
             <Collapse
               bordered={false}
               defaultActiveKey={['1', '2', '3', '4', '5']}
@@ -289,8 +307,10 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          this.state.country
-                            ? this.state.country.countryName
+                          userInfo
+                            ? userInfo.country
+                              ? userInfo.country.countryName
+                              : ''
                             : ''
                         }
                         onChange={this.handleChange}
@@ -316,7 +336,11 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          this.state.city ? this.state.city.cityName : ''
+                          userInfo
+                            ? userInfo.city
+                              ? userInfo.city.cityName
+                              : ''
+                            : ''
                         }
                         onChange={this.handleChange}
                       >
@@ -349,8 +373,10 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          this.state.university
-                            ? this.state.university.universtyName
+                          userInfo
+                            ? userInfo.universty
+                              ? userInfo.universty.universtyName
+                              : ''
                             : ''
                         }
                         onChange={this.handleChange}
@@ -411,8 +437,10 @@ class UpdateProfile extends React.Component {
                         className="input-field"
                         onChange={this.handleMajorChange}
                         placeholder={
-                          this.state.public_major
-                            ? this.state.public_major.majorName
+                          userInfo
+                            ? userInfo.public_Major
+                              ? userInfo.public_Major.majorName
+                              : ''
                             : ''
                         }
                       >
@@ -436,7 +464,11 @@ class UpdateProfile extends React.Component {
                       <Select
                         className="input-field"
                         placeholder={
-                          this.state.s_Major ? this.state.s_Major.majorName : ''
+                          userInfo
+                            ? userInfo.spMajor
+                              ? userInfo.spMajor.majorName
+                              : ''
+                            : ''
                         }
                         onChange={this.handleChange}
                       >
