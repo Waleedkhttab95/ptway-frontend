@@ -157,6 +157,7 @@ class UserSignup extends React.Component {
   render() {
     const { current, countries, cities, majors } = this.state;
     const { user } = this.props;
+    console.log('current', current);
 
     const steps = [
       {
@@ -218,7 +219,13 @@ class UserSignup extends React.Component {
               ) : (
                 ''
               )}
-              <div className="steps-action">
+              <div
+                className={
+                  current == 2 || current == 3
+                    ? 'steps-action-mob steps-action'
+                    : 'steps-action-mob-2 steps-action'
+                }
+              >
                 {current < steps.length - 1 && (
                   <Button
                     className="first-step-btn"

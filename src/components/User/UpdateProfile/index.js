@@ -55,9 +55,9 @@ class UpdateProfile extends React.Component {
       gender: info.gender,
       mobile: info.mobile,
       birthDate: info.birthDate,
-      university: info.universty ? info.universty._id : '',
+      university: info.universty ? info.universty._id : null,
       public_major: info.public_Major ? info.public_Major._id : '',
-      s_Major: info.spMajor ? info.spMajor._id : '',
+      s_Major: info.spMajor ? info.spMajor._id : null,
       city: info.city ? info.city._id : '',
       country: info.country ? info.country._id : '',
       social_Status: info.social_Status,
@@ -70,8 +70,8 @@ class UpdateProfile extends React.Component {
       linkedin: info.linkedin,
       twitter: info.twitter,
       file: info.imagePath,
-      per_skill: info.personal_Skills[0],
-      skill: info.skills[0]
+      per_skill: info.personal_Skills,
+      skill: info.skills
     });
   }
   handleMajorChange = async (value, option) => {

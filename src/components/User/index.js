@@ -23,6 +23,8 @@ class User extends React.Component {
       // birthDate,
       work_Hours,
       city,
+      mobile,
+      about,
       public_Major,
       spicifc_Major,
       languages,
@@ -35,7 +37,7 @@ class User extends React.Component {
         <Header />
         <div className="user-container">
           <Content className="user-home">
-            <div className="user-notification">
+            {/* <div className="user-notification">
               <Alert
                 message="تم قبول طلبك على وظيفة مبرمج ومطور تطبيقات"
                 type="warning"
@@ -46,7 +48,7 @@ class User extends React.Component {
                 type="info"
                 className="info-alert"
               />
-            </div>
+            </div> */}
             <div className="user-profile">
               <div className="user-progress-mob">
                 <div className="user-hours-work">
@@ -69,7 +71,7 @@ class User extends React.Component {
                     {/* <i className="fa fa-user u-pic" aria-hidden="true"></i> */}
                     <img src={imagePath} alt="user" className="u-pic" />
                     <span className="fullname">{fullName} </span>
-                    <span className="job-date">يعمل منذ 11/02/2018</span>
+                
                     <span className="job-type">مصمم جرافيك</span>
                   </div>
                   <div className="details-user-info">
@@ -79,7 +81,7 @@ class User extends React.Component {
                     </span>
                     <span>
                       <i className="fa fa-mobile" aria-hidden="true"></i>
-                      0096 555 123 456 78 90
+                    {mobile}
                     </span>
                     <span>
                       <i className="fa fa-user" aria-hidden="true"></i>
@@ -133,16 +135,7 @@ class User extends React.Component {
                       نبذة عامة
                     </div>
                     <div className="p-subject">
-                      كل إنسان يحب أن يكون كلامه مسموعا، يعبر عن نفسه وذاته
-                      بحرية وبانطلاق في الحياة، مما دفع الكثيرون إلى تطوير
-                      أساليبهم في بناء التعابير الصوتية المختلفة، وتعلم مهارات
-                      الجسد، والكثير من المهارات؛ ليستطيعوا التعبير عن أنفسهم،
-                      واقناع الناس بذلك ليظهروا وليرتفع اسمهم في المجتمع وفي
-                      أنفسهم. ومع التطور الحاصل في العصر الحديث من التكنولوجيا
-                      الحديثة ومواقع التواصل الاجتماعي، وانتشار استخدامها،
-                      والمدونات أصبحت الكتابة لونا لا يستغني عنه أحد في التعبير
-                      عن ما يدور في عقله وكيانه من أفكار ومعتقدات وآراء؛ ساعيا
-                      ليجلب اعجاب الآخرين به أحيانا،
+                    {about}
                     </div>
                   </div>
                   {/* <div className="education-section">

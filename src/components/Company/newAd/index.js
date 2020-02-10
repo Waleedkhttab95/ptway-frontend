@@ -2,14 +2,14 @@ import React from 'react';
 import './style.scss';
 import Footer from '../../Footer';
 import { Input, Select } from 'antd';
-import Header from '../../Header';
+// import Header from '../../Header';
 const { TextArea } = Input;
 const { Option } = Select;
 
 const AddNewAd = props => {
   return (
     <React.Fragment>
-      <Header />
+      {/* <Header /> */}
       <div className="company-container">
         <div className="new-ad-form">
           <h2 className="new-ad-title">إضافة إعلان جديد</h2>
