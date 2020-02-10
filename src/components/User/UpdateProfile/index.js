@@ -406,8 +406,7 @@ class UpdateProfile extends React.Component {
                       </Select>
                     </div>
                   </div>
-                  <h5 className="title-field">عنوان السكن الحالي</h5>
-                  <TextArea rows={4} className="textarea-field" />
+                
                 </div>
               </Panel>
               <Panel header="الدراسة" key="3" className="section-heading">
@@ -627,24 +626,7 @@ class UpdateProfile extends React.Component {
                   </div>
                 </div>
                 <div className="first-section">
-                  <div style={{ marginLeft: '20px' }}>
-                    <h5 className="title-field">مهارات العمل</h5>
-                    <Select className="input-field" mode="multiple">
-                      {_.isArray(skills)
-                        ? skills.map(elm => {
-                            return (
-                              <Option
-                                value={elm.skillName}
-                                key={elm._id}
-                                name="hoppies"
-                              >
-                                {elm.skillName}
-                              </Option>
-                            );
-                          })
-                        : ''}
-                    </Select>
-                  </div>
+            
 
                   <div>
                     <h5 className="title-field">الهوايات</h5>

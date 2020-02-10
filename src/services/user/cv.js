@@ -47,7 +47,28 @@ const CV = {
       education_level
     } = params;
 
+
     let formData = new FormData();
+    if(skill != null) {
+      for (var i = 0; i <skill.length; i++) {
+        console.log(skill[i])
+          formData.append('skills[]', skill[i]);
+      }
+  }
+  else{
+    formData.append('skills', skill);
+   }
+
+   
+   if(per_skill != null) {
+    for (var i = 0; i < per_skill.length; i++) {
+      formData.append('personal_Skills[]', per_skill[i]);
+    }
+   }
+   else{
+    formData.append('personal_Skills', per_skill);
+   } 
+
     formData.append('image', file);
     formData.append('fullName', fullName);
     formData.append('gender', gender);
@@ -62,8 +83,6 @@ const CV = {
     formData.append('spMajor', s_Major);
     formData.append('education_degree', education_degree);
     formData.append('education_level', education_level);
-    formData.append('skills', skill);
-    formData.append('personal_Skills', per_skill);
     formData.append('about', about);
     formData.append('study_degree', study_degree);
     formData.append('personal_web', personal_web);
@@ -71,6 +90,7 @@ const CV = {
     formData.append('linkedin', linkedin);
     formData.append('twitter', twitter);
 
+    
     return baseRequest.put('/put/userinfo', formData).then(result => {
       console.log('result', result);
 
