@@ -405,25 +405,25 @@ class UpdateProfile extends React.Component {
                       >
                         <Option
                           name="study_degree"
-                          value="high_school"
+                          value="HS"
                           key="ثانوية عامة"
                         >
                           ثانوية عامة{' '}
                         </Option>
-                        <Option name="study_degree" value="diplome" key="دبلوم">
+                        <Option name="study_degree" value="diploma" key="دبلوم">
                           دبلوم{' '}
+                        </Option>
+                        <Option name="study_degree" value="BHO" key="بكالوريس">
+                          بكالوريس{' '}
                         </Option>
                         <Option
                           name="study_degree"
-                          value="bachelor"
-                          key="بكالوريس"
+                          value="Undergraduate"
+                          key="خريج"
                         >
-                          بكالوريس{' '}
-                        </Option>
-                        <Option name="study_degree" value="graduate" key="خريج">
                           خريج{' '}
                         </Option>
-                        <Option name="social_Status" value="master" key="ماستر">
+                        <Option name="social_Status" value="MASTER" key="ماستر">
                           ماستر{' '}
                         </Option>
                       </Select>
