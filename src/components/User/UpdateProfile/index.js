@@ -7,6 +7,7 @@ import Avatar from './UploadFile';
 import cvServices from '../../../services/user/cv';
 import statatisticsService from '../../../services/statisticsService';
 // import store from '../../../store/createStore';
+import educationLevel from './educationLevel';
 import moment from 'moment';
 import _ from 'lodash';
 const { TextArea } = Input;
@@ -29,6 +30,7 @@ class UpdateProfile extends React.Component {
     pSkills: [],
     major: [],
     universities: [],
+    education_levels: [],
     updateSuccessMsg: false
   };
   async componentDidMount() {
@@ -56,13 +58,14 @@ class UpdateProfile extends React.Component {
       mobile: info.mobile,
       birthDate: info.birthDate,
       university: info.universty ? info.universty._id : null,
-      public_major: info.public_Major ? info.public_Major._id : '',
+      public_major: info.public_Major ? info.public_Major._id : null,
       s_Major: info.spMajor ? info.spMajor._id : null,
-      city: info.city ? info.city._id : '',
-      country: info.country ? info.country._id : '',
+      city: info.city ? info.city._id : null,
+      country: info.country ? info.country._id : null,
       social_Status: info.social_Status,
       about: info.about,
-      Education_level: info.Education_level,
+      education_level: info.Education_level,
+      education_degree: info.Education_degree ? info.Education_degree : null,
       study_degree: info.study_degree,
       language: info.languages,
       personal_web: info.personal_web,
@@ -122,6 +125,22 @@ class UpdateProfile extends React.Component {
   DateChange = date => {
     this.setState({ birthDate: date });
   };
+
+  studyDegreeHandle = async (value, option) => {
+    console.log('value', option);
+
+    const education_levels = await educationLevel(option.key);
+    this.setState({
+      education_degree: option.key,
+      education_levels
+    });
+  };
+
+  educationLevelHandle = (value, option) => {
+    this.setState({
+      education_level: option.key
+    });
+  };
   updateCV = async () => {
     const {
       fullName,
@@ -144,7 +163,8 @@ class UpdateProfile extends React.Component {
       facebook,
       linkedin,
       twitter,
-      file
+      file,
+      education_level
     } = this.state;
 
     const cvMsg = await updateCV({
@@ -159,6 +179,7 @@ class UpdateProfile extends React.Component {
       university,
       s_Major,
       education_degree,
+      education_level,
       skill,
       per_skill,
       study_degree,
@@ -185,8 +206,18 @@ class UpdateProfile extends React.Component {
       universities,
       userInfo,
       countries,
-      cities
+      cities,
+      education_levels
     } = this.state;
+    console.log('state', this.state);
+
+    const certificate = [
+      { value: 'HS', viewValue: 'ثانوية عامة' },
+      { value: 'BHO', viewValue: 'بكالوريوس' },
+      { value: 'MASTER', viewValue: 'ماستر' },
+      { value: 'diploma', viewValue: 'دبلوم' },
+      { value: 'noncertificate', viewValue: 'لايوجد' }
+    ];
 
     return (
       <div className="user-container">
@@ -429,6 +460,53 @@ class UpdateProfile extends React.Component {
                       </Select>
                     </div>
                   </div>
+                  <div className="first-section">
+                    <div style={{ marginLeft: '20px' }}>
+                      <h5 className="title-field">الشهادة التي تحملها</h5>
+                      <Select
+                        className="input-field"
+                        placeholder={userInfo ? userInfo.Education_degree : ''}
+                        onChange={this.studyDegreeHandle}
+                      >
+                        {_.isArray(certificate)
+                          ? certificate.map(elm => {
+                              return (
+                                <Option
+                                  value={elm.viewValue}
+                                  key={elm.value}
+                                  name="education_degree "
+                                >
+                                  {elm.viewValue}
+                                </Option>
+                              );
+                            })
+                          : ''}
+                      </Select>
+                    </div>
+                    <div>
+                      <h5 className="title-field"> المستوى التعليمي</h5>
+                      <Select
+                        className="input-field"
+                        placeholder={userInfo ? userInfo.education_level : ''}
+                        onChange={this.educationLevelHandle}
+                      >
+                        {_.isArray(education_levels)
+                          ? education_levels.map(elm => {
+                              return (
+                                <Option
+                                  value={elm.viewValue}
+                                  key={elm.id}
+                                  name="education_level"
+                                >
+                                  {elm.viewValue}
+                                </Option>
+                              );
+                            })
+                          : ''}
+                      </Select>
+                    </div>
+                  </div>
+
                   <div className="first-section">
                     <div style={{ marginLeft: '20px' }}>
                       <h5 className="title-field">التخصص العام</h5>

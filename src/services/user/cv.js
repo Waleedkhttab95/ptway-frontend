@@ -43,7 +43,8 @@ const CV = {
       facebook,
       linkedin,
       twitter,
-      file
+      file,
+      education_level
     } = params;
 
     let formData = new FormData();
@@ -60,6 +61,7 @@ const CV = {
     formData.append('universty', university);
     formData.append('spMajor', s_Major);
     formData.append('education_degree', education_degree);
+    formData.append('education_level', education_level);
     formData.append('skills', skill);
     formData.append('personal_Skills', per_skill);
     formData.append('about', about);

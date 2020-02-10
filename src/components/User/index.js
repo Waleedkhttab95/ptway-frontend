@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Alert, Col } from 'antd';
+import { Layout, Col } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
 import './style.scss';
@@ -71,7 +71,7 @@ class User extends React.Component {
                     {/* <i className="fa fa-user u-pic" aria-hidden="true"></i> */}
                     <img src={imagePath} alt="user" className="u-pic" />
                     <span className="fullname">{fullName} </span>
-                
+
                     <span className="job-type">مصمم جرافيك</span>
                   </div>
                   <div className="details-user-info">
@@ -81,7 +81,7 @@ class User extends React.Component {
                     </span>
                     <span>
                       <i className="fa fa-mobile" aria-hidden="true"></i>
-                    {mobile}
+                      {mobile}
                     </span>
                     <span>
                       <i className="fa fa-user" aria-hidden="true"></i>
@@ -134,9 +134,7 @@ class User extends React.Component {
                       ></i>
                       نبذة عامة
                     </div>
-                    <div className="p-subject">
-                    {about}
-                    </div>
+                    <div className="p-subject">{about}</div>
                   </div>
                   {/* <div className="education-section">
                   <div className="h-title e-title">الدراسات والشهادات</div>
