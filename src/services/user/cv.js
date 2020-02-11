@@ -47,27 +47,31 @@ const CV = {
       education_level
     } = params;
 
-
     let formData = new FormData();
-    if(skill != null) {
-      for (var i = 0; i <skill.length; i++) {
-        console.log(skill[i])
-          formData.append('skills[]', skill[i]);
+    if (skill != null) {
+      for (var i = 0; i < skill.length; i++) {
+        console.log(skill[i]);
+        formData.append('skills[]', skill[i]);
       }
-  }
-  else{
-    formData.append('skills', skill);
-   }
-
-   
-   if(per_skill != null) {
-    for (var i = 0; i < per_skill.length; i++) {
-      formData.append('personal_Skills[]', per_skill[i]);
+    } else {
+      formData.append('skills', skill);
     }
-   }
-   else{
-    formData.append('personal_Skills', per_skill);
-   } 
+
+    if (per_skill != null) {
+      for (var i = 0; i < per_skill.length; i++) {
+        formData.append('personal_Skills[]', per_skill[i]);
+      }
+    } else {
+      formData.append('personal_Skills', per_skill);
+    }
+
+    if (language != null) {
+      for (var i = 0; i < language.length; i++) {
+        formData.append('languages[]', language[i]);
+      }
+    } else {
+      formData.append('languages', language);
+    }
 
     formData.append('image', file);
     formData.append('fullName', fullName);
@@ -75,7 +79,7 @@ const CV = {
     formData.append('mobile', mobile);
     formData.append('birthDate', birthDate);
     formData.append('social_Status', social_Status);
-    formData.append('languages', language);
+    // formData.append('languages', language);
     formData.append('city', city);
     formData.append('country', country);
     formData.append('public_Major', public_major);
@@ -90,7 +94,6 @@ const CV = {
     formData.append('linkedin', linkedin);
     formData.append('twitter', twitter);
 
-    
     return baseRequest.put('/put/userinfo', formData).then(result => {
       console.log('result', result);
 
