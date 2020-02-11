@@ -590,7 +590,7 @@ class UpdateProfile extends React.Component {
                       placeholder={pSkills.map(elm =>
                         userInfo
                           ? userInfo.personal_Skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName : ''
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
                             )
                           : ''
                       )}
@@ -618,7 +618,7 @@ class UpdateProfile extends React.Component {
                       placeholder={skills.map(elm =>
                         userInfo
                           ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName : ''
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
                             )
                           : ''
                       )}
@@ -649,7 +649,7 @@ class UpdateProfile extends React.Component {
                       placeholder={skills.map(elm =>
                         userInfo
                           ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName : ''
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
                             )
                           : ''
                       )}
