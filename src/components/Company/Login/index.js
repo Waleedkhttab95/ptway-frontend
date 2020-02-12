@@ -26,7 +26,6 @@ class CompanyLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { company } = this.props;
-    console.log('company props', company);
 
     return (
       <div className="company-login-container">

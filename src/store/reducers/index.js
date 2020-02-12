@@ -9,6 +9,7 @@ import generalStatistics from './generalStatistics';
 import userHome from './userSection/home';
 import jobOffers from './userSection/jobOffers';
 import userSetting from './userSection/setting';
+import companySection from './companySection/home';
 
 const reducers = combineReducers({
   user,
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   generalStatistics,
   userS: userHome,
   jobOffers,
-  userSetting
+  userSetting,
+  companySection
 });
 export default reducers;
