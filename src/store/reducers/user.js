@@ -62,6 +62,23 @@ const user = (state = initialUser, action) => {
         isAdmin: false,
         loggedIn: true
       };
+    case 'COMPANY_LOGIN_SUCCESS':
+      baseRequest.setLocalStorage({
+        token: action.payload.token,
+        isAdmin: false,
+        role: 'company',
+        loggedIn: true
+      });
+      return {
+        ...action.payload,
+        isAdmin: false,
+        loggedIn: true
+      };
+    case 'COMPANY_LOGIN_ERROR':
+      return {
+        // ...state,
+        error: action.payload
+      };
     case 'LOGOUT_SUCCESS':
       baseRequest.setLocalStorage({
         loggedIn: false

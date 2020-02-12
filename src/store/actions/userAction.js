@@ -28,6 +28,13 @@ export const userLogin = params => {
   };
 };
 
+export const companyLogin = params => {
+  return {
+    type: 'COMPANY_LOGIN',
+    payload: userServices.companyLogin(params)
+  };
+};
+
 export const adminLogin = (email, password) => {
   return {
     type: 'LOGIN_ADMIN',

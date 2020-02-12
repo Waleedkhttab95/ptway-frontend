@@ -48,6 +48,11 @@ const userServices = {
       sector: params.sector,
       CompanySpecialist: params.specialist,
       isActive: params.status
+    }),
+  companyLogin: params =>
+    baseRequest.post('/com_login', {
+      email: params.email,
+      password: params.password
     })
 };
 

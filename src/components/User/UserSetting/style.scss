@@ -1,6 +1,6 @@
-.user-container{
-    padding-top: 32px;
-}
+// .user-container{
+//     padding-top: 32px;
+// }
 .setting-body {
      width: 1170px;
     border-radius: 10px;
@@ -108,6 +108,10 @@
     letter-spacing: normal;
     text-align: center;
     color: #ffffff;
+}
+
+.setting-mob {
+    padding-top: 32px;
 }
 
 @media (max-width:320px) {

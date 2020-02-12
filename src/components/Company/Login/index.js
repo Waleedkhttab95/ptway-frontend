@@ -1,14 +1,22 @@
 import React from 'react';
 import './style.scss';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Alert } from 'antd';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { companyLogin } from '../../../store/actions/userAction';
 import Footer from '../../Footer';
 class CompanyLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const { login } = this.props;
+        const { email, password } = values;
+        await login({
+          email,
+          password
+        });
         const { history } = this.props;
         history.push('/company/home');
       }
@@ -17,14 +25,20 @@ class CompanyLoginForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { company } = this.props;
+    console.log('company props', company);
+
     return (
       <div className="company-login-container">
         <div className="form-container">
           <h3 className="login-form-title">تسجيل دخول</h3>
           <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
+            {company.error && (
+              <Alert type="error" message={company.error.response.data} />
+            )}
             <label className="login-form-label">البريد الالكتروني</label>
             <Form.Item>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('email', {
                 rules: [
                   { required: true, message: 'الرجاء ادخال البريد الالكتروني' }
                 ]
@@ -65,8 +79,18 @@ class CompanyLoginForm extends React.Component {
     );
   }
 }
+const mapStateToProps = ({ user }) => {
+  return {
+    company: user
+  };
+};
 
+const mapDispatchToProps = dispatch => {
+  return {
+    login: params => dispatch(companyLogin(params))
+  };
+};
 const CompanyLogin = Form.create({ name: 'CompanyLoginForm' })(
   CompanyLoginForm
 );
-export default CompanyLogin;
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyLogin);
