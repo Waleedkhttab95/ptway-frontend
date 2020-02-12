@@ -134,7 +134,10 @@
     background-color: #ffffff;
     margin-top: 10px;
     .project-offer-title {
-        width: 170px;
+        width: 125px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 .more-projects-offers-btn {

@@ -1,7 +1,7 @@
 const initialState = {
   companyInfo: '',
   companyStatistic: '',
-  jobOffers: ''
+  companyAds: ''
 };
 
 const companyHome = (state = initialState, action) => {
@@ -15,6 +15,11 @@ const companyHome = (state = initialState, action) => {
       return {
         ...state,
         companyStatistic: action.payload
+      };
+    case 'COMPANY_ADS_SUCCESS':
+      return {
+        ...state,
+        companyAds: action.payload
       };
     default:
       return state;

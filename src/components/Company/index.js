@@ -7,15 +7,18 @@ import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
 import {
   companyInfo,
-  companyStatistic
+  companyStatistic,
+  companyAds
 } from '../../store/actions/company/home';
-
+import _ from 'lodash';
+import moment from 'moment';
 const { Content } = Layout;
 class CompanyHome extends React.Component {
   componentDidMount() {
-    const { getCompanyInfo, getCompanyStatistic } = this.props;
+    const { getCompanyInfo, getCompanyStatistic, getCompanyAds } = this.props;
     getCompanyInfo();
     getCompanyStatistic();
+    getCompanyAds();
   }
 
   render() {
@@ -91,42 +94,24 @@ class CompanyHome extends React.Component {
                   <div>اسم المشروع</div>
                   <div>عدد المتقدمين</div>
                 </div>
-                <div className="project-offer">
-                  <div className="project-offer-title">
-                    مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                  </div>
-                  <div>02/10/2019</div>
-                  <div>0002163477555</div>
-                  <div className="project-status">مشروع للإنطلاق الجديد</div>
-                  <div className="applicants-num">321</div>
-                </div>
-                <div className="project-offer">
-                  <div className="project-offer-title">
-                    مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                  </div>
-                  <div>02/10/2019</div>
-                  <div>0002163477555</div>
-                  <div className="project-status">مشروع للإنطلاق الجديد</div>
-                  <div className="applicants-num">321</div>
-                </div>
-                <div className="project-offer">
-                  <div className="project-offer-title">
-                    مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                  </div>
-                  <div>02/10/2019</div>
-                  <div>0002163477555</div>
-                  <div className="project-status">مشروع للإنطلاق الجديد</div>
-                  <div className="applicants-num">321</div>
-                </div>
-                <div className="project-offer">
-                  <div className="project-offer-title">
-                    مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                  </div>
-                  <div>02/10/2019</div>
-                  <div>0002163477555</div>
-                  <div className="project-status">مشروع للإنطلاق الجديد</div>
-                  <div className="applicants-num">321</div>
-                </div>
+                {_.isArray(company.companyAds)
+                  ? company.companyAds.map(elm => {
+                      return (
+                        <div className="project-offer" key={elm.advId}>
+                          <div className="project-offer-title">
+                            {elm.advName}
+                          </div>
+                          <div>{moment(Date.now()).format('MMM-d-YY')}</div>
+                          <div>{elm.advId}</div>
+                          <div className="project-status">
+                            {elm.projectName}
+                          </div>
+                          <div className="applicants-num">{elm.candidates}</div>
+                        </div>
+                      );
+                    })
+                  : ''}
+
                 <button className="more-projects-offers-btn">عرض المزيد</button>
               </Col>
             </div>
@@ -147,7 +132,8 @@ const mapStateToProps = ({ companySection }) => {
 const mapDispatchToProps = dispatch => {
   return {
     getCompanyInfo: () => dispatch(companyInfo()),
-    getCompanyStatistic: () => dispatch(companyStatistic())
+    getCompanyStatistic: () => dispatch(companyStatistic()),
+    getCompanyAds: () => dispatch(companyAds())
   };
 };
 

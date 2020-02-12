@@ -13,3 +13,9 @@ export const companyStatistic = () => {
     payload: companyHomeServices.getCompanyStatistic()
   };
 };
+export const companyAds = () => {
+  return {
+    type: 'COMPANY_ADS',
+    payload: companyHomeServices.getCompanyAds()
+  };
+};
