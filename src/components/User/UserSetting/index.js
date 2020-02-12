@@ -21,24 +21,30 @@ class Setting extends React.Component {
   };
 
   submitChanges = async () => {
-    const { updatePassword, updateEmailNotification, history } = this.props;
+    const { updatePassword, updateEmailNotification } = this.props;
     const { prevPassword, newPassword, status } = this.state;
     const data = {
       prevPassword,
       newPassword
     };
-    const passwordUpdated = await updatePassword(data);
-    const notificationUpdated = await updateEmailNotification(
-      status === 'نعم' ? true : false
-    );
+    updatePassword(data);
 
-    if (passwordUpdated && notificationUpdated) {
-      history.push('/user/home');
-    }
+    updateEmailNotification({
+      status: status === 'نعم' ? 'true' : 'false'
+    });
   };
+
+  componentDidUpdate() {
+    const { history } = this.props;
+    if (this.props.userSetting.newPassword === 'غيّرنا لك الرقم السري') {
+      history.push('/user/home');
+    } else {
+      console.log('fail');
+    }
+  }
   render() {
     console.log('state', this.state);
-
+    const { userSetting } = this.props;
     return (
       <React.Fragment>
         <Header />
@@ -57,6 +63,11 @@ class Setting extends React.Component {
                     name="prevPassword"
                     onChange={this.handleChange}
                   />
+                  <span style={{ color: 'red', marginTop: '5px' }}>
+                    {userSetting.passwordError && this.state.prevPassword
+                      ? userSetting.passwordError.response.data
+                      : ''}
+                  </span>
                   <span>تأكيد كلمة المرور</span>
                   <Input
                     className="account-input"
