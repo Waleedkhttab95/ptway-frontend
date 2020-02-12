@@ -8,6 +8,7 @@ import adminContent from './adminContentSection';
 import generalStatistics from './generalStatistics';
 import userHome from './userSection/home';
 import jobOffers from './userSection/jobOffers';
+import userSetting from './userSection/setting';
 
 const reducers = combineReducers({
   user,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   adminContent,
   generalStatistics,
   userS: userHome,
-  jobOffers
+  jobOffers,
+  userSetting
 });
 export default reducers;

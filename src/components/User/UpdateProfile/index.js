@@ -44,7 +44,6 @@ class UpdateProfile extends React.Component {
 
     const info = userInfo.info;
     console.log('infoinfo', info);
-
     this.setState({
       skills,
       pSkills,
@@ -65,16 +64,16 @@ class UpdateProfile extends React.Component {
       social_Status: info.social_Status,
       about: info.about,
       education_level: info.Education_level,
-      education_degree: info.Education_degree ? info.Education_degree : null,
+      education_degree: info.education_degree,
       study_degree: info.study_degree,
-      language: info.languages,
+      language: info.languages ? info.languages : [],
       personal_web: info.personal_web,
       facebook: info.facebook,
       linkedin: info.linkedin,
       twitter: info.twitter,
-      file: info.imagePath ? info.imagePath : null
-      // per_skill: info.personal_Skills,
-      // skill: info.skills
+      file: info.imagePath ? info.imagePath : null,
+      per_skill: info.personal_Skills,
+      skill: info.skills
     });
   }
   handleMajorChange = async (value, option) => {
@@ -86,8 +85,6 @@ class UpdateProfile extends React.Component {
   };
 
   fileChangedHandler = ev => {
-    console.log('*****', ev.target.files);
-
     this.setState({
       file: ev.target.files[0]
     });
@@ -134,8 +131,6 @@ class UpdateProfile extends React.Component {
   };
 
   educationDegreeHandle = async (value, option) => {
-    console.log('value', option);
-
     const education_levels = await educationLevel(option.key);
     this.setState({
       education_degree: option.key,
@@ -281,7 +276,7 @@ class UpdateProfile extends React.Component {
 
                     <Input
                       className="input-field"
-                      placeholder={this.state.mobile}
+                      placeholder={userInfo ? userInfo.mobile : ''}
                       onChange={this.handleInputChange}
                       name="mobile"
                     />
@@ -293,7 +288,7 @@ class UpdateProfile extends React.Component {
                       className="input-field"
                       placeholder={
                         userInfo
-                          ? moment(this.state.birthDate).format('MMM-d-YY')
+                          ? moment(userInfo.birthDate).format('MMM-d-YY')
                           : ''
                       }
                     />
@@ -302,7 +297,7 @@ class UpdateProfile extends React.Component {
 
                     <Select
                       className="input-field"
-                      placeholder={this.state.social_Status}
+                      placeholder={userInfo ? userInfo.social_Status : ''}
                       onChange={this.handleChange}
                     >
                       <Option name="social_Status" value="single" key="أعزب">
@@ -315,7 +310,7 @@ class UpdateProfile extends React.Component {
                     <h5 className="title-field">اللغات</h5>
                     <Select
                       className="input-field"
-                      // placeholder={this.state.language}
+                      defaultValue={userInfo ? userInfo.languages : []}
                       onChange={this.handleLanguageChange}
                       mode="multiple"
                     >
@@ -335,7 +330,7 @@ class UpdateProfile extends React.Component {
                 <TextArea
                   rows={4}
                   className="textarea-field"
-                  placeholder={this.state.about}
+                  placeholder={userInfo ? userInfo.about : ''}
                   onChange={this.handleInputChange}
                   name="about"
                 />
@@ -406,7 +401,6 @@ class UpdateProfile extends React.Component {
                       </Select>
                     </div>
                   </div>
-                
                 </div>
               </Panel>
               <Panel header="الدراسة" key="3" className="section-heading">
@@ -445,7 +439,13 @@ class UpdateProfile extends React.Component {
                       <h5 className="title-field">الشهادة التي تحملها</h5>
                       <Select
                         className="input-field"
-                        placeholder={userInfo ? userInfo.study_degrees : ''}
+                        placeholder={certificate.map(elm => {
+                          return userInfo
+                            ? userInfo.study_degree === elm.value
+                              ? elm.viewValue
+                              : ''
+                            : '';
+                        })}
                         onChange={this.handleChange}
                       >
                         {_.isArray(certificate)
@@ -469,7 +469,13 @@ class UpdateProfile extends React.Component {
                       <h5 className="title-field">المرحلة الدراسية الحالية</h5>
                       <Select
                         className="input-field"
-                        placeholder={userInfo ? userInfo.Education_degree : ''}
+                        placeholder={education_degree.map(elm => {
+                          return userInfo
+                            ? userInfo.education_degree === elm.value
+                              ? elm.viewValue
+                              : ''
+                            : '';
+                        })}
                         onChange={this.educationDegreeHandle}
                       >
                         {_.isArray(education_degree)
@@ -499,7 +505,7 @@ class UpdateProfile extends React.Component {
                               return (
                                 <Option
                                   value={elm.viewValue}
-                                  key={elm.id}
+                                  key={elm.value}
                                   name="education_level"
                                 >
                                   {elm.viewValue}
@@ -581,6 +587,13 @@ class UpdateProfile extends React.Component {
                       className="input-field"
                       mode="multiple"
                       onChange={this.handlePersonalSkillsChange}
+                      placeholder={pSkills.map(elm =>
+                        userInfo
+                          ? userInfo.personal_Skills.map(elm2 =>
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
+                            )
+                          : ''
+                      )}
                     >
                       {_.isArray(pSkills)
                         ? pSkills.map(elm => {
@@ -602,15 +615,17 @@ class UpdateProfile extends React.Component {
                     <Select
                       className="input-field"
                       mode="multiple"
-                      // value={
-                      //   skills ? skills[userInfo ? userInfo.skills[0] : ''] : ''
-                      // }
+                      placeholder={skills.map(elm =>
+                        userInfo
+                          ? userInfo.skills.map(elm2 =>
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
+                            )
+                          : ''
+                      )}
                       onChange={this.handleSkillsChange}
                     >
                       {_.isArray(skills)
                         ? skills.map(elm => {
-                            // skObj[elm._id] = elm.skillName;
-
                             return (
                               <Option
                                 value={elm.skillName}
@@ -626,11 +641,19 @@ class UpdateProfile extends React.Component {
                   </div>
                 </div>
                 <div className="first-section">
-            
-
                   <div>
                     <h5 className="title-field">الهوايات</h5>
-                    <Select className="input-field" mode="multiple">
+                    <Select
+                      className="input-field"
+                      mode="multiple"
+                      placeholder={skills.map(elm =>
+                        userInfo
+                          ? userInfo.skills.map(elm2 =>
+                              elm._id === elm2 ? elm.skillName + ' ' : ''
+                            )
+                          : ''
+                      )}
+                    >
                       {_.isArray(skills)
                         ? skills.map(elm => {
                             return (
@@ -660,14 +683,14 @@ class UpdateProfile extends React.Component {
                     <Input
                       className="input-field"
                       style={{ marginLeft: '20px' }}
-                      placeholder={this.state.personal_web}
+                      placeholder={userInfo ? userInfo.personal_web : ''}
                       onChange={this.handleInputChange}
                       name="personal_web"
                     />
                     <h5 className="title-field">رابط linkedin</h5>
                     <Input
                       className="input-field"
-                      placeholder={this.state.linkedin}
+                      placeholder={userInfo ? userInfo.linkedin : ''}
                       onChange={this.handleInputChange}
                       name="linkedin"
                     />
@@ -677,14 +700,14 @@ class UpdateProfile extends React.Component {
                     <Input
                       className="input-field"
                       style={{ marginLeft: '20px' }}
-                      placeholder={this.state.facebook}
+                      placeholder={userInfo ? userInfo.facebook : ''}
                       onChange={this.handleInputChange}
                       name="facebook"
                     />
                     <h5 className="title-field">رابط تويتر</h5>
                     <Input
                       className="input-field"
-                      placeholder={this.state.twitter}
+                      placeholder={userInfo ? userInfo.twitter : ''}
                       onChange={this.handleInputChange}
                       name="twitter"
                     />
