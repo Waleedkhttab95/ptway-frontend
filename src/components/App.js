@@ -117,7 +117,7 @@ const App = () => {
           <Route exact path="/user/profile/update" component={UpdateProfile} />
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/company/login" component={CompanyLogin} />
-          <Route exact path="/company/new/ad" component={CompanyNewAd} />
+          <Route exact path="/company/new/ad/:id" component={CompanyNewAd} />
           <Route exact path="/company/signup" component={CompanySignup} />
           <Route exact path="/company/home" component={CompanyHome} />
           <Route exact path="/company/projects" component={CompanyProjects} />

@@ -13,6 +13,7 @@ import {
 import _ from 'lodash';
 import moment from 'moment';
 const { Content } = Layout;
+
 class CompanyHome extends React.Component {
   componentDidMount() {
     const { getCompanyInfo, getCompanyStatistic, getCompanyAds } = this.props;
@@ -23,8 +24,6 @@ class CompanyHome extends React.Component {
 
   render() {
     const { company } = this.props;
-    console.log('company', company);
-
     return (
       <div>
         <Header />
@@ -90,7 +89,6 @@ class CompanyHome extends React.Component {
                 <div className="projects-offers-header">
                   <div>اسم العرض الوظيفي</div>
                   <div>التاريخ</div>
-                  <div>الرقم التسلسلي</div>
                   <div>اسم المشروع</div>
                   <div>عدد المتقدمين</div>
                 </div>
@@ -102,7 +100,6 @@ class CompanyHome extends React.Component {
                             {elm.advName}
                           </div>
                           <div>{moment(Date.now()).format('MMM-d-YY')}</div>
-                          <div>{elm.advId}</div>
                           <div className="project-status">
                             {elm.projectName}
                           </div>

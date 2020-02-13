@@ -250,6 +250,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
 }
 .p-heading {
     font-family: DINNextLTW23;
@@ -343,6 +344,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   >img {
       width: 50px;
       height: 50px;
@@ -375,6 +377,7 @@
         color: #000000;
         border-bottom: solid 1px #e6e6e6;
         margin-bottom: 10px;
+        cursor: pointer;
     }
 }
 .user-drawer-mobile{
