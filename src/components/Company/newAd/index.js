@@ -132,7 +132,11 @@ class AddNewAd extends React.Component {
               <div className="group-questions">
                 <div className="right-side">
                   <label>عدد ساعات العمل</label>
-                  <Input onChange={this.handleChange} name="workHours" />
+                  <Input
+                    onChange={this.handleChange}
+                    name="workHours"
+                    type="number"
+                  />
                   <label>الجنس</label>
                   <Select
                     className="input-field"
@@ -150,7 +154,11 @@ class AddNewAd extends React.Component {
                 </div>
                 <div className="left-side">
                   <label>عدد أيام العمل</label>
-                  <Input onChange={this.handleChange} name="workDays" />
+                  <Input
+                    onChange={this.handleChange}
+                    name="workDays"
+                    type="number"
+                  />
                   <label>تاريخ بدء العمل</label>
                   <DatePicker
                     onChange={this.DateChange}
@@ -158,7 +166,11 @@ class AddNewAd extends React.Component {
                     placeholder=""
                   />
                   <label>العدد المطلوب</label>
-                  <Input onChange={this.handleChange} name="required_Number" />
+                  <Input
+                    onChange={this.handleChange}
+                    name="required_Number"
+                    type="number"
+                  />
                 </div>
               </div>
               <label>وصف الوظيفي</label>

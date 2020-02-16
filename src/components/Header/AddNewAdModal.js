@@ -34,12 +34,30 @@ const AddNewAds = props => {
             <h4 className="cnt-sub-title">عقود قصيرة</h4>
             <p className="cnt-des"> مهمات لاتزيد عن 30 يوم </p>
           </Col>
-          <Col md={8} className="cont-type">
+          <Col
+            md={8}
+            className="cont-type"
+            onClick={() =>
+              history.push(
+                `/company/new/ad/${cotracts[1]._id}`,
+                props.newAdPopUp
+              )
+            }
+          >
             <img src={lngContract} alt="shContract" />
             <h4 className="cnt-sub-title">عقود طويلة</h4>
             <p className="cnt-des"> مهمات لا تزيد عن 6 أشهر </p>
           </Col>
-          <Col md={8} className="cont-type">
+          <Col
+            md={8}
+            className="cont-type"
+            onClick={() =>
+              history.push(
+                `/company/new/ad/${cotracts[2]._id}`,
+                props.newAdPopUp
+              )
+            }
+          >
             <img src={cuntContract} alt="shContract" />
             <h4 className="cnt-sub-title">عقود مستمرة</h4>
             <p className="cnt-des"> مهمات بعقود سنوية وتجدد </p>
