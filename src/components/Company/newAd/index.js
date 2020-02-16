@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Footer from '../../Footer';
-import { Input, Select, DatePicker } from 'antd';
+import { Input, Select, DatePicker, Modal } from 'antd';
 import Header from '../../Header';
 import projects from '../../../services/company/projects';
 import { loadState } from '../../../_core/localStorage';
@@ -17,7 +17,8 @@ const { Option } = Select;
 
 class AddNewAd extends React.Component {
   state = {
-    allProjects: ''
+    allProjects: '',
+    SuccessMsg: false
   };
   async componentDidMount() {
     const contractId = this.props.match.params.id;
@@ -81,7 +82,9 @@ class AddNewAd extends React.Component {
     await addNewAd(data);
     const { history } = this.props;
     if (loadState().loggedIn) {
-      window.location.reload(false);
+      this.setState({
+        SuccessMsg: true
+      });
     } else {
       history.push('/company/login');
     }
@@ -229,6 +232,24 @@ class AddNewAd extends React.Component {
             <button className="add-new-ad-btn" onClick={this.postAd}>
               أضف الإعلان الوظيفي
             </button>
+            <Modal
+              visible={this.state.SuccessMsg}
+              closable={false}
+              footer={false}
+            >
+              <div className="success-modal">
+                <i
+                  className="fa fa-check-circle check-icon"
+                  aria-hidden="true"
+                ></i>
+                <h2>تمت الاضافة بنجاح</h2>
+                <button
+                  onClick={() => this.props.history.push('/company/home')}
+                >
+                  العودة للرئيسية
+                </button>
+              </div>
+            </Modal>
           </div>
         </div>
         <Footer />
