@@ -12,6 +12,7 @@
     background-color: #ffffff;
     margin-top: 30px;
     margin-bottom: 10px;
+    padding-right: 50px;
     >h2 {
    font-family: DINNextLTW23;
   font-size: 14px;
@@ -170,6 +171,10 @@ background-color: #f3f3f3;
 .new-job-btn-mob{
     display: none;
 }
+.project-panel {
+    margin-bottom: 20px;
+}
+
 
 @media (max-width:320px) {
     .company-projects {

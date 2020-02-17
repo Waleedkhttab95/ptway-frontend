@@ -32,7 +32,8 @@ const projects = {
       personal_Skills,
       required_Number: params.required_Number
     });
-  }
+  },
+  getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`)
 };
 
 export default projects;

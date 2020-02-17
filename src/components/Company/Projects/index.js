@@ -3,11 +3,15 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Collapse, Dropdown, Menu, Modal, Button } from 'antd';
+import { Collapse, Dropdown, Button } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../../Filter';
+import SideMenu from './menu';
+import projects from '../../../services/company/projects';
+import _ from 'lodash';
 
 const { Panel } = Collapse;
+const { getProjects } = projects;
 
 function callback(key) {
   console.log(key);
@@ -17,8 +21,16 @@ class Projects extends React.Component {
   state = {
     expandIconPosition: 'left',
     deleteModal: false,
-    confirmMsg: false
+    confirmMsg: false,
+    allProjects: ''
   };
+
+  async componentDidMount() {
+    const allProjects = await getProjects();
+    this.setState({
+      allProjects
+    });
+  }
 
   onPositionChange = expandIconPosition => {
     this.setState({ expandIconPosition });
@@ -29,6 +41,7 @@ class Projects extends React.Component {
       deleteModal: true
     });
   };
+
   deleteConfirmation = event => {
     event.stopPropagation();
     this.setState({
@@ -37,80 +50,7 @@ class Projects extends React.Component {
     });
   };
   render() {
-    const menu = (
-      <React.Fragment>
-        <Menu className="project-options">
-          <Menu.Item key="1">
-            <i
-              className="fa fa-pause"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            إيقاف
-          </Menu.Item>
-          <Modal
-            visible={this.state.pauseModal}
-            closable={false}
-            footer={false}
-          ></Modal>
-
-          <Menu.Item key="2" onClick={this.editProject}>
-            <i
-              className="fa fa-pencil"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            تعديل
-          </Menu.Item>
-          <Modal
-            visible={this.state.editModal}
-            closable={false}
-            footer={false}
-          ></Modal>
-          <Menu.Item key="3" onClick={this.deletePoject}>
-            <i
-              className="fa fa-trash-o"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            حذف
-          </Menu.Item>
-        </Menu>
-        <Modal visible={this.state.deleteModal} closable={false} footer={false}>
-          <div className="delete-modal">
-            <i className="fa fa-trash-o delete-icon" aria-hidden="true"></i>
-            <h3>هل أنت متأكد من حذف الإعلان الوظيفي</h3>
-            <p>لن يمكنك استرداد العرض الوظيفي او مشاهدة المتقدمين لهذا العرض</p>
-            <div className="modal-btns">
-              <button className="del-btn" onClick={this.deleteConfirmation}>
-                تأكيد الحذف
-              </button>
-              <button className="cancel-btn">إلغاء</button>
-            </div>
-          </div>
-        </Modal>
-
-        <Modal visible={this.state.confirmMsg} closable={false} footer={false}>
-          <div className="success-modal">
-            <i className="fa fa-check-circle check-icon" aria-hidden="true"></i>
-            <h2>تم حذف الإعلان الوظيفي بنجاح</h2>
-            <p>
-              تم حذف الإعلان الوظيفي بشكل كامل من ضمن الإعلانات الوظيفية في
-              المشروع
-            </p>
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                this.setState({ confirmMsg: false });
-              }}
-            >
-              العودة
-            </button>
-          </div>
-        </Modal>
-      </React.Fragment>
-    );
-    const { expandIconPosition } = this.state;
+    const { expandIconPosition, allProjects } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -140,81 +80,40 @@ class Projects extends React.Component {
               expandIconPosition={expandIconPosition}
               className="projects-collapse"
             >
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
-                    >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="1"
-                // extra={genExtra()}
-              >
-                <Project />
-              </Panel>
-              <br />
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
-                    >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="2"
-              >
-                <Project />
-              </Panel>
-              <br />
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
-                    >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="3"
-              >
-                <Project />
-              </Panel>
+              {_.isArray(allProjects.proj)
+                ? allProjects.proj.map((elm, index) => {
+                    return (
+                      // <React.Fragment key={elm._id}>
+                      <Panel
+                        key={elm._id}
+                        className="project-panel"
+                        header={
+                          <div className="panel-title">
+                            <div className="panel-mob">
+                              <span>{elm.projectName}</span>{' '}
+                              <span className="applicant-num-mob">
+                                {' '}
+                                عدد المتقدمين :
+                              </span>
+                              <div className="offers-num">
+                                {allProjects.JobAdsCount[index]}
+                              </div>
+                            </div>
+                            <Dropdown
+                              overlay={<SideMenu {...this.state} />}
+                              placement="bottomCenter"
+                              trigger="hover"
+                            >
+                              <span className="options-menu">...</span>
+                            </Dropdown>
+                          </div>
+                        }
+                      >
+                        <Project {...elm} />
+                      </Panel>
+                    );
+                  })
+                : ''}
             </Collapse>
             <br />
           </div>
