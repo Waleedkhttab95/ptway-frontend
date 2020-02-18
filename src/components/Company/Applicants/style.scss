@@ -43,7 +43,7 @@
         color: #000000;
     }
 }
-.display-cv {
+.display-cv, .accept-user {
     width: 107px;
     height: 32px;
     border-radius: 6px;
@@ -59,7 +59,7 @@
     text-align: center;
     color: #626262;
   } 
-.display-cv:hover, .display-cv:focus {
+.display-cv:hover, .display-cv:focus, .accept-user:hover, .accept-user:focus {
   width: 107px;
   height: 32px;
   border-radius: 6px;

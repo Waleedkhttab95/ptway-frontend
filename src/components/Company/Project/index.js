@@ -5,6 +5,7 @@ import projects from '../../../services/company/projects';
 import _ from 'lodash';
 import moment from 'moment';
 import SideMenu from './sideMenu';
+import history from '../../../_core/history';
 const { getJobOffers, deleteJob, lockJob } = projects;
 
 class Project extends React.Component {
@@ -81,8 +82,28 @@ class Project extends React.Component {
                     <span className="project-date-mob">التاريخ : </span>
                     {moment(elm.startDate).format('MMM-d-YY')}
                   </h4>
-                  <button className="applicants-btn">عرض</button>
-                  <button className="accepted-btn">عرض</button>
+                  <button
+                    className="applicants-btn"
+                    onClick={() =>
+                      history.push(`/applicants/job/id=${elm._id}`)
+                    }
+                  >
+                    عرض
+                  </button>
+                  <button
+                    className="accepted-btn"
+                    onClick={() =>
+                      history.push(`/accepted/applicants/job/id=${elm._id}`)
+                    }
+                  >
+                    عرض
+                  </button>
+                  <div className="btns-mob">
+                    <button className="applicants-btn-mob">
+                      عرض المتقدمين
+                    </button>
+                    <button className="accepted-btn-mob">عرض المقبولين</button>
+                  </div>
                   <Dropdown
                     overlay={
                       <SideMenu
@@ -109,12 +130,6 @@ class Project extends React.Component {
                   >
                     <span className="options-menu">...</span>
                   </Dropdown>
-                  <div className="btns-mob">
-                    <button className="applicants-btn-mob">
-                      عرض المتقدمين
-                    </button>
-                    <button className="accepted-btn-mob">عرض المقبولين</button>
-                  </div>
                 </div>
               );
             })

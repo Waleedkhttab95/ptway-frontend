@@ -36,6 +36,7 @@ import Applicants from './Company/Applicants';
 import Applicant from './Company/Applicant';
 import CompSetting from './Company/Setting';
 import UpdateCompanyProfile from './Company/UpdateProfile';
+import AcceptedApplicant from './Company/AcceptedApplicants';
 
 const App = () => {
   return (
@@ -121,11 +122,12 @@ const App = () => {
           <Route exact path="/company/signup" component={CompanySignup} />
           <Route exact path="/company/home" component={CompanyHome} />
           <Route exact path="/company/projects" component={CompanyProjects} />
-          <Route exact path="/company/applicants" component={Applicants} />
+          <Route exact path="/applicants/job/id=:id" component={Applicants} />
+          <Route exact path="/applicant/profile/:id" component={Applicant} />
           <Route
             exact
-            path="/company/applicant/profile"
-            component={Applicant}
+            path="/accepted/applicant/profile/:id"
+            component={AcceptedApplicant}
           />
 
           <Route exact path="/company/setting" component={CompSetting} />

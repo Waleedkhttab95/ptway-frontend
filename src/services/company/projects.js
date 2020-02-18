@@ -42,7 +42,19 @@ const projects = {
     }),
   getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`),
   deleteJob: params => baseRequest.delete(`deletejob?id=${params.id}`),
-  lockJob: params => baseRequest.put(`lockJob?id=${params.id}`)
+  lockJob: params => baseRequest.put(`lockJob?id=${params.id}`),
+
+  getCandidates: params =>
+    baseRequest.get(`/getOneCandi?jobAd=${params.jobId}`),
+
+  getAcceptedCandidates: params =>
+    baseRequest.get(`/getOneAccepted?jobAd=${params.jobId}`),
+
+  acceptUser: params =>
+    baseRequest.post('/postAcc', {
+      jobAd: params.jobId,
+      acceptedName: params.userId
+    })
 };
 
 export default projects;
