@@ -11,7 +11,7 @@ import projects from '../../../services/company/projects';
 import _ from 'lodash';
 
 const { Panel } = Collapse;
-const { getProjects } = projects;
+const { getProjects, deleteProject, updateProject } = projects;
 
 function callback(key) {
   console.log(key);
@@ -22,6 +22,7 @@ class Projects extends React.Component {
     expandIconPosition: 'left',
     deleteModal: false,
     confirmMsg: false,
+    editModal: false,
     allProjects: ''
   };
 
@@ -42,13 +43,46 @@ class Projects extends React.Component {
     });
   };
 
-  deleteConfirmation = event => {
-    event.stopPropagation();
+  deleteConfirmation = async id => {
+    const { allProjects } = this.state;
+    await deleteProject({ id });
     this.setState({
       deleteModal: false,
+      // allProjects: allProjects.proj.filter(project => project._id !== id),
       confirmMsg: true
     });
+    window.location.reload();
   };
+
+  cancel = () => {
+    this.setState({
+      deleteModal: false
+    });
+  };
+
+  editProjectModal = () => {
+    this.setState({
+      editModal: true
+    });
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+  updateProject = async id => {
+    const { projectName, projectDescription } = this.state;
+    await updateProject({
+      id,
+      projectName,
+      projectDescription
+    });
+    this.setState({ editModal: false });
+    window.location.reload();
+  };
+
   render() {
     const { expandIconPosition, allProjects } = this.state;
     return (
@@ -83,7 +117,6 @@ class Projects extends React.Component {
               {_.isArray(allProjects.proj)
                 ? allProjects.proj.map((elm, index) => {
                     return (
-                      // <React.Fragment key={elm._id}>
                       <Panel
                         key={elm._id}
                         className="project-panel"
@@ -100,7 +133,27 @@ class Projects extends React.Component {
                               </div>
                             </div>
                             <Dropdown
-                              overlay={<SideMenu {...this.state} />}
+                              overlay={
+                                <SideMenu
+                                  {...this.state}
+                                  deletePoject={this.deletePoject}
+                                  deleteConfirmation={() =>
+                                    this.deleteConfirmation(elm._id)
+                                  }
+                                  CloseConfirmationMsg={e => {
+                                    e.stopPropagation();
+                                    this.setState({
+                                      confirmMsg: false
+                                    });
+                                  }}
+                                  cancel={this.cancel}
+                                  onChange={this.handleChange}
+                                  editProjectModal={this.editProjectModal}
+                                  updateProject={() =>
+                                    this.updateProject(elm._id)
+                                  }
+                                />
+                              }
                               placement="bottomCenter"
                               trigger="hover"
                             >

@@ -33,6 +33,13 @@ const projects = {
       required_Number: params.required_Number
     });
   },
+  deleteProject: params => baseRequest.delete(`deleteproject?id=${params.id}`),
+  updateProject: params =>
+    baseRequest.put('put/project', {
+      id: params.id,
+      projectName: params.projectName,
+      projectDescriptionparams: params.projectDescription
+    }),
   getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`)
 };
 
