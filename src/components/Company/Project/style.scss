@@ -1,7 +1,5 @@
 .company-project {
-    // height: 378px;
     border-radius: 5px;
-    // box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     .project-header {
         display: flex !important;
@@ -20,10 +18,53 @@
         }
     }
 }
+.lock-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+.modal-btns {
+    display: flex;
+    .lock-btn {
+        width: 140px;
+        height: 35px;
+        border-radius: 6px;
+        background-color: #008000bf;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        margin-left: 10px;
+    }
+    .cancel-btn {
+        width: 140px;
+        height: 35px;
+        border-radius: 6px;
+        background-color: #3b3b3b;
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+
+    }
+
+}
 
 .project {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin-top: 15px;
     >h4 {

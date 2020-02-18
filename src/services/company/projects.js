@@ -40,7 +40,9 @@ const projects = {
       projectName: params.projectName,
       projectDescriptionparams: params.projectDescription
     }),
-  getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`)
+  getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`),
+  deleteJob: params => baseRequest.delete(`deletejob?id=${params.id}`),
+  lockJob: params => baseRequest.put(`lockJob?id=${params.id}`)
 };
 
 export default projects;

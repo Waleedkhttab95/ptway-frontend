@@ -44,19 +44,19 @@ class Projects extends React.Component {
   };
 
   deleteConfirmation = async id => {
-    const { allProjects } = this.state;
+    // const { allProjects } = this.state;
     await deleteProject({ id });
     this.setState({
       deleteModal: false,
       // allProjects: allProjects.proj.filter(project => project._id !== id),
       confirmMsg: true
     });
-    window.location.reload();
   };
 
   cancel = () => {
     this.setState({
-      deleteModal: false
+      deleteModal: false,
+      editModal: false
     });
   };
 
@@ -145,6 +145,7 @@ class Projects extends React.Component {
                                     this.setState({
                                       confirmMsg: false
                                     });
+                                    window.location.reload();
                                   }}
                                   cancel={this.cancel}
                                   onChange={this.handleChange}
@@ -171,8 +172,9 @@ class Projects extends React.Component {
             <br />
           </div>
         </div>
-
-        <Footer />
+        <div className="registration-footer">
+          <Footer />
+        </div>
       </React.Fragment>
     );
   }

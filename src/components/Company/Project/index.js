@@ -1,15 +1,21 @@
 import React from 'react';
 import './style.scss';
+import { Dropdown } from 'antd';
 import projects from '../../../services/company/projects';
 import _ from 'lodash';
 import moment from 'moment';
-
-const { getJobOffers } = projects;
+import SideMenu from './sideMenu';
+const { getJobOffers, deleteJob, lockJob } = projects;
 
 class Project extends React.Component {
   state = {
-    jobOffers: ''
+    jobOffers: '',
+    deleteModal: false,
+    confirmMsg: false,
+    lockModal: false,
+    lockConfirmMsg: false
   };
+
   async componentDidMount() {
     const projectId = this.props._id;
     const jobOffers = await getJobOffers({ id: projectId });
@@ -17,6 +23,43 @@ class Project extends React.Component {
       jobOffers
     });
   }
+
+  deleteJob = () => {
+    this.setState({
+      deleteModal: true
+    });
+  };
+
+  deleteConfirmation = async id => {
+    await deleteJob({ id });
+    this.setState({
+      deleteModal: false,
+      // allProjects: allProjects.proj.filter(project => project._id !== id),
+      confirmMsg: true
+    });
+  };
+
+  cancel = () => {
+    this.setState({
+      deleteModal: false,
+      lockModal: false
+    });
+  };
+
+  lockJobModal = () => {
+    this.setState({
+      lockModal: true
+    });
+  };
+
+  lockJob = async id => {
+    await lockJob({ id });
+    this.setState({
+      lockModal: false,
+      lockConfirmMsg: true
+    });
+  };
+
   render() {
     console.log('jobOffers', this.props);
     const { jobOffers } = this.state;
@@ -27,6 +70,7 @@ class Project extends React.Component {
           <h3>التاريخ</h3>
           <h3>المتقدمين</h3>
           <h3>المقبولين</h3>
+          <h3></h3>
         </div>
         {_.isArray(jobOffers.job)
           ? jobOffers.job.map(elm => {
@@ -39,6 +83,32 @@ class Project extends React.Component {
                   </h4>
                   <button className="applicants-btn">عرض</button>
                   <button className="accepted-btn">عرض</button>
+                  <Dropdown
+                    overlay={
+                      <SideMenu
+                        {...this.state}
+                        deleteJob={this.deleteJob}
+                        deleteConfirmation={() =>
+                          this.deleteConfirmation(elm._id)
+                        }
+                        CloseConfirmationMsg={e => {
+                          e.stopPropagation();
+                          this.setState({
+                            confirmMsg: false,
+                            lockConfirmMsg: false
+                          });
+                          window.location.reload();
+                        }}
+                        cancel={this.cancel}
+                        lockJobModal={this.lockJobModal}
+                        lockConfirmation={() => this.lockJob(elm._id)}
+                      />
+                    }
+                    placement="topCenter"
+                    trigger="hover"
+                  >
+                    <span className="options-menu">...</span>
+                  </Dropdown>
                   <div className="btns-mob">
                     <button className="applicants-btn-mob">
                       عرض المتقدمين

@@ -11,20 +11,22 @@ import Footer from '../../Footer';
 const LandingPage = () => {
   return (
     <React.Fragment>
-      <Header />
-      <HowItWorks />
-      <JobsTypes />
-      <Contracts />
-      {/* <div style={{ position: 'relative', height: '1060px' }}>
+      <div style={{ background: 'white' }}>
+        <Header />
+        <HowItWorks />
+        <JobsTypes />
+        <Contracts />
+        {/* <div style={{ position: 'relative', height: '1060px' }}>
         <img src={cloud2} alt="cloud2" />
         <div style={{ position: 'absolute', right: '155px' }}> */}
-      <Partners />
-      <CommonQuestions />
-      {/* </div>
+        <Partners />
+        <CommonQuestions />
+        {/* </div>
       </div> */}
 
-      <ContactUs />
-      <Footer />
+        <ContactUs />
+        <Footer />
+      </div>
     </React.Fragment>
   );
 };
