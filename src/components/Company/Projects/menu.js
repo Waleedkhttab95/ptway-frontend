@@ -8,7 +8,7 @@ const SideMenu = props => (
       className="project-options"
       // style= {props.deleteModal ?{ display:'none'} : ''}
     >
-      <Menu.Item key="1">
+      {/* <Menu.Item key="1">
         <i
           className="fa fa-pause"
           aria-hidden="true"
@@ -16,9 +16,9 @@ const SideMenu = props => (
         ></i>
         إيقاف
       </Menu.Item>
-      <Modal visible={props.pauseModal} closable={false} footer={false}></Modal>
+      <Modal visible={props.pauseModal} closable={false} footer={false}></Modal> */}
 
-      <Menu.Item key="2" onClick={props.editProjectModal}>
+      <Menu.Item key="1" onClick={props.editProjectModal}>
         <i
           className="fa fa-pencil"
           aria-hidden="true"
@@ -44,7 +44,7 @@ const SideMenu = props => (
           </button>
         </div>
       </Modal>
-      <Menu.Item key="3" onClick={props.deletePoject}>
+      <Menu.Item key="2" onClick={props.deletePoject}>
         <i
           className="fa fa-trash-o"
           aria-hidden="true"
