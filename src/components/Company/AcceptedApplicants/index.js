@@ -18,7 +18,6 @@ class AcceptedApplicants extends React.Component {
     });
   }
   render() {
-    console.log('candidates', this.state.AcceptedCandidates);
     const { AcceptedCandidates } = this.state;
     return (
       <React.Fragment>

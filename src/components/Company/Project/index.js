@@ -62,7 +62,6 @@ class Project extends React.Component {
   };
 
   render() {
-    console.log('jobOffers', this.props);
     const { jobOffers } = this.state;
     return (
       <div className="company-project">
