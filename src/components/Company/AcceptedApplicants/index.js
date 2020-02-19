@@ -14,7 +14,8 @@ class AcceptedApplicants extends React.Component {
     const jobId = this.props.match.params.id;
     const AcceptedCandidates = await getAcceptedCandidates({ jobId });
     this.setState({
-      AcceptedCandidates
+      AcceptedCandidates,
+      jobId
     });
   }
   render() {
@@ -36,7 +37,9 @@ class AcceptedApplicants extends React.Component {
                   <button
                     className="display-cv"
                     onClick={() =>
-                      this.props.history.push(`/applicant/profile/${elm._id}`)
+                      this.props.history.push(
+                        `/applicant/profile/job/${this.state.jobId}/user/${elm._id}`
+                      )
                     }
                   >
                     عرض
