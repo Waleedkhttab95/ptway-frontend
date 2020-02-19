@@ -26,7 +26,7 @@ class Applicant extends React.Component {
       jobId,
       userId
     });
-    window.location.reload();
+    this.props.history.push(`/applicants/job/id=${jobId}`);
   };
   render() {
     console.log('------', window.localStorage);
