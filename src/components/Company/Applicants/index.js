@@ -3,9 +3,9 @@ import './style.scss';
 import Header from '../../Header';
 import Filter from '../../Filter';
 import Footer from '../../Footer';
-import projects from '../../../services/company/projects';
+import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-const { getCandidates, acceptUser } = projects;
+const { getCandidates, acceptUser } = applicants;
 
 class Applicants extends React.Component {
   state = {
@@ -58,7 +58,7 @@ class Applicants extends React.Component {
                     className="display-cv"
                     onClick={() =>
                       this.props.history.push(
-                        `/applicant/profile/${elm.candidateName._id}`
+                        `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
                       )
                     }
                   >
@@ -75,7 +75,7 @@ class Applicants extends React.Component {
                     className="display-cv-mob"
                     onClick={() =>
                       this.props.history.push(
-                        `/applicant/profile/${elm.candidateName._id}`
+                        `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
                       )
                     }
                   >

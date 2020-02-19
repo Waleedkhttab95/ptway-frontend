@@ -123,7 +123,11 @@ const App = () => {
           <Route exact path="/company/home" component={CompanyHome} />
           <Route exact path="/company/projects" component={CompanyProjects} />
           <Route exact path="/applicants/job/id=:id" component={Applicants} />
-          <Route exact path="/applicant/profile/:id" component={Applicant} />
+          <Route
+            exact
+            path="/applicant/profile/job/:jobId/user/:id"
+            component={Applicant}
+          />
           <Route
             exact
             path="/accepted/applicant/profile/:id"
