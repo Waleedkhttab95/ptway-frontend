@@ -130,7 +130,7 @@ const App = () => {
           />
           <Route
             exact
-            path="/accepted/applicant/profile/:id"
+            path="/accepted/applicants/job/id=:id"
             component={AcceptedApplicant}
           />
 

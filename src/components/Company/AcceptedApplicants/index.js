@@ -29,20 +29,14 @@ class AcceptedApplicants extends React.Component {
             <h3>السيرة الذاتية</h3>
             <h3>قبول</h3>
           </div>
-          {_.isArray(AcceptedCandidates)
-            ? AcceptedCandidates.map(elm => (
-                <div className="applicant" key={elm.candidateName._id}>
-                  <h4>
-                    {elm.candidateName.firstName +
-                      ' ' +
-                      elm.candidateName.lastName}
-                  </h4>
+          {_.isArray(AcceptedCandidates.response)
+            ? AcceptedCandidates.response.map(elm => (
+                <div className="applicant" key={elm._id}>
+                  <h4>{elm.acceptedName}</h4>
                   <button
                     className="display-cv"
                     onClick={() =>
-                      this.props.history.push(
-                        `/applicant/profile/${elm.candidateName._id}`
-                      )
+                      this.props.history.push(`/applicant/profile/${elm._id}`)
                     }
                   >
                     عرض
@@ -62,7 +56,9 @@ class AcceptedApplicants extends React.Component {
               ))
             : ''}
         </div>
-        <Footer />
+        <div style={{ position: 'absolute', width: '100%', bottom: '0' }}>
+          <Footer />
+        </div>
       </React.Fragment>
     );
   }
