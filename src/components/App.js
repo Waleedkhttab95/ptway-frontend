@@ -37,7 +37,7 @@ import Applicant from './Company/Applicant';
 import CompSetting from './Company/Setting';
 import UpdateCompanyProfile from './Company/UpdateProfile';
 import AcceptedApplicant from './Company/AcceptedApplicants';
-
+import CompanyProfile from './Company/Profile';
 const App = () => {
   return (
     <div className="App">
@@ -140,6 +140,7 @@ const App = () => {
             path="/company/profile/update"
             component={UpdateCompanyProfile}
           />
+          <Route exact path="/company/profile" component={CompanyProfile} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

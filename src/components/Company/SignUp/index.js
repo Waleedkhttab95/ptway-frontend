@@ -40,7 +40,7 @@ class CompanySignupForm extends React.Component {
           status: values.sector === '5c56c3572e168a2c30fe5dde' ? false : true
         });
 
-        history.push('/company/home');
+        history.push('/company/profile');
       }
     });
   };
