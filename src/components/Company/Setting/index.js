@@ -9,8 +9,10 @@ import Tab3 from './Tab3';
 import { connect } from 'react-redux';
 
 import { companyInfo } from '../../../store/actions/company/home';
+import settings from '../../../services/company/setting';
 import Footer from '../../Footer';
 
+const { changePassword } = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
@@ -19,6 +21,18 @@ class CompanySetting extends React.Component {
     getCompanyInfo();
   }
 
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+  ChangePassword = async () => {
+    await changePassword({
+      prevPassword: this.state.prevPassword,
+      newPassword: this.state.newPassword
+    });
+  };
   render() {
     const { company } = this.props;
     return (
@@ -38,7 +52,10 @@ class CompanySetting extends React.Component {
                   <Tab2 />
                 </TabPane>
                 <TabPane tab="الإعدادات العامة" key="3">
-                  <Tab3 />
+                  <Tab3
+                    handleChange={this.handleChange}
+                    ChangePassword={this.ChangePassword}
+                  />
                 </TabPane>
               </Tabs>
               ,
