@@ -16,7 +16,7 @@ const { changePassword } = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     const { getCompanyInfo } = this.props;
     getCompanyInfo();
   }
@@ -42,11 +42,19 @@ class CompanySetting extends React.Component {
           <div className="company-setting">
             <Col md={6}>
               <CompanyInfo {...company} />
+              <button
+                className="update-profile-btn"
+                onClick={() =>
+                  this.props.history.push('/company/profile/update')
+                }
+              >
+                تعديل المعلومات
+              </button>
             </Col>
             <Col md={18} className="right-side">
               <Tabs type="card">
                 <TabPane tab="بروفايل الشركة" key="1">
-                  <Tab1 />
+                  <Tab1 {...company} />
                 </TabPane>
                 <TabPane tab="الحسابات الفرعية" key="2">
                   <Tab2 />
