@@ -26,7 +26,7 @@ class Projects extends React.Component {
     editModal: false,
     allProjects: '',
     count: 1,
-    loading: true
+    moreAds: ''
   };
 
   async componentDidMount() {
@@ -87,33 +87,21 @@ class Projects extends React.Component {
   };
 
   displayMore = async () => {
-    console.log('this.state.count', this.state.count);
-
     let count = this.state.count + 1;
     const { allProjects } = this.state;
     const moreAds = await getMoreAds(count);
-    if (moreAds.proj.length !== 0) {
-      console.log('heeere');
-
-      this.setState({
-        allProjects: {
-          proj: allProjects.proj.concat(moreAds.proj),
-          JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
-        },
-        moreAds,
-        count
-      });
-    } else {
-      this.setState({
-        loading: false
-      });
-    }
+    this.setState({
+      allProjects: {
+        proj: allProjects.proj.concat(moreAds.proj),
+        JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
+      },
+      moreAds,
+      count
+    });
   };
 
   render() {
-    const { expandIconPosition, allProjects } = this.state;
-    console.log('allProjects', allProjects);
-
+    const { expandIconPosition, allProjects, moreAds, count } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -199,7 +187,7 @@ class Projects extends React.Component {
                 : ''}
             </Collapse>
             <br />
-            {this.state.loading && (
+            {moreAds.totalPages != count && (
               <button
                 className="more-projects-offers-btn"
                 onClick={this.displayMore}
