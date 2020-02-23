@@ -8,10 +8,11 @@ import Project from '../Project';
 import FilterAndSearch from '../../Filter';
 import SideMenu from './menu';
 import projects from '../../../services/company/projects';
+
 import _ from 'lodash';
 
 const { Panel } = Collapse;
-const { getProjects, deleteProject, updateProject } = projects;
+const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
 
 function callback(key) {
   console.log(key);
@@ -23,7 +24,9 @@ class Projects extends React.Component {
     deleteModal: false,
     confirmMsg: false,
     editModal: false,
-    allProjects: ''
+    allProjects: '',
+    count: 1,
+    loading: true
   };
 
   async componentDidMount() {
@@ -83,8 +86,34 @@ class Projects extends React.Component {
     window.location.reload();
   };
 
+  displayMore = async () => {
+    console.log('this.state.count', this.state.count);
+
+    let count = this.state.count + 1;
+    const { allProjects } = this.state;
+    const moreAds = await getMoreAds(count);
+    if (moreAds.proj.length !== 0) {
+      console.log('heeere');
+
+      this.setState({
+        allProjects: {
+          proj: allProjects.proj.concat(moreAds.proj),
+          JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
+        },
+        moreAds,
+        count
+      });
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+  };
+
   render() {
     const { expandIconPosition, allProjects } = this.state;
+    console.log('allProjects', allProjects);
+
     return (
       <React.Fragment>
         <Header />
@@ -170,11 +199,20 @@ class Projects extends React.Component {
                 : ''}
             </Collapse>
             <br />
+            {this.state.loading && (
+              <button
+                className="more-projects-offers-btn"
+                onClick={this.displayMore}
+                style={{ marginTop: '30px' }}
+              >
+                عرض المزيد
+              </button>
+            )}
           </div>
         </div>
-        <div className="registration-footer">
-          <Footer />
-        </div>
+        {/* <div className="registration-footer"> */}
+        <Footer />
+        {/* </div> */}
       </React.Fragment>
     );
   }

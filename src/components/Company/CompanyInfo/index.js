@@ -2,17 +2,19 @@ import React from 'react';
 import './style.scss';
 
 const CompanyInfo = props => {
-  const { companyInfo } = props;
+  const { info } = props.companyInfo;
   return (
     <div className="company-info">
       <div className="company-pic-info">
-        <img src={companyInfo.imagePath} alt="company" />
-        <span className="company-name">شركة بيتزا هت للبيتزا</span>
+        <img src={info ? info.imagePath : ''} alt="company" />
+        <span className="company-name">
+          {info ? info.company.companyName : ''}
+        </span>
       </div>
       <div className="company-details-info">
         <span>
           <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
-          {companyInfo.info}
+          {info ? info.info : ''}
         </span>
         <span>
           <i className="fa fa-envelope" aria-hidden="true"></i>
@@ -20,7 +22,8 @@ const CompanyInfo = props => {
         </span>
         <span>
           <i className="fa fa-map-marker" aria-hidden="true"></i>
-          {companyInfo.country}, {companyInfo.city}, {companyInfo.address}
+          {info ? info.country.countryName : ''},{' '}
+          {info ? info.city.cityName : ''}, {info ? info.address : ''}
         </span>
       </div>
     </div>
