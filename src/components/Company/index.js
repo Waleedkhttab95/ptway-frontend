@@ -10,11 +10,16 @@ import {
   companyStatistic,
   companyAds
 } from '../../store/actions/company/home';
+// import home from '../../services/company/home';
 import _ from 'lodash';
 import moment from 'moment';
 const { Content } = Layout;
+// const { getMoreAds } = home;
 
 class CompanyHome extends React.Component {
+  state = {
+    moreAds: ''
+  };
   componentDidMount() {
     const { getCompanyInfo, getCompanyStatistic, getCompanyAds } = this.props;
     getCompanyInfo();
@@ -24,6 +29,9 @@ class CompanyHome extends React.Component {
 
   render() {
     const { company } = this.props;
+    // console.log('moreAds', this.state.moreAds);
+    console.log('fucccck', company);
+
     return (
       <div>
         <Header />

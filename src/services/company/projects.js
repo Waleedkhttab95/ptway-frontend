@@ -42,7 +42,8 @@ const projects = {
     }),
   getJobOffers: params => baseRequest.get(`get/jobs?projectid=${params.id}`),
   deleteJob: params => baseRequest.delete(`deletejob?id=${params.id}`),
-  lockJob: params => baseRequest.put(`lockJob?id=${params.id}`)
+  lockJob: params => baseRequest.put(`lockJob?id=${params.id}`),
+  getMoreAds: params => baseRequest.get(`/getprojects?pageNo=${params}`)
 };
 
 export default projects;
