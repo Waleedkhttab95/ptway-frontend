@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Alert, Col } from 'antd';
+import { Layout, Col } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
@@ -29,18 +29,6 @@ class CompanyHome extends React.Component {
         <Header />
         <div className="user-container">
           <Content className="user-home">
-            <div className="user-notification">
-              <Alert
-                message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
-                type="warning"
-                className="warning-alert"
-              />
-              <Alert
-                message="يوجد متقدم جديد  سامر الأحمد على مشروع الشركة الرئيسية"
-                type="info"
-                className="info-alert"
-              />
-            </div>
             <div className="company-progress">
               <div className="opened-projects">
                 <div>المشاريع المنشئة</div>
@@ -108,8 +96,6 @@ class CompanyHome extends React.Component {
                       );
                     })
                   : ''}
-
-                <button className="more-projects-offers-btn">عرض المزيد</button>
               </Col>
             </div>
           </Content>
