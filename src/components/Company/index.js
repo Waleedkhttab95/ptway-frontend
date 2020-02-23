@@ -63,14 +63,6 @@ class CompanyHome extends React.Component {
             <div className="user-profile">
               <Col md={6} className="right-section">
                 <CompanyInfo {...company} />
-                <button
-                  className="update-profile-btn"
-                  onClick={() =>
-                    this.props.history.push('/company/profile/update')
-                  }
-                >
-                  تعديل المعلومات
-                </button>
               </Col>
               <Col md={18} className="company-left-section">
                 <h2>آخر العروض الوظيفية التي أنشئتها</h2>
