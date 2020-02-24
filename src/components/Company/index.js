@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Col } from 'antd';
+import { Layout, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
@@ -80,22 +80,22 @@ class CompanyHome extends React.Component {
                   <div>اسم المشروع</div>
                   <div>عدد المتقدمين</div>
                 </div>
-                {_.isArray(company.companyAds)
-                  ? company.companyAds.map(elm => {
-                      return (
-                        <div className="project-offer" key={elm.advId}>
-                          <div className="project-offer-title">
-                            {elm.advName}
-                          </div>
-                          <div>{moment(Date.now()).format('MMM-d-YY')}</div>
-                          <div className="project-status">
-                            {elm.projectName}
-                          </div>
-                          <div className="applicants-num">{elm.candidates}</div>
-                        </div>
-                      );
-                    })
-                  : ''}
+                {_.isArray(company.companyAds) ? (
+                  company.companyAds.map(elm => {
+                    return (
+                      <div className="project-offer" key={elm.advId}>
+                        <div className="project-offer-title">{elm.advName}</div>
+                        <div>{moment(Date.now()).format('ll')}</div>
+                        <div className="project-status">{elm.projectName}</div>
+                        <div className="applicants-num">{elm.candidates}</div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="spinner-loading">
+                    <Spin size="large" />
+                  </div>
+                )}
               </Col>
             </div>
           </Content>
