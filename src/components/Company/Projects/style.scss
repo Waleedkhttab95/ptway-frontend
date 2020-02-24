@@ -175,6 +175,17 @@ background-color: #f3f3f3;
     margin-bottom: 20px;
 }
 
+.spinner-loading {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 300px !important ;
+    background: transparent !important;
+}
+.projects-collapse .spinner-loading {
+    background: transparent !important;
+}
+
 
 @media (max-width:320px) {
     .company-projects {

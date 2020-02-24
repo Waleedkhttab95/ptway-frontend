@@ -12,7 +12,15 @@ const applicants = {
       jobAd: params.jobId,
       acceptedName: params.userId
     }),
-  getUser: params => baseRequest.get(`/get/userinfo?id=${params.userId}`)
+  getUser: params => baseRequest.get(`/get/userinfo?id=${params.userId}`),
+  getMoreCandidates: params =>
+    baseRequest.get(
+      `/getOneCandi?pageNo=${params.pageNo}&jobAd=${params.jobAd}`
+    ),
+  getMoreAcceptedCandidates: params =>
+    baseRequest.get(
+      `/getOneAccepted?pageNo=${params.pageNo}&jobAd=${params.jobAd}`
+    )
 };
 
 export default applicants;

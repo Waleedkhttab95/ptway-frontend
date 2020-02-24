@@ -6,7 +6,16 @@ const CompanyInfo = props => {
   return (
     <div className="company-info">
       <div className="company-pic-info">
-        <img src={info ? info.imagePath : ''} alt="company" />
+        {info && info.imagePath != 'null' ? (
+          <img src={info.imagePath} alt="company" />
+        ) : (
+          <i
+            className="fa fa-user-circle"
+            aria-hidden="true"
+            style={{ fontSize: '60px' }}
+          ></i>
+        )}
+
         <span className="company-name">
           {info ? info.company.companyName : ''}
         </span>
@@ -18,7 +27,7 @@ const CompanyInfo = props => {
         </span>
         <span>
           <i className="fa fa-envelope" aria-hidden="true"></i>
-          yasser.qahtani@gmail.com
+          {info ? info.company.email : ''}
         </span>
         <span>
           <i className="fa fa-map-marker" aria-hidden="true"></i>

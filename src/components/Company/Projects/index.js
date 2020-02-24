@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Collapse, Dropdown, Button } from 'antd';
+import { Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../../Filter';
 import SideMenu from './menu';
@@ -26,13 +26,15 @@ class Projects extends React.Component {
     editModal: false,
     allProjects: '',
     count: 1,
-    moreAds: ''
+    moreAds: '',
+    loading: true
   };
 
   async componentDidMount() {
     const allProjects = await getProjects();
     this.setState({
-      allProjects
+      allProjects,
+      loading: false
     });
   }
 
@@ -101,7 +103,13 @@ class Projects extends React.Component {
   };
 
   render() {
-    const { expandIconPosition, allProjects, moreAds, count } = this.state;
+    const {
+      expandIconPosition,
+      allProjects,
+      moreAds,
+      count,
+      loading
+    } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -131,63 +139,67 @@ class Projects extends React.Component {
               expandIconPosition={expandIconPosition}
               className="projects-collapse"
             >
-              {_.isArray(allProjects.proj)
-                ? allProjects.proj.map((elm, index) => {
-                    return (
-                      <Panel
-                        key={elm._id}
-                        className="project-panel"
-                        header={
-                          <div className="panel-title">
-                            <div className="panel-mob">
-                              <span>{elm.projectName}</span>{' '}
-                              <span className="applicant-num-mob">
-                                {' '}
-                                عدد المتقدمين :
-                              </span>
-                              <div className="offers-num">
-                                {allProjects.JobAdsCount[index]}
-                              </div>
+              {_.isArray(allProjects.proj) ? (
+                allProjects.proj.map((elm, index) => {
+                  return (
+                    <Panel
+                      key={elm._id}
+                      className="project-panel"
+                      header={
+                        <div className="panel-title">
+                          <div className="panel-mob">
+                            <span>{elm.projectName}</span>{' '}
+                            <span className="applicant-num-mob">
+                              {' '}
+                              عدد المتقدمين :
+                            </span>
+                            <div className="offers-num">
+                              {allProjects.JobAdsCount[index]}
                             </div>
-                            <Dropdown
-                              overlay={
-                                <SideMenu
-                                  {...this.state}
-                                  deletePoject={this.deletePoject}
-                                  deleteConfirmation={() =>
-                                    this.deleteConfirmation(elm._id)
-                                  }
-                                  CloseConfirmationMsg={e => {
-                                    e.stopPropagation();
-                                    this.setState({
-                                      confirmMsg: false
-                                    });
-                                    window.location.reload();
-                                  }}
-                                  cancel={this.cancel}
-                                  onChange={this.handleChange}
-                                  editProjectModal={this.editProjectModal}
-                                  updateProject={() =>
-                                    this.updateProject(elm._id)
-                                  }
-                                />
-                              }
-                              placement="bottomCenter"
-                              trigger="hover"
-                            >
-                              <span className="options-menu">...</span>
-                            </Dropdown>
                           </div>
-                        }
-                      >
-                        <Project {...elm} />
-                      </Panel>
-                    );
-                  })
-                : ''}
+                          <Dropdown
+                            overlay={
+                              <SideMenu
+                                {...this.state}
+                                deletePoject={this.deletePoject}
+                                deleteConfirmation={() =>
+                                  this.deleteConfirmation(elm._id)
+                                }
+                                CloseConfirmationMsg={e => {
+                                  e.stopPropagation();
+                                  this.setState({
+                                    confirmMsg: false
+                                  });
+                                  window.location.reload();
+                                }}
+                                cancel={this.cancel}
+                                onChange={this.handleChange}
+                                editProjectModal={this.editProjectModal}
+                                updateProject={() =>
+                                  this.updateProject(elm._id)
+                                }
+                              />
+                            }
+                            placement="bottomCenter"
+                            trigger="hover"
+                          >
+                            <span className="options-menu">...</span>
+                          </Dropdown>
+                        </div>
+                      }
+                    >
+                      <Project {...elm} />
+                    </Panel>
+                  );
+                })
+              ) : (
+                <div className="spinner-loading">
+                  <Spin size="large" />
+                </div>
+              )}
             </Collapse>
             <br />
-            {moreAds.totalPages != count && (
+            {!loading && moreAds.totalPages != count && (
               <button
                 className="more-projects-offers-btn"
                 onClick={this.displayMore}

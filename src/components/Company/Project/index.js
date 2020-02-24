@@ -79,7 +79,7 @@ class Project extends React.Component {
                   <h4>{elm.job_Name}</h4>
                   <h4 className="date-mob">
                     <span className="project-date-mob">التاريخ : </span>
-                    {moment(elm.startDate).format('MMM-d-YY')}
+                    {moment(elm.createDate).format('ll')}
                   </h4>
                   <button
                     className="applicants-btn"

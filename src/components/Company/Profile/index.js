@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../Header';
+// import Header from '../../Header';
 import Footer from '../../Footer';
 import { Input, Collapse, Select } from 'antd';
 import statatisticsService from '../../../services/statisticsService';
@@ -43,7 +43,7 @@ class CompanyProfile extends React.Component {
 
     return (
       <React.Fragment>
-        <Header />
+        {/* <Header /> */}
         <div className="company-container">
           <div className="updating-container">
             <div className="profile-updating">

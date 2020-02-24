@@ -5,18 +5,24 @@ import Filter from '../../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-const { getCandidates, acceptUser } = applicants;
+import { Spin } from 'antd';
+import { Link } from 'react-router-dom';
+const { getCandidates, acceptUser, getMoreCandidates } = applicants;
 
 class Applicants extends React.Component {
   state = {
-    candidates: ''
+    candidates: '',
+    count: 1,
+    moreAds: '',
+    loading: true
   };
   async componentDidMount() {
     const jobId = this.props.match.params.id;
     const candidates = await getCandidates({ jobId });
     this.setState({
       jobId,
-      candidates
+      candidates,
+      loading: false
     });
   }
 
@@ -31,8 +37,23 @@ class Applicants extends React.Component {
     });
   };
 
+  displayMore = async () => {
+    let count = this.state.count + 1;
+    const { candidates, jobId } = this.state;
+    const moreAds = await getMoreCandidates({ pageNo: count, jobAd: jobId });
+    this.setState({
+      candidates: {
+        Bresult: candidates.Bresult.concat(moreAds.Bresult)
+      },
+      moreAds,
+      count
+    });
+  };
+
   render() {
-    const { candidates } = this.state;
+    const { candidates, loading, moreAds, count } = this.state;
+    console.log('candidates', candidates);
+
     return (
       <React.Fragment>
         <Header />
@@ -46,48 +67,58 @@ class Applicants extends React.Component {
             <h3>الحالة</h3> */}
             <h3>قبول</h3>
           </div>
-          {_.isArray(candidates.Bresult)
-            ? candidates.Bresult.map(elm => (
-                <div className="applicant" key={elm.candidateName._id}>
-                  <h4>
-                    {elm.candidateName.firstName +
-                      ' ' +
-                      elm.candidateName.lastName}
-                  </h4>
-                  <button
-                    className="display-cv"
-                    onClick={() =>
-                      this.props.history.push(
-                        `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
-                      )
-                    }
-                  >
-                    عرض
-                  </button>
-                  <button
-                    className="accept-user"
-                    onClick={() => this.acceptUser(elm.candidateName._id)}
-                  >
-                    موافق
-                  </button>
+          {_.isArray(candidates.Bresult) ? (
+            candidates.Bresult.map(elm => (
+              <div className="applicant" key={elm.candidateName._id}>
+                <h4>
+                  {elm.candidateName.firstName +
+                    ' ' +
+                    elm.candidateName.lastName}
+                </h4>
+                <Link
+                  className="display-cv"
+                  target="_blank"
+                  to={`/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`}
+                >
+                  عرض
+                </Link>
+                <button
+                  className="accept-user"
+                  onClick={() => this.acceptUser(elm.candidateName._id)}
+                >
+                  موافق
+                </button>
 
-                  <button
-                    className="display-cv-mob"
-                    onClick={() =>
-                      this.props.history.push(
-                        `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
-                      )
-                    }
-                  >
-                    عرض السيرة الذاتية
-                  </button>
-                </div>
-              ))
-            : ''}
+                <button
+                  className="display-cv-mob"
+                  onClick={() =>
+                    this.props.history.push(
+                      `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
+                    )
+                  }
+                >
+                  عرض السيرة الذاتية
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="spinner-loading">
+              <Spin size="large" />
+            </div>
+          )}
+          {!loading && moreAds.totalPages !== count && (
+            <button
+              className="more-projects-offers-btn"
+              onClick={this.displayMore}
+              style={{ marginTop: '30px' }}
+            >
+              عرض المزيد
+            </button>
+          )}
         </div>
-        <div style={{ position: 'absolute', width: '100%', bottom: '0' }}>
-          <Footer />
-        </div>
+        {/* <div style={{ position: 'absolute', width: '100%', bottom: '0' }}> */}
+        <Footer />
+        {/* </div> */}
       </React.Fragment>
     );
   }
