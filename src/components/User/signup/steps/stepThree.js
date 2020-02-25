@@ -6,7 +6,7 @@ import _ from 'lodash';
 const { Option } = Select;
 
 const step3Form = props => {
-  const { handleChange, handleSelect, majors, state } = props;
+  const { handleChange, handleSelect, majors, state, current, steps } = props;
   const { firstNameError, lastNameError, majorError } = state;
   return (
     <div className="steps-form">
@@ -58,6 +58,26 @@ const step3Form = props => {
             {majorError && !state.major ? majorError : ''}
           </span>
           {/* <Input  name="major" onChange={handleChange} /> */}
+          <div className="steps-btns">
+            {current > 0 && (
+              <button
+                style={{ marginLeft: 8 }}
+                onClick={props.prev}
+                className="prev-btn"
+              >
+                السابق
+              </button>
+            )}
+            {current < steps && (
+              <button
+                className="first-step-btn"
+                type="primary"
+                onClick={props.next}
+              >
+                التالي
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

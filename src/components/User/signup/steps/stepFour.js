@@ -2,7 +2,9 @@ import React from 'react';
 import { Input } from 'antd';
 
 const step4Form = props => {
-  const { handleChange, state } = props;
+  const { handleChange, state, current, steps } = props;
+  console.log('props', props);
+
   const {
     emailError,
     passwordError,
@@ -71,6 +73,31 @@ const step4Form = props => {
                   : ''}
               </span>
             </div>
+          </div>
+          {props.error && (
+            <span style={{ color: 'red' }}>{props.error.response.data}</span>
+          )}
+
+          <div className="steps-btns">
+            {current > 0 && (
+              <button
+                style={{ marginLeft: 8 }}
+                onClick={props.prev}
+                className="prev-btn"
+              >
+                السابق
+              </button>
+            )}
+            {current === steps && (
+              <button
+                type="primary"
+                className="first-step-btn"
+                onClick={props.signup}
+                // onClick={() => this.props.history.push('/user/home')}
+              >
+                الانتقال للرئيسية
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ const userServices = {
   // }),
   userInfo: params =>
     baseRequest.post('/postuserinfo ', {
-      country: params.country,
+      // country: params.country,
       city: params.city,
       public_Major: params.major,
       birthDate: params.birthDate,
