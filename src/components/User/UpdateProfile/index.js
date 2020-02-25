@@ -26,8 +26,8 @@ const {
 
 class UpdateProfile extends React.Component {
   state = {
-    skills: [],
-    pSkills: [],
+    skills: '',
+    pSkills: '',
     major: [],
     universities: [],
     education_levels: [],
@@ -54,26 +54,26 @@ class UpdateProfile extends React.Component {
       cities,
       fullName: info.fullName,
       gender: info.gender,
-      mobile: info.mobile,
+      mobile: info.mobile ? info.mobile : '',
       birthDate: info.birthDate,
       university: info.universty ? info.universty._id : null,
       public_major: info.public_Major ? info.public_Major._id : null,
       s_Major: info.spMajor ? info.spMajor._id : null,
       city: info.city ? info.city._id : null,
-      country: info.country ? info.country._id : null,
-      social_Status: info.social_Status,
-      about: info.about,
-      education_level: info.Education_level,
-      education_degree: info.education_degree,
-      study_degree: info.study_degree,
+      country: info.country ? info.country._id : '',
+      social_Status: info.social_Status ? info.social_Status : '',
+      about: info.about ? info.about : '',
+      education_level: info.Education_level ? info.Education_level : '',
+      education_degree: info.education_degree ? info.education_degree : '',
+      study_degree: info.study_degree ? info.study_degree : '',
       language: info.languages ? info.languages : [],
-      personal_web: info.personal_web,
-      facebook: info.facebook,
-      linkedin: info.linkedin,
-      twitter: info.twitter,
-      file: info.imagePath ? info.imagePath : null,
-      per_skill: info.personal_Skills,
-      skill: info.skills
+      personal_web: info.personal_web ? info.personal_web : '',
+      facebook: info.facebook ? info.facebook : '',
+      linkedin: info.linkedin ? info.linkedin : '',
+      twitter: info.twitter ? info.twitter : '',
+      file: info.imagePath ? info.imagePath : '',
+      per_skill: info.personal_Skills ? info.personal_Skills : '',
+      skill: info.skills ? info.skills : ''
     });
   }
   handleMajorChange = async (value, option) => {
@@ -587,13 +587,17 @@ class UpdateProfile extends React.Component {
                       className="input-field"
                       mode="multiple"
                       onChange={this.handlePersonalSkillsChange}
-                      placeholder={pSkills.map(elm =>
-                        userInfo
-                          ? userInfo.personal_Skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
+                      // placeholder={
+                      //   _.isArray(pSkills)
+                      //     ? pSkills.map(elm =>
+                      //         userInfo
+                      //           ? userInfo.personal_Skills.map(elm2 =>
+                      //               elm._id === elm2 ? elm.skillName + ' ' : ''
+                      //             )
+                      //           : ''
+                      //       )
+                      //     : ''
+                      // }
                     >
                       {_.isArray(pSkills)
                         ? pSkills.map(elm => {
@@ -615,13 +619,17 @@ class UpdateProfile extends React.Component {
                     <Select
                       className="input-field"
                       mode="multiple"
-                      placeholder={skills.map(elm =>
-                        userInfo
-                          ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
+                      // placeholder={
+                      //   _.isArray(skills)
+                      //     ? skills.map(elm =>
+                      //         userInfo
+                      //           ? userInfo.skills.map(elm2 =>
+                      //               elm._id === elm2 ? elm.skillName + ' ' : ''
+                      //             )
+                      //           : ''
+                      //       )
+                      //     : ''
+                      // }
                       onChange={this.handleSkillsChange}
                     >
                       {_.isArray(skills)
@@ -646,13 +654,13 @@ class UpdateProfile extends React.Component {
                     <Select
                       className="input-field"
                       mode="multiple"
-                      placeholder={skills.map(elm =>
-                        userInfo
-                          ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
+                      // placeholder={skills.map(elm =>
+                      //   userInfo
+                      //     ? userInfo.skills.map(elm2 =>
+                      //         elm._id === elm2 ? elm.skillName + ' ' : ''
+                      //       )
+                      //     : ''
+                      // )}
                     >
                       {_.isArray(skills)
                         ? skills.map(elm => {
