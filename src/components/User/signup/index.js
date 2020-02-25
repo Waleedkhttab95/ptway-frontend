@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Steps, Button, Layout, Alert } from 'antd';
+import { Steps, Layout } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
 import Step3 from './steps/stepThree';
@@ -19,34 +19,25 @@ class UserSignup extends React.Component {
     city: '',
     country: '',
     countryErr: '',
-    cityError: ''
+    cityError: '',
+    steps: ''
   };
 
   componentDidMount = async () => {
     const countries = await allCountries();
     if (countries) this.setState({ countries });
     const cities = await allCities();
-    console.log('countries', countries, 'cities', cities);
-
     if (cities) this.setState({ cities });
     const majors = await allMajors();
     if (majors) this.setState({ majors });
   };
 
   next = () => {
-    const {
-      country,
-      city,
-      gender,
-      birthDate,
-      firstName,
-      lastName,
-      major
-    } = this.state;
+    const { city, gender, birthDate, firstName, lastName, major } = this.state;
     let current = this.state.current;
     switch (current) {
       case 0:
-        if (!country || !city) {
+        if (!city) {
           this.setState({
             countryError: 'هذا الحقل مطلوب',
             cityError: 'هذا الحقل مطلوب'
@@ -102,7 +93,7 @@ class UserSignup extends React.Component {
   };
 
   signup = async () => {
-    const { register, userExtraInfo, user, userInfo } = this.props;
+    const { register, userExtraInfo } = this.props;
     const {
       firstName,
       lastName,
@@ -110,7 +101,6 @@ class UserSignup extends React.Component {
       password,
       gender,
       birthDate,
-      country,
       city,
       major,
       // reEmail,
@@ -136,18 +126,14 @@ class UserSignup extends React.Component {
         email,
         password
       });
-      console.log('userrr', user.token);
 
-      // if (user.token) {
       await userExtraInfo({
         gender,
         birthDate,
-        country,
         city,
         major,
         fullName: firstName + ' ' + lastName
       });
-      console.log('userInfo.result', userInfo);
 
       const { history } = this.props;
       history.push('/user/home');
@@ -157,7 +143,7 @@ class UserSignup extends React.Component {
   render() {
     const { current, countries, cities, majors } = this.state;
     const { user } = this.props;
-    console.log('current', current);
+    console.log('current', current, 'state', this.state);
 
     const steps = [
       {
@@ -168,12 +154,25 @@ class UserSignup extends React.Component {
             countries={countries}
             cities={cities}
             state={this.state}
+            next={() => this.next()}
+            current={current}
+            steps={1}
           />
         )
       },
       {
         title: 'معلومات شخصية',
-        content: <Step2 handleChange={this.handleChange} state={this.state} />
+        content: (
+          <Step2
+            handleChange={this.handleChange}
+            handleRadioChange={this.handleInputsChange}
+            state={this.state}
+            next={() => this.next()}
+            prev={() => this.prev()}
+            current={current}
+            steps={2}
+          />
+        )
       },
       {
         // title: 'معلومات شخصية اخرى',
@@ -183,13 +182,25 @@ class UserSignup extends React.Component {
             handleSelect={this.handleChange}
             majors={majors}
             state={this.state}
+            next={() => this.next()}
+            prev={() => this.prev()}
+            current={current}
+            steps={3}
           />
         )
       },
       {
         title: 'معلومات الحساب',
         content: (
-          <Step4 handleChange={this.handleInputsChange} state={this.state} />
+          <Step4
+            handleChange={this.handleInputsChange}
+            state={this.state}
+            prev={() => this.prev()}
+            current={current}
+            steps={3}
+            signup={this.signup}
+            {...user}
+          />
         )
       }
     ];
@@ -210,52 +221,11 @@ class UserSignup extends React.Component {
                 <span>معلومات الحساب</span>
               </div>
               <div className="steps-content">{steps[current].content}</div>
-              {user.error ? (
-                <Alert
-                  message={user.error.response.data}
-                  type="error"
-                  className="error-alert"
-                />
-              ) : (
-                ''
-              )}
-              <div
-                className={
-                  current == 2 || current == 3
-                    ? 'steps-action-mob steps-action'
-                    : 'steps-action-mob-2 steps-action'
-                }
-              >
-                {current < steps.length - 1 && (
-                  <Button
-                    className="first-step-btn"
-                    type="primary"
-                    onClick={() => this.next()}
-                  >
-                    الانتقال للخطوة التالية
-                  </Button>
-                )}
-                {current === steps.length - 1 && (
-                  <Button
-                    type="primary"
-                    className="last-step-btn"
-                    onClick={this.signup}
-                    // onClick={() => this.props.history.push('/user/home')}
-                  >
-                    الانتقال للصفحة الرئيسية
-                  </Button>
-                )}
-                {/* {current > 0 && (
-                <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                  Previous
-                  </Button>
-                )} */}
-              </div>
             </div>
           </div>
-          <div className="registration-footer">
-            <Footer />
-          </div>
+          {/* <div className="registration-footer"> */}
+          <Footer />
+          {/* </div> */}
         </Layout>
       </React.Fragment>
     );

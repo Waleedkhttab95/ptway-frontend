@@ -13,14 +13,14 @@
     position: relative;
 }
 .steps-form{
-    width: 648px;
+    width: 600px;
   height: 351px;
   border-radius: 10px;
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   background-color: #ffffff;
   margin-top: 60px;
   .form-content{
-      padding: 30px 123px 0 0;
+      padding: 60px 90px 0 0;
       .f-title{
           padding-right: 6px;
           margin-top: 6px;
@@ -62,6 +62,9 @@
     .country-text{
     width: 341px;
     height: 32px;
+    > div {
+    border-top-width: 1.02px !important;
+      }
     }
     .first-row{
         display: flex;
@@ -93,27 +96,15 @@
     border-radius: 6px;
     background-color: #3598d4;
 }
-.first-step-btn:hover{
-    text-decoration: none;
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent !important;
-}
 .error-alert{
     position: absolute;
     top: 430px;
     right: 32%;
 }
-// .steps-header-line{
-//     width: 112px;
-//     height: 47px;
-//     border-bottom: 1px solid black;
-//     position: absolute;
-// }
 .steps-header{
     display: flex;
     justify-content: space-between;
-    width: 550px;
+    width: 530px;
     text-align: center;
     >span{
         display: flex;
@@ -150,7 +141,7 @@
 //     background-color: transparent;
 //     border-color: transparent;
 // }
-.first-step-btn{
+.first-step-btn, .prev-btn{
     font-family: 'Tajawal';
     font-size: 14px;
     font-weight: bold;
@@ -159,12 +150,17 @@
     line-height: 1.57;
     letter-spacing: normal;
     text-align: center;
-    color: #ffffff;
-    padding-right: 10px;
-    border-color: transparent;
-    float: right !important;
-    background-color: transparent !important;
+    border-radius: 6px;
+    background-color: #3598d4;
+    color: #fff;
+    margin-top: 30px;
+    width: 200px;
+    height: 35px;
+    cursor: pointer;
 
+}
+.steps-btns{
+    display: flex;
 }
 .last-step-btn{
     width: 255px;
