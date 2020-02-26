@@ -89,7 +89,7 @@
                 display: flex;
                 flex-direction: column;
                 position: absolute;
-                bottom: 30px;
+                bottom: 40px;
             }
             .post-status {
                 margin-bottom: 10px;
@@ -123,6 +123,7 @@
                 letter-spacing: normal;
                 text-align: center;
                 color: #ffffff;
+                cursor: pointer;
 
             }
             .details-btn{
@@ -140,6 +141,9 @@
                 letter-spacing: normal;
                 text-align: center;
                 color: #fff;
+                cursor: pointer;
+                margin-top: 50px;
+               
             }
         }
     }
@@ -169,7 +173,7 @@
     background-color: #34add9;
 }
 .job-post:hover .job-owner-title, .job-post:hover .job-owner-location, .job-post:hover .job-owner-mobile, .job-post:hover .post-description,
-.job-post:hover .post-status{
+.job-post:hover .post-status, .job-post:hover .job-completed {
             color: #fff !important;
 }
 
@@ -181,6 +185,15 @@
 
 .job-post:hover .post-status{
     background: #2e9bc3 !important;
+}
+
+.job-completed {
+    background: #ffa50038;
+    height: 30px;
+    width: 120px;
+    color: orange;
+    border-radius: 7px;
+    padding-top: 5px;
 }
 
 @media (max-width:320px){
