@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Row, Col, Modal, Radio } from 'antd';
+import { Row, Col, Modal, Radio, Spin } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import {
@@ -57,20 +57,44 @@ class Job extends React.Component {
         <Header />
         <Row className="job-section">
           <Col md={6} className="right-section">
-            {imagePath ? (
-              <img src={imagePath} alt="user" className="picture" />
+            {offer.company ? (
+              <React.Fragment>
+                {imagePath ? (
+                  <img src={imagePath} alt="user" className="picture" />
+                ) : (
+                  <i
+                    className="fa fa-user-circle-o"
+                    aria-hidden="true"
+                    style={{
+                      fontSize: '45px',
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}
+                  ></i>
+                )}
+                <span className="job-owner-name">{compnayName}</span>
+                <div className="job-owner-info">
+                  <p>
+                    <i
+                      className="fa fa-exclamation-circle"
+                      aria-hidden="true"
+                    ></i>
+                    {info}
+                  </p>
+
+                  <p>
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
+                    {Country}, {City}, {address}
+                  </p>
+                </div>
+              </React.Fragment>
             ) : (
-              <i
-                className="fa fa-user-circle-o"
-                aria-hidden="true"
-                style={{
-                  fontSize: '45px',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}
-              ></i>
+              <div className="spinner-loading">
+                <Spin size="large" />
+              </div>
             )}
-            <span className="job-owner-name">{compnayName}</span>
+
+            {/* <span className="job-owner-name">{compnayName}</span>
             <div className="job-owner-info">
               <p>
                 <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -80,7 +104,8 @@ class Job extends React.Component {
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 {Country}, {City}, {address}
               </p>
-            </div>
+            </div> */}
+
           </Col>
           <Col md={20} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
@@ -92,7 +117,13 @@ class Job extends React.Component {
               <div className="main-info-details">
                 <div className="job-sub-heading">المسمى الوظيفي</div>
                 <span className="main-info-desc">
-                  {job ? job.job_Name : ''}
+                  {job ? (
+                    job.job_Name
+                  ) : (
+                    <div className="spinner-loading">
+                      <Spin size="large" />
+                    </div>
+                  )}
                 </span>
                 <div className="job-sub-heading">وصف الوظيفة</div>
                 <span className="main-info-desc">
