@@ -138,7 +138,7 @@ class Header extends React.Component {
           <React.Fragment>
             <div className="user-header">
               <div className="user-right-side">
-                <img src={userLogo} alt="logo" style={{ width: '140px' }} />
+                <img src={userLogo} alt="logo" style={{ width: '200px' }} />
                 <Link to="/user/home">سيرتي الذاتية </Link>
                 <Link to="/user/jobs" style={{ position: 'relative' }}>
                   <span className="offers-notification">
