@@ -9,6 +9,7 @@ import {
   applyJob
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class Job extends React.Component {
   state = {
@@ -56,23 +57,26 @@ class Job extends React.Component {
         <Header />
         <Row className="job-section">
           <Col md={6} className="right-section">
-            <img src={imagePath} />
-            {/* <i
-              className="fa fa-picture-o"
-              aria-hidden="true"
-              style={{
-                fontSize: '45px',
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            ></i> */}
+            {imagePath ? (
+              <img src={imagePath} alt="user" className="picture" />
+            ) : (
+              <i
+                className="fa fa-user-circle-o"
+                aria-hidden="true"
+                style={{
+                  fontSize: '45px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              ></i>
+            )}
             <span className="job-owner-name">{compnayName}</span>
             <div className="job-owner-info">
               <p>
                 <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {info}
               </p>
-          
+
               <p>
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 {Country}, {City}, {address}
@@ -81,7 +85,7 @@ class Job extends React.Component {
           </Col>
           <Col md={20} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
-          
+
             <div>
               <div className="job-heading">
                 <i className="fa fa-suitcase" aria-hidden="true"></i>
@@ -122,8 +126,9 @@ class Job extends React.Component {
                   <div className="job-sub-heading">ساعات العمل اليومية</div>
                   <p className="main-info-desc">{job ? job.work_hours : ''}</p>
                   <div className="job-sub-heading">تاريخ بدء العمل</div>
-                  <p className="main-info-desc">{job ? job.startDate : ''}</p>
-                
+                  <p className="main-info-desc">
+                    {job ? moment(job.startDate).format('ll') : ''}
+                  </p>
                 </div>
               </div>
             </div>

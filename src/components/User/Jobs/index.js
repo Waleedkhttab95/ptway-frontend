@@ -82,27 +82,39 @@ class Jobs extends React.Component {
                               <span>تم التقدم للعمل</span>
                             ) : (
                               <React.Fragment>
-                                <span>لم يتم التقدم</span>
-                                <button
-                                  className="apply-job-btn"
-                                  onClick={() => this.applyJob(elm.jobAd._id)}
-                                >
-                                  التقدم للعمل
-                                </button>
+                                <p style={{ marginBottom: '15px' }}>
+                                  لم يتم التقدم
+                                </p>
+                                {elm.jobAd.isLock ? (
+                                  <p className="job-completed">
+                                    {' '}
+                                    لقد اكتمل العدد
+                                  </p>
+                                ) : (
+                                  <button
+                                    className="apply-job-btn"
+                                    onClick={() => this.applyJob(elm.jobAd._id)}
+                                  >
+                                    التقدم للعمل
+                                  </button>
+                                )}
                               </React.Fragment>
                             )}
                           </div>
-
-                          <button
-                            className="details-btn"
-                            onClick={() =>
-                              this.props.history.push(
-                                `/user/job/${elm.jobAd._id}`
-                              )
-                            }
-                          >
-                            التفاصيل
-                          </button>
+                          {elm.jobAd.isLock ? (
+                            <span></span>
+                          ) : (
+                            <button
+                              className="details-btn"
+                              onClick={() =>
+                                this.props.history.push(
+                                  `/user/job/${elm.jobAd._id}`
+                                )
+                              }
+                            >
+                              التفاصيل
+                            </button>
+                          )}
                         </div>
                       </div>
                     </Col>
