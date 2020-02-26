@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Col } from 'antd';
+import { Layout, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
 import './style.scss';
@@ -29,7 +29,8 @@ class User extends React.Component {
       spicifc_Major,
       languages,
       skills,
-      personal_Skills
+      personal_Skills,
+      profileComplete
       // hoppies
     } = this.props.user.userInfo;
     return (
@@ -103,7 +104,7 @@ class User extends React.Component {
                 </div>
                 <div className="user-profile-complete">
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
-                  <div className="completion-chart">%76</div>
+                  <div className="complete-chart">{profileComplete + '%'} </div>
                   <span className="u-p-desc">
                     لتحصل على أفضل الفرص عليك إكمال ملفك الشخصي
                   </span>
@@ -142,7 +143,15 @@ class User extends React.Component {
                       ></i>
                       نبذة عامة
                     </div>
-                    <div className="p-subject">{about}</div>
+                    <div className="p-subject">
+                      {about ? (
+                        about
+                      ) : (
+                        <div className="spinner-loading">
+                          <Spin size="large" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <br />
                   <br />
