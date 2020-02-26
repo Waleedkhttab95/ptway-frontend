@@ -20,6 +20,9 @@ class User extends React.Component {
       fullName,
       imagePath,
       country,
+      profile_views,
+      aplled_jobs,
+      email,
       // birthDate,
       work_Hours,
       city,
@@ -57,11 +60,11 @@ class User extends React.Component {
                 </div>
                 <div className="user-job">
                   <div>وظائف تقدمت عليها</div>
-                  <div className="user-stc-number">1,024</div>
+                  <div className="user-stc-number">{aplled_jobs}</div>
                 </div>
                 <div className="user-profile-seen">
                   <div>عدد مشاهدات الحساب</div>
-                  <div className="user-stc-number">7,213</div>
+                  <div className="user-stc-number">{profile_views}</div>
                 </div>
               </div>
 
@@ -77,7 +80,7 @@ class User extends React.Component {
                   <div className="details-user-info">
                     <span>
                       <i className="fa fa-envelope" aria-hidden="true"></i>
-                      yasser.qahtani@gmail.com
+                     {email}
                     </span>
                     <span>
                       <i className="fa fa-mobile" aria-hidden="true"></i>
@@ -117,11 +120,11 @@ class User extends React.Component {
                   </div>
                   <div className="user-job">
                     <div>وظائف تقدمت عليها</div>
-                    <div className="user-stc-number">1,024</div>
+                    <div className="user-stc-number">{aplled_jobs}</div>
                   </div>
                   <div className="user-profile-seen">
                     <div>عدد مشاهدات الحساب</div>
-                    <div className="user-stc-number">7,213</div>
+                    <div className="user-stc-number">{profile_views}</div>
                   </div>
                 </div>
 
