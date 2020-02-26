@@ -23,6 +23,7 @@ class User extends React.Component {
       profile_views,
       aplled_jobs,
       email,
+      userStatus,
       // birthDate,
       work_Hours,
       city,
@@ -83,7 +84,7 @@ class User extends React.Component {
                     )}
                     <span className="fullname">{fullName} </span>
 
-                    <span className="job-type">مصمم جرافيك</span>
+                    <span className="job-type">{userStatus}</span>
                   </div>
                   <div className="details-user-info">
                     <span>

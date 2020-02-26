@@ -65,7 +65,7 @@ class Jobs extends React.Component {
                             {elm.jobAd.job_Name}
                           </span>
                           <span className="job-owner-location">
-                            في مقر الشركة
+                          {elm.compName}
                           </span>
                           {/* <span className="job-owner-mobile">
                               الرقم : 0002163477555

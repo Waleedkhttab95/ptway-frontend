@@ -103,13 +103,7 @@ class AddNewAd extends React.Component {
               أخيراً قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته ضمن
               مشروع
             </p>
-            <div className="new-ad-details">
-              <label>تفاصيل الإعلان الوظيفي</label>
-              <TextArea
-                row={6}
-                onChange={this.handleChange}
-                name="jobDetails"
-              />
+            <div className="new-ad-details"> 
               <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
               <Select
                 className="project-selection selector"
@@ -150,7 +144,9 @@ class AddNewAd extends React.Component {
                     </Option>
                   </Select>
                   <label>الراتب</label>
-                  <Input onChange={this.handleChange} name="salary" />
+                  <Input onChange={this.handleChange}
+                    type="number"
+                  name="salary" />
                 </div>
                 <div className="left-side">
                   <label>عدد أيام العمل</label>
