@@ -32,8 +32,8 @@ class User extends React.Component {
       spicifc_Major,
       languages,
       skills,
-      personal_Skills,
-      hoppies
+      personal_Skills
+      // hoppies
     } = this.props.user.userInfo;
     return (
       <div>
@@ -72,7 +72,15 @@ class User extends React.Component {
                 <div className="personal-info">
                   <div className="user-pic-info">
                     {/* <i className="fa fa-user u-pic" aria-hidden="true"></i> */}
-                    <img src={imagePath} alt="user" className="u-pic" />
+                    {imagePath !== 'null' ? (
+                      <img src={imagePath} alt="user" className="u-pic" />
+                    ) : (
+                      <i
+                        className="fa fa-user-circle"
+                        aria-hidden="true"
+                        style={{ fontSize: '60px' }}
+                      ></i>
+                    )}
                     <span className="fullname">{fullName} </span>
 
                     <span className="job-type">مصمم جرافيك</span>
@@ -139,77 +147,75 @@ class User extends React.Component {
                     </div>
                     <div className="p-subject">{about}</div>
                   </div>
-                  {/* <div className="education-section">
-                  <div className="h-title e-title">الدراسات والشهادات</div>
-                  <div className="e-subject"></div>
-                </div> */}
-                  <div className="general-section">
-                    <div className="h-title g-title">
-                      <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
-                      معلومات عامة
+                  <br />
+                  <br />
+                  <div className="education-section">
+                    <div className="h-title e-title">الدراسات والشهادات</div>
+                    <div>
+                      <h3 className="sub-h-title">التخصص العام</h3>
+                      <p>{public_Major} </p>
                     </div>
-                    <div className="g-body">
-                      <div className="skills-hobbies">
-                        <div>
-                          <div className="sub-h-title">المهارات الشخصية</div>
-                          <div className="sub-desc">
-                            {_.isArray(personal_Skills)
-                              ? personal_Skills.map(skill => {
-                                  return skill;
-                                })
-                              : ''}
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="sub-h-title">التخصص العام</h3>
-                          <p>{public_Major} </p>
-                        </div>
-                        <div>
-                          <div className="sub-h-title">الهوايات</div>
-                          <div className="sub-desc">
-                            {_.isArray(hoppies)
-                              ? hoppies.map(hoppy => {
-                                  return hoppy;
-                                })
-                              : ''}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="tech-lang">
-                        <div>
-                          <div className="sub-h-title">المهارات العلمية</div>
-                          <div className="sub-desc">
-                            برمجة وميكانيك التحكم عن بعد
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="sub-h-title"> التخصص الدقيق</h3>
-                          <p>{spicifc_Major}</p>
-                        </div>
-                        <div>
-                          <div className="sub-h-title">اللغات</div>
-                          <div className="sub-desc">
-                            {_.isArray(languages)
-                              ? languages.map(language => {
-                                  return language;
-                                })
-                              : ''}
-                          </div>
-                        </div>
-                      </div>
+                    <div>
+                      <h3 className="sub-h-title"> التخصص الدقيق</h3>
+                      <p>{spicifc_Major}</p>
                     </div>
                   </div>
-
+                  <br />
+                  <br />
+                  <div className="general-section">
+                    <div className="h-title g-title">
+                      <i className="fa fa-language" aria-hidden="true"></i>
+                      اللغات
+                    </div>
+                    <div className="sub-desc">
+                      {_.isArray(languages)
+                        ? languages.map(language => {
+                            return (
+                              <span key={language}>
+                                {language} <br />
+                              </span>
+                            );
+                          })
+                        : ''}
+                    </div>
+                  </div>
+                  <br />
+                  <br />
                   <div className="user-general-skills">
-                    <div>
-                      <i className="fa fa-star-o" aria-hidden="true"></i>
-                      <div className="h-title sk-title"> مهارات عامة</div>
-                      <div className="sub-desc">
-                        {_.isArray(skills)
-                          ? skills.map(skill => {
-                              return skill;
-                            })
-                          : ''}
+                    <div style={{ width: '100%' }}>
+                      {/* <i className="fa fa-star-o" aria-hidden="true"></i> */}
+                      <div className="h-title sk-title"> المهارات</div>
+                      <div className="g-body">
+                        <div className="skills-hobbies">
+                          <div>
+                            <div className="sub-h-title">المهارات الشخصية</div>
+                            <div className="sub-desc">
+                              {_.isArray(personal_Skills)
+                                ? personal_Skills.map(skill => {
+                                    return (
+                                      <span key={skill}>
+                                        {skill} <br />
+                                      </span>
+                                    );
+                                  })
+                                : ''}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="sub-h-title">المهارات العامة</div>
+                            <div className="sub-desc">
+                              {_.isArray(skills)
+                                ? skills.map(skill => {
+                                    return (
+                                      <span key={skill}>
+                                        {skill} <br />
+                                      </span>
+                                    );
+                                  })
+                                : ''}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="sk-content"></div>

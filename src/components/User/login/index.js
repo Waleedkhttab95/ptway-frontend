@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import Footer from '../../Footer';
 import { connect } from 'react-redux';
@@ -28,6 +28,7 @@ class UserLoginForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { user } = this.props;
     return (
       <div className="user-login-container">
         <div className="form-container">
@@ -52,6 +53,9 @@ class UserLoginForm extends React.Component {
                 valuePropName: 'checked',
                 initialValue: true
               })(<Checkbox>تذكرني</Checkbox>)}
+              {user.error && (
+                <Alert message={user.error.response.data} type="error" />
+              )}
             </Form.Item>
             {/* <Form.Item className="check-user-existance"> */}
             <div className="login-btn-cont">
