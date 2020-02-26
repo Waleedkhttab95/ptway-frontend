@@ -346,6 +346,11 @@
     display: none;
 }
 
+svg.CircularProgressbar{
+    width: 150px;
+    margin-bottom: 20px;
+}
+
 @media (max-width:320px) {
 .user-home .user-profile .left-section .skills-general-info {
     width: auto;
