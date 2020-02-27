@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import { Layout, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import './style.scss';
 import _ from 'lodash';
 const { Content } = Layout;
@@ -107,11 +108,21 @@ class User extends React.Component {
                   </div>
                 </div>
                 <div className="user-profile-complete">
+                  <CircularProgressbar
+                    // value={profileComplete}
+                    text={profileComplete ? `${profileComplete}%` : ''}
+                    styles={buildStyles({
+                      rotation: 0.25,
+                      strokeLinecap: 'butt',
+                      textSize: '16px',
+                      pathTransitionDuration: 0.5,
+                      pathColor: `rgba(62, 152, 199, ${profileComplete / 100})`,
+                      textColor: '#009ad0',
+                      trailColor: '#009ad0',
+                      backgroundColor: '#3e98c7'
+                    })}
+                  />
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
-                  <div className="complete-chart">{profileComplete + '%'} </div>
-                  <span className="u-p-desc">
-                    لتحصل على أفضل الفرص عليك إكمال ملفك الشخصي
-                  </span>
                 </div>
                 <button
                   className="update-profile-btn"
