@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import { Layout, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import './style.scss';
 import _ from 'lodash';
 const { Content } = Layout;
@@ -35,7 +35,10 @@ class User extends React.Component {
       languages,
       skills,
       personal_Skills,
-      profileComplete
+      profileComplete,
+      profile_views,
+      aplled_jobs,
+      email
       // hoppies
     } = this.props.user.userInfo;
     return (
@@ -91,7 +94,8 @@ class User extends React.Component {
                   <div className="details-user-info">
                     <span>
                       <i className="fa fa-envelope" aria-hidden="true"></i>
-                     {email}
+
+                      {email}
                     </span>
                     <span>
                       <i className="fa fa-mobile" aria-hidden="true"></i>
@@ -108,20 +112,36 @@ class User extends React.Component {
                   </div>
                 </div>
                 <div className="user-profile-complete">
-                  <CircularProgressbar
-                    // value={profileComplete}
-                    text={profileComplete ? `${profileComplete}%` : ''}
-                    styles={buildStyles({
-                      rotation: 0.25,
-                      strokeLinecap: 'butt',
-                      textSize: '16px',
-                      pathTransitionDuration: 0.5,
-                      pathColor: `rgba(62, 152, 199, ${profileComplete / 100})`,
-                      textColor: '#009ad0',
-                      trailColor: '#009ad0',
-                      backgroundColor: '#3e98c7'
-                    })}
-                  />
+                  <div>
+                    <CircularProgressbar
+                      value={profileComplete}
+                      text={profileComplete ? `${profileComplete}%` : ''}
+                      styles={{
+                        path: {
+                          stroke: `rgba(62, 152, 199, ${profileComplete /
+                            100})`,
+                          strokeLinecap: 'butt',
+                          transition: 'stroke-dashoffset 0.5s ease 0s',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        trail: {
+                          stroke: '#d6d6d6',
+                          strokeLinecap: 'butt',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        text: {
+                          fill: '#009ad0',
+                          fontSize: '16px',
+                          textAlign: 'center'
+                        },
+                        background: {
+                          fill: '#3e98c7'
+                        }
+                      }}
+                    />
+                  </div>
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
                 </div>
                 <button
@@ -161,6 +181,8 @@ class User extends React.Component {
                     <div className="p-subject">
                       {about ? (
                         about
+                      ) : about == null ? (
+                        ''
                       ) : (
                         <div className="spinner-loading">
                           <Spin size="large" />
