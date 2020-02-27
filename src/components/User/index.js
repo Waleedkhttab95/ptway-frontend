@@ -33,7 +33,8 @@ class User extends React.Component {
       personal_Skills,
       profileComplete,
       profile_views,
-      aplled_jobs
+      aplled_jobs,
+      email
       // hoppies
     } = this.props.user.userInfo;
     return (
@@ -89,7 +90,7 @@ class User extends React.Component {
                   <div className="details-user-info">
                     <span>
                       <i className="fa fa-envelope" aria-hidden="true"></i>
-                      yasser.qahtani@gmail.com
+                      {email}
                     </span>
                     <span>
                       <i className="fa fa-mobile" aria-hidden="true"></i>
