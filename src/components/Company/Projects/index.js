@@ -199,7 +199,7 @@ class Projects extends React.Component {
               )}
             </Collapse>
             <br />
-            {!loading && moreAds.totalPages != count && (
+            {!loading && moreAds.totalPages !== count && count !== 1 && (
               <button
                 className="more-projects-offers-btn"
                 onClick={this.displayMore}
