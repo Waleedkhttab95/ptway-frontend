@@ -202,14 +202,22 @@ class UpdateCompanyProfile extends React.Component {
                         style={{ marginLeft: '20px' }}
                         onChange={this.handleInputChange}
                         name="personal_web"
-                        placeholder={info ? info.personal_web : ''}
+                        placeholder={
+                          info && info.personal_web !== 'undefined'
+                            ? info.personal_web
+                            : ''
+                        }
                       />
                       <h5 className="title-field">رابط linkedin</h5>
                       <Input
                         className="input-field"
                         onChange={this.handleInputChange}
                         name="linkedin"
-                        placeholder={info ? info.linkedin : ''}
+                        placeholder={
+                          info && info.linkedin !== 'undefined'
+                            ? info.linkedin
+                            : ''
+                        }
                       />
                     </div>
                     <div>
@@ -219,14 +227,22 @@ class UpdateCompanyProfile extends React.Component {
                         style={{ marginLeft: '20px' }}
                         onChange={this.handleInputChange}
                         name="facebook"
-                        placeholder={info ? info.facebook : ''}
+                        placeholder={
+                          info && info.facebook !== 'undefined'
+                            ? info.facebook
+                            : ''
+                        }
                       />
                       <h5 className="title-field">رابط تويتر</h5>
                       <Input
                         className="input-field"
                         onChange={this.handleInputChange}
                         name="twitter"
-                        placeholder={info ? info.twitter : ''}
+                        placeholder={
+                          info && info.twitter !== 'undefined'
+                            ? info.twitter
+                            : ''
+                        }
                       />
                     </div>
                   </div>
