@@ -77,8 +77,9 @@ class UpdateProfile extends React.Component {
       file: info.imagePath ? info.imagePath : '',
       per_skill: info.personal_Skills ? info.personal_Skills : '',
       skill: info.skills ? info.skills : '',
-      jobCategory: info.jobCategory ? info.jobCategory.jobName : '',
-      userStatus: info.userStatus ? info.userStatus : ''
+      jobCategory: info.jobCategory ? info.jobCategory[0]._id : '',
+      userStatus: info.userStatus ? info.userStatus : '',
+      availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
   }
   handleMajorChange = async (value, option) => {
@@ -173,7 +174,8 @@ class UpdateProfile extends React.Component {
       file,
       education_level,
       jobCategory,
-      userStatus
+      userStatus,
+      availabilityStatus
     } = this.state;
 
     const cvMsg = await updateCV({
@@ -200,7 +202,8 @@ class UpdateProfile extends React.Component {
       twitter,
       file,
       jobCategory,
-      userStatus
+      userStatus,
+      availabilityStatus
     });
     if (cvMsg) {
       this.setState({
@@ -239,6 +242,7 @@ class UpdateProfile extends React.Component {
     ];
 
     const status = ['متفرغ', 'موظف', 'طالب'];
+    const availabilityStatus = ['صباحي', 'مسائي'];
     return (
       <div className="user-container">
         <Header />
@@ -296,7 +300,7 @@ class UpdateProfile extends React.Component {
                         <Select
                           className="input-field"
                           placeholder={
-                            userInfo ? userInfo.jobCategory.jobName : ''
+                            userInfo ? userInfo.jobCategory[0].jobName : ''
                           }
                           onChange={this.handleChange}
                         >
@@ -309,6 +313,28 @@ class UpdateProfile extends React.Component {
                                     name="jobCategory"
                                   >
                                     {elm.jobName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                        <h5 className="title-field">الأوقات المتاحة</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={
+                            userInfo ? userInfo.availabilityStatus : ''
+                          }
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(availabilityStatus)
+                            ? availabilityStatus.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm}
+                                    key={elm}
+                                    name="availabilityStatus"
+                                  >
+                                    {elm}
                                   </Option>
                                 );
                               })
