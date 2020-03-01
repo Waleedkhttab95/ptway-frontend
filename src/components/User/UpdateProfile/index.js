@@ -21,7 +21,8 @@ const {
   getSubMajor,
   getUniversity,
   getinformation,
-  updateCV
+  updateCV,
+  jobCategories
 } = cvServices;
 
 class UpdateProfile extends React.Component {
@@ -41,6 +42,7 @@ class UpdateProfile extends React.Component {
     const universities = await getUniversity();
     const countries = await allCountries();
     const cities = await allCities();
+    const categories = await jobCategories();
 
     const info = userInfo.info;
     console.log('infoinfo', info);
@@ -52,6 +54,7 @@ class UpdateProfile extends React.Component {
       userInfo: info,
       countries,
       cities,
+      categories,
       fullName: info.fullName,
       gender: info.gender,
       mobile: info.mobile ? info.mobile : '',
@@ -166,7 +169,8 @@ class UpdateProfile extends React.Component {
       linkedin,
       twitter,
       file,
-      education_level
+      education_level,
+      jobCategory
     } = this.state;
 
     const cvMsg = await updateCV({
@@ -191,7 +195,8 @@ class UpdateProfile extends React.Component {
       facebook,
       linkedin,
       twitter,
-      file
+      file,
+      jobCategory
     });
     if (cvMsg) {
       this.setState({
@@ -209,6 +214,7 @@ class UpdateProfile extends React.Component {
       userInfo,
       countries,
       cities,
+      categories,
       education_levels
     } = this.state;
     console.log('state', this.state);
@@ -281,6 +287,26 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleInputChange}
                           name="mobile"
                         />
+                        <h5 className="title-field">العنوان الوظيفي</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.jobCategory : ''}
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(categories)
+                            ? categories.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm.jobName}
+                                    key={elm._id}
+                                    name="jobCategory"
+                                  >
+                                    {elm.jobName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
                       </div>
                       <div>
                         <h5 className="title-field">تاريخ الميلاد</h5>

@@ -44,6 +44,7 @@ const CV = {
       linkedin,
       twitter,
       file,
+      jobCategory,
       education_level
     } = params;
 
@@ -79,7 +80,7 @@ const CV = {
     formData.append('mobile', mobile);
     formData.append('birthDate', birthDate);
     formData.append('social_Status', social_Status);
-    // formData.append('languages', language);
+    formData.append('jobCategory', jobCategory);
     formData.append('city', city);
     formData.append('country', country);
     formData.append('public_Major', public_major);
@@ -99,7 +100,9 @@ const CV = {
 
       return result;
     });
-  }
+  },
+  jobCategories: () =>
+    baseRequest.get('/get/allJobCategory').then(result => result)
 };
 
 export default CV;
