@@ -45,7 +45,8 @@ const CV = {
       twitter,
       file,
       jobCategory,
-      education_level
+      education_level,
+      userStatus
     } = params;
 
     let formData = new FormData();
@@ -94,6 +95,7 @@ const CV = {
     formData.append('facebook', facebook);
     formData.append('linkedin', linkedin);
     formData.append('twitter', twitter);
+    formData.append('userStatus', userStatus);
 
     return baseRequest.put('/put/userinfo', formData).then(result => {
       console.log('result', result);
