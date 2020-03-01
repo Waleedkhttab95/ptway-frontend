@@ -21,7 +21,8 @@ const {
   getSubMajor,
   getUniversity,
   getinformation,
-  updateCV
+  updateCV,
+  jobCategories
 } = cvServices;
 
 class UpdateProfile extends React.Component {
@@ -41,6 +42,7 @@ class UpdateProfile extends React.Component {
     const universities = await getUniversity();
     const countries = await allCountries();
     const cities = await allCities();
+    const categories = await jobCategories();
 
     const info = userInfo.info;
     console.log('infoinfo', info);
@@ -52,6 +54,7 @@ class UpdateProfile extends React.Component {
       userInfo: info,
       countries,
       cities,
+      categories,
       fullName: info.fullName,
       gender: info.gender,
       mobile: info.mobile ? info.mobile : '',
@@ -73,7 +76,10 @@ class UpdateProfile extends React.Component {
       twitter: info.twitter ? info.twitter : '',
       file: info.imagePath ? info.imagePath : '',
       per_skill: info.personal_Skills ? info.personal_Skills : '',
-      skill: info.skills ? info.skills : ''
+      skill: info.skills ? info.skills : '',
+      jobCategory: info.jobCategory ? info.jobCategory[0]._id : '',
+      userStatus: info.userStatus ? info.userStatus : '',
+      availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
   }
   handleMajorChange = async (value, option) => {
@@ -166,7 +172,10 @@ class UpdateProfile extends React.Component {
       linkedin,
       twitter,
       file,
-      education_level
+      education_level,
+      jobCategory,
+      userStatus,
+      availabilityStatus
     } = this.state;
 
     const cvMsg = await updateCV({
@@ -191,7 +200,10 @@ class UpdateProfile extends React.Component {
       facebook,
       linkedin,
       twitter,
-      file
+      file,
+      jobCategory,
+      userStatus,
+      availabilityStatus
     });
     if (cvMsg) {
       this.setState({
@@ -209,6 +221,7 @@ class UpdateProfile extends React.Component {
       userInfo,
       countries,
       cities,
+      categories,
       education_levels
     } = this.state;
     console.log('state', this.state);
@@ -228,6 +241,8 @@ class UpdateProfile extends React.Component {
       { value: 'Undergraduate', viewValue: 'خريج' }
     ];
 
+    const status = ['متفرغ', 'موظف', 'طالب'];
+    const availabilityStatus = ['صباحي', 'مسائي'];
     return (
       <div className="user-container">
         <Header />
@@ -281,6 +296,50 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleInputChange}
                           name="mobile"
                         />
+                        <h5 className="title-field">العنوان الوظيفي</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={
+                            userInfo ? userInfo.jobCategory[0].jobName : ''
+                          }
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(categories)
+                            ? categories.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm.jobName}
+                                    key={elm._id}
+                                    name="jobCategory"
+                                  >
+                                    {elm.jobName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                        <h5 className="title-field">الأوقات المتاحة</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={
+                            userInfo ? userInfo.availabilityStatus : ''
+                          }
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(availabilityStatus)
+                            ? availabilityStatus.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm}
+                                    key={elm}
+                                    name="availabilityStatus"
+                                  >
+                                    {elm}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
                       </div>
                       <div>
                         <h5 className="title-field">تاريخ الميلاد</h5>
@@ -336,6 +395,26 @@ class UpdateProfile extends React.Component {
                           <Option name="language" value="france" key="الفرنسية">
                             الفرنسية{' '}
                           </Option>
+                        </Select>
+                        <h5 className="title-field">حالة المستخدم</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.userStatus : ''}
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(status)
+                            ? status.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm}
+                                    key={elm}
+                                    name="userStatus"
+                                  >
+                                    {elm}
+                                  </Option>
+                                );
+                              })
+                            : ''}
                         </Select>
                       </div>
                     </div>

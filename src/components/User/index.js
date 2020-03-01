@@ -175,17 +175,7 @@ class User extends React.Component {
                       ></i>
                       نبذة عامة
                     </div>
-                    <div className="p-subject">
-                      {about ? (
-                        about
-                      ) : about == null ? (
-                        ''
-                      ) : (
-                        <div className="spinner-loading">
-                          <Spin size="large" />
-                        </div>
-                      )}
-                    </div>
+                    <div className="p-subject">{about}</div>
                   </div>
                   <br />
                   <br />
@@ -193,7 +183,15 @@ class User extends React.Component {
                     <div className="h-title e-title">الدراسات والشهادات</div>
                     <div>
                       <h3 className="sub-h-title">التخصص العام</h3>
-                      <p>{public_Major} </p>
+                      <p>
+                        {public_Major ? (
+                          public_Major
+                        ) : (
+                          <div className="spinner-loading">
+                            <Spin size="large" />
+                          </div>
+                        )}{' '}
+                      </p>
                     </div>
                     <div>
                       <h3 className="sub-h-title"> التخصص الدقيق</h3>

@@ -44,7 +44,10 @@ const CV = {
       linkedin,
       twitter,
       file,
-      education_level
+      jobCategory,
+      education_level,
+      userStatus,
+      availabilityStatus
     } = params;
 
     let formData = new FormData();
@@ -79,7 +82,7 @@ const CV = {
     formData.append('mobile', mobile);
     formData.append('birthDate', birthDate);
     formData.append('social_Status', social_Status);
-    // formData.append('languages', language);
+    formData.append('jobCategory', jobCategory);
     formData.append('city', city);
     formData.append('country', country);
     formData.append('public_Major', public_major);
@@ -93,13 +96,17 @@ const CV = {
     formData.append('facebook', facebook);
     formData.append('linkedin', linkedin);
     formData.append('twitter', twitter);
+    formData.append('userStatus', userStatus);
+    formData.append('availabilityStatus', availabilityStatus);
 
     return baseRequest.put('/put/userinfo', formData).then(result => {
       console.log('result', result);
 
       return result;
     });
-  }
+  },
+  jobCategories: () =>
+    baseRequest.get('/get/allJobCategory').then(result => result)
 };
 
 export default CV;

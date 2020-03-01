@@ -125,13 +125,15 @@ class Jobs extends React.Component {
                   <Spin size="large" />
                 </div>
               )}
+              {/* {!this.state.loading && (
+                <button className="display-more">عرض المزيد</button>
+              )} */}
             </Row>
-            {!this.state.loading && (
-              <button className="display-more">عرض المزيد</button>
-            )}
           </div>
         </div>
-        <Footer />
+        <div style={{ position: 'absolute', width: '100%', bottom: '0' }}>
+          <Footer />
+        </div>
       </div>
     );
   }
