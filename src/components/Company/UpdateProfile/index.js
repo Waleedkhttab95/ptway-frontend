@@ -39,10 +39,11 @@ class UpdateCompanyProfile extends React.Component {
         vision: info ? info.vision : '',
         message: info ? info.message : '',
         address: info ? info.address : '',
-        personal_web: info ? info.personal_web : '',
-        facebook: info ? info.facebook : '',
-        linkedin: info ? info.linkedin : '',
-        twitter: info ? info.twitter : '',
+        personal_web:
+          info && info.personal_web !== 'undefined' ? info.personal_web : '',
+        facebook: info && info.facebook !== 'undefined' ? info.facebook : '',
+        linkedin: info && info.linkedin !== 'undefined' ? info.linkedin : '',
+        twitter: info && info.twitter !== 'undefined' ? info.twitter : '',
         image: info ? info.imagePath : ''
       });
     }
