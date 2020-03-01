@@ -10,11 +10,9 @@ import {
   companyStatistic,
   companyAds
 } from '../../store/actions/company/home';
-// import home from '../../services/company/home';
 import _ from 'lodash';
 import moment from 'moment';
 const { Content } = Layout;
-// const { getMoreAds } = home;
 
 class CompanyHome extends React.Component {
   state = {
@@ -103,6 +101,8 @@ class CompanyHome extends React.Component {
                       </div>
                     );
                   })
+                ) : _.isObject(company) ? (
+                  ''
                 ) : (
                   <div className="spinner-loading">
                     <Spin size="large" />
