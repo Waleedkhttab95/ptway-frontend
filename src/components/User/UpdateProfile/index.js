@@ -77,7 +77,7 @@ class UpdateProfile extends React.Component {
       file: info.imagePath ? info.imagePath : '',
       per_skill: info.personal_Skills ? info.personal_Skills : '',
       skill: info.skills ? info.skills : '',
-      jobCategory: info.jobCategory ? info.jobCategory[0]._id : '',
+      jobCategory: _.isArray(info.jobCategory) ? info.jobCategory[0]._id : null,
       userStatus: info.userStatus ? info.userStatus : '',
       availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
