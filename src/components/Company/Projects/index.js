@@ -115,7 +115,7 @@ class Projects extends React.Component {
         <Header />
         <div className="company-container">
           <div className="company-projects">
-            <FilterAndSearch />
+            <FilterAndSearch allProjects={allProjects} />
             <div className="projects-header">
               <h2>اسم المشروع</h2>
               <h2>عدد العروض الوظيفية</h2>

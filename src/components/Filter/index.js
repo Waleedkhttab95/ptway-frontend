@@ -1,17 +1,34 @@
 import React from 'react';
 import './style.scss';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import _ from 'lodash';
 
-const FilterAndSearch = () => {
+const FilterAndSearch = ({ allProjects }) => {
+  console.log('allProjects', allProjects);
   return (
     <div className="jobs-actions">
       <div className="action-right-side">
-        {/* <div className="grid-option">
-          <i className="fa fa-th-large" aria-hidden="true"></i>
-        </div>
-        <i className="fa fa-th-list list-option" aria-hidden="true"></i> */}
         <div style={{ position: 'relative' }}>
-          <input className="jobs-search" placeholder="بحث" />
-          <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i>
+          <Autocomplete
+            options={
+              _.isArray(allProjects.proj)
+                ? allProjects.proj.map(elm => elm.projectName)
+                : ''
+            }
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="بحث"
+                margin="normal"
+                variant="outlined"
+                InputProps={{ ...params.InputProps, type: 'search' }}
+              />
+            )}
+          />
+
+          {/* <input className="jobs-search" placeholder="بحث" />
+          <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i> */}
         </div>
       </div>
       <div className="action-left-side">
