@@ -301,7 +301,9 @@ class UpdateProfile extends React.Component {
                         <Select
                           className="input-field"
                           placeholder={
-                            userInfo ? userInfo.jobCategory[0].jobName : ''
+                            userInfo && userInfo.jobCategory.length !== 0
+                              ? userInfo.jobCategory[0].jobName
+                              : ''
                           }
                           onChange={this.handleChange}
                         >
