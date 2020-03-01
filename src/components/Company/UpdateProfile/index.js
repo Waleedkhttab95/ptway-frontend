@@ -65,6 +65,8 @@ class UpdateCompanyProfile extends React.Component {
 
   updateProfile = async () => {
     await updateCompanyProfile(this.state);
+    const { history } = this.props;
+    history.push('/company/setting');
   };
   render() {
     const { countries, cities } = this.state;
