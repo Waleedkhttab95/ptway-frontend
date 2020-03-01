@@ -35,10 +35,7 @@ class User extends React.Component {
       languages,
       skills,
       personal_Skills,
-      profileComplete,
-      profile_views,
-      aplled_jobs,
-      email
+      profileComplete
       // hoppies
     } = this.props.user.userInfo;
     return (
