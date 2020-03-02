@@ -1,39 +1,23 @@
 import React from 'react';
 import './style.scss';
 import { Select } from 'antd';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import _ from 'lodash';
 
 const options = [
   { key: 'new', value: 'الأحدث' },
   { key: 'old', value: 'الأقدم' }
 ];
-const FilterAndSearch = ({ allProjects, handleChange, handleFilter }) => {
-  console.log('allProjects', allProjects);
+const FilterAndSearch = ({ handleSearch, handleFilter, handleChange }) => {
   return (
     <div className="jobs-actions">
       <div className="action-right-side">
         <div style={{ position: 'relative' }}>
-          <Autocomplete
-            options={
-              _.isArray(allProjects.proj)
-                ? allProjects.proj.map(elm => elm.projectName)
-                : ''
-            }
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="بحث"
-                margin="normal"
-                variant="outlined"
-                InputProps={{ ...params.InputProps, type: 'search' }}
-              />
-            )}
+          <input
+            className="jobs-search"
+            placeholder="بحث"
+            onChange={handleSearch}
           />
-
-          {/* <input className="jobs-search" placeholder="بحث" />
-          <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i> */}
+          <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i>
         </div>
       </div>
       <div className="action-left-side">
