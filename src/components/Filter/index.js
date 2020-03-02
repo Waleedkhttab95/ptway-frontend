@@ -1,10 +1,15 @@
 import React from 'react';
 import './style.scss';
+import { Select } from 'antd';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import _ from 'lodash';
 
-const FilterAndSearch = ({ allProjects }) => {
+const options = [
+  { key: 'new', value: 'الأحدث' },
+  { key: 'old', value: 'الأقدم' }
+];
+const FilterAndSearch = ({ allProjects, handleChange, handleFilter }) => {
   console.log('allProjects', allProjects);
   return (
     <div className="jobs-actions">
@@ -33,8 +38,28 @@ const FilterAndSearch = ({ allProjects }) => {
       </div>
       <div className="action-left-side">
         <span className="filter-title">الترتيب</span>
-        <input placeholder="الاحدث" className="filter-options" />
-        <button className="filter-btn">فلترة</button>
+        <Select
+          className=" filter-options"
+          placeholder="الأحدث"
+          onChange={handleChange}
+        >
+          {_.isArray(options)
+            ? options.map(elm => {
+                return (
+                  <Select.Option
+                    value={elm.value}
+                    key={elm.key}
+                    name="filterOption"
+                  >
+                    {elm.value}
+                  </Select.Option>
+                );
+              })
+            : ''}
+        </Select>
+        <button className="filter-btn" onClick={handleFilter}>
+          فلترة
+        </button>
       </div>
     </div>
   );

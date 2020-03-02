@@ -34,6 +34,8 @@ class Projects extends React.Component {
     const allProjects = await getProjects();
     this.setState({
       allProjects,
+      JobAdsCount: allProjects.JobAdsCount,
+      totalPages: allProjects.totalPages,
       loading: false
     });
   }
@@ -77,6 +79,11 @@ class Projects extends React.Component {
       [name]: value
     });
   };
+  handleSelectChange = (value, option) => {
+    this.setState({
+      [option.props.name]: option.key
+    });
+  };
   updateProject = async id => {
     const { projectName, projectDescription } = this.state;
     await updateProject({
@@ -102,6 +109,17 @@ class Projects extends React.Component {
     });
   };
 
+  handleFilter = () => {
+    const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
+    const sortedProjects = allProjects.proj.sort((a, b) => {
+      if (filterOption === 'new')
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+    this.setState({
+      allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+    });
+  };
   render() {
     const {
       expandIconPosition,
@@ -115,7 +133,11 @@ class Projects extends React.Component {
         <Header />
         <div className="company-container">
           <div className="company-projects">
-            <FilterAndSearch allProjects={allProjects} />
+            <FilterAndSearch
+              allProjects={allProjects}
+              handleChange={this.handleSelectChange}
+              handleFilter={this.handleFilter}
+            />
             <div className="projects-header">
               <h2>اسم المشروع</h2>
               <h2>عدد العروض الوظيفية</h2>
