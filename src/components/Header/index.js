@@ -263,6 +263,8 @@ class Header extends React.Component {
                 <img src={userLogo} alt="logo" style={{ width: '200px' }} />
                 <Link to="/company/home">الرئيسية </Link>
                 <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+
+                {/* <Link to="/company/applicants">المتقدمين</Link> */}
               </div>
               <div className="user-left-side">
                 <Button
