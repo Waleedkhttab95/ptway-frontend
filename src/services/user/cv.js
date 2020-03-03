@@ -75,6 +75,13 @@ const CV = {
     } else {
       formData.append('languages', language);
     }
+    if (jobCategory != null) {
+      for (var i = 0; i < jobCategory.length; i++) {
+        formData.append('jobCategory[]', jobCategory[i]);
+      }
+    } else {
+      formData.append('jobCategory', jobCategory);
+    }
 
     formData.append('image', file);
     formData.append('fullName', fullName);
@@ -82,7 +89,6 @@ const CV = {
     formData.append('mobile', mobile);
     formData.append('birthDate', birthDate);
     formData.append('social_Status', social_Status);
-    formData.append('jobCategory', jobCategory);
     formData.append('city', city);
     formData.append('country', country);
     formData.append('public_Major', public_major);
