@@ -27,7 +27,10 @@ class Projects extends React.Component {
     allProjects: '',
     count: 1,
     moreAds: '',
-    loading: true
+    loading: true,
+    activeOption: 0,
+    showOptions: false,
+    userInput: ''
   };
 
   async componentDidMount() {
@@ -36,7 +39,8 @@ class Projects extends React.Component {
       allProjects,
       JobAdsCount: allProjects.JobAdsCount,
       totalPages: allProjects.totalPages,
-      loading: false
+      loading: false,
+      projects: allProjects
     });
   }
 
@@ -99,14 +103,21 @@ class Projects extends React.Component {
     let count = this.state.count + 1;
     const { allProjects } = this.state;
     const moreAds = await getMoreAds(count);
-    this.setState({
-      allProjects: {
-        proj: allProjects.proj.concat(moreAds.proj),
-        JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
+    this.setState(
+      {
+        allProjects: {
+          proj: allProjects.proj.concat(moreAds.proj),
+          JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
+        },
+        moreAds,
+        count
       },
-      moreAds,
-      count
-    });
+      () => {
+        this.setState({
+          projects: this.state.allProjects
+        });
+      }
+    );
   };
 
   handleFilter = () => {
@@ -120,6 +131,23 @@ class Projects extends React.Component {
       allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
     });
   };
+
+  handleSearch = e => {
+    const { projects, JobAdsCount, totalPages } = this.state;
+    const { value } = e.target;
+
+    const filteredOptions = projects.proj.filter(
+      elm => elm.projectName.toLowerCase().indexOf(value.toLowerCase()) > -1
+    );
+
+    this.setState({
+      allProjects: { proj: filteredOptions, JobAdsCount, totalPages },
+      activeOption: 0,
+      showOptions: true,
+      userInput: value
+    });
+  };
+
   render() {
     const {
       expandIconPosition,
@@ -136,6 +164,7 @@ class Projects extends React.Component {
             <FilterAndSearch
               allProjects={allProjects}
               handleChange={this.handleSelectChange}
+              handleSearch={this.handleSearch}
               handleFilter={this.handleFilter}
             />
             <div className="projects-header">
@@ -220,8 +249,8 @@ class Projects extends React.Component {
                 </div>
               )}
             </Collapse>
-            <br />
-            {!loading && moreAds.totalPages !== count && count !== 1 && (
+            {/* <br /> */}
+            {!loading && moreAds.totalPages !== count && (
               <button
                 className="more-projects-offers-btn"
                 onClick={this.displayMore}
