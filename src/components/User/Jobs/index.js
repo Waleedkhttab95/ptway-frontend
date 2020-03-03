@@ -91,12 +91,13 @@ class Jobs extends React.Component {
                                     لقد اكتمل العدد
                                   </p>
                                 ) : (
-                                  <button
-                                    className="apply-job-btn"
-                                    onClick={() => this.applyJob(elm.jobAd._id)}
-                                  >
-                                    التقدم للعمل
-                                  </button>
+                                  ''
+                                  // <button
+                                  //   className="apply-job-btn"
+                                  //   onClick={() => this.applyJob(elm.jobAd._id)}
+                                  // >
+                                  //   التقدم للعمل
+                                  // </button>
                                 )}
                               </React.Fragment>
                             )}
