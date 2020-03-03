@@ -8,6 +8,7 @@ const companyProfile = {
       info: params.info,
       vision: params.vision,
       message: params.message,
+      phone: params.mobile,
       city: params.city,
       personal_web: params.personal_web,
       facebook: params.facebook,

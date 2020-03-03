@@ -99,6 +99,12 @@ class CompanyProfile extends React.Component {
                         </Select>
                       </div>
                     </div>
+                    <h5 className="title-field">رقم الهاتف </h5>
+                    <Input
+                      className="input-field"
+                      onChange={this.handleInputChange}
+                      name="mobile"
+                    />
                     <h5 className="title-field">العنوان </h5>
                     <TextArea
                       rows={4}
