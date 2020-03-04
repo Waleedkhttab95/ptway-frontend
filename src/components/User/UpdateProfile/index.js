@@ -78,7 +78,7 @@ class UpdateProfile extends React.Component {
       per_skill: info.personal_Skills ? info.personal_Skills : '',
       skill: info.skills ? info.skills : '',
       jobCategory:
-        info.jobCategory.length !== 0 ? info.jobCategory[0]._id : null,
+        info.jobCategory.length !== 0 ? info.jobCategory.map(e => e._id) : null,
       userStatus: info.userStatus ? info.userStatus : '',
       availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
@@ -111,6 +111,12 @@ class UpdateProfile extends React.Component {
     });
   };
 
+  handleCategoryChange = (value, option) => {
+    const ids = option.map(elm => elm.key);
+    this.setState({
+      jobCategory: ids
+    });
+  };
   handleLanguageChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -300,12 +306,13 @@ class UpdateProfile extends React.Component {
                         <h5 className="title-field">العنوان الوظيفي</h5>
                         <Select
                           className="input-field"
-                          placeholder={
-                            userInfo && userInfo.jobCategory.length !== 0
-                              ? userInfo.jobCategory[0].jobName
-                              : ''
+                          defaultValue={
+                            userInfo
+                              ? userInfo.jobCategory.map(e => e.jobName)
+                              : []
                           }
-                          onChange={this.handleChange}
+                          onChange={this.handleCategoryChange}
+                          mode="multiple"
                         >
                           {_.isArray(categories)
                             ? categories.map(elm => {

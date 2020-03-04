@@ -7,14 +7,18 @@ const SideMenu = props => (
       className="project-options"
       // style= {props.deleteModal ?{ display:'none'} : ''}
     >
-      <Menu.Item key="1" onClick={props.lockJobModal}>
-        <i
-          className="fa fa-pause"
-          aria-hidden="true"
-          style={{ marginLeft: '5px', color: '#3b96d9' }}
-        ></i>
-        إيقاف
-      </Menu.Item>
+      {!props.isLock ? (
+        <Menu.Item key="1" onClick={props.lockJobModal}>
+          <i
+            className="fa fa-pause"
+            aria-hidden="true"
+            style={{ marginLeft: '5px', color: '#3b96d9' }}
+          ></i>
+          إيقاف
+        </Menu.Item>
+      ) : (
+        <Menu.Item key="1">تم قفل الاعلان</Menu.Item>
+      )}
 
       <Menu.Item key="2" onClick={props.deleteJob}>
         <i

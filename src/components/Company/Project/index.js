@@ -107,6 +107,7 @@ class Project extends React.Component {
                     overlay={
                       <SideMenu
                         {...this.state}
+                        {...elm}
                         deleteJob={this.deleteJob}
                         deleteConfirmation={() =>
                           this.deleteConfirmation(elm._id)
