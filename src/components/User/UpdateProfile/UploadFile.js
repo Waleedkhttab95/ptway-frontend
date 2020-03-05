@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { Form } from 'semantic-ui-react';
-// import "./App.css";
 
 class Avatar extends PureComponent {
   state = {
     src: null,
+    uploaded: false,
     crop: {
       unit: '%',
       width: 30,
@@ -18,14 +18,20 @@ class Avatar extends PureComponent {
   handleFile = e => {
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ src: fileReader.result });
+      this.setState({ src: fileReader.result, uploaded: false });
     };
     fileReader.readAsDataURL(e.target.files[0]);
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.getImage && this.props.getImage(this.state.croppedImage);
+    (await this.props.getImage) && this.props.getImage(this.state.croppedImage);
+    setTimeout(
+      function() {
+        this.setState({ uploaded: true });
+      }.bind(this),
+      1000
+    );
   };
   onImageLoaded = image => {
     this.imageRef = image;
@@ -85,18 +91,19 @@ class Avatar extends PureComponent {
   }
 
   render() {
-    const { crop, profile_pic, src } = this.state;
-
+    const { crop, profile_pic, src, uploaded } = this.state;
     return (
       <Form onSubmit={this.handleSubmit} style={{ maxWidth: '50%' }}>
         <label htmlFor="profile_pic"></label>
         <input
           type="file"
           id="profile_pic"
+          className="custom-file-input"
           value={profile_pic}
           onChange={this.handleFile}
+          accept="image/*"
         />
-        {src && (
+        {src && !uploaded && (
           <ReactCrop
             src={src}
             crop={crop}
@@ -105,7 +112,11 @@ class Avatar extends PureComponent {
             onChange={this.onCropChange}
           />
         )}
-        {src && <button>save</button>}
+        {src && !uploaded && (
+          <button className="save-changes-btn" style={{ marginTop: '20px' }}>
+            حفظ
+          </button>
+        )}
       </Form>
     );
   }
