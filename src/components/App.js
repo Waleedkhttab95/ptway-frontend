@@ -41,6 +41,9 @@ import CompSetting from './Company/Setting';
 import UpdateCompanyProfile from './Company/UpdateProfile';
 import AcceptedApplicant from './Company/AcceptedApplicants';
 import CompanyProfile from './Company/Profile';
+import ResetPassword from './User/login/resetPassword';
+import ResetCompanyPassword from './Company/Login/ResetPassword';
+import ResetPasswordPage from './User/login/newPassword';
 const App = () => {
   return (
     <div className="App">
@@ -184,6 +187,13 @@ const App = () => {
             path="/company/profile"
             component={CompanyProfile}
           />
+          <Route exact path="/user/resetPassword" component={ResetPassword} />
+          <Route
+            exact
+            path="/company/resetPassword"
+            component={ResetCompanyPassword}
+          />
+          <Route exact path={'/resetPassword'} component={ResetPasswordPage} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

@@ -62,6 +62,22 @@ const user = (state = initialUser, action) => {
         isAdmin: false,
         loggedIn: true
       };
+    case 'USER_RESET_PASSWORD_SUCCESS':
+      return {
+        ...action.payload
+      };
+    case 'USER_RESET_PASSWORD_ERROR':
+      return {
+        ...action.payload
+      };
+    case 'COMPANY_RESET_PASSWORD_SUCCESS':
+      return {
+        ...action.payload
+      };
+    case 'COMPANY_RESET_PASSWORD_ERROR':
+      return {
+        ...action.payload
+      };
     case 'USER_LOGIN_ERROR':
       return {
         // ...state,

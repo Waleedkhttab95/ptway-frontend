@@ -53,7 +53,23 @@ const userServices = {
     baseRequest.post('/com_login', {
       email: params.email,
       password: params.password
+    }),
+  resetPassword: params =>
+    baseRequest.post('/resetPassword', {
+      email: params.email
+    }),
+  setNewPassword: params =>
+    baseRequest.put(`/reset?id=${params.id}`, {
+      newPassword: params.password
+    }),
+  resetCompanyPassword: params =>
+    baseRequest.post('/com_resetPassword', {
+      email: params.email
     })
+  // setNewCompanyPassword: params =>
+  //   baseRequest.put(`/reset?id=${params.id}`, {
+  //     newPassword: params.password
+  //   })
 };
 
 export default userServices;
