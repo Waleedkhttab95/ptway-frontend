@@ -113,7 +113,11 @@ const App = () => {
             component={AdminPanel(CompanySetting)}
           />
           <Route exact path="/user/signup" component={UserRegistration} />
-          <Route exact path="/user/home" component={UserHome} />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/home"
+            component={UserHome}
+          />
           <UserAuthenticatedRoute exact path="/user/jobs" component={Jobs} />
           <UserAuthenticatedRoute exact path="/user/job/:id" component={Job} />
           <UserAuthenticatedRoute
@@ -131,11 +135,7 @@ const App = () => {
             path="/user/profile/update"
             component={UpdateProfile}
           />
-          <UserAuthenticatedRoute
-            exact
-            path="/user/login"
-            component={UserLogin}
-          />
+          <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/company/login" component={CompanyLogin} />
           <CompanyAuthenticatedRoute
             exact
