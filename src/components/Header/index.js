@@ -361,7 +361,7 @@ class Header extends React.Component {
                 <div className="navbar-mobile">
                   <Link to="/company/home">الرئيسية </Link>
                   <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
-                  <Link to="/company/applicants">المتقدمين</Link>
+                  {/* <Link to="/company/applicants">المتقدمين</Link> */}
                 </div>
                 <div className="user-left-side">
                   <Button
@@ -478,7 +478,7 @@ class Header extends React.Component {
                     <Link to="/company/projects">
                       المشاريع والعروض الوظيفية
                     </Link>
-                    <Link to="/company/applicants">المتقدمين</Link>
+                    {/* <Link to="/company/applicants">المتقدمين</Link> */}
 
                     <Link to="/company/setting">حسابي</Link>
                     <Link to="/user/notifications">تنبيهات</Link>

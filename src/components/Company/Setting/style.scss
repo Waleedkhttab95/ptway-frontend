@@ -38,7 +38,7 @@
 }
 .sub-accounts {
     display: flex;
-    justify-content: space-around;
+    justify-content: right;
     margin: 50px 0;
 }
 .sub-account-btn {
@@ -215,6 +215,8 @@
 @media (max-width:320px) {
     .company-container {
         padding: 30px 20px; 
+        overflow-y: scroll;
+         height: 100vh;
         .company-setting {
            display: block; 
            .right-side {
@@ -274,10 +276,22 @@
 .extra-info {
     padding-right: 10px;
 }
+.new-sub-form > div {
+    margin-left: 15px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.new-sub-form {
+    display: inherit;
+}
 
 @media (min-width:321px) and (max-width:678px) {
     .company-container {
         padding: 30px 20px; 
+        overflow-y: scroll;
+         height: 100vh;
         .company-setting {
             display: block;
             .right-side {
@@ -330,6 +344,16 @@
     }
     .heading {
         padding-right: 13px;
+    }
+    .new-sub-form > div {
+        margin-left: 15px;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .new-sub-form {
+        display: inherit;
     }
 }
 .account-setting .account-info > input {

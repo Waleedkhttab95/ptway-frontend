@@ -88,15 +88,17 @@ class AcceptedApplicants extends React.Component {
               <Spin size="large" />
             </div>
           )}
-          {!loading && moreAds.totalPages !== count && (
-            <button
-              className="more-projects-offers-btn"
-              onClick={this.displayMore}
-              style={{ marginTop: '30px', marginBottom: '30px' }}
-            >
-              عرض المزيد
-            </button>
-          )}
+          {!loading &&
+            moreAds.totalPages !== count &&
+            _.isArray(moreAds.response) && (
+              <button
+                className="more-projects-offers-btn"
+                onClick={this.displayMore}
+                style={{ marginTop: '30px', marginBottom: '30px' }}
+              >
+                عرض المزيد
+              </button>
+            )}
         </div>
         <div
           style={{

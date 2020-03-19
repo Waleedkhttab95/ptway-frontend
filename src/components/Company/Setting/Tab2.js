@@ -41,6 +41,12 @@ class Tab2 extends React.Component {
     await newSubUser(data);
     this.setState({ subaccountModal: false });
   };
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      subaccountModal: false
+    });
+  };
   render() {
     const { subUsers } = this.state;
     console.log('subUsers', subUsers);
@@ -48,30 +54,14 @@ class Tab2 extends React.Component {
     return (
       <React.Fragment>
         <div className="sub-accounts">
-          <div>
-            <div style={{ position: 'relative' }}>
-              <input
-                className="jobs-search search-mob"
-                placeholder="بحث"
-                style={{ marginRight: '0' }}
-              />
-              <i
-                className="fa fa-search jobs-search-icon"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </div>
-          <div>
-            <span className="filter-title">الترتيب :</span>
-            <input placeholder="الاحدث" className="filter-input" />
-          </div>
           <button className="sub-account-btn" onClick={this.addSubAccount}>
             أضف حساب فرعي
           </button>
           <Modal
             visible={this.state.subaccountModal}
-            closable={false}
+            closable={true}
             footer={false}
+            onCancel={this.handleCancel}
           >
             <div className="new-sub-acc">
               <h3>أضف حساب فرعي جديد</h3>
