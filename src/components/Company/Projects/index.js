@@ -8,9 +8,16 @@ import Project from '../Project';
 import FilterAndSearch from '../../Filter';
 import SideMenu from './menu';
 import projects from '../../../services/company/projects';
-
+import AddNewProjectModal from '../../Header/AddNewProjectModal';
+import AddNewAdModal from '../../Header/AddNewAdModal';
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import history from '../../../_core/history';
 
+import {
+  addNewProject,
+  allCotracts
+} from '../../../store/actions/company/projects';
 const { Panel } = Collapse;
 const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
 
@@ -30,11 +37,15 @@ class Projects extends React.Component {
     loading: true,
     activeOption: 0,
     showOptions: false,
-    userInput: ''
+    userInput: '',
+    postJobPopup: false,
+    newAdPopUp: false
   };
 
   async componentDidMount() {
     const allProjects = await getProjects();
+    const { getContracts } = this.props;
+    getContracts();
     this.setState({
       allProjects,
       JobAdsCount: allProjects.JobAdsCount,
@@ -148,6 +159,26 @@ class Projects extends React.Component {
     });
   };
 
+  postJob = () => {
+    this.setState({
+      postJobPopup: true
+    });
+  };
+
+  newAd = () => {
+    const { addProject } = this.props;
+    const { projectName, projectDescription } = this.state;
+    addProject({
+      projectName,
+      projectDescription
+    });
+    this.setState({
+      postJobPopup: false,
+      addProject: false,
+      newAdPopUp: true
+    });
+  };
+
   render() {
     const {
       expandIconPosition,
@@ -156,6 +187,7 @@ class Projects extends React.Component {
       count,
       loading
     } = this.state;
+    const { contracts } = this.props;
     return (
       <React.Fragment>
         <Header />
@@ -172,10 +204,7 @@ class Projects extends React.Component {
               <h2>عدد العروض الوظيفية</h2>
               <div></div>
             </div>
-            <Button
-              className="new-job-btn-mob"
-              onClick={() => this.props.history.push('/comany/new/project')}
-            >
+            <Button className="new-job-btn-mob" onClick={this.postJob}>
               <i
                 className="fa fa-plus plus-icon"
                 aria-hidden="true"
@@ -183,7 +212,19 @@ class Projects extends React.Component {
               ></i>
               أضف عرض وظيفي جديد
             </Button>
-
+            <AddNewProjectModal
+              postJobPopup={this.state.postJobPopup}
+              newAd={this.newAd}
+              onChange={e => {
+                this.setState({ [e.target.name]: e.target.value });
+              }}
+              closable={this.onClose}
+            />
+            <AddNewAdModal
+              newAdPopUp={this.state.newAdPopUp}
+              contractsTypes={contracts}
+              history={history}
+            />
             <Collapse
               // defaultActiveKey={['1']}
               onChange={callback}
@@ -268,5 +309,16 @@ class Projects extends React.Component {
     );
   }
 }
+const mapPropsToState = ({ companyProjects }) => {
+  return {
+    contracts: companyProjects
+  };
+};
+const mapPropsToDispatch = dispatch => {
+  return {
+    addProject: params => dispatch(addNewProject(params)),
+    getContracts: () => dispatch(allCotracts())
+  };
+};
 
-export default Projects;
+export default connect(mapPropsToState, mapPropsToDispatch)(Projects);

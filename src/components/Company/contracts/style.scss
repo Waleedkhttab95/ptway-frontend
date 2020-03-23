@@ -152,6 +152,9 @@
     .last-ad-group .selector {
         width: 100px;
     }
+    .new-ad-details .input-field {
+        width: 100px;
+    }
 }
 
 @media (min-width:321px) and (max-width: 768px){
@@ -167,5 +170,8 @@
     }
     .last-ad-group .selector {
         width: 130px;
+    }
+    .new-ad-details .input-field {
+        width: 145px;
     }
 }
