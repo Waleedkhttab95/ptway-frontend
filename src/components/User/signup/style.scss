@@ -232,6 +232,9 @@ input.ant-calendar-picker-input.ant-input{
     .form-fields .info-label{
         margin-top: 15px;
     }
+    .steps-btns{
+        flex-direction: column;
+    }
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -252,5 +255,8 @@ input.ant-calendar-picker-input.ant-input{
     }
     .form-fields .info-label{
         margin-top: 15px;
+    }
+    .steps-btns{
+        flex-direction: column;
     }
 }

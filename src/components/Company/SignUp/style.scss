@@ -30,6 +30,7 @@
 @media (max-width:320px) {
     .form-container {
         width: 290px;
+        margin: 80px;
     }
     .type-selector, .sector-selector {
         width: 282px;
@@ -39,6 +40,7 @@
 @media (min-width:321px) and (max-width: 768px) {
     .form-container {
         width: 350px;
+        margin: 80px;
     }
     .type-selector, .sector-selector {
         width: 322px;
