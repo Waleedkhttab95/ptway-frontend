@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../../Header';
-import HowItWorks from './HowItWorks';
-import JobsTypes from './JobsTypes';
-import Contracts from './Contracts';
+import Services from './Services';
+import Sectors from './Sectors';
+import HowWorks from './HowWorks';
 import Partners from './Partners';
 import CommonQuestions from './CommonQuestions';
 import ContactUs from './Contact';
@@ -13,17 +13,11 @@ const LandingPage = () => {
     <React.Fragment>
       <div style={{ background: 'white' }}>
         <Header />
-        <HowItWorks />
-        <JobsTypes />
-        <Contracts />
-        {/* <div style={{ position: 'relative', height: '1060px' }}>
-        <img src={cloud2} alt="cloud2" />
-        <div style={{ position: 'absolute', right: '155px' }}> */}
+        <Services />
+        <Sectors />
+        <HowWorks />
         <Partners />
         <CommonQuestions />
-        {/* </div>
-      </div> */}
-
         <ContactUs />
         <Footer />
       </div>
