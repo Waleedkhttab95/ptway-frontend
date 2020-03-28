@@ -13,7 +13,11 @@ const { TextArea } = Input;
 const { Panel } = Collapse;
 
 class CompanyProfile extends React.Component {
-  state = { countries: '', cities: '' };
+  state = {
+    countries: '',
+    cities: '',
+    error: false
+  };
 
   async componentDidMount() {
     const countries = await allCountries();
@@ -35,12 +39,16 @@ class CompanyProfile extends React.Component {
     });
   };
   addCompanyInfo = async () => {
-    await addCompanyInfo(this.state);
-    this.props.history.push('/company/home');
+    const { mobile, address, city, info, country } = this.state;
+    if (!mobile || !address || !city || !info || !country) {
+      this.setState({ error: true });
+    } else {
+      await addCompanyInfo(this.state);
+      this.props.history.push('/company/home');
+    }
   };
   render() {
-    const { countries, cities } = this.state;
-
+    const { countries, cities, error } = this.state;
     return (
       <React.Fragment>
         {/* <Header /> */}
@@ -76,6 +84,12 @@ class CompanyProfile extends React.Component {
                               })
                             : ''}
                         </Select>
+                        <br />
+                        {error && !this.state.country && (
+                          <span style={{ color: 'red', fontSize: '12px' }}>
+                            الرجاء ادخال الدولة
+                          </span>
+                        )}
                       </div>
                       <div>
                         <h5 className="title-field">المدينة</h5>
@@ -97,6 +111,12 @@ class CompanyProfile extends React.Component {
                               })
                             : ''}
                         </Select>
+                        <br />
+                        {error && !this.state.city && (
+                          <span style={{ color: 'red', fontSize: '12px' }}>
+                            الرجاء ادخال المدينة
+                          </span>
+                        )}
                       </div>
                     </div>
                     <h5 className="title-field">رقم الهاتف </h5>
@@ -105,6 +125,12 @@ class CompanyProfile extends React.Component {
                       onChange={this.handleInputChange}
                       name="mobile"
                     />
+                    <br />
+                    {error && !this.state.Mobile && (
+                      <span style={{ color: 'red', fontSize: '12px' }}>
+                        الرجاء ادخال رقم الهاتف
+                      </span>
+                    )}
                     <h5 className="title-field">العنوان </h5>
                     <TextArea
                       rows={4}
@@ -112,6 +138,12 @@ class CompanyProfile extends React.Component {
                       onChange={this.handleInputChange}
                       name="address"
                     />
+                    <br />
+                    {error && !this.state.address && (
+                      <span style={{ color: 'red', fontSize: '12px' }}>
+                        الرجاء ادخال العنوان
+                      </span>
+                    )}
                   </div>
                 </Panel>
                 <Panel
@@ -128,6 +160,13 @@ class CompanyProfile extends React.Component {
                       onChange={this.handleInputChange}
                       name="info"
                     />
+                    <br />
+                    {error && !this.state.info && (
+                      <span style={{ color: 'red', fontSize: '12px' }}>
+                        الرجاء ادخال نبذة عامة
+                      </span>
+                    )}
+
                     <br />
                     <br />
 

@@ -46,6 +46,13 @@ class UpdateProfile extends React.Component {
 
     const info = userInfo.info;
     console.log('infoinfo', info);
+
+    if (info.public_Major && !info.spMajor) {
+      const subMajor = await getSubMajor({ id: info.public_Major._id });
+      this.setState({
+        subMajor
+      });
+    }
     this.setState({
       skills,
       pSkills,
@@ -167,7 +174,6 @@ class UpdateProfile extends React.Component {
       country,
       public_major,
       university,
-      s_Major,
       education_degree,
       skill,
       per_skill,
@@ -182,9 +188,13 @@ class UpdateProfile extends React.Component {
       education_level,
       jobCategory,
       userStatus,
-      availabilityStatus
+      availabilityStatus,
+      userInfo
     } = this.state;
-
+    if (userInfo.public_Major._id !== public_major)
+      await this.setState({
+        s_Major: null
+      });
     const cvMsg = await updateCV({
       fullName,
       gender,
@@ -195,7 +205,7 @@ class UpdateProfile extends React.Component {
       country,
       public_major,
       university,
-      s_Major,
+      s_Major: this.state.s_Major,
       education_degree,
       education_level,
       skill,

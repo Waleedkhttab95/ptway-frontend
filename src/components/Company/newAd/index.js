@@ -18,7 +18,8 @@ const { Option } = Select;
 class AddNewAd extends React.Component {
   state = {
     allProjects: '',
-    SuccessMsg: false
+    SuccessMsg: false,
+    error: false
   };
   async componentDidMount() {
     const contractId = this.props.match.params.id;
@@ -50,6 +51,15 @@ class AddNewAd extends React.Component {
     });
   };
 
+  handleDaysChange = e => {
+    const { value, max, min } = e.target;
+    console.log('****', value, max, min);
+    this.setState({
+      workDays: value,
+      workDaysError: value > 1 && value < 5 ? false : true
+    });
+  };
+
   DateChange = date => {
     this.setState({ date });
   };
@@ -62,37 +72,45 @@ class AddNewAd extends React.Component {
   };
   postAd = async () => {
     console.log('this.state.contractId', this.state.contractId);
-
-    const data = {
-      contract: this.state.contractId,
-      jobDetails: this.state.jobDetails,
-      project: this.state.project,
-      workDays: this.state.workDays,
-      workHours: this.state.workHours,
-      personalSkills: this.state.personalSkills,
-      date: moment(this.state.data).format(),
-      jobDescription: this.state.jobDescription,
-      jobTitle: this.state.jobTitle,
-      gender: this.state.gender,
-      salary: this.state.salary,
-      country: this.state.country,
-      city: this.state.city,
-      required_Number: this.state.required_Number
-    };
-    await addNewAd(data);
-    const { history } = this.props;
-    if (loadState().loggedIn) {
+    const { project, jobDetails, workHours, gender } = this.state;
+    if (!project || !jobDetails || !workHours || !gender) {
       this.setState({
-        SuccessMsg: true
+        error: true
       });
     } else {
-      history.push('/company/login');
+      const data = {
+        contract: this.state.contractId,
+        jobDetails: this.state.jobDetails,
+        project: this.state.project,
+        workDays: this.state.workDays,
+        workHours: this.state.workHours,
+        personalSkills: this.state.personalSkills,
+        date: moment(this.state.data).format(),
+        jobDescription: this.state.jobDescription,
+        jobTitle: this.state.jobTitle,
+        gender: this.state.gender,
+        salary: this.state.salary,
+        country: this.state.country,
+        city: this.state.city,
+        required_Number: this.state.required_Number
+      };
+      await addNewAd(data);
+      const { history } = this.props;
+      if (loadState().loggedIn) {
+        this.setState({
+          SuccessMsg: true
+        });
+      } else {
+        history.push('/company/login');
+      }
     }
   };
 
   render() {
-    const { allProjects, countries, cities, pSkills } = this.state;
+    const { allProjects, countries, cities, pSkills, error } = this.state;
     const { loggedIn } = loadState();
+    console.log('------', this.state);
+
     return (
       <React.Fragment>
         {loggedIn && <Header />}
@@ -103,7 +121,21 @@ class AddNewAd extends React.Component {
               أخيراً قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته ضمن
               مشروع
             </p>
-            <div className="new-ad-details"> 
+
+            <div className="new-ad-details">
+              <label>تفاصيل الإعلان الوظيفي</label>
+              <TextArea
+                row={6}
+                onChange={this.handleChange}
+                name="jobDetails"
+              />
+              {error && !this.state.jobDetails && (
+                <span style={{ color: 'red', fontSize: '12px' }}>
+                  هذا الحقل مطلوب
+                </span>
+              )}
+              <br />
+              <br />
               <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
               <Select
                 className="project-selection selector"
@@ -121,8 +153,22 @@ class AddNewAd extends React.Component {
                     ))
                   : ''}
               </Select>
+              {error && !this.state.project && (
+                <span style={{ color: 'red', fontSize: '12px' }}>
+                  هذا الحقل مطلوب
+                </span>
+              )}
+              <br />
+              <br />
               <label>المسمى الوظيفي المطلوب</label>
               <Input onChange={this.handleChange} name="jobTitle" />
+              {error && !this.state.jobTitle && (
+                <span style={{ color: 'red', fontSize: '12px' }}>
+                  هذا الحقل مطلوب
+                </span>
+              )}
+              <br />
+              <br />
               <div className="group-questions">
                 <div className="right-side">
                   <label>عدد ساعات العمل</label>
@@ -131,6 +177,13 @@ class AddNewAd extends React.Component {
                     name="workHours"
                     type="number"
                   />
+                  <br />
+                  {error && !this.state.workHours && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                   <label>الجنس</label>
                   <Select
                     className="input-field"
@@ -143,10 +196,23 @@ class AddNewAd extends React.Component {
                       أنثى{' '}
                     </Option>
                   </Select>
+                  <br />
+                  {error && !this.state.gender && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                   <label>الراتب</label>
-                  <Input onChange={this.handleChange}
-                    type="number"
-                  name="salary" />
+
+                  <Input onChange={this.handleChange} name="salary" />
+                  <br />
+                  {error && !this.state.salary && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                 </div>
                 <div className="left-side">
                   <label>عدد أيام العمل</label>
@@ -154,27 +220,62 @@ class AddNewAd extends React.Component {
                     onChange={this.handleChange}
                     name="workDays"
                     type="number"
+                    min={1}
+                    max={5}
+                    maxLength={1}
                   />
+                  <br />
+                  {error && !this.state.workDays && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  {/* {this.state.workDaysError && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      xxxهذا الحقل مطلوب
+                    </span>
+                  )} */}
+                  <br />
                   <label>تاريخ بدء العمل</label>
                   <DatePicker
                     onChange={this.DateChange}
                     className="input-field"
                     placeholder=""
                   />
+                  <br />
+                  {error && !this.state.gender && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                   <label>العدد المطلوب</label>
                   <Input
                     onChange={this.handleChange}
                     name="required_Number"
                     type="number"
                   />
+                  <br />
+                  {error && !this.state.required_Number && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
                 </div>
               </div>
+              <br />
               <label>وصف الوظيفي</label>
               <TextArea
                 row={4}
                 onChange={this.handleChange}
                 name="jobDescription"
               />
+              {error && !this.state.jobDescription && (
+                <span style={{ color: 'red', fontSize: '12px' }}>
+                  هذا الحقل مطلوب
+                </span>
+              )}
+              <br />
               <label>المهارات الشخصية :</label>
               <br />
               <Select
@@ -196,6 +297,13 @@ class AddNewAd extends React.Component {
                     })
                   : ''}
               </Select>
+              <br />
+              {error && !this.state.skills && (
+                <span style={{ color: 'red', fontSize: '12px' }}>
+                  هذا الحقل مطلوب
+                </span>
+              )}
+              <br />
               <div className="last-ad-group">
                 <div>
                   <label className="sub-heading">الدولة</label>
@@ -217,6 +325,13 @@ class AddNewAd extends React.Component {
                         })
                       : ''}
                   </Select>
+                  <br />
+                  {error && !this.state.country && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                 </div>
                 <div>
                   <label className="sub-heading">المدينة</label>
@@ -234,6 +349,13 @@ class AddNewAd extends React.Component {
                         })
                       : ''}
                   </Select>
+                  <br />
+                  {error && !this.state.city && (
+                    <span style={{ color: 'red', fontSize: '12px' }}>
+                      هذا الحقل مطلوب
+                    </span>
+                  )}
+                  <br />
                 </div>
               </div>
             </div>

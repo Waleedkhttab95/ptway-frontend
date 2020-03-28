@@ -48,6 +48,7 @@ class CompanyLoginForm extends React.Component {
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'الرجاء ادخال كلمة المرور' }]
               })(<Input prefix={<Icon />} type="password" />)}
+              <Link to="/company/resetPassword">نسيت كلمة المرور؟</Link>
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('remember', {
