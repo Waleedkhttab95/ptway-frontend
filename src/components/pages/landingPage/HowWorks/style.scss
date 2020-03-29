@@ -18,6 +18,31 @@
     width: 500px;
     text-align: right;
 }
+.tab-content {
+        padding-top: 50px;
+        padding-right: 20px;
+        height: 350px;
+        .title {
+            font-size: 40px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.48;
+            letter-spacing: normal;
+            text-align: right;
+            color: #00263e;
+        }
+        .desc {
+            font-size: 24px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.46;
+            letter-spacing: normal;
+            text-align: right;
+            color: #00263e;
+        }
+}
 @media (max-width:320px){
     .contracts-container{
         display: flex;
