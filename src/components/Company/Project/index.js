@@ -98,10 +98,22 @@ class Project extends React.Component {
                     عرض
                   </button>
                   <div className="btns-mob">
-                    <button className="applicants-btn-mob">
+                    <button
+                      className="applicants-btn-mob"
+                      onClick={() =>
+                        history.push(`/applicants/job/id=${elm._id}`)
+                      }
+                    >
                       عرض المتقدمين
                     </button>
-                    <button className="accepted-btn-mob">عرض المقبولين</button>
+                    <button
+                      className="accepted-btn-mob"
+                      onClick={() =>
+                        history.push(`/accepted/applicants/job/id=${elm._id}`)
+                      }
+                    >
+                      عرض المقبولين
+                    </button>
                   </div>
                   <Dropdown
                     overlay={

@@ -1,5 +1,6 @@
 .company-container {
     padding: 60px 135px;
+    height: 100vh;
 }
 .applicant-header {
     height: 38px;
@@ -80,6 +81,9 @@
 }
 
 @media (max-width: 320px) {
+    .company-container {
+        overflow-y: scroll;
+    }
     .applicant-header {
         display: none;
     }
@@ -150,6 +154,9 @@
 }
 
 @media (min-width:321px) and (max-width: 768px) {
+    .company-container {
+        overflow-y: scroll;
+    }
     .applicant-header {
         display: none;
     }

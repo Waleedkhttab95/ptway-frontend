@@ -106,15 +106,17 @@ class Applicants extends React.Component {
               <Spin size="large" />
             </div>
           )}
-          {!loading && moreAds.totalPages !== count && (
-            <button
-              className="more-projects-offers-btn"
-              onClick={this.displayMore}
-              style={{ marginTop: '30px' }}
-            >
-              عرض المزيد
-            </button>
-          )}
+          {!loading &&
+            moreAds.totalPages !== count &&
+            candidates.Bresult.length !== 0 && (
+              <button
+                className="more-projects-offers-btn"
+                onClick={this.displayMore}
+                style={{ marginTop: '30px' }}
+              >
+                عرض المزيد
+              </button>
+            )}
         </div>
         {/* <div style={{ position: 'absolute', width: '100%', bottom: '0' }}> */}
         <Footer />

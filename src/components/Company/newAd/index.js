@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.scss';
+import '../style.scss';
 import Footer from '../../Footer';
 import { Input, Select, DatePicker, Modal } from 'antd';
 import Header from '../../Header';

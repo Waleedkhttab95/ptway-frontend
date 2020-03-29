@@ -203,6 +203,15 @@
     .input-filed-mob {
         width: 150px !important;
     }
+    .cv-personal-info{
+        flex-direction: column;
+    }
+    .first-section{
+        flex-direction: column;
+    }
+    .general-skills {
+      flex-direction: column;
+    }    
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -239,5 +248,14 @@
     .input-filed-mob {
         width: 150px !important;
     }
+    .cv-personal-info{
+        flex-direction: column;
+    }
+    .first-section{
+        flex-direction: column;
+    }
+    .general-skills {
+      flex-direction: column;
+    }   
 
 }

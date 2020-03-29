@@ -25,7 +25,7 @@ const AddNewAds = props => {
             className="cont-type"
             onClick={() =>
               history.push(
-                `/company/new/ad/${cotracts[0]._id}`,
+                `/company/new/short/ad/${cotracts[0]._id}`,
                 props.newAdPopUp
               )
             }
@@ -39,7 +39,7 @@ const AddNewAds = props => {
             className="cont-type"
             onClick={() =>
               history.push(
-                `/company/new/ad/${cotracts[1]._id}`,
+                `/company/new/long/ad/${cotracts[1]._id}`,
                 props.newAdPopUp
               )
             }
@@ -53,7 +53,7 @@ const AddNewAds = props => {
             className="cont-type"
             onClick={() =>
               history.push(
-                `/company/new/ad/${cotracts[2]._id}`,
+                `/company/new/continuous/ad/${cotracts[2]._id}`,
                 props.newAdPopUp
               )
             }

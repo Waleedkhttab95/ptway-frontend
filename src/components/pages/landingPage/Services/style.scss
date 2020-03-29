@@ -1,0 +1,177 @@
+.services{
+    margin-top: 80px;
+    padding: 0 125px;
+}
+.services-tabs{
+    padding-left: 60px;
+   .title{
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.48;
+    letter-spacing: normal;
+    text-align: right;
+    color: #18233d;
+    text-decoration: underline;
+    text-decoration-color: #049ad0;
+   }
+   .desc{
+    font-size: 28px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: right;
+    color: #18233d;
+   }
+}
+.ant-tabs-tabpane.ant-tabs-tabpane-active {
+    text-align: right;
+    color: #18233d;
+    font-size: 20px;
+    font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+} 
+.ant-tabs-bar.ant-tabs-top-bar {
+    float: right;
+    color: #18233d;
+    font-size: 20px;
+}
+.ant-tabs-tab {
+    color: #18233d !important;
+    font-size: 20px !important;
+}
+.works-tab >div >div >div >div >div >div >div {
+    width: auto !important;
+}
+
+@media(max-width:320px){
+    .it-works-container .steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .step{
+            margin-left: 0;
+            .step-line{
+                display: none;
+            }
+            .step4-line{
+                display: none;
+            }
+        }
+        .step-2{
+            margin-right: 0;
+            width: auto;
+            align-items: center;
+            margin-bottom: 20px;
+            .step2-img{
+                position: initial;
+                margin-top: 40px;
+            }
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step2-line{
+                display: none;
+            }
+        }
+        .step-3{
+            margin-right: 55px;
+            .step3-line{
+                display: none;
+            }
+        }
+        .step-5{
+            margin-top: 20px;
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step5-img{
+                position: initial;
+
+            } 
+        }
+    }
+    .step4-img{
+        margin-left: 0 !important;
+        margin-top: 20px;
+    }
+    .step4-number{
+        position: absolute;
+    }
+}
+@media (min-width:321px) and (max-width:768px){
+    .it-works-container .steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .step{
+            margin-left: 0;
+            .step-line{
+                display: none;
+            }
+            .step4-line{
+                display: none;
+            }
+        }
+        .step-2{
+            margin-right: 0;
+            width: auto;
+            align-items: center;
+            margin-bottom: 20px;
+            .step2-img{
+                position: initial;
+                margin-top: 40px;
+            }
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: absolute;
+                top: 0;
+                left: 50px;
+            }
+            .step2-line{
+                display: none;
+            }
+        }
+        .step-3{
+            margin-right: 55px;
+            .step3-line{
+                display: none;
+            }
+        }
+        .step-5{
+            margin-top: 20px;
+            .step-title{
+                position: initial;
+            }
+            .step-number{
+                position: initial;
+            }
+            .step5-img{
+                position: initial;
+
+            } 
+        }
+    }
+    .step4-img{
+        margin-left: 0 !important;
+        margin-top: 20px;
+    }
+    .step4-number{
+        position: absolute;
+    }
+}

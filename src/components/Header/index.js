@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, Drawer, Button } from 'antd';
+import { Row, Drawer, Button, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
+import header from '../../images/Page1_header.svg';
 import { logout } from '../../store/actions/userAction';
-import headerBack from '../../images/header.png';
+import ptwayLogo from '../../images/PTway_Logo.svg';
 import './header.scss';
 import { withTranslation } from 'react-i18next';
 import Select from 'react-select';
@@ -33,26 +34,26 @@ const colourStyles = {
   control: styles => ({
     ...styles,
     background: 'none',
-    minWidth: '75px',
+    minWidth: '55px',
     marginRight: '10px',
-    border: 'solid 2px #fff',
-    borderRadius: '5px',
-    color: '#fff',
+    border: 'solid 1.5px #18233d',
+    borderRadius: '4px',
+    color: '#18233d',
     ':focus': {
-      borderColor: '#fff',
+      borderColor: '#18233d',
       boxShadow: '0 0 0 1px hsl(0,0%,80%)'
     },
     ':hover': {
-      borderColor: '#fff'
+      borderColor: '#18233d'
       // boxShadow: '0 0 0 1px hsl(0,0%,80%)'
     },
     ':active': {
-      borderColor: '#fff',
+      borderColor: '#18233d',
       boxShadow: '0 0 0 1px hsl(0,0%,80%)'
     }
   }),
   singleValue: () => ({
-    color: 'hsl(0, 0%, 80%)'
+    color: '#00263e'
   })
 };
 class Header extends React.Component {
@@ -362,7 +363,7 @@ class Header extends React.Component {
                 <div className="navbar-mobile">
                   <Link to="/company/home">الرئيسية </Link>
                   <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
-                  <Link to="/company/applicants">المتقدمين</Link>
+                  {/* <Link to="/company/applicants">المتقدمين</Link> */}
                 </div>
                 <div className="user-left-side">
                   <Button
@@ -479,7 +480,7 @@ class Header extends React.Component {
                     <Link to="/company/projects">
                       المشاريع والعروض الوظيفية
                     </Link>
-                    <Link to="/company/applicants">المتقدمين</Link>
+                    {/* <Link to="/company/applicants">المتقدمين</Link> */}
 
                     <Link to="/company/setting">حسابي</Link>
                     <Link to="/user/notifications">تنبيهات</Link>
@@ -505,97 +506,51 @@ class Header extends React.Component {
             </div>
           </React.Fragment>
         ) : (
-          <Row className="home-page-header">
-            <img src={headerBack} alt="header" className="img" />
-            <div className="right-side">
-              <div className="drawer-mobile">
-                <i
-                  className="fa fa-bars"
-                  aria-hidden="true"
-                  type="primary"
-                  onClick={this.showDrawer}
-                ></i>
-                <Drawer
-                  title={
-                    <div className="drawer-title-con">
-                      <i
-                        className="fa fa-times drawer-close"
-                        aria-hidden="true"
-                        onClick={this.onClose}
-                      ></i>
-                      <img src={userLogo} alt="logo" style={{ width: '50%' }} />
-                    </div>
+          <React.Fragment>
+            <Row className="navbar">
+              <img src={ptwayLogo} alt="PTway_Logo" />
+              <div className="menu">
+                <a>من نحن</a>
+                <a>الأفراد</a>
+                <a>الشركات</a>
+              </div>
+              <div className="options">
+                <Select
+                  className="basic-single"
+                  styles={colourStyles}
+                  classNamePrefix="select"
+                  isSearchable={false}
+                  isClearable={false}
+                  value={options.filter(
+                    option => option.value === i18n.language
+                  )}
+                  onChange={() =>
+                    i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
                   }
-                  placement="right"
-                  closable={false}
-                  onClose={this.onClose}
-                  visible={this.state.visible}
-                >
-                  <div className="navbar-mobile">
-                    <a>{i18n.t('home.howWorks')}</a>
-                    <a>{i18n.t('home.comQuestions')}</a>
-                    <a>{i18n.t('home.comQuestions')}</a>
-                    <a onClick={this.postJob}>{i18n.t('home.postJob')}</a>
-                    <a>
-                      <Link
-                        className="employeer-login-btn-mob"
-                        to="/user/login"
-                      >
-                        {' '}
-                        {i18n.t('home.employeeLogin')}
-                      </Link>
-                    </a>
-                    <a>
-                      {' '}
-                      <Link
-                        className="company-login-btn-mob"
-                        to="/company/login"
-                      >
-                        {' '}
-                        {i18n.t('home.companyLogin')}
-                      </Link>
-                    </a>
-                  </div>
-                </Drawer>
+                  options={options}
+                />
+                <button className="login">تسجيل الدخول</button>
               </div>
-              <img src={headerLogo} alt="logo" />
-              <div className="navbar">
-                <a>{i18n.t('home.howWorks')}</a>
-                <a>{i18n.t('home.comQuestions')}</a>
-                <a>{i18n.t('home.comQuestions')}</a>
-                <a onClick={this.postJob}>{i18n.t('home.postJob')}</a>
-              </div>
+            </Row>
+            <div className="home-header">
+              <Col md={12}>
+                <img src={header} alt="Page1_header" />
+              </Col>
+              <Col md={12} className="brief">
+                <h2 className="brief-title">
+                  سر النجاح والتقدم في العمل، هو أن تبدأ العمل!
+                </h2>
+                <p className="brief-desc">
+                  نحن أول منصة للعمل الجزئي في السعودية، نلبي كل احتياجات
+                  الشركات والباحثين عن سد أوقات الفراغ.
+                </p>
+                <button className="log-btn">سجل شركتك الأن</button>
+                <br />
+                <br />
+                <button className="log-btn">سجل كباحث عن عمل</button>
+              </Col>
             </div>
-            <div className="left-side">
-              <Link className="employeer-login-btn" to="/user/login">
-                {i18n.t('home.employeeLogin')}
-              </Link>
-              <Link className="employeer-login-btn" to="/company/login">
-                {i18n.t('home.companyLogin')}
-              </Link>
-              <Select
-                className="basic-single"
-                styles={colourStyles}
-                classNamePrefix="select"
-                isSearchable={false}
-                isClearable={false}
-                value={options.filter(option => option.value === i18n.language)}
-                onChange={() =>
-                  i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
-                }
-                options={options}
-              />
-            </div>
-            <div className="middle-side">
-              <h3 className="title"> {i18n.t('home.title')}</h3>
-              <p className="description">{i18n.t('home.description')}</p>
-              <button className="start-now-btn">
-                <Link to="/user/signup" className="start-now-btn">
-                  {i18n.t('home.startBtn')}
-                </Link>
-              </button>
-            </div>
-          </Row>
+          </React.Fragment>
         )}
         <AddNewProjectModal
           postJobPopup={this.state.postJobPopup}

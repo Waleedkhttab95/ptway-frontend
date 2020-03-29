@@ -31,7 +31,9 @@ import Notifications from './User/Notifications';
 import UpdateProfile from './User/UpdateProfile';
 import UserLogin from './User/login';
 import CompanyLogin from './Company/Login';
-import CompanyNewAd from './Company/newAd';
+import CompanyShortContract from './Company/contracts/shortContract';
+import CompanyLongContract from './Company/contracts/longContract';
+import CompanyContinuousContract from './Company/contracts/continuousContract';
 import CompanySignup from './Company/SignUp';
 import CompanyHome from './Company';
 import CompanyProjects from './Company/Projects';
@@ -142,8 +144,18 @@ const App = () => {
           <Route exact path="/company/login" component={CompanyLogin} />
           <CompanyAuthenticatedRoute
             exact
-            path="/company/new/ad/:id"
-            component={CompanyNewAd}
+            path="/company/new/short/ad/:id"
+            component={CompanyShortContract}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/new/long/ad/:id"
+            component={CompanyLongContract}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/new/continuous/ad/:id"
+            component={CompanyContinuousContract}
           />
           <Route exact path="/company/signup" component={CompanySignup} />
           <CompanyAuthenticatedRoute
