@@ -3,10 +3,9 @@ import Header from '../../Header';
 import Services from './Services';
 import Sectors from './Sectors';
 import HowWorks from './HowWorks';
-import Partners from './Partners';
-import CommonQuestions from './CommonQuestions';
+import Clients from './Clients';
+// import CommonQuestions from './CommonQuestions';
 import ContactUs from './Contact';
-// import cloud2 from '../../images/Cloud2.png';
 import Footer from '../../Footer';
 const LandingPage = () => {
   return (
@@ -16,8 +15,8 @@ const LandingPage = () => {
         <Services />
         <Sectors />
         <HowWorks />
-        <Partners />
-        <CommonQuestions />
+        <Clients />
+        {/* <CommonQuestions /> */}
         <ContactUs />
         <Footer />
       </div>

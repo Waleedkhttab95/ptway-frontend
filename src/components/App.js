@@ -46,6 +46,7 @@ import CompanyProfile from './Company/Profile';
 import ResetPassword from './User/login/resetPassword';
 import ResetCompanyPassword from './Company/Login/ResetPassword';
 import ResetPasswordPage from './User/login/newPassword';
+import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
 const App = () => {
   return (
     <div className="App">
@@ -205,8 +206,12 @@ const App = () => {
             path="/company/resetPassword"
             component={ResetCompanyPassword}
           />
-          <Route exact path={'/resetPassword'} component={ResetPasswordPage} />
-
+          <Route exact path="/resetPassword" component={ResetPasswordPage} />
+          <Route
+            exact
+            path="/home/common-questions"
+            component={CommenQuestions}
+          />
           <Route to="*" component={ErrorPage} />
         </Switch>
       </Router>
