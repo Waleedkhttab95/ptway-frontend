@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row } from 'antd';
+import 'antd/dist/antd.css';
+import { Row, Carousel } from 'antd';
 import './style.scss';
 import { withTranslation } from 'react-i18next';
 
@@ -12,6 +13,22 @@ const JobsTypes = props => {
         نغطي معظم مدن المملكة، ونتوسع يومياً. نعمل في قطاعات ومجالات مختلفة في
         السوق السعودي، كالضيافة، قطاع التجزئة، القطاع الصحي والمزيد...
       </p>
+      <Row>
+        {/* <Carousel autoplay={false} style={{ direction: 'initial' }}>
+          <div>
+            <h3>1</h3>
+          </div>
+          <div>
+            <h3>2</h3>
+          </div>
+          <div>
+            <h3>3</h3>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+        </Carousel> */}
+      </Row>
     </Row>
   );
 };

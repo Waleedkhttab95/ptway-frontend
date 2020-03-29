@@ -30,6 +30,18 @@
         color: #18233d;
     }
 }
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: black;
+    overflow: hidden;
+    direction: initial;
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: red;
+  }
 @media(max-width:320px){
     .jobs
     {

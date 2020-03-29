@@ -1,61 +1,24 @@
 import React from 'react';
-import { Row, Drawer, Button, Col } from 'antd';
+import { Drawer, Button, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
 import header from '../../images/Page1_header.svg';
 import { logout } from '../../store/actions/userAction';
-import ptwayLogo from '../../images/PTway_Logo.svg';
 import './header.scss';
 import { withTranslation } from 'react-i18next';
-import Select from 'react-select';
 import { loadState } from '../../_core/localStorage';
 import { connect } from 'react-redux';
 import { unreadJobOffers } from '../../store/actions/user/HomeActions';
 import history from '../../_core/history';
 import AddNewProjectModal from './AddNewProjectModal';
 import AddNewAdModal from './AddNewAdModal';
+import Navbar from './Navbar';
 import {
   addNewProject,
   allCotracts
 } from '../../store/actions/company/projects';
-const options = [
-  { value: 'en', label: 'En' },
-  { value: 'ar', label: 'Ar' }
-];
 
-const colourStyles = {
-  input: () => ({
-    width: '75px'
-  }),
-  placeholder: () => ({
-    backgroundColor: 'white'
-  }),
-  control: styles => ({
-    ...styles,
-    background: 'none',
-    minWidth: '55px',
-    marginRight: '10px',
-    border: 'solid 1.5px #18233d',
-    borderRadius: '4px',
-    color: '#18233d',
-    ':focus': {
-      borderColor: '#18233d',
-      boxShadow: '0 0 0 1px hsl(0,0%,80%)'
-    },
-    ':hover': {
-      borderColor: '#18233d'
-      // boxShadow: '0 0 0 1px hsl(0,0%,80%)'
-    },
-    ':active': {
-      borderColor: '#18233d',
-      boxShadow: '0 0 0 1px hsl(0,0%,80%)'
-    }
-  }),
-  singleValue: () => ({
-    color: '#00263e'
-  })
-};
 class Header extends React.Component {
   state = {
     visible: false,
@@ -129,7 +92,7 @@ class Header extends React.Component {
 
   render() {
     const { contracts } = this.props;
-    const { i18n } = this.props;
+    // const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
@@ -507,31 +470,7 @@ class Header extends React.Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Row className="navbar">
-              <img src={ptwayLogo} alt="PTway_Logo" />
-              <div className="menu">
-                <a>من نحن</a>
-                <a>الأفراد</a>
-                <a>الشركات</a>
-              </div>
-              <div className="options">
-                <Select
-                  className="basic-single"
-                  styles={colourStyles}
-                  classNamePrefix="select"
-                  isSearchable={false}
-                  isClearable={false}
-                  value={options.filter(
-                    option => option.value === i18n.language
-                  )}
-                  onChange={() =>
-                    i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
-                  }
-                  options={options}
-                />
-                <button className="login">تسجيل الدخول</button>
-              </div>
-            </Row>
+            <Navbar />
             <div className="home-header">
               <Col md={12}>
                 <img src={header} alt="Page1_header" />
