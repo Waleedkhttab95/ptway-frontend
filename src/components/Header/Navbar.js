@@ -1,9 +1,10 @@
 import React from 'react';
-import { Row } from 'antd';
+import { Row, Drawer } from 'antd';
 import Select from 'react-select';
 import ptwayLogo from '../../images/PTway_Logo.svg';
 import { withTranslation } from 'react-i18next';
 import history from '../../_core/history';
+import { Link } from 'react-router-dom';
 const options = [
   { value: 'en', label: 'En' },
   { value: 'ar', label: 'Ar' }
@@ -41,37 +42,103 @@ const colourStyles = {
     color: '#00263e'
   })
 };
-const Navbar = props => {
-  const { i18n } = props;
-  return (
-    <Row className="navbar">
-      <img
-        src={ptwayLogo}
-        alt="PTway_Logo"
-        onClick={() => history.push('/')}
-        style={{ cursor: 'pointer' }}
-      />
-      <div className="menu">
-        <a> من نحن</a>
-        <a>الأفراد</a>
-        <a>الشركات</a>
-      </div>
-      <div className="options">
-        <Select
-          className="basic-single"
-          styles={colourStyles}
-          classNamePrefix="select"
-          isSearchable={false}
-          isClearable={false}
-          value={options.filter(option => option.value === i18n.language)}
-          onChange={() =>
-            i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
+class Navbar extends React.Component {
+  state = {
+    visible: false
+  };
+  showDrawer = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  onClose = () => {
+    this.setState({
+      visible: false
+    });
+  };
+  render() {
+    const { i18n } = this.props;
+    return (
+      <React.Fragment>
+        <Row className="navbar">
+          <img
+            src={ptwayLogo}
+            alt="PTway_Logo"
+            onClick={() => history.push('/')}
+            style={{ cursor: 'pointer' }}
+          />
+          <div className="menu">
+            <a> من نحن</a>
+            <a>الأفراد</a>
+            <a>الشركات</a>
+          </div>
+          <div className="options">
+            <Select
+              className="basic-single"
+              styles={colourStyles}
+              classNamePrefix="select"
+              isSearchable={false}
+              isClearable={false}
+              value={options.filter(option => option.value === i18n.language)}
+              onChange={() =>
+                i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
+              }
+              options={options}
+            />
+            <button className="login">تسجيل الدخول</button>
+          </div>
+        </Row>
+        <Row className="drawer-mobile">
+          <i
+            className="fa fa-bars"
+            aria-hidden="true"
+            type="primary"
+            onClick={this.showDrawer}
+          ></i>
+          <img
+            src={ptwayLogo}
+            alt="PTway_Logo"
+            onClick={() => history.push('/')}
+            style={{ cursor: 'pointer' }}
+          />
+        </Row>
+        <Drawer
+          title={
+            <div className="drawer-title-con">
+              <i
+                className="fa fa-times drawer-close"
+                aria-hidden="true"
+                onClick={this.onClose}
+              ></i>
+              <img src={ptwayLogo} alt="logo" style={{ width: '50%' }} />
+            </div>
           }
-          options={options}
-        />
-        <button className="login">تسجيل الدخول</button>
-      </div>
-    </Row>
-  );
-};
+          placement="right"
+          closable={false}
+          onClose={this.onClose}
+          visible={this.state.visible}
+        >
+          <div className="navbar-mobile">
+            <a>من نحن</a>
+            <a>الأفراد</a>
+            <a>الشركات</a>
+            <a>
+              <Link className="employeer-login-btn-mob" to="/user/login">
+                {' '}
+                تسجيل دخول المستخدم
+              </Link>
+            </a>
+            <a>
+              {' '}
+              <Link className="company-login-btn-mob" to="/company/login">
+                {' '}
+                تسجيل دخول الشركات
+              </Link>
+            </a>
+          </div>
+        </Drawer>
+      </React.Fragment>
+    );
+  }
+}
 export default withTranslation()(Navbar);
