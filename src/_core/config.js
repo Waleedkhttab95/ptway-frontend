@@ -2,7 +2,7 @@ const config = {};
 let baseUrl;
 config.getBasePublicUrl = () => {
   if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:80/';
+    baseUrl = 'https://ptway-test.herokuapp.com/';
   } else if (process.env.NODE_ENV === 'production') {
     baseUrl = 'http://localhost:80/';
   } else {

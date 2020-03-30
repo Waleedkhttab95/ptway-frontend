@@ -39,7 +39,7 @@ class User extends React.Component {
     } = this.props.user.userInfo;
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <div className="user-container">
           <Content className="user-home">
             {/* <div className="user-notification">
@@ -185,7 +185,7 @@ class User extends React.Component {
                         {public_Major ? (
                           public_Major
                         ) : (
-                          <div className="spinner-loading">
+                          <div className="spinner-lo  ading">
                             <Spin size="large" />
                           </div>
                         )}{' '}
