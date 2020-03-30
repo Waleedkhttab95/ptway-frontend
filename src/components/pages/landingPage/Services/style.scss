@@ -49,129 +49,57 @@
     width: auto !important;
 }
 
-@media(max-width:320px){
-    .it-works-container .steps {
+@media(max-width:320px) {
+    .services {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .step{
-            margin-left: 0;
-            .step-line{
-                display: none;
-            }
-            .step4-line{
-                display: none;
-            }
-        }
-        .step-2{
-            margin-right: 0;
-            width: auto;
-            align-items: center;
-            margin-bottom: 20px;
-            .step2-img{
-                position: initial;
-                margin-top: 40px;
-            }
-            .step-title{
-                position: initial;
-            }
-            .step-number{
-                position: initial;
-            }
-            .step2-line{
-                display: none;
-            }
-        }
-        .step-3{
-            margin-right: 55px;
-            .step3-line{
-                display: none;
-            }
-        }
-        .step-5{
-            margin-top: 20px;
-            .step-title{
-                position: initial;
-            }
-            .step-number{
-                position: initial;
-            }
-            .step5-img{
-                position: initial;
-
-            } 
-        }
+        flex-direction: column-reverse;
+        padding: 10px 20px;
+       }
+       .services-tabs {
+       padding-left: 0;
+           .title{
+               font-size: 25px;
+               text-align: center;
+           }
+           .desc {
+               font-size: 15px;
+               text-align: center;
+           }
+       }
+       .ant-tabs-tab {
+        font-size: 15px !important;
     }
-    .step4-img{
-        margin-left: 0 !important;
-        margin-top: 20px;
+    .ant-tabs-bar.ant-tabs-top-bar {
+        font-size: 16px;
     }
-    .step4-number{
-        position: absolute;
+    .ant-tabs-nav .ant-tabs-tab {
+        padding: 12px 15px;
     }
 }
 @media (min-width:321px) and (max-width:768px){
-    .it-works-container .steps {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .step{
-            margin-left: 0;
-            .step-line{
-                display: none;
-            }
-            .step4-line{
-                display: none;
-            }
-        }
-        .step-2{
-            margin-right: 0;
-            width: auto;
-            align-items: center;
-            margin-bottom: 20px;
-            .step2-img{
-                position: initial;
-                margin-top: 40px;
-            }
-            .step-title{
-                position: initial;
-            }
-            .step-number{
-                position: absolute;
-                top: 0;
-                left: 50px;
-            }
-            .step2-line{
-                display: none;
-            }
-        }
-        .step-3{
-            margin-right: 55px;
-            .step3-line{
-                display: none;
-            }
-        }
-        .step-5{
-            margin-top: 20px;
-            .step-title{
-                position: initial;
-            }
-            .step-number{
-                position: initial;
-            }
-            .step5-img{
-                position: initial;
-
-            } 
-        }
+   .services {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 10px 20px;
+   }
+   .services-tabs {
+       padding-left: 0;
+    .title{
+        font-size: 30px;
+        text-align: center;
     }
-    .step4-img{
-        margin-left: 0 !important;
-        margin-top: 20px;
+    .desc {
+        font-size: 17px;
+        text-align: center;
     }
-    .step4-number{
-        position: absolute;
-    }
+}
+.ant-tabs-tab {
+    font-size: 18px !important;
+}
+.ant-tabs-bar.ant-tabs-top-bar {
+    font-size: 18px;
+}
+.ant-tabs-nav .ant-tabs-tab {
+    padding: 12px 20px;
+}
 }

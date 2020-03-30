@@ -13,10 +13,17 @@
         color: #00263e;
         padding-top: 45px;
     }
+   >div >div {
+    margin-right: 180px;
+   } 
 }
 .ant-tabs-nav .ant-tabs-tab {
     width: 500px;
     text-align: right;
+    margin: 0 30px;
+}
+.tab-row {
+    padding: 0 150px;
 }
 .tab-content {
         padding-top: 50px;
@@ -43,41 +50,78 @@
             color: #00263e;
         }
 }
-@media (max-width:320px){
-    .contracts-container{
-        display: flex;
-        flex-direction: column;
-         justify-content: center;
-         align-items: center;
+.w-tabs{
+    width: 100%;
+}
+@media (max-width:320px) {
+    .works-section {
+        .title {
+            font-size: 30px;
+        }
+        >div >div {
+            margin-right: 10px;
+           } 
     }
-    .contracts .cont-title {
-        margin-right: 0;
+    .tab-content {
+        padding-top: 10px;
+        height: auto;
+        .title {
+            font-size: 17px;
+        }
+        .desc {
+            font-size: 12px;
+        }
     }
-    .contract{
-        width: 300px;
-        margin-right: 0px;  
-        margin-bottom: 20px;         
-       }
+    .tab-img {
+        width: 152px;
+        height: 127px;
+    }
+    .ant-tabs-nav .ant-tabs-tab {
+        width: 140px;
+        text-align: center;
+        margin: 0;
+    }
+    .w-tabs{
+        width: 95%;
+    }
+    .tab-row {
+        padding: 0;
+    }
 }
 
 @media (min-width:321px) and (max-width:768px){
-
-    .contracts {
-        .contracts-container{
-            display: flex;
-            flex-direction: column;
-             justify-content: center;
-             align-items: center;
+    .works-section {
+        .title {
+            font-size: 30px;
         }
-    
-    .cont-title {
-        margin-right: 0;
+        >div >div {
+            margin-right: 10px;
+           } 
     }
-}
-.contract{
-    width: 300px;
- margin-right: 0px; 
- margin-bottom: 20px;          
-}
-
+    .tab-content {
+        padding-top: 10px;
+        height: auto;
+        .title {
+            font-size: 17px;
+        }
+        .desc {
+            font-size: 12px;
+        }
+    }
+    .tab-img {
+        width: 152px;
+        height: 127px;
+        margin-top: 20px;
+    }
+    .ant-tabs-nav .ant-tabs-tab {
+        width: 160px;
+        text-align: center;
+        margin: 0;
+    }
+    .w-tabs{
+        width: 95%;
+    }
+    .tab-row {
+        padding: 0;
+    }
 }

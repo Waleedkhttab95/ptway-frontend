@@ -5,7 +5,7 @@ import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
 import header from '../../images/Page1_header.svg';
 import { logout } from '../../store/actions/userAction';
-import './header.scss';
+import './style.scss';
 import { withTranslation } from 'react-i18next';
 import { loadState } from '../../_core/localStorage';
 import { connect } from 'react-redux';
@@ -472,10 +472,10 @@ class Header extends React.Component {
           <React.Fragment>
             <Navbar />
             <div className="home-header">
-              <Col md={12}>
+              <Col md={12} sm={24}>
                 <img src={header} alt="Page1_header" />
               </Col>
-              <Col md={12} className="brief">
+              <Col md={12} sm={24} className="brief">
                 <h2 className="brief-title">
                   سر النجاح والتقدم في العمل، هو أن تبدأ العمل!
                 </h2>
