@@ -47,6 +47,11 @@ import ResetPassword from './User/login/resetPassword';
 import ResetCompanyPassword from './Company/Login/ResetPassword';
 import ResetPasswordPage from './User/login/newPassword';
 import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
+import AboutUs from '../components/pages/landingPage/AboutUs';
+
+// DELETE ME
+import UserHomeClone from '../components/User/index_clone';
+
 const App = () => {
   return (
     <div className="App">
@@ -124,6 +129,16 @@ const App = () => {
             path="/user/home"
             component={UserHome}
           />
+
+          {/* THIS IS CLONE PAGE */}
+          <UserAuthenticatedRoute
+            exact
+            path="/user/home-clone"
+            component={UserHomeClone}
+          />
+
+          {/*  */}
+
           <UserAuthenticatedRoute exact path="/user/jobs" component={Jobs} />
           <UserAuthenticatedRoute exact path="/user/job/:id" component={Job} />
           <UserAuthenticatedRoute
@@ -212,6 +227,7 @@ const App = () => {
             path="/home/common-questions"
             component={CommenQuestions}
           />
+          <Route exact path="/home/about-us" component={AboutUs} />
           <Route to="*" component={ErrorPage} />
         </Switch>
       </Router>

@@ -1,0 +1,199 @@
+
+.about-us {
+    height: 723px;
+    box-shadow: 0 5px 25px 0 rgba(4, 154, 208, 0.08);
+    background: #f8fbff;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.48;
+    letter-spacing: normal;
+    text-align: center;
+    color: #00263e;
+    padding-top: 40px;
+}
+}
+.about-us-content {
+    .desc {
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: #18233d;
+        padding-right: 30px;
+    }
+    h3 {
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        text-align: right;
+        color: #18233d;
+        padding-right: 50px;
+    }
+}
+.about-us-img {
+    display: flex;
+    justify-content: center;
+}
+.about-elm {
+    display: flex;
+    margin-left: 5px;
+    .elm-img {
+        width: 70px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: #00263e;
+        display: flex;
+        justify-content: center;
+    }
+    .elm-desc-first-col {
+        h3{
+            font-size: 18px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: left;
+            color: #049ad0;
+            margin-bottom: 0;
+        }
+        p{
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.07;
+            letter-spacing: normal;
+            text-align: left;
+            color: #00263e;
+        }
+    }
+    .elm-desc-second-col {
+        h3{
+            font-size: 18px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: right;
+            color: #049ad0;
+            margin-bottom: 0;
+        }
+        p{
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.07;
+            letter-spacing: normal;
+            text-align: right;
+            color: #00263e;
+        }
+    }
+}
+.left-side {
+    margin-top: 50px;
+}
+
+.vision-message {
+    text-align: right;
+    padding: 40px 80px;
+    background: #fff;
+}
+.vision {
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        color: #18233d;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #18233d;
+    }
+}
+.message-container {
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        color: #18233d;
+    }
+    p{
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #18233d;
+
+    }
+}
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    >span {
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #18233d;
+    }
+}
+.message-img {
+    width: 59px;
+        height: 59px;
+        border-radius: 10px;
+        background-color: #00263e;
+        display: flex;
+        justify-content: center;
+}
+@media (max-width:321px) {
+    .about-us{
+        height: auto
+    }
+    .about-us-img >img {
+        width:250px;
+    }
+    .vision-message {
+        padding: 40px 20px;
+    }
+}
+@media (min-width:321px) and (max-width:768px){ 
+    .about-us{
+        height: auto
+    }
+    .about-us-img >img{
+        width: 300px;
+    }
+    .vision-message {
+        padding: 40px 40px;
+    }
+}

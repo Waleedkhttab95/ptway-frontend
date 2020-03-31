@@ -1,5 +1,6 @@
 .services{
-    margin-top: 80px;
+    margin-top: 60px;
+    margin-bottom: 30px;
     padding: 0 125px;
 }
 .services-tabs{
@@ -47,6 +48,27 @@
 }
 .works-tab >div >div >div >div >div >div >div {
     width: auto !important;
+}
+.tag-title {
+    font-size: 28px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: right;
+    color: #049ad0;
+    margin-bottom: 0;
+}
+.tag {
+    font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-align: right;
+  color: #18233d;
 }
 
 @media(max-width:320px) {
