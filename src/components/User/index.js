@@ -39,7 +39,7 @@ class User extends React.Component {
     } = this.props.user.userInfo;
     return (
       <div>
-        {/* <Header /> */}
+        <Header />
         <div className="user-container">
           <Content className="user-home">
             {/* <div className="user-notification">
