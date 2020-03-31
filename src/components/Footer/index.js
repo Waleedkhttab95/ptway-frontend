@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-menu">
-          <a>من نحن </a>
+          <Link to="/home/about-us">من نحن </Link>
           <a>الأفراد</a>
           <a>الشركات</a>
           <Link to="/home/common-questions">الأسئلة الشائعة</Link>

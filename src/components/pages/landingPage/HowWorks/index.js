@@ -54,21 +54,21 @@ const Contracts = props => {
         </TabPane>
         <TabPane tab="للشركات" key="2">
           <Row className="tab-row">
-            <Col md={12} sm={24} xs={12} className="tab-content">
+            <Col md={12} sm={12} xs={12} className="tab-content">
               <h3 className="title">أضف العرض الوظيفي</h3>
               <p className="desc">
                 إضافة العرض الوظيفي هي أول خطوة لإيجاد الموظف المناسب لشركتك!
               </p>
             </Col>
-            <Col md={12} sm={24} xs={12}>
+            <Col md={12} sm={12} xs={12}>
               <img src={ads} alt="ads" className="tab-img" />
             </Col>
           </Row>
           <Row style={{ background: '#f8fbff' }} className="tab-row">
-            <Col md={12} sm={24} xs={12}>
+            <Col md={12} sm={12} xs={12}>
               <img src={candidate} alt="candidate" className="tab-img" />
             </Col>
-            <Col md={12} sm={24} xs={12} className="tab-content">
+            <Col md={12} sm={12} xs={12} className="tab-content">
               <h2 className="title">ظهور المرشحين</h2>
               <p className="desc">
                 سيظهر لك العديد من المرشحين المناسبي للعمل لديك.
@@ -76,14 +76,14 @@ const Contracts = props => {
             </Col>
           </Row>
           <Row className="tab-row">
-            <Col md={12} sm={24} xs={12} className="tab-content">
+            <Col md={12} sm={12} xs={12} className="tab-content">
               <h2 className="title">القبول</h2>
               <p className="desc">
                 المرحلة الأخيره هي قبول الموظفين لتتمكن من التواصل معهم وحساب
                 ساعات العمل.
               </p>
             </Col>
-            <Col md={12} sm={24} xs={12}>
+            <Col md={12} sm={12} xs={12}>
               <img src={accept} alt="accept" className="tab-img" />
             </Col>
           </Row>

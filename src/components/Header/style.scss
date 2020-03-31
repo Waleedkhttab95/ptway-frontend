@@ -29,12 +29,12 @@
         flex-direction: row-reverse;
         justify-content: space-around;
         align-items: center;
-        .login {
+        .login >div{
             width: 140px;
             height: 40px;
             border-radius: 4px;
             background-color: #0acc94;
-            font-size: 18px;
+            font-size: 14px !important;
             font-weight: 500;
             font-stretch: normal;
             font-style: normal;
@@ -42,11 +42,19 @@
             letter-spacing: normal;
             text-align: left;
             color: #f8fbff;
+            >div {
+                padding-top: 5px;
+                margin-right: 10px;
+            }
         }
     }
 }
 .select__indicator.select__dropdown-indicator.css-tlfecz-indicatorContainer {
     color: #00263e;
+}
+ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-menu-vertical{
+    padding-right: 10px !important;
+    text-align: right !important;
 }
 .home-header {
     height: 700px;
@@ -61,6 +69,8 @@
 }
 .brief {
     padding-right: 120px;
+    display: flex;
+    flex-direction: column;
     .brief-title{
         font-size: 28px;
         font-weight: 500;
@@ -80,6 +90,7 @@
         letter-spacing: normal;
         text-align: right;
         color: #18233d;
+        margin-bottom: 50px;
     }
     .log-btn {
         width: 200px;
@@ -95,6 +106,7 @@
         text-align: center;
         color: #18233d;
         cursor: pointer;
+        margin-top: -30px;
     }
     .log-btn:hover {
         color: #fff;
@@ -420,10 +432,13 @@
         color: #fff;
         font-size: 18px;
     >a {
-        color: #fff;
+        color:  #3b3b3bc4 !important;
         margin-top: 20px;
         cursor: pointer;
         }
+    >a:hover {
+        color:  #3b3b3bc4 !important;
+        }    
     }
     .user-drawer-mobile {
         display: flex;
@@ -497,7 +512,7 @@
         }
     }
     .navbar{
-        display: none;
+        display: none !important;
     }  
     .brief {
         padding-right: 5px;
@@ -556,13 +571,16 @@
         color: #fff;
         font-size: 18px;
     >a {
-        color: #3b3b3bc4;
+        color: #3b3b3bc4 !important;
         margin-top: 20px;
         cursor: pointer;
         border-bottom: solid 0.1px #eaeaea;
         width: 100%;
         padding-bottom: 10px;
         }
+        >a:hover {
+            color:  #3b3b3bc4 !important;
+            }  
         a:nth-child(6) {
             color: #3b3b3bc4;
             margin-top: 20px;
@@ -650,7 +668,7 @@
         }
     }
     .navbar{
-        display: none;
+        display: none !important;
     }
     .brief {
         padding-right: 10px;

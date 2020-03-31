@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Drawer } from 'antd';
+import { Row, Drawer, Select as RSelect } from 'antd';
 import Select from 'react-select';
 import ptwayLogo from '../../images/PTway_Logo.svg';
 import { withTranslation } from 'react-i18next';
@@ -68,7 +68,7 @@ class Navbar extends React.Component {
             style={{ cursor: 'pointer' }}
           />
           <div className="menu">
-            <a> من نحن</a>
+            <Link to="/home/about-us"> من نحن</Link>
             <a>الأفراد</a>
             <a>الشركات</a>
           </div>
@@ -85,7 +85,10 @@ class Navbar extends React.Component {
               }
               options={options}
             />
-            <button className="login">تسجيل الدخول</button>
+            <RSelect defaultValue="تسجيل الدخول" className="login">
+              <RSelect.Option value="jack">شركة</RSelect.Option>
+              <RSelect.Option value="lucy">باحث عن عمل</RSelect.Option>
+            </RSelect>
           </div>
         </Row>
         <Row className="drawer-mobile">
@@ -110,7 +113,11 @@ class Navbar extends React.Component {
                 aria-hidden="true"
                 onClick={this.onClose}
               ></i>
-              <img src={ptwayLogo} alt="logo" style={{ width: '50%' }} />
+              <img
+                src={ptwayLogo}
+                alt="logo"
+                //   style={{ width: '50%' }}
+              />
             </div>
           }
           placement="right"
