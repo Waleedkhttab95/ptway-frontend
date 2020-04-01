@@ -69,8 +69,8 @@ class Navbar extends React.Component {
           />
           <div className="menu">
             <Link to="/home/about-us"> من نحن</Link>
-            <a>الأفراد</a>
-            <a>الشركات</a>
+            <Link to="/user/login">الأفراد</Link>
+            <Link to="/company/login">الشركات</Link>
           </div>
           <div className="options">
             <Select
@@ -86,8 +86,12 @@ class Navbar extends React.Component {
               options={options}
             />
             <RSelect defaultValue="تسجيل الدخول" className="login">
-              <RSelect.Option value="jack">شركة</RSelect.Option>
-              <RSelect.Option value="lucy">باحث عن عمل</RSelect.Option>
+              <RSelect.Option value="companyLogin">
+                <Link to="/company/login">شركة</Link>
+              </RSelect.Option>
+              <RSelect.Option value="userLogin">
+                <Link to="/user/login">باحث عن عمل</Link>
+              </RSelect.Option>
             </RSelect>
           </div>
         </Row>

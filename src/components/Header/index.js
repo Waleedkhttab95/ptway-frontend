@@ -483,10 +483,20 @@ class Header extends React.Component {
                   نحن أول منصة للعمل الجزئي في السعودية، نلبي كل احتياجات
                   الشركات والباحثين عن سد أوقات الفراغ.
                 </p>
-                <button className="log-btn">سجل شركتك الأن</button>
+                <button
+                  className="log-btn"
+                  onClick={() => history.push('/company/signup')}
+                >
+                  سجل شركتك الأن
+                </button>
                 <br />
                 <br />
-                <button className="log-btn">سجل كباحث عن عمل</button>
+                <button
+                  className="log-btn"
+                  onClick={() => history.push('/user/signup')}
+                >
+                  سجل كباحث عن عمل
+                </button>
               </Col>
             </div>
           </React.Fragment>

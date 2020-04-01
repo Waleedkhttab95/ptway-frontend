@@ -29,7 +29,10 @@ const HowItWorks = () => {
               style={{ color: '#049ad0' }}
             ></i>{' '}
             <br />
-            <Link style={{ fontSize: '28px', color: '#18233d' }}>
+            <Link
+              to="/user/signup"
+              style={{ fontSize: '28px', color: '#18233d' }}
+            >
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -48,7 +51,10 @@ const HowItWorks = () => {
               style={{ color: '#049ad0' }}
             ></i>{' '}
             <br />
-            <Link style={{ fontSize: '28px', color: '#18233d' }}>
+            <Link
+              to="/user/signup"
+              style={{ fontSize: '28px', color: '#18233d' }}
+            >
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -67,7 +73,10 @@ const HowItWorks = () => {
               style={{ color: '#049ad0' }}
             ></i>{' '}
             <br />
-            <Link style={{ fontSize: '28px', color: '#18233d' }}>
+            <Link
+              to="/user/signup"
+              style={{ fontSize: '28px', color: '#18233d' }}
+            >
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -86,7 +95,10 @@ const HowItWorks = () => {
               style={{ color: '#049ad0' }}
             ></i>{' '}
             <br />
-            <Link style={{ fontSize: '28px', color: '#18233d' }}>
+            <Link
+              to="/user/signup"
+              style={{ fontSize: '28px', color: '#18233d' }}
+            >
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
