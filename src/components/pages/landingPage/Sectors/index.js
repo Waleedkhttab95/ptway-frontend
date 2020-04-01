@@ -14,7 +14,7 @@ const JobsTypes = props => {
         السوق السعودي، كالضيافة، قطاع التجزئة، القطاع الصحي والمزيد...
       </p>
       <Row>
-        {/* <Carousel autoplay={false} style={{ direction: 'initial' }}>
+        {/* <Carousel autoplay={false} className="sector-carousel">
           <div>
             <h3>1</h3>
           </div>

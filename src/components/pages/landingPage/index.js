@@ -16,7 +16,6 @@ const LandingPage = () => {
         <Sectors />
         <HowWorks />
         <Clients />
-        {/* <CommonQuestions /> */}
         <ContactUs />
         <Footer />
       </div>

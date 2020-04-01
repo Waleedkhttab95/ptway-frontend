@@ -42,6 +42,10 @@
   .ant-carousel .slick-slide h3 {
     color: red;
   }
+.sector-carousel {
+    direction: initial !important;
+}
+  
 @media(max-width:320px){
    .sectors{
     height: 458px;
