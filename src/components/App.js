@@ -50,7 +50,7 @@ import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
 import AboutUs from '../components/pages/landingPage/AboutUs';
 
 // DELETE ME
-import UserHomeClone from '../components/User/index_clone';
+// import UserHomeClone from '../components/User/index_clone';
 
 const App = () => {
   return (
@@ -131,11 +131,11 @@ const App = () => {
           />
 
           {/* THIS IS CLONE PAGE */}
-          <UserAuthenticatedRoute
+          {/* <UserAuthenticatedRoute
             exact
             path="/user/home-clone"
             component={UserHomeClone}
-          />
+          /> */}
 
           {/*  */}
 

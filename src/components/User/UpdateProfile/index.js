@@ -274,6 +274,7 @@ class UpdateProfile extends React.Component {
                 <Collapse
                   bordered={false}
                   defaultActiveKey={['1', '2', '3', '4', '5']}
+                  className="updating-form"
                 >
                   <Panel
                     header="معلومات شخصية"
