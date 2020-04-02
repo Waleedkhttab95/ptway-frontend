@@ -98,6 +98,16 @@
         font-size: 18px;
        }
    }
+   .carousel-sector {
+    margin-top: -220px;
+    .slide-elm {
+        width: 200px !important;
+        .elm-table >h6 {
+            width: 70px !important;
+            font-size: 14px;
+        }
+    }
+   }
 }
 @media (min-width:321px) and (max-width:768px){
     .sectors {
@@ -111,4 +121,14 @@
          font-size: 18px;
         }
     }
+    .carousel-sector {
+        margin-top: -220px;
+        .slide-elm {
+            width: 330px !important;
+            .elm-table >h6 {
+                width: 80px !important;
+                font-size: 14px;
+            }
+        }
+       }
 }
