@@ -86,11 +86,19 @@ class Navbar extends React.Component {
               options={options}
             />
             <RSelect defaultValue="تسجيل الدخول" className="login">
-              <RSelect.Option value="companyLogin">
-                <Link to="/company/login">شركة</Link>
+              <RSelect.Option
+                value="companyLogin"
+                onClick={() => history.push('/company/login')}
+              >
+                شركة
               </RSelect.Option>
-              <RSelect.Option value="userLogin">
-                <Link to="/user/login">باحث عن عمل</Link>
+              <RSelect.Option
+                value="userLogin"
+                onClick={() => {
+                  history.push('/user/login');
+                }}
+              >
+                باحث عن عمل
               </RSelect.Option>
             </RSelect>
           </div>
