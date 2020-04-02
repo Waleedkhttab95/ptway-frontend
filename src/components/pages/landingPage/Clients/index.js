@@ -16,7 +16,7 @@ const Partners = props => {
   const galleryItems = [c1, c2, c3, c4, c5, c6].map(i => (
     <img key={i} src={i} alt={i} />
   ));
-  const responsive = { 0: { items: 4 }, 1024: { items: 5 } };
+  const responsive = { 0: { items: 2 }, 1024: { items: 5 } };
   return (
     <Row className="clients-section">
       <h2 className="title">عملائنا</h2>
