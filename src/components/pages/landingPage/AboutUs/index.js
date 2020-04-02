@@ -33,16 +33,16 @@ const AboutUs = () => {
               <Col md={8} xs={12} sm={12}>
                 <div className="about-elm left-side">
                   <div className="elm-img">
-                    <img src={ab6} alt="" />
+                    <img src={ab5} alt="" />
                   </div>
                   <div className="elm-desc-second-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
+                    <h3>المهارات</h3>
+                    <p>جميع المهارات العلمية والعملية تجدها هنا</p>
                   </div>
                 </div>
                 <div className="about-elm" style={{ paddingTop: '50px' }}>
                   <div className="elm-img">
-                    <img src={ab2} alt="" />
+                    <img src={ab4} alt="" />
                   </div>
                   <div className="elm-desc-second-col">
                     <h3>اللغات</h3>
@@ -54,34 +54,34 @@ const AboutUs = () => {
                     <img src={ab3} alt="" />
                   </div>
                   <div className="elm-desc-second-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
+                    <h3>المناطق</h3>
+                    <p>ptaway نغطي 13 منطقة ادارية</p>
                   </div>
                 </div>
               </Col>
               <Col md={8} xs={12} sm={12}>
                 <div className="about-elm">
                   <div className="elm-desc-first-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
+                    <h3>التخصصات</h3>
+                    <p>نتميز بتوفير أكثر من 160 تخصص</p>
                   </div>
                   <div className="elm-img">
-                    <img src={ab4} alt="" />
+                    <img src={ab6} alt="" />
                   </div>
                 </div>
                 <div className="about-elm left-side">
                   <div className="elm-desc-first-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
+                    <h3>الخبرات</h3>
+                    <p>نملك العديد من الأشخاص ذوي الخبرات بمجالات متعددة</p>
                   </div>
                   <div className="elm-img">
-                    <img src={ab5} alt="" />
+                    <img src={ab2} alt="" />
                   </div>
                 </div>
                 <div className="about-elm " style={{ paddingTop: '50px' }}>
                   <div className="elm-desc-first-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
+                    <h3>الأعمار</h3>
+                    <p>نتميز بتوفير أي عمر من 16 سنة فما فوق</p>
                   </div>
                   <div className="elm-img">
                     <img src={ab1} alt="" />
