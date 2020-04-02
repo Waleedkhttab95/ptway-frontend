@@ -1,5 +1,5 @@
 .clients-section {
-    height: 300px;
+    height: 400px;
     background: #f8fbff;
     display: flex;
     flex-direction: column;
@@ -25,6 +25,14 @@ p.alice-carousel__prev-btn-item {
 }
 p.alice-carousel__next-btn-item {
     display: none;
+}
+.client-diff-logos{
+    width: 260px;
+    height: 120px;
+}
+.clients-logos {
+    width: 240px;
+    height: 120px;
 }
 @media(max-width:320px){
     .partners .partners-names {

@@ -13,10 +13,18 @@ import c6 from '../../../../images/c6.svg';
 
 const Partners = props => {
   const { i18n } = props;
-  const galleryItems = [c1, c2, c3, c4, c5, c6].map(i => (
-    <img key={i} src={i} alt={i} />
+  const galleryItems = [c1, c2, c3, c4, c5, c6].map((i, index) => (
+    <img
+      key={i}
+      src={i}
+      alt={i}
+      className={
+        index == 2 || index == 3 ? 'client-diff-logos' : 'clients-logos'
+      }
+    />
   ));
-  const responsive = { 0: { items: 2 }, 1024: { items: 5 } };
+  const responsive = { 0: { items: 1 }, 1024: { items: 4 } };
+  const stagePadding = { paddingLeft: '10px' };
   return (
     <Row className="clients-section">
       <h2 className="title">عملائنا</h2>
@@ -28,8 +36,10 @@ const Partners = props => {
           autoPlayInterval={2000}
           autoPlayDirection="rtl"
           autoPlay={true}
+          slideToIndex={5}
           mouseTrackingEnabled={true}
           playButtonEnabled={false}
+          stagePadding={stagePadding}
         />
       </div>
     </Row>
