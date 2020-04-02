@@ -19,7 +19,11 @@ const Partners = props => {
       src={i}
       alt={i}
       className={
-        index == 2 || index == 3 ? 'client-diff-logos' : 'clients-logos'
+        index == 2 || index == 3
+          ? 'larg-logos'
+          : index == 4 || index == 1
+          ? 'small-logos'
+          : 'mid-logos'
       }
     />
   ));

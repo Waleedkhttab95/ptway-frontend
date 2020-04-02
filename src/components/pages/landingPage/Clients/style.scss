@@ -26,12 +26,16 @@ p.alice-carousel__prev-btn-item {
 p.alice-carousel__next-btn-item {
     display: none;
 }
-.client-diff-logos{
+.larg-logos{
     width: 260px;
     height: 120px;
 }
-.clients-logos {
+.mid-logos {
     width: 240px;
+    height: 120px;
+}
+.small-logos {
+    width: 170px;
     height: 120px;
 }
 @media(max-width:320px){
