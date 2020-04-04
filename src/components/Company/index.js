@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Alert, Col, Spin } from 'antd';
+import { Row, Layout, Alert, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
@@ -47,37 +47,37 @@ class CompanyHome extends React.Component {
                 className="info-alert"
               />
             </div>
-            <div className="company-progress">
-              <div className="opened-projects">
+            <Row className="company-progress">
+              <Col md={7} className="opened-projects">
                 <div>المشاريع المنشئة</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.projects
                     : ''}
                 </div>
-              </div>
-              <div className="total-offers">
+              </Col>
+              <Col md={7} className="total-offers">
                 <div>عروض العمل الإجمالية</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.jobs
                     : ''}
                 </div>
-              </div>
-              <div className="user-hired">
+              </Col>
+              <Col md={7} className="user-hired">
                 <div>الذين تم توظيفهم</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.acceptes
                     : ''}
                 </div>
-              </div>
+              </Col>
               {/* <div className="user-rejected">
               <div>الذين تم رفضهم</div>
               <div className="user-stc-number">7,213</div>
             </div>
           */}
-            </div>
+            </Row>
             <div className="user-profile">
               <Col md={6} className="right-section">
                 <CompanyInfo {...company} />

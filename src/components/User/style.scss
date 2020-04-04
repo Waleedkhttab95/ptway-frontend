@@ -1,16 +1,15 @@
 .user-home{
     padding: 32px 135px;
     .user-profile{
-        display: flex;
+        // display: flex;
         .right-section{
             margin-top: 17px;
-            margin-left: 20px;
             .user-profile-complete {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 287px;
+                // width: 287px;
                 height: 262px;
                 border-radius: 7px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -48,7 +47,8 @@
                 }
             }
             .update-profile-btn{
-                width: 287px;
+                // width: 287px;
+                padding: 0 50px;
                 height: 55px;
                 border-radius: 6px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -59,6 +59,7 @@
                 font-weight: bold;
                 color:#fff;
                 cursor: pointer;
+                margin-right: 15px ;
             }
 
         }
@@ -66,18 +67,18 @@
         margin-top: 17px;
     }
         .user-progress, .company-progress{
-            display: flex;
+            // display: flex;
         }
             .user-hours-work {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                width: 275px;
+                // width: 275px;
                 height: 112px;
                 border-radius: 7px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #009ad0;
-                margin-left: 20px;
+                margin-left: 10px;
                 font-family: 'Tajawal';
                 font-size: 16px;
                 font-weight: bold;
@@ -92,12 +93,12 @@
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                width: 275px;
+                // width: 275px;
                 height: 112px;
                 border-radius: 7px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #34add9;
-                margin-left: 20px;
+                margin-left: 10px;
                 font-family: 'Tajawal';
                 font-size: 16px;
                 font-weight: bold;
@@ -113,7 +114,7 @@
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                width: 275px;
+                // width: 275px;
                 height: 112px;
                 border-radius: 7px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -130,7 +131,7 @@
             }
         
         .skills-general-info{
-            width: 863px;
+            // width: 863px;
             height: 900px;
             border-radius: 10px;
             box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -193,7 +194,7 @@
     }
 }
 .personal-info {
-    width: 287px;
+    // width: 287px;
     height: 300px;
     border-radius: 7px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);

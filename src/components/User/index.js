@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Col, Spin } from 'antd';
+import { Row, Layout, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -54,7 +54,7 @@ class User extends React.Component {
                 className="info-alert"
               />
             </div> */}
-            <div className="user-profile">
+            <Row className="user-profile">
               <div className="user-progress-mob">
                 <div className="user-hours-work">
                   <div>عدد ساعات العمل</div>
@@ -69,100 +69,22 @@ class User extends React.Component {
                   <div className="user-stc-number">{profile_views}</div>
                 </div>
               </div>
-
-              <Col md={6} className="right-section">
-                <div className="personal-info">
-                  <div className="user-pic-info">
-                    {/* <i className="fa fa-user u-pic" aria-hidden="true"></i> */}
-                    {imagePath !== 'null' ? (
-                      <img src={imagePath} alt="user" className="u-pic" />
-                    ) : (
-                      <i
-                        className="fa fa-user-circle"
-                        aria-hidden="true"
-                        style={{ fontSize: '60px' }}
-                      ></i>
-                    )}
-                    <span className="fullname">{fullName} </span>
-
-                    <span className="job-type">مصمم جرافيك</span>
-                  </div>
-                  <div className="details-user-info">
-                    <span>
-                      <i className="fa fa-envelope" aria-hidden="true"></i>
-                      {email}
-                    </span>
-                    <span>
-                      <i className="fa fa-mobile" aria-hidden="true"></i>
-                      {mobile}
-                    </span>
-                    <span>
-                      <i className="fa fa-user" aria-hidden="true"></i>
-                      {gender}
-                    </span>
-                    <span>
-                      <i className="fa fa-map-marker" aria-hidden="true"></i>
-                      {city},{country}
-                    </span>
-                  </div>
-                </div>
-                <div className="user-profile-complete">
-                  <div>
-                    <CircularProgressbar
-                      value={profileComplete}
-                      text={profileComplete ? `${profileComplete}%` : ''}
-                      styles={{
-                        path: {
-                          stroke: `rgba(62, 152, 199, ${profileComplete /
-                            100})`,
-                          strokeLinecap: 'butt',
-                          transition: 'stroke-dashoffset 0.5s ease 0s',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        trail: {
-                          stroke: '#d6d6d6',
-                          strokeLinecap: 'butt',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        text: {
-                          fill: '#009ad0',
-                          fontSize: '16px',
-                          textAlign: 'center'
-                        },
-                        background: {
-                          fill: '#3e98c7'
-                        }
-                      }}
-                    />
-                  </div>
-                  <span className="u-p-title">نسبة اكتمال الحساب</span>
-                </div>
-                <button
-                  className="update-profile-btn"
-                  onClick={() =>
-                    this.props.history.push('/user/profile/update')
-                  }
-                >
-                  تعديل معلومات الحساب
-                </button>
-              </Col>
-              <Col md={18} className="left-section">
-                <div className="user-progress">
-                  <div className="user-hours-work">
-                    <div>عدد ساعات العمل</div>
-                    <div className="user-stc-number">{work_Hours}</div>
-                  </div>
-                  <div className="user-job">
-                    <div>وظائف تقدمت عليها</div>
-                    <div className="user-stc-number">{aplled_jobs}</div>
-                  </div>
-                  <div className="user-profile-seen">
+              <Col md={2}></Col>
+              <Col md={14} sm={24} xs={24} className="left-section">
+                <Row className="user-progress">
+                  <Col md={7} sm={7} className="user-profile-seen">
                     <div>عدد مشاهدات الحساب</div>
                     <div className="user-stc-number">{profile_views}</div>
-                  </div>
-                </div>
+                  </Col>
+                  <Col md={7} sm={7} className="user-job">
+                    <div>وظائف تقدمت عليها</div>
+                    <div className="user-stc-number">{aplled_jobs}</div>
+                  </Col>
+                  <Col md={8} sm={8} className="user-hours-work">
+                    <div>عدد ساعات العمل</div>
+                    <div className="user-stc-number">{work_Hours}</div>
+                  </Col>
+                </Row>
 
                 <div className="skills-general-info">
                   <div className="preif-section">
@@ -258,7 +180,84 @@ class User extends React.Component {
                   </div>
                 </div>
               </Col>
-            </div>
+              <Col md={6} sm={24} xs={24} className="right-section">
+                <div className="personal-info">
+                  <div className="user-pic-info">
+                    {imagePath !== 'null' ? (
+                      <img src={imagePath} alt="user" className="u-pic" />
+                    ) : (
+                      <i
+                        className="fa fa-user-circle"
+                        aria-hidden="true"
+                        style={{ fontSize: '60px' }}
+                      ></i>
+                    )}
+                    <span className="fullname">{fullName} </span>
+
+                    <span className="job-type">مصمم جرافيك</span>
+                  </div>
+                  <div className="details-user-info">
+                    <span>
+                      <i className="fa fa-envelope" aria-hidden="true"></i>
+                      {email}
+                    </span>
+                    <span>
+                      <i className="fa fa-mobile" aria-hidden="true"></i>
+                      {mobile}
+                    </span>
+                    <span>
+                      <i className="fa fa-user" aria-hidden="true"></i>
+                      {gender}
+                    </span>
+                    <span>
+                      <i className="fa fa-map-marker" aria-hidden="true"></i>
+                      {city},{country}
+                    </span>
+                  </div>
+                </div>
+                <div className="user-profile-complete">
+                  <div>
+                    <CircularProgressbar
+                      value={profileComplete}
+                      text={profileComplete ? `${profileComplete}%` : ''}
+                      styles={{
+                        path: {
+                          stroke: `rgba(62, 152, 199, ${profileComplete /
+                            100})`,
+                          strokeLinecap: 'butt',
+                          transition: 'stroke-dashoffset 0.5s ease 0s',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        trail: {
+                          stroke: '#d6d6d6',
+                          strokeLinecap: 'butt',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        text: {
+                          fill: '#009ad0',
+                          fontSize: '16px',
+                          textAlign: 'center'
+                        },
+                        background: {
+                          fill: '#3e98c7'
+                        }
+                      }}
+                    />
+                  </div>
+                  <span className="u-p-title">نسبة اكتمال الحساب</span>
+                </div>
+                <button
+                  className="update-profile-btn"
+                  onClick={() =>
+                    this.props.history.push('/user/profile/update')
+                  }
+                >
+                  تعديل معلومات الحساب
+                </button>
+              </Col>
+            </Row>
           </Content>
         </div>
         <Footer />
