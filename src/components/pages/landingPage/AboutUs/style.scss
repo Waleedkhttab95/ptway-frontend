@@ -38,7 +38,7 @@
         letter-spacing: normal;
         text-align: right;
         color: #18233d;
-        padding-right: 50px;
+        padding-right: 80px;
     }
 }
 .about-us-img {
@@ -47,16 +47,8 @@
 }
 .about-elm {
     display: flex;
-    margin-left: 5px;
-    .elm-img {
-        width: 70px;
-        height: 50px;
-        border-radius: 10px;
-        background-color: #00263e;
-        display: flex;
-        justify-content: center;
-    }
     .elm-desc-first-col {
+        margin-left: 10px;
         h3{
             font-size: 18px;
             font-weight: 500;
@@ -80,6 +72,7 @@
         }
     }
     .elm-desc-second-col {
+        margin-right: 10px;
         h3{
             font-size: 18px;
             font-weight: 500;
@@ -90,6 +83,7 @@
             text-align: right;
             color: #049ad0;
             margin-bottom: 0;
+            padding-right: 0px;
         }
         p{
             font-size: 14px;
@@ -103,7 +97,10 @@
         }
     }
 }
-.left-side {
+.col-left-side {
+    margin-top: 55px;
+}
+.col-right-side {
     margin-top: 50px;
 }
 
@@ -150,6 +147,7 @@
         line-height: 1.5;
         letter-spacing: normal;
         color: #18233d;
+        margin-bottom: 37px;
 
     }
 }

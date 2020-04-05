@@ -15,7 +15,7 @@ const HowItWorks = () => {
           // animated={false}
           className="works-tab"
         >
-          <TabPane tab=" تطوعي" key="1">
+          <TabPane tab=" تطوعي" key="1" className="custom-tab">
             تستطيع الجهات الخيرية ولقطاع غير الربحي على اسخدام المنصة للحصول على
             متطوعين بشكل مجاني تماماً اذا كنت تمثل هذه القطاعات أو مايشابهها
             <br />

@@ -27,12 +27,10 @@
   }
   
   .notfound .notfound-404 h1 {
-    font-family: 'Titillium Web', sans-serif;
     font-size: 186px;
     font-weight: 900;
     margin: 0px;
     text-transform: uppercase;
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: cover;
     background-position: center;
@@ -46,7 +44,6 @@
   }
   
   .notfound p {
-    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 0px;
@@ -54,7 +51,6 @@
   }
   
   .notfound a {
-    font-family: 'Titillium Web', sans-serif;
     display: inline-block;
     text-transform: uppercase;
     color: #fff;

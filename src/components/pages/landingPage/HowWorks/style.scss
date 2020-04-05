@@ -20,8 +20,13 @@
 }
 .ant-tabs-nav .ant-tabs-tab {
     width: 500px;
-    text-align: right;
+    text-align: center;
     margin: 0 30px;
+    // margin-right: 80px;
+}
+.ant-tabs-tab {
+    color: #e4e7ea !important;
+    font-size: 28px !important;
 }
 .tab-row {
     padding: 0 150px;
@@ -37,7 +42,7 @@
             font-style: normal;
             line-height: 1.48;
             letter-spacing: normal;
-            text-align: right;
+            text-align: center;
             color: #00263e;
         }
         .desc {
@@ -47,7 +52,7 @@
             font-style: normal;
             line-height: 1.46;
             letter-spacing: normal;
-            text-align: right;
+            text-align: center;
             color: #00263e;
         }
 }

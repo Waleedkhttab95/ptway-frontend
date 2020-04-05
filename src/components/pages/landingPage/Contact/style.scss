@@ -22,10 +22,12 @@
     }
     form {
         width: 600px;
-        height: 240px;
+        height: 280px;
         border-radius: 10px;
         background-color: #ffffff;
         padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
         .inputs{
             display: flex;
             input{

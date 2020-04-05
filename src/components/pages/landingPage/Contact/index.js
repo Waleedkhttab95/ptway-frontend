@@ -15,6 +15,7 @@ const ContactUs = props => {
           <Input placeholder="الإيميل" />
         </div>
         <TextArea rows={4} placeholder="أكتب رسالتك هنا" />
+        <button className="send-btn">ارسال</button>
       </form>
       <h3> ابدأ الآن</h3>
       <div className="btns">
