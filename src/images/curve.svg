@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1515" height="943.5" viewBox="0 0 1515 943.5">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="-0.835" x2="0.5" y2="0.692" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3a4662"/>
+      <stop offset="1" stop-color="#18233d"/>
+    </linearGradient>
+    <filter id="Path_5345" x="-0.5" y="-67.754" width="1516" height="200.896" filterUnits="userSpaceOnUse">
+      <feOffset dy="-5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12.5" result="blur"/>
+      <feFlood flood-opacity="0.078"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_5344" x="-0.5" y="-2906.291" width="1516" height="4653.318" filterUnits="userSpaceOnUse">
+      <feOffset dy="-5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12.5" result="blur-2"/>
+      <feFlood flood-opacity="0.078"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Subtraction_8" x="0" y="0" width="1515" height="943.5" filterUnits="userSpaceOnUse">
+      <feOffset dy="-5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12.5" result="blur-3"/>
+      <feFlood flood-opacity="0.078"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Subtraction_8)">
+    <path id="Subtraction_8-2" data-name="Subtraction 8" d="M-5083.5,903.5h-1439V92.976c29.844-4.727,60.1-9.219,89.939-13.354s60.109-8.03,89.938-11.573,60.1-6.839,89.937-9.793,60.1-5.65,89.936-8.012,60.1-4.46,89.937-6.231,60.091-3.269,89.937-4.451,60.092-2.08,89.938-2.671S-5832.84,36-5803,36s60.1.3,89.939.89,60.1,1.489,89.938,2.671,60.1,2.679,89.937,4.451,60.1,3.869,89.937,6.232,60.092,5.058,89.936,8.012,60.1,6.249,89.937,9.793,60.091,7.437,89.938,11.573c29.831,4.134,60.091,8.627,89.939,13.354V903.5Z" transform="translate(6560.5 7)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

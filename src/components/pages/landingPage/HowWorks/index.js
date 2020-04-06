@@ -87,7 +87,7 @@ const Contracts = props => {
               <h3 className="title">أضف العرض الوظيفي</h3>
               <p className="desc">
                 إضافة العرض الوظيفي هي أول خطوة لإيجاد <br />
-                الموظف المناسب لشركتك!
+                !الموظف المناسب لشركتك
               </p>
             </Col>
             <Col
@@ -119,7 +119,7 @@ const Contracts = props => {
             <Col md={12} sm={12} xs={12} className="tab-content">
               <h2 className="title">ظهور المرشحين</h2>
               <p className="desc">
-                سيظهر لك العديد من المرشحين المناسبي للعمل لديك.
+                .سيظهر لك العديد من المرشحين المناسبي للعمل لديك
               </p>
             </Col>
           </Row>

@@ -3,7 +3,7 @@
     margin-bottom: 30px;
     padding: 0 125px;
 }
-.services-tabs{
+.services-content{
     padding-left: 60px;
    .title{
     font-size: 50px;
@@ -79,6 +79,10 @@
   text-align: right;
   color: #18233d;
 }
+.tag-link {
+    font-size: 28px;
+    color: #18233d;
+}
 
 @media(max-width:320px) {
     .services {
@@ -91,6 +95,7 @@
            .title{
                font-size: 25px;
                text-align: center;
+               margin-top: -30px;
            }
            .desc {
                font-size: 15px;
@@ -104,8 +109,35 @@
         font-size: 16px;
     }
     .ant-tabs-nav .ant-tabs-tab {
-        padding: 12px 15px;
+        padding: 12px 13px;
     }
+    .works-tab >div{   
+        >div >div >div >div >div >div {
+            font-size: 16px !important;
+    
+        }
+    }
+    .ant-tabs-tabpane.ant-tabs-tabpane-active {
+        font-size: 14px;
+    } 
+    .tag-title {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+    .tag{
+        font-size: 15px;
+    }
+    .tag-icon {
+        width: 22.6px;
+        height: 24.4px;
+    }
+    .tag-link {
+        font-size: 18px;
+    }
+    .services-tabs {
+        padding: 0 10px;
+    }
+    
 }
 @media (min-width:321px) and (max-width:768px){
    .services {
@@ -113,11 +145,12 @@
     flex-direction: column-reverse;
     padding: 10px 20px;
    }
-   .services-tabs {
+   .services-content {
        padding-left: 0;
     .title{
         font-size: 30px;
         text-align: center;
+        margin-top: -30px;
     }
     .desc {
         font-size: 17px;
@@ -131,6 +164,34 @@
     font-size: 18px;
 }
 .ant-tabs-nav .ant-tabs-tab {
-    padding: 12px 20px;
+    padding: 12px 18px;
 }
+.works-tab >div{   
+    >div >div >div >div >div >div {
+        font-size: 20px !important;
+
+    }
+}
+.ant-tabs-tabpane.ant-tabs-tabpane-active {
+    font-size: 16px;
+} 
+.tag-title {
+    font-size: 20px;
+    margin-top: 5px;
+}
+.tag{
+    font-size: 17px;
+}
+.tag-icon {
+    width: 22.6px;
+    height: 24.4px;
+}
+.tag-link {
+    font-size: 20px;
+}
+.services-tabs {
+    padding: 0 10px;
+}
+
+
 }

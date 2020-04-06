@@ -21,16 +21,17 @@ const AboutUs = () => {
         <Row className="about-us">
           <Navbar />
           <h2 className="title">من نحن؟</h2>
-          <Col md={12} xs={24} sm={24} className="about-us-img">
+          <Col md={10} xs={24} sm={24} className="about-us-img">
             <img src={aboutus} alt="aboutus" />
           </Col>
-          <Col md={12} xs={24} sm={24} className="about-us-content">
-            <p className="desc">
-              منصة الكترونية تربط بين الشركات والباحثين عن عمل جزئي لتغطية
-              احتياجهم من الكوادر البشرية
-            </p>
-            <h3>مميزاتنا:</h3>
+          <Col md={14} xs={24} sm={24} className="about-us-content">
             <Row>
+              <p className="desc">
+                منصة الكترونية تربط بين الشركات والباحثين عن عمل جزئي لتغطية
+                احتياجهم من الكوادر البشرية
+              </p>
+              <h3>مميزاتنا:</h3>
+              <Col md={2}></Col>
               <Col md={8} xs={12} sm={12}>
                 <div className="about-elm col-left-side">
                   <div className="elm-img">
@@ -50,7 +51,10 @@ const AboutUs = () => {
                     <p>نملك العديد من الأشخاص ذوي الخبرات بمجالات متعددة</p>
                   </div>
                 </div>
-                <div className="about-elm col-left-side">
+                <div
+                  className="about-elm col-left-side"
+                  style={{ marginTop: '41px' }}
+                >
                   <div className="elm-img">
                     <img src={ab6} alt="" />
                   </div>

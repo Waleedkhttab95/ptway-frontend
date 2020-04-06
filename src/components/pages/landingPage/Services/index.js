@@ -3,13 +3,23 @@ import { Row, Col, Tabs } from 'antd';
 import './style.scss';
 import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import calender from '../../../../images/serv1.svg';
+import voluntery from '../../../../images/serv4.svg';
+import partial from '../../../../images/serv2.svg';
+import contract from '../../../../images/serv3.svg';
+
 const { TabPane } = Tabs;
 
 const HowItWorks = () => {
   // const { i18n } = props;
   return (
     <Row className="services">
-      <Col md={12} sm={24} style={{ direction: 'initial' }}>
+      <Col
+        md={12}
+        sm={24}
+        style={{ direction: 'initial' }}
+        className="services-tabs"
+      >
         <Tabs
           defaultActiveKey="4"
           // animated={false}
@@ -23,16 +33,9 @@ const HowItWorks = () => {
             <span className="tag">
               تطوع_صحي &nbsp;#تطوع_خيري&nbsp; #تطوع_اجتماعي# &nbsp;
             </span>
-            <i
-              className="fa fa-certificate"
-              aria-hidden="true"
-              style={{ color: '#049ad0' }}
-            ></i>{' '}
+            <img src={voluntery} alt="voluntery" className="tag-icon" />
             <br />
-            <Link
-              to="/user/signup"
-              style={{ fontSize: '28px', color: '#18233d' }}
-            >
+            <Link to="/user/signup" className="tag-link">
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -45,16 +48,9 @@ const HowItWorks = () => {
             <span className="tag">
               وظائف_صيفية &nbsp;#رمضان&nbsp; #مشاريع# &nbsp;
             </span>
-            <i
-              className="fa fa-file-text-o"
-              aria-hidden="true"
-              style={{ color: '#049ad0' }}
-            ></i>{' '}
+            <img src={contract} alt="contract" className="tag-icon" />
             <br />
-            <Link
-              to="/user/signup"
-              style={{ fontSize: '28px', color: '#18233d' }}
-            >
+            <Link to="/user/signup" className="tag-link">
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -67,16 +63,9 @@ const HowItWorks = () => {
             <span className="tag">
               مطاعم &nbsp;#مقاهي&nbsp; #شركات_ناشئة# &nbsp;
             </span>
-            <i
-              className="fa fa-gg-circle"
-              aria-hidden="true"
-              style={{ color: '#049ad0' }}
-            ></i>{' '}
+            <img src={partial} alt="partial" className="tag-icon" />
             <br />
-            <Link
-              to="/user/signup"
-              style={{ fontSize: '28px', color: '#18233d' }}
-            >
+            <Link to="/user/signup" className="tag-link">
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
@@ -87,28 +76,22 @@ const HowItWorks = () => {
             <br />
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
-              المناسبات &nbsp;#مواسم_السعودية&nbsp; #المعارض# &nbsp;
+              المناسبات &nbsp;#مواسم_السعودية&nbsp; #المعارض# &nbsp; &nbsp;
             </span>
-            <i
-              className="fa fa-calendar"
-              aria-hidden="true"
-              style={{ color: '#049ad0' }}
-            ></i>{' '}
+            <img src={calender} alt="calender" className="tag-icon" />
             <br />
-            <Link
-              to="/user/signup"
-              style={{ fontSize: '28px', color: '#18233d' }}
-            >
+            <Link to="/user/signup" className="tag-link">
               {'<'} انضم معنا &nbsp; &nbsp;
             </Link>
           </TabPane>
         </Tabs>
       </Col>
-      <Col md={12} sm={24} className="services-tabs">
+      <Col md={12} sm={24} className="services-content">
         <h2 className="title">خدماتنا</h2>
         <p className="desc">
-          ضغط الوقت يمكن في الواقع أن يكون مفيداً، فهو يساعد على تركيز الذهن
-          وعدم التفكير في التسويف، وخفض عدد البدائل التي يمكن التفكير بها
+          ضغط الوقت يمكن في الواقع أن يكون مفيداً، <br /> فهو يساعد على تركيز
+          الذهن وعدم التفكير <br />
+          في التسويف، وخفض عدد البدائل التي يمكن التفكير بها
         </p>
       </Col>
     </Row>

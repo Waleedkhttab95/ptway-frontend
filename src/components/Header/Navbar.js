@@ -67,11 +67,13 @@ class Navbar extends React.Component {
             onClick={() => history.push('/')}
             style={{ cursor: 'pointer' }}
           />
+          <div></div>
           <div className="menu">
             <Link to="/home/about-us"> من نحن</Link>
             <Link to="/user/login">الأفراد</Link>
             <Link to="/company/login">الشركات</Link>
           </div>
+          <div></div>
           <div className="options">
             <Select
               className="basic-single"
@@ -125,11 +127,7 @@ class Navbar extends React.Component {
                 aria-hidden="true"
                 onClick={this.onClose}
               ></i>
-              <img
-                src={ptwayLogo}
-                alt="logo"
-                //   style={{ width: '50%' }}
-              />
+              <img src={ptwayLogo} alt="logo" style={{ width: '30%' }} />
             </div>
           }
           placement="right"

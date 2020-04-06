@@ -27,7 +27,7 @@
         letter-spacing: normal;
         text-align: center;
         color: #18233d;
-        padding-right: 30px;
+        padding-right: 40px;
     }
     h3 {
         font-size: 20px;
@@ -38,12 +38,12 @@
         letter-spacing: normal;
         text-align: right;
         color: #18233d;
-        padding-right: 80px;
+        padding-right: 130px;
     }
 }
 .about-us-img {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
 }
 .about-elm {
     display: flex;
@@ -101,12 +101,12 @@
     margin-top: 55px;
 }
 .col-right-side {
-    margin-top: 50px;
+    margin-top: 43px;
 }
 
 .vision-message {
     text-align: right;
-    padding: 40px 80px;
+    padding: 40px 120px;
     background: #fff;
 }
 .vision {

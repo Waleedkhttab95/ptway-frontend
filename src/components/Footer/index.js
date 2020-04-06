@@ -4,7 +4,7 @@ import './footer.scss';
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg';
 import linkedIn from '../../images/Linkedin.svg';
-import ptwayLogoFooter from '../../images/ptwayLogoFooter.png';
+import ptwayLogo from '../../images/PTway_Logo.svg';
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
@@ -29,7 +29,7 @@ const Footer = () => {
           <a>السياسة والخصوصية</a>
         </div>
         <div className="footer-logo">
-          <img src={ptwayLogoFooter} alt="ptwayLogoFooter" />
+          <img src={ptwayLogo} alt="logo" className="footer-logo" />
         </div>
       </div>
 
