@@ -30,7 +30,11 @@ const Footer = () => {
           <a>السياسة والخصوصية</a>
         </div>
         <div className="footer-logo">
+<<<<<<< HEAD
           <img src={ptwayLogo} alt="ptwayLogoFooter" />
+=======
+          <img src={ptwayLogo} alt="logo" className="footer-logo" />
+>>>>>>> 3a3bfe99a9186ed711e5267f6dd9f265a9ec895b
         </div>
       </div>
 

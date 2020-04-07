@@ -34,7 +34,7 @@
             height: 40px;
             border-radius: 4px;
             background-color: #0acc94;
-            font-size: 14px !important;
+            font-size: 18px !important;
             font-weight: 500;
             font-stretch: normal;
             font-style: normal;
@@ -43,7 +43,7 @@
             text-align: left;
             color: #f8fbff;
             >div {
-                padding-top: 5px;
+                padding-top: 3px;
                 margin-right: 10px;
             }
         }
@@ -152,7 +152,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     align-items: center;
 
     .user-right-side {
-        padding-right: 135px;
+        // padding-right: 135px;
         >a{
             font-family: DINNextLTW23;
             font-size: 16px;
@@ -168,7 +168,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     }
     .user-left-side{
         display: flex;
-        padding-left: 135px;
+        // padding-left: 135px;
         position: relative;
         .user-header-btn{
             margin-right: 29px;
@@ -508,7 +508,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         }
     .home-header {
         flex-direction: column;
-        height: 500px;
+        height: 350px;
         > div > img {
             display: none;
         }
@@ -524,14 +524,18 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         align-items: center;
         .brief-title{
             text-align: center;
+            font-size: 18px;
         }
         .brief-desc {
             text-align: center;
             margin-bottom: 50px;
+            font-size: 14px;
         }
         .log-btn {
             margin-top: -30px;
             background: transparent;
+            padding-bottom: 10px;
+            width: 261px;
         }
     }  
 }
@@ -663,7 +667,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         }
     }
     .home-header {
-        height: 500px;
+        height: 350px;
         flex-direction: column;
         > div > img {
             display: none;
@@ -680,17 +684,19 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         align-items: center;
         .brief-title{
             text-align: center;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
         }
         .brief-desc {
             text-align: center;
             margin-bottom: 50px;
-            font-size: 20px;
+            font-size: 14px;
         }
         .log-btn {
             margin-top: -30px;
             background: transparent;
+            padding-bottom: 10px;
+            width: 261px;
         }
     }
 

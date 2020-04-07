@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Col, Spin } from 'antd';
+
+import { Row, Layout, Alert, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
 import { connect } from 'react-redux';
@@ -35,37 +36,54 @@ class CompanyHome extends React.Component {
         <Header />
         <div className="user-container">
           <Content className="user-home">
+<<<<<<< HEAD
             <div className="company-progress">
               <div className="opened-projects">
+=======
+            <div className="user-notification">
+              <Alert
+                message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
+                type="warning"
+                className="warning-alert"
+              />
+              <Alert
+                message="يوجد متقدم جديد  سامر الأحمد على مشروع الشركة الرئيسية"
+                type="info"
+                className="info-alert"
+              />
+            </div>
+            <Row className="company-progress">
+              <Col md={7} className="opened-projects">
+>>>>>>> 3a3bfe99a9186ed711e5267f6dd9f265a9ec895b
                 <div>المشاريع المنشئة</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.projects
                     : ''}
                 </div>
-              </div>
-              <div className="total-offers">
+              </Col>
+              <Col md={7} className="total-offers">
                 <div>عروض العمل الإجمالية</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.jobs
                     : ''}
                 </div>
-              </div>
-              <div className="user-hired">
+              </Col>
+              <Col md={7} className="user-hired">
                 <div>الذين تم توظيفهم</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
                     ? company.companyStatistic.acceptes
                     : ''}
                 </div>
-              </div>
+              </Col>
               {/* <div className="user-rejected">
               <div>الذين تم رفضهم</div>
               <div className="user-stc-number">7,213</div>
             </div>
           */}
-            </div>
+            </Row>
             <div className="user-profile">
               <Col md={6} className="right-section">
                 <CompanyInfo {...company} />

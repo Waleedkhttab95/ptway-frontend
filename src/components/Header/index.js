@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Button, Col } from 'antd';
+import { Row, Drawer, Button, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
@@ -100,7 +100,7 @@ class Header extends React.Component {
       <React.Fragment>
         {loggedIn && role === 'user' ? (
           <React.Fragment>
-            <div className="user-header">
+            <Row className="user-header">
               <div className="user-right-side">
                 <img src={userLogo} alt="logo" style={{ width: '200px' }} />
                 <Link to="/user/home">سيرتي الذاتية </Link>
@@ -168,8 +168,8 @@ class Header extends React.Component {
                   خروج
                 </Button>
               </div>
-            </div>
-            <div className="menu-mobile">
+            </Row>
+            <Row className="menu-mobile">
               <div className="user-drawer-mobile">
                 <i
                   className="fa fa-bars"
@@ -185,7 +185,7 @@ class Header extends React.Component {
                         aria-hidden="true"
                         onClick={this.onClose}
                       ></i>
-                      <img src={userLogo} alt="logo" style={{ width: '40%' }} />
+                      <img src={userLogo} alt="logo" style={{ width: '30%' }} />
                     </div>
                   }
                   placement="right"
@@ -215,10 +215,10 @@ class Header extends React.Component {
                 <img
                   src={userLogo}
                   alt="logo"
-                  style={{ width: '40%', float: 'left' }}
+                  style={{ width: '20%', float: 'left' }}
                 />
               </div>
-            </div>
+            </Row>
           </React.Fragment>
         ) : loggedIn && role === 'company' ? (
           <React.Fragment>
@@ -430,7 +430,7 @@ class Header extends React.Component {
                         aria-hidden="true"
                         onClick={this.onClose}
                       ></i>
-                      <img src={userLogo} alt="logo" style={{ width: '40%' }} />
+                      <img src={userLogo} alt="logo" style={{ width: '30%' }} />
                     </div>
                   }
                   placement="right"
@@ -463,7 +463,7 @@ class Header extends React.Component {
                 <img
                   src={userLogo}
                   alt="logo"
-                  style={{ width: '40%', float: 'left' }}
+                  style={{ width: '20%', float: 'left' }}
                 />
               </div>
             </div>
@@ -477,11 +477,11 @@ class Header extends React.Component {
               </Col>
               <Col md={12} sm={24} className="brief">
                 <h2 className="brief-title">
-                  سر النجاح والتقدم في العمل، هو أن تبدأ العمل!
+                  سر النجاح والتقدم في العمل، <br /> هو أن تبدأ العمل!
                 </h2>
                 <p className="brief-desc">
-                  نحن أول منصة للعمل الجزئي في السعودية، نلبي كل احتياجات
-                  الشركات والباحثين عن سد أوقات الفراغ.
+                  نحن أول منصة للعمل الجزئي في السعودية، <br />
+                  نلبي كل احتياجات الشركات والباحثين عن سد أوقات الفراغ.
                 </p>
                 <button
                   className="log-btn"

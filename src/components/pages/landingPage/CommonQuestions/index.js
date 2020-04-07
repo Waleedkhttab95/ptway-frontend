@@ -116,7 +116,7 @@ const CommonQuestions = props => {
                     كيف يمكنني التعديل على السيرة الذاتية؟
                   </p>
                 }
-                key="5"
+                key="6"
               >
                 {text}
               </Panel>
@@ -127,7 +127,7 @@ const CommonQuestions = props => {
                     تخصصي الدقيق يندرج تحت مسمى اخر؟
                   </p>
                 }
-                key="5"
+                key="7"
               >
                 {text}
               </Panel>

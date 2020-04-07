@@ -1,7 +1,8 @@
-// @font-face {
-//   font-family: "Tajawal";
-//   // src: url("/public/fonts/din-next-lt-w23-regular.ttf");
-// }
+@font-face {
+  font-family: "DINNextLTArabic";
+  src: url("../fonts/ArbFONTS-DINNextLTArabic-Bold-2.ttf");
+  src: url("../fonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf");
+  }
 #root{
   height: auto;
 }
@@ -10,7 +11,7 @@ body{
   // background-color: #f3f3f3;
   height: 100vh;
   background: radial-gradient(#f3f3f3, #f3f3f3);
-  font-family: 'Tajawal' !important;
+  font-family: 'DINNextLTArabic' !important;
 }
 .App{
   height: auto;
@@ -21,12 +22,3 @@ a{
 .App-link {
   color: #61dafb;
 }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
