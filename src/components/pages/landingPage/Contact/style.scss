@@ -123,6 +123,7 @@
 @media (max-width:320px){
     .contact-us { 
         height: 650px;
+        background-image: url('../../../../images/mobile-curve.svg');
     form {
         width: 250px;
         height: 340px;
@@ -151,6 +152,7 @@
 @media (min-width:321px) and (max-width:768px){
     .contact-us { 
         height: 650px;
+        background-image: url('../../../../images/mobile-curve.svg');
         .title {
             font-size: 20px;
         }

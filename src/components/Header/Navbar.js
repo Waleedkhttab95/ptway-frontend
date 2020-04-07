@@ -127,7 +127,12 @@ class Navbar extends React.Component {
                 aria-hidden="true"
                 onClick={this.onClose}
               ></i>
-              <img src={ptwayLogo} alt="logo" style={{ width: '30%' }} />
+              <img
+                src={ptwayLogo}
+                alt="logo"
+                style={{ width: '30%' }}
+                onClick={() => history.push('/')}
+              />
             </div>
           }
           placement="right"
@@ -136,9 +141,9 @@ class Navbar extends React.Component {
           visible={this.state.visible}
         >
           <div className="navbar-mobile">
-            <a>من نحن</a>
-            <a>الأفراد</a>
-            <a>الشركات</a>
+            <Link to="/home/about-us"> من نحن</Link>
+            <Link to="/user/login">الأفراد</Link>
+            <Link to="/company/login">الشركات</Link>
             <a>
               <Link className="employeer-login-btn-mob" to="/user/login">
                 {' '}

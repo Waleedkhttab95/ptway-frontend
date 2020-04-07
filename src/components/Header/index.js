@@ -14,6 +14,7 @@ import history from '../../_core/history';
 import AddNewProjectModal from './AddNewProjectModal';
 import AddNewAdModal from './AddNewAdModal';
 import Navbar from './Navbar';
+import LoginNavbar from './LoginNavbar';
 import {
   addNewProject,
   allCotracts
@@ -96,6 +97,8 @@ class Header extends React.Component {
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
+    console.log('xyz hell', this.props.location);
+
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -467,6 +470,9 @@ class Header extends React.Component {
               </div>
             </div>
           </React.Fragment>
+        ) : window.location.href.includes('/signup') ||
+          window.location.href.includes('/login') ? (
+          <LoginNavbar />
         ) : (
           <React.Fragment>
             <Navbar />

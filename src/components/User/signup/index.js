@@ -9,6 +9,7 @@ import Footer from '../../Footer';
 import { connect } from 'react-redux';
 import { userSignup, userInfo } from '../../../store/actions/userAction';
 import statatisticsService from '../../../services/statisticsService';
+import Header from '../../Header';
 
 const { allCountries, allCities, allMajors } = statatisticsService;
 const { Step } = Steps;
@@ -206,6 +207,7 @@ class UserSignup extends React.Component {
     ];
     return (
       <React.Fragment>
+        <Header />
         <Layout style={{ background: '#f3f3f3', height: '100%' }}>
           <div className="user-container">
             <div className="signup-form">
