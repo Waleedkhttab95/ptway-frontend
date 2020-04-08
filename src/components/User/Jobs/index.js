@@ -132,9 +132,7 @@ class Jobs extends React.Component {
             </Row>
           </div>
         </div>
-        <div style={{ position: 'absolute', width: '100%', bottom: '0' }}>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     );
   }

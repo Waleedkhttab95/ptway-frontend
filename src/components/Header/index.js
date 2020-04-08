@@ -105,9 +105,31 @@ class Header extends React.Component {
           <React.Fragment>
             <Row className="user-header">
               <div className="user-right-side">
-                <img src={userLogo} alt="logo" style={{ width: '140px' }} />
-                <Link to="/user/home">سيرتي الذاتية </Link>
-                <Link to="/user/jobs" style={{ position: 'relative' }}>
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '140px', cursor: 'pointer' }}
+                  onClick={() => history.push('/user/home')}
+                />
+                <Link
+                  to="/user/home"
+                  className={
+                    window.location.href.includes('/user/home')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  سيرتي الذاتية{' '}
+                </Link>
+                <Link
+                  to="/user/jobs"
+                  style={{ position: 'relative' }}
+                  className={
+                    window.location.href.includes('/user/jobs')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
                   <span className="offers-notification">
                     {' '}
                     {unreadOffers.count}
@@ -118,7 +140,16 @@ class Header extends React.Component {
               </div>
               <div className="user-left-side">
                 <Button className="user-header-btn">
-                  <Link to="/user/account/setting">حسابي</Link>
+                  <Link
+                    to="/user/account/setting"
+                    className={
+                      window.location.href.includes('/user/account/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    حسابي
+                  </Link>
                 </Button>
                 <Button
                   className="user-header-btn"
@@ -225,12 +256,19 @@ class Header extends React.Component {
           </React.Fragment>
         ) : loggedIn && role === 'company' ? (
           <React.Fragment>
-            <div className="user-header">
+            <div
+              className="user-header"
+              style={{ justifyContent: 'space-around' }}
+            >
               <div className="user-right-side">
-                <img src={userLogo} alt="logo" style={{ width: '140px' }} />
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '140px' }}
+                  onClick={() => history.push('/company/home')}
+                />
                 <Link to="/company/home">الرئيسية </Link>
                 <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
-                {/* <Link to="/company/applicants">المتقدمين</Link> */}
               </div>
               <div className="user-left-side">
                 <Button
@@ -239,11 +277,7 @@ class Header extends React.Component {
                     this.setState({ addProject: !this.state.addProject })
                   }
                 >
-                  <i
-                    className="fa fa-plus plus-icon"
-                    aria-hidden="true"
-                    style={{ marginLeft: '7px' }}
-                  ></i>
+                  <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
                   أضف
                 </Button>
                 {this.state.addProject && (

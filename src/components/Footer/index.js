@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from 'antd';
-import './footer.scss';
+import './style.scss';
 import facebook from '../../images/Facebook.svg';
 import twitter from '../../images/Twitter.svg';
 import linkedIn from '../../images/linked.svg';

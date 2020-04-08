@@ -131,7 +131,7 @@ class CompanySignupForm extends React.Component {
                 {getFieldDecorator('remember', {
                   valuePropName: 'checked',
                   initialValue: true
-                })(<Checkbox>الموافقة على الشروط والأحكام</Checkbox>)}
+                })(<Checkbox>الموافقة على الشروط</Checkbox>)}
               </Form.Item>
               <div className="login-btn-cont">
                 <Button

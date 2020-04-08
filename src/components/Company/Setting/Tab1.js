@@ -7,6 +7,8 @@ const Tab1 = props => {
   const { info } = props.companyInfo;
   return (
     <React.Fragment>
+      <br />
+      <br />
       <h4 className="heading">معلومات عامة</h4>
       <div className="extra-info">
         <h3 className="sub-title">نبذة مفصلة عن الشركة</h3>
