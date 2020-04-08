@@ -43,8 +43,11 @@
             text-align: left;
             color: #f8fbff;
             >div {
-                padding-top: 3px;
+                padding-top: 0px;
                 margin-right: 10px;
+            }
+            > span {
+            color: #fff !important;
             }
         }
     }
@@ -55,6 +58,9 @@
 ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-menu-vertical{
     padding-bottom: 10px !important;
     text-align: right !important;
+}
+.select__value-container.select__value-container--has-value.css-g1d714-ValueContainer {
+    padding-bottom: 7px;
 }
 .home-header {
     height: 700px;
@@ -107,6 +113,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         color: #18233d;
         cursor: pointer;
         margin-top: -30px;
+        padding-bottom: 8px;
     }
     .log-btn:hover {
         color: #fff;

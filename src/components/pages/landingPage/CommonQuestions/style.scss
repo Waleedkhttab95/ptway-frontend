@@ -122,6 +122,9 @@
     .ant-collapse-content.ant-collapse-content-inactive{
         width: 300px;
     }
+    .send-btn {
+        width: 200px;
+    }
 }
 @media (min-width:321px) and (max-width:768px){
     .com-questions .questions{
@@ -133,5 +136,8 @@
     }
     .ant-collapse-content.ant-collapse-content-inactive{
         width: 340px;
+    }
+    .send-btn {
+        width: 230px;
     }
 }

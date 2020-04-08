@@ -11,7 +11,7 @@ const LoginNavbar = () => {
         className="navbar"
         style={{
           justifyContent: 'flex-start ',
-          paddingLeft: '50px'
+          paddingLeft: '100px'
         }}
       >
         <img

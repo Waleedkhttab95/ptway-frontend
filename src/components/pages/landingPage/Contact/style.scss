@@ -1,7 +1,7 @@
 .contact-us {
     height: 600px;
     // background: #18233d;
-    background-image: url('../../../../images/curve.svg');
+    background-image: url('../../../../images/big-curve.svg');
     background-position: top;
     margin-top: -40px;
     display: flex;
@@ -101,6 +101,7 @@
             color: #35b37d;
             margin-left: 10px;
             cursor: pointer;
+            background: #1b2642;
         }
         button:hover {
             width: 170px;
@@ -132,7 +133,7 @@
             flex-direction: column;
             input {
                 margin-bottom: 10px;
-                width: 210px;
+                width: 210px !important;
             }
         }
     }
