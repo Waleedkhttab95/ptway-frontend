@@ -267,8 +267,26 @@ class Header extends React.Component {
                   style={{ width: '140px' }}
                   onClick={() => history.push('/company/home')}
                 />
-                <Link to="/company/home">الرئيسية </Link>
-                <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+                <Link
+                  to="/company/home"
+                  className={
+                    window.location.href.includes('/company/home')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  الرئيسية{' '}
+                </Link>
+                <Link
+                  to="/company/projects"
+                  className={
+                    window.location.href.includes('/company/projects')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  المشاريع والعروض الوظيفية
+                </Link>
               </div>
               <div className="user-left-side">
                 <Button
@@ -300,7 +318,16 @@ class Header extends React.Component {
                   className="user-header-btn"
                   // onClick={() => this.props.history.push('/user/account/setting')}
                 >
-                  <Link to="/company/setting">حسابي</Link>
+                  <Link
+                    to="/company/setting"
+                    className={
+                      window.location.href.includes('/company/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    حسابي
+                  </Link>
                 </Button>
                 <Button
                   className="user-header-btn"
