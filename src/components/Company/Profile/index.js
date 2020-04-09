@@ -1,5 +1,6 @@
 import React from 'react';
 // import Header from '../../Header';
+import './style.scss';
 import Footer from '../../Footer';
 import { Input, Collapse, Select } from 'antd';
 import statatisticsService from '../../../services/statisticsService';
@@ -52,7 +53,7 @@ class CompanyProfile extends React.Component {
     return (
       <React.Fragment>
         {/* <Header /> */}
-        <div className="company-container">
+        <div className="company-container" style={{ height: 'auto' }}>
           <div className="updating-container">
             <div className="profile-updating">
               <Collapse bordered={false} defaultActiveKey={['1', '2', '3']}>
