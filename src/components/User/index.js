@@ -21,10 +21,6 @@ class User extends React.Component {
       fullName,
       imagePath,
       country,
-      profile_views,
-      aplled_jobs,
-      email,
-      userStatus,
       // birthDate,
       work_Hours,
       city,
@@ -35,7 +31,10 @@ class User extends React.Component {
       languages,
       skills,
       personal_Skills,
-      profileComplete
+      profileComplete,
+      profile_views,
+      aplled_jobs,
+      email
       // hoppies
     } = this.props.user.userInfo;
     return (
@@ -88,132 +87,6 @@ class User extends React.Component {
                     </Col>
                   </Row>
 
-
-              <Col md={6} className="right-section">
-                <div className="personal-info">
-                  <div className="user-pic-info">
-                    {/* <i className="fa fa-user u-pic" aria-hidden="true"></i> */}
-                    {imagePath !== 'null' ? (
-                      <img src={imagePath} alt="user" className="u-pic" />
-                    ) : (
-                      <i
-                        className="fa fa-user-circle"
-                        aria-hidden="true"
-                        style={{ fontSize: '60px' }}
-                      ></i>
-                    )}
-                    <span className="fullname">{fullName} </span>
-
-                    <span className="job-type">{userStatus}</span>
-                  </div>
-                  <div className="details-user-info">
-                    <span>
-                      <i className="fa fa-envelope" aria-hidden="true"></i>
-
-                      {email}
-                    </span>
-                    <span>
-                      <i className="fa fa-mobile" aria-hidden="true"></i>
-                      {mobile}
-                    </span>
-                    <span>
-                      <i className="fa fa-user" aria-hidden="true"></i>
-                      {gender}
-                    </span>
-                    <span>
-                      <i className="fa fa-map-marker" aria-hidden="true"></i>
-                      {city},{country}
-                    </span>
-                  </div>
-                </div>
-                <div className="user-profile-complete">
-                  <div>
-                    <CircularProgressbar
-                      value={profileComplete}
-                      text={profileComplete ? `${profileComplete}%` : ''}
-                      styles={{
-                        path: {
-                          stroke: `rgba(62, 152, 199, ${profileComplete /
-                            100})`,
-                          strokeLinecap: 'butt',
-                          transition: 'stroke-dashoffset 0.5s ease 0s',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        trail: {
-                          stroke: '#d6d6d6',
-                          strokeLinecap: 'butt',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        text: {
-                          fill: '#009ad0',
-                          fontSize: '16px',
-                          textAlign: 'center'
-                        },
-                        background: {
-                          fill: '#3e98c7'
-                        }
-                      }}
-                    />
-                  </div>
-                  <span className="u-p-title">نسبة اكتمال الحساب</span>
-                </div>
-                <button
-                  className="update-profile-btn"
-                  onClick={() =>
-                    this.props.history.push('/user/profile/update')
-                  }
-                >
-                  تعديل معلومات الحساب
-                </button>
-              </Col>
-              <Col md={18} className="left-section">
-                <div className="user-progress">
-                  <div className="user-hours-work">
-                    <div>عدد ساعات العمل</div>
-                    <div className="user-stc-number">{work_Hours}</div>
-                  </div>
-                  <div className="user-job">
-                    <div>وظائف تقدمت عليها</div>
-                    <div className="user-stc-number">{aplled_jobs}</div>
-                  </div>
-                  <div className="user-profile-seen">
-                    <div>عدد مشاهدات الحساب</div>
-                    <div className="user-stc-number">{profile_views}</div>
-                  </div>
-                </div>
-
-                <div className="skills-general-info">
-                  <div className="preif-section">
-                    <div className="h-title p-title">
-                      <i
-                        className="fa fa-exclamation-circle"
-                        aria-hidden="true"
-                      ></i>
-                      نبذة عامة
-                    </div>
-                    <div className="p-subject">{about}</div>
-                  </div>
-                  <br />
-                  <br />
-                  <div className="education-section">
-                    <div className="h-title e-title">الدراسات والشهادات</div>
-                    <div>
-                      <h3 className="sub-h-title">التخصص العام</h3>
-                      <p>
-                        {public_Major ? (
-                          public_Major
-                        ) : (
-                          <div className="spinner-lo  ading">
-                            <Spin size="large" />
-                          </div>
-                        )}{' '}
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="sub-h-title"> التخصص الدقيق</h3>
-                      <p>{spicifc_Major}</p>
                   <div className="skills-general-info">
                     <div className="preif-section">
                       <div className="h-title p-title">

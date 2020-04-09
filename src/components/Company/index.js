@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-
 import { Row, Layout, Alert, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
@@ -36,10 +35,6 @@ class CompanyHome extends React.Component {
         <Header />
         <div className="user-container">
           <Content className="user-home">
-<<<<<<< HEAD
-            <div className="company-progress">
-              <div className="opened-projects">
-=======
             <div className="user-notification">
               <Alert
                 message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
@@ -54,7 +49,6 @@ class CompanyHome extends React.Component {
             </div>
             <Row className="company-progress">
               <Col md={7} className="opened-projects">
->>>>>>> 3a3bfe99a9186ed711e5267f6dd9f265a9ec895b
                 <div>المشاريع المنشئة</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
