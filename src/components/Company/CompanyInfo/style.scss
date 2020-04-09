@@ -1,5 +1,5 @@
 .company-info {
-    width: 287px;
+    // width: 287px;
     height: 300px;
     border-radius: 7px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -25,7 +25,6 @@
             border-radius: 50%;
          }
         .company-name {
-            font-family: 'Tajawal';
             font-size: 16px;
             font-weight: bold;
             font-stretch: normal;
@@ -42,7 +41,6 @@
         justify-content: flex-start;
         padding-right: 21px;
         >span {
-            font-family: 'Tajawal';
             font-size: 14px;
             font-weight: 500;
             font-stretch: normal;

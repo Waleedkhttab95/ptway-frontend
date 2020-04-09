@@ -43,8 +43,11 @@
             text-align: left;
             color: #f8fbff;
             >div {
-                padding-top: 3px;
+                padding-top: 0px;
                 margin-right: 10px;
+            }
+            > span {
+            color: #fff !important;
             }
         }
     }
@@ -53,8 +56,11 @@
     color: #00263e;
 }
 ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-menu-vertical{
-    padding-right: 10px !important;
+    padding-bottom: 10px !important;
     text-align: right !important;
+}
+.select__value-container.select__value-container--has-value.css-g1d714-ValueContainer {
+    padding-bottom: 7px;
 }
 .home-header {
     
@@ -109,6 +115,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         color: #18233d;
         cursor: pointer;
         margin-top: -30px;
+        padding-bottom: 8px;
     }
     .log-btn:hover {
         color: #fff;
@@ -154,7 +161,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     .user-right-side {
         // padding-right: 135px;
         >a{
-            font-family: DINNextLTW23;
+            
             font-size: 16px;
             font-weight: 500;
             font-stretch: normal;
@@ -173,7 +180,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         .user-header-btn{
             margin-right: 29px;
             width: 80px;
-            font-family: DINNextLTW23;
+            
             font-size: 16px;
             font-weight: 500;
             font-stretch: normal;
@@ -193,8 +200,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         color: #fff;
         background-color: #3b96d9;
         margin-right: 29px;
-        width: 80px;
-        font-family: DINNextLTW23;
+        padding-bottom: 5px;
         font-size: 16px;
         font-weight: 500;
         font-stretch: normal;
@@ -218,7 +224,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
   top: 70px;
   left: 240px;
   >h5 {
-    font-family: DINNextLTW23;
+    
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -243,7 +249,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     margin-top: 20px;
     margin-bottom: 17px;
     cursor: pointer;
-    font-family: DINNextLTW23;
+    
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -267,7 +273,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     align-items: center;
 }
 .p-heading {
-    font-family: DINNextLTW23;
+    
     font-size: 20px;
     font-weight: bold;
     font-stretch: normal;
@@ -279,7 +285,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     padding-top: 40px;
 }
 .p-description {
-    font-family: DINNextLTW23;
+    
     font-size: 16px;
     font-weight: 500;
     font-stretch: normal;
@@ -293,7 +299,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
 .new-project-form {
     padding: 28px 55px;
     >label {
-    font-family: DINNextLTW23;
+    
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -325,7 +331,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
   height: 35px;
   border-radius: 6px;
   background-color: #3598d4;
-  font-family: DINNextLTW23;
+  
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
@@ -379,7 +385,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     background-color: #ffffff;
     border-radius: 15px;
     > div {
-        font-family: DINNextLTW23;
+        
         font-size: 14px;
         font-weight: 500;
         font-stretch: normal;
@@ -397,6 +403,20 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
 }
 .menu-mobile {
     display: none;
+}
+.navbar-elm-active {
+    text-decoration-line: underline;
+    text-decoration-color: #049ad0;
+    text-underline-position: under;
+    color: #049ad0 !important;
+    font-weight: bold !important;
+}
+.navbar-elm-active:hover {
+    text-decoration-line: underline;
+    text-decoration-color: #049ad0;
+    text-underline-position: under;
+    color: #049ad0 !important;
+    font-weight: bold !important;
 }
 
 @media (max-width:320px) {

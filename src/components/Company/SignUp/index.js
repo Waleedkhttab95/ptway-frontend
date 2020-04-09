@@ -7,6 +7,7 @@ import statatisticsService from '../../../services/statisticsService';
 import { companySignup } from '../../../store/actions/userAction';
 
 import { connect } from 'react-redux';
+import Header from '../../Header';
 
 const { getAllCompanyMajors, getCompanySMajor } = statatisticsService;
 const { Option } = Select;
@@ -50,95 +51,107 @@ class CompanySignupForm extends React.Component {
     const { jobTypes, sectors } = this.state;
     const { user } = this.props;
     return (
-      <div className="company-signup-container">
-        <div className="form-container">
-          <h3 className="login-form-title">انشاء حساب جديد</h3>
-          {user.error ? (
-            <Alert
-              message={user.error.response.data}
-              type="error"
-              style={{ width: '100%' }}
-            />
-          ) : (
-            ''
-          )}
-          <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
-            <label className="login-form-label">اسم الجهة</label>
-            <Form.Item>
-              {getFieldDecorator('companyname', {
-                rules: [{ required: true, message: 'الرجاء ادخال اسم الجهة' }]
-              })(<Input prefix={<Icon />} />)}
-            </Form.Item>
-            <label className="login-form-label">البريد الالكتروني</label>
-            <Form.Item>
-              {getFieldDecorator('email', {
-                rules: [
-                  { required: true, message: 'الرجاء ادخال البريد الالكتروني' }
-                ]
-              })(<Input prefix={<Icon />} />)}
-            </Form.Item>
-            <label className="login-form-label">نشاط العمل</label>
-            <Form.Item>
-              {getFieldDecorator('type', {
-                rules: [{ required: true, message: 'الرجاء ادخال نشاط العمل' }]
-              })(
-                <Select className="type-selector">
-                  {jobTypes.map(elm => {
-                    return (
-                      <Option value={elm.id} key={elm.id}>
-                        {elm.value}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              )}
-            </Form.Item>
-            <label className="login-form-label">القطاع</label>
-            <Form.Item>
-              {getFieldDecorator('sector', {
-                rules: [{ required: true, message: 'الرجاء ادخال قطاع العمل' }]
-              })(
-                <Select className="sector-selector">
-                  {sectors.map(elm => {
-                    return (
-                      <Option value={elm.id} key={elm.id}>
-                        {elm.value}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              )}
-            </Form.Item>
-            <label className="login-form-label">كلمة المرور</label>
-            <Form.Item>
-              {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'الرجاء ادخال كلمة المرور' }]
-              })(<Input prefix={<Icon />} type="password" />)}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true
-              })(<Checkbox>الموافقة على الشروط والأحكام</Checkbox>)}
-            </Form.Item>
-            <div className="login-btn-cont">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button login-form-btn"
-              >
-                ابدأ الآن
-              </Button>
-            </div>
-            <div className="create-new-account">
-              لديك حساب؟ <Link to="/company/login">تسجيل دخول</Link>
-            </div>
-          </Form>
+      <React.Fragment>
+        <Header />
+        <div className="company-signup-container">
+          <div className="form-container">
+            <h3 className="login-form-title">انشاء حساب جديد</h3>
+            {user.error ? (
+              <Alert
+                message={user.error.response.data}
+                type="error"
+                style={{ width: '100%' }}
+              />
+            ) : (
+              ''
+            )}
+            <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
+              <label className="login-form-label">اسم الجهة</label>
+              <Form.Item>
+                {getFieldDecorator('companyname', {
+                  rules: [{ required: true, message: 'الرجاء ادخال اسم الجهة' }]
+                })(<Input prefix={<Icon />} />)}
+              </Form.Item>
+              <label className="login-form-label">البريد الالكتروني</label>
+              <Form.Item>
+                {getFieldDecorator('email', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'الرجاء ادخال البريد الالكتروني'
+                    }
+                  ]
+                })(<Input prefix={<Icon />} />)}
+              </Form.Item>
+              <label className="login-form-label">نشاط العمل</label>
+              <Form.Item>
+                {getFieldDecorator('type', {
+                  rules: [
+                    { required: true, message: 'الرجاء ادخال نشاط العمل' }
+                  ]
+                })(
+                  <Select className="type-selector">
+                    {jobTypes.map(elm => {
+                      return (
+                        <Option value={elm.id} key={elm.id}>
+                          {elm.value}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                )}
+              </Form.Item>
+              <label className="login-form-label">القطاع</label>
+              <Form.Item>
+                {getFieldDecorator('sector', {
+                  rules: [
+                    { required: true, message: 'الرجاء ادخال قطاع العمل' }
+                  ]
+                })(
+                  <Select className="sector-selector">
+                    {sectors.map(elm => {
+                      return (
+                        <Option value={elm.id} key={elm.id}>
+                          {elm.value}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                )}
+              </Form.Item>
+              <label className="login-form-label">كلمة المرور</label>
+              <Form.Item>
+                {getFieldDecorator('password', {
+                  rules: [
+                    { required: true, message: 'الرجاء ادخال كلمة المرور' }
+                  ]
+                })(<Input prefix={<Icon />} type="password" />)}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator('remember', {
+                  valuePropName: 'checked',
+                  initialValue: true
+                })(<Checkbox>الموافقة على الشروط</Checkbox>)}
+              </Form.Item>
+              <div className="login-btn-cont">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button login-form-btn"
+                >
+                  ابدأ الآن
+                </Button>
+              </div>
+              <div className="create-new-account">
+                لديك حساب؟ <Link to="/company/login">تسجيل دخول</Link>
+              </div>
+            </Form>
+          </div>
+          <div style={{ width: '100%' }}>
+            <Footer />
+          </div>
         </div>
-        <div style={{ width: '100%' }}>
-          <Footer />
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

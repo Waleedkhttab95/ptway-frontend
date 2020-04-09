@@ -93,7 +93,10 @@ class Avatar extends PureComponent {
   render() {
     const { crop, profile_pic, src, uploaded } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} style={{ maxWidth: '50%' }}>
+      <Form
+        onSubmit={this.handleSubmit}
+        style={{ maxWidth: '50%', marginRight: '20px' }}
+      >
         <label htmlFor="profile_pic"></label>
         <input
           type="file"

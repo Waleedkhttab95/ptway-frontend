@@ -27,15 +27,12 @@ class CompanyHome extends React.Component {
 
   render() {
     const { company } = this.props;
-    // console.log('moreAds', this.state.moreAds);
-    console.log('fucccck', company);
-
     return (
       <div>
         <Header />
         <div className="user-container">
           <Content className="user-home">
-            <div className="user-notification">
+            {/* <div className="user-notification">
               <Alert
                 message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
                 type="warning"
@@ -46,7 +43,7 @@ class CompanyHome extends React.Component {
                 type="info"
                 className="info-alert"
               />
-            </div>
+            </div> */}
             <Row className="company-progress">
               <Col md={7} className="opened-projects">
                 <div>المشاريع المنشئة</div>
@@ -78,11 +75,13 @@ class CompanyHome extends React.Component {
             </div>
           */}
             </Row>
-            <div className="user-profile">
+            <Row className="user-profile">
+              <Col md={1}></Col>
               <Col md={6} className="right-section">
                 <CompanyInfo {...company} />
               </Col>
-              <Col md={18} className="company-left-section">
+              <Col md={1}></Col>
+              <Col md={15} className="company-left-section">
                 <h2>آخر العروض الوظيفية التي أنشئتها</h2>
                 <div className="projects-offers-header">
                   <div>اسم العرض الوظيفي</div>
@@ -109,7 +108,7 @@ class CompanyHome extends React.Component {
                   </div>
                 )}
               </Col>
-            </div>
+            </Row>
           </Content>
         </div>
         <Footer />

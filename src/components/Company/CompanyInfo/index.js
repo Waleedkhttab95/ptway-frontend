@@ -6,8 +6,9 @@ const CompanyInfo = props => {
   return (
     <div className="company-info">
       <div className="company-pic-info">
-        {info && info.imagePath != 'null' ? (
-          <img src={info.imagePath} className="u-pic" alt="company" />
+
+        {info && info.imagePath !== 'null' ? (
+          <img src={info.imagePath} alt="company" />
         ) : (
           <i
             className="fa fa-user-circle"

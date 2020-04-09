@@ -54,7 +54,7 @@ const AboutUs = () => {
                 </div>
                 <div
                   className="about-elm col-left-side"
-                  style={{ marginTop: '41px' }}
+                  // style={{ marginTop: '41px' }}
                 >
                   <div className="elm-img">
                     <img src={ab6} alt="" />
@@ -116,20 +116,20 @@ const AboutUs = () => {
             {/* <ul> */}
             <div className="message">
               <div>
-                <img src={enviroment} />{' '}
+                <img src={enviroment} />
               </div>
               <span>
-                &nbsp; &nbsp; توفير بيئة تفاعلية مشجعة ومحفزة للطلاب والخريجين
-                لإكتساب المهارات والخبرات اللازمة.
+                &nbsp; توفير بيئة تفاعلية مشجعة ومحفزة للطلاب والخريجين لإكتساب
+                المهارات والخبرات اللازمة.
               </span>
             </div>
             <div className="message">
               <div>
-                <img src={work} alt="work-transformation" />{' '}
+                <img src={work} alt="work-transformation" />
               </div>
               <span>
                 {' '}
-                &nbsp; &nbsp;تنظيم عملية العمل الجزئي داخل منظومة سوق العمل{' '}
+                &nbsp; تنظيم عملية العمل الجزئي داخل منظومة سوق العمل
               </span>
             </div>
             <div className="message">
@@ -138,7 +138,7 @@ const AboutUs = () => {
               </div>
               <span>
                 {' '}
-                &nbsp; &nbsp; تطبيق نظام التعليم التفاعلي لطلاب وطالبات المدارس.
+                &nbsp; تطبيق نظام التعليم التفاعلي لطلاب وطالبات المدارس.
               </span>
             </div>
             {/* </ul> */}

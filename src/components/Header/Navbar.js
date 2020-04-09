@@ -127,7 +127,12 @@ class Navbar extends React.Component {
                 aria-hidden="true"
                 onClick={this.onClose}
               ></i>
-              <img src={ptwayLogo} alt="logo" style={{ width: '30%' }} />
+              <img
+                src={ptwayLogo}
+                alt="logo"
+                style={{ width: '30%' }}
+                onClick={() => history.push('/')}
+              />
             </div>
           }
           placement="right"

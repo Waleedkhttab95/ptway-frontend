@@ -14,6 +14,7 @@ import history from '../../_core/history';
 import AddNewProjectModal from './AddNewProjectModal';
 import AddNewAdModal from './AddNewAdModal';
 import Navbar from './Navbar';
+import LoginNavbar from './LoginNavbar';
 import {
   addNewProject,
   allCotracts
@@ -96,15 +97,39 @@ class Header extends React.Component {
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
+    console.log('xyz hell', this.props.location);
+
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
           <React.Fragment>
             <Row className="user-header">
               <div className="user-right-side">
-                <img src={userLogo} alt="logo" style={{ width: '200px' }} />
-                <Link to="/user/home">سيرتي الذاتية </Link>
-                <Link to="/user/jobs" style={{ position: 'relative' }}>
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '140px', cursor: 'pointer' }}
+                  onClick={() => history.push('/user/home')}
+                />
+                <Link
+                  to="/user/home"
+                  className={
+                    window.location.href.includes('/user/home')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  سيرتي الذاتية{' '}
+                </Link>
+                <Link
+                  to="/user/jobs"
+                  style={{ position: 'relative' }}
+                  className={
+                    window.location.href.includes('/user/jobs')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
                   <span className="offers-notification">
                     {' '}
                     {unreadOffers.count}
@@ -115,7 +140,16 @@ class Header extends React.Component {
               </div>
               <div className="user-left-side">
                 <Button className="user-header-btn">
-                  <Link to="/user/account/setting">حسابي</Link>
+                  <Link
+                    to="/user/account/setting"
+                    className={
+                      window.location.href.includes('/user/account/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    حسابي
+                  </Link>
                 </Button>
                 <Button
                   className="user-header-btn"
@@ -222,13 +256,37 @@ class Header extends React.Component {
           </React.Fragment>
         ) : loggedIn && role === 'company' ? (
           <React.Fragment>
-            <div className="user-header">
+            <div
+              className="user-header"
+              style={{ justifyContent: 'space-around' }}
+            >
               <div className="user-right-side">
-                <img src={userLogo} alt="logo" style={{ width: '200px' }} />
-                <Link to="/company/home">الرئيسية </Link>
-                <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
-
-                {/* <Link to="/company/applicants">المتقدمين</Link> */}
+                <img
+                  src={userLogo}
+                  alt="logo"
+                  style={{ width: '140px' }}
+                  onClick={() => history.push('/company/home')}
+                />
+                <Link
+                  to="/company/home"
+                  className={
+                    window.location.href.includes('/company/home')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  الرئيسية{' '}
+                </Link>
+                <Link
+                  to="/company/projects"
+                  className={
+                    window.location.href.includes('/company/projects')
+                      ? 'navbar-elm-active'
+                      : ''
+                  }
+                >
+                  المشاريع والعروض الوظيفية
+                </Link>
               </div>
               <div className="user-left-side">
                 <Button
@@ -237,11 +295,7 @@ class Header extends React.Component {
                     this.setState({ addProject: !this.state.addProject })
                   }
                 >
-                  <i
-                    className="fa fa-plus plus-icon"
-                    aria-hidden="true"
-                    style={{ marginLeft: '7px' }}
-                  ></i>
+                  <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
                   أضف
                 </Button>
                 {this.state.addProject && (
@@ -264,7 +318,16 @@ class Header extends React.Component {
                   className="user-header-btn"
                   // onClick={() => this.props.history.push('/user/account/setting')}
                 >
-                  <Link to="/company/setting">حسابي</Link>
+                  <Link
+                    to="/company/setting"
+                    className={
+                      window.location.href.includes('/company/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    حسابي
+                  </Link>
                 </Button>
                 <Button
                   className="user-header-btn"
@@ -468,6 +531,9 @@ class Header extends React.Component {
               </div>
             </div>
           </React.Fragment>
+        ) : window.location.href.includes('/signup') ||
+          window.location.href.includes('/login') ? (
+          <LoginNavbar />
         ) : (
           <React.Fragment>
             <Navbar />

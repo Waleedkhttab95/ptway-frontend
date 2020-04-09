@@ -90,7 +90,7 @@
         flex-direction: column-reverse;
         padding: 10px 20px;
        }
-       .services-tabs {
+       .services-content {
        padding-left: 0;
            .title{
                font-size: 25px;
@@ -136,6 +136,7 @@
     }
     .services-tabs {
         padding: 0 10px;
+        padding-right: 20px;
     }
     
 }
@@ -191,6 +192,7 @@
 }
 .services-tabs {
     padding: 0 10px;
+    padding-right: 20px;
 }
 
 

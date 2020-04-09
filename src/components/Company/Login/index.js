@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { companyLogin } from '../../../store/actions/userAction';
 import Footer from '../../Footer';
+import Header from '../../Header';
 class CompanyLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -28,54 +29,62 @@ class CompanyLoginForm extends React.Component {
     const { company } = this.props;
 
     return (
-      <div className="company-login-container">
-        <div className="form-container">
-          <h3 className="login-form-title">تسجيل دخول</h3>
-          <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
-            {company.error && (
-              <Alert type="error" message={company.error.response.data} />
-            )}
-            <label className="login-form-label">البريد الالكتروني</label>
-            <Form.Item>
-              {getFieldDecorator('email', {
-                rules: [
-                  { required: true, message: 'الرجاء ادخال البريد الالكتروني' }
-                ]
-              })(<Input prefix={<Icon />} />)}
-            </Form.Item>
-            <label className="login-form-label">كلمة المرور</label>
-            <Form.Item>
-              {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'الرجاء ادخال كلمة المرور' }]
-              })(<Input prefix={<Icon />} type="password" />)}
-              <Link to="/company/resetPassword">نسيت كلمة المرور؟</Link>
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true
-              })(<Checkbox>تذكرني</Checkbox>)}
-            </Form.Item>
-            {/* <Form.Item className="check-user-existance"> */}
-            <div className="login-btn-cont">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button login-form-btn"
-              >
-                تسجيل دخول
-              </Button>
-            </div>
-            <div className="create-new-account">
-              ليس لديك حساب؟ <Link to="/company/signup">انشئ حساب جديد</Link>
-            </div>
-            {/* </Form.Item> */}
-          </Form>
+      <React.Fragment>
+        <Header />
+        <div className="company-login-container">
+          <div className="form-container">
+            <h3 className="login-form-title">تسجيل دخول</h3>
+            <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
+              {company.error && (
+                <Alert type="error" message={company.error.response.data} />
+              )}
+              <label className="login-form-label">البريد الالكتروني</label>
+              <Form.Item>
+                {getFieldDecorator('email', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'الرجاء ادخال البريد الالكتروني'
+                    }
+                  ]
+                })(<Input prefix={<Icon />} />)}
+              </Form.Item>
+              <label className="login-form-label">كلمة المرور</label>
+              <Form.Item>
+                {getFieldDecorator('password', {
+                  rules: [
+                    { required: true, message: 'الرجاء ادخال كلمة المرور' }
+                  ]
+                })(<Input prefix={<Icon />} type="password" />)}
+                <Link to="/company/resetPassword">نسيت كلمة المرور؟</Link>
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator('remember', {
+                  valuePropName: 'checked',
+                  initialValue: true
+                })(<Checkbox>تذكرني</Checkbox>)}
+              </Form.Item>
+              {/* <Form.Item className="check-user-existance"> */}
+              <div className="login-btn-cont">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button login-form-btn"
+                >
+                  تسجيل دخول
+                </Button>
+              </div>
+              <div className="create-new-account">
+                ليس لديك حساب؟ <Link to="/company/signup">انشئ حساب جديد</Link>
+              </div>
+              {/* </Form.Item> */}
+            </Form>
+          </div>
+          <div style={{ width: '100%' }}>
+            <Footer />
+          </div>
         </div>
-        <div style={{ width: '100%' }}>
-          <Footer />
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

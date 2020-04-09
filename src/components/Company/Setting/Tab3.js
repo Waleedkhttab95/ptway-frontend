@@ -18,7 +18,10 @@ const Tab3 = props => {
           name="newPassword"
           type="password"
         />
-        <Button onClick={props.ChangePassword} style={{ width: '250px' }}>
+        <Button
+          onClick={props.ChangePassword}
+          style={{ width: '250px', backgroundColor: '#1f3f54' }}
+        >
           {' '}
           حفظ
         </Button>

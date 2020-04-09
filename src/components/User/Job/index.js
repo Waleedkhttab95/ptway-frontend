@@ -59,7 +59,7 @@ class Job extends React.Component {
           <Col md={6} className="right-section">
             {offer.company ? (
               <React.Fragment>
-                {imagePath ? (
+                {imagePath !== 'null' ? (
                   <img src={imagePath} alt="user" className="picture" />
                 ) : (
                   <i

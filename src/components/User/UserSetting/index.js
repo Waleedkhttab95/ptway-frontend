@@ -43,7 +43,6 @@ class Setting extends React.Component {
     }
   }
   render() {
-    console.log('state', this.state);
     const { userSetting } = this.props;
     return (
       <React.Fragment>
@@ -57,6 +56,7 @@ class Setting extends React.Component {
                   {/* <span>البريد الالكتروني</span>
                 <Input className="account-input" type="email" /> */}
                   <span> كلمة المرور السابقة</span>
+
                   <Input
                     className="account-input"
                     type="password"
@@ -89,8 +89,6 @@ class Setting extends React.Component {
                       options={['نعم', 'لا']}
                       className="check-option"
                     />
-                    {/* <Checkbox className="check-option">نعم</Checkbox>
-                <Checkbox className="check-option">لا</Checkbox> */}
                   </div>
                 </div>
               </Col>

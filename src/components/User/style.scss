@@ -15,7 +15,7 @@
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #ffffff;
                 .u-p-title{
-                    font-family: 'Tajawal';
+                    
                     font-size: 14px;
                     font-weight: 500;
                     font-stretch: normal;
@@ -26,7 +26,7 @@
                     color: #333333;
                 }
                 .u-p-desc{
-                    font-family: 'Tajawal';
+                    
                     font-size: 12px;
                     font-weight: 500;
                     font-stretch: normal;
@@ -48,18 +48,17 @@
             }
             .update-profile-btn{
                 // width: 287px;
-                padding: 0 50px;
+                padding: 0 73px;
                 height: 55px;
                 border-radius: 6px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #00263ee0;
                 margin-top: 20px;
-                font-family: 'Tajawal';
+                
                 font-size: 14px;
                 font-weight: bold;
                 color:#fff;
                 cursor: pointer;
-                margin-right: 15px ;
             }
 
         }
@@ -79,7 +78,7 @@
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #009ad0;
                 margin-left: 10px;
-                font-family: 'Tajawal';
+                
                 font-size: 16px;
                 font-weight: bold;
                 font-stretch: normal;
@@ -99,7 +98,7 @@
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #34add9;
                 margin-left: 10px;
-                font-family: 'Tajawal';
+                
                 font-size: 16px;
                 font-weight: bold;
                 font-stretch: normal;
@@ -119,7 +118,7 @@
                 border-radius: 7px;
                 box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
                 background-color: #68c3e3;
-                font-family: 'Tajawal';
+                
                 font-size: 16px;
                 font-weight: bold;
                 font-stretch: normal;
@@ -132,7 +131,7 @@
         
         .skills-general-info{
             // width: 863px;
-            height: 900px;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
             background-color: #ffffff;
@@ -144,7 +143,7 @@
                     padding-bottom: 12px;
                 }
                 .p-subject{
-                    font-family: 'Tajawal';
+                    
                     font-size: 14px;
                     font-weight: 500;
                     font-stretch: normal;
@@ -180,7 +179,7 @@
                 }
             }
             .user-general-skills{
-                padding-top: 55px;
+                // padding-top: 55px;
                 display: flex;
                 justify-content: right;
                 width: 100%;
@@ -217,7 +216,7 @@
            border-radius: 50%;
         }
         .fullname{
-            font-family: 'Tajawal';
+            
             font-size: 16px;
             font-weight: bold;
             font-stretch: normal;
@@ -228,7 +227,7 @@
             color: #343434;
         }
         .job-date{
-            font-family: 'Tajawal';
+            
             font-size: 14px;
             font-weight: 500;
             font-stretch: normal;
@@ -239,7 +238,7 @@
             color: #bdbdbd;
         }
         .job-type{
-            font-family: 'Tajawal';
+            
             font-size: 14px;
             font-weight: 500;
             font-stretch: normal;
@@ -256,7 +255,7 @@
         justify-content: flex-start;
         padding-right: 21px;
         >span{
-            font-family: 'Tajawal';
+            
             font-size: 14px;
             font-weight: 500;
             font-stretch: normal;
@@ -273,7 +272,7 @@
     }
 }
 .h-title{
-    font-family: 'Tajawal';
+    
     font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
@@ -288,7 +287,7 @@
 
 }
 .sub-h-title{
-    font-family: 'Tajawal';
+    
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -301,7 +300,7 @@
 
 }
 .sub-desc{
-    font-family: 'Tajawal';
+    
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -318,7 +317,7 @@
     margin-bottom: 10px;
     border-color: transparent;
     >span {
-        font-family: 'Tajawal';
+        
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -332,7 +331,7 @@
 .info-alert {
     border-color: transparent;
     >span {
-        font-family: 'Tajawal';
+        
       font-size: 14px;
       font-weight: 500;
       font-stretch: normal;

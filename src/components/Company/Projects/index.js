@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Collapse, Dropdown, Button, Spin } from 'antd';
+import { Row, Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../../Filter';
 import SideMenu from './menu';
@@ -302,9 +302,9 @@ class Projects extends React.Component {
             )}
           </div>
         </div>
-        {/* <div className="registration-footer"> */}
-        <Footer />
-        {/* </div> */}
+        <Row>
+          <Footer />
+        </Row>
       </React.Fragment>
     );
   }
