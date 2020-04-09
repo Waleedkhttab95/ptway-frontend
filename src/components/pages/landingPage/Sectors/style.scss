@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 309px;
     background-color: #f8fbff;
     padding-top: 50px;
     border-top-left-radius: 25%;
@@ -27,69 +26,68 @@
         letter-spacing: normal;
         text-align: center;
         color: #18233d;
+        margin-bottom: 50px;
     }
 }
-.ant-carousel .slick-slide {
-    text-align: center;
-    height: 260px;
-    line-height: 160px;
-    background: transparent;
-    overflow: hidden;
-    direction: initial;
-  }
-  
-  .ant-carousel .slick-slide h3 {
-    color:#fff;
-  }
-.sector-carousel {
-    direction: initial !important;
-}
-.ant-carousel .slick-dots-bottom {
-    bottom: 25px !important;
-}
-.carousel-sector {
-    height: 400px;
-    box-shadow: 0 5px 25px 0 rgba(4, 154, 208, 0.08);
-    background-color: #f8fbff;
-    padding-top: 50px;
-    margin-top: -20px;
-    .slide-elm {
-        width: 400px !important;
-        height: 390px;
-        border-radius: 10px;
-        box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
-        background-color: #18233d;
-        .elm-table 
-        {
+.sector-elms {
+    background: #f8fbff;
+    display: flex;
+    justify-content: center;
+    >div{
+        margin-left: 30px;
+        .sector-elm {
             display: flex;
-            justify-content: center;
-            >h6 {
-                font-size: 16px;
-                font-weight: normal;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: 1.45;
-                letter-spacing: normal;
-                text-align: center;
-                color: #ffffff !important;
-                border-radius: 100px;
-                border: solid 1px rgba(255, 255, 255, 0.5);
-                background-color: rgba(255, 255, 255, 0.04);
-                padding: 5px;
-                margin-left: 5px;
-                margin-top: 5px;
-                width: 100px !important;
+            justify-content: center;  
+            .sector-collapse {
+                width: 339px;
+                border-radius: 10px;
+                box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
+                background-color: #ffffff;
+                margin-bottom: 50px;
+                >div >div {
+                    font-size: 30px;
+                    font-weight: 500;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.47;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #00263e;
+                    padding: 10px 10px 20px 10px;
+                    // padding: 30px 30px 40px 30px;
+
+                    
+                }
             }
         }
     }
 }
-.ant-card-head{
-    display: none;
+.ant-collapse-item.ant-collapse-item-active.pnl-content {
+    background: #18233d;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
+    >div {
+    color: #fff !important;
+    // padding: 5px 0 !important;
+        
+    }
+}
+.panel-desc {
+    display: flex;
+   justify-content: center;
+    h4 {
+        font-size: 20px;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 100px;
+        border: solid 1px rgba(255, 255, 255, 0.5);
+        padding: 0 8px 8px 8px;
+        margin-left: 5px;
+    }
 }
 @media(max-width:320px){
    .sectors{
-    height: 458px;
-    padding-top: 30px;
+    // padding-top: 30px;
         .title {
             font-size: 30px;
         }
@@ -98,21 +96,23 @@
         font-size: 17px;
        }
    }
-   .carousel-sector {
-    margin-top: -220px;
-    .slide-elm {
-        width: 200px !important;
-        .elm-table >h6 {
-            width: 70px !important;
-            font-size: 14px;
+   .sector-elms {
+    flex-direction: column;
+    align-items: center;
+    >div {
+        margin-left: 0;
+    }
+    .sector-collapse {
+        margin-bottom: 25px !important;
+        >div >div {
+            font-size: 22px !important;
         }
     }
-   }
+}
 }
 @media (min-width:321px) and (max-width:768px){
     .sectors {
-        height: 458px;
-        padding-top: 30px;
+        // padding-top: 30px;
         .title {
             font-size: 30px;
         }
@@ -121,14 +121,17 @@
             font-size: 17px;
         }
     }
-    .carousel-sector {
-        margin-top: -220px;
-        .slide-elm {
-            width: 330px !important;
-            .elm-table >h6 {
-                width: 80px !important;
-                font-size: 14px;
+    .sector-elms {
+        flex-direction: column;
+        align-items: center;
+        >div {
+            margin-left: 0;
+        }
+        .sector-collapse {
+            margin-bottom: 25px !important;
+            >div >div {
+                font-size: 22px !important;
             }
         }
-       }
+    }
 }
