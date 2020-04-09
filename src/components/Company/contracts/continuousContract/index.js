@@ -174,7 +174,9 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل</label>
+                        <label>عدد ساعات العمل
+                          (بحد اقصى 6 ساعات )
+                        </label>
                         <Input
                           onChange={handleChange}
                           name="workHours"
@@ -207,7 +209,9 @@ class AddNewAd extends React.Component {
                           </span>
                         )}
                         <br />
-                        <label>الراتب</label>
+                        <label>الراتب
+                          (بحد ادنى 1500 ريال / شهريا)
+                        </label>
                         <Input
                           onChange={handleChange}
                           name="salary"
@@ -225,7 +229,9 @@ class AddNewAd extends React.Component {
                         <br />
                       </div>
                       <div className="left-side">
-                        <label>عدد أيام العمل</label>
+                        <label>عدد أيام العمل في الاسبوع
+                          
+                        </label>
                         <Input
                           onChange={handleChange}
                           name="workDays"

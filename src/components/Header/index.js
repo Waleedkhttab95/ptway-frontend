@@ -296,7 +296,7 @@ class Header extends React.Component {
                   }
                 >
                   <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
-                  أضف
+               أضف وظيفة
                 </Button>
                 {this.state.addProject && (
                   <div className="add-project-popup">

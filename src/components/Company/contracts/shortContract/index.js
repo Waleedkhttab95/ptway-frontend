@@ -117,7 +117,7 @@ class AddNewAd extends React.Component {
                 <div className="new-ad-form">
                   <h2 className="new-ad-title">إضافة إعلان جديد</h2>
                   <p>
-                    أخيراً قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته
+                     قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته
                     ضمن مشروع
                   </p>
                   <div className="new-ad-details">
@@ -174,12 +174,16 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل</label>
+                        <label>عدد ساعات العمل
+                      (بحد اقصى 12 ساعة)
+                        </label>
+                       
                         <Input
                           onChange={handleChange}
                           name="workHours"
                           type="number"
                           onBlur={handleBlur}
+                          
                         />
                         <br />
                         {errors.workHours && touched.workHours && (
@@ -207,7 +211,9 @@ class AddNewAd extends React.Component {
                           </span>
                         )}
                         <br />
-                        <label>الراتب</label>
+                        <label>
+                          الراتب
+                          (بحد ادنى 100 ريال / يوم)</label>
                         <Input
                           onChange={handleChange}
                           name="salary"
@@ -225,7 +231,9 @@ class AddNewAd extends React.Component {
                         <br />
                       </div>
                       <div className="left-side">
-                        <label>عدد أيام العمل</label>
+                        <label> 
+                          عدد أيام العمل
+                          (بحد اقصى 59 يوم)</label>
                         <Input
                           onChange={handleChange}
                           name="workDays"

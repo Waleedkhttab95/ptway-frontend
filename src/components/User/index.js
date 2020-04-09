@@ -107,34 +107,34 @@ class User extends React.Component {
                 </div>
                 <div className="user-profile-complete">
                   <div>
-                    <CircularProgressbar
-                      value={profileComplete}
-                      text={profileComplete ? `${profileComplete}%` : ''}
-                      styles={{
-                        path: {
-                          stroke: `rgba(62, 152, 199, ${profileComplete /
-                            100})`,
-                          strokeLinecap: 'butt',
-                          transition: 'stroke-dashoffset 0.5s ease 0s',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        trail: {
-                          stroke: '#d6d6d6',
-                          strokeLinecap: 'butt',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center'
-                        },
-                        text: {
-                          fill: '#009ad0',
-                          fontSize: '16px',
-                          textAlign: 'center'
-                        },
-                        background: {
-                          fill: '#3e98c7'
-                        }
-                      }}
-                    />
+                  <CircularProgressbar
+                value={profileComplete}
+                text={profileComplete ? `${profileComplete}%` : ""}
+                styles={{
+                  path: {
+                    stroke: `rgba(62, 152, 199, ${profileComplete / 100})`,
+                    strokeLinecap: "butt",
+                    transition: "stroke-dashoffset 0.5s ease 0s",
+                    transform: "rotate(0.25turn)",
+                    transformOrigin: "center center"
+                  },
+                  trail: {
+                    stroke: "#d6d6d6",
+                    strokeLinecap: "butt",
+                    transform: "rotate(0.25turn)",
+                    transformOrigin: "center center"
+                  },
+                  text: {
+                    fill: "#009ad0",
+                    fontSize: "16px",
+                    dominantBaseline: "middle",
+                    textAnchor: "middle"
+                  },
+                  background: {
+                    fill: "#3e98c7"
+                  }
+                }}
+              />
                   </div>
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
                 </div>
