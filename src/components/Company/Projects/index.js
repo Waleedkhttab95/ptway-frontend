@@ -302,9 +302,9 @@ class Projects extends React.Component {
             )}
           </div>
         </div>
-        <Row>
-          <Footer />
-        </Row>
+        {/* <Row> */}
+        <Footer />
+        {/* </Row> */}
       </React.Fragment>
     );
   }
