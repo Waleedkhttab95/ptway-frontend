@@ -97,6 +97,9 @@
             width: 100px;
         }
     }
+    .success-modal {
+        padding: 20px 20px;
+    }
  }
 @media (min-width:321px) and (max-width:768px) { 
     .job-new-form {
@@ -111,7 +114,7 @@
             flex-direction: column;
         }
         label {
-            width: 140px;
+            width: 130px;
         }
         .select-mob {
             display: flex;
@@ -122,6 +125,9 @@
 
             }
         }
+    }
+    .success-modal {
+        padding: 20px 20px;
     }
 
     }
