@@ -101,7 +101,11 @@
 .steps-form {
   width: auto;
   height: 400px;
-  padding-bottom: 50px;
+  margin: 10px;
+    padding: 0 5px;
+}
+.signup-form {
+  padding-bottom: 70px; 
 }
 .steps-header {
   display: none;
@@ -123,6 +127,9 @@
 .form-fields .first-row {
   flex-direction: column;
 }
+.first-step-btn, .prev-btn {
+  width: auto;
+}
 // .elm-mob {
 //   display: none;
 // }
@@ -138,16 +145,29 @@
   .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
     display: flex;
     width: 100px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    margin: auto;
+    >div {
+      margin-right: 0;
+      margin-left: 15px;
+    }
   }
   .steps-form .form-content {
     padding: 30px 13px;
 }
+.signup-form {
+  padding-bottom: 70px; 
+}
+.first-step-btn, .prev-btn {
+  width: auto;
+  margin-top: 15px;
+}
 .steps-form {
   width: auto;
   height: 400px;
-  padding-bottom: 50px;
+  margin: 10px;
+    padding: 0 5px;
 }
 .steps-header {
   display: none;

@@ -151,12 +151,12 @@ class Header extends React.Component {
                     حسابي
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   className="user-header-btn"
                   onClick={this.notificationMenu}
                 >
                   تنبيهات
-                </Button>
+                </Button> */}
                 <div onBlur={this.close} tabIndex="0">
                   {this.state.notification && (
                     <div className="notifications-dropdown">
@@ -232,7 +232,7 @@ class Header extends React.Component {
                     <Link to="/user/jobs">فرص العمل</Link>
 
                     <Link to="/user/account/setting">حسابي</Link>
-                    <Link to="/user/notifications">تنبيهات</Link>
+                    {/* <Link to="/user/notifications">تنبيهات</Link> */}
                     <div onBlur={this.close} tabIndex="0"></div>
                     <a
                       onClick={async () => {
@@ -329,12 +329,12 @@ class Header extends React.Component {
                     حسابي
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   className="user-header-btn"
                   onClick={this.notificationMenu}
                 >
                   تنبيهات
-                </Button>
+                </Button> */}
                 <div onBlur={this.close} tabIndex="0">
                   {this.state.notification && (
                     <div className="notifications-dropdown">
@@ -427,12 +427,12 @@ class Header extends React.Component {
                   >
                     <Link to="/company/setting">حسابي</Link>
                   </Button>
-                  <Button
+                  {/* <Button
                     className="user-header-btn"
                     onClick={this.notificationMenu}
                   >
                     تنبيهات
-                  </Button>
+                  </Button> */}
                   <div onBlur={this.close} tabIndex="0">
                     {this.state.notification && (
                       <div className="notifications-dropdown">
@@ -509,7 +509,7 @@ class Header extends React.Component {
                     {/* <Link to="/company/applicants">المتقدمين</Link> */}
 
                     <Link to="/company/setting">حسابي</Link>
-                    <Link to="/user/notifications">تنبيهات</Link>
+                    {/* <Link to="/user/notifications">تنبيهات</Link> */}
                     <div onBlur={this.close} tabIndex="0"></div>
                     <a
                       onClick={async () => {
