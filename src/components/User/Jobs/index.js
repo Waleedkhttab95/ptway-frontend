@@ -48,7 +48,13 @@ class Jobs extends React.Component {
               {_.isArray(offers.jobOffers.result) ? (
                 offers.jobOffers.result.map(elm => {
                   return (
-                    <Col md={6} className="job-post" key={elm.jobAd._id}>
+                    <Col
+                      md={6}
+                      xs={24}
+                      sm={24}
+                      className="job-post"
+                      key={elm.jobAd._id}
+                    >
                       <div className="post-header">
                         {/* <img src="" alt="" className="post-img" /> */}
                         <i

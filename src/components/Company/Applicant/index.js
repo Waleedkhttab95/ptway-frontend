@@ -29,15 +29,13 @@ class Applicant extends React.Component {
     this.props.history.push(`/applicants/job/id=${jobId}`);
   };
   render() {
-    console.log('------', window.localStorage);
-
     const { user } = this.state;
     return (
       <React.Fragment>
         <Header />
         <div className="company-container">
           <div className="applicant-profile">
-            <Col md={6} className="applicant-right-section">
+            <Col md={6} xs={24} sm={24} className="applicant-right-section">
               <div className="btns-container">
                 <button className="accept-applicant" onClick={this.acceptUser}>
                   قبول المتقدم
@@ -46,11 +44,18 @@ class Applicant extends React.Component {
               </div>
               <div className="personal-info">
                 <div className="user-pic-info">
-                  <i className="fa fa-user u-pic" aria-hidden="true"></i>
-                  {/* <img /> */}
+                  {user.imagePath !== 'null' ? (
+                    <img src={user.imagePath} alt="user" className="u-pic" />
+                  ) : (
+                    <i
+                      className="fa fa-user-circle"
+                      aria-hidden="true"
+                      style={{ fontSize: '60px' }}
+                    ></i>
+                  )}
                   <span className="fullname">{user.fullName}</span>
-                  <span className="job-date">يعمل منذ 11/02/2018</span>
-                  <span className="job-type">مصمم جرافيك</span>
+                  {/* <span className="job-date">يعمل منذ 11/02/2018</span> */}
+                  {/* <span className="job-type">{user.about}</span> */}
                 </div>
                 <div className="details-user-info">
                   <span>
@@ -76,39 +81,51 @@ class Applicant extends React.Component {
                 <div className="hours-num">{user.work_Hours}</div>
               </div>
             </Col>
-            <Col md={18} className="applicant-details">
+            <Col md={18} xs={24} sm={24} className="applicant-details">
               <div>
                 <h3 className="h-title heading">نبذة عامة</h3>
                 <p>{user.about}</p>
               </div>
-              <div>
+              <div className="cv-education">
                 <h3 className="h-title heading">الدراسات والشهادات</h3>
-                <p>الشهادة الجامعية :{user.study_degree}</p>
-                <p>
-                  الدراسة الحالية :
-                  {user.education_degree !== 'undefined'
-                    ? user.education_degree
-                    : ''}
-                </p>
-                <p> الجامعة :{user.universty}</p>
-                <p>المستوى التعليمي : {user.Education_level} </p>
-                <p>التخصص العام : {user.public_Major} </p>
-                <p>التخصص الدقيق : {user.spicifc_Major} </p>
+                <div>
+                  <p>
+                    الدراسة الحالية :
+                    {user.education_degree !== 'undefined'
+                      ? user.education_degree
+                      : ''}
+                  </p>
+                  <p>الشهادة الجامعية :{user.study_degree}</p>
+                </div>
+                <div>
+                  <p>المستوى التعليمي : {user.Education_level} </p>
+                  <p> الجامعة :{user.universty}</p>
+                </div>
+                <div>
+                  <p>التخصص العام : {user.public_Major} </p>
+                  <p>التخصص الدقيق : {user.spicifc_Major} </p>
+                </div>
               </div>
-              <div>
+              <div className="cv-skills-">
                 <h3 className="h-title heading">المهارات واللغات</h3>
-                <h3>المهارات العامة : </h3>
-                {_.isArray(user.skills)
-                  ? user.skills.map(elm => {
-                      return <p key={elm}>{elm}</p>;
-                    })
-                  : ''}
-                <h3>المهارات الشخصية : </h3>
-                {_.isArray(user.personal_Skills)
-                  ? user.personal_Skills.map(elm => {
-                      return <p key={elm}>{elm}</p>;
-                    })
-                  : ''}
+                <div>
+                  <div>
+                    <h3>المهارات العامة : </h3>
+                    {_.isArray(user.skills)
+                      ? user.skills.map(elm => {
+                          return <p key={elm}>{elm}</p>;
+                        })
+                      : ''}
+                  </div>
+                  <div>
+                    <h3>المهارات الشخصية : </h3>
+                    {_.isArray(user.personal_Skills)
+                      ? user.personal_Skills.map(elm => {
+                          return <p key={elm}>{elm}</p>;
+                        })
+                      : ''}
+                  </div>
+                </div>
                 <h3>اللغات : </h3>
                 {_.isArray(user.languages)
                   ? user.languages.map(elm => {
@@ -118,19 +135,13 @@ class Applicant extends React.Component {
               </div>
               <div>
                 <h3 className="h-title heading">التواصل الالكتروني</h3>
-                <p>الموقع الشخصي : {user.personal_web}</p>
                 <p>
-                  الفيسبوك
-                  {user.facebook}{' '}
+                  الموقع الشخصي :{' '}
+                  {user.personal_web ? user.personal_web : 'لا يوجد'}
                 </p>
-                <p>
-                  التويتر
-                  {user.twitter}{' '}
-                </p>
-                <p>
-                  لينكيد ان
-                  {user.linkedin}
-                </p>
+                <p>الفيسبوك : {user.facebook ? user.facebook : 'لا يوجد'} </p>
+                <p>التويتر : {user.twitter ? user.twitter : 'لا يوجد'} </p>
+                <p>لينكيد ان : {user.linkedin ? user.linkedin : 'لا يوجد'}</p>
               </div>
             </Col>
           </div>
