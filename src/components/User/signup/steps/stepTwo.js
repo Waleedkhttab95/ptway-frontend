@@ -47,7 +47,7 @@ const step2Form = props => {
           <div className="steps-btns">
             {current > 0 && (
               <button
-                style={{ marginLeft: 8 }}
+                // style={{ marginLeft: 8 }}
                 onClick={props.prev}
                 className="prev-btn"
               >

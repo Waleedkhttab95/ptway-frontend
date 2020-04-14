@@ -70,6 +70,14 @@
     border-radius: 5px;
     background-color: #f6f6f6;
 }
+.cv-education, .cv-skills- {
+  >div {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+  }
+}
+
 
 @media (max-width: 320px) {
   .company-container {
@@ -104,6 +112,12 @@
 }
 .hour-work {
   width: 100%;
+}
+.cv-education, .cv-skills- {
+  >div {
+    width: auto;
+    flex-direction: column;
+  }
 }
 }
 
@@ -140,5 +154,11 @@
 }
 .hour-work {
   width: 100%;
+}
+.cv-education, .cv-skills- {
+  >div {
+    width: auto;
+    flex-direction: column;
+  }
 }
 }

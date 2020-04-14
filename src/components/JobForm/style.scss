@@ -18,6 +18,7 @@
     margin-left: 80px;
     margin-right: 80px;
   }
+ 
   label {
     font-size: 18px;
     font-weight: normal;
@@ -81,6 +82,9 @@
   }
 }
 
+.coloor{
+  color: white;
+}
 @media (max-width:320px) {
     .job-new-form {
         padding: 30px;

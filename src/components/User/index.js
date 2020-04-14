@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Row, Layout, Col, Spin } from 'antd';
+import { Row, Layout, Col, Spin, Alert } from 'antd';
 import { connect } from 'react-redux';
 import { userInformation } from '../../store/actions/user/HomeActions';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -34,7 +34,13 @@ class User extends React.Component {
       profileComplete,
       profile_views,
       aplled_jobs,
-      email
+      email,
+      isConfirmed,
+      universty,
+      facebook,
+      twitter,
+      linkedin,
+      personal_web
       // hoppies
     } = this.props.user.userInfo;
     return (
@@ -42,18 +48,27 @@ class User extends React.Component {
         <Header />
         <div className="user-container">
           <Content className="user-home">
-            {/* <div className="user-notification">
-              <Alert
-                message="تم قبول طلبك على وظيفة مبرمج ومطور تطبيقات"
-                type="warning"
-                className="warning-alert"
-              />
-              <Alert
+            <div className="user-notification">
+              {this.props.user.userInfo && !isConfirmed && (
+                <React.Fragment>
+                  <Alert
+                    message="للحصول على عروض وظيفية والتأكيد عليها الرجاء تفعيل حسابك عن طريق البريد الالكتروني"
+                    type="warning"
+                    className="warning-alert"
+                  />
+                  <Alert
+                    message="سوف يتم ايقاف حسابك خلال عدة أيام اذا لم تقم بتفعيل الحساب عن طريق البريد الالكتروني"
+                    type="warning"
+                    className="warning-alert"
+                  />
+                </React.Fragment>
+              )}
+              {/* <Alert
                 message="وظائف جديدة متاحة للتقدم عليها في مجال عملك"
                 type="info"
                 className="info-alert"
-              />
-            </div> */}
+              /> */}
+            </div>
             <Row className="user-profile">
               <div className="user-progress-mob">
                 <div className="user-hours-work">
@@ -69,7 +84,6 @@ class User extends React.Component {
                   <div className="user-stc-number">{profile_views}</div>
                 </div>
               </div>
-              {/* <div> */}
               <Col md={6} sm={24} xs={24} className="right-section">
                 <div className="personal-info">
                   <div className="user-pic-info">
@@ -84,7 +98,7 @@ class User extends React.Component {
                     )}
                     <span className="fullname">{fullName} </span>
 
-                    <span className="job-type">مصمم جرافيك</span>
+                    {/* <span className="job-type">مصمم جرافيك</span> */}
                   </div>
                   <div className="details-user-info">
                     <span>
@@ -107,34 +121,35 @@ class User extends React.Component {
                 </div>
                 <div className="user-profile-complete">
                   <div>
-                  <CircularProgressbar
-                value={profileComplete}
-                text={profileComplete ? `${profileComplete}%` : ""}
-                styles={{
-                  path: {
-                    stroke: `rgba(62, 152, 199, ${profileComplete / 100})`,
-                    strokeLinecap: "butt",
-                    transition: "stroke-dashoffset 0.5s ease 0s",
-                    transform: "rotate(0.25turn)",
-                    transformOrigin: "center center"
-                  },
-                  trail: {
-                    stroke: "#d6d6d6",
-                    strokeLinecap: "butt",
-                    transform: "rotate(0.25turn)",
-                    transformOrigin: "center center"
-                  },
-                  text: {
-                    fill: "#009ad0",
-                    fontSize: "16px",
-                    dominantBaseline: "middle",
-                    textAnchor: "middle"
-                  },
-                  background: {
-                    fill: "#3e98c7"
-                  }
-                }}
-              />
+                    <CircularProgressbar
+                      value={profileComplete}
+                      text={profileComplete ? `${profileComplete}%` : ''}
+                      styles={{
+                        path: {
+                          stroke: `rgba(62, 152, 199, ${profileComplete /
+                            100})`,
+                          strokeLinecap: 'butt',
+                          transition: 'stroke-dashoffset 0.5s ease 0s',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        trail: {
+                          stroke: '#d6d6d6',
+                          strokeLinecap: 'butt',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center'
+                        },
+                        text: {
+                          fill: '#009ad0',
+                          fontSize: '16px',
+                          textAlign: 'center',
+                          marginLeft: '20px'
+                        },
+                        background: {
+                          fill: '#3e98c7'
+                        }
+                      }}
+                    />
                   </div>
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
                 </div>
@@ -197,6 +212,10 @@ class User extends React.Component {
                       <h3 className="sub-h-title"> التخصص الدقيق</h3>
                       <p>{spicifc_Major}</p>
                     </div>
+                    <div>
+                      <h3 className="sub-h-title"> الجامعة</h3>
+                      <p>{universty}</p>
+                    </div>
                   </div>
                   <br />
                   <br />
@@ -258,10 +277,18 @@ class User extends React.Component {
                     </div>
                     <div className="sk-content"></div>
                   </div>
+                  <div>
+                    <h3 className="h-title heading">التواصل الالكتروني</h3>
+                    <p>
+                      الموقع الشخصي : {personal_web ? personal_web : 'لا يوجد'}
+                    </p>
+                    <p>الفيسبوك : {facebook ? facebook : 'لا يوجد'} </p>
+                    <p>التويتر : {twitter ? twitter : 'لا يوجد'} </p>
+                    <p>لينكيد ان : {linkedin ? linkedin : 'لا يوجد'}</p>
+                  </div>
                 </div>
               </Col>
               <Col md={2}></Col>
-              {/* </div> */}
             </Row>
           </Content>
         </div>

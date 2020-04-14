@@ -10,7 +10,7 @@
     .job-post{
         display: flex;
         flex-direction: column;
-        width: 270px;
+        // width: 270px;
         height: 413px;
         border-radius: 5px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -190,12 +190,12 @@
 
 @media (max-width:320px){
     .jobs-details .job-post {
-        width: auto;
+        // width: auto;
         margin-left: 0px;
         padding-right: 10px;
     }
     .user-jobs {
-        padding: 10px 35px;
+        padding: 10px 15px;
     }
     .jobs-details .job-post .post-body .post-description{
         text-align: center;
@@ -215,12 +215,12 @@
 
 @media (min-width:321px) and (max-width:768px){
     .jobs-details .job-post {
-        width: auto;
+        // width: auto;
         margin-left: 0px;
         padding-right: 10px;
     }
     .user-jobs {
-        padding: 10px 35px;
+        padding: 10px 15px;
     }
     .jobs-details .job-post .post-body .post-description{
         text-align: center;

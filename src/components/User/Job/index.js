@@ -56,7 +56,7 @@ class Job extends React.Component {
       <div className="user-container">
         <Header />
         <Row className="job-section">
-          <Col md={6} className="right-section">
+          <Col md={6} xs={24} sm={24} className="right-section">
             {offer.company ? (
               <React.Fragment>
                 {imagePath !== 'null' ? (
@@ -107,7 +107,7 @@ class Job extends React.Component {
             </div> */}
 
           </Col>
-          <Col md={20} className="left-section">
+          <Col md={16} xs={24} sm={24} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
             <div>
               <div className="job-heading">

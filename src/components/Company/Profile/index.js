@@ -1,11 +1,11 @@
 import React from 'react';
-// import Header from '../../Header';
 import './style.scss';
 import Footer from '../../Footer';
-import { Input, Collapse, Select } from 'antd';
+import { Input, Collapse, Select, Modal } from 'antd';
 import statatisticsService from '../../../services/statisticsService';
 import _ from 'lodash';
 import company from '../../../services/company/profile';
+// import LoginNavbar from '../../Header/LoginNavbar';
 
 const { addCompanyInfo } = company;
 const { allCities, allCountries } = statatisticsService;
@@ -17,7 +17,8 @@ class CompanyProfile extends React.Component {
   state = {
     countries: '',
     cities: '',
-    error: false
+    error: false,
+    visible: false
   };
 
   async componentDidMount() {
@@ -45,14 +46,35 @@ class CompanyProfile extends React.Component {
       this.setState({ error: true });
     } else {
       await addCompanyInfo(this.state);
-      this.props.history.push('/company/home');
+      this.setState({
+        visible: true
+      });
+      // this.props.history.push('/company/home');
     }
+  };
+  handleCancel = () => {
+    this.setState({
+      visible: false
+    });
   };
   render() {
     const { countries, cities, error } = this.state;
     return (
       <React.Fragment>
-        {/* <Header /> */}
+        {/* <LoginNavbar /> */}
+        <Modal
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          footer={false}
+        >
+          <div className="success-modal">
+            <h2>شكرا لك، تم ارسال رسالة تفعيل الحساب الى بريدكم الالكتروني</h2>
+            <br />
+            {/* <button onClick={() => this.props.history.push('/user/signup')}>
+              سجل في PTway
+            </button> */}
+          </div>
+        </Modal>
         <div className="company-container" style={{ height: 'auto' }}>
           <div className="updating-container">
             <div className="profile-updating">

@@ -13,7 +13,10 @@ const step4Form = props => {
   } = state;
   return (
     <div className="steps-form">
-      <div className="form-content" style={{ padding: '30px 53px 0 0' }}>
+      <div
+        className="form-content signupf"
+        // style={{ padding: '30px 53px 0 0' }}
+      >
         {/* <img src={personalInfoIcon} /> */}
         <span className="f-title">معلومات الحساب</span>
         <span className="line"></span>
@@ -81,7 +84,7 @@ const step4Form = props => {
           <div className="steps-btns">
             {current > 0 && (
               <button
-                style={{ marginLeft: 8 }}
+                // style={{ marginLeft: 8 }}
                 onClick={props.prev}
                 className="prev-btn"
               >

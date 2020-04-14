@@ -221,8 +221,10 @@ class JobForm extends React.Component {
               في حال لم تكن مسجل معنا، سجل الآن!
             </h3>
             <br />
-            <button onClick={() => this.props.history.push('/user/signup')}>
-              سجل في PTway
+            <button>
+              <a href='https://www.ptway.net/sign-up'>
+             <span className="coloor">سجل في PTway</span> 
+              </a>
             </button>
           </div>
         </Modal>

@@ -119,7 +119,9 @@
       margin-top: 10px;
     }
 }
-
+.signupf {
+    padding: 30px 53px 0 0 !important;
+}
 
 .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal{
     width: 450px;
@@ -151,9 +153,12 @@
     color: #fff;
     margin-top: 30px;
     width: 200px;
-    height: 35px;
+    height: 43px;
     cursor: pointer;
 
+}
+.prev-btn {
+    margin-left: 8px;
 }
 .steps-btns{
     display: flex;
@@ -230,6 +235,15 @@ input.ant-calendar-picker-input.ant-input{
     .steps-btns{
         flex-direction: column;
     }
+    .prev-btn {
+        margin-left: 0px;
+    }
+    .signupf {
+        padding: 20px !important;
+    }
+    .form-fields .first-row .elements {
+        margin-left: 0;
+    }
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -253,5 +267,14 @@ input.ant-calendar-picker-input.ant-input{
     }
     .steps-btns{
         flex-direction: column;
+    }
+    .prev-btn {
+        margin-left: 0px;
+    }
+    .signupf {
+        padding: 20px !important; 
+    }
+    .form-fields .first-row .elements {
+        margin-left: 0;
     }
 }
