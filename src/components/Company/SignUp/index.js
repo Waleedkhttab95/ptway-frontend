@@ -127,12 +127,12 @@ class CompanySignupForm extends React.Component {
                   ]
                 })(<Input prefix={<Icon />} type="password" />)}
               </Form.Item>
-              <Form.Item>
+              {/* <Form.Item>
                 {getFieldDecorator('remember', {
                   valuePropName: 'checked',
                   initialValue: true
                 })(<Checkbox>الموافقة على الشروط</Checkbox>)}
-              </Form.Item>
+              </Form.Item> */}
               <div className="login-btn-cont">
                 <Button
                   type="primary"

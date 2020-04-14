@@ -4,11 +4,11 @@ import LandingPage from './landingPage';
 import { loadState } from '../../_core/localStorage';
 
 const AuthHome = () => {
-  const { loggedIn, role } = loadState();
+  const { loggedIn, role, token } = loadState();
 
-  return loggedIn && role === 'company' ? (
+  return loggedIn && token && role === 'company' ? (
     <Redirect to="/company/home" />
-  ) : loggedIn && role === 'user' ? (
+  ) : loggedIn && token && role === 'user' ? (
     <Redirect to="/user/home" />
   ) : (
     <LandingPage />
