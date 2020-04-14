@@ -21,18 +21,18 @@ const AboutUs = () => {
         <Row className="about-us">
           <Navbar />
           <h2 className="title">من نحن؟</h2>
-          <Col md={10} xs={24} sm={24} className="about-us-img">
+          <Col md={10} lg={10} xs={24} sm={24} className="about-us-img">
             <img src={aboutus} alt="aboutus" />
           </Col>
-          <Col md={14} xs={24} sm={24} className="about-us-content">
+          <Col md={14} lg={14} xs={24} sm={24} className="about-us-content">
             <Row>
               <p className="desc">
                 منصة الكترونية تربط بين الشركات والباحثين عن عمل جزئي لتغطية
                 احتياجهم من الكوادر البشرية
               </p>
               <h3>مميزاتنا:</h3>
-              <Col md={2}></Col>
-              <Col md={8} xs={12} sm={12}>
+              <Col md={2} lg={2}></Col>
+              <Col md={8} lg={8} xs={12} sm={12}>
                 <div className="about-elm col-left-side">
                   <div className="elm-img">
                     <img src={ab5} alt="" />
@@ -67,7 +67,7 @@ const AboutUs = () => {
                   </div>
                 </div>
               </Col>
-              <Col md={8} xs={12} sm={12}>
+              <Col md={8} lg={8} xs={12} sm={12}>
                 <div className="about-elm ">
                   <div className="elm-desc-first-col">
                     <h3>التخصصات</h3>

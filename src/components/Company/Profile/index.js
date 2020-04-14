@@ -5,7 +5,7 @@ import { Input, Collapse, Select, Modal } from 'antd';
 import statatisticsService from '../../../services/statisticsService';
 import _ from 'lodash';
 import company from '../../../services/company/profile';
-// import LoginNavbar from '../../Header/LoginNavbar';
+import LoginNavbar from '../../Header/LoginNavbar';
 
 const { addCompanyInfo } = company;
 const { allCities, allCountries } = statatisticsService;
@@ -61,7 +61,7 @@ class CompanyProfile extends React.Component {
     const { countries, cities, error } = this.state;
     return (
       <React.Fragment>
-        {/* <LoginNavbar /> */}
+        <LoginNavbar />
         <Modal
           visible={this.state.visible}
           onCancel={this.handleCancel}
@@ -70,9 +70,9 @@ class CompanyProfile extends React.Component {
           <div className="success-modal">
             <h2>شكرا لك، تم ارسال رسالة تفعيل الحساب الى بريدكم الالكتروني</h2>
             <br />
-            {/* <button onClick={() => this.props.history.push('/user/signup')}>
-              سجل في PTway
-            </button> */}
+            <button onClick={() => this.props.history.push('/')}>
+              العودة للرئيسية
+            </button>
           </div>
         </Modal>
         <div className="company-container" style={{ height: 'auto' }}>
