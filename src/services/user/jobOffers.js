@@ -1,8 +1,10 @@
 import baseRequest from '../../_core';
 
 const Jobs = {
-  getJobOffers: () => {
-    return baseRequest.get('/get/notifications').then(result => result);
+  getJobOffers: pageNo => {
+    return baseRequest
+      .get(`/get/notifications?pageNo=${pageNo}`)
+      .then(result => result);
   },
   getJobOffer: params => {
     return baseRequest.get(`/getjob?id=${params.id}`).then(result => result);

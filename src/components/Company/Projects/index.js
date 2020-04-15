@@ -54,7 +54,7 @@ class Projects extends React.Component {
         projects: allProjects
       },
       () => {
-        if (allProjects.proj.lenght >= 2) {
+        if (allProjects.totalPages > 1) {
           this.setState({
             loading: false
           });
