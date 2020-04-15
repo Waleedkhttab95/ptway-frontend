@@ -56,16 +56,20 @@ class Jobs extends React.Component {
                       key={elm.jobAd._id}
                     >
                       <div className="post-header">
-                        {/* <img src="elm.jobAd.imagePath" alt="" className="post-img" /> */}
-                        <i
-                          className="fa fa-picture-o"
-                          aria-hidden="true"
-                          style={{
-                            fontSize: '45px',
-                            display: 'flex',
-                            alignItems: 'center'
-                          }}
-                        ></i>
+
+                        {elm.imagePath ? (
+                          <img src={elm.imagePath} alt="" />
+                        ) : (
+                          <i
+                            className="fa fa-picture-o"
+                            aria-hidden="true"
+                            style={{
+                              fontSize: '45px',
+                              display: 'flex',
+                              alignItems: 'center'
+                            }}
+                          ></i>
+                        )}
                         <div className="job-owner-info">
                           <span className="job-owner-title">
                             {elm.jobAd.job_Name}

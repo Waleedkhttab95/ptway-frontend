@@ -120,8 +120,10 @@ class User extends React.Component {
                   </div>
                 </div>
                 <div className="user-profile-complete">
-                  <div dir="ltr"
-              className="pt-5 pb-3 text-center bg-white rounded-lg shadow-sm">
+                <div
+              dir="ltr"
+              className="pt-5 pb-3 text-center bg-white rounded-lg shadow-sm"
+            >
                     <CircularProgressbar
                       value={profileComplete}
                       text={profileComplete ? `${profileComplete}%` : ''}
@@ -141,10 +143,10 @@ class User extends React.Component {
                           transformOrigin: 'center center'
                         },
                         text: {
-                          fill: '#009ad0',
-                          fontSize: '16px',
-                          textAlign: 'center',
-                          marginLeft: '20px'
+                          fill: "#009ad0",
+                          fontSize: "16px",
+                          dominantBaseline: "middle",
+                          textAnchor: "middle"
                         },
                         background: {
                           fill: '#3e98c7'
