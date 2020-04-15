@@ -5,6 +5,12 @@ import moment from 'moment';
 import Footer from '../Footer';
 import LoginNavbar from '../Header/LoginNavbar';
 import TempForm from '../../services/newForm';
+import kareem from '../../images/kareem.png';
+import marsool from '../../images/marsool.png';
+import n3na3 from '../../images/n3na3.png';
+import zad from '../../images/zad.png';
+import hunger from '../../images/hunger.png';
+
 const { addInfo } = TempForm;
 class JobForm extends React.Component {
   state = {
@@ -160,6 +166,36 @@ class JobForm extends React.Component {
                 بعد منتصف الليل
               </Radio.Button>
               <Radio.Button value="جميع الأوقات">جميع الأوقات</Radio.Button>
+            </Radio.Group>
+            <br />
+            <br />
+            <label>تفضل العمل بأي شركة توصيل؟</label>
+            <br />
+            <br />
+            <Radio.Group
+              onChange={this.handleChange}
+              className="radio-select select-mob select-image"
+              name="company"
+            >
+              <div>
+                <Radio.Button value="zad">
+                  <img src={zad} alt="zad" />
+                </Radio.Button>
+                <Radio.Button value="hunger" alt="hunger">
+                  <img src={hunger} />
+                </Radio.Button>
+                <Radio.Button value="kareem">
+                  <img src={kareem} alt="kareem" />
+                </Radio.Button>
+              </div>
+              <div>
+                <Radio.Button value="n3na3">
+                  <img src={n3na3} alt="n3na3" />
+                </Radio.Button>
+                <Radio.Button value="marsool">
+                  <img src={marsool} alt="marsool" />
+                </Radio.Button>
+              </div>
             </Radio.Group>
             <br />
             <br />

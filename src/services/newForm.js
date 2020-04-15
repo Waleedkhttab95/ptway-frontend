@@ -19,6 +19,7 @@ const newForm = {
       timeToDelivier: params.timeToDelivier,
       mobileOS: params.mobileOS,
       exp: params.exp,
+      company: params.company,
       ptwayMember: params.ptwayMember
     });
   }
