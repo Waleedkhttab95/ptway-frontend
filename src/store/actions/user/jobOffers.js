@@ -1,9 +1,9 @@
 import Jobs from '../../../services/user/jobOffers';
 
-export const jobOffers = () => {
+export const jobOffers = pageNo => {
   return {
     type: 'JOB_OFFERS',
-    payload: Jobs.getJobOffers()
+    payload: Jobs.getJobOffers(pageNo)
   };
 };
 export const jobOffer = params => {

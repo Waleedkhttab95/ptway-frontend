@@ -10,14 +10,25 @@ import FilterAndSearch from '../../Filter';
 
 class Jobs extends React.Component {
   state = {
-    loading: true
+    loading: true,
+    count: 1,
+    offers: ''
   };
   async componentDidMount() {
-    const { jobOffers } = this.props;
-    await jobOffers();
-    this.setState({
-      loading: false
-    });
+    const { JobOffers } = this.props;
+    const jobOffersNo = await JobOffers(this.state.count);
+    this.setState(
+      {
+        offers: jobOffersNo.value.result
+      },
+      () => {
+        if (jobOffersNo.value.totalPages > 1) {
+          this.setState({
+            loading: false
+          });
+        }
+      }
+    );
   }
 
   jobOffer = async id => {
@@ -35,9 +46,31 @@ class Jobs extends React.Component {
     }
   };
 
+  displayMore = () => {
+    this.setState(
+      {
+        count: this.state.count + 1
+      },
+      async () => {
+        const { JobOffers } = this.props;
+        await JobOffers(this.state.count);
+      }
+    );
+  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.offers.result) {
+      if (prevProps.offers.result !== this.props.offers.result) {
+        const offers = prevProps.offers.result.concat(this.props.offers.result);
+        this.setState({
+          offers,
+          totalPages: this.props.offers.totalPages
+        });
+      }
+    }
+  }
+
   render() {
-    console.log('jobs props', this.props.offers.jobOffers);
-    const { offers } = this.props;
+    const { offers, loading, totalPages, count } = this.state;
     return (
       <div>
         <Header />
@@ -45,8 +78,8 @@ class Jobs extends React.Component {
           <div className="user-jobs">
             <FilterAndSearch />
             <Row className="jobs-details">
-              {_.isArray(offers.jobOffers.result) ? (
-                offers.jobOffers.result.map(elm => {
+              {_.isArray(offers) ? (
+                offers.map(elm => {
                   return (
                     <Col
                       md={6}
@@ -135,10 +168,12 @@ class Jobs extends React.Component {
                   <Spin size="large" />
                 </div>
               )}
-              {/* {!this.state.loading && (
-                <button className="display-more">عرض المزيد</button>
-              )} */}
             </Row>
+            {!loading && totalPages !== count && (
+              <button className="display-more" onClick={this.displayMore}>
+                عرض المزيد
+              </button>
+            )}
           </div>
         </div>
         <Footer />
@@ -154,7 +189,7 @@ const mapStateToProps = ({ jobOffers }) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    jobOffers: () => dispatch(jobOffers()),
+    JobOffers: pageNo => dispatch(jobOffers(pageNo)),
     applyJob: params => dispatch(applyJob(params))
   };
 };
