@@ -25,7 +25,7 @@ class Applicants extends React.Component {
         candidates
       },
       () => {
-        if (candidates.Bresult.length >= 2) {
+        if (candidates.totalPages > 1) {
           this.setState({
             loading: false
           });

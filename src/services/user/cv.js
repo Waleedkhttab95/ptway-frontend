@@ -47,7 +47,8 @@ const CV = {
       jobCategory,
       education_level,
       userStatus,
-      availabilityStatus
+      availabilityStatus,
+      hoppies
     } = params;
 
     let formData = new FormData();
@@ -58,6 +59,14 @@ const CV = {
       }
     } else {
       formData.append('skills', skill);
+    }
+    if (hoppies != null) {
+      for (var i = 0; i < hoppies.length; i++) {
+        console.log(hoppies[i]);
+        formData.append('hoppies[]', hoppies[i]);
+      }
+    } else {
+      formData.append('hoppies', hoppies);
     }
 
     if (per_skill != null) {

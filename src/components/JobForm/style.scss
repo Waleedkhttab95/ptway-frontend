@@ -33,7 +33,7 @@
   input {
     border: solid 1px #d9d9d9;
     background-color: #fdfdfd;
-    margin: 20px 0;
+    margin: 20px 0 5px 0;
 
   }
   .pers-info {
@@ -116,6 +116,12 @@
     .success-modal {
         padding: 20px 20px;
     }
+    .select-image > div {
+      flex-direction: column;
+      >label {
+        margin-bottom: 10px;
+      }
+    }
  }
 @media (min-width:321px) and (max-width:768px) { 
     .job-new-form {
@@ -144,6 +150,12 @@
     }
     .success-modal {
         padding: 20px 20px;
+    }
+    .select-image > div {
+      flex-direction: column;
+      >label {
+        margin-bottom: 10px;
+      }
     }
 
     }

@@ -47,6 +47,7 @@
 }
 .about-elm {
     display: flex;
+    // justify-content: flex-end;
     .elm-desc-first-col {
         margin-left: 10px;
         h3{
@@ -98,7 +99,8 @@
     }
 }
 .col-left-side {
-    margin-top: 55px;
+    // margin-top: 55px;
+    margin-top: 44px;
 }
 .col-right-side {
     margin-top: 43px;

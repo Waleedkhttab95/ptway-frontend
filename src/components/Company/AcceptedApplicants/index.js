@@ -25,7 +25,7 @@ class AcceptedApplicants extends React.Component {
         jobId
       },
       () => {
-        if (AcceptedCandidates.response.length >= 2) {
+        if (AcceptedCandidates.response.length > 1) {
           this.setState({
             loading: false
           });

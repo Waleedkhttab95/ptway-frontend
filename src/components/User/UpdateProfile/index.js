@@ -130,7 +130,12 @@ class UpdateProfile extends React.Component {
       language: ids
     });
   };
-
+  handleHoppiesChange = (value, option) => {
+    const ids = option.map(elm => elm.key);
+    this.setState({
+      hoppies: ids
+    });
+  };
   handlePersonalSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -189,6 +194,7 @@ class UpdateProfile extends React.Component {
       jobCategory,
       userStatus,
       availabilityStatus,
+      hoppies,
       userInfo
     } = this.state;
     if (userInfo.public_Major._id !== public_major)
@@ -220,6 +226,7 @@ class UpdateProfile extends React.Component {
       file,
       jobCategory,
       userStatus,
+      hoppies,
       availabilityStatus
     });
     if (cvMsg) {
@@ -241,6 +248,13 @@ class UpdateProfile extends React.Component {
       categories,
       education_levels
     } = this.state;
+    const hoppies = [
+      'القراءة',
+      'الكتابة',
+      'السباحة',
+      'الرياضة',
+      'العاب الفيديو'
+    ];
     console.log('state', this.state);
 
     const certificate = [
@@ -415,6 +429,19 @@ class UpdateProfile extends React.Component {
                           </Option>
                           <Option name="language" value="france" key="الفرنسية">
                             الفرنسية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الاسبانية"
+                            key="الاسبانية"
+                          >
+                            الاسبانية{' '}
+                          </Option>
+                          <Option name="language" value="الكورية" key="الكورية">
+                            الكورية{' '}
+                          </Option>
+                          <Option name="language" value="أوردو" key="أوردو">
+                            أوردو{' '}
                           </Option>
                         </Select>
                         <h5 className="title-field">حالة المستخدم</h5>
@@ -747,6 +774,7 @@ class UpdateProfile extends React.Component {
                           //       )
                           //     : ''
                           // }
+                          // defaultValue={userInfo ? userInfo.skills : []}
                           onChange={this.handleSkillsChange}
                         >
                           {_.isArray(skills)
@@ -771,6 +799,8 @@ class UpdateProfile extends React.Component {
                         <Select
                           className="input-field"
                           mode="multiple"
+                          onChange={this.handleHoppiesChange}
+                          defaultValue={userInfo ? userInfo.hoppies : []}
                           // placeholder={skills.map(elm =>
                           //   userInfo
                           //     ? userInfo.skills.map(elm2 =>
@@ -779,15 +809,11 @@ class UpdateProfile extends React.Component {
                           //     : ''
                           // )}
                         >
-                          {_.isArray(skills)
-                            ? skills.map(elm => {
+                          {_.isArray(hoppies)
+                            ? hoppies.map(elm => {
                                 return (
-                                  <Option
-                                    value={elm.skillName}
-                                    key={elm._id}
-                                    name="hoppies"
-                                  >
-                                    {elm.skillName}
+                                  <Option value={elm} key={elm} name="hoppies">
+                                    {elm}
                                   </Option>
                                 );
                               })
