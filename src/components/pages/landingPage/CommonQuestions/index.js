@@ -78,7 +78,15 @@ const CommonQuestions = props => {
                 }
                 key="2"
               >
-                {text}
+                 <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+                 يكون من الجهة المعلنة للعرض الوظيفي , PTway وسيط بين الفرد و الجهة
+                </p>
               </Panel>
               <Panel
                 className="qus-name"
@@ -89,7 +97,15 @@ const CommonQuestions = props => {
                 }
                 key="3"
               >
-                {text}
+                  <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+                 ليس محدود, الحد الأدنى لعمر المتقدم هو 16 سنة
+                </p>
               </Panel>
               <Panel
                 className="qus-name"
@@ -100,14 +116,30 @@ const CommonQuestions = props => {
                 }
                 key="4"
               >
-                {text}
+                 <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+                لا , لا يؤثر التسجيل في المنصة
+                </p>
               </Panel>
               <Panel
                 className="qus-name"
                 header={<p className="ques-title">لم تصلني رسالة تفعيل ؟</p>}
                 key="5"
               >
-                {text}
+                 <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+الإطلاع على البريد المهمل او غير المرغوب فيه  , في حال لم تصلك أيضا الرجاء قم بالتواصل مع الفريق المختص بالبريد الالكتروني !
+                </p>
               </Panel>
               <Panel
                 className="qus-name"
@@ -118,7 +150,15 @@ const CommonQuestions = props => {
                 }
                 key="6"
               >
-                {text}
+                  <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+                في يمين صفحتك بالمنصة يوجد خيار تعديل السيرة الذاتيه  , أو في اعلى الصفحه في حال كنت تستخدم هاتف متنقل
+                </p>
               </Panel>
               <Panel
                 className="qus-name"
@@ -129,7 +169,53 @@ const CommonQuestions = props => {
                 }
                 key="7"
               >
-                {text}
+                <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+نعم                </p>
+              </Panel>
+
+              <Panel
+                className="qus-name"
+                header={
+                  <p className="ques-title" style={{ marginBottom: '0' }}>
+اذا نسيت كلمة المرور لحسابي هل يتطلب مني التسجيل بالمنصة مرة اخرى ؟                  </p>
+                }
+                key="8"
+              >
+                <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+لا , يوجد خيار "استعادة كلمة المرور" قم بالضغط عليها وسوف يصلك بريد الكتروني بالتغيير
+   </p>
+              </Panel>
+
+              <Panel
+                className="qus-name"
+                header={
+                  <p className="ques-title" style={{ marginBottom: '0' }}>
+                 اذا تم القبول والمباشرة بالعمل , هل ل PTway نسبة من راتب الموظف ؟
+                  </p>
+                }
+                key="9"
+              >
+                <p
+                  className="qus-reply"
+                  style={{
+                    paddingLeft: 24,
+                    paddingRight: '40px'
+                  }}
+                >
+لا , المنصة لاتأخذ اي نسبة من الموظف !
+              </p>
               </Panel>
             </Collapse>
           </div>

@@ -56,7 +56,7 @@ class Jobs extends React.Component {
                       key={elm.jobAd._id}
                     >
                       <div className="post-header">
-                        {/* <img src="" alt="" className="post-img" /> */}
+                        {/* <img src="elm.jobAd.imagePath" alt="" className="post-img" /> */}
                         <i
                           className="fa fa-picture-o"
                           aria-hidden="true"
