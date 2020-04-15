@@ -230,7 +230,7 @@ class UpdateProfile extends React.Component {
   };
   render() {
     const {
-      skills,
+      // skills,
       pSkills,
       major,
       subMajor,
@@ -241,6 +241,13 @@ class UpdateProfile extends React.Component {
       categories,
       education_levels
     } = this.state;
+    const skills = [
+      'القراءة',
+      'الكتابة',
+      'السباحة',
+      'الرياضة',
+      'العاب الفيديو'
+    ];
     console.log('state', this.state);
 
     const certificate = [
@@ -415,6 +422,19 @@ class UpdateProfile extends React.Component {
                           </Option>
                           <Option name="language" value="france" key="الفرنسية">
                             الفرنسية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الاسبانية"
+                            key="الاسبانية"
+                          >
+                            الاسبانية{' '}
+                          </Option>
+                          <Option name="language" value="الكورية" key="الكورية">
+                            الكورية{' '}
+                          </Option>
+                          <Option name="language" value="أوردو" key="أوردو">
+                            أوردو{' '}
                           </Option>
                         </Select>
                         <h5 className="title-field">حالة المستخدم</h5>
@@ -752,12 +772,8 @@ class UpdateProfile extends React.Component {
                           {_.isArray(skills)
                             ? skills.map(elm => {
                                 return (
-                                  <Option
-                                    value={elm.skillName}
-                                    key={elm._id}
-                                    name="skill"
-                                  >
-                                    {elm.skillName}
+                                  <Option value={elm} key={elm} name="skill">
+                                    {elm}
                                   </Option>
                                 );
                               })
