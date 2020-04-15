@@ -19,11 +19,19 @@ class AcceptedApplicants extends React.Component {
   async componentDidMount() {
     const jobId = this.props.match.params.id;
     const AcceptedCandidates = await getAcceptedCandidates({ jobId });
-    this.setState({
-      AcceptedCandidates,
-      jobId,
-      loading: false
-    });
+    this.setState(
+      {
+        AcceptedCandidates,
+        jobId
+      },
+      () => {
+        if (AcceptedCandidates.response.length >= 2) {
+          this.setState({
+            loading: false
+          });
+        }
+      }
+    );
   }
   displayMore = async () => {
     let count = this.state.count + 1;
@@ -88,17 +96,15 @@ class AcceptedApplicants extends React.Component {
               <Spin size="large" />
             </div>
           )}
-          {!loading &&
-            moreAds.totalPages !== count &&
-            _.isArray(moreAds.response) && (
-              <button
-                className="more-projects-offers-btn"
-                onClick={this.displayMore}
-                style={{ marginTop: '30px', marginBottom: '30px' }}
-              >
-                عرض المزيد
-              </button>
-            )}
+          {!loading && moreAds.totalPages !== count && (
+            <button
+              className="more-projects-offers-btn"
+              onClick={this.displayMore}
+              style={{ marginTop: '30px', marginBottom: '30px' }}
+            >
+              عرض المزيد
+            </button>
+          )}
         </div>
         <div
           style={{

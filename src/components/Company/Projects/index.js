@@ -46,13 +46,21 @@ class Projects extends React.Component {
     const allProjects = await getProjects();
     const { getContracts } = this.props;
     getContracts();
-    this.setState({
-      allProjects,
-      JobAdsCount: allProjects.JobAdsCount,
-      totalPages: allProjects.totalPages,
-      loading: false,
-      projects: allProjects
-    });
+    this.setState(
+      {
+        allProjects,
+        JobAdsCount: allProjects.JobAdsCount,
+        totalPages: allProjects.totalPages,
+        projects: allProjects
+      },
+      () => {
+        if (allProjects.proj.lenght >= 2) {
+          this.setState({
+            loading: false
+          });
+        }
+      }
+    );
   }
 
   onPositionChange = expandIconPosition => {

@@ -97,6 +97,7 @@ class Project extends React.Component {
                   >
                     عرض
                   </button>
+                  <div></div>
                   <div className="btns-mob">
                     <button
                       className="applicants-btn-mob"
