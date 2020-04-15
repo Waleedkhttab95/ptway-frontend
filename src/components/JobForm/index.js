@@ -14,7 +14,8 @@ import hunger from '../../images/hunger.png';
 const { addInfo } = TempForm;
 class JobForm extends React.Component {
   state = {
-    visible: false
+    visible: false,
+    error: false
   };
 
   handleChange = e => {
@@ -35,10 +36,46 @@ class JobForm extends React.Component {
   };
 
   add = async () => {
-    await addInfo(this.state);
-    this.setState({
-      visible: true
-    });
+    const {
+      name,
+      gender,
+      street,
+      city,
+      mobile,
+      email,
+      avilableCar,
+      carType,
+      carModel,
+      timeToDelivier,
+      jobTitle,
+      company,
+      exp,
+      ptwayMember,
+      mobileOS
+    } = this.state;
+    if (
+      (!name ||
+        !gender ||
+        !street ||
+        !city ||
+        !mobile ||
+        !email ||
+        !avilableCar ||
+        !carType ||
+        !carModel ||
+        !timeToDelivier ||
+        !jobTitle,
+      !company || !exp || !ptwayMember || !mobileOS)
+    ) {
+      this.setState({
+        error: true
+      });
+    } else {
+      await addInfo(this.state);
+      this.setState({
+        visible: true
+      });
+    }
   };
   handleCancel = e => {
     console.log(e);
@@ -49,6 +86,7 @@ class JobForm extends React.Component {
 
   render() {
     const dateFormat = 'DD/MM/YYYY';
+    const { error } = this.state;
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -58,6 +96,9 @@ class JobForm extends React.Component {
             <h2>هذا وقتك، سجل معنا!</h2>
             <label>الاسم ثلاثي:</label>
             <Input onChange={this.handleChange} name="name" />
+            {error && !this.state.name && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <div className="pers-info">
               <div>
                 <h4>تاريخ الميلاد:</h4>
@@ -67,6 +108,9 @@ class JobForm extends React.Component {
                   className="form-date"
                   onChange={this.handleDateChange}
                 />
+                {error && !this.state.birthDate && (
+                  <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+                )}
               </div>
               <div>
                 <h4>الجنس:</h4>
@@ -78,6 +122,9 @@ class JobForm extends React.Component {
                   <Radio.Button value="ذكر">ذكر</Radio.Button>
                   <Radio.Button value="أنثى">أنثى</Radio.Button>
                 </Radio.Group>
+                {error && !this.state.gender && (
+                  <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+                )}
               </div>
             </div>
             <label>الجنسية</label>
@@ -104,17 +151,32 @@ class JobForm extends React.Component {
                 <label>المدينة:</label>
                 <br />
                 <Input onChange={this.handleChange} name="city" />
+                {error && !this.state.city && (
+                  <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+                )}
               </div>
               <div>
                 <label>الحي السكني:</label>
                 <br />
                 <Input onChange={this.handleChange} name="street" />
+                {error && !this.state.street && (
+                  <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+                )}
+                <br />
               </div>
             </div>
             <label>رقم الجوال:</label>
             <Input onChange={this.handleChange} name="mobile" />
+            {error && !this.state.mobile && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
+            <br />
             <label>البريد الإلكتروني:</label>
             <Input onChange={this.handleChange} name="email" />
+            {error && !this.state.email && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
+            <br />
             <label>هل تتوفر لديك سيارة؟</label>
             <br />
             <br />
@@ -126,14 +188,25 @@ class JobForm extends React.Component {
               <Radio.Button value="نعم">نعم</Radio.Button>
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            {error && !this.state.avilableCar && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>نوع السيارة:</label>
             <br />
             <Input onChange={this.handleChange} name="carType" />
+            {error && !this.state.carType && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
+            <br />
             <label>موديل السيارة:</label>
             <br />
             <Input onChange={this.handleChange} name="carModel" />
+            {error && !this.state.carModel && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
+            <br />
             <label>الوظيفة التي ترغب بها:</label>
             <br />
             <br />
@@ -146,6 +219,9 @@ class JobForm extends React.Component {
               <Radio.Button value="موصل طلبات">موصل طلبات</Radio.Button>
               <Radio.Button value="جميعها">جميعها</Radio.Button>
             </Radio.Group>
+            {error && !this.state.jobTitle && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>ماهي الأوقات المناسبة لتوصيل الطلبات؟</label>
@@ -167,6 +243,9 @@ class JobForm extends React.Component {
               </Radio.Button>
               <Radio.Button value="جميع الأوقات">جميع الأوقات</Radio.Button>
             </Radio.Group>
+            {error && !this.state.timeToDelivier && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>تفضل العمل بأي شركة توصيل؟</label>
@@ -197,6 +276,9 @@ class JobForm extends React.Component {
                 </Radio.Button>
               </div>
             </Radio.Group>
+            {error && !this.state.company && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>نظام تشغيل الجوال:</label>
@@ -210,6 +292,9 @@ class JobForm extends React.Component {
               <Radio.Button value="android">Android</Radio.Button>
               <Radio.Button value="ios">iOS</Radio.Button>
             </Radio.Group>
+            {error && !this.state.mobileOS && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>هل عملت سابقاً كموصل؟</label>
@@ -223,6 +308,9 @@ class JobForm extends React.Component {
               <Radio.Button value="نعم">نعم</Radio.Button>
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            {error && !this.state.exp && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <label>هل أنت مسجل في منصة PTway؟</label>
@@ -236,6 +324,9 @@ class JobForm extends React.Component {
               <Radio.Button value="نعم">نعم</Radio.Button>
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            {error && !this.state.ptwayMember && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <br />
             <br />
             <button className="job-form-btn" onClick={this.add}>
