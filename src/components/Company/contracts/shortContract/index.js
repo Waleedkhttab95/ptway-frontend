@@ -56,9 +56,7 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-    console.log('values', values);
 
-    console.log('this.state.contractId', this.state.contractId);
     const { project, gender, personalSkills, date, country, city } = this.state;
     if (!project || !personalSkills || !gender || !date || !country || !city) {
       this.setState({
@@ -96,7 +94,6 @@ class AddNewAd extends React.Component {
   render() {
     const { allProjects, countries, cities, pSkills, error } = this.state;
     const { loggedIn } = loadState();
-    console.log('------', this.state);
 
     return (
       <React.Fragment>

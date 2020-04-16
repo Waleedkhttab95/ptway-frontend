@@ -12,9 +12,7 @@ class UserLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         const { username, password } = values;
-        console.log('props---', this.props.user);
 
         const { login } = this.props;
         await login({

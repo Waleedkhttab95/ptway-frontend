@@ -49,7 +49,6 @@ class Job extends React.Component {
 
   render() {
     const { offer } = this.props;
-    console.log('offers', offer);
     const { Country, City, Contract, apply, job } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     return (

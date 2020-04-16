@@ -11,7 +11,6 @@ class CompanyLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         const { login } = this.props;
         const { email, password } = values;
         await login({

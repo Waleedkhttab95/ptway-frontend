@@ -144,7 +144,6 @@ class UserSignup extends React.Component {
   render() {
     const { current, countries, cities, majors } = this.state;
     const { user } = this.props;
-    console.log('current', current, 'state', this.state);
 
     const steps = [
       {

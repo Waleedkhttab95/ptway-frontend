@@ -53,7 +53,6 @@ class AddNewAd extends React.Component {
 
   handleDaysChange = e => {
     const { value, max, min } = e.target;
-    console.log('****', value, max, min);
     this.setState({
       workDays: value,
       workDaysError: value > 1 && value < 5 ? false : true
@@ -71,7 +70,6 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async () => {
-    console.log('this.state.contractId', this.state.contractId);
     const { project, jobDetails, workHours, gender } = this.state;
     if (!project || !jobDetails || !workHours || !gender) {
       this.setState({
@@ -109,7 +107,6 @@ class AddNewAd extends React.Component {
   render() {
     const { allProjects, countries, cities, pSkills, error } = this.state;
     const { loggedIn } = loadState();
-    console.log('------', this.state);
 
     return (
       <React.Fragment>

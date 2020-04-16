@@ -3,7 +3,6 @@ import { Input } from 'antd';
 
 const step4Form = props => {
   const { handleChange, state, current, steps } = props;
-  console.log('props', props);
 
   const {
     emailError,

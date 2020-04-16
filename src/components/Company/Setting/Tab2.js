@@ -49,7 +49,6 @@ class Tab2 extends React.Component {
   };
   render() {
     const { subUsers } = this.state;
-    console.log('subUsers', subUsers);
 
     return (
       <React.Fragment>

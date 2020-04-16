@@ -45,7 +45,6 @@ class UpdateProfile extends React.Component {
     const categories = await jobCategories();
 
     const info = userInfo.info;
-    console.log('infoinfo', info);
 
     if (info.public_Major && !info.spMajor) {
       const subMajor = await getSubMajor({ id: info.public_Major._id });
@@ -255,7 +254,6 @@ class UpdateProfile extends React.Component {
       'الرياضة',
       'العاب الفيديو'
     ];
-    console.log('state', this.state);
 
     const certificate = [
       { value: 'HS', viewValue: 'ثانوية عامة' },

@@ -54,7 +54,6 @@ const CV = {
     let formData = new FormData();
     if (skill != null) {
       for (var i = 0; i < skill.length; i++) {
-        console.log(skill[i]);
         formData.append('skills[]', skill[i]);
       }
     } else {
@@ -62,7 +61,6 @@ const CV = {
     }
     if (hoppies != null) {
       for (var i = 0; i < hoppies.length; i++) {
-        console.log(hoppies[i]);
         formData.append('hoppies[]', hoppies[i]);
       }
     } else {
@@ -115,7 +113,6 @@ const CV = {
     formData.append('availabilityStatus', availabilityStatus);
 
     return baseRequest.put('/put/userinfo', formData).then(result => {
-      console.log('result', result);
 
       return result;
     });

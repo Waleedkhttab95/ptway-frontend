@@ -4,7 +4,6 @@ import countryIcon from '../../../../images/home-country-icon.svg';
 import _ from 'lodash';
 const { Option } = Select;
 const step1Form = props => {
-  console.log('props', props);
   const { handleChange, cities, state, steps, current } = props;
   const { cityError } = state;
 

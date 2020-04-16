@@ -9,7 +9,6 @@ class Login extends Component {
     // const { history } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
       }
       const { adminLogin } = this.props;
       adminLogin({

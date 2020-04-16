@@ -36,7 +36,6 @@ const userServices = {
     baseRequest
       .post('/login', { email: params.username, password: params.password })
       .then(result => {
-        console.log('result', result);
 
         return result;
       }),

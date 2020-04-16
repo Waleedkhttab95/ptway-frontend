@@ -20,7 +20,6 @@ class JobForm extends React.Component {
 
   handleChange = e => {
     const { value, name } = e.target;
-    console.log('state', this.state);
 
     this.setState({
       [name]: value

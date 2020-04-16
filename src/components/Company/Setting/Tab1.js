@@ -2,7 +2,6 @@ import React from 'react';
 import './style.scss';
 
 const Tab1 = props => {
-  console.log('props', props);
 
   const { info } = props.companyInfo;
   return (

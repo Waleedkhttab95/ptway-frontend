@@ -40,7 +40,6 @@ class AcceptedApplicants extends React.Component {
       pageNo: count,
       jobAd: jobId
     });
-    console.log('moreAds', moreAds);
 
     this.setState({
       AcceptedCandidates: {
