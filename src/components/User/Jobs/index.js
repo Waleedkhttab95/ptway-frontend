@@ -82,7 +82,7 @@ class Jobs extends React.Component {
                 offers.map(elm => {
                   return (
                     <Col
-                      md={6}
+                      md={5}
                       xs={24}
                       sm={24}
                       className="job-post"
