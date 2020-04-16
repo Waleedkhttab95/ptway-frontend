@@ -95,6 +95,9 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+label.ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+  border: solid 4px #40a9ff;
+}
 
 @media (max-width:320px) {
     .job-new-form {
