@@ -4,7 +4,7 @@
   src: url("../fonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf");
   }
 #root{
-  height: auto;
+  min-height: 100vh;
 }
 body{
   direction: rtl;
@@ -14,7 +14,13 @@ body{
   font-family: 'DINNextLTArabic' !important;
 }
 .App{
+  min-height: 100vh;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  >div:first-child{
+    flex-grow: 1;
+  }
 }
 a{
   float: right;

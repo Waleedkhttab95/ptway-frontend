@@ -97,7 +97,6 @@ class Header extends React.Component {
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
-    console.log('xyz hell', this.props.location);
 
     return (
       <React.Fragment>

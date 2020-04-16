@@ -72,6 +72,7 @@ class Jobs extends React.Component {
   render() {
     const { offers, loading, totalPages, count } = this.state;
     return (
+      <React.Fragment>
       <div>
         <Header />
         <div className="user-container">
@@ -177,8 +178,9 @@ class Jobs extends React.Component {
             )}
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer className="footer"/>
+      </React.Fragment>
     );
   }
 }

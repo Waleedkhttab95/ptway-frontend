@@ -121,18 +121,7 @@ class AddNewAd extends React.Component {
                     ضمن مشروع
                   </p>
                   <div className="new-ad-details">
-                    <label>تفاصيل الإعلان الوظيفي</label>
-                    <TextArea
-                      row={6}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      name="jobDetails"
-                    />
-                    {errors.jobDetails && touched.jobDetails && (
-                      <span style={{ color: 'red', fontSize: '12px' }}>
-                        {error.jobDetails}
-                      </span>
-                    )}
+                  
                     <br />
                     <br />
                     <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
@@ -200,6 +189,9 @@ class AddNewAd extends React.Component {
                           </Option>
                           <Option name="gender" value="female" key="أنثى">
                             أنثى{' '}
+                          </Option>
+                          <Option name="gender" value="both" key="ذكروانثى">
+                            ذكر و انثى{' '}
                           </Option>
                         </Select>
                         <br />
