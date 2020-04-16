@@ -21,8 +21,12 @@ const Sectors = () => {
         <Row className="sector-elms">
           <Row>
             <Col md={24} className="sector-elm">
-              <Collapse bordered={false} className="sector-collapse">
-                <Panel header="قطاع التجزئة" className="pnl-content">
+              <Collapse
+                bordered={false}
+                className="sector-collapse"
+                defaultActiveKey={'1'}
+              >
+                <Panel header="قطاع التجزئة" className="pnl-content" key={1}>
                   <div className="panel-desc">
                     <h4> كاشير &nbsp;</h4>
                     <h4>مصفف رفوف</h4>
@@ -105,11 +109,7 @@ const Sectors = () => {
           </Row>
           <Row>
             <Col md={24} className="sector-elm">
-              <Collapse
-                bordered={false}
-                className="sector-collapse"
-                defaultActiveKey={'1'}
-              >
+              <Collapse bordered={false} className="sector-collapse">
                 <Panel header="الشركات" key={1} className="pnl-content">
                   <div className="panel-desc">
                     <h4>مبرمج</h4>
