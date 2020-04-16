@@ -87,6 +87,9 @@
   display: flex;
   justify-content: center;
   margin-left: 10px;
+  >span >img {
+    height: 94px;
+  }
 }
 .select-image > div {
   display: flex;

@@ -58,6 +58,7 @@ class JobForm extends React.Component {
         !street ||
         !city ||
         !mobile ||
+        !/^\d{10}$/.test(mobile) ||
         !email ||
         !avilableCar ||
         !carType ||
@@ -86,6 +87,8 @@ class JobForm extends React.Component {
   render() {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
+    console.log('here', !/^\d{10}$/.test(this.state.mobile));
+
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -167,7 +170,13 @@ class JobForm extends React.Component {
             <label>رقم الجوال:</label>
             <Input onChange={this.handleChange} name="mobile" />
             {error && !this.state.mobile && (
-              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            {error && !/^\d{10}$/.test(this.state.mobile) && (
+              <span style={{ color: 'red' }}>
+                {' '}
+                يجب آلا يزيد أو يقل عن 10 أرقام
+              </span>
             )}
             <br />
             <label>البريد الإلكتروني:</label>
@@ -348,7 +357,7 @@ class JobForm extends React.Component {
             </h3>
             <br />
             <button>
-              <a href='https://www.ptway.net/sign-up'>
+              <a href='https://www.ptway.net/user/login'>
              <span className="coloor">سجل في PTway</span> 
               </a>
             </button>
