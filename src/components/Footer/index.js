@@ -13,19 +13,37 @@ const Footer = () => {
       <div className="footer">
         <div className="footer-social-media">
           <div>
-            <img src={facebook} alt="facebook" />
+            <a
+              href="https://www.facebook.com/ptway.net/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src={facebook} alt="facebook" />
+            </a>
           </div>
           <div>
-            <img src={twitter} alt="twitter" />
+            <a
+              href="https://twitter.com/ptway"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src={twitter} alt="twitter" />
+            </a>
           </div>
           <div>
-            <img src={linkedIn} alt="linkedIn" />
+            <a
+              href="https://www.linkedin.com/company/ptwayy/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src={linkedIn} alt="linkedIn" />
+            </a>
           </div>
         </div>
         <div className="footer-menu">
           <Link to="/home/about-us">من نحن </Link>
-          <a>الأفراد</a>
-          <a>الشركات</a>
+          <Link to="/user/login">الأفراد</Link>
+          <Link to="/company/login">الشركات</Link>
           <Link to="/home/common-questions">الأسئلة الشائعة</Link>
           <a>السياسة والخصوصية</a>
         </div>
