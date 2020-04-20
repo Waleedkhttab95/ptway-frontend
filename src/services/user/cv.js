@@ -44,7 +44,11 @@ const CV = {
       linkedin,
       twitter,
       file,
-      education_level
+      jobCategory,
+      education_level,
+      userStatus,
+      availabilityStatus,
+      hoppies
     } = params;
 
     let formData = new FormData();
@@ -55,6 +59,14 @@ const CV = {
       }
     } else {
       formData.append('skills', skill);
+    }
+    if (hoppies != null) {
+      for (var i = 0; i < hoppies.length; i++) {
+        console.log(hoppies[i]);
+        formData.append('hoppies[]', hoppies[i]);
+      }
+    } else {
+      formData.append('hoppies', hoppies);
     }
 
     if (per_skill != null) {
@@ -72,6 +84,13 @@ const CV = {
     } else {
       formData.append('languages', language);
     }
+    if (jobCategory != null) {
+      for (var i = 0; i < jobCategory.length; i++) {
+        formData.append('jobCategory[]', jobCategory[i]);
+      }
+    } else {
+      formData.append('jobCategory', jobCategory);
+    }
 
     formData.append('image', file);
     formData.append('fullName', fullName);
@@ -79,7 +98,6 @@ const CV = {
     formData.append('mobile', mobile);
     formData.append('birthDate', birthDate);
     formData.append('social_Status', social_Status);
-    // formData.append('languages', language);
     formData.append('city', city);
     formData.append('country', country);
     formData.append('public_Major', public_major);
@@ -93,13 +111,17 @@ const CV = {
     formData.append('facebook', facebook);
     formData.append('linkedin', linkedin);
     formData.append('twitter', twitter);
+    formData.append('userStatus', userStatus);
+    formData.append('availabilityStatus', availabilityStatus);
 
     return baseRequest.put('/put/userinfo', formData).then(result => {
       console.log('result', result);
 
       return result;
     });
-  }
+  },
+  jobCategories: () =>
+    baseRequest.get('/get/allJobCategory').then(result => result)
 };
 
 export default CV;

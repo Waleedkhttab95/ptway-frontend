@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Input, Collapse, Select, DatePicker, Modal } from 'antd';
+import { Input, Collapse, Select, DatePicker, Modal, Spin } from 'antd';
 import Avatar from './UploadFile';
 import cvServices from '../../../services/user/cv';
 import statatisticsService from '../../../services/statisticsService';
@@ -21,13 +21,14 @@ const {
   getSubMajor,
   getUniversity,
   getinformation,
-  updateCV
+  updateCV,
+  jobCategories
 } = cvServices;
 
 class UpdateProfile extends React.Component {
   state = {
-    skills: [],
-    pSkills: [],
+    skills: '',
+    pSkills: '',
     major: [],
     universities: [],
     education_levels: [],
@@ -41,9 +42,17 @@ class UpdateProfile extends React.Component {
     const universities = await getUniversity();
     const countries = await allCountries();
     const cities = await allCities();
+    const categories = await jobCategories();
 
     const info = userInfo.info;
     console.log('infoinfo', info);
+
+    if (info.public_Major && !info.spMajor) {
+      const subMajor = await getSubMajor({ id: info.public_Major._id });
+      this.setState({
+        subMajor
+      });
+    }
     this.setState({
       skills,
       pSkills,
@@ -52,28 +61,35 @@ class UpdateProfile extends React.Component {
       userInfo: info,
       countries,
       cities,
+      categories,
       fullName: info.fullName,
       gender: info.gender,
-      mobile: info.mobile,
+      mobile: info.mobile ? info.mobile : '',
       birthDate: info.birthDate,
       university: info.universty ? info.universty._id : null,
       public_major: info.public_Major ? info.public_Major._id : null,
       s_Major: info.spMajor ? info.spMajor._id : null,
       city: info.city ? info.city._id : null,
-      country: info.country ? info.country._id : null,
-      social_Status: info.social_Status,
-      about: info.about,
-      education_level: info.Education_level,
-      education_degree: info.education_degree,
-      study_degree: info.study_degree,
+      country: info.country ? info.country._id : '',
+      social_Status: info.social_Status ? info.social_Status : '',
+      about: info.about ? info.about : '',
+      education_level: info.Education_level ? info.Education_level : '',
+      education_degree: info.education_degree ? info.education_degree : '',
+      study_degree: info.study_degree ? info.study_degree : '',
       language: info.languages ? info.languages : [],
-      personal_web: info.personal_web,
-      facebook: info.facebook,
-      linkedin: info.linkedin,
-      twitter: info.twitter,
-      file: info.imagePath ? info.imagePath : null,
-      per_skill: info.personal_Skills,
-      skill: info.skills
+      hoppies:
+        info.hoppies && info.hoppies[0] !== 'undefined' ? info.hoppies : [],
+      personal_web: info.personal_web ? info.personal_web : '',
+      facebook: info.facebook ? info.facebook : '',
+      linkedin: info.linkedin ? info.linkedin : '',
+      twitter: info.twitter ? info.twitter : '',
+      file: info.imagePath ? info.imagePath : '',
+      per_skill: info.personal_Skills ? info.personal_Skills : '',
+      skill: info.skills ? info.skills : '',
+      jobCategory:
+        info.jobCategory.length !== 0 ? info.jobCategory.map(e => e._id) : null,
+      userStatus: info.userStatus ? info.userStatus : '',
+      availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
   }
   handleMajorChange = async (value, option) => {
@@ -104,13 +120,24 @@ class UpdateProfile extends React.Component {
     });
   };
 
+  handleCategoryChange = (value, option) => {
+    const ids = option.map(elm => elm.key);
+    this.setState({
+      jobCategory: ids
+    });
+  };
   handleLanguageChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
       language: ids
     });
   };
-
+  handleHoppiesChange = (value, option) => {
+    const ids = option.map(elm => elm.key);
+    this.setState({
+      hoppies: ids
+    });
+  };
   handlePersonalSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -154,7 +181,6 @@ class UpdateProfile extends React.Component {
       country,
       public_major,
       university,
-      s_Major,
       education_degree,
       skill,
       per_skill,
@@ -166,9 +192,17 @@ class UpdateProfile extends React.Component {
       linkedin,
       twitter,
       file,
-      education_level
+      education_level,
+      jobCategory,
+      userStatus,
+      availabilityStatus,
+      hoppies,
+      userInfo
     } = this.state;
-
+    if (userInfo.public_Major._id !== public_major)
+      await this.setState({
+        s_Major: null
+      });
     const cvMsg = await updateCV({
       fullName,
       gender,
@@ -179,7 +213,7 @@ class UpdateProfile extends React.Component {
       country,
       public_major,
       university,
-      s_Major,
+      s_Major: this.state.s_Major,
       education_degree,
       education_level,
       skill,
@@ -191,7 +225,11 @@ class UpdateProfile extends React.Component {
       facebook,
       linkedin,
       twitter,
-      file
+      file,
+      jobCategory,
+      userStatus,
+      hoppies,
+      availabilityStatus
     });
     if (cvMsg) {
       this.setState({
@@ -209,9 +247,16 @@ class UpdateProfile extends React.Component {
       userInfo,
       countries,
       cities,
+      categories,
       education_levels
     } = this.state;
-    console.log('state', this.state);
+    const hoppies = [
+      'القراءة',
+      'الكتابة',
+      'السباحة',
+      'الرياضة',
+      'العاب الفيديو'
+    ];
 
     const certificate = [
       { value: 'HS', viewValue: 'ثانوية عامة' },
@@ -228,6 +273,31 @@ class UpdateProfile extends React.Component {
       { value: 'Undergraduate', viewValue: 'خريج' }
     ];
 
+    const status = ['متفرغ', 'موظف', 'طالب'];
+    const availabilityStatus = ['صباحي', 'مسائي'];
+    let skillsObj;
+    let pSkillsObj;
+    const updatedSkills = _.isArray(skills)
+      ? skills.map(elm => {
+          console.log('hell', elm);
+
+          return (skillsObj = {
+            ...skillsObj,
+            [elm._id]: elm.skillName
+          });
+        })
+      : '';
+    const updatedPSkills = _.isArray(pSkills)
+      ? pSkills.map(elm => {
+          console.log('hell', elm);
+
+          return (pSkillsObj = {
+            ...pSkillsObj,
+            [elm._id]: elm.skillName
+          });
+        })
+      : '';
+
     return (
       <div className="user-container">
         <Header />
@@ -237,487 +307,606 @@ class UpdateProfile extends React.Component {
               img={this.state.image}
               getImage={file => this.setState({ file })}
             />
-            {/* <input
-              type="file"
-              accept="image/*"
-              onChange={this.fileChangedHandler}
-            /> */}
-            <Collapse
-              bordered={false}
-              defaultActiveKey={['1', '2', '3', '4', '5']}
-            >
-              <Panel header="معلومات شخصية" key="1" className="section-heading">
-                <div className="collapse-line"></div>
-                <div className="cv-personal-info">
-                  {/* <h6>معلومات شخصية</h6> */}
-                  <div className="right-side">
-                    <h5 className="title-field">الاسم الثلاثي الكامل</h5>
-                    <Input
-                      className="input-field"
-                      placeholder={this.state.fullName}
+            {userInfo ? (
+              <React.Fragment>
+                <Collapse
+                  bordered={false}
+                  defaultActiveKey={['1', '2', '3', '4', '5']}
+                  className="updating-form"
+                >
+                  <Panel
+                    header="معلومات شخصية"
+                    key="1"
+                    className="section-heading"
+                  >
+                    <div className="collapse-line"></div>
+                    <div className="cv-personal-info">
+                      {/* <h6>معلومات شخصية</h6> */}
+                      <div className="right-side">
+                        <h5 className="title-field">الاسم الثلاثي الكامل</h5>
+                        <Input
+                          className="input-field"
+                          placeholder={this.state.fullName}
+                          onChange={this.handleInputChange}
+                          name="fullName"
+                        />
+                        <h5 className="title-field">الجنس</h5>
+
+                        <Select
+                          className="input-field"
+                          placeholder={this.state.gender}
+                          onChange={this.handleChange}
+                        >
+                          <Option name="gender" value="male" key="ذكر">
+                            ذكر{' '}
+                          </Option>
+                          <Option name="gender" value="female" key="أنثى">
+                            أنثى{' '}
+                          </Option>
+                        </Select>
+                        <h5 className="title-field">الموبايل</h5>
+
+                        <Input
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.mobile : ''}
+                          onChange={this.handleInputChange}
+                          name="mobile"
+                        />
+                        <h5 className="title-field">العنوان الوظيفي</h5>
+                        <Select
+                          className="input-field"
+                          defaultValue={
+                            userInfo
+                              ? userInfo.jobCategory.map(e => e.jobName)
+                              : []
+                          }
+                          onChange={this.handleCategoryChange}
+                          mode="multiple"
+                        >
+                          {_.isArray(categories)
+                            ? categories.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm.jobName}
+                                    key={elm._id}
+                                    name="jobCategory"
+                                  >
+                                    {elm.jobName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                        <h5 className="title-field">الأوقات المتاحة</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={
+                            userInfo ? userInfo.availabilityStatus : ''
+                          }
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(availabilityStatus)
+                            ? availabilityStatus.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm}
+                                    key={elm}
+                                    name="availabilityStatus"
+                                  >
+                                    {elm}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                      </div>
+                      <div>
+                        <h5 className="title-field">تاريخ الميلاد</h5>
+                        <DatePicker
+                          onChange={this.DateChange}
+                          className="input-field"
+                          placeholder={
+                            userInfo
+                              ? moment(userInfo.birthDate).format('MMM-d-YY')
+                              : ''
+                          }
+                        />
+
+                        <h5 className="title-field">الحالة الاجتماعية</h5>
+
+                        <Select
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.social_Status : ''}
+                          onChange={this.handleChange}
+                        >
+                          <Option name="social_Status" value="أعزب" key="أعزب">
+                            أعزب{' '}
+                          </Option>
+                          <Option
+                            name="social_Status"
+                            value="متزوج"
+                            key="متزوج"
+                          >
+                            متزوج{' '}
+                          </Option>
+                        </Select>
+                        <h5 className="title-field">اللغات</h5>
+                        <Select
+                          className="input-field"
+                          defaultValue={
+                            userInfo && userInfo.languages !== null
+                              ? userInfo.languages
+                              : []
+                          }
+                          onChange={this.handleLanguageChange}
+                          mode="multiple"
+                          autoFocus={true}
+                        >
+                          <Option name="language" value="العربية" key="العربية">
+                            العربية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الانجليزية"
+                            key="الانجليزية"
+                          >
+                            الانجليزية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الفرنسية"
+                            key="الفرنسية"
+                          >
+                            الفرنسية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الاسبانية"
+                            key="الاسبانية"
+                          >
+                            الاسبانية{' '}
+                          </Option>
+                          <Option name="language" value="الكورية" key="الكورية">
+                            الكورية{' '}
+                          </Option>
+                          <Option name="language" value="أوردو" key="أوردو">
+                            أوردو{' '}
+                          </Option>
+                        </Select>
+                        <h5 className="title-field">حالة المستخدم</h5>
+                        <Select
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.userStatus : ''}
+                          onChange={this.handleChange}
+                        >
+                          {_.isArray(status)
+                            ? status.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm}
+                                    key={elm}
+                                    name="userStatus"
+                                  >
+                                    {elm}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                      </div>
+                    </div>
+                    <h5 className="title-field">الوصف الوظيفي</h5>
+                    <TextArea
+                      rows={4}
+                      className="textarea-field"
+                      placeholder={userInfo ? userInfo.about : ''}
                       onChange={this.handleInputChange}
-                      name="fullName"
+                      name="about"
                     />
-                    <h5 className="title-field">الجنس</h5>
+                  </Panel>
+                  <Panel
+                    header="الدولة ومكان السكن"
+                    key="2"
+                    className="section-heading"
+                  >
+                    <div className="collapse-line"></div>
+                    <div className="location-info">
+                      <div className="first-section">
+                        <div style={{ marginLeft: '20px' }}>
+                          <h5 className="title-field">الدولة</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={
+                              userInfo
+                                ? userInfo.country
+                                  ? userInfo.country.countryName
+                                  : ''
+                                : ''
+                            }
+                            onChange={this.handleChange}
+                          >
+                            {_.isArray(countries)
+                              ? countries.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.value}
+                                      key={elm.id}
+                                      name="country"
+                                    >
+                                      {elm.value}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                        <div>
+                          <h5 className="title-field">المدينة</h5>
 
-                    <Select
-                      className="input-field"
-                      placeholder={this.state.gender}
-                      onChange={this.handleChange}
-                    >
-                      <Option name="gender" value="male" key="ذكر">
-                        ذكر{' '}
-                      </Option>
-                      <Option name="gender" value="female" key="أنثى">
-                        أنثى{' '}
-                      </Option>
-                    </Select>
-                    <h5 className="title-field">الموبايل</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={
+                              userInfo
+                                ? userInfo.city
+                                  ? userInfo.city.cityName
+                                  : ''
+                                : ''
+                            }
+                            onChange={this.handleChange}
+                          >
+                            {_.isArray(cities)
+                              ? cities.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.value}
+                                      key={elm.id}
+                                      name="city"
+                                    >
+                                      {elm.value}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                      </div>
+                    </div>
+                  </Panel>
+                  <Panel header="الدراسة" key="3" className="section-heading">
+                    <div className="collapse-line"></div>
+                    <div className="location-info">
+                      <div className="first-section">
+                        <div style={{ marginLeft: '20px' }}>
+                          <h5 className="title-field">الجامعة</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={
+                              userInfo
+                                ? userInfo.universty
+                                  ? userInfo.universty.universtyName
+                                  : ''
+                                : ''
+                            }
+                            onChange={this.handleChange}
+                          >
+                            {_.isArray(universities)
+                              ? universities.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.universtyName}
+                                      key={elm._id}
+                                      name="university"
+                                    >
+                                      {elm.universtyName}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                        <div>
+                          <h5 className="title-field">الشهادة التي تحملها</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={certificate.map(elm => {
+                              return userInfo
+                                ? userInfo.study_degree === elm.value
+                                  ? elm.viewValue
+                                  : ''
+                                : '';
+                            })}
+                            onChange={this.handleChange}
+                          >
+                            {_.isArray(certificate)
+                              ? certificate.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.viewValue}
+                                      key={elm.value}
+                                      name="study_degree"
+                                    >
+                                      {elm.viewValue}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                      </div>
+                      <div className="first-section">
+                        <div style={{ marginLeft: '20px' }}>
+                          <h5 className="title-field">
+                            المرحلة الدراسية الحالية
+                          </h5>
+                          <Select
+                            className="input-field"
+                            placeholder={education_degree.map(elm => {
+                              return userInfo
+                                ? userInfo.education_degree === elm.value
+                                  ? elm.viewValue
+                                  : ''
+                                : '';
+                            })}
+                            onChange={this.educationDegreeHandle}
+                          >
+                            {_.isArray(education_degree)
+                              ? education_degree.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.viewValue}
+                                      key={elm.value}
+                                      name="education_degree"
+                                    >
+                                      {elm.viewValue}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                        <div>
+                          <h5 className="title-field"> المستوى التعليمي</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={
+                              userInfo ? userInfo.Education_level : ''
+                            }
+                            onChange={this.educationLevelHandle}
+                          >
+                            {_.isArray(education_levels)
+                              ? education_levels.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.viewValue}
+                                      key={elm.value}
+                                      name="education_level"
+                                    >
+                                      {elm.viewValue}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                      </div>
 
-                    <Input
-                      className="input-field"
-                      placeholder={userInfo ? userInfo.mobile : ''}
-                      onChange={this.handleInputChange}
-                      name="mobile"
-                    />
-                  </div>
-                  <div>
-                    <h5 className="title-field">تاريخ الميلاد</h5>
-                    <DatePicker
-                      onChange={this.DateChange}
-                      className="input-field"
-                      placeholder={
-                        userInfo
-                          ? moment(userInfo.birthDate).format('MMM-d-YY')
-                          : ''
-                      }
-                    />
+                      <div className="first-section">
+                        <div style={{ marginLeft: '20px' }}>
+                          <h5 className="title-field">التخصص العام</h5>
 
-                    <h5 className="title-field">الحالة الاجتماعية</h5>
-
-                    <Select
-                      className="input-field"
-                      placeholder={userInfo ? userInfo.social_Status : ''}
-                      onChange={this.handleChange}
-                    >
-                      <Option name="social_Status" value="single" key="أعزب">
-                        أعزب{' '}
-                      </Option>
-                      <Option name="social_Status" value="married" key="متزوج">
-                        متزوج{' '}
-                      </Option>
-                    </Select>
-                    <h5 className="title-field">اللغات</h5>
-                    <Select
-                      className="input-field"
-                      defaultValue={userInfo ? userInfo.languages : []}
-                      onChange={this.handleLanguageChange}
-                      mode="multiple"
-                    >
-                      <Option name="language" value="arabic" key="العربية">
-                        العربية{' '}
-                      </Option>
-                      <Option name="language" value="english" key="الانجليزية">
-                        الانجليزية{' '}
-                      </Option>
-                      <Option name="language" value="france" key="الفرنسية">
-                        الفرنسية{' '}
-                      </Option>
-                    </Select>
-                  </div>
-                </div>
-                <h5 className="title-field">الوصف الوظيفي</h5>
-                <TextArea
-                  rows={4}
-                  className="textarea-field"
-                  placeholder={userInfo ? userInfo.about : ''}
-                  onChange={this.handleInputChange}
-                  name="about"
-                />
-              </Panel>
-              <Panel
-                header="الدولة ومكان السكن"
-                key="2"
-                className="section-heading"
-              >
-                <div className="collapse-line"></div>
-                <div className="location-info">
-                  <div className="first-section">
-                    <div style={{ marginLeft: '20px' }}>
-                      <h5 className="title-field">الدولة</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={
-                          userInfo
-                            ? userInfo.country
-                              ? userInfo.country.countryName
-                              : ''
-                            : ''
-                        }
-                        onChange={this.handleChange}
-                      >
-                        {_.isArray(countries)
-                          ? countries.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.value}
-                                  key={elm.id}
-                                  name="country"
-                                >
-                                  {elm.value}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
+                          <Select
+                            className="input-field"
+                            onChange={this.handleMajorChange}
+                            placeholder={
+                              userInfo
+                                ? userInfo.public_Major
+                                  ? userInfo.public_Major.majorName
+                                  : ''
+                                : ''
+                            }
+                          >
+                            {_.isArray(major)
+                              ? major.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.majorName}
+                                      key={elm._id}
+                                      name="public_major"
+                                    >
+                                      {elm.majorName}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                        <div>
+                          <h5 className="title-field">التخصص الدقيق</h5>
+                          <Select
+                            className="input-field"
+                            placeholder={
+                              userInfo
+                                ? userInfo.spMajor
+                                  ? userInfo.spMajor.majorName
+                                  : ''
+                                : ''
+                            }
+                            onChange={this.handleChange}
+                          >
+                            {_.isArray(subMajor)
+                              ? subMajor.map(elm => {
+                                  return (
+                                    <Option
+                                      value={elm.majorName}
+                                      key={elm._id}
+                                      name="s_Major"
+                                    >
+                                      {elm.majorName}
+                                    </Option>
+                                  );
+                                })
+                              : ''}
+                          </Select>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="title-field">المدينة</h5>
-
-                      <Select
-                        className="input-field"
-                        placeholder={
-                          userInfo
-                            ? userInfo.city
-                              ? userInfo.city.cityName
-                              : ''
-                            : ''
-                        }
-                        onChange={this.handleChange}
-                      >
-                        {_.isArray(cities)
-                          ? cities.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.value}
-                                  key={elm.id}
-                                  name="city"
-                                >
-                                  {elm.value}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
+                  </Panel>
+                  <Panel header="المهارات " key="4" className="section-heading">
+                    <div className="collapse-line"></div>
+                    <div className="first-section">
+                      <div style={{ marginLeft: '20px' }}>
+                        <h5 className="title-field">مهارات شخصية</h5>
+                        <Select
+                          className="input-field"
+                          mode="multiple"
+                          onChange={this.handlePersonalSkillsChange}
+                          defaultValue={
+                            userInfo &&
+                            userInfo.personal_Skills !== null &&
+                            _.isArray(userInfo.personal_Skills)
+                              ? userInfo.personal_Skills.map(elm => {
+                                  return pSkillsObj[elm];
+                                })
+                              : []
+                          }
+                        >
+                          {_.isArray(pSkills)
+                            ? pSkills.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm.skillName}
+                                    key={elm._id}
+                                    name="p_skill"
+                                  >
+                                    {elm.skillName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                      </div>
+                      <div>
+                        <h5 className="title-field">مهارات عامة</h5>
+                        <Select
+                          className="input-field"
+                          mode="multiple"
+                          // placeholder={
+                          //   _.isArray(skills)
+                          //     ? skills.map(elm =>
+                          //         userInfo
+                          //           ? userInfo.skills.map(elm2 =>
+                          //               elm._id === elm2 ? elm.skillName + ' ' : ''
+                          //             )
+                          //           : ''
+                          //       )
+                          //     : ''
+                          // }
+                          defaultValue={
+                            userInfo &&
+                            userInfo.skills !== null &&
+                            _.isArray(userInfo.skills)
+                              ? userInfo.skills.map(elm => {
+                                  return skillsObj[elm];
+                                })
+                              : []
+                          }
+                          onChange={this.handleSkillsChange}
+                        >
+                          {_.isArray(skills)
+                            ? skills.map(elm => {
+                                return (
+                                  <Option
+                                    value={elm.skillName}
+                                    key={elm._id}
+                                    name="skill"
+                                  >
+                                    {elm.skillName}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Panel>
-              <Panel header="الدراسة" key="3" className="section-heading">
-                <div className="collapse-line"></div>
-                <div className="location-info">
-                  <div className="first-section">
-                    <div style={{ marginLeft: '20px' }}>
-                      <h5 className="title-field">الجامعة</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={
-                          userInfo
-                            ? userInfo.universty
-                              ? userInfo.universty.universtyName
-                              : ''
-                            : ''
-                        }
-                        onChange={this.handleChange}
-                      >
-                        {_.isArray(universities)
-                          ? universities.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.universtyName}
-                                  key={elm._id}
-                                  name="university"
-                                >
-                                  {elm.universtyName}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
+                    <div className="first-section">
+                      <div>
+                        <h5 className="title-field">الهوايات</h5>
+                        <Select
+                          className="input-field"
+                          mode="multiple"
+                          onChange={this.handleHoppiesChange}
+                          defaultValue={
+                            userInfo && _.isArray(userInfo.hoppies)
+                              ? userInfo.hoppies
+                              : []
+                          }
+                        >
+                          {_.isArray(hoppies)
+                            ? hoppies.map(elm => {
+                                return (
+                                  <Option value={elm} key={elm} name="hoppies">
+                                    {elm}
+                                  </Option>
+                                );
+                              })
+                            : ''}
+                        </Select>
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="title-field">الشهادة التي تحملها</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={certificate.map(elm => {
-                          return userInfo
-                            ? userInfo.study_degree === elm.value
-                              ? elm.viewValue
-                              : ''
-                            : '';
-                        })}
-                        onChange={this.handleChange}
-                      >
-                        {_.isArray(certificate)
-                          ? certificate.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.viewValue}
-                                  key={elm.value}
-                                  name="study_degree"
-                                >
-                                  {elm.viewValue}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
+                  </Panel>
+                  <Panel
+                    header="التواصل الاجتماعي"
+                    key="5"
+                    className="section-heading"
+                  >
+                    <div className="collapse-line"></div>
+                    <div className="general-skills">
+                      <div>
+                        <h5 className="title-field">الموقع الشخصي</h5>
+                        <Input
+                          className="input-field"
+                          style={{ marginLeft: '20px' }}
+                          placeholder={userInfo ? userInfo.personal_web : ''}
+                          onChange={this.handleInputChange}
+                          name="personal_web"
+                        />
+                        <h5 className="title-field">رابط linkedin</h5>
+                        <Input
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.linkedin : ''}
+                          onChange={this.handleInputChange}
+                          name="linkedin"
+                        />
+                      </div>
+                      <div>
+                        <h5 className="title-field">رابط الفيسبوك</h5>
+                        <Input
+                          className="input-field"
+                          style={{ marginLeft: '20px' }}
+                          placeholder={userInfo ? userInfo.facebook : ''}
+                          onChange={this.handleInputChange}
+                          name="facebook"
+                        />
+                        <h5 className="title-field">رابط تويتر</h5>
+                        <Input
+                          className="input-field"
+                          placeholder={userInfo ? userInfo.twitter : ''}
+                          onChange={this.handleInputChange}
+                          name="twitter"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="first-section">
-                    <div style={{ marginLeft: '20px' }}>
-                      <h5 className="title-field">المرحلة الدراسية الحالية</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={education_degree.map(elm => {
-                          return userInfo
-                            ? userInfo.education_degree === elm.value
-                              ? elm.viewValue
-                              : ''
-                            : '';
-                        })}
-                        onChange={this.educationDegreeHandle}
-                      >
-                        {_.isArray(education_degree)
-                          ? education_degree.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.viewValue}
-                                  key={elm.value}
-                                  name="education_degree"
-                                >
-                                  {elm.viewValue}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
-                    </div>
-                    <div>
-                      <h5 className="title-field"> المستوى التعليمي</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={userInfo ? userInfo.Education_level : ''}
-                        onChange={this.educationLevelHandle}
-                      >
-                        {_.isArray(education_levels)
-                          ? education_levels.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.viewValue}
-                                  key={elm.value}
-                                  name="education_level"
-                                >
-                                  {elm.viewValue}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="first-section">
-                    <div style={{ marginLeft: '20px' }}>
-                      <h5 className="title-field">التخصص العام</h5>
-
-                      <Select
-                        className="input-field"
-                        onChange={this.handleMajorChange}
-                        placeholder={
-                          userInfo
-                            ? userInfo.public_Major
-                              ? userInfo.public_Major.majorName
-                              : ''
-                            : ''
-                        }
-                      >
-                        {_.isArray(major)
-                          ? major.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.majorName}
-                                  key={elm._id}
-                                  name="public_major"
-                                >
-                                  {elm.majorName}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
-                    </div>
-                    <div>
-                      <h5 className="title-field">التخصص الدقيق</h5>
-                      <Select
-                        className="input-field"
-                        placeholder={
-                          userInfo
-                            ? userInfo.spMajor
-                              ? userInfo.spMajor.majorName
-                              : ''
-                            : ''
-                        }
-                        onChange={this.handleChange}
-                      >
-                        {_.isArray(subMajor)
-                          ? subMajor.map(elm => {
-                              return (
-                                <Option
-                                  value={elm.majorName}
-                                  key={elm._id}
-                                  name="s_Major"
-                                >
-                                  {elm.majorName}
-                                </Option>
-                              );
-                            })
-                          : ''}
-                      </Select>
-                    </div>
-                  </div>
-                </div>
-              </Panel>
-              <Panel header="المهارات " key="4" className="section-heading">
-                <div className="collapse-line"></div>
-                <div className="first-section">
-                  <div style={{ marginLeft: '20px' }}>
-                    <h5 className="title-field">مهارات شخصية</h5>
-                    <Select
-                      className="input-field"
-                      mode="multiple"
-                      onChange={this.handlePersonalSkillsChange}
-                      placeholder={pSkills.map(elm =>
-                        userInfo
-                          ? userInfo.personal_Skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
-                    >
-                      {_.isArray(pSkills)
-                        ? pSkills.map(elm => {
-                            return (
-                              <Option
-                                value={elm.skillName}
-                                key={elm._id}
-                                name="p_skill"
-                              >
-                                {elm.skillName}
-                              </Option>
-                            );
-                          })
-                        : ''}
-                    </Select>
-                  </div>
-                  <div>
-                    <h5 className="title-field">مهارات عامة</h5>
-                    <Select
-                      className="input-field"
-                      mode="multiple"
-                      placeholder={skills.map(elm =>
-                        userInfo
-                          ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
-                      onChange={this.handleSkillsChange}
-                    >
-                      {_.isArray(skills)
-                        ? skills.map(elm => {
-                            return (
-                              <Option
-                                value={elm.skillName}
-                                key={elm._id}
-                                name="skill"
-                              >
-                                {elm.skillName}
-                              </Option>
-                            );
-                          })
-                        : ''}
-                    </Select>
-                  </div>
-                </div>
-                <div className="first-section">
-                  <div>
-                    <h5 className="title-field">الهوايات</h5>
-                    <Select
-                      className="input-field"
-                      mode="multiple"
-                      placeholder={skills.map(elm =>
-                        userInfo
-                          ? userInfo.skills.map(elm2 =>
-                              elm._id === elm2 ? elm.skillName + ' ' : ''
-                            )
-                          : ''
-                      )}
-                    >
-                      {_.isArray(skills)
-                        ? skills.map(elm => {
-                            return (
-                              <Option
-                                value={elm.skillName}
-                                key={elm._id}
-                                name="hoppies"
-                              >
-                                {elm.skillName}
-                              </Option>
-                            );
-                          })
-                        : ''}
-                    </Select>
-                  </div>
-                </div>
-              </Panel>
-              <Panel
-                header="التواصل الاجتماعي"
-                key="5"
-                className="section-heading"
-              >
-                <div className="collapse-line"></div>
-                <div className="general-skills">
-                  <div>
-                    <h5 className="title-field">الموقع الشخصي</h5>
-                    <Input
-                      className="input-field"
-                      style={{ marginLeft: '20px' }}
-                      placeholder={userInfo ? userInfo.personal_web : ''}
-                      onChange={this.handleInputChange}
-                      name="personal_web"
-                    />
-                    <h5 className="title-field">رابط linkedin</h5>
-                    <Input
-                      className="input-field"
-                      placeholder={userInfo ? userInfo.linkedin : ''}
-                      onChange={this.handleInputChange}
-                      name="linkedin"
-                    />
-                  </div>
-                  <div>
-                    <h5 className="title-field">رابط الفيسبوك</h5>
-                    <Input
-                      className="input-field"
-                      style={{ marginLeft: '20px' }}
-                      placeholder={userInfo ? userInfo.facebook : ''}
-                      onChange={this.handleInputChange}
-                      name="facebook"
-                    />
-                    <h5 className="title-field">رابط تويتر</h5>
-                    <Input
-                      className="input-field"
-                      placeholder={userInfo ? userInfo.twitter : ''}
-                      onChange={this.handleInputChange}
-                      name="twitter"
-                    />
-                  </div>
-                </div>
-              </Panel>
-            </Collapse>
-            <button className="save-changes-btn" onClick={this.updateCV}>
-              حفظ
-            </button>
+                  </Panel>
+                </Collapse>
+                <button className="save-changes-btn" onClick={this.updateCV}>
+                  حفظ
+                </button>
+              </React.Fragment>
+            ) : (
+              <div className="spinner-loading">
+                <Spin size="large" />
+              </div>
+            )}
             <Modal
               visible={this.state.updateSuccessMsg}
               closable={false}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Row, Col, Modal, Radio } from 'antd';
+import { Row, Col, Modal, Radio, Spin } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import {
@@ -9,6 +9,7 @@ import {
   applyJob
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class Job extends React.Component {
   state = {
@@ -55,33 +56,47 @@ class Job extends React.Component {
       <div className="user-container">
         <Header />
         <Row className="job-section">
-          <Col md={6} className="right-section">
-            <img src={imagePath} />
-            {/* <i
-              className="fa fa-picture-o"
-              aria-hidden="true"
-              style={{
-                fontSize: '45px',
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            ></i> */}
-            <span className="job-owner-name">{compnayName}</span>
-            <div className="job-owner-info">
-              <p>
-                <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {info}
-              </p>
-          
-              <p>
-                <i className="fa fa-map-marker" aria-hidden="true"></i>
-                {Country}, {City}, {address}
-              </p>
-            </div>
+          <Col md={6} xs={24} sm={24} className="right-section">
+            {offer.company ? (
+              <React.Fragment>
+                {imagePath !== 'null' ? (
+                  <img src={imagePath} alt="user" className="picture" />
+                ) : (
+                  <i
+                    className="fa fa-user-circle-o"
+                    aria-hidden="true"
+                    style={{
+                      fontSize: '45px',
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}
+                  ></i>
+                )}
+                <span className="job-owner-name">{compnayName}</span>
+                <div className="job-owner-info">
+                  <p>
+                    <i
+                      className="fa fa-exclamation-circle"
+                      aria-hidden="true"
+                    ></i>
+                    {info}
+                  </p>
+
+                  <p>
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
+                    {Country}, {City}, {address}
+                  </p>
+                </div>
+              </React.Fragment>
+            ) : (
+              <div className="spinner-loading">
+                <Spin size="large" />
+              </div>
+            )}
           </Col>
-          <Col md={20} className="left-section">
+          <Col md={16} xs={24} sm={24} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
-          
+
             <div>
               <div className="job-heading">
                 <i className="fa fa-suitcase" aria-hidden="true"></i>
@@ -90,7 +105,13 @@ class Job extends React.Component {
               <div className="main-info-details">
                 <div className="job-sub-heading">المسمى الوظيفي</div>
                 <span className="main-info-desc">
-                  {job ? job.job_Name : ''}
+                  {job ? (
+                    job.job_Name
+                  ) : (
+                    <div className="spinner-loading">
+                      <Spin size="large" />
+                    </div>
+                  )}
                 </span>
                 <div className="job-sub-heading">وصف الوظيفة</div>
                 <span className="main-info-desc">
@@ -122,8 +143,9 @@ class Job extends React.Component {
                   <div className="job-sub-heading">ساعات العمل اليومية</div>
                   <p className="main-info-desc">{job ? job.work_hours : ''}</p>
                   <div className="job-sub-heading">تاريخ بدء العمل</div>
-                  <p className="main-info-desc">{job ? job.startDate : ''}</p>
-                
+                  <p className="main-info-desc">
+                    {job ? moment(job.startDate).format('ll') : ''}
+                  </p>
                 </div>
               </div>
             </div>

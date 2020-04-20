@@ -1,110 +1,134 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Layout, Alert, Col } from 'antd';
+import { Row, Layout, Alert, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
-
+import { connect } from 'react-redux';
+import {
+  companyInfo,
+  companyStatistic,
+  companyAds
+} from '../../store/actions/company/home';
+import _ from 'lodash';
+import moment from 'moment';
 const { Content } = Layout;
-const CompanyHome = props => {
-  return (
-    <div>
-      <Header />
-      <div className="user-container">
-        <Content className="user-home">
-          <div className="user-notification">
-            <Alert
-              message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
-              type="warning"
-              className="warning-alert"
-            />
-            <Alert
-              message="يوجد متقدم جديد  سامر الأحمد على مشروع الشركة الرئيسية"
-              type="info"
-              className="info-alert"
-            />
-          </div>
-          <div className="company-progress">
-            <div className="opened-projects">
-              <div>المشاريع المنشئة</div>
-              <div className="user-stc-number">2,315</div>
-            </div>
-            <div className="total-offers">
-              <div>عروض العمل الإجمالية</div>
-              <div className="user-stc-number">2,315</div>
-            </div>
-            <div className="user-hired">
-              <div>الذين تم توظيفهم</div>
-              <div className="user-stc-number">1,024</div>
-            </div>
-            {/* <div className="user-rejected">
+
+class CompanyHome extends React.Component {
+  state = {
+    moreAds: ''
+  };
+  componentDidMount() {
+    const { getCompanyInfo, getCompanyStatistic, getCompanyAds } = this.props;
+    getCompanyInfo();
+    getCompanyStatistic();
+    getCompanyAds();
+  }
+
+  render() {
+    const { company } = this.props;
+    return (
+      <div>
+        <Header />
+        <div className="user-container">
+          <Content className="user-home">
+            {/* <div className="user-notification">
+              <Alert
+                message="يوجد متقدم جديد  ياسر القحطاني على مشروع موقع للإنطلاق الجديد"
+                type="warning"
+                className="warning-alert"
+              />
+              <Alert
+                message="يوجد متقدم جديد  سامر الأحمد على مشروع الشركة الرئيسية"
+                type="info"
+                className="info-alert"
+              />
+            </div> */}
+            <Row className="company-progress">
+              <Col md={7} className="opened-projects">
+                <div>المشاريع المنشئة</div>
+                <div className="user-stc-number">
+                  {company.companyStatistic
+                    ? company.companyStatistic.projects
+                    : ''}
+                </div>
+              </Col>
+              <Col md={7} className="total-offers">
+                <div>عروض العمل الإجمالية</div>
+                <div className="user-stc-number">
+                  {company.companyStatistic
+                    ? company.companyStatistic.jobs
+                    : ''}
+                </div>
+              </Col>
+              <Col md={7} className="user-hired">
+                <div>الذين تم توظيفهم</div>
+                <div className="user-stc-number">
+                  {company.companyStatistic
+                    ? company.companyStatistic.acceptes
+                    : ''}
+                </div>
+              </Col>
+              {/* <div className="user-rejected">
               <div>الذين تم رفضهم</div>
               <div className="user-stc-number">7,213</div>
             </div>
           */}
-          </div>
-          <div className="user-profile">
-            <Col md={6} className="right-section">
-              <CompanyInfo />
-              <button
-                className="update-profile-btn"
-                onClick={() => props.history.push('/company/profile/update')}
-              >
-                تعديل المعلومات
-              </button>
-            </Col>
-            <Col md={18} className="company-left-section">
-              <h2>آخر العروض الوظيفية التي أنشئتها</h2>
-              <div className="projects-offers-header">
-                <div>اسم العرض الوظيفي</div>
-                <div>التاريخ</div>
-                <div>الرقم التسلسلي</div>
-                <div>اسم المشروع</div>
-                <div>عدد المتقدمين</div>
-              </div>
-              <div className="project-offer">
-                <div className="project-offer-title">
-                  مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
+            </Row>
+            <Row className="user-profile">
+              <Col md={1}></Col>
+              <Col md={6} className="right-section">
+                <CompanyInfo {...company} />
+              </Col>
+              <Col md={1}></Col>
+              <Col md={15} className="company-left-section">
+                <h2>آخر العروض الوظيفية التي أنشئتها</h2>
+                <div className="projects-offers-header">
+                  <div>اسم العرض الوظيفي</div>
+                  <div>التاريخ</div>
+                  <div>اسم المشروع</div>
+                  <div>عدد المتقدمين</div>
                 </div>
-                <div>02/10/2019</div>
-                <div>0002163477555</div>
-                <div className="project-status">مشروع للإنطلاق الجديد</div>
-                <div className="applicants-num">321</div>
-              </div>
-              <div className="project-offer">
-                <div className="project-offer-title">
-                  مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                </div>
-                <div>02/10/2019</div>
-                <div>0002163477555</div>
-                <div className="project-status">مشروع للإنطلاق الجديد</div>
-                <div className="applicants-num">321</div>
-              </div>
-              <div className="project-offer">
-                <div className="project-offer-title">
-                  مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                </div>
-                <div>02/10/2019</div>
-                <div>0002163477555</div>
-                <div className="project-status">مشروع للإنطلاق الجديد</div>
-                <div className="applicants-num">321</div>
-              </div>
-              <div className="project-offer">
-                <div className="project-offer-title">
-                  مصمم واجهات استخدام لتطبيقات جوال و مواقع انترنت
-                </div>
-                <div>02/10/2019</div>
-                <div>0002163477555</div>
-                <div className="project-status">مشروع للإنطلاق الجديد</div>
-                <div className="applicants-num">321</div>
-              </div>
-              <button className="more-projects-offers-btn">عرض المزيد</button>
-            </Col>
-          </div>
-        </Content>
+                {_.isArray(company.companyAds) ? (
+                  company.companyAds.map(elm => {
+                    return (
+                      <div className="project-offer" key={elm.advId}>
+                        <div className="project-offer-title">{elm.advName}</div>
+                        <div>{moment(Date.now()).format('ll')}</div>
+                        <div className="project-status">{elm.projectName}</div>
+                        <div className="applicants-num">{elm.candidates}</div>
+                      </div>
+                    );
+                  })
+                ) : _.isObject(company) ? (
+                  ''
+                ) : (
+                  <div className="spinner-loading">
+                    <Spin size="large" />
+                  </div>
+                )}
+              </Col>
+            </Row>
+          </Content>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToProps = ({ companySection }) => {
+  return {
+    company: companySection
+  };
 };
-export default CompanyHome;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCompanyInfo: () => dispatch(companyInfo()),
+    getCompanyStatistic: () => dispatch(companyStatistic()),
+    getCompanyAds: () => dispatch(companyAds())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyHome);

@@ -1,5 +1,6 @@
 .company-container {
     padding: 60px 135px;
+    // height: 100vh;
 }
 .applicant-header {
     height: 38px;
@@ -10,8 +11,8 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 30px;
+    padding-left: 22px;
     > h3 {
-        font-family: DINNextLTW23;
         font-size: 14px;
         font-weight: 500;
         font-stretch: normal;
@@ -32,7 +33,6 @@
     background-color: #ffffff;
     margin-top: 10px;
     > h4 {
-        font-family: DINNextLTW23;
         font-size: 14px;
         font-weight: 500;
         font-stretch: normal;
@@ -43,13 +43,12 @@
         color: #000000;
     }
 }
-.display-cv {
+.display-cv, .accept-user {
     width: 107px;
     height: 32px;
     border-radius: 6px;
     background-color: #f3f3f3;
     border-color: #f3f3f3;
-    font-family: DINNextLTW23;
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -59,12 +58,11 @@
     text-align: center;
     color: #626262;
   } 
-.display-cv:hover, .display-cv:focus {
+.display-cv:hover, .display-cv:focus, .accept-user:hover, .accept-user:focus {
   width: 107px;
   height: 32px;
   border-radius: 6px;
   background-color: #3598d4;
-  font-family: DINNextLTW23;
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
@@ -80,6 +78,9 @@
 }
 
 @media (max-width: 320px) {
+    .company-container {
+        overflow-y: scroll;
+    }
     .applicant-header {
         display: none;
     }
@@ -110,7 +111,6 @@
         border-radius: 6px;
         background-color: #f3f3f3;
         border-color: #f3f3f3;
-        font-family: DINNextLTW23;
         font-size: 14px;
         font-weight: bold;
         font-stretch: normal;
@@ -150,6 +150,9 @@
 }
 
 @media (min-width:321px) and (max-width: 768px) {
+    .company-container {
+        overflow-y: scroll;
+    }
     .applicant-header {
         display: none;
     }
@@ -180,7 +183,6 @@
         border-radius: 6px;
         background-color: #f3f3f3;
         border-color: #f3f3f3;
-        font-family: DINNextLTW23;
         font-size: 14px;
         font-weight: bold;
         font-stretch: normal;

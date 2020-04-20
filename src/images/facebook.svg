@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="10px" height="20px" viewBox="0 0 10 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
-    <title>facebook</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01-HomePage-02" transform="translate(-153.000000, -4441.000000)" fill="#00253E" fill-rule="nonzero">
-            <g id="Group-10" transform="translate(135.000000, 4429.000000)">
-                <path d="M27.7031378,12.9910512 L27.7031378,15.9374832 L25.9509035,15.9374832 C24.6378197,15.9374832 24.3458685,16.5399515 24.3229637,17.4225654 L24.3214373,19.6540055 L27.5915305,19.6540055 L27.1562621,22.9575809 L24.3214373,22.9575809 L24.3214373,31.4285731 L20.9062547,31.4285731 L20.9062547,22.9575809 L18.0602691,22.9575809 L18.0602691,19.6540055 L20.9062547,19.6540055 L20.9062547,17.2209669 C20.9062547,14.3973028 22.6361674,12.8571224 25.1584919,12.8571224 L25.6303575,12.8615669 C26.6275412,12.8801383 27.4419767,12.9523606 27.7031378,12.9910512 Z" id="facebook"></path>
-            </g>
-        </g>
-    </g>
+<svg id="Facebook" xmlns="http://www.w3.org/2000/svg" width="31" height="30.996" viewBox="0 0 31 30.996">
+  <path id="Path" d="M.389,0Q.2.083,0,.151.2.083.389,0Z" transform="translate(17.611 30.738)" fill="#00263e"/>
+  <path id="Path-2" data-name="Path" d="M.185.023C.123.052.062.079,0,.106.062.079.123.052.185.023Z" transform="translate(18.124 30.684)" fill="#00263e"/>
+  <path id="Path-3" data-name="Path" d="M.456.013C.3.056.153.1,0,.128.153.1.3.056.456.013Z" transform="translate(16.809 30.839)" fill="#00263e"/>
+  <path id="Path-4" data-name="Path" d="M.219.028C.146.052.073.075,0,.1.073.075.146.052.219.028Z" transform="translate(17.344 30.802)" fill="#00263e"/>
+  <path id="Path-5" data-name="Path" d="M.164.022,0,.109Z" transform="translate(18.568 30.601)" fill="#00263e"/>
+  <path id="Path-6" data-name="Path" d="M.155.02,0,.114Z" transform="translate(19.647 30.341)" fill="#00263e"/>
+  <path id="Path-7" data-name="Path" d="M.155.019C.1.051.052.084,0,.115.052.084.1.052.155.019Z" transform="translate(19.318 30.428)" fill="#00263e"/>
+  <path id="Path-8" data-name="Path" d="M.155.022C.1.052.052.08,0,.109.052.08.1.052.155.022Z" transform="translate(18.895 30.531)" fill="#00263e"/>
+  <path id="Path-9" data-name="Path" d="M.245.035Q.123.061,0,.082.123.061.245.035Z" transform="translate(16.559 30.883)" fill="#00263e"/>
+  <path id="Path-10" data-name="Path" d="M31,15.47A15.5,15.5,0,1,0,15.5,30.94c.091,0,.182,0,.272,0V18.894h-3.33V15.02h3.33V12.17c0-3.306,2.022-5.1,4.976-5.1a27.466,27.466,0,0,1,2.986.152v3.455H21.7c-1.607,0-1.919.762-1.919,1.881V15.02h3.843l-.5,3.873H19.779V30.342A15.483,15.483,0,0,0,31,15.47Z" fill="#00263e"/>
+  <path id="Path-11" data-name="Path" d="M.486.03C.324.057.162.078,0,.092.162.078.324.057.486.03Z" transform="translate(16.038 30.904)" fill="#00263e"/>
+  <path id="Path-12" data-name="Path" d="M.257.045Q.129.056,0,.061.129.056.257.045Z" transform="translate(15.773 30.928)" fill="#00263e"/>
 </svg>

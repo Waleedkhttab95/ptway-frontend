@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import AuthenticatedRoute from '../components/AuthenticatedRoute';
+import CompanyAuthenticatedRoute from './Company/CompanyAuthRoutes';
+import UserAuthenticatedRoute from './User/UserAuthRoutes';
+
 import HomePage from './Admin/HomePage';
 import Statistics from './Admin/Statistics';
 import Percentage from './Admin/Statistics/Percentage';
@@ -17,7 +20,7 @@ import SearchAds from '../components/Admin/AdsSection/AdsSearch';
 import AdminSetting from '../components/Admin/setting/User';
 import CompanySetting from '../components/Admin/setting/Company';
 import generalStatistics from '../components/Admin/generalStatistics';
-import LandingPage from '../components/pages/landingPage';
+import Auth from '../components/pages/Auth';
 import ErrorPage from '../components/pages/ErrorPage';
 import UserRegistration from './User/signup/index';
 import UserHome from './User/index';
@@ -28,7 +31,9 @@ import Notifications from './User/Notifications';
 import UpdateProfile from './User/UpdateProfile';
 import UserLogin from './User/login';
 import CompanyLogin from './Company/Login';
-import CompanyNewAd from './Company/newAd';
+import CompanyShortContract from './Company/contracts/shortContract';
+import CompanyLongContract from './Company/contracts/longContract';
+import CompanyContinuousContract from './Company/contracts/continuousContract';
 import CompanySignup from './Company/SignUp';
 import CompanyHome from './Company';
 import CompanyProjects from './Company/Projects';
@@ -36,13 +41,23 @@ import Applicants from './Company/Applicants';
 import Applicant from './Company/Applicant';
 import CompSetting from './Company/Setting';
 import UpdateCompanyProfile from './Company/UpdateProfile';
+import AcceptedApplicant from './Company/AcceptedApplicants';
+import CompanyProfile from './Company/Profile';
+import ResetPassword from './User/login/resetPassword';
+import ResetCompanyPassword from './Company/Login/ResetPassword';
+import ResetPasswordPage from './User/login/newPassword';
+import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
+import AboutUs from '../components/pages/landingPage/AboutUs';
+import JobForm from './JobForm';
+// DELETE ME
+// import UserHomeClone from '../components/User/index_clone';
 
 const App = () => {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={Auth} />
           <AuthenticatedRoute
             exact
             path="/admin/general/statistics"
@@ -109,31 +124,111 @@ const App = () => {
             component={AdminPanel(CompanySetting)}
           />
           <Route exact path="/user/signup" component={UserRegistration} />
-          <Route exact path="/user/home" component={UserHome} />
-          <Route exact path="/user/jobs" component={Jobs} />
-          <Route exact path="/user/job/:id" component={Job} />
-          <Route exact path="/user/account/setting" component={UserSetting} />
-          <Route exact path="/user/notifications" component={Notifications} />
-          <Route exact path="/user/profile/update" component={UpdateProfile} />
-          <Route exact path="/user/login" component={UserLogin} />
-          <Route exact path="/company/login" component={CompanyLogin} />
-          <Route exact path="/company/new/ad" component={CompanyNewAd} />
-          <Route exact path="/company/signup" component={CompanySignup} />
-          <Route exact path="/company/home" component={CompanyHome} />
-          <Route exact path="/company/projects" component={CompanyProjects} />
-          <Route exact path="/company/applicants" component={Applicants} />
-          <Route
+          <UserAuthenticatedRoute
             exact
-            path="/company/applicant/profile"
-            component={Applicant}
+            path="/user/home"
+            component={UserHome}
           />
 
-          <Route exact path="/company/setting" component={CompSetting} />
-          <Route
+          {/* THIS IS CLONE PAGE */}
+          {/* <UserAuthenticatedRoute
+            exact
+            path="/user/home-clone"
+            component={UserHomeClone}
+          /> */}
+
+          {/*  */}
+
+          <UserAuthenticatedRoute exact path="/user/jobs" component={Jobs} />
+          <UserAuthenticatedRoute exact path="/user/job/:id" component={Job} />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/account/setting"
+            component={UserSetting}
+          />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/notifications"
+            component={Notifications}
+          />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/profile/update"
+            component={UpdateProfile}
+          />
+          <Route exact path="/user/login" component={UserLogin} />
+          <Route exact path="/company/login" component={CompanyLogin} />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/new/short/ad/:id"
+            component={CompanyShortContract}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/new/long/ad/:id"
+            component={CompanyLongContract}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/new/continuous/ad/:id"
+            component={CompanyContinuousContract}
+          />
+          <Route exact path="/company/signup" component={CompanySignup} />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/home"
+            component={CompanyHome}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/projects"
+            component={CompanyProjects}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/applicants/job/id=:id"
+            component={Applicants}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/applicant/profile/job/:jobId/user/:id"
+            component={Applicant}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/accepted/applicants/job/id=:id"
+            component={AcceptedApplicant}
+          />
+
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/setting"
+            component={CompSetting}
+          />
+          <CompanyAuthenticatedRoute
             exact
             path="/company/profile/update"
             component={UpdateCompanyProfile}
           />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/company/profile"
+            component={CompanyProfile}
+          />
+          <Route exact path="/user/resetPassword" component={ResetPassword} />
+          <Route
+            exact
+            path="/company/resetPassword"
+            component={ResetCompanyPassword}
+          />
+          <Route exact path="/resetPassword" component={ResetPasswordPage} />
+          <Route
+            exact
+            path="/home/common-questions"
+            component={CommenQuestions}
+          />
+          <Route exact path="/home/about-us" component={AboutUs} />
+          <Route exact path="/job-form" component={JobForm} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

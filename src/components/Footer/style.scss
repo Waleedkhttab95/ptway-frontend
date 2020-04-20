@@ -1,0 +1,113 @@
+// .footer-container{
+//     position: fixed;
+//     width: 100%;
+//     bottom: 0;
+// }
+.footer{
+    display: flex;
+    flex-direction: row;
+    height: 190px;
+     background-color: #f8fbff;
+     justify-content: space-around;
+     align-items: center;
+     .footer-menu{
+         display: flex;
+        justify-content: space-around;
+        > a{
+            font-size: 16px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            margin-right: 40px;
+            color:#00263e ;
+        }
+     }
+     .footer-social-media{
+        display: flex;
+        justify-content: space-around;
+        margin-right: 20px;
+        >div {
+            margin-left: 10px;
+        }
+     }
+}
+.sub-footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 46px;
+    background-color: #dddee3;
+}
+
+@media(max-width:320px){
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 380px;
+        justify-content: flex-end;
+        align-items: center;
+        padding-top: 20px;
+        .footer-social-media {
+            margin-right: 0px;
+            padding-top: 20px;
+        }
+    }
+    .footer .footer-menu {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: solid 1px #d9d9d9;
+        width: 60%;
+        padding-bottom: 20px;
+    }
+    .footer .footer-menu > a {
+        margin-right: 0px;
+        padding-top: 13px;
+    }
+    .sub-footer {
+        height: 96px;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+    .footer-logo {
+        width: 116.2px;
+    }
+}
+@media (min-width:321px) and (max-width:768px){
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 380px;
+        justify-content: flex-end;
+        align-items: center;
+        padding-top: 20px;
+        .footer-social-media {
+            margin-right: 0px;
+            padding-top: 20px;
+        }
+    }
+    .footer .footer-menu {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: solid 1px #d9d9d9;
+        width: 60%;
+        padding-bottom: 20px;
+    }
+    .footer .footer-menu > a {
+        margin-right: 0px;
+        padding-top: 13px;
+    }
+    .sub-footer {
+        height: 96px;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+    .footer-logo {
+        width: 116.2px;
+    }
+}

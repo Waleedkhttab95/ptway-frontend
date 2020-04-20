@@ -10,7 +10,7 @@ const Jobs = (state = initialState, action) => {
     case 'JOB_OFFERS_SUCCESS':
       return {
         ...state,
-        jobOffers: action.payload
+        ...action.payload
       };
     case 'JOB_OFFER_SUCCESS':
       return {

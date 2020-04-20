@@ -33,7 +33,6 @@
         padding-left: 40px;
         align-items: center;
         .filter-title{
-            font-family: DINNextLTW23;
             font-size: 15px;
             font-weight: 500;
             font-stretch: normal;
@@ -46,7 +45,7 @@
         }
         .filter-options {
             width: 270px;
-            height: 35px;
+            height: 34px;
             border-radius: 5px;
             border: solid 1px #d9d9d9;
             background-color: #fcfcfc;
@@ -57,7 +56,6 @@
             height: 35px;
             border-radius: 6px;
             background-color: #3b3b3b;
-            font-family: DINNextLTW23;
             font-size: 14px;
             font-weight: bold;
             font-stretch: normal;
@@ -66,6 +64,7 @@
             letter-spacing: normal;
             text-align: center;
             color: #ffffff;
+            cursor: pointer;
         }
     }
 }
@@ -81,8 +80,35 @@
     align-items: center;
     padding: 0 20px;
 }
-        .jobs-search-icon{
-            position: absolute;
-            left: 10px;
-            top: 10px;
-        }
+.jobs-search:focus{
+    border: solid 1px #d9d9d9;
+}
+.jobs-search-icon{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+     padding: 0px;
+}
+.MuiAutocomplete-root.MuiAutocomplete-hasPopupIcon {
+    width: 270px;
+    height: 60px;
+}
+.MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"], .MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+    padding-right: 39px;
+    height: 36px;
+    border-radius: 5px !important;
+}
+.MuiInputLabel-formControl {
+    bottom: 10px !important;
+    right: 60px !important;
+    top: 10px !important;
+    position: absolute;
+}
+.MuiFormLabel-root.Mui-focused {
+    color: transparent !important;
+}
+.MuiInputLabel-outlined {
+    transform: none !important;
+}

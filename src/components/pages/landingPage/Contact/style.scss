@@ -1,0 +1,182 @@
+.contact-us {
+    height: 600px;
+    // background: #18233d;
+    background-image: url('../../../../images/big-curve.svg');
+    background-position: top;
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .title {
+        font-size: 30px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.47;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+    }
+    form {
+        width: 600px;
+        height: 280px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        .inputs{
+            display: flex;
+            input:nth-child(1){
+                width: 248px;
+                height: 45px;
+                border-radius: 5px;
+                margin-left: 15px;
+                font-size: 15px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.47;
+                letter-spacing: normal;
+                text-align: right;
+                color: #d0d0d0;
+            }
+            input:nth-child(2){
+                width: 248px;
+                height: 45px;
+                border-radius: 5px;
+                font-size: 15px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.47;
+                letter-spacing: normal;
+                text-align: right;
+                color: #d0d0d0;
+            }
+        }
+        textarea {
+            width: 511px;
+            height: 135px;
+            border-radius: 5px;
+            // border: solid 2px #d9d9d9;
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.47;
+            letter-spacing: normal;
+            text-align: right;
+            color: #d0d0d0;
+
+        }
+    }
+    h3 {
+    font-size: 41px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.46;
+    letter-spacing: normal;
+    text-align: center;
+    color: #35b37d;
+    margin-top: 10px;
+    }
+    .btns {
+        display: flex;
+        button {
+            width: 170px;
+            height: 46px;
+            border-radius: 4px;
+            border: solid 2px #35b37d;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: center;
+            color: #35b37d;
+            margin-left: 10px;
+            cursor: pointer;
+            background: #1b2642;
+        }
+        button:hover {
+            width: 170px;
+            height: 46px;
+            border-radius: 4px;
+            background-color: #35b37d;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: center;
+            color: #f8fbff;
+        }
+    }
+   
+}
+
+@media (max-width:320px){
+    .contact-us { 
+        height: 650px;
+        background-image: url('../../../../images/mobile-curve.svg');
+    form {
+        width: 250px;
+        height: 340px;
+        padding: 20px;
+        .inputs {
+            flex-direction: column;
+            input {
+                margin-bottom: 10px;
+                width: 210px !important;
+            }
+        }
+    }
+    .btns {
+        button { 
+            width: 145px; 
+        }
+}
+.btns{
+    button {
+        width: 150px;
+    }
+}
+}
+}
+
+@media (min-width:321px) and (max-width:768px){
+    .contact-us { 
+        height: 650px;
+        background-image: url('../../../../images/mobile-curve.svg');
+        .title {
+            font-size: 20px;
+        }
+    form {
+        width: 336px;
+        height: 340px;
+        padding: 20px;
+        .inputs {
+            flex-direction: column;
+            input:nth-child(1),input:nth-child(2) {
+                width: 295px !important;
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .btns{
+        button {
+            width: 170px;
+        }
+    }
+    h3{
+        font-size: 30px;
+    }
+}
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Col, Input, Radio } from 'antd';
+import { Col, Input, Radio, Modal } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import { connect } from 'react-redux';
@@ -34,28 +34,47 @@ class Setting extends React.Component {
     });
   };
 
-  componentDidUpdate() {
-    const { history } = this.props;
-    if (this.props.userSetting.newPassword === 'غيّرنا لك الرقم السري') {
-      history.push('/user/home');
-    } else {
-      console.log('fail');
-    }
-  }
+  // componentDidUpdate() {
+  //   const { history } = this.props;
+  //   if (
+  //     this.props.userSetting.newPassword === 'غيّرنا لك الرقم السري' ||
+  //     this.props.userSetting.emailNotification === 'Done . '
+  //   ) {
+  //     history.push('/user/home');
+  //   } else {
+  //     console.log('fail');
+  //   }
+  // }
+  // handleCancel = () => {
+  //   this.setState({
+  //     visible: false
+  //   });
+  // };
   render() {
-    console.log('state', this.state);
     const { userSetting } = this.props;
     return (
       <React.Fragment>
         <Header />
+        {userSetting.newPassword === 'غيّرنا لك الرقم السري' ||
+        userSetting.emailNotification === 'Done . ' ? (
+          <Modal visible={true} closable={false} footer={false}>
+            <div className="success-modal">
+              <h2>تم تغير الاعدادات بنجاح</h2>
+              <br />
+              <button onClick={() => this.props.history.push('/user/home')}>
+                حسناً
+              </button>
+            </div>
+          </Modal>
+        ) : (
+          ''
+        )}
         <div className="user-container setting-mob">
           <div className="setting-body">
             <div className="setting-container">
               <Col className="account-info">
                 <h4 className="heading">تعديل معلومات الحساب</h4>
                 <div className="account-fields">
-                  {/* <span>البريد الالكتروني</span>
-                <Input className="account-input" type="email" /> */}
                   <span>كلمة المرور</span>
                   <Input
                     className="account-input"
@@ -89,8 +108,6 @@ class Setting extends React.Component {
                       options={['نعم', 'لا']}
                       className="check-option"
                     />
-                    {/* <Checkbox className="check-option">نعم</Checkbox>
-                <Checkbox className="check-option">لا</Checkbox> */}
                   </div>
                 </div>
               </Col>

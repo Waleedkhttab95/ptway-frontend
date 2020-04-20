@@ -1,82 +1,128 @@
-import React from 'react';
-import { Upload, Icon, message } from 'antd';
+import React, { PureComponent } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+import { Form } from 'semantic-ui-react';
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-}
-
-class Avatar extends React.Component {
+class Avatar extends PureComponent {
   state = {
-    loading: false
-    // imageUrl: this.props.img
+    src: null,
+    uploaded: false,
+    crop: {
+      unit: '%',
+      width: 30,
+      aspect: 1 / 1
+    },
+    croppedImageUrl: null
   };
 
-  handleChange = info => {
-    if (info.file.status === 'uploading') {
-      this.setState({ loading: true });
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
-        this.setState(
-          {
-            imageUrl,
-            loading: false
-          },
-          () => {
-            console.log('image ++++', info.file.originFileObj);
-            this.props.getImage && this.props.getImage(info.file.originFileObj);
-          }
-        )
-      );
-    }
+  handleFile = e => {
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ src: fileReader.result, uploaded: false });
+    };
+    fileReader.readAsDataURL(e.target.files[0]);
   };
 
-  dummyRequest = ({ file, onSuccess }) => {
-    setTimeout(() => {
-      onSuccess('ok');
-    }, 0);
-  };
-  render() {
-    const uploadButton = (
-      <div>
-        <Icon type={this.state.loading ? 'loading' : 'plus'} />
-        <div className="ant-upload-text">صورة شخصية</div>
-      </div>
+  handleSubmit = async e => {
+    e.preventDefault();
+    (await this.props.getImage) && this.props.getImage(this.state.croppedImage);
+    setTimeout(
+      function() {
+        this.setState({ uploaded: true });
+      }.bind(this),
+      1000
     );
-    const { imageUrl } = this.state;
+  };
+  onImageLoaded = image => {
+    this.imageRef = image;
+  };
+
+  onCropChange = crop => {
+    this.setState({ crop });
+  };
+
+  onCropComplete = crop => {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = this.getCroppedImg(this.imageRef, crop);
+      this.setState({ croppedImageUrl });
+    }
+  };
+
+  getCroppedImg(image, crop) {
+    const canvas = document.createElement('canvas');
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+
+    const reader = new FileReader();
+    canvas.toBlob(blob => {
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        this.dataURLtoFile(reader.result, 'cropped.jpg');
+      };
+    });
+  }
+  dataURLtoFile(dataurl, filename) {
+    let arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    let croppedImage = new File([u8arr], filename, { type: mime });
+    this.setState({ croppedImage: croppedImage });
+  }
+
+  render() {
+    const { crop, profile_pic, src, uploaded } = this.state;
     return (
-      <Upload
-        name="image"
-        listType="picture-card"
-        className="avatar-uploader"
-        showUploadList={false}
-        customRequest={this.dummyRequest}
-        beforeUpload={beforeUpload}
-        onChange={this.handleChange}
+      <Form
+        onSubmit={this.handleSubmit}
+        style={{ maxWidth: '50%', marginRight: '20px' }}
       >
-        {imageUrl ? (
-          <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-        ) : (
-          uploadButton
+        <label htmlFor="profile_pic"></label>
+        <input
+          type="file"
+          id="profile_pic"
+          className="custom-file-input"
+          value={profile_pic}
+          onChange={this.handleFile}
+          accept="image/*"
+        />
+        {src && !uploaded && (
+          <ReactCrop
+            src={src}
+            crop={crop}
+            onImageLoaded={this.onImageLoaded}
+            onComplete={this.onCropComplete}
+            onChange={this.onCropChange}
+          />
         )}
-      </Upload>
+        {src && !uploaded && (
+          <button className="save-changes-btn" style={{ marginTop: '20px' }}>
+            حفظ
+          </button>
+        )}
+      </Form>
     );
   }
 }
+
 export default Avatar;

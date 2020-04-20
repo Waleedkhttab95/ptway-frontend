@@ -12,17 +12,20 @@
     margin: 50px 0;
     padding: 60px 113px;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-    right: auto;
-    left: 5px;
-    border-radius: 50%;
-    border: solid 1px #f3f3f3;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f3f3f3;
+.updating-form {
+    background: #fff;
+    .section-heading .div .div{
+        right: auto;
+        left: 5px;
+        border-radius: 50%;
+        border: solid 1px #f3f3f3;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f3f3f3;
+    }
 }
 .ant-collapse-borderless > .ant-collapse-item {
     border-bottom: none;
@@ -35,7 +38,6 @@
     }
 }
 .title-field{
-    font-family: DINNextLTW23;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -62,7 +64,6 @@
     background-color: #fdfdfd;
 }
 .section-heading{
-    font-family: DINNextLTW23;
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
@@ -79,7 +80,6 @@
   border-radius: 6px;
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   background-color: #3b3b3b;
-  font-family: DINNextLTW23;
   font-size: 14px;
   font-weight: bold;
   font-stretch: normal;
@@ -130,7 +130,6 @@
     height: 35px;
     border-radius: 6px;
     background-color: #3598d4;
-    font-family: DINNextLTW23;
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -140,7 +139,35 @@
     text-align: center;
     color: #ffffff;
     margin-top: 50px !important;
+    cursor: pointer;
 }
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: ' + رفع صورة شخصية';
+    width: 170px;
+    text-align: center;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
 
 @media (max-width:320px) {
     .collapse-line{
@@ -175,6 +202,15 @@
     .input-filed-mob {
         width: 150px !important;
     }
+    .cv-personal-info{
+        flex-direction: column;
+    }
+    .first-section{
+        flex-direction: column;
+    }
+    .general-skills {
+      flex-direction: column;
+    }    
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -211,5 +247,14 @@
     .input-filed-mob {
         width: 150px !important;
     }
+    .cv-personal-info{
+        flex-direction: column;
+    }
+    .first-section{
+        flex-direction: column;
+    }
+    .general-skills {
+      flex-direction: column;
+    }   
 
 }

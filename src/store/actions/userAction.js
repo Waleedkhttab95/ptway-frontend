@@ -27,6 +27,25 @@ export const userLogin = params => {
     payload: userServices.login(params)
   };
 };
+export const resetPassword = email => {
+  return {
+    type: 'USER_RESET_PASSWORD',
+    payload: userServices.resetPassword(email)
+  };
+};
+export const resetCompanyPassword = email => {
+  return {
+    type: 'COMPANY_RESET_PASSWORD',
+    payload: userServices.resetCompanyPassword(email)
+  };
+};
+
+export const companyLogin = params => {
+  return {
+    type: 'COMPANY_LOGIN',
+    payload: userServices.companyLogin(params)
+  };
+};
 
 export const adminLogin = (email, password) => {
   return {

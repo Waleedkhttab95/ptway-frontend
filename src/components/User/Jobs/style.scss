@@ -1,5 +1,5 @@
 .user-jobs{
-    padding: 56px 135px;
+    padding: 56px 100px;
    
 }
 
@@ -10,17 +10,16 @@
     .job-post{
         display: flex;
         flex-direction: column;
-        width: 270px;
+        // width: 270px;
         height: 413px;
         border-radius: 5px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #ffffff;
-        margin-left: 22px;
+        margin-left: 42px;
         margin-top: 25px;
         padding-top: 20px;
-        padding-right: 25px;
-        padding-left: 10px;
         float: right;
+        padding: 0 10px;
 
         .post-header{
             display: flex;
@@ -34,7 +33,6 @@
                 display: flex;
                 flex-direction: column;
                 .job-owner-title{
-                    font-family: DINNextLTW23;
                     font-size: 14px;
                     font-weight: bold;
                     font-stretch: normal;
@@ -45,7 +43,6 @@
                     color: #000000;
                 }
                 .job-owner-location{
-                    font-family: DINNextLTW23;
                     font-size: 14px;
                     font-weight: normal;
                     font-stretch: normal;
@@ -56,7 +53,6 @@
                     color: #000000;
                 }
                 .job-owner-mobile{
-                    font-family: DINNextLTW23;
                     font-size: 14px;
                     font-weight: 500;
                     font-stretch: normal;
@@ -74,7 +70,6 @@
             flex-direction: column;
             justify-content: flex-start;
             .post-description{
-                font-family: DINNextLTW23;
                 font-size: 14px;
                 font-weight: 500;
                 font-stretch: normal;
@@ -89,7 +84,7 @@
                 display: flex;
                 flex-direction: column;
                 position: absolute;
-                bottom: 30px;
+                bottom: 40px;
             }
             .post-status {
                 margin-bottom: 10px;
@@ -97,7 +92,6 @@
                 height: 32px;
                 border-radius: 5px;
                 background-color: #ddeaff;
-                font-family: DINNextLTW23;
                 font-size: 14px;
                 font-weight: 500;
                 font-stretch: normal;
@@ -114,7 +108,6 @@
                 background-color: #3598d4;
                 border-color:  #3598d4;
                 margin-bottom: 10px;
-                font-family: DINNextLTW23;
                 font-size: 14px;
                 font-weight: bold;
                 font-stretch: normal;
@@ -123,6 +116,7 @@
                 letter-spacing: normal;
                 text-align: center;
                 color: #ffffff;
+                cursor: pointer;
 
             }
             .details-btn{
@@ -131,7 +125,6 @@
                 border-radius: 6px;
                 background-color: #a0a0a0;
                 border-color:  #a0a0a0;
-                font-family: DINNextLTW23;
                 font-size: 14px;
                 font-weight: bold;
                 font-stretch: normal;
@@ -140,6 +133,9 @@
                 letter-spacing: normal;
                 text-align: center;
                 color: #fff;
+                cursor: pointer;
+                margin-top: 50px;
+               
             }
         }
     }
@@ -151,7 +147,6 @@
     height: 35px;
     border-radius: 6px;
     background-color: #3b3b3b;
-    font-family: DINNextLTW23;
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -169,7 +164,7 @@
     background-color: #34add9;
 }
 .job-post:hover .job-owner-title, .job-post:hover .job-owner-location, .job-post:hover .job-owner-mobile, .job-post:hover .post-description,
-.job-post:hover .post-status{
+.job-post:hover .post-status, .job-post:hover .job-completed {
             color: #fff !important;
 }
 
@@ -183,14 +178,23 @@
     background: #2e9bc3 !important;
 }
 
+.job-completed {
+    background: #ffa50038;
+    height: 30px;
+    width: 120px;
+    color: orange;
+    border-radius: 7px;
+    padding-top: 5px;
+}
+
 @media (max-width:320px){
     .jobs-details .job-post {
-        width: auto;
+        // width: auto;
         margin-left: 0px;
         padding-right: 10px;
     }
     .user-jobs {
-        padding: 10px 35px;
+        padding: 10px 15px;
     }
     .jobs-details .job-post .post-body .post-description{
         text-align: center;
@@ -210,12 +214,12 @@
 
 @media (min-width:321px) and (max-width:768px){
     .jobs-details .job-post {
-        width: auto;
+        // width: auto;
         margin-left: 0px;
         padding-right: 10px;
     }
     .user-jobs {
-        padding: 10px 35px;
+        padding: 10px 15px;
     }
     .jobs-details .job-post .post-body .post-description{
         text-align: center;

@@ -3,87 +3,152 @@ import './style.scss';
 import { Col } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
-const Applicant = () => {
-  return (
-    <React.Fragment>
-      <Header />
-      <div className="company-container">
-        <div className="applicant-profile">
-          <Col md={6} className="applicant-right-section">
-            <div className="btns-container">
-              <button className="accept-applicant">قبول المتقدم</button>
-              <button className="reject-applicant">رفض المتقدم</button>
-            </div>
-            <div className="personal-info">
-              <div className="user-pic-info">
-                <i className="fa fa-user u-pic" aria-hidden="true"></i>
-                {/* <img /> */}
-                <span className="fullname">ياسر محمد القحطاني</span>
-                <span className="job-date">يعمل منذ 11/02/2018</span>
-                <span className="job-type">مصمم جرافيك</span>
+import applicants from '../../../services/company/applicants';
+import _ from 'lodash';
+const { getUser, acceptUser } = applicants;
+
+class Applicant extends React.Component {
+  state = { user: '' };
+  async componentDidMount() {
+    const userId = this.props.match.params.id;
+    const { jobId } = this.props.match.params;
+    const user = await getUser({ userId });
+    this.setState({
+      userId,
+      jobId,
+      user
+    });
+  }
+  acceptUser = async () => {
+    const { userId, jobId } = this.state;
+
+    await acceptUser({
+      jobId,
+      userId
+    });
+    this.props.history.push(`/applicants/job/id=${jobId}`);
+  };
+  render() {
+    const { user } = this.state;
+    return (
+      <React.Fragment>
+        <Header />
+        <div className="company-container">
+          <div className="applicant-profile">
+            <Col md={6} xs={24} sm={24} className="applicant-right-section">
+              <div className="btns-container">
+                <button className="accept-applicant" onClick={this.acceptUser}>
+                  قبول المتقدم
+                </button>
+                <button className="reject-applicant">رفض المتقدم</button>
               </div>
-              <div className="details-user-info">
-                <span>
-                  <i className="fa fa-envelope" aria-hidden="true"></i>
-                  yasser.qahtani@gmail.com
-                </span>
-                <span>
-                  <i className="fa fa-mobile" aria-hidden="true"></i>
-                  0096 555 123 456 78 90
-                </span>
-                <span>
-                  <i className="fa fa-user" aria-hidden="true"></i>
-                  ذكر
-                </span>
-                <span>
-                  <i className="fa fa-map-marker" aria-hidden="true"></i>
-                  المملكة العربية السعودية، مدينة الرياض الأخضر، شارع الفرقان،
-                  بناء 21 مكتب 421
-                </span>
+              <div className="personal-info">
+                <div className="user-pic-info">
+                  {user.imagePath !== 'null' ? (
+                    <img src={user.imagePath} alt="user" className="u-pic" />
+                  ) : (
+                    <i
+                      className="fa fa-user-circle"
+                      aria-hidden="true"
+                      style={{ fontSize: '60px' }}
+                    ></i>
+                  )}
+                  <span className="fullname">{user.fullName}</span>
+                  {/* <span className="job-date">يعمل منذ 11/02/2018</span> */}
+                  {/* <span className="job-type">{user.about}</span> */}
+                </div>
+                <div className="details-user-info">
+                  <span>
+                    <i className="fa fa-envelope" aria-hidden="true"></i>
+                    {user.email}
+                  </span>
+                  <span>
+                    <i className="fa fa-mobile" aria-hidden="true"></i>
+                    {user.mobile}
+                  </span>
+                  <span>
+                    <i className="fa fa-user" aria-hidden="true"></i>
+                    {user.gender}
+                  </span>
+                  <span>
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
+                    {user.country}, {user.city}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="hour-work">
-              <h3>عدد ساعات العمل</h3>
-              <div className="hours-num">2,315</div>
-            </div>
-          </Col>
-          <Col md={18} className="applicant-details">
-            <div>
-              <h3 className="h-title heading">نبذة عامة</h3>
-              <p>
-                كل إنسان يحب أن يكون كلامه مسموعا، يعبر عن نفسه وذاته بحرية
-                وبانطلاق في الحياة، مما دفع الكثيرون إلى تطوير أساليبهم في بناء
-                التعابير الصوتية المختلفة، وتعلم مهارات الجسد، والكثير من
-                المهارات؛ ليستطيعوا التعبير عن أنفسهم، واقناع الناس بذلك ليظهروا
-                وليرتفع اسمهم في المجتمع وفي أنفسهم. ومع التطور الحاصل في العصر
-                الحديث من التكنولوجيا الحديثة ومواقع التواصل الاجتماعي، وانتشار
-                استخدامها، والمدونات أصبحت الكتابة لونا لا يستغني عنه أحد في
-                التعبير عن ما يدور في عقله وكيانه من أفكار ومعتقدات وآراء؛ ساعيا
-                ليجلب اعجاب الآخرين به أحيانا،
-              </p>
-            </div>
-            <div>
-              <h3 className="h-title heading">الدراسات والشهادات</h3>
-              <p>
-                كل إنسان يحب أن يكون كلامه مسموعا، يعبر عن نفسه وذاته بحرية
-                وبانطلاق في الحياة، مما دفع الكثيرون إلى تطوير أساليبهم في بناء
-                التعابير الصوتية المختلفة، وتعلم مهارات الجسد، والكثير من
-                المهارات؛ ليستطيعوا التعبير عن أنفسهم، واقناع الناس بذلك ليظهروا
-                وليرتفع اسمهم في المجتمع وفي أنفسهم. ومع التطور الحاصل في العصر
-                الحديث من التكنولوجيا الحديثة ومواقع التواصل الاجتماعي، وانتشار
-                استخدامها، والمدونات أصبحت الكتابة لونا لا يستغني عنه أحد في
-                التعبير عن ما يدور في عقله وكيانه من أفكار ومعتقدات وآراء؛ ساعيا
-                ليجلب اعجاب الآخرين به أحيانا،
-              </p>
-            </div>
-            <div>
-              <h3 className="h-title heading">معلومات عامة</h3>
-            </div>
-          </Col>
+              <div className="hour-work">
+                <h3>عدد ساعات العمل</h3>
+                <div className="hours-num">{user.work_Hours}</div>
+              </div>
+            </Col>
+            <Col md={18} xs={24} sm={24} className="applicant-details">
+              <div>
+                <h3 className="h-title heading">نبذة عامة</h3>
+                <p>{user.about}</p>
+              </div>
+              <div className="cv-education">
+                <h3 className="h-title heading">الدراسات والشهادات</h3>
+                <div>
+                  <p>
+                    الدراسة الحالية :
+                    {user.education_degree !== 'undefined'
+                      ? user.education_degree
+                      : ''}
+                  </p>
+                  <p>الشهادة الجامعية :{user.study_degree}</p>
+                </div>
+                <div>
+                  <p>المستوى التعليمي : {user.Education_level} </p>
+                  <p> الجامعة :{user.universty}</p>
+                </div>
+                <div>
+                  <p>التخصص العام : {user.public_Major} </p>
+                  <p>التخصص الدقيق : {user.spicifc_Major} </p>
+                </div>
+              </div>
+              <div className="cv-skills-">
+                <h3 className="h-title heading">المهارات واللغات</h3>
+                <div>
+                  <div>
+                    <h3>المهارات العامة : </h3>
+                    {_.isArray(user.skills)
+                      ? user.skills.map(elm => {
+                          return <p key={elm}>{elm}</p>;
+                        })
+                      : ''}
+                  </div>
+                  <div>
+                    <h3>المهارات الشخصية : </h3>
+                    {_.isArray(user.personal_Skills)
+                      ? user.personal_Skills.map(elm => {
+                          return <p key={elm}>{elm}</p>;
+                        })
+                      : ''}
+                  </div>
+                </div>
+                <h3>اللغات : </h3>
+                {_.isArray(user.languages)
+                  ? user.languages.map(elm => {
+                      return <p key={elm}>{elm}</p>;
+                    })
+                  : ''}
+              </div>
+              <div>
+                <h3 className="h-title heading">التواصل الالكتروني</h3>
+                <p>
+                  الموقع الشخصي :{' '}
+                  {user.personal_web ? user.personal_web : 'لا يوجد'}
+                </p>
+                <p>الفيسبوك : {user.facebook ? user.facebook : 'لا يوجد'} </p>
+                <p>التويتر : {user.twitter ? user.twitter : 'لا يوجد'} </p>
+                <p>لينكيد ان : {user.linkedin ? user.linkedin : 'لا يوجد'}</p>
+              </div>
+            </Col>
+          </div>
         </div>
-      </div>
-      <Footer />
-    </React.Fragment>
-  );
-};
+        <Footer />
+      </React.Fragment>
+    );
+  }
+}
 export default Applicant;

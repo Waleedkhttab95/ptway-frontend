@@ -3,11 +3,23 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Collapse, Dropdown, Menu, Modal, Button } from 'antd';
+import { Row, Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../../Filter';
+import SideMenu from './menu';
+import projects from '../../../services/company/projects';
+import AddNewProjectModal from '../../Header/AddNewProjectModal';
+import AddNewAdModal from '../../Header/AddNewAdModal';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import history from '../../../_core/history';
 
+import {
+  addNewProject,
+  allCotracts
+} from '../../../store/actions/company/projects';
 const { Panel } = Collapse;
+const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
 
 function callback(key) {
   console.log(key);
@@ -17,8 +29,39 @@ class Projects extends React.Component {
   state = {
     expandIconPosition: 'left',
     deleteModal: false,
-    confirmMsg: false
+    confirmMsg: false,
+    editModal: false,
+    allProjects: '',
+    count: 1,
+    moreAds: '',
+    loading: true,
+    activeOption: 0,
+    showOptions: false,
+    userInput: '',
+    postJobPopup: false,
+    newAdPopUp: false
   };
+
+  async componentDidMount() {
+    const allProjects = await getProjects();
+    const { getContracts } = this.props;
+    getContracts();
+    this.setState(
+      {
+        allProjects,
+        JobAdsCount: allProjects.JobAdsCount,
+        totalPages: allProjects.totalPages,
+        projects: allProjects
+      },
+      () => {
+        if (allProjects.totalPages > 1) {
+          this.setState({
+            loading: false
+          });
+        }
+      }
+    );
+  }
 
   onPositionChange = expandIconPosition => {
     this.setState({ expandIconPosition });
@@ -29,103 +72,147 @@ class Projects extends React.Component {
       deleteModal: true
     });
   };
-  deleteConfirmation = event => {
-    event.stopPropagation();
+
+  deleteConfirmation = async id => {
+    // const { allProjects } = this.state;
+    await deleteProject({ id });
     this.setState({
       deleteModal: false,
+      // allProjects: allProjects.proj.filter(project => project._id !== id),
       confirmMsg: true
     });
   };
-  render() {
-    const menu = (
-      <React.Fragment>
-        <Menu className="project-options">
-          <Menu.Item key="1">
-            <i
-              className="fa fa-pause"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            إيقاف
-          </Menu.Item>
-          <Modal
-            visible={this.state.pauseModal}
-            closable={false}
-            footer={false}
-          ></Modal>
 
-          <Menu.Item key="2" onClick={this.editProject}>
-            <i
-              className="fa fa-pencil"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            تعديل
-          </Menu.Item>
-          <Modal
-            visible={this.state.editModal}
-            closable={false}
-            footer={false}
-          ></Modal>
-          <Menu.Item key="3" onClick={this.deletePoject}>
-            <i
-              className="fa fa-trash-o"
-              aria-hidden="true"
-              style={{ marginLeft: '5px', color: '#3b96d9' }}
-            ></i>
-            حذف
-          </Menu.Item>
-        </Menu>
-        <Modal visible={this.state.deleteModal} closable={false} footer={false}>
-          <div className="delete-modal">
-            <i className="fa fa-trash-o delete-icon" aria-hidden="true"></i>
-            <h3>هل أنت متأكد من حذف الإعلان الوظيفي</h3>
-            <p>لن يمكنك استرداد العرض الوظيفي او مشاهدة المتقدمين لهذا العرض</p>
-            <div className="modal-btns">
-              <button className="del-btn" onClick={this.deleteConfirmation}>
-                تأكيد الحذف
-              </button>
-              <button className="cancel-btn">إلغاء</button>
-            </div>
-          </div>
-        </Modal>
+  cancel = () => {
+    this.setState({
+      deleteModal: false,
+      editModal: false
+    });
+  };
 
-        <Modal visible={this.state.confirmMsg} closable={false} footer={false}>
-          <div className="success-modal">
-            <i className="fa fa-check-circle check-icon" aria-hidden="true"></i>
-            <h2>تم حذف الإعلان الوظيفي بنجاح</h2>
-            <p>
-              تم حذف الإعلان الوظيفي بشكل كامل من ضمن الإعلانات الوظيفية في
-              المشروع
-            </p>
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                this.setState({ confirmMsg: false });
-              }}
-            >
-              العودة
-            </button>
-          </div>
-        </Modal>
-      </React.Fragment>
+  editProjectModal = () => {
+    this.setState({
+      editModal: true
+    });
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+  handleSelectChange = (value, option) => {
+    this.setState({
+      [option.props.name]: option.key
+    });
+  };
+  updateProject = async id => {
+    const { projectName, projectDescription } = this.state;
+    await updateProject({
+      id,
+      projectName,
+      projectDescription
+    });
+    this.setState({ editModal: false });
+    window.location.reload();
+  };
+
+  displayMore = async () => {
+    let count = this.state.count + 1;
+    const { allProjects } = this.state;
+    const moreAds = await getMoreAds(count);
+    this.setState(
+      {
+        allProjects: {
+          proj: allProjects.proj.concat(moreAds.proj),
+          JobAdsCount: allProjects.JobAdsCount.concat(moreAds.JobAdsCount)
+        },
+        moreAds,
+        count
+      },
+      () => {
+        this.setState({
+          projects: this.state.allProjects
+        });
+      }
     );
-    const { expandIconPosition } = this.state;
+  };
+
+  handleFilter = () => {
+    const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
+    const sortedProjects = allProjects.proj.sort((a, b) => {
+      if (filterOption === 'new')
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+    this.setState({
+      allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+    });
+  };
+
+  handleSearch = e => {
+    const { projects, JobAdsCount, totalPages } = this.state;
+    const { value } = e.target;
+
+    const filteredOptions = projects.proj.filter(
+      elm => elm.projectName.toLowerCase().indexOf(value.toLowerCase()) > -1
+    );
+
+    this.setState({
+      allProjects: { proj: filteredOptions, JobAdsCount, totalPages },
+      activeOption: 0,
+      showOptions: true,
+      userInput: value
+    });
+  };
+
+  postJob = () => {
+    this.setState({
+      postJobPopup: true
+    });
+  };
+
+  newAd = () => {
+    const { addProject } = this.props;
+    const { projectName, projectDescription } = this.state;
+    addProject({
+      projectName,
+      projectDescription
+    });
+    this.setState({
+      postJobPopup: false,
+      addProject: false,
+      newAdPopUp: true
+    });
+  };
+
+  render() {
+    const {
+      expandIconPosition,
+      allProjects,
+      moreAds,
+      count,
+      loading
+    } = this.state;
+    const { contracts } = this.props;
     return (
       <React.Fragment>
         <Header />
         <div className="company-container">
           <div className="company-projects">
-            <FilterAndSearch />
+            <FilterAndSearch
+              allProjects={allProjects}
+              handleChange={this.handleSelectChange}
+              handleSearch={this.handleSearch}
+              handleFilter={this.handleFilter}
+            />
             <div className="projects-header">
               <h2>اسم المشروع</h2>
               <h2>عدد العروض الوظيفية</h2>
               <div></div>
             </div>
-            <Button
-              className="new-job-btn-mob"
-              onClick={() => this.props.history.push('/comany/new/project')}
-            >
+            <Button className="new-job-btn-mob" onClick={this.postJob}>
               <i
                 className="fa fa-plus plus-icon"
                 aria-hidden="true"
@@ -133,97 +220,113 @@ class Projects extends React.Component {
               ></i>
               أضف عرض وظيفي جديد
             </Button>
-
+            <AddNewProjectModal
+              postJobPopup={this.state.postJobPopup}
+              newAd={this.newAd}
+              onChange={e => {
+                this.setState({ [e.target.name]: e.target.value });
+              }}
+              closable={this.onClose}
+            />
+            <AddNewAdModal
+              newAdPopUp={this.state.newAdPopUp}
+              contractsTypes={contracts}
+              history={history}
+            />
             <Collapse
               // defaultActiveKey={['1']}
               onChange={callback}
               expandIconPosition={expandIconPosition}
               className="projects-collapse"
             >
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
+              {_.isArray(allProjects.proj) ? (
+                allProjects.proj.map((elm, index) => {
+                  return (
+                    <Panel
+                      key={elm._id}
+                      className="project-panel"
+                      header={
+                        <div className="panel-title">
+                          <div className="panel-mob">
+                            <span>{elm.projectName}</span>{' '}
+                            <span className="applicant-num-mob">
+                              {' '}
+                              عدد المتقدمين :
+                            </span>
+                            <div className="offers-num">
+                              {allProjects.JobAdsCount[index]}
+                            </div>
+                          </div>
+                          <Dropdown
+                            overlay={
+                              <SideMenu
+                                {...this.state}
+                                deletePoject={this.deletePoject}
+                                deleteConfirmation={() =>
+                                  this.deleteConfirmation(elm._id)
+                                }
+                                CloseConfirmationMsg={e => {
+                                  e.stopPropagation();
+                                  this.setState({
+                                    confirmMsg: false
+                                  });
+                                  window.location.reload();
+                                }}
+                                cancel={this.cancel}
+                                onChange={this.handleChange}
+                                editProjectModal={this.editProjectModal}
+                                updateProject={() =>
+                                  this.updateProject(elm._id)
+                                }
+                              />
+                            }
+                            placement="bottomCenter"
+                            trigger="hover"
+                          >
+                            <span className="options-menu">...</span>
+                          </Dropdown>
+                        </div>
+                      }
                     >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="1"
-                // extra={genExtra()}
-              >
-                <Project />
-              </Panel>
-              <br />
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
-                    >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="2"
-              >
-                <Project />
-              </Panel>
-              <br />
-              <Panel
-                header={
-                  <div className="panel-title">
-                    <div className="panel-mob">
-                      <span>مشروع تأمين جميع أفرع الشركة التجارية</span>{' '}
-                      <span className="applicant-num-mob">
-                        {' '}
-                        عدد المتقدمين :
-                      </span>
-                      <div className="offers-num">294</div>
-                    </div>
-                    <Dropdown
-                      overlay={menu}
-                      placement="bottomCenter"
-                      trigger="hover"
-                    >
-                      <span className="options-menu">...</span>
-                    </Dropdown>
-                  </div>
-                }
-                key="3"
-              >
-                <Project />
-              </Panel>
+                      <Project {...elm} />
+                    </Panel>
+                  );
+                })
+              ) : (
+                <div className="spinner-loading">
+                  <Spin size="large" />
+                </div>
+              )}
             </Collapse>
-            <br />
+            {/* <br /> */}
+            {!loading && moreAds.totalPages !== count && (
+              <button
+                className="more-projects-offers-btn"
+                onClick={this.displayMore}
+                style={{ marginTop: '30px' }}
+              >
+                عرض المزيد
+              </button>
+            )}
           </div>
         </div>
-
+        {/* <Row> */}
         <Footer />
+        {/* </Row> */}
       </React.Fragment>
     );
   }
 }
+const mapPropsToState = ({ companyProjects }) => {
+  return {
+    contracts: companyProjects
+  };
+};
+const mapPropsToDispatch = dispatch => {
+  return {
+    addProject: params => dispatch(addNewProject(params)),
+    getContracts: () => dispatch(allCotracts())
+  };
+};
 
-export default Projects;
+export default connect(mapPropsToState, mapPropsToDispatch)(Projects);

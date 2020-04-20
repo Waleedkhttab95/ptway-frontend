@@ -1,18 +1,26 @@
-
+.company-container {
+    min-height: 100vh;
+}
+.user-home{
+    padding-bottom: 80px;
+    .user-profile {
+        display: flex;
+    }
+}
 .company-progress{
     display: flex;
     margin-top: 25px;
+    justify-content: center;
     .opened-projects{
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 275px;
+        // width: 275px;
         height: 112px;
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #008bbc;
         margin-left: 20px;
-        font-family: DINNextLTW23;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -26,13 +34,12 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 275px;
+        // width: 275px;
         height: 112px;
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #009ad0;
         margin-left: 20px;
-        font-family: DINNextLTW23;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -46,13 +53,12 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 275px;
+        // width: 275px;
         height: 112px;
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #34add9;
         margin-left: 20px;
-        font-family: DINNextLTW23;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -67,12 +73,11 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 275px;
+        // width: 275px;
         height: 112px;
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #68c3e3;
-        font-family: DINNextLTW23;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -85,24 +90,23 @@
 }
 .right-section{
     margin-top: 17px;
-    margin-left: 20px;
-   .update-profile-btn{
-        width: 287px;
+    // margin-left: 10px;
+    margin-right: 10px;
+    
+}
+.update-profile-btn{
+        width: 100%;
         height: 55px;
         border-radius: 6px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-        background-color: #3b3b3b;
+        background-color: #00263ee0;
         margin-top: 20px;
-        font-family: DINNextLTW23;
         font-size: 14px;
         font-weight: bold;
         color:#fff;
         cursor: pointer;
     }
-
-}
 .company-left-section h2 {
-    font-family: DINNextLTW23;
     font-size: 16px;
     font-weight: 500;
     font-stretch: normal;
@@ -117,7 +121,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 863px;
+    // width: 863px;
     height: 38px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
@@ -127,14 +131,18 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 863px;
+    // width: 863px;
     height: 87px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     margin-top: 10px;
     .project-offer-title {
-        width: 170px;
+        width: 125px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 }
 .more-projects-offers-btn {
@@ -145,7 +153,6 @@
     height: 35px;
     border-radius: 6px;
     background-color: #3b3b3b;
-    font-family: DINNextLTW23;
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;
@@ -226,6 +233,9 @@
     background-color: #008bbc;
    }
 }
+.user-notification {
+    text-align: right;
+}
     
 @media (min-width:321px) and (max-width:768px) {
     .user-home {
@@ -259,7 +269,7 @@
         align-items: flex-start;
         padding: 5px;
         height: auto;
-        width: auto;
+        width: 300px;
         padding-right: 20px;
         .project-offer-title {
             width: auto;
@@ -280,7 +290,7 @@
         // display: none
     }
     .company-info {
-         width: auto !important; 
+         width: 300px; 
          height: auto !important;
          padding-bottom: 20px !important;
     }

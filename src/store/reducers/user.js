@@ -27,7 +27,7 @@ const user = (state = initialUser, action) => {
       baseRequest.setLocalStorage({
         ...action.payload,
         isAdmin: false,
-        loggedIn: true,
+        loggedIn: false,
         role: 'company'
       });
       return {
@@ -61,6 +61,44 @@ const user = (state = initialUser, action) => {
         ...action.payload,
         isAdmin: false,
         loggedIn: true
+      };
+    case 'USER_RESET_PASSWORD_SUCCESS':
+      return {
+        ...action.payload
+      };
+    case 'USER_RESET_PASSWORD_ERROR':
+      return {
+        ...action.payload
+      };
+    case 'COMPANY_RESET_PASSWORD_SUCCESS':
+      return {
+        ...action.payload
+      };
+    case 'COMPANY_RESET_PASSWORD_ERROR':
+      return {
+        ...action.payload
+      };
+    case 'USER_LOGIN_ERROR':
+      return {
+        // ...state,
+        error: action.payload
+      };
+    case 'COMPANY_LOGIN_SUCCESS':
+      baseRequest.setLocalStorage({
+        token: action.payload.token,
+        isAdmin: false,
+        role: 'company',
+        loggedIn: true
+      });
+      return {
+        ...action.payload,
+        isAdmin: false,
+        loggedIn: true
+      };
+    case 'COMPANY_LOGIN_ERROR':
+      return {
+        // ...state,
+        error: action.payload
       };
     case 'LOGOUT_SUCCESS':
       baseRequest.setLocalStorage({
