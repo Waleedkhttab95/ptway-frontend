@@ -168,7 +168,7 @@ class JobForm extends React.Component {
               </div>
             </div>
             <label>رقم الجوال:</label>
-            <Input onChange={this.handleChange} name="mobile" />
+            <Input maxlength="10" onChange={this.handleChange} name="mobile" />
             {error && !this.state.mobile && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}

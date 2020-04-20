@@ -76,6 +76,8 @@ class UpdateProfile extends React.Component {
       education_degree: info.education_degree ? info.education_degree : '',
       study_degree: info.study_degree ? info.study_degree : '',
       language: info.languages ? info.languages : [],
+      hoppies:
+        info.hoppies && info.hoppies[0] !== 'undefined' ? info.hoppies : [],
       personal_web: info.personal_web ? info.personal_web : '',
       facebook: info.facebook ? info.facebook : '',
       linkedin: info.linkedin ? info.linkedin : '',
@@ -272,6 +274,29 @@ class UpdateProfile extends React.Component {
 
     const status = ['متفرغ', 'موظف', 'طالب'];
     const availabilityStatus = ['صباحي', 'مسائي'];
+    let skillsObj;
+    let pSkillsObj;
+    const updatedSkills = _.isArray(skills)
+      ? skills.map(elm => {
+          console.log('hell', elm);
+
+          return (skillsObj = {
+            ...skillsObj,
+            [elm._id]: elm.skillName
+          });
+        })
+      : '';
+    const updatedPSkills = _.isArray(pSkills)
+      ? pSkills.map(elm => {
+
+          return (pSkillsObj = {
+            ...pSkillsObj,
+            [elm._id]: elm.skillName
+          });
+        })
+      : '';
+
+
     return (
       <div className="user-container">
         <Header />
@@ -393,16 +418,12 @@ class UpdateProfile extends React.Component {
                           placeholder={userInfo ? userInfo.social_Status : ''}
                           onChange={this.handleChange}
                         >
-                          <Option
-                            name="social_Status"
-                            value="single"
-                            key="أعزب"
-                          >
+                          <Option name="social_Status" value="أعزب" key="أعزب">
                             أعزب{' '}
                           </Option>
                           <Option
                             name="social_Status"
-                            value="married"
+                            value="متزوج"
                             key="متزوج"
                           >
                             متزوج{' '}
@@ -414,18 +435,23 @@ class UpdateProfile extends React.Component {
                           defaultValue={userInfo ? userInfo.languages : []}
                           onChange={this.handleLanguageChange}
                           mode="multiple"
+                          autoFocus={true}
                         >
-                          <Option name="language" value="arabic" key="العربية">
+                          <Option name="language" value="العربية" key="العربية">
                             العربية{' '}
                           </Option>
                           <Option
                             name="language"
-                            value="english"
+                            value="الانجليزية"
                             key="الانجليزية"
                           >
                             الانجليزية{' '}
                           </Option>
-                          <Option name="language" value="france" key="الفرنسية">
+                          <Option
+                            name="language"
+                            value="الفرنسية"
+                            key="الفرنسية"
+                          >
                             الفرنسية{' '}
                           </Option>
                           <Option
@@ -729,17 +755,13 @@ class UpdateProfile extends React.Component {
                           className="input-field"
                           mode="multiple"
                           onChange={this.handlePersonalSkillsChange}
-                          // placeholder={
-                          //   _.isArray(pSkills)
-                          //     ? pSkills.map(elm =>
-                          //         userInfo
-                          //           ? userInfo.personal_Skills.map(elm2 =>
-                          //               elm._id === elm2 ? elm.skillName + ' ' : ''
-                          //             )
-                          //           : ''
-                          //       )
-                          //     : ''
-                          // }
+                          defaultValue={
+                            userInfo
+                              ? userInfo.personal_Skills.map(elm => {
+                                  return pSkillsObj[elm];
+                                })
+                              : ''
+                          }
                         >
                           {_.isArray(pSkills)
                             ? pSkills.map(elm => {
@@ -772,7 +794,13 @@ class UpdateProfile extends React.Component {
                           //       )
                           //     : ''
                           // }
-                          // defaultValue={userInfo ? userInfo.skills : []}
+                          defaultValue={
+                            userInfo
+                              ? userInfo.skills.map(elm => {
+                                  return skillsObj[elm];
+                                })
+                              : ''
+                          }
                           onChange={this.handleSkillsChange}
                         >
                           {_.isArray(skills)
@@ -798,14 +826,11 @@ class UpdateProfile extends React.Component {
                           className="input-field"
                           mode="multiple"
                           onChange={this.handleHoppiesChange}
-                          defaultValue={userInfo ? userInfo.hoppies : []}
-                          // placeholder={skills.map(elm =>
-                          //   userInfo
-                          //     ? userInfo.skills.map(elm2 =>
-                          //         elm._id === elm2 ? elm.skillName + ' ' : ''
-                          //       )
-                          //     : ''
-                          // )}
+                          defaultValue={
+                            userInfo && userInfo.hoppies[0] !== 'undefined'
+                              ? userInfo.hoppies
+                              : []
+                          }
                         >
                           {_.isArray(hoppies)
                             ? hoppies.map(elm => {
