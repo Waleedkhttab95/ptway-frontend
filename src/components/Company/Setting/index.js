@@ -40,7 +40,7 @@ class CompanySetting extends React.Component {
         <Header />
         <div className="company-container">
           <div className="company-setting">
-            <Col md={6}>
+            <Col md={6} sm={24} xs={24}>
               <CompanyInfo {...company} />
               <button
                 className="update-profile-btn"
@@ -51,7 +51,7 @@ class CompanySetting extends React.Component {
                 تعديل المعلومات
               </button>
             </Col>
-            <Col md={18} className="right-side">
+            <Col md={18} sm={24} xs={24} className="right-side">
               <Tabs type="card" className="settings-tab">
                 <TabPane tab="بروفايل الشركة" key="1">
                   <br />
@@ -67,7 +67,6 @@ class CompanySetting extends React.Component {
                   />
                 </TabPane>
               </Tabs>
-              ,
             </Col>
           </div>
         </div>

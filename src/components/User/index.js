@@ -153,20 +153,28 @@ class User extends React.Component {
                   </div>
                   <span className="u-p-title">نسبة اكتمال الحساب</span>
                 </div>
-                <button
-                  className="update-profile-btn"
-                  onClick={() =>
-                    this.props.history.push('/user/profile/update')
-                  }
-                >
-                  تعديل معلومات الحساب
-                </button>
+                <div>
+                  <button
+                    className="update-profile-btn"
+                    onClick={() =>
+                      this.props.history.push('/user/profile/update')
+                    }
+                  >
+                    تعديل معلومات الحساب
+                  </button>
+                </div>
               </Col>
               <Col md={1}></Col>
               <Col md={16} sm={24} xs={24} className="left-section">
                 <Row className="user-progress">
-                  <Col md={1}></Col>
-                  <Col md={7} sm={7} className="user-profile-seen">
+                  <Col
+                    md={7}
+                    sm={7}
+                    xs={7}
+                    lg={7}
+                    xl={8}
+                    className="user-profile-seen"
+                  >
                     <div>عدد مشاهدات الحساب</div>
                     <div className="user-stc-number">{profile_views}</div>
                   </Col>
@@ -178,7 +186,6 @@ class User extends React.Component {
                     <div>عدد ساعات العمل</div>
                     <div className="user-stc-number">{work_Hours}</div>
                   </Col>
-                  <Col md={1}></Col>
                 </Row>
 
                 <div className="skills-general-info">
@@ -192,7 +199,6 @@ class User extends React.Component {
                     </div>
                     <div className="p-subject">{about}</div>
                   </div>
-                  <br />
                   <br />
                   <div className="education-section">
                     <div className="h-title e-title">الدراسات والشهادات</div>
@@ -218,7 +224,6 @@ class User extends React.Component {
                     </div>
                   </div>
                   <br />
-                  <br />
                   <div className="general-section">
                     <div className="h-title g-title">
                       <i className="fa fa-language" aria-hidden="true"></i>
@@ -236,7 +241,6 @@ class User extends React.Component {
                         : ''}
                     </div>
                   </div>
-                  <br />
                   <br />
                   <div className="user-general-skills">
                     <div style={{ width: '100%' }}>

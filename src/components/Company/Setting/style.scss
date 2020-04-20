@@ -217,13 +217,12 @@
     }
 }
 
+
 @media (max-width:320px) {
     .company-container {
         padding: 30px 20px; 
-        overflow-y: scroll;
-         height: 100vh;
         .company-setting {
-           display: block; 
+           flex-direction: column;
            .right-side {
             padding-right: 0px;
           margin-right: 0px;
@@ -291,14 +290,24 @@
 .new-sub-form {
     display: inherit;
 }
+.settings-tab >div{   
+    >div >div >div >div >div >div {
+        font-size: 15px !important;
+
+    }
+}
+.account-setting .account-info > input {
+    width: 250px;
+}
+.extra-info {
+    padding-right: 10px;
+}
 
 @media (min-width:321px) and (max-width:678px) {
     .company-container {
         padding: 30px 20px; 
-        overflow-y: scroll;
-         height: 100vh;
         .company-setting {
-            display: block;
+        flex-direction: column;
             .right-side {
                 padding-right: 0px;
               margin-right: 0px;
@@ -360,10 +369,10 @@
     .new-sub-form {
         display: inherit;
     }
-}
-.account-setting .account-info > input {
-    width: 250px;
-}
-.extra-info {
-    padding-right: 10px;
+    .settings-tab >div{   
+        >div >div >div >div >div >div {
+            font-size: 15px !important;
+    
+        }
+    }
 }
