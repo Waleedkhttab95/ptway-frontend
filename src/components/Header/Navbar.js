@@ -70,8 +70,8 @@ class Navbar extends React.Component {
           <div></div>
           <div className="menu">
             <Link to="/home/about-us"> من نحن</Link>
-            <Link to="/user/login">الأفراد</Link>
-            <Link to="/company/login">الشركات</Link>
+            <Link to="/user/signup">الأفراد</Link>
+            <Link to="/company/signup">الشركات</Link>
           </div>
           <div></div>
           <div className="options">

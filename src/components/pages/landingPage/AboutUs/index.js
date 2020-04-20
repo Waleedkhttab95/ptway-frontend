@@ -35,12 +35,11 @@ const AboutUs = () => {
               <Col md={8} lg={8} xs={12} sm={12}>
                 <div className="about-elm col-left-side">
                   <div className="elm-img">
-                    <img src={ab5} alt="" />
+                    <img src={ab2} alt="" />
                   </div>
                   <div className="elm-desc-second-col">
-                    <h3>المهارات</h3>
-                    <p>جميع المهارات العلمية والعملية تجدها هنا</p>
-
+                    <h3>التخصصات</h3>
+                    <p>نتميز بتوفير أكثر من 160 تخصص</p>
                   </div>
                 </div>
                 <div className="about-elm col-left-side">
@@ -61,26 +60,22 @@ const AboutUs = () => {
                   </div>
                   <div className="elm-desc-second-col">
                     <h3>المناطق</h3>
-                    <p>ptaway نغطي 13 منطقة ادارية</p>
-
-            
+                    <p>أبطال PTway من جميع مناطق المملكة</p>
                   </div>
                 </div>
               </Col>
               <Col md={8} lg={8} xs={12} sm={12}>
                 <div className="about-elm ">
                   <div className="elm-desc-first-col">
-                    <h3>التخصصات</h3>
-                    <p>نتميز بتوفير أكثر من 160 تخصص</p>
+                    <h3>اللغات</h3>
+                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
                   </div>
                   <div className="elm-img">
-                    <img src={ab6} alt="" />
-
+                    <img src={ab1} alt="" />
                   </div>
                 </div>
                 <div className="about-elm col-right-side">
                   <div className="elm-desc-first-col">
-
                     <h3>المهارات</h3>
                     <p>جميع المهارات العلمية والعملية تجدها هنا</p>
                   </div>

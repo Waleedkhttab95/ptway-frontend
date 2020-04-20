@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Input } from 'antd';
 import './style.scss';
+import {Link} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
 const { TextArea } = Input;
@@ -19,8 +20,11 @@ const ContactUs = props => {
       </form>
       <h3> ابدأ الآن</h3>
       <div className="btns">
-        <button>سجل شركتك الأن</button>
-        <button>سجل كباحث عن عمل</button>
+      <Link to="/company/login"><button>سجل شركتك الأن</button></Link>
+
+      <Link to="/user/login"><button>سجل كباحث عن عمل</button></Link>
+
+        
       </div>
     </Row>
   );
