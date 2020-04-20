@@ -297,17 +297,6 @@ class UpdateProfile extends React.Component {
           });
         })
       : '';
-    console.log(
-      '3333333',
-      userInfo
-        ? userInfo.skills.map(elm => {
-            console.log('xxx', skillsObj[elm]);
-
-            return skillsObj[elm];
-          })
-        : ''
-    );
-    console.log('skillsObj', skillsObj);
 
     return (
       <div className="user-container">
@@ -444,7 +433,11 @@ class UpdateProfile extends React.Component {
                         <h5 className="title-field">اللغات</h5>
                         <Select
                           className="input-field"
-                          defaultValue={userInfo ? userInfo.languages : []}
+                          defaultValue={
+                            userInfo && userInfo.languages !== null
+                              ? userInfo.languages
+                              : []
+                          }
                           onChange={this.handleLanguageChange}
                           mode="multiple"
                           autoFocus={true}
@@ -768,11 +761,13 @@ class UpdateProfile extends React.Component {
                           mode="multiple"
                           onChange={this.handlePersonalSkillsChange}
                           defaultValue={
-                            userInfo
+                            userInfo &&
+                            userInfo.personal_Skills !== null &&
+                            _.isArray(userInfo.personal_Skills)
                               ? userInfo.personal_Skills.map(elm => {
                                   return pSkillsObj[elm];
                                 })
-                              : ''
+                              : []
                           }
                         >
                           {_.isArray(pSkills)
@@ -807,11 +802,13 @@ class UpdateProfile extends React.Component {
                           //     : ''
                           // }
                           defaultValue={
-                            userInfo
+                            userInfo &&
+                            userInfo.skills !== null &&
+                            _.isArray(userInfo.skills)
                               ? userInfo.skills.map(elm => {
                                   return skillsObj[elm];
                                 })
-                              : ''
+                              : []
                           }
                           onChange={this.handleSkillsChange}
                         >
@@ -839,7 +836,7 @@ class UpdateProfile extends React.Component {
                           mode="multiple"
                           onChange={this.handleHoppiesChange}
                           defaultValue={
-                            userInfo && userInfo.hoppies[0] !== 'undefined'
+                            userInfo && _.isArray(userInfo.hoppies)
                               ? userInfo.hoppies
                               : []
                           }
