@@ -20,7 +20,6 @@ class UserResetPassword extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         const { password } = values;
         const { id } = this.state;
         await setNewPassword({

@@ -60,7 +60,6 @@ class Applicants extends React.Component {
 
   render() {
     const { candidates, loading, moreAds, count } = this.state;
-    console.log('candidates', candidates);
 
     return (
       <React.Fragment>

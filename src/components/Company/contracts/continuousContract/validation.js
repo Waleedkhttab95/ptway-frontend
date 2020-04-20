@@ -13,8 +13,7 @@ const validationSchema = yup.object().shape({
   salary: yup.number().min(1500, 'الحد الشهري الأدنى هو 1500'),
   jobDescription: yup.string().required('هذا الحقل مطلوب'),
   jobTitle: yup.string().required('هذا الحقل مطلوب'),
-  required_Number: yup.string().required('هذا الحقل مطلوب'),
-  jobDetails: yup.string().required('هذا الحقل مطلوب')
+  required_Number: yup.string().required('هذا الحقل مطلوب')
 });
 
 export default validationSchema;

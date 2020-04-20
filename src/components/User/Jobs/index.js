@@ -72,6 +72,7 @@ class Jobs extends React.Component {
   render() {
     const { offers, loading, totalPages, count } = this.state;
     return (
+      <React.Fragment>
       <div>
         <Header />
         <div className="user-container">
@@ -89,6 +90,7 @@ class Jobs extends React.Component {
                       key={elm.jobAd._id}
                     >
                       <div className="post-header">
+
                         {elm.imagePath ? (
                           <img src={elm.imagePath} alt="" />
                         ) : (
@@ -107,7 +109,7 @@ class Jobs extends React.Component {
                             {elm.jobAd.job_Name}
                           </span>
                           <span className="job-owner-location">
-                            في مقر الشركة
+                          {elm.compName}
                           </span>
                           {/* <span className="job-owner-mobile">
                               الرقم : 0002163477555
@@ -176,8 +178,9 @@ class Jobs extends React.Component {
             )}
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer className="footer"/>
+      </React.Fragment>
     );
   }
 }

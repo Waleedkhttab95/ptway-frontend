@@ -45,7 +45,6 @@ class UpdateProfile extends React.Component {
     const categories = await jobCategories();
 
     const info = userInfo.info;
-    console.log('infoinfo', info);
 
     if (info.public_Major && !info.spMajor) {
       const subMajor = await getSubMajor({ id: info.public_Major._id });
@@ -289,7 +288,6 @@ class UpdateProfile extends React.Component {
       : '';
     const updatedPSkills = _.isArray(pSkills)
       ? pSkills.map(elm => {
-          console.log('hell', elm);
 
           return (pSkillsObj = {
             ...pSkillsObj,
@@ -297,6 +295,7 @@ class UpdateProfile extends React.Component {
           });
         })
       : '';
+
 
     return (
       <div className="user-container">
@@ -344,7 +343,7 @@ class UpdateProfile extends React.Component {
                             أنثى{' '}
                           </Option>
                         </Select>
-                        <h5 className="title-field">الموبايل</h5>
+                        <h5 className="title-field">رقم الجوال</h5>
 
                         <Input
                           className="input-field"
@@ -495,7 +494,7 @@ class UpdateProfile extends React.Component {
                         </Select>
                       </div>
                     </div>
-                    <h5 className="title-field">الوصف الوظيفي</h5>
+                    <h5 className="title-field">النبذة</h5>
                     <TextArea
                       rows={4}
                       className="textarea-field"

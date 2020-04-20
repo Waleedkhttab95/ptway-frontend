@@ -71,7 +71,6 @@ class UpdateCompanyProfile extends React.Component {
   render() {
     const { countries, cities } = this.state;
     const { company } = this.props;
-    console.log('company', company);
     const { info } = company.companyInfo;
     return (
       <React.Fragment>

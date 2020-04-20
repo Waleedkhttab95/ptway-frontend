@@ -56,9 +56,7 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-    console.log('values', values);
 
-    console.log('this.state.contractId', this.state.contractId);
     const { project, gender, personalSkills, date, country, city } = this.state;
     if (!project || !personalSkills || !gender || !date || !country || !city) {
       this.setState({
@@ -96,7 +94,6 @@ class AddNewAd extends React.Component {
   render() {
     const { allProjects, countries, cities, pSkills, error } = this.state;
     const { loggedIn } = loadState();
-    console.log('------', this.state);
 
     return (
       <React.Fragment>
@@ -121,18 +118,7 @@ class AddNewAd extends React.Component {
                     ضمن مشروع
                   </p>
                   <div className="new-ad-details">
-                    <label>تفاصيل الإعلان الوظيفي</label>
-                    <TextArea
-                      row={6}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      name="jobDetails"
-                    />
-                    {errors.jobDetails && touched.jobDetails && (
-                      <span style={{ color: 'red', fontSize: '12px' }}>
-                        {error.jobDetails}
-                      </span>
-                    )}
+                  
                     <br />
                     <br />
                     <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
@@ -174,7 +160,9 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل</label>
+                        <label>
+                          عدد ساعات العمل
+                          (بحد اقصى 6 ساعات)</label>
                         <Input
                           onChange={handleChange}
                           name="workHours"
@@ -199,6 +187,9 @@ class AddNewAd extends React.Component {
                           <Option name="gender" value="female" key="أنثى">
                             أنثى{' '}
                           </Option>
+                          <Option name="gender" value="both" key="both">
+                            ذكر و انثى{' '}
+                          </Option>
                         </Select>
                         <br />
                         {error && !this.state.gender && (
@@ -207,7 +198,9 @@ class AddNewAd extends React.Component {
                           </span>
                         )}
                         <br />
-                        <label>الراتب</label>
+                        <label>
+                          الراتب
+                          (بحد ادنى 1500 ريال / شهري)</label>
                         <Input
                           onChange={handleChange}
                           name="salary"
@@ -225,7 +218,7 @@ class AddNewAd extends React.Component {
                         <br />
                       </div>
                       <div className="left-side">
-                        <label>عدد أيام العمل</label>
+                        <label>عدد أشهر العمل</label>
                         <Input
                           onChange={handleChange}
                           name="workDays"

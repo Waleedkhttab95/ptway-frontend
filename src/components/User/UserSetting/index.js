@@ -75,7 +75,10 @@ class Setting extends React.Component {
               <Col className="account-info">
                 <h4 className="heading">تعديل معلومات الحساب</h4>
                 <div className="account-fields">
-                  <span>كلمة المرور</span>
+                  {/* <span>البريد الالكتروني</span>
+                <Input className="account-input" type="email" /> */}
+                  <span> كلمة المرور السابقة</span>
+
                   <Input
                     className="account-input"
                     type="password"
@@ -87,7 +90,7 @@ class Setting extends React.Component {
                       ? userSetting.passwordError.response.data
                       : ''}
                   </span>
-                  <span>تأكيد كلمة المرور</span>
+                  <span>كلمة المرور الجديدة</span>
                   <Input
                     className="account-input"
                     type="password"

@@ -7,7 +7,6 @@ export const changePassword = params => {
   };
 };
 export const changeEmailNotification = params => {
-  console.log('params', params);
 
   return {
     type: 'UPDATE_EMAIL_NOTIFICATION',

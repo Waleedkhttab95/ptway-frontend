@@ -26,6 +26,9 @@ class User extends React.Component {
       city,
       mobile,
       about,
+      education_degree,
+      study_degree,
+      Education_level,
       public_Major,
       spicifc_Major,
       languages,
@@ -120,7 +123,10 @@ class User extends React.Component {
                   </div>
                 </div>
                 <div className="user-profile-complete">
-                  <div>
+                <div
+              dir="ltr"
+              className="pt-5 pb-3 text-center bg-white rounded-lg shadow-sm"
+            >
                     <CircularProgressbar
                       value={profileComplete}
                       text={profileComplete ? `${profileComplete}%` : ''}
@@ -140,10 +146,10 @@ class User extends React.Component {
                           transformOrigin: 'center center'
                         },
                         text: {
-                          fill: '#009ad0',
-                          fontSize: '16px',
-                          textAlign: 'center',
-                          marginLeft: '20px'
+                          fill: "#009ad0",
+                          fontSize: "16px",
+                          dominantBaseline: "middle",
+                          textAnchor: "middle"
                         },
                         background: {
                           fill: '#3e98c7'
@@ -200,29 +206,29 @@ class User extends React.Component {
                     <div className="p-subject">{about}</div>
                   </div>
                   <br />
-                  <div className="education-section">
-                    <div className="h-title e-title">الدراسات والشهادات</div>
-                    <div>
-                      <h3 className="sub-h-title">التخصص العام</h3>
-                      <p>
-                        {public_Major ? (
-                          public_Major
-                        ) : (
-                          <div className="spinner-lo  ading">
-                            <Spin size="large" />
-                          </div>
-                        )}{' '}
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="sub-h-title"> التخصص الدقيق</h3>
-                      <p>{spicifc_Major}</p>
-                    </div>
-                    <div>
-                      <h3 className="sub-h-title"> الجامعة</h3>
-                      <p>{universty}</p>
-                    </div>
-                  </div>
+
+                  <br />
+                  <div className="cv-education">
+                <h3 className="h-title heading">الدراسات والشهادات</h3>
+                <div>
+                  <p>
+                    الدراسة الحالية :
+                    {education_degree !== 'undefined'
+                      ? education_degree
+                      : ''}
+                  </p>
+                  <p>الشهادة الجامعية :{study_degree}</p>
+                </div>
+                <div>
+                  <p>المستوى التعليمي : {Education_level} </p>
+                  <p> الجامعة :{universty}</p>
+                </div>
+                <div>
+                  <p>التخصص العام : {public_Major} </p>
+                  <p>التخصص الدقيق : {spicifc_Major} </p>
+                </div>
+              </div>
+
                   <br />
                   <div className="general-section">
                     <div className="h-title g-title">

@@ -49,7 +49,6 @@ class Job extends React.Component {
 
   render() {
     const { offer } = this.props;
-    console.log('offers', offer);
     const { Country, City, Contract, apply, job } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     return (
@@ -93,10 +92,22 @@ class Job extends React.Component {
                 <Spin size="large" />
               </div>
             )}
+
+            {/* <span className="job-owner-name">{compnayName}</span>
+            <div className="job-owner-info">
+              <p>
+                <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {info}
+              </p>
+              <p>
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
+                {Country}, {City}, {address}
+              </p>
+            </div> */}
+
           </Col>
           <Col md={16} xs={24} sm={24} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
-
             <div>
               <div className="job-heading">
                 <i className="fa fa-suitcase" aria-hidden="true"></i>
@@ -143,6 +154,7 @@ class Job extends React.Component {
                   <div className="job-sub-heading">ساعات العمل اليومية</div>
                   <p className="main-info-desc">{job ? job.work_hours : ''}</p>
                   <div className="job-sub-heading">تاريخ بدء العمل</div>
+
                   <p className="main-info-desc">
                     {job ? moment(job.startDate).format('ll') : ''}
                   </p>

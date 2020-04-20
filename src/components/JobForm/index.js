@@ -20,10 +20,6 @@ class JobForm extends React.Component {
 
   handleChange = e => {
     const { value, name } = e.target;
-    console.log('------', /^\d{10}$/.test(this.state.mobile));
-    // console.log('-+++--', this.state.mobile.value);
-
-    console.log('state', this.state);
 
     this.setState({
       [name]: value
@@ -172,7 +168,7 @@ class JobForm extends React.Component {
               </div>
             </div>
             <label>رقم الجوال:</label>
-            <Input onChange={this.handleChange} name="mobile" />
+            <Input maxlength="10" onChange={this.handleChange} name="mobile" />
             {error && !this.state.mobile && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
@@ -360,8 +356,10 @@ class JobForm extends React.Component {
               في حال لم تكن مسجل معنا، سجل الآن!
             </h3>
             <br />
-            <button onClick={() => this.props.history.push('/user/signup')}>
-              سجل في PTway
+            <button>
+              <a href='https://www.ptway.net/user/login'>
+             <span className="coloor">سجل في PTway</span> 
+              </a>
             </button>
           </div>
         </Modal>

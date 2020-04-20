@@ -110,7 +110,7 @@ const Sectors = () => {
           <Row>
             <Col md={24} className="sector-elm">
               <Collapse bordered={false} className="sector-collapse">
-                <Panel header="الشركات" key={1} className="pnl-content">
+                <Panel header="قطاع الأعمال" key={1} className="pnl-content">
                   <div className="panel-desc">
                     <h4>مبرمج</h4>
                     <h4>كول سنتر</h4>
