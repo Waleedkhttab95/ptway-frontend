@@ -189,7 +189,7 @@ class AddNewAd extends React.Component {
                           <Option name="gender" value="female" key="أنثى">
                             أنثى{' '}
                           </Option>
-                          <Option name="gender" value="both" key="ذكروانثى">
+                          <Option name="gender" value="both" key="both">
                             ذكر و انثى{' '}
                           </Option>
                         </Select>
