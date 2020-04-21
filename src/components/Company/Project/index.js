@@ -81,23 +81,26 @@ class Project extends React.Component {
                     <span className="project-date-mob">التاريخ : </span>
                     {moment(elm.createDate).format('ll')}
                   </h4>
-                  <button
-                    className="applicants-btn"
-                    onClick={() =>
-                      history.push(`/applicants/job/id=${elm._id}`)
-                    }
-                  >
-                    عرض
-                  </button>
-                  <button
-                    className="accepted-btn"
-                    onClick={() =>
-                      history.push(`/accepted/applicants/job/id=${elm._id}`)
-                    }
-                  >
-                    عرض
-                  </button>
-                  <div></div>
+                  <div>
+                    <button
+                      className="applicants-btn"
+                      onClick={() =>
+                        history.push(`/applicants/job/id=${elm._id}`)
+                      }
+                    >
+                      عرض
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="accepted-btn"
+                      onClick={() =>
+                        history.push(`/accepted/applicants/job/id=${elm._id}`)
+                      }
+                    >
+                      عرض
+                    </button>
+                  </div>
                   <div className="btns-mob">
                     <button
                       className="applicants-btn-mob"

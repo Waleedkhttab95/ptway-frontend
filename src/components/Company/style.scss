@@ -1,8 +1,13 @@
 .company-container {
     min-height: 100vh;
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f3f3f3;
+    padding: 40px 0;
 }
 .user-home{
-    padding-bottom: 80px;
+    // padding-bottom: 80px;
     .user-profile {
         display: flex;
     }
@@ -10,7 +15,7 @@
 .company-progress{
     display: flex;
     margin-top: 25px;
-    justify-content: center;
+    justify-content: space-around;
     .opened-projects{
         display: flex;
         justify-content: space-around;
@@ -20,7 +25,6 @@
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #008bbc;
-        margin-left: 20px;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -39,7 +43,6 @@
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #009ad0;
-        margin-left: 20px;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -58,7 +61,6 @@
         border-radius: 7px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #34add9;
-        margin-left: 20px;
         font-size: 16px;
         font-weight: bold;
         font-stretch: normal;
@@ -121,28 +123,29 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    // width: 863px;
     height: 38px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
+    >div {
+        width: 100%;
+        text-align: center;
+    }
 }
 .project-offer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    // width: 863px;
     height: 87px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     margin-top: 10px;
-    .project-offer-title {
-        width: 125px;
+    >div {
+        width: 100%;
+        text-align: center;
         display: flex;
         justify-content: center;
-        align-items: center;
-        text-align: center;
     }
 }
 .more-projects-offers-btn {
@@ -269,7 +272,6 @@
         align-items: flex-start;
         padding: 5px;
         height: auto;
-        width: 300px;
         padding-right: 20px;
         .project-offer-title {
             width: auto;
@@ -290,7 +292,6 @@
         // display: none
     }
     .company-info {
-         width: 300px; 
          height: auto !important;
          padding-bottom: 20px !important;
     }

@@ -1,21 +1,21 @@
-.company-container {
-    // height: 100vh;
-}
-.company-projects {
-    margin: 0px 135px;
-}
+
 .projects-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    // width: 1170px;
     height: 38px;
     border-radius: 5px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     margin-top: 30px;
     margin-bottom: 10px;
-    padding-right: 50px;
+    >div {
+        width:100%;
+        text-align: center;
+    }
+    >span {
+        width: 35%;
+    }
     >h2 {
   font-size: 14px;
   font-weight: 500;
@@ -65,9 +65,15 @@
     // max-width: 740px;
     >div {
     display: flex;
-        justify-content: space-around;
+        justify-content: center;
         justify-items: center;
-        width: 740px; 
+        width: 100%; 
+    }
+    >span {
+        width: 30%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
     }
 }
 .offers-num {
@@ -82,10 +88,12 @@ background-color: #f3f3f3;
 .options-menu {
     font-weight: bold;
     font-size: 16px;
+    cursor: pointer;
 }
 .project-options{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    width: 180px;
     >i {
         margin-left: 5px;
     }
@@ -95,6 +103,7 @@ background-color: #f3f3f3;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
     > h3 {
         font-size: 20px;
         font-weight: bold;
@@ -182,7 +191,9 @@ background-color: #f3f3f3;
 .projects-collapse .spinner-loading {
     background: transparent !important;
 }
-
+.dropdown-custom-style {
+    display: none
+}
 @media (max-width:320px) {
     .company-projects {
         margin: 0px;

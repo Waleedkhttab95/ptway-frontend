@@ -1,7 +1,4 @@
-.company-container {
-    padding: 60px 135px;
-    // height: 100vh;
-}
+
 .applicant-header {
     height: 38px;
     border-radius: 5px;
@@ -19,8 +16,9 @@
         font-style: normal;
         line-height: normal;
         letter-spacing: normal;
-        text-align: right;
+        text-align: center;
         color: #3b3b3b;
+        width: 100%;
     }
 }
 .applicant {
@@ -39,8 +37,13 @@
         font-style: normal;
         line-height: 1.71;
         letter-spacing: normal;
-        text-align: right;
+        text-align: center;
         color: #000000;
+        width: 100%;
+    }
+     div {
+        width: 100%;
+        text-align: center;
     }
 }
 .display-cv, .accept-user {
@@ -58,6 +61,9 @@
     text-align: center;
     color: #626262;
   } 
+  .display-cv{
+    padding: 6px 46px;
+  }
 .display-cv:hover, .display-cv:focus, .accept-user:hover, .accept-user:focus {
   width: 107px;
   height: 32px;
@@ -138,21 +144,11 @@
     .jobs-search-icon {
         right: 45px;
     }
-    .jobs-search {
-        margin-right: 0px;
-        width: 280px;
-    }
   } 
-  .jobs-actions .action-left-side .filter-options {
-    width: 200px;
-    margin-left: 0px
-}  
+
 }
 
 @media (min-width:321px) and (max-width: 768px) {
-    .company-container {
-        overflow-y: scroll;
-    }
     .applicant-header {
         display: none;
     }
@@ -209,13 +205,5 @@
         .jobs-search-icon {
             right: 45px;
         }
-        .jobs-search {
-            margin-right: 0px;
-            width: 300px;
-        }
-    } 
-    .jobs-actions .action-left-side .filter-options {
-        margin-left: 0px;
-        width: 250px;
     } 
 }
