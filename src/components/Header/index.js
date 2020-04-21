@@ -15,6 +15,8 @@ import AddNewProjectModal from './AddNewProjectModal';
 import AddNewAdModal from './AddNewAdModal';
 import Navbar from './Navbar';
 import LoginNavbar from './LoginNavbar';
+import ptwayLogo from '../../images/PTway_Logo.svg';
+
 import {
   addNewProject,
   allCotracts
@@ -156,7 +158,7 @@ class Header extends React.Component {
                 >
                   تنبيهات
                 </Button> */}
-                <div onBlur={this.close} tabIndex="0">
+                {/* <div onBlur={this.close} tabIndex="0">
                   {this.state.notification && (
                     <div className="notifications-dropdown">
                       <h5>اليوم</h5>
@@ -191,6 +193,7 @@ class Header extends React.Component {
                     </div>
                   )}
                 </div>
+                */}
                 <Button
                   className="user-header-btn"
                   onClick={async () => {
@@ -202,55 +205,63 @@ class Header extends React.Component {
                 </Button>
               </div>
             </Row>
-            <Row className="menu-mobile">
-              <div className="user-drawer-mobile">
-                <i
-                  className="fa fa-bars"
-                  aria-hidden="true"
-                  type="primary"
-                  onClick={this.showUserDrawer}
-                ></i>
-                <Drawer
-                  title={
-                    <div className="drawer-title-con">
-                      <i
-                        className="fa fa-times drawer-close"
-                        aria-hidden="true"
-                        onClick={this.onClose}
-                      ></i>
-                      <img src={userLogo} alt="logo" style={{ width: '30%' }} />
-                    </div>
-                  }
-                  placement="right"
-                  closable={false}
-                  onClose={this.onClose}
-                  visible={this.state.userVisible}
-                >
-                  <div className="navbar-user-mobile">
-                    <Link to="/user/home">سيرتي الذاتية </Link>
-                    <Link to="/user/jobs">فرص العمل</Link>
-
-                    <Link to="/user/account/setting">حسابي</Link>
-                    {/* <Link to="/user/notifications">تنبيهات</Link> */}
-                    <div onBlur={this.close} tabIndex="0"></div>
-                    <a
-                      onClick={async () => {
-                        await this.props.logout();
-                        history.push('/');
-                      }}
-                    >
-                      تسجيل الخروج
-                    </a>
+            <Row className="drawer-mobile">
+              <i
+                className="fa fa-bars"
+                aria-hidden="true"
+                type="primary"
+                onClick={this.showUserDrawer}
+                style={{ color: '#059ad0' }}
+              ></i>
+              <img
+                src={ptwayLogo}
+                alt="logo"
+                style={{ width: '30%' }}
+                onClick={() => history.push('/')}
+              />
+              <Drawer
+                title={
+                  <div className="drawer-title-con">
+                    <i
+                      className="fa fa-times drawer-close"
+                      aria-hidden="true"
+                      onClick={this.onClose}
+                    ></i>
+                    <img src={userLogo} alt="logo" style={{ width: '45%' }} />
                   </div>
-                </Drawer>
-              </div>
-              <div>
-                <img
-                  src={userLogo}
-                  alt="logo"
-                  style={{ width: '20%', float: 'left' }}
-                />
-              </div>
+                }
+                placement="right"
+                closable={false}
+                onClose={this.onClose}
+                visible={this.state.userVisible}
+              >
+                <div className="navbar-user-mobile">
+                  <Link to="/user/home">سيرتي الذاتية </Link>
+                  <Link to="/user/jobs" style={{ position: 'relative' }}>
+                    <span
+                      className="offers-notification"
+                      style={{ right: '107px', top: '-4px', bottom: '0' }}
+                    >
+                      {' '}
+                      {unreadOffers.count}
+                    </span>
+                    <i className="fa fa-bell" aria-hidden="true"></i>
+                    فرص العمل
+                  </Link>
+
+                  <Link to="/user/account/setting">حسابي</Link>
+                  {/* <Link to="/user/notifications">تنبيهات</Link> */}
+                  <div onBlur={this.close} tabIndex="0"></div>
+                  <a
+                    onClick={async () => {
+                      await this.props.logout();
+                      history.push('/');
+                    }}
+                  >
+                    تسجيل الخروج
+                  </a>
+                </div>
+              </Drawer>
             </Row>
           </React.Fragment>
         ) : loggedIn && role === 'company' ? (
@@ -295,7 +306,7 @@ class Header extends React.Component {
                   }
                 >
                   <i className="fa fa-plus plus-icon" aria-hidden="true"></i>
-               أضف وظيفة
+                  أضف وظيفة
                 </Button>
                 {this.state.addProject && (
                   <div className="add-project-popup">
@@ -476,59 +487,53 @@ class Header extends React.Component {
                 </div>
               </Drawer>
             </div>
-            <div className="menu-mobile">
-              <div className="user-drawer-mobile">
-                <i
-                  className="fa fa-bars"
-                  aria-hidden="true"
-                  type="primary"
-                  onClick={this.showUserDrawer}
-                ></i>
-                <Drawer
-                  title={
-                    <div className="drawer-title-con">
-                      <i
-                        className="fa fa-times drawer-close"
-                        aria-hidden="true"
-                        onClick={this.onClose}
-                      ></i>
-                      <img src={userLogo} alt="logo" style={{ width: '30%' }} />
-                    </div>
-                  }
-                  placement="right"
-                  closable={false}
-                  onClose={this.onClose}
-                  visible={this.state.userVisible}
-                >
-                  <div className="navbar-user-mobile">
-                    <Link to="/company/home">الرئيسية </Link>
-                    <Link to="/company/projects">
-                      المشاريع والعروض الوظيفية
-                    </Link>
-                    {/* <Link to="/company/applicants">المتقدمين</Link> */}
-
-                    <Link to="/company/setting">حسابي</Link>
-                    {/* <Link to="/user/notifications">تنبيهات</Link> */}
-                    <div onBlur={this.close} tabIndex="0"></div>
-                    <a
-                      onClick={async () => {
-                        await this.props.logout();
-                        history.push('/');
-                      }}
-                    >
-                      تسجيل الخروج
-                    </a>
+            <Row className="drawer-mobile">
+              <i
+                className="fa fa-bars"
+                aria-hidden="true"
+                type="primary"
+                onClick={this.showUserDrawer}
+                style={{ color: '#059ad0' }}
+              ></i>
+              <img
+                src={ptwayLogo}
+                alt="logo"
+                style={{ width: '30%' }}
+                onClick={() => history.push('/')}
+              />
+              <Drawer
+                title={
+                  <div className="drawer-title-con">
+                    <i
+                      className="fa fa-times drawer-close"
+                      aria-hidden="true"
+                      onClick={this.onClose}
+                    ></i>
+                    <img src={userLogo} alt="logo" style={{ width: '45%' }} />
                   </div>
-                </Drawer>
-              </div>
-              <div>
-                <img
-                  src={userLogo}
-                  alt="logo"
-                  style={{ width: '20%', float: 'left' }}
-                />
-              </div>
-            </div>
+                }
+                placement="right"
+                closable={false}
+                onClose={this.onClose}
+                visible={this.state.userVisible}
+              >
+                <div className="navbar-user-mobile">
+                  <Link to="/company/home">الرئيسية </Link>
+                  <Link to="/company/projects">المشاريع والعروض الوظيفية</Link>
+                  <Link to="/company/setting">حسابي</Link>
+                  {/* <Link to="/user/notifications">تنبيهات</Link> */}
+                  <div onBlur={this.close} tabIndex="0"></div>
+                  <a
+                    onClick={async () => {
+                      await this.props.logout();
+                      history.push('/');
+                    }}
+                  >
+                    تسجيل الخروج
+                  </a>
+                </div>
+              </Drawer>
+            </Row>
           </React.Fragment>
         ) : window.location.href.includes('/signup') ||
           window.location.href.includes('/login') ? (

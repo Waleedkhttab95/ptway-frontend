@@ -41,9 +41,9 @@ const FilterAndSearch = ({ handleSearch, handleFilter, handleChange }) => {
               })
             : ''}
         </Select>
-        <button className="filter-btn" onClick={handleFilter}>
+        {/* <button className="filter-btn" onClick={handleFilter}>
           فلترة
-        </button>
+        </button> */}
       </div>
     </div>
   );

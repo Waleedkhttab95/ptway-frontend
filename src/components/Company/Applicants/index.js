@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Header from '../../Header';
-import Filter from '../../Filter';
+import Filter from '../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
@@ -65,7 +65,7 @@ class Applicants extends React.Component {
       <React.Fragment>
         <Header />
         <div className="company-container">
-          <Filter />
+          {/* <Filter /> */}
           <div className="applicant-header">
             <h3>اسم المتقدم</h3>
             <h3>السيرة الذاتية</h3>

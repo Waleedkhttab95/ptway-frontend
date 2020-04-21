@@ -5,7 +5,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import { Row, Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
-import FilterAndSearch from '../../Filter';
+import FilterAndSearch from '../Filter';
 import SideMenu from './menu';
 import projects from '../../../services/company/projects';
 import AddNewProjectModal from '../../Header/AddNewProjectModal';
@@ -103,9 +103,27 @@ class Projects extends React.Component {
     });
   };
   handleSelectChange = (value, option) => {
-    this.setState({
-      [option.props.name]: option.key
-    });
+    this.setState(
+      {
+        [option.props.name]: option.key
+      },
+      () => {
+        const {
+          filterOption,
+          allProjects,
+          JobAdsCount,
+          totalPages
+        } = this.state;
+        const sortedProjects = allProjects.proj.sort((a, b) => {
+          if (filterOption === 'new')
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        this.setState({
+          allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+        });
+      }
+    );
   };
   updateProject = async id => {
     const { projectName, projectDescription } = this.state;
@@ -139,17 +157,17 @@ class Projects extends React.Component {
     );
   };
 
-  handleFilter = () => {
-    const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
-    const sortedProjects = allProjects.proj.sort((a, b) => {
-      if (filterOption === 'new')
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    });
-    this.setState({
-      allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
-    });
-  };
+  // handleFilter = () => {
+  //   const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
+  //   const sortedProjects = allProjects.proj.sort((a, b) => {
+  //     if (filterOption === 'new')
+  //       return new Date(b.date).getTime() - new Date(a.date).getTime();
+  //     return new Date(a.date).getTime() - new Date(b.date).getTime();
+  //   });
+  //   this.setState({
+  //     allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+  //   });
+  // };
 
   handleSearch = e => {
     const { projects, JobAdsCount, totalPages } = this.state;
@@ -205,7 +223,7 @@ class Projects extends React.Component {
               allProjects={allProjects}
               handleChange={this.handleSelectChange}
               handleSearch={this.handleSearch}
-              handleFilter={this.handleFilter}
+              // handleFilter={this.handleFilter}
             />
             <div className="projects-header">
               <h2>اسم المشروع</h2>

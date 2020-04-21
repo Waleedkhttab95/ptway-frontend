@@ -88,27 +88,3 @@
     left: 10px;
     top: 10px;
 }
-.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
-     padding: 0px;
-}
-.MuiAutocomplete-root.MuiAutocomplete-hasPopupIcon {
-    width: 270px;
-    height: 60px;
-}
-.MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"], .MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
-    padding-right: 39px;
-    height: 36px;
-    border-radius: 5px !important;
-}
-.MuiInputLabel-formControl {
-    bottom: 10px !important;
-    right: 60px !important;
-    top: 10px !important;
-    position: absolute;
-}
-.MuiFormLabel-root.Mui-focused {
-    color: transparent !important;
-}
-.MuiInputLabel-outlined {
-    transform: none !important;
-}

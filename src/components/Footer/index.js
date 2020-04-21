@@ -43,13 +43,12 @@ const Footer = () => {
         </div>
         <div className="footer-menu">
           <Link to="/home/about-us">من نحن </Link>
-          <Link to="/user/login">الأفراد</Link>
-          <Link to="/company/login">الشركات</Link>
+          <Link to="/user/signup">الأفراد</Link>
+          <Link to="/company/signup">الشركات</Link>
           <Link to="/home/common-questions">الأسئلة الشائعة</Link>
           <a>السياسة والخصوصية</a>
         </div>
         <div className="footer-logo">
-
           <img
             src={ptwayLogo}
             alt="logo"
@@ -58,15 +57,6 @@ const Footer = () => {
           />
         </div>
       </div>
-
-      {/* <div className="sub-footer">
-        <div>
-          <span>سياسة الخصوصية </span>
-          <span>شروط الاستخدام</span>
-        </div>
-        <div>جميع الحقوق محفوظة لموقع PTWay</div>
-        <div>By: 80.Design</div>
-      </div> */}
     </Row>
   );
 };

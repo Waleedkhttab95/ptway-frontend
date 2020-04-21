@@ -11,7 +11,7 @@
         display: flex;
         flex-direction: column;
         // width: 270px;
-        height: 413px;
+        height: 350px;
         border-radius: 5px;
         box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
         background-color: #ffffff;
@@ -20,6 +20,7 @@
         padding-top: 20px;
         float: right;
         padding: 0 10px;
+        padding-bottom: 60px;
 
         .post-header{
             display: flex;
@@ -82,13 +83,15 @@
             }
             .post-actions-btns {
                 display: flex;
+                width: 95%;
                 flex-direction: column;
+                margin-top: 50px;
                 position: absolute;
                 bottom: 40px;
             }
             .post-status {
                 margin-bottom: 10px;
-                width: 113px;
+                width: 88%;
                 height: 32px;
                 border-radius: 5px;
                 background-color: #ddeaff;
@@ -102,7 +105,7 @@
                 color: #7696f5;
             }
             .apply-job-btn{
-                width: 230px;
+                width: 88%;
                 height: 44px;
                 border-radius: 6px;
                 background-color: #3598d4;
@@ -120,7 +123,7 @@
 
             }
             .details-btn{
-                width: 230px;
+                width: 88%;
                 height: 44px;
                 border-radius: 6px;
                 background-color: #a0a0a0;
@@ -133,7 +136,7 @@
                 text-align: center;
                 color: #fff;
                 cursor: pointer;
-                margin-top: 50px;
+                // margin-top: 50px;
                
             }
         }
@@ -191,6 +194,7 @@
         // width: auto;
         margin-left: 0px;
         padding-right: 10px;
+        height: 373px;
     }
     .user-jobs {
         padding: 10px 15px;
@@ -201,14 +205,14 @@
     .jobs-details .job-post .post-body .post-actions-btns {
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 95%;
     }
-    .jobs-details .job-post .post-body .post-status {
-        width: 180px;
+    .jobs-details .job-post .post-body .details-btn {
+        margin-top: 0px;
     }
-    .jobs-details .job-post .post-body .apply-job-btn , .jobs-details .job-post .post-body .details-btn {
-        width: 180px;
-    }
+    // .jobs-details .job-post .post-body .apply-job-btn , .jobs-details .job-post .post-body .details-btn {
+    //     width: 180px;
+    // }
 }
 
 @media (min-width:321px) and (max-width:768px){
@@ -216,6 +220,7 @@
         // width: auto;
         margin-left: 0px;
         padding-right: 10px;
+        height: 373px;
     }
     .user-jobs {
         padding: 10px 15px;
@@ -226,10 +231,10 @@
     .jobs-details .job-post .post-body .post-actions-btns {
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 95%;
     }
-    .jobs-details .job-post .post-body .post-status {
-        width: 223px;
+    .jobs-details .job-post .post-body .details-btn {
+        margin-top: 0px;
     }
 
 }

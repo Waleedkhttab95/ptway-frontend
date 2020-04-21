@@ -288,14 +288,12 @@ class UpdateProfile extends React.Component {
       : '';
     const updatedPSkills = _.isArray(pSkills)
       ? pSkills.map(elm => {
-
           return (pSkillsObj = {
             ...pSkillsObj,
             [elm._id]: elm.skillName
           });
         })
       : '';
-
 
     return (
       <div className="user-container">
@@ -325,7 +323,7 @@ class UpdateProfile extends React.Component {
                         <h5 className="title-field">الاسم الثلاثي الكامل</h5>
                         <Input
                           className="input-field"
-                          placeholder={this.state.fullName}
+                          value={this.state.fullName}
                           onChange={this.handleInputChange}
                           name="fullName"
                         />
@@ -347,7 +345,7 @@ class UpdateProfile extends React.Component {
 
                         <Input
                           className="input-field"
-                          placeholder={userInfo ? userInfo.mobile : ''}
+                          value={this.state.mobile}
                           onChange={this.handleInputChange}
                           name="mobile"
                         />
@@ -498,7 +496,7 @@ class UpdateProfile extends React.Component {
                     <TextArea
                       rows={4}
                       className="textarea-field"
-                      placeholder={userInfo ? userInfo.about : ''}
+                      value={this.state.about}
                       onChange={this.handleInputChange}
                       name="about"
                     />
