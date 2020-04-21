@@ -101,7 +101,11 @@ class Avatar extends PureComponent {
         <input
           type="file"
           id="profile_pic"
-          className="custom-file-input"
+          className={
+            window.location.href.includes('/user')
+              ? 'custom-file-input'
+              : 'custom-company-file-input'
+          }
           value={profile_pic}
           onChange={this.handleFile}
           accept="image/*"
