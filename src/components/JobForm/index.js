@@ -104,7 +104,8 @@ class JobForm extends React.Component {
     const { error } = this.state;
     console.log('here', !/^\d{10}$/.test(this.state.mobile));
     const { cities } = this.state;
-    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'hunger'];
+    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'هانغرستيشن','والم','ذا تشيفز','شدة','كريم ناو','نقوة','جاهز',
+  'طلبات','تو يو','فود بوي','سبرنت','وصل','تمت','إزهلها','شقردي',"داعم ديلفري",'اوبر إيتس'];
     console.log('state', this.state);
 
     return (
