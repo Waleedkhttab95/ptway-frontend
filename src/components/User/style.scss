@@ -377,7 +377,10 @@ svg.CircularProgressbar{
 }
 .user-progress-mob {
     display: flex;
-    flex-direction: column;
+    >div {
+        margin-left: 5px;
+    }
+
 }
 .company-progress-mob{
     display: none !important;
@@ -417,6 +420,9 @@ svg.CircularProgressbar{
 }
 .user-progress-mob {
     display: flex;
+    >div {
+            margin-left: 5px;
+    }
     .user-hours-work,.user-job, .user-profile-seen {
         flex-direction: column !important;
         font-size: 14px;
