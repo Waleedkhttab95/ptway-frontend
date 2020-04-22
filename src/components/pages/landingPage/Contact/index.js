@@ -20,9 +20,9 @@ const ContactUs = props => {
       </form>
       <h3> ابدأ الآن</h3>
       <div className="btns">
-      <Link to="/company/login"><button>سجل شركتك الأن</button></Link>
+      <Link to="/company/signup"><button>سجل شركتك الأن</button></Link>
 
-      <Link to="/user/login"><button>سجل كباحث عن عمل</button></Link>
+      <Link to="/user/signup"><button>سجل كباحث عن عمل</button></Link>
 
         
       </div>

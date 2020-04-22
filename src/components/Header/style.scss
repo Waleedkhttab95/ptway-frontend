@@ -134,6 +134,8 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
 }
 
 .drawer-mobile{
+ 
+    z-index: 999;
     display: none;
 }
 
@@ -421,6 +423,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
 
 @media (max-width:320px) {
     .drawer-mobile{
+ 
         display: flex;
         height: 72px;
     box-shadow: 0 2px 10px 0 rgba(9, 14, 24, 0.1);
