@@ -10,9 +10,10 @@ const AddNewAds = props => {
   return (
     <Modal
       visible={props.newAdPopUp}
-      closable={false}
+      closable={true}
       footer={false}
       className="ad-modal"
+      onCancel={props.closable}
     >
       <div className="new-ad">
         <h2 className="p-heading">إضافة إعلان جديد</h2>

@@ -96,6 +96,7 @@
             margin-top: 50px;
             position: absolute;
             bottom: 40px;
+            align-items: center;
         }
         .post-status {
             margin-bottom: 10px;
@@ -190,19 +191,24 @@
 .job-completed {
     background: #ffa50038;
     height: 30px;
-    width: 120px;
+    width: 88%;
     color: orange;
     border-radius: 7px;
     padding-top: 5px;
 }
 
 @media (max-width:320px){
-    .jobs-details .job-post {
+    .jobs-details{
+        grid-template-columns: repeat(1, 1fr);
+         grid-gap: 22px;
+     .job-post {
         // width: auto;
         margin-left: 0px;
         padding-right: 10px;
         height: 373px;
+        
     }
+}
     .user-jobs {
         padding: 10px 15px;
     }
@@ -223,12 +229,16 @@
 }
 
 @media (min-width:321px) and (max-width:768px){
-    .jobs-details .job-post {
+    .jobs-details {
+        grid-template-columns: repeat(1, 1fr);
+         grid-gap: 42px;
+        .job-post {
         // width: auto;
         margin-left: 0px;
         padding-right: 10px;
         height: 373px;
     }
+}
     .user-jobs {
         padding: 10px 15px;
     }

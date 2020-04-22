@@ -160,9 +160,11 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     align-items: center;
 
     .user-right-side {
-        // padding-right: 135px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        // width: 25%;
         >a{
-            
             font-size: 16px;
             font-weight: 500;
             font-stretch: normal;
@@ -171,8 +173,9 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
             letter-spacing: normal;
             text-align: center;
             color: #343434;
-            padding-right: 40px;
+            margin-bottom: 10px;
         }
+        
     }
     .user-left-side{
         display: flex;
@@ -365,6 +368,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   >img {
       width: 50px;
       height: 50px;

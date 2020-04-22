@@ -169,6 +169,16 @@ class Projects extends React.Component {
   //   });
   // };
 
+  onClose = () => {
+    this.setState({
+      visible: false,
+      userVisible: false,
+      companyVisible: false,
+      postJobPopup: false,
+      newAdPopUp: false
+    });
+  };
+
   handleSearch = e => {
     const { projects, JobAdsCount, totalPages } = this.state;
     const { value } = e.target;
@@ -230,14 +240,24 @@ class Projects extends React.Component {
               <div>عدد العروض الوظيفية</div>
               <span></span>
             </div>
-            <Button className="new-job-btn-mob" onClick={this.postJob}>
-              <i
-                className="fa fa-plus plus-icon"
-                aria-hidden="true"
-                style={{ marginLeft: '7px' }}
-              ></i>
-              أضف عرض وظيفي جديد
-            </Button>
+            <div style={{ display: 'flex' }}>
+              <Button className="new-job-btn-mob" onClick={this.postJob}>
+                <i
+                  className="fa fa-plus plus-icon"
+                  aria-hidden="true"
+                  style={{ marginLeft: '7px' }}
+                ></i>
+                أضف مشروع جديد
+              </Button>
+              <Button className="new-job-btn-mob" onClick={this.newAd}>
+                <i
+                  className="fa fa-plus plus-icon"
+                  aria-hidden="true"
+                  style={{ marginLeft: '7px' }}
+                ></i>
+                أضف عرض وظيفي جديد
+              </Button>
+            </div>
             <AddNewProjectModal
               postJobPopup={this.state.postJobPopup}
               newAd={this.newAd}
@@ -250,6 +270,7 @@ class Projects extends React.Component {
               newAdPopUp={this.state.newAdPopUp}
               contractsTypes={contracts}
               history={history}
+              closable={this.onClose}
             />
             <Collapse
               // defaultActiveKey={['1']}

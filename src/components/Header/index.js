@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Drawer, Button, Col } from 'antd';
+import { Row, Drawer, Button, Col, Badge } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
@@ -58,7 +58,8 @@ class Header extends React.Component {
       visible: false,
       userVisible: false,
       companyVisible: false,
-      postJobPopup: false
+      postJobPopup: false,
+      newAdPopUp: false
     });
   };
 
@@ -120,22 +121,22 @@ class Header extends React.Component {
                       : ''
                   }
                 >
-                  سيرتي الذاتية{' '}
+                  سيرتي الذاتية&nbsp;&nbsp;&nbsp;&nbsp;
                 </Link>
                 <Link
                   to="/user/jobs"
-                  style={{ position: 'relative' }}
+                  style={{ marginBottom: '0' }}
                   className={
                     window.location.href.includes('/user/jobs')
                       ? 'navbar-elm-active'
                       : ''
                   }
                 >
-                  <span className="offers-notification">
-                    {' '}
-                    {unreadOffers.count}
-                  </span>
-                  <i className="fa fa-bell" aria-hidden="true"></i>
+                  <Badge
+                    count={unreadOffers.count}
+                    showZero
+                    style={{ marginBottom: '10px' }}
+                  />
                   فرص العمل
                 </Link>
               </div>
@@ -238,14 +239,11 @@ class Header extends React.Component {
                 <div className="navbar-user-mobile">
                   <Link to="/user/home">سيرتي الذاتية </Link>
                   <Link to="/user/jobs" style={{ position: 'relative' }}>
-                    <span
-                      className="offers-notification"
-                      style={{ right: '107px', top: '-4px', bottom: '0' }}
-                    >
-                      {' '}
-                      {unreadOffers.count}
-                    </span>
-                    <i className="fa fa-bell" aria-hidden="true"></i>
+                    <Badge
+                      count={unreadOffers.count}
+                      showZero
+                      style={{ marginBottom: '10px' }}
+                    />
                     فرص العمل
                   </Link>
 
@@ -285,7 +283,7 @@ class Header extends React.Component {
                       : ''
                   }
                 >
-                  الرئيسية{' '}
+                  الرئيسية&nbsp;&nbsp;
                 </Link>
                 <Link
                   to="/company/projects"
@@ -295,7 +293,7 @@ class Header extends React.Component {
                       : ''
                   }
                 >
-                  المشاريع والعروض الوظيفية
+                  &nbsp;&nbsp;المشاريع والعروض الوظيفية
                 </Link>
               </div>
               <div className="user-left-side">
@@ -583,6 +581,7 @@ class Header extends React.Component {
           newAdPopUp={this.state.newAdPopUp}
           contractsTypes={contracts}
           history={history}
+          closable={this.onClose}
         />
       </React.Fragment>
     );

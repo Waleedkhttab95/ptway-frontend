@@ -47,7 +47,7 @@ class Applicant extends React.Component {
                 <button className="accept-applicant" onClick={this.acceptUser}>
                   قبول المتقدم
                 </button>
-                <button className="reject-applicant">رفض المتقدم</button>
+                {/* <button className="reject-applicant">رفض المتقدم</button> */}
               </div>
               <div className="personal-info">
                 <div className="user-pic-info">
