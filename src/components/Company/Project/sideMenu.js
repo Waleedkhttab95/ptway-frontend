@@ -4,8 +4,11 @@ import { Modal, Menu } from 'antd';
 const SideMenu = props => (
   <React.Fragment>
     <Menu
-      className="project-options"
-      // style= {props.deleteModal ?{ display:'none'} : ''}
+      className={
+        props.lockModal || props.deleteModal || props.confirmMsg
+          ? 'project-options dropdown-custom-style'
+          : 'project-options'
+      }
     >
       {!props.isLock ? (
         <Menu.Item key="1" onClick={props.lockJobModal}>
@@ -29,7 +32,12 @@ const SideMenu = props => (
         حذف
       </Menu.Item>
     </Menu>
-    <Modal visible={props.lockModal} closable={false} footer={false}>
+    <Modal
+      visible={props.lockModal}
+      closable={true}
+      footer={false}
+      onCancel={props.cancel}
+    >
       <div className="lock-modal">
         <h2>هل انت متأكد من ايقاف هذا العرض الوظيفي؟</h2>
         <div className="modal-btns">
@@ -42,14 +50,24 @@ const SideMenu = props => (
         </div>
       </div>
     </Modal>
-    <Modal visible={props.lockConfirmMsg} closable={false} footer={false}>
+    <Modal
+      visible={props.lockConfirmMsg}
+      closable={true}
+      footer={false}
+      onCancel={props.cancel}
+    >
       <div className="success-modal">
         <i className="fa fa-check-circle check-icon" aria-hidden="true"></i>
         <h2>تم ايقاف العرض الوظيفي بنجاح</h2>
         <button onClick={props.CloseConfirmationMsg}>العودة</button>
       </div>
     </Modal>
-    <Modal visible={props.deleteModal} closable={false} footer={false}>
+    <Modal
+      visible={props.deleteModal}
+      closable={true}
+      footer={false}
+      onCancel={props.cancel}
+    >
       <div className="delete-modal">
         <i className="fa fa-trash-o delete-icon" aria-hidden="true"></i>
         <h3>هل أنت متأكد من حذف هذا العرض الوظيفي؟</h3>

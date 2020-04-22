@@ -134,78 +134,83 @@ class Jobs extends React.Component {
                         className="job-post"
                         key={elm.jobAd._id}
                       >
-                        <div className="post-header">
-                          {elm.imagePath && elm.imagePath !== 'null' ? (
-                            <img src={elm.imagePath} alt="" />
-                          ) : (
-                            <i
-                              className="fa fa-picture-o"
-                              aria-hidden="true"
-                              style={{
-                                fontSize: '45px',
-                                display: 'flex',
-                                alignItems: 'center'
-                              }}
-                            ></i>
-                          )}
-                          <div className="job-owner-info">
-                            <span className="job-owner-title">
-                              {elm.jobAd.job_Name}
-                            </span>
-                            <span className="job-owner-location">
-                              {elm.compName}
-                            </span>
-                            {/* <span className="job-owner-mobile">
+                        <div>
+                          <div className="post-header">
+                            {elm.imagePath && elm.imagePath !== 'null' ? (
+                              <img src={elm.imagePath} alt="" />
+                            ) : (
+                              <i
+                                className="fa fa-picture-o"
+                                aria-hidden="true"
+                                style={{
+                                  fontSize: '45px',
+                                  display: 'flex',
+                                  alignItems: 'center'
+                                }}
+                              ></i>
+                            )}
+                            <div className="job-owner-info">
+                              <span className="job-owner-title">
+                                {elm.jobAd.job_Name}
+                              </span>
+                              <span className="job-owner-location">
+                                {elm.compName}
+                              </span>
+                              {/* <span className="job-owner-mobile">
                               الرقم : 0002163477555
                             </span> */}
+                            </div>
+                          </div>
+                          <div className="post-body">
+                            <span className="post-description">
+                              {elm.jobAd.descreption}
+                            </span>
                           </div>
                         </div>
-                        <div className="post-body">
-                          <span className="post-description">
-                            {elm.jobAd.descreption}
-                          </span>
-                          <div className="post-actions-btns">
-                            {elm.status ? (
-                              <div className="post-status">تم التقدم للعمل</div>
-                            ) : (
-                              <React.Fragment>
-                                <div
-                                  className="post-status"
-                                  style={{ marginBottom: '15px' }}
-                                >
-                                  لم يتم التقدم
-                                </div>
-                                {elm.jobAd.isLock ? (
-                                  <div className="job-completed">
-                                    {' '}
-                                    لقد اكتمل العدد
-                                  </div>
-                                ) : (
-                                  ''
-                                )}
-                              </React.Fragment>
-                            )}
-                            {elm.jobAd.isLock ? (
-                              <span></span>
-                            ) : (
-                              <button
-                                className="details-btn"
-                                onClick={() =>
-                                  this.props.history.push(
-                                    `/user/job/${elm.jobAd._id}`
-                                  )
-                                }
+                        <div className="post-actions-btns">
+                          {elm.status ? (
+                            <div className="post-status">تم التقدم للعمل</div>
+                          ) : (
+                            <React.Fragment>
+                              <div
+                                className="post-status"
+                                style={{ marginBottom: '15px' }}
                               >
-                                التفاصيل
-                              </button>
-                            )}
-                          </div>
+                                لم يتم التقدم
+                              </div>
+                              {elm.jobAd.isLock ? (
+                                <div className="job-completed">
+                                  {' '}
+                                  لقد اكتمل العدد
+                                </div>
+                              ) : (
+                                ''
+                              )}
+                            </React.Fragment>
+                          )}
+                          {elm.jobAd.isLock ? (
+                            <span></span>
+                          ) : (
+                            <button
+                              className="details-btn"
+                              onClick={() =>
+                                this.props.history.push(
+                                  `/user/job/${elm.jobAd._id}`
+                                )
+                              }
+                            >
+                              التفاصيل
+                            </button>
+                          )}
                         </div>
                       </Col>
                     );
                   })
                 ) : (
-                  <div className="spinner-loading">
+                  <div
+                    className="spinner-loading"
+                    // style={{ width: '100%', margin: '0 auto' }}
+                  >
                     <Spin size="large" />
                   </div>
                 )}

@@ -2,11 +2,13 @@
 //     padding-top: 32px;
 // }
 .setting-body {
-     width: 1170px;
+    max-width: 1170px;
+    margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
-    margin: 0px 135px 82px 135px;
+    margin-top:82px;
+    margin-bottom:82px;
     padding-bottom: 70px !important;
   .setting-container{
       display: flex;
@@ -41,7 +43,7 @@
     padding-right: 30px;
     >span {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: 1.57;
@@ -63,7 +65,7 @@
     margin-top: 30px;
     >h6 {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
@@ -78,7 +80,7 @@
     flex-direction: column;
     .check-option{
         font-size: 14px;
-        font-weight: 500;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
@@ -92,9 +94,9 @@
     display: block;
     margin: auto;
     width: 190px;
-    height: 35px;
+    height: 40px;
     border-radius: 6px;
-    background-color: #3598d4;
+    background-color: rgb(31, 63, 84);
     font-size: 14px;
     font-weight: bold;
     font-stretch: normal;

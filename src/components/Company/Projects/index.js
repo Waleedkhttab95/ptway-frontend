@@ -226,9 +226,9 @@ class Projects extends React.Component {
               // handleFilter={this.handleFilter}
             />
             <div className="projects-header">
-              <h2>اسم المشروع</h2>
-              <h2>عدد العروض الوظيفية</h2>
-              <div></div>
+              <div>اسم المشروع</div>
+              <div>عدد العروض الوظيفية</div>
+              <span></span>
             </div>
             <Button className="new-job-btn-mob" onClick={this.postJob}>
               <i
@@ -265,12 +265,18 @@ class Projects extends React.Component {
                       className="project-panel"
                       header={
                         <div className="panel-title">
-                          <div className="panel-mob">
-                            <span>{elm.projectName}</span>{' '}
-                            <span className="applicant-num-mob">
+                          {/* <div className="panel-mob">
+                            <div>{elm.projectName}</div>{' '}
+                            <div className="applicant-num-mob">
                               {' '}
                               عدد المتقدمين :
-                            </span>
+                            </div>
+                            <div className="offers-num">
+                              {allProjects.JobAdsCount[index]}
+                            </div>
+                          </div> */}
+                          <div>{elm.projectName}</div>{' '}
+                          <div>
                             <div className="offers-num">
                               {allProjects.JobAdsCount[index]}
                             </div>
@@ -296,10 +302,13 @@ class Projects extends React.Component {
                                 updateProject={() =>
                                   this.updateProject(elm._id)
                                 }
+                                menuVisible={() =>
+                                  this.setState({ menuVisible: false })
+                                }
                               />
                             }
-                            placement="bottomCenter"
-                            trigger="hover"
+                            placement="bottomRight"
+                            trigger={['hover']}
                           >
                             <span className="options-menu">...</span>
                           </Dropdown>

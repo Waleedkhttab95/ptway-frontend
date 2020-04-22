@@ -178,6 +178,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     }
     .user-left-side{
         display: flex;
+        align-items: center;
         // padding-left: 135px;
         position: relative;
         .user-header-btn{
@@ -193,6 +194,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
             background: transparent;
             border-color: transparent;
             box-shadow: 0 2px 11px 0 #fff;
+            margin-bottom: 5px;
             
         }
        .my-account-btn {
