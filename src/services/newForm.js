@@ -20,7 +20,8 @@ const newForm = {
       mobileOS: params.mobileOS,
       exp: params.exp,
       company: params.company,
-      ptwayMember: params.ptwayMember
+      ptwayMember: params.ptwayMember,
+      social: params.social
     });
   },
   deliveryData: params => {
