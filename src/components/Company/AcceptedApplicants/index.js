@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../Header';
-import Filter from '../../Filter';
+// import Filter from '../../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
