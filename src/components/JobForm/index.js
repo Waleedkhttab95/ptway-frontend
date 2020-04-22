@@ -395,7 +395,7 @@ class JobForm extends React.Component {
             <br />
             <Radio.Group
               onChange={this.handleChange}
-              className="radio-select"
+              className="radio-select socail-select"
               name="social"
             >
               <Radio.Button value="snapchat">Snapchat</Radio.Button>
