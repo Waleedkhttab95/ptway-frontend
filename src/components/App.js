@@ -49,6 +49,8 @@ import ResetPasswordPage from './User/login/newPassword';
 import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
 import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
+import DeliveryForm from './Delivery';
+
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
 
@@ -229,6 +231,7 @@ const App = () => {
           />
           <Route exact path="/home/about-us" component={AboutUs} />
           <Route exact path="/job-form" component={JobForm} />
+          <Route exact path="/delivery" component={DeliveryForm} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
