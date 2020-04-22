@@ -1,26 +1,34 @@
 import React from 'react';
 import './style.scss';
-import { Row, Col, Input, DatePicker, Radio, Modal } from 'antd';
+import { Row, Col, Input, DatePicker, Radio, Modal, Select } from 'antd';
 import moment from 'moment';
 import Footer from '../Footer';
 import LoginNavbar from '../Header/LoginNavbar';
 import TempForm from '../../services/newForm';
-import kareem from '../../images/kareem.png';
-import marsool from '../../images/marsool.png';
-import n3na3 from '../../images/n3na3.png';
-import zad from '../../images/zad.png';
-import hunger from '../../images/hunger.png';
-
+// import kareem from '../../images/kareem.png';
+// import marsool from '../../images/marsool.png';
+// import n3na3 from '../../images/n3na3.png';
+// import zad from '../../images/zad.png';
+// import hunger from '../../images/hunger.png';
+import statatisticsService from '../../services/statisticsService';
+import _ from 'lodash';
+const { allCities } = statatisticsService;
 const { addInfo } = TempForm;
+
 class JobForm extends React.Component {
   state = {
     visible: false,
     error: false
   };
 
+  async componentDidMount() {
+    const cities = await allCities();
+    this.setState({
+      cities
+    });
+  }
   handleChange = e => {
     const { value, name } = e.target;
-
     this.setState({
       [name]: value
     });
@@ -31,6 +39,12 @@ class JobForm extends React.Component {
 
     this.setState({
       birthDate: moment(birthDate)
+    });
+  };
+  handleSelectChange = (value, option) => {
+    this.setState({
+      ...this.state,
+      [option.props.name]: option.key
     });
   };
 
@@ -50,7 +64,8 @@ class JobForm extends React.Component {
       company,
       exp,
       ptwayMember,
-      mobileOS
+      mobileOS,
+      social
     } = this.state;
     if (
       (!name ||
@@ -65,7 +80,7 @@ class JobForm extends React.Component {
         !carModel ||
         !timeToDelivier ||
         !jobTitle,
-      !company || !exp || !ptwayMember || !mobileOS)
+      !company || !exp || !ptwayMember || !mobileOS || !social)
     ) {
       this.setState({
         error: true
@@ -88,6 +103,9 @@ class JobForm extends React.Component {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
     console.log('here', !/^\d{10}$/.test(this.state.mobile));
+    const { cities } = this.state;
+    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'hunger'];
+    console.log('state', this.state);
 
     return (
       <React.Fragment>
@@ -150,9 +168,28 @@ class JobForm extends React.Component {
             <Input onChange={this.handleChange} name="nationality" />
             <div className="location-">
               <div>
+                <br />
                 <label>المدينة:</label>
                 <br />
-                <Input onChange={this.handleChange} name="city" />
+                <Select
+                  className="input-field"
+                  onChange={this.handleSelectChange}
+                  style={{ width: '100%' }}
+                >
+                  {_.isArray(cities)
+                    ? cities.map(elm => {
+                        return (
+                          <Select.Option
+                            value={elm.value}
+                            key={elm.id}
+                            name="city"
+                          >
+                            {elm.value}
+                          </Select.Option>
+                        );
+                      })
+                    : ''}
+                </Select>
                 {error && !this.state.city && (
                   <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
                 )}
@@ -259,7 +296,22 @@ class JobForm extends React.Component {
             <label>تفضل العمل بأي شركة توصيل؟</label>
             <br />
             <br />
-            <Radio.Group
+            <Select
+              className="input-field"
+              onChange={this.handleSelectChange}
+              style={{ width: '100%' }}
+            >
+              {_.isArray(companies)
+                ? companies.map(elm => {
+                    return (
+                      <Select.Option value={elm} key={elm} name="company">
+                        {elm}
+                      </Select.Option>
+                    );
+                  })
+                : ''}
+            </Select>
+            {/* <Radio.Group
               onChange={this.handleChange}
               className="radio-select select-mob select-image"
               name="company"
@@ -284,6 +336,7 @@ class JobForm extends React.Component {
                 </Radio.Button>
               </div>
             </Radio.Group>
+            */}
             {error && !this.state.company && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
@@ -337,6 +390,24 @@ class JobForm extends React.Component {
             )}
             <br />
             <br />
+            <label>كيف سمعت عن PTway؟</label>
+            <br />
+            <br />
+            <Radio.Group
+              onChange={this.handleChange}
+              className="radio-select socail-select"
+              name="social"
+            >
+              <Radio.Button value="snapchat">Snapchat</Radio.Button>
+              <Radio.Button value="Twitter">Twitter</Radio.Button>
+              <Radio.Button value="Whatsapp">Whatsapp</Radio.Button>
+              <Radio.Button value="صديق">صديق</Radio.Button>
+            </Radio.Group>
+            {error && !this.state.social && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
+            <br />
+            <br />
             <button className="job-form-btn" onClick={this.add}>
               ارسال
             </button>
@@ -357,8 +428,8 @@ class JobForm extends React.Component {
             </h3>
             <br />
             <button>
-              <a href='https://www.ptway.net/user/login'>
-             <span className="coloor">سجل في PTway</span> 
+              <a href="https://www.ptway.net/user/login">
+                <span className="coloor">سجل في PTway</span>
               </a>
             </button>
           </div>
