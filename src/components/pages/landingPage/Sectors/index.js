@@ -13,8 +13,7 @@ const Sectors = () => {
         <p className="desc">
           نغطي معظم مدن المملكة، ونتوسع يومياً.
           <br />
-          نعمل في قطاعات ومجالات مختلفة في السوق السعودي، كالضيافة، قطاع
-          التجزئة، القطاع الصحي والمزيد...
+          نعمل في قطاعات ومجالات مختلفة في السوق السعودي.
         </p>
       </Row>
       <Row>
@@ -26,19 +25,20 @@ const Sectors = () => {
                 className="sector-collapse"
                 defaultActiveKey={'1'}
               >
-                <Panel header="قطاع التجزئة" className="pnl-content" key={1}>
+                <Panel header="قطاع الأعمال" key={1} className="pnl-content">
                   <div className="panel-desc">
-                    <h4> كاشير &nbsp;</h4>
-                    <h4>مصفف رفوف</h4>
+                    <h4>مبرمج</h4>
+                    <h4>كول سنتر</h4>
                     <h4>استقبال</h4>
                   </div>
                   <div className="panel-desc">
-                    <h4> &nbsp;أمن &nbsp;</h4>
-                    <h4> &nbsp;الصيانة &nbsp;</h4>
-                    <h4> &nbsp;مبيعات &nbsp;</h4>
+                    <h4>محاسب</h4>
+                    <h4>سكرتارية</h4>
+                    <h4>مصمم</h4>
                   </div>
                   <div className="panel-desc">
-                    <h4>امين مستودع</h4>
+                    <h4>مدير عمليات</h4>
+                    <h4>UX,UI</h4>
                   </div>
                 </Panel>
               </Collapse>
@@ -93,6 +93,47 @@ const Sectors = () => {
           <Row>
             <Col md={24} className="sector-elm">
               <Collapse bordered={false} className="sector-collapse">
+                <Panel header="قطاع التجزئة" className="pnl-content" key={1}>
+                  <div className="panel-desc">
+                    <h4> كاشير &nbsp;</h4>
+                    <h4>مصفف رفوف</h4>
+                    <h4>استقبال</h4>
+                  </div>
+                  <div className="panel-desc">
+                    <h4> &nbsp;أمن &nbsp;</h4>
+                    <h4> &nbsp;صيانة &nbsp;</h4>
+                    <h4> &nbsp;مبيعات &nbsp;</h4>
+                  </div>
+                  <div className="panel-desc">
+                    <h4>امين مستودع</h4>
+                  </div>
+                </Panel>
+              </Collapse>
+            </Col>
+          </Row>
+
+          <Row>
+            <Row>
+              <Col md={24} className="sector-elm">
+                <Collapse bordered={false} className="sector-collapse">
+                  <Panel header="القطاع الصناعي" className="pnl-content">
+                    <div className="panel-desc">
+                      <h4> &nbsp;سائق&nbsp;</h4>
+                      <h4>اللوجستي</h4>
+                      <h4>ماشندايزر</h4>
+                    </div>
+                    <div className="panel-desc">
+                      <h4>مهندس صناعي</h4>
+                      <h4> &nbsp;فني &nbsp;</h4>
+                    </div>
+                  </Panel>
+                </Collapse>
+              </Col>
+            </Row>
+          </Row>
+          <Row>
+            <Col md={24} className="sector-elm">
+              <Collapse bordered={false} className="sector-collapse">
                 <Panel header="قطاع الضيافة" className="pnl-content">
                   <div className="panel-desc">
                     <h4>&nbsp;باريستا &nbsp;</h4>
@@ -106,47 +147,6 @@ const Sectors = () => {
                 </Panel>
               </Collapse>
             </Col>
-          </Row>
-          <Row>
-            <Col md={24} className="sector-elm">
-              <Collapse bordered={false} className="sector-collapse">
-                <Panel header="قطاع الأعمال" key={1} className="pnl-content">
-                  <div className="panel-desc">
-                    <h4>مبرمج</h4>
-                    <h4>كول سنتر</h4>
-                    <h4>استقبال</h4>
-                  </div>
-                  <div className="panel-desc">
-                    <h4>محاسب</h4>
-                    <h4>سكرتارية</h4>
-                    <h4>مصمم</h4>
-                  </div>
-                  <div className="panel-desc">
-                    <h4>مدير عمليات</h4>
-                    <h4>UX,UI</h4>
-                  </div>
-                </Panel>
-              </Collapse>
-            </Col>
-          </Row>
-          <Row>
-            <Row>
-              <Col md={24} className="sector-elm">
-                <Collapse bordered={false} className="sector-collapse">
-                  <Panel header="القطاع الصناعي" className="pnl-content">
-                    <div className="panel-desc">
-                      <h4> &nbsp;سائق&nbsp;</h4>
-                      <h4>اللوجستي</h4>
-                      <h4>الماشندايزر</h4>
-                    </div>
-                    <div className="panel-desc">
-                      <h4>مهندس صناعي</h4>
-                      <h4> &nbsp;فني &nbsp;</h4>
-                    </div>
-                  </Panel>
-                </Collapse>
-              </Col>
-            </Row>
           </Row>
         </Row>
       </Row>

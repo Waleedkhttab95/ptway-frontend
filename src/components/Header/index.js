@@ -549,7 +549,7 @@ class Header extends React.Component {
                 </h2>
                 <p className="brief-desc">
                   نحن أول منصة للعمل الجزئي في السعودية، <br />
-                  نلبي كل احتياجات الشركات والباحثين عن سد أوقات الفراغ.
+                  نلبي جميع احتياجات الشركات والباحثين عن فرص عمل جزئية.
                 </p>
                 <button
                   className="log-btn"
