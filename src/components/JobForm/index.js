@@ -300,6 +300,8 @@ class JobForm extends React.Component {
               className="input-field"
               onChange={this.handleSelectChange}
               style={{ width: '100%' }}
+              mode={'multiple'}
+              showArrow={true}
             >
               {_.isArray(companies)
                 ? companies.map(elm => {

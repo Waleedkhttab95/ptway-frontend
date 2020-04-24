@@ -19,6 +19,7 @@ const step2Form = props => {
               className="country-text"
               name="gender"
               options={['ذكر', 'أنثى']}
+              value={state.gender}
             />
             {/* <Checkbox className="check-option">نعم</Checkbox>
                 <Checkbox className="check-option">لا</Checkbox> */}
@@ -40,6 +41,7 @@ const step2Form = props => {
             className="user-signup-datepicker"
             placeholder="اختر التاريخ"
             onChange={value => handleChange(value, 'birthDate')}
+            value={state.birthDate}
           />
           <span style={{ color: 'red' }}>
             {dateError && !state.birthDate ? dateError : ''}

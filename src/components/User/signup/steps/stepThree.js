@@ -25,6 +25,7 @@ const step3Form = props => {
                 className="name-text"
                 name="firstName"
                 onChange={handleChange}
+                value={state.firstName}
               />
               <span style={{ color: 'red' }}>
                 {firstNameError && !state.firstName ? firstNameError : ''}
@@ -36,6 +37,7 @@ const step3Form = props => {
                 className="name-text"
                 name="lastName"
                 onChange={handleChange}
+                value={state.lastName}
               />
               <span style={{ color: 'red' }}>
                 {lastNameError && !state.lastName ? lastNameError : ''}
@@ -46,6 +48,7 @@ const step3Form = props => {
           <Select
             onChange={value => handleSelect(value, 'major')}
             className="major-text"
+            value={state.major}
           >
             {_.isArray(majors)
               ? majors.map(elm => {

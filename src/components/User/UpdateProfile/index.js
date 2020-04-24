@@ -349,8 +349,9 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleInputChange}
                           name="mobile"
                         />
-                        <h5 className="title-field">العنوان الوظيفي</h5>
+                        <h5 className="title-field">الإهتمامات الوظيفية</h5>
                         <Select
+                          showArrow={true}
                           className="input-field"
                           defaultValue={
                             userInfo
@@ -754,7 +755,9 @@ class UpdateProfile extends React.Component {
                       <div style={{ marginLeft: '20px' }}>
                         <h5 className="title-field">مهارات شخصية</h5>
                         <Select
+                          showArrow={true}
                           className="input-field"
+                          maxTagCount={5}
                           mode="multiple"
                           onChange={this.handlePersonalSkillsChange}
                           defaultValue={
@@ -785,6 +788,7 @@ class UpdateProfile extends React.Component {
                       <div>
                         <h5 className="title-field">مهارات عامة</h5>
                         <Select
+                          showArrow={true}
                           className="input-field"
                           mode="multiple"
                           // placeholder={
@@ -827,13 +831,21 @@ class UpdateProfile extends React.Component {
                     </div>
                     <div className="first-section">
                       <div>
-                        <h5 className="title-field">الهوايات</h5>
+                        <h5
+                          className="title-field"
+                          style={{ marginTop: '20px' }}
+                        >
+                          الهوايات
+                        </h5>
                         <Select
+                          showArrow={true}
                           className="input-field"
                           mode="multiple"
                           onChange={this.handleHoppiesChange}
                           defaultValue={
-                            userInfo && _.isArray(userInfo.hoppies)
+                            userInfo &&
+                            _.isArray(userInfo.hoppies) &&
+                            userInfo.hoppies[0] !== 'undefined'
                               ? userInfo.hoppies
                               : []
                           }
