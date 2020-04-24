@@ -44,8 +44,8 @@ class CompanyHome extends React.Component {
                 className="info-alert"
               />
             </div> */}
-            <Row className="company-progress">
-              <Col md={7} className="opened-projects">
+            <Row className="company-progress" gutter={16}>
+              <Col md={7} lg={7} xl={7} sm={7} className="opened-projects">
                 <div>المشاريع المنشئة</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
@@ -53,7 +53,7 @@ class CompanyHome extends React.Component {
                     : ''}
                 </div>
               </Col>
-              <Col md={7} className="total-offers">
+              <Col md={7} lg={7} xl={7} sm={7} className="total-offers">
                 <div>عروض العمل الإجمالية</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
@@ -61,7 +61,7 @@ class CompanyHome extends React.Component {
                     : ''}
                 </div>
               </Col>
-              <Col md={7} className="user-hired">
+              <Col md={7} lg={7} xl={7} sm={7} className="user-hired">
                 <div>الذين تم توظيفهم</div>
                 <div className="user-stc-number">
                   {company.companyStatistic
@@ -77,11 +77,25 @@ class CompanyHome extends React.Component {
             </Row>
             <Row className="user-profile">
               <Col md={1}></Col>
-              <Col md={6} className="right-section">
+              <Col
+                md={6}
+                lg={6}
+                xl={6}
+                sm={24}
+                xs={24}
+                className="right-section"
+              >
                 <CompanyInfo {...company} />
               </Col>
               <Col md={1}></Col>
-              <Col md={15} className="company-left-section">
+              <Col
+                md={15}
+                lg={15}
+                xl={15}
+                sm={24}
+                xs={24}
+                className="company-left-section"
+              >
                 <h2>آخر العروض الوظيفية التي أنشئتها</h2>
                 <div className="projects-offers-header">
                   <div>اسم العرض الوظيفي</div>
@@ -96,7 +110,9 @@ class CompanyHome extends React.Component {
                         <div className="project-offer-title">{elm.advName}</div>
                         <div>{moment(Date.now()).format('ll')}</div>
                         <div className="project-status">{elm.projectName}</div>
-                        <div className="applicants-num">{elm.candidates}</div>
+                        <div>
+                          <div className="applicants-num">{elm.candidates}</div>
+                        </div>
                       </div>
                     );
                   })

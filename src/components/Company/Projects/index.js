@@ -5,7 +5,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import { Row, Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
-import FilterAndSearch from '../../Filter';
+import FilterAndSearch from '../Filter';
 import SideMenu from './menu';
 import projects from '../../../services/company/projects';
 import AddNewProjectModal from '../../Header/AddNewProjectModal';
@@ -103,9 +103,27 @@ class Projects extends React.Component {
     });
   };
   handleSelectChange = (value, option) => {
-    this.setState({
-      [option.props.name]: option.key
-    });
+    this.setState(
+      {
+        [option.props.name]: option.key
+      },
+      () => {
+        const {
+          filterOption,
+          allProjects,
+          JobAdsCount,
+          totalPages
+        } = this.state;
+        const sortedProjects = allProjects.proj.sort((a, b) => {
+          if (filterOption === 'new')
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        this.setState({
+          allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+        });
+      }
+    );
   };
   updateProject = async id => {
     const { projectName, projectDescription } = this.state;
@@ -139,15 +157,25 @@ class Projects extends React.Component {
     );
   };
 
-  handleFilter = () => {
-    const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
-    const sortedProjects = allProjects.proj.sort((a, b) => {
-      if (filterOption === 'new')
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    });
+  // handleFilter = () => {
+  //   const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
+  //   const sortedProjects = allProjects.proj.sort((a, b) => {
+  //     if (filterOption === 'new')
+  //       return new Date(b.date).getTime() - new Date(a.date).getTime();
+  //     return new Date(a.date).getTime() - new Date(b.date).getTime();
+  //   });
+  //   this.setState({
+  //     allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+  //   });
+  // };
+
+  onClose = () => {
     this.setState({
-      allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
+      visible: false,
+      userVisible: false,
+      companyVisible: false,
+      postJobPopup: false,
+      newAdPopUp: false
     });
   };
 
@@ -205,21 +233,31 @@ class Projects extends React.Component {
               allProjects={allProjects}
               handleChange={this.handleSelectChange}
               handleSearch={this.handleSearch}
-              handleFilter={this.handleFilter}
+              // handleFilter={this.handleFilter}
             />
             <div className="projects-header">
-              <h2>اسم المشروع</h2>
-              <h2>عدد العروض الوظيفية</h2>
-              <div></div>
+              <div>اسم المشروع</div>
+              <div>عدد العروض الوظيفية</div>
+              <span></span>
             </div>
-            <Button className="new-job-btn-mob" onClick={this.postJob}>
-              <i
-                className="fa fa-plus plus-icon"
-                aria-hidden="true"
-                style={{ marginLeft: '7px' }}
-              ></i>
-              أضف عرض وظيفي جديد
-            </Button>
+            <div style={{ display: 'flex' }}>
+              <Button className="new-job-btn-mob" onClick={this.postJob}>
+                <i
+                  className="fa fa-plus plus-icon"
+                  aria-hidden="true"
+                  style={{ marginLeft: '7px' }}
+                ></i>
+                أضف مشروع جديد
+              </Button>
+              <Button className="new-job-btn-mob" onClick={this.newAd}>
+                <i
+                  className="fa fa-plus plus-icon"
+                  aria-hidden="true"
+                  style={{ marginLeft: '7px' }}
+                ></i>
+                أضف عرض وظيفي جديد
+              </Button>
+            </div>
             <AddNewProjectModal
               postJobPopup={this.state.postJobPopup}
               newAd={this.newAd}
@@ -232,6 +270,7 @@ class Projects extends React.Component {
               newAdPopUp={this.state.newAdPopUp}
               contractsTypes={contracts}
               history={history}
+              closable={this.onClose}
             />
             <Collapse
               // defaultActiveKey={['1']}
@@ -247,12 +286,18 @@ class Projects extends React.Component {
                       className="project-panel"
                       header={
                         <div className="panel-title">
-                          <div className="panel-mob">
-                            <span>{elm.projectName}</span>{' '}
-                            <span className="applicant-num-mob">
+                          {/* <div className="panel-mob">
+                            <div>{elm.projectName}</div>{' '}
+                            <div className="applicant-num-mob">
                               {' '}
                               عدد المتقدمين :
-                            </span>
+                            </div>
+                            <div className="offers-num">
+                              {allProjects.JobAdsCount[index]}
+                            </div>
+                          </div> */}
+                          <div>{elm.projectName}</div>{' '}
+                          <div>
                             <div className="offers-num">
                               {allProjects.JobAdsCount[index]}
                             </div>
@@ -278,10 +323,13 @@ class Projects extends React.Component {
                                 updateProject={() =>
                                   this.updateProject(elm._id)
                                 }
+                                menuVisible={() =>
+                                  this.setState({ menuVisible: false })
+                                }
                               />
                             }
-                            placement="bottomCenter"
-                            trigger="hover"
+                            placement="bottomRight"
+                            trigger={['hover']}
                           >
                             <span className="options-menu">...</span>
                           </Dropdown>

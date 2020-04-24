@@ -12,7 +12,7 @@ const Tab3 = props => {
           name="prevPassword"
           type="password"
         />
-        <label className="sub-title">كلمة المرور</label>
+        <label className="sub-title"> كلمة المرور الجديدة</label>
         <Input
           onChange={props.handleChange}
           name="newPassword"
@@ -20,10 +20,10 @@ const Tab3 = props => {
         />
         <Button
           onClick={props.ChangePassword}
-          style={{ width: '250px', backgroundColor: '#1f3f54' }}
+          style={{ width: '250px', backgroundColor: '#1f3f54', height: '40px' }}
         >
           {' '}
-          حفظ
+          حفظ التعديلات
         </Button>
       </div>
     </div>

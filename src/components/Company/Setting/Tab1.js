@@ -2,7 +2,6 @@ import React from 'react';
 import './style.scss';
 
 const Tab1 = props => {
-
   const { info } = props.companyInfo;
   return (
     <React.Fragment>
@@ -50,25 +49,31 @@ const Tab1 = props => {
         <div>
           <h5 className="sub-title">الموقع الشخصي</h5>
           <p className="sub-desc">
-            {info
-              ? info.personal_web !== 'null'
-                ? info.personal_web
-                : ''
-              : ''}
+            {info &&
+            info.personal_web !== 'null' &&
+            info.personal_web !== 'undefined'
+              ? info.personal_web
+              : 'غير موجود'}
           </p>
           <h5 className="sub-title">لينكيد ان</h5>
           <p className="sub-desc">
-            {info ? (info.linkedin !== 'null' ? info.linkedin : '') : ''}{' '}
+            {info && info.linkedin !== 'null' && info.linkedin !== 'undefined'
+              ? info.linkedin
+              : 'غير موجود'}
           </p>
         </div>
         <div>
           <h5 className="sub-title">الفيسبوك</h5>
           <p className="sub-desc">
-            {info ? (info.facebook !== 'null' ? info.facebook : '') : ''}
+            {info && info.facebook !== 'null' && info.facebook !== 'undefined'
+              ? info.facebook
+              : 'غير موجود'}
           </p>
           <h5 className="sub-title">تويتر</h5>
           <p className="sub-desc">
-            {info ? (info.twitter !== 'null' ? info.twitter : '') : ''}{' '}
+            {info && info.twitter !== 'null' && info.twitter !== 'undefined'
+              ? info.twitter
+              : 'غير موجود'}{' '}
           </p>
         </div>
       </div>

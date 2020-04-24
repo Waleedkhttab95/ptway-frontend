@@ -123,10 +123,10 @@ class User extends React.Component {
                   </div>
                 </div>
                 <div className="user-profile-complete">
-                <div
-              dir="ltr"
-              className="pt-5 pb-3 text-center bg-white rounded-lg shadow-sm"
-            >
+                  <div
+                    dir="ltr"
+                    className="pt-5 pb-3 text-center bg-white rounded-lg shadow-sm"
+                  >
                     <CircularProgressbar
                       value={profileComplete}
                       text={profileComplete ? `${profileComplete}%` : ''}
@@ -146,10 +146,10 @@ class User extends React.Component {
                           transformOrigin: 'center center'
                         },
                         text: {
-                          fill: "#009ad0",
-                          fontSize: "16px",
-                          dominantBaseline: "middle",
-                          textAnchor: "middle"
+                          fill: '#009ad0',
+                          fontSize: '16px',
+                          dominantBaseline: 'middle',
+                          textAnchor: 'middle'
                         },
                         background: {
                           fill: '#3e98c7'
@@ -172,23 +172,38 @@ class User extends React.Component {
               </Col>
               <Col md={1}></Col>
               <Col md={16} sm={24} xs={24} className="left-section">
-                <Row className="user-progress">
+                <Row className="user-progress" gutter={20}>
                   <Col
                     md={7}
                     sm={7}
                     xs={7}
                     lg={7}
-                    xl={8}
-                    className="user-profile-seen"
+                    xl={7}
+                    // span={6}
+                    className="user-profile-seen gutter-row"
                   >
                     <div>عدد مشاهدات الحساب</div>
                     <div className="user-stc-number">{profile_views}</div>
                   </Col>
-                  <Col md={7} sm={7} className="user-job">
+                  <Col
+                    md={7}
+                    sm={7}
+                    lg={7}
+                    xl={7}
+                    // span={7}
+                    className="user-job gutter-row"
+                  >
                     <div>وظائف تقدمت عليها</div>
                     <div className="user-stc-number">{aplled_jobs}</div>
                   </Col>
-                  <Col md={8} sm={8} className="user-hours-work">
+                  <Col
+                    md={7}
+                    sm={7}
+                    lg={7}
+                    xl={7}
+                    // span={6}
+                    className="user-hours-work gutter-row"
+                  >
                     <div>عدد ساعات العمل</div>
                     <div className="user-stc-number">{work_Hours}</div>
                   </Col>
@@ -209,25 +224,25 @@ class User extends React.Component {
 
                   <br />
                   <div className="cv-education">
-                <h3 className="h-title heading">الدراسات والشهادات</h3>
-                <div>
-                  <p>
-                    الدراسة الحالية :
-                    {education_degree !== 'undefined'
-                      ? education_degree
-                      : ''}
-                  </p>
-                  <p>الشهادة الجامعية :{study_degree}</p>
-                </div>
-                <div>
-                  <p>المستوى التعليمي : {Education_level} </p>
-                  <p> الجامعة :{universty}</p>
-                </div>
-                <div>
-                  <p>التخصص العام : {public_Major} </p>
-                  <p>التخصص الدقيق : {spicifc_Major} </p>
-                </div>
-              </div>
+                    <h3 className="h-title heading">الدراسات والشهادات</h3>
+                    <div>
+                      <p>
+                        الدراسة الحالية :
+                        {education_degree !== 'undefined'
+                          ? education_degree
+                          : ''}
+                      </p>
+                      <p>الشهادة الجامعية :{study_degree}</p>
+                    </div>
+                    <div>
+                      <p>المستوى التعليمي : {Education_level} </p>
+                      <p> الجامعة :{universty}</p>
+                    </div>
+                    <div>
+                      <p>التخصص العام : {public_Major} </p>
+                      <p>التخصص الدقيق : {spicifc_Major} </p>
+                    </div>
+                  </div>
 
                   <br />
                   <div className="general-section">

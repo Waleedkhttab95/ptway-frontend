@@ -35,12 +35,19 @@ class Applicant extends React.Component {
         <Header />
         <div className="company-container">
           <div className="applicant-profile">
-            <Col md={6} xs={24} sm={24} className="applicant-right-section">
+            <Col
+              md={6}
+              lg={6}
+              xl={6}
+              xs={24}
+              sm={24}
+              className="applicant-right-section"
+            >
               <div className="btns-container">
                 <button className="accept-applicant" onClick={this.acceptUser}>
                   قبول المتقدم
                 </button>
-                <button className="reject-applicant">رفض المتقدم</button>
+                {/* <button className="reject-applicant">رفض المتقدم</button> */}
               </div>
               <div className="personal-info">
                 <div className="user-pic-info">
@@ -81,7 +88,14 @@ class Applicant extends React.Component {
                 <div className="hours-num">{user.work_Hours}</div>
               </div>
             </Col>
-            <Col md={18} xs={24} sm={24} className="applicant-details">
+            <Col
+              md={18}
+              lg={18}
+              xl={18}
+              xs={24}
+              sm={24}
+              className="applicant-details"
+            >
               <div>
                 <h3 className="h-title heading">نبذة عامة</h3>
                 <p>{user.about}</p>

@@ -77,7 +77,7 @@ class Setting extends React.Component {
                 <div className="account-fields">
                   {/* <span>البريد الالكتروني</span>
                 <Input className="account-input" type="email" /> */}
-                  <span> كلمة المرور السابقة</span>
+                  <span> كلمة المرور القديمة</span>
 
                   <Input
                     className="account-input"

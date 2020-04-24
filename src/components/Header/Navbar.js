@@ -67,7 +67,6 @@ class Navbar extends React.Component {
             onClick={() => history.push('/')}
             style={{ cursor: 'pointer' }}
           />
-          <div></div>
           <div className="menu">
             <Link to="/home/about-us"> من نحن</Link>
             <Link to="/user/signup">الأفراد</Link>
@@ -141,7 +140,7 @@ class Navbar extends React.Component {
           visible={this.state.visible}
         >
           <div className="navbar-mobile">
-          <Link to="/home/about-us"> من نحن</Link>
+            <Link to="/home/about-us"> من نحن</Link>
             <Link to="/user/login">الأفراد</Link>
             <Link to="/company/login">الشركات</Link>
             <a>

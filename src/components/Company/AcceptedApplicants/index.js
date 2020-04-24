@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../Header';
-import Filter from '../../Filter';
+// import Filter from '../../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
@@ -55,41 +55,56 @@ class AcceptedApplicants extends React.Component {
       <React.Fragment>
         <Header />
         <div className="company-container">
-          <Filter />
+          {/* <Filter /> */}
           <div className="applicant-header">
             <h3>الاسم </h3>
             <h3>السيرة الذاتية</h3>
           </div>
           {_.isArray(AcceptedCandidates.response) ? (
-            AcceptedCandidates.response.map(elm => (
-              <div className="applicant" key={elm._id}>
-                <h4>
-                  {elm.acceptedName
-                    ? elm.acceptedName.firstName +
-                      ' ' +
-                      elm.acceptedName.lastName
-                    : ''}
-                </h4>
-                <Link
-                  className="display-cv"
-                  target="_blank"
-                  to={`/applicant/profile/job/${this.state.jobId}/user/${elm._id}`}
-                >
-                  عرض
-                </Link>
-                <button
-                  className="display-cv-mob"
-                  target="_blank"
-                  onClick={() =>
-                    this.props.history.push(
-                      `/applicant/profile/job/${this.state.jobId}/user/${elm._id}`
-                    )
-                  }
-                >
-                  عرض السيرة الذاتية
-                </button>
+            AcceptedCandidates.response.length > 0 ? (
+              AcceptedCandidates.response.map(elm => (
+                <div className="applicant" key={elm._id}>
+                  <h4>
+                    {elm.acceptedName
+                      ? elm.acceptedName.firstName +
+                        ' ' +
+                        elm.acceptedName.lastName
+                      : ''}
+                  </h4>
+                  <div>
+                    <Link
+                      className="display-cv"
+                      target="_blank"
+                      to={`/applicant/profile/job/${this.state.jobId}/user/${elm._id}`}
+                    >
+                      عرض
+                    </Link>
+                  </div>
+                  <button
+                    className="display-cv-mob"
+                    target="_blank"
+                    onClick={() =>
+                      this.props.history.push(
+                        `/applicant/profile/job/${this.state.jobId}/user/${elm._id}`
+                      )
+                    }
+                  >
+                    عرض السيرة الذاتية
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div
+                style={{
+                  fontSize: '20px',
+                  textAlign: 'center',
+                  paddingTop: '20px'
+                }}
+              >
+                {' '}
+                لا توجد نتائج{' '}
               </div>
-            ))
+            )
           ) : (
             <div className="spinner-loading">
               <Spin size="large" />

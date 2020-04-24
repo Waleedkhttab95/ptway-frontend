@@ -5,7 +5,11 @@ import TextArea from 'antd/lib/input/TextArea';
 const SideMenu = props => (
   <React.Fragment>
     <Menu
-      className="project-options"
+      className={
+        props.editModal || props.deleteModal
+          ? 'project-options dropdown-custom-style'
+          : 'project-options'
+      }
       // style= {props.deleteModal ?{ display:'none'} : ''}
     >
       {/* <Menu.Item key="1">
@@ -26,7 +30,13 @@ const SideMenu = props => (
         ></i>
         تعديل
       </Menu.Item>
-      <Modal visible={props.editModal} closable={false} footer={false}>
+      <Modal
+        visible={props.editModal}
+        closable={true}
+        footer={false}
+        onCancel={props.cancel}
+        onClick={e => e.preventDefault()}
+      >
         <div className="new-project-form">
           <h2 className="p-heading" style={{ paddingTop: '0px' }}>
             تعديل المشروع
@@ -53,11 +63,16 @@ const SideMenu = props => (
         حذف
       </Menu.Item>
     </Menu>
-    <Modal visible={props.deleteModal} closable={false} footer={false}>
+    <Modal
+      visible={props.deleteModal}
+      closable={true}
+      footer={false}
+      onCancel={props.cancel}
+    >
       <div className="delete-modal">
         <i className="fa fa-trash-o delete-icon" aria-hidden="true"></i>
         <h3>هل أنت متأكد من حذف المشروع</h3>
-        {/* <p>لن يمكنك استرداد العرض الوظيفي او مشاهدة المتقدمين لهذا العرض</p> */}
+        <p> عند حذف المشروع لا يمكنك استرداده</p>
         <div className="modal-btns">
           <button className="del-btn" onClick={props.deleteConfirmation}>
             تأكيد الحذف

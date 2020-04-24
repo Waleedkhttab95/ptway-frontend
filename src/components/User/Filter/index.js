@@ -7,7 +7,7 @@ const options = [
   { key: 'new', value: 'الأحدث' },
   { key: 'old', value: 'الأقدم' }
 ];
-const FilterAndSearch = ({ handleSearch, handleFilter, handleChange }) => {
+const FilterAndSearch = ({ handleSearch, handleChange }) => {
   return (
     <div className="jobs-actions">
       <div className="action-right-side">
@@ -17,11 +17,11 @@ const FilterAndSearch = ({ handleSearch, handleFilter, handleChange }) => {
             placeholder="بحث"
             onChange={handleSearch}
           />
-          <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i>
+          {/* <i className="fa fa-search jobs-search-icon" aria-hidden="true"></i> */}
         </div>
       </div>
       <div className="action-left-side">
-        <span className="filter-title">الترتيب</span>
+        <span className="filter-title">الترتيب :</span>
         <Select
           className=" filter-options"
           placeholder="الأحدث"
@@ -41,9 +41,6 @@ const FilterAndSearch = ({ handleSearch, handleFilter, handleChange }) => {
               })
             : ''}
         </Select>
-        <button className="filter-btn" onClick={handleFilter}>
-          فلترة
-        </button>
       </div>
     </div>
   );

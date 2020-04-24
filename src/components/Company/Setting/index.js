@@ -53,7 +53,7 @@ class CompanySetting extends React.Component {
             </Col>
             <Col md={18} sm={24} xs={24} className="right-side">
               <Tabs type="card" className="settings-tab">
-                <TabPane tab="بروفايل الشركة" key="1">
+                <TabPane tab="حساب الشركة" key="1">
                   <br />
                   <Tab1 {...company} />
                 </TabPane>

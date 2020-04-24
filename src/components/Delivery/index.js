@@ -1,34 +1,25 @@
 import React from 'react';
-import './style.scss';
-import { Row, Col, Input, DatePicker, Radio, Modal, Select } from 'antd';
+import { Row, Col, Input, DatePicker, Radio, Modal } from 'antd';
 import moment from 'moment';
 import Footer from '../Footer';
 import LoginNavbar from '../Header/LoginNavbar';
 import TempForm from '../../services/newForm';
-// import kareem from '../../images/kareem.png';
-// import marsool from '../../images/marsool.png';
-// import n3na3 from '../../images/n3na3.png';
-// import zad from '../../images/zad.png';
-// import hunger from '../../images/hunger.png';
-import statatisticsService from '../../services/statisticsService';
-import _ from 'lodash';
-const { allCities } = statatisticsService;
-const { addInfo } = TempForm;
+import kareem from '../../images/kareem.png';
+import marsool from '../../images/marsool.png';
+import n3na3 from '../../images/n3na3.png';
+import zad from '../../images/zad.png';
+import hunger from '../../images/hunger.png';
 
+const { deliveryData } = TempForm;
 class JobForm extends React.Component {
   state = {
     visible: false,
     error: false
   };
 
-  async componentDidMount() {
-    const cities = await allCities();
-    this.setState({
-      cities
-    });
-  }
   handleChange = e => {
     const { value, name } = e.target;
+
     this.setState({
       [name]: value
     });
@@ -39,12 +30,6 @@ class JobForm extends React.Component {
 
     this.setState({
       birthDate: moment(birthDate)
-    });
-  };
-  handleSelectChange = (value, option) => {
-    this.setState({
-      ...this.state,
-      [option.props.name]: option.key
     });
   };
 
@@ -64,8 +49,7 @@ class JobForm extends React.Component {
       company,
       exp,
       ptwayMember,
-      mobileOS,
-      social
+      mobileOS
     } = this.state;
     if (
       (!name ||
@@ -80,13 +64,13 @@ class JobForm extends React.Component {
         !carModel ||
         !timeToDelivier ||
         !jobTitle,
-      !company || !exp || !ptwayMember || !mobileOS || !social)
+      !company || !exp || !ptwayMember || !mobileOS)
     ) {
       this.setState({
         error: true
       });
     } else {
-      await addInfo(this.state);
+      await deliveryData(this.state);
       this.setState({
         visible: true
       });
@@ -103,10 +87,6 @@ class JobForm extends React.Component {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
     console.log('here', !/^\d{10}$/.test(this.state.mobile));
-    const { cities } = this.state;
-    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'هانغرستيشن','والم','ذا تشيفز','شدة','كريم ناو','نقوة','جاهز',
-  'طلبات','تو يو','فود بوي','سبرنت','وصل','تمت','إزهلها','شقردي',"داعم ديلفري",'اوبر إيتس'];
-    console.log('state', this.state);
 
     return (
       <React.Fragment>
@@ -169,28 +149,9 @@ class JobForm extends React.Component {
             <Input onChange={this.handleChange} name="nationality" />
             <div className="location-">
               <div>
-                <br />
                 <label>المدينة:</label>
                 <br />
-                <Select
-                  className="input-field"
-                  onChange={this.handleSelectChange}
-                  style={{ width: '100%' }}
-                >
-                  {_.isArray(cities)
-                    ? cities.map(elm => {
-                        return (
-                          <Select.Option
-                            value={elm.value}
-                            key={elm.id}
-                            name="city"
-                          >
-                            {elm.value}
-                          </Select.Option>
-                        );
-                      })
-                    : ''}
-                </Select>
+                <Input onChange={this.handleChange} name="city" />
                 {error && !this.state.city && (
                   <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
                 )}
@@ -206,7 +167,7 @@ class JobForm extends React.Component {
               </div>
             </div>
             <label>رقم الجوال:</label>
-            <Input placeholder="05xxxxxxxx" maxlength="10" onChange={this.handleChange} name="mobile" />
+            <Input maxlength="10" onChange={this.handleChange} name="mobile" />
             {error && !this.state.mobile && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
@@ -297,22 +258,7 @@ class JobForm extends React.Component {
             <label>تفضل العمل بأي شركة توصيل؟</label>
             <br />
             <br />
-            <Select
-              className="input-field"
-              onChange={this.handleSelectChange}
-              style={{ width: '100%' }}
-            >
-              {_.isArray(companies)
-                ? companies.map(elm => {
-                    return (
-                      <Select.Option value={elm} key={elm} name="company">
-                        {elm}
-                      </Select.Option>
-                    );
-                  })
-                : ''}
-            </Select>
-            {/* <Radio.Group
+            <Radio.Group
               onChange={this.handleChange}
               className="radio-select select-mob select-image"
               name="company"
@@ -337,7 +283,6 @@ class JobForm extends React.Component {
                 </Radio.Button>
               </div>
             </Radio.Group>
-            */}
             {error && !this.state.company && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
@@ -387,24 +332,6 @@ class JobForm extends React.Component {
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
             {error && !this.state.ptwayMember && (
-              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
-            )}
-            <br />
-            <br />
-            <label>كيف سمعت عن PTway؟</label>
-            <br />
-            <br />
-            <Radio.Group
-              onChange={this.handleChange}
-              className="radio-select socail-select"
-              name="social"
-            >
-              <Radio.Button value="snapchat">Snapchat</Radio.Button>
-              <Radio.Button value="Twitter">Twitter</Radio.Button>
-              <Radio.Button value="Whatsapp">Whatsapp</Radio.Button>
-              <Radio.Button value="صديق">صديق</Radio.Button>
-            </Radio.Group>
-            {error && !this.state.social && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
             <br />
