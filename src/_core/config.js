@@ -4,7 +4,7 @@ config.getBasePublicUrl = () => {
   if (process.env.NODE_ENV === 'development') {
     baseUrl = 'https://ptway-test.herokuapp.com/';
   } else if (process.env.NODE_ENV === 'production') {
-    baseUrl = 'https://ptway-test.herokuapp.com/';
+    baseUrl = 'https://ptway.net/';
   } else {
     baseUrl = 'http://localhost/';
   }
