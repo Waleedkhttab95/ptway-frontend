@@ -21,6 +21,7 @@ const step1Form = props => {
             name="city"
             onChange={value => handleChange(value, 'city')}
             className="country-text"
+            value={state.city}
           >
             {_.isArray(cities)
               ? cities.map(elm => {

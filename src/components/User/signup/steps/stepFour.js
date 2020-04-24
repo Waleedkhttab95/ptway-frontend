@@ -28,6 +28,7 @@ const step4Form = props => {
                 name="email"
                 onChange={handleChange}
                 type="email"
+                value={state.email}
               />
               <span style={{ color: 'red' }}>
                 {emailError && !state.email ? emailError : ''}
@@ -56,6 +57,7 @@ const step4Form = props => {
                 name="password"
                 onChange={handleChange}
                 type="password"
+                value={state.password}
               />
               <span style={{ color: 'red' }}>
                 {passwordError && !state.password ? passwordError : ''}
