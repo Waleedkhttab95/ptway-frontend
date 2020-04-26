@@ -1,18 +1,12 @@
 import React from 'react';
-import { Row, Collapse, Input } from 'antd';
+import { Row, Collapse } from 'antd';
 import './style.scss';
 import { withTranslation } from 'react-i18next';
 import Footer from '../../../Footer';
 import Navbar from '../../../Header/Navbar';
+import ContactUs from '../Contact';
 const { Panel } = Collapse;
-const text = (
-  <p style={{ paddingLeft: 24, paddingRight: '40px' }} className="qus-reply">
-    هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ
-    عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.
-    ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما-
-    للأحرف عوضاً عن استخدام هنا يوجد محتوى نصي
-  </p>
-);
+
 const CommonQuestions = props => {
   const { i18n } = props;
   return (
@@ -78,14 +72,15 @@ const CommonQuestions = props => {
                 }
                 key="2"
               >
-                 <p
+                <p
                   className="qus-reply"
                   style={{
                     paddingLeft: 24,
                     paddingRight: '40px'
                   }}
                 >
-                 يكون من الجهة المعلنة للعرض الوظيفي , PTway وسيط بين الفرد و الجهة
+                  يكون من الجهة المعلنة للعرض الوظيفي , PTway وسيط بين الفرد و
+                  الجهة
                 </p>
               </Panel>
               <Panel
@@ -97,14 +92,14 @@ const CommonQuestions = props => {
                 }
                 key="3"
               >
-                  <p
+                <p
                   className="qus-reply"
                   style={{
                     paddingLeft: 24,
                     paddingRight: '40px'
                   }}
                 >
-                 ليس محدود, الحد الأدنى لعمر المتقدم هو 16 سنة
+                  ليس محدود, الحد الأدنى لعمر المتقدم هو 16 سنة
                 </p>
               </Panel>
               <Panel
@@ -116,14 +111,14 @@ const CommonQuestions = props => {
                 }
                 key="4"
               >
-                 <p
+                <p
                   className="qus-reply"
                   style={{
                     paddingLeft: 24,
                     paddingRight: '40px'
                   }}
                 >
-                لا , لا يؤثر التسجيل في المنصة
+                  لا , لا يؤثر التسجيل في المنصة
                 </p>
               </Panel>
               <Panel
@@ -131,14 +126,15 @@ const CommonQuestions = props => {
                 header={<p className="ques-title">لم تصلني رسالة تفعيل ؟</p>}
                 key="5"
               >
-                 <p
+                <p
                   className="qus-reply"
                   style={{
                     paddingLeft: 24,
                     paddingRight: '40px'
                   }}
                 >
-الإطلاع على البريد المهمل او غير المرغوب فيه  , في حال لم تصلك أيضا الرجاء قم بالتواصل مع الفريق المختص بالبريد الالكتروني !
+                  الإطلاع على البريد المهمل او غير المرغوب فيه , في حال لم تصلك
+                  أيضا الرجاء قم بالتواصل مع الفريق المختص بالبريد الالكتروني !
                 </p>
               </Panel>
               <Panel
@@ -150,14 +146,15 @@ const CommonQuestions = props => {
                 }
                 key="6"
               >
-                  <p
+                <p
                   className="qus-reply"
                   style={{
                     paddingLeft: 24,
                     paddingRight: '40px'
                   }}
                 >
-                في يمين صفحتك بالمنصة يوجد خيار تعديل السيرة الذاتيه  , أو في اعلى الصفحه في حال كنت تستخدم هاتف متنقل
+                  في يمين صفحتك بالمنصة يوجد خيار تعديل السيرة الذاتيه , أو في
+                  اعلى الصفحه في حال كنت تستخدم هاتف متنقل
                 </p>
               </Panel>
               <Panel
@@ -176,14 +173,17 @@ const CommonQuestions = props => {
                     paddingRight: '40px'
                   }}
                 >
-نعم                </p>
+                  نعم{' '}
+                </p>
               </Panel>
 
               <Panel
                 className="qus-name"
                 header={
                   <p className="ques-title" style={{ marginBottom: '0' }}>
-اذا نسيت كلمة المرور لحسابي هل يتطلب مني التسجيل بالمنصة مرة اخرى ؟                  </p>
+                    اذا نسيت كلمة المرور لحسابي هل يتطلب مني التسجيل بالمنصة مرة
+                    اخرى ؟{' '}
+                  </p>
                 }
                 key="8"
               >
@@ -194,15 +194,17 @@ const CommonQuestions = props => {
                     paddingRight: '40px'
                   }}
                 >
-لا , يوجد خيار "استعادة كلمة المرور" قم بالضغط عليها وسوف يصلك بريد الكتروني بالتغيير
-   </p>
+                  لا , يوجد خيار "استعادة كلمة المرور" قم بالضغط عليها وسوف يصلك
+                  بريد الكتروني بالتغيير
+                </p>
               </Panel>
 
               <Panel
                 className="qus-name"
                 header={
                   <p className="ques-title" style={{ marginBottom: '0' }}>
-                 اذا تم القبول والمباشرة بالعمل , هل ل PTway نسبة من راتب الموظف ؟
+                    اذا تم القبول والمباشرة بالعمل , هل ل PTway نسبة من راتب
+                    الموظف ؟
                   </p>
                 }
                 key="9"
@@ -214,8 +216,8 @@ const CommonQuestions = props => {
                     paddingRight: '40px'
                   }}
                 >
-لا , المنصة لاتأخذ اي نسبة من الموظف !
-              </p>
+                  لا , المنصة لاتأخذ اي نسبة من الموظف !
+                </p>
               </Panel>
             </Collapse>
           </div>
@@ -223,17 +225,7 @@ const CommonQuestions = props => {
       </Row>
       <br />
       <br />
-      <Row className="contact-us">
-        <h2 className="title">هل لديك سؤال أخر؟</h2>
-        <form className="questions-form">
-          <div className="inputs">
-            <Input placeholder="الاسم" />
-            <Input placeholder="الإيميل" />
-          </div>
-          <Input.TextArea rows={4} placeholder="أكتب سؤالك هنا" />
-          <button className="send-btn">ارسال</button>
-        </form>
-      </Row>
+      <ContactUs />
 
       <Footer />
     </Row>
