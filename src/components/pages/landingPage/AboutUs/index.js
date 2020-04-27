@@ -31,68 +31,78 @@ const AboutUs = () => {
                 احتياجهم من الكوادر البشرية
               </p>
               <h3>مميزاتنا:</h3>
-              <Col md={2} lg={2}></Col>
-              <Col md={8} lg={8} xs={12} sm={12}>
-                <div className="about-elm col-left-side">
-                  <div className="elm-img">
-                    <img src={ab2} alt="" />
+              <div className="contact-digram-cont">
+                <div md={8} lg={8} xs={12} sm={12}>
+                  <div className="about-elm col-left-side">
+                    <div className="elm-img">
+                      <img src={ab2} alt="" />
+                    </div>
+                    <div className="elm-desc-second-col">
+                      <h3>التخصصات</h3>
+                      <p>نتميز بتوفير أكثر من 160 تخصص</p>
+                    </div>
                   </div>
-                  <div className="elm-desc-second-col">
-                    <h3>التخصصات</h3>
-                    <p>نتميز بتوفير أكثر من 160 تخصص</p>
+                  <div className="about-elm col-left-side">
+                    <div className="elm-img">
+                      <img src={ab4} alt="" />
+                    </div>
+                    <div className="elm-desc-second-col">
+                      <h3>الخبرات</h3>
+                      <p>
+                        نملك العديد من الأشخاص ذوي الخبرات <br />
+                        بمجالات متعددة
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="about-elm col-left-side">
-                  <div className="elm-img">
-                    <img src={ab4} alt="" />
-                  </div>
-                  <div className="elm-desc-second-col">
-                    <h3>الخبرات</h3>
-                    <p>نملك العديد من الأشخاص ذوي الخبرات بمجالات متعددة</p>
-                  </div>
-                </div>
-                <div
-                  className="about-elm col-left-side"
-                  // style={{ marginTop: '41px' }}
-                >
-                  <div className="elm-img">
-                    <img src={ab6} alt="" />
-                  </div>
-                  <div className="elm-desc-second-col">
-                    <h3>المناطق</h3>
-                    <p>أبطال PTway من جميع مناطق المملكة</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={8} lg={8} xs={12} sm={12}>
-                <div className="about-elm ">
-                  <div className="elm-desc-first-col">
-                    <h3>اللغات</h3>
-                    <p>نتميز بتوفير أشخاص يملكون مهارات لغوية متعددة</p>
-                  </div>
-                  <div className="elm-img">
-                    <img src={ab1} alt="" />
+                  <div
+                    className="about-elm col-left-side"
+                    // style={{ marginTop: '41px' }}
+                  >
+                    <div className="elm-img">
+                      <img src={ab6} alt="" />
+                    </div>
+                    <div className="elm-desc-second-col">
+                      <h3>المناطق</h3>
+                      <p>أبطال PTway من جميع مناطق المملكة</p>
+                    </div>
                   </div>
                 </div>
-                <div className="about-elm col-right-side">
-                  <div className="elm-desc-first-col">
-                    <h3>المهارات</h3>
-                    <p>جميع المهارات العلمية والعملية تجدها هنا</p>
+                <div md={8} lg={8} xs={12} sm={12}>
+                  <div className="about-elm ">
+                    <div className="elm-desc-first-col">
+                      <h3>اللغات</h3>
+                      <p>
+                        نتميز بتوفير أشخاص <br />
+                        يملكون مهارات لغوية متعددة
+                      </p>
+                    </div>
+                    <div className="elm-img">
+                      <img src={ab1} alt="" />
+                    </div>
                   </div>
-                  <div className="elm-img">
-                    <img src={ab3} alt="" />
+                  <div className="about-elm col-right-side">
+                    <div className="elm-desc-first-col">
+                      <h3>المهارات</h3>
+                      <p>
+                        جميع المهارات العلمية والعملية <br />
+                        تجدها هنا
+                      </p>
+                    </div>
+                    <div className="elm-img">
+                      <img src={ab3} alt="" />
+                    </div>
+                  </div>
+                  <div className="about-elm col-right-side">
+                    <div className="elm-desc-first-col">
+                      <h3>الأعمار</h3>
+                      <p>نتميز بتوفير أي عمر من 16 سنة فما فوق</p>
+                    </div>
+                    <div className="elm-img">
+                      <img src={ab5} alt="" />
+                    </div>
                   </div>
                 </div>
-                <div className="about-elm col-right-side">
-                  <div className="elm-desc-first-col">
-                    <h3>الأعمار</h3>
-                    <p>نتميز بتوفير أي عمر من 16 سنة فما فوق</p>
-                  </div>
-                  <div className="elm-img">
-                    <img src={ab5} alt="" />
-                  </div>
-                </div>
-              </Col>
+              </div>
             </Row>
           </Col>
         </Row>
