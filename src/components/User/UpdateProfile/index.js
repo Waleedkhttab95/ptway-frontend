@@ -439,6 +439,7 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleLanguageChange}
                           mode="multiple"
                           autoFocus={true}
+                          maxTagCount={5}
                         >
                           <Option name="language" value="العربية" key="العربية">
                             العربية{' '}
