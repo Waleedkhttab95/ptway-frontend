@@ -102,10 +102,9 @@ class JobForm extends React.Component {
   render() {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
-    console.log('here', !/^\d{10}$/.test(this.state.mobile));
+    // console.log('here', !/^\d{10}$/.test(this.state.mobile));
     const { cities } = this.state;
     const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'hunger'];
-    console.log('state', this.state);
 
     return (
       <React.Fragment>

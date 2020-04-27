@@ -35,8 +35,12 @@ class Header extends React.Component {
 
   async componentDidMount() {
     const { unreadJobOffers, getContracts } = this.props;
-    await unreadJobOffers();
-    getContracts();
+    if (loadState().role === 'user') {
+      unreadJobOffers();
+    }
+    if (loadState().role === 'user' || loadState().role === 'company') {
+      getContracts();
+    }
   }
   showDrawer = () => {
     this.setState({

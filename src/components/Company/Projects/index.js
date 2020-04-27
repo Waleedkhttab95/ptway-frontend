@@ -21,8 +21,8 @@ import {
 const { Panel } = Collapse;
 const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
 
-function callback(key) {
-  console.log(key);
+function callback() {
+  // console.log(key);
 }
 
 class Projects extends React.Component {

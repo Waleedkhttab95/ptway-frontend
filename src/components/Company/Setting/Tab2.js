@@ -42,7 +42,6 @@ class Tab2 extends React.Component {
     this.setState({ subaccountModal: false });
   };
   handleCancel = e => {
-    console.log(e);
     this.setState({
       subaccountModal: false
     });
