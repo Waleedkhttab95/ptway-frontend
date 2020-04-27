@@ -50,6 +50,7 @@ import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
 import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
+import { Privacy } from './pages/landingPage/Privacy';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -232,6 +233,7 @@ const App = () => {
           <Route exact path="/home/about-us" component={AboutUs} />
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
+          <Route exact path="/policy-and-privacy" component={Privacy} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
