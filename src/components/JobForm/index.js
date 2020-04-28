@@ -104,7 +104,29 @@ class JobForm extends React.Component {
     const { error } = this.state;
     // console.log('here', !/^\d{10}$/.test(this.state.mobile));
     const { cities } = this.state;
-    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'hunger'];
+    const companies = [
+      'مرسول',
+      'زاد',
+      'كريم',
+      'نعناع',
+      'هانغرستيشن',
+      'والم',
+      'ذا تشيفز',
+      'شدة',
+      'كريم ناو',
+      'نقوة',
+      'جاهز',
+      'طلبات',
+      'تو يو',
+      'فود بوي',
+      'سبرنت',
+      'وصل',
+      'تمت',
+      'إزهلها',
+      'شقردي',
+      'داعم ديلفري',
+      'اوبر إيتس'
+    ];
 
     return (
       <React.Fragment>
@@ -204,7 +226,12 @@ class JobForm extends React.Component {
               </div>
             </div>
             <label>رقم الجوال:</label>
-            <Input maxlength="10" onChange={this.handleChange} name="mobile" />
+            <Input
+              placeholder="05xxxxxxxx"
+              maxlength="10"
+              onChange={this.handleChange}
+              name="mobile"
+            />
             {error && !this.state.mobile && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}

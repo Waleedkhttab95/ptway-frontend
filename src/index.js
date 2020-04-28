@@ -4,7 +4,7 @@ import App from './components/App';
 import store from './store/createStore';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-
+import ReactGA from 'react-ga';
 // import { saveState } from './_core/localStorage';
 import i18n from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
@@ -13,6 +13,11 @@ const resources = {
   en: require('./en.json'),
   ar: require('./ar.json')
 };
+
+
+const trackingId = "UA-142610001-1"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 i18n
   .use(initReactI18next)
