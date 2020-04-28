@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.scss';
 import { Row } from 'antd';
 import Navbar from '../../../Header/Navbar';
 import Footer from '../../../Footer';
 
 export function Privacy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <React.Fragment>
       <Row className="privacy">
         <Navbar />
         <div className="p-header">
-          <h2 className="title">الشروط والاحكام و إتفاقية المستخدم Ptway</h2>
+          <h2 className="title">
+            الشروط والاحكام و إتفاقية المستخدم <br /> Ptway
+          </h2>
         </div>
         <div className="privacy-container">
           <h2>

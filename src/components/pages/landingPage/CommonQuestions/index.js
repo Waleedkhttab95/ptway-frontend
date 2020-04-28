@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Collapse } from 'antd';
 import './style.scss';
 import { withTranslation } from 'react-i18next';
@@ -9,6 +9,9 @@ const { Panel } = Collapse;
 
 const CommonQuestions = props => {
   const { i18n } = props;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Row style={{ background: '#fff' }}>
       <Navbar />

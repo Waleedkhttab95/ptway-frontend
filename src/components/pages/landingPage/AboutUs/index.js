@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
 import aboutus from '../../../../images/aboutus.svg';
 import './style.scss';
@@ -15,6 +15,9 @@ import enviroment from '../../../../images/mv.svg';
 import Footer from '../../../Footer';
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <React.Fragment>
       <div style={{ background: '#fff' }}>
