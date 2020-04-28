@@ -104,7 +104,7 @@ class Navbar extends React.Component {
             </RSelect>
           </div>
         </Row>
-        <Row className="drawer-mobile">
+        <Row className="drawer-mobile fixed-navbar">
           <i
             className="fa fa-bars"
             aria-hidden="true"
