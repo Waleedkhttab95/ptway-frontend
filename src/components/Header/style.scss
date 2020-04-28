@@ -1,11 +1,16 @@
-.navbar {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+.navbar{
     box-shadow: 0 2px 10px 0 rgba(9, 14, 24, 0.1);
     background: #fff;
+    
+    .navbar-cont {
+        max-width: 1190px;
+        width: 100%;
+        margin: 0 auto;
+        height: 90px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
 
     .menu {
         display: flex;
@@ -29,7 +34,9 @@
         flex-direction: row-reverse;
         justify-content: space-around;
         align-items: center;
-        .login >div{
+        .login
+         >div{
+            z-index: 10000;
             width: 140px;
             height: 40px;
             border-radius: 4px;
@@ -52,10 +59,15 @@
         }
     }
 }
+}
 .fixed-navbar {
     position: fixed;
     width: 100%;
     z-index: 10000;
+}
+.popup-dropdown{
+    z-index: 10000;
+
 }
 .select__indicator.select__dropdown-indicator.css-tlfecz-indicatorContainer {
     color: #00263e;
@@ -69,7 +81,6 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     padding-bottom: 7px;
 }
 .home-header {
-    
     height: 700px;
     box-shadow: 0 5px 25px 0 rgba(4, 154, 208, 0.08);
     background-color: #f8fbff;
@@ -79,6 +90,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     justify-content: center;
     border-bottom-left-radius: 25%;
     border-bottom-right-radius: 25%;
+    padding-top: 70px;
 }
 .brief {
     padding-right: 120px;

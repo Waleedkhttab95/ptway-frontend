@@ -111,8 +111,9 @@
             color: #ffffff;
         }
     }
-    >div:nth-child(5) {
+    >span {
         width: 30%;
+        text-align: left;
     }
     .project-num-mob, .project-date-mob {
         display: none;
@@ -120,6 +121,12 @@
 }
 .applicants-btn-mob, .accepted-btn-mob {
     display: none;
+}
+.project .mobile-view {
+    display: none;
+}
+.btns-mob {
+    display: none
 }
 
 @media (max-width:320px) {
@@ -185,6 +192,13 @@
 .btns-mob {
     display: flex
 }
+.project .mobile-view {
+    display: flex;
+    justify-content: space-between;
+}
+.web-view{
+    display: none
+}
 }
 
 @media (min-width: 321px) and (max-width:768px) {
@@ -248,5 +262,12 @@
     }
     .btns-mob {
         display: flex
+    }
+   .project .mobile-view {
+        display: flex;
+        justify-content: space-between;
+    }
+    .web-view{
+        display: none
     }
 }
