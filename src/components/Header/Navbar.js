@@ -60,7 +60,7 @@ class Navbar extends React.Component {
     const { i18n } = this.props;
     return (
       <React.Fragment>
-        <Row className="navbar">
+        <Row className="navbar fixed-navbar">
           <img
             src={ptwayLogo}
             alt="PTway_Logo"

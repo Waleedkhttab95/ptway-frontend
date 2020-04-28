@@ -52,6 +52,11 @@
         }
     }
 }
+.fixed-navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+}
 .select__indicator.select__dropdown-indicator.css-tlfecz-indicatorContainer {
     color: #00263e;
 }
