@@ -260,7 +260,6 @@ class CompanyProfile extends React.Component {
               </button>
             </div>
           </div>
-          ;
         </div>
         <Footer />
       </React.Fragment>
