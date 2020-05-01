@@ -1,7 +1,5 @@
 import baseRequest from '../_core';
-import { loadState } from '../_core/localStorage';
 
-console.log('loadState', loadState());
 const userServices = {
   register: params =>
     baseRequest.post('/userRegistreing ', {
@@ -36,7 +34,6 @@ const userServices = {
     baseRequest
       .post('/login', { email: params.username, password: params.password })
       .then(result => {
-
         return result;
       }),
   companyRegistration: params =>

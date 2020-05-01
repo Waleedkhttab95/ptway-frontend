@@ -42,9 +42,17 @@ class JobForm extends React.Component {
     });
   };
   handleSelectChange = (value, option) => {
+    console.log('option', option);
     this.setState({
       ...this.state,
       [option.props.name]: option.key
+    });
+  };
+
+  handleMultipleSelectChange = (value, option) => {
+    const companies = option.map(elm => elm.key);
+    this.setState({
+      company: companies
     });
   };
 
@@ -127,6 +135,7 @@ class JobForm extends React.Component {
       'داعم ديلفري',
       'اوبر إيتس'
     ];
+    console.log('state', this.state);
 
     return (
       <React.Fragment>
@@ -324,7 +333,7 @@ class JobForm extends React.Component {
             <br />
             <Select
               className="input-field"
-              onChange={this.handleSelectChange}
+              onChange={this.handleMultipleSelectChange}
               style={{ width: '100%' }}
               mode={'multiple'}
               showArrow={true}
