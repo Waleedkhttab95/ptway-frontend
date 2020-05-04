@@ -77,7 +77,6 @@ class JobForm extends React.Component {
     }
   };
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false
     });
@@ -86,7 +85,7 @@ class JobForm extends React.Component {
   render() {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
-    console.log('here', !/^\d{10}$/.test(this.state.mobile));
+    // console.log('here', !/^\d{10}$/.test(this.state.mobile));
 
     return (
       <React.Fragment>

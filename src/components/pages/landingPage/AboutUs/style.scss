@@ -14,7 +14,7 @@
     letter-spacing: normal;
     text-align: center;
     color: #00263e;
-    padding-top: 40px;
+    padding-top: 100px;
 }
 }
 .about-us-content {
@@ -57,7 +57,7 @@
             font-style: normal;
             line-height: 1.5;
             letter-spacing: normal;
-            text-align: center;
+            text-align: left;
             color: #049ad0;
             margin-bottom: 0;
         }
@@ -68,8 +68,9 @@
             font-style: normal;
             line-height: 1.07;
             letter-spacing: normal;
-            text-align: center;
+            text-align: left;
             color: #00263e;
+            // min-width: 160px;
         }
     }
     .elm-desc-second-col {
@@ -81,10 +82,11 @@
             font-style: normal;
             line-height: 1.5;
             letter-spacing: normal;
-            text-align: center;
+            text-align: right;
             color: #049ad0;
             margin-bottom: 0;
             padding-right: 0px;
+            
         }
         p{
             font-size: 14px;
@@ -93,17 +95,18 @@
             font-style: normal;
             line-height: 1.07;
             letter-spacing: normal;
-            text-align: center;
+            text-align: right;
             color: #00263e;
+            // min-width: 160px;
         }
     }
 }
 .col-left-side {
     // margin-top: 55px;
-    margin-top: 44px;
+    margin-top: 51px;
 }
 .col-right-side {
-    margin-top: 43px;
+    margin-top: 38px;
 }
 
 .vision-message {
@@ -176,7 +179,24 @@
         justify-content: center;
 }
 .col-left-side:nth-child(3) {
-    margin-top: 41px !important;
+    margin-top: 38px !important;
+}
+.contact-digram-cont{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    // justify-content: center;
+    padding-left: 30px;
+    >div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    >div:nth-child(2){
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 }
 @media (max-width:321px) {
     .about-us{
@@ -212,8 +232,14 @@
     .message > span {
         font-size: 16px;
     }
+    .contact-digram-cont{
+        padding-left: 0;
+    }
 }
 @media (min-width:321px) and (max-width:768px){ 
+    .contact-digram-cont{
+        padding-left: 0;
+    }
     .about-us{
         height: auto;
         .title {
@@ -248,10 +274,10 @@
     width: 45px;
 }
 .col-right-side:nth-child(2) {
-    margin-top: 16px;
+    margin-top: 5px;
 }
 .col-right-side:nth-child(3) {
-    margin-top: 22px;
+    margin-top: 11px;
 }
 .col-left-side:nth-child(1) {
     margin-top: 40px;

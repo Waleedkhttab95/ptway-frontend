@@ -45,11 +45,12 @@ import AcceptedApplicant from './Company/AcceptedApplicants';
 import CompanyProfile from './Company/Profile';
 import ResetPassword from './User/login/resetPassword';
 import ResetCompanyPassword from './Company/Login/ResetPassword';
-import ResetPasswordPage from './User/login/newPassword';
+import SetNewPassword from './User/login/newPassword';
 import CommenQuestions from '../components/pages/landingPage/CommonQuestions';
 import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
+import { Privacy } from './pages/landingPage/Privacy';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -223,7 +224,7 @@ const App = () => {
             path="/company/resetPassword"
             component={ResetCompanyPassword}
           />
-          <Route exact path="/resetPassword" component={ResetPasswordPage} />
+          <Route exact path="/resetPassword" component={SetNewPassword} />
           <Route
             exact
             path="/home/common-questions"
@@ -232,6 +233,7 @@ const App = () => {
           <Route exact path="/home/about-us" component={AboutUs} />
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
+          <Route exact path="/policy-and-privacy" component={Privacy} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

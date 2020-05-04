@@ -46,7 +46,7 @@ const Footer = () => {
           <Link to="/user/signup">الأفراد</Link>
           <Link to="/company/signup">الشركات</Link>
           <Link to="/home/common-questions">الأسئلة الشائعة</Link>
-          <a>السياسة والخصوصية</a>
+          <Link to="/policy-and-privacy">السياسة والخصوصية</Link>
         </div>
         <div className="footer-logo">
           <img

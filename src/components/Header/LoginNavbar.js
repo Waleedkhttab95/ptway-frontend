@@ -10,18 +10,19 @@ const LoginNavbar = () => {
       <Row
         className="navbar"
         style={{
-          justifyContent: 'flex-start ',
-          paddingLeft: '100px'
+          justifyContent: 'flex-start '
         }}
       >
-        <img
-          src={ptwayLogo}
-          alt="PTway_Logo"
-          onClick={() => history.push('/')}
-          style={{
-            cursor: 'pointer'
-          }}
-        />
+        <div className="navbar-cont">
+          <img
+            src={ptwayLogo}
+            alt="PTway_Logo"
+            onClick={() => history.push('/')}
+            style={{
+              cursor: 'pointer'
+            }}
+          />
+        </div>
       </Row>
       <Row className="drawer-mobile">
         <img

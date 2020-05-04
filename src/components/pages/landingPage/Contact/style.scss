@@ -40,7 +40,7 @@
                 line-height: 1.47;
                 letter-spacing: normal;
                 text-align: right;
-                color: #d0d0d0;
+                color: #3b3b3b;
             }
             input:nth-child(2){
                 width: 248px;
@@ -53,7 +53,7 @@
                 line-height: 1.47;
                 letter-spacing: normal;
                 text-align: right;
-                color: #d0d0d0;
+                color:#3b3b3b;
             }
         }
         textarea {
@@ -69,7 +69,7 @@
             line-height: 1.47;
             letter-spacing: normal;
             text-align: right;
-            color: #d0d0d0;
+            color: #3b3b3b;
 
         }
     }
@@ -83,6 +83,23 @@
     text-align: center;
     color: #35b37d;
     margin-top: 10px;
+    }
+    .send-btn {
+        width: 140px;
+        height: 40px;
+        border-radius: 4px;
+        background-color: #18233d;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        margin-top: 10px !important;
+        margin: auto;
+        cursor: pointer;
     }
     .btns {
         display: flex;
@@ -99,7 +116,7 @@
             letter-spacing: normal;
             text-align: center;
             color: #35b37d;
-            margin-left: 10px;
+            margin-left: 5px;
             cursor: pointer;
             background: #1b2642;
         }
@@ -120,6 +137,7 @@
     }
    
 }
+
 
 @media (max-width:320px){
     .contact-us { 

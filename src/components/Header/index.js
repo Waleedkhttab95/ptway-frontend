@@ -35,8 +35,12 @@ class Header extends React.Component {
 
   async componentDidMount() {
     const { unreadJobOffers, getContracts } = this.props;
-    await unreadJobOffers();
-    getContracts();
+    if (loadState().role === 'user') {
+      unreadJobOffers();
+    }
+    if (loadState().role === 'user' || loadState().role === 'company') {
+      getContracts();
+    }
   }
   showDrawer = () => {
     this.setState({
@@ -549,7 +553,7 @@ class Header extends React.Component {
                 </h2>
                 <p className="brief-desc">
                   نحن أول منصة للعمل الجزئي في السعودية، <br />
-                  نلبي كل احتياجات الشركات والباحثين عن سد أوقات الفراغ.
+                  نلبي جميع احتياجات الشركات والباحثين عن فرص عمل جزئية.
                 </p>
                 <button
                   className="log-btn"

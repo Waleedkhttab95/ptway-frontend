@@ -42,9 +42,17 @@ class JobForm extends React.Component {
     });
   };
   handleSelectChange = (value, option) => {
+    console.log('option', option);
     this.setState({
       ...this.state,
       [option.props.name]: option.key
+    });
+  };
+
+  handleMultipleSelectChange = (value, option) => {
+    const companies = option.map(elm => elm.key);
+    this.setState({
+      company: companies
     });
   };
 
@@ -102,10 +110,31 @@ class JobForm extends React.Component {
   render() {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
-    console.log('here', !/^\d{10}$/.test(this.state.mobile));
+    // console.log('here', !/^\d{10}$/.test(this.state.mobile));
     const { cities } = this.state;
-    const companies = ['مرسول', 'زاد', 'كريم', 'نعناع', 'هانغرستيشن','والم','ذا تشيفز','شدة','كريم ناو','نقوة','جاهز',
-  'طلبات','تو يو','فود بوي','سبرنت','وصل','تمت','إزهلها','شقردي',"داعم ديلفري",'اوبر إيتس'];
+    const companies = [
+      'مرسول',
+      'زاد',
+      'كريم',
+      'نعناع',
+      'هانغرستيشن',
+      'والم',
+      'ذا تشيفز',
+      'شدة',
+      'كريم ناو',
+      'نقوة',
+      'جاهز',
+      'طلبات',
+      'تو يو',
+      'فود بوي',
+      'سبرنت',
+      'وصل',
+      'تمت',
+      'إزهلها',
+      'شقردي',
+      'داعم ديلفري',
+      'اوبر إيتس'
+    ];
     console.log('state', this.state);
 
     return (
@@ -206,7 +235,12 @@ class JobForm extends React.Component {
               </div>
             </div>
             <label>رقم الجوال:</label>
-            <Input placeholder="05xxxxxxxx" maxlength="10" onChange={this.handleChange} name="mobile" />
+            <Input
+              placeholder="05xxxxxxxx"
+              maxlength="10"
+              onChange={this.handleChange}
+              name="mobile"
+            />
             {error && !this.state.mobile && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
@@ -299,7 +333,7 @@ class JobForm extends React.Component {
             <br />
             <Select
               className="input-field"
-              onChange={this.handleSelectChange}
+              onChange={this.handleMultipleSelectChange}
               style={{ width: '100%' }}
               mode={'multiple'}
               showArrow={true}

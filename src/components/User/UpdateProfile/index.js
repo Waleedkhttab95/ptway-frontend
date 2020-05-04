@@ -278,8 +278,6 @@ class UpdateProfile extends React.Component {
     let pSkillsObj;
     const updatedSkills = _.isArray(skills)
       ? skills.map(elm => {
-          console.log('hell', elm);
-
           return (skillsObj = {
             ...skillsObj,
             [elm._id]: elm.skillName
@@ -439,6 +437,7 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleLanguageChange}
                           mode="multiple"
                           autoFocus={true}
+                          maxTagCount={5}
                         >
                           <Option name="language" value="العربية" key="العربية">
                             العربية{' '}

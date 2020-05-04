@@ -1,0 +1,129 @@
+.privacy {
+    background: #fff;
+    .p-header { 
+      background-color: #f8fbff;
+      box-shadow: 0 5px 25px 0 rgba(4, 154, 208, 0.08);
+      border-bottom-left-radius: 20%;
+      border-bottom-right-radius: 20%;
+      height: 300px;
+      padding-top: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .title {
+          font-size: 37px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.46;
+          letter-spacing: normal;
+          text-align: center;
+          color: #00263e;
+      }
+  }
+    .privacy-container {
+        max-width:1170px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px 40px 20px;
+        h2 {
+            font-size: 22px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.45;
+            letter-spacing: normal;
+            text-align: right;
+            color: #18233d;
+            padding-top: 32px;
+        }
+        h3 {
+            font-size: 22px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.45;
+            letter-spacing: normal;
+            text-align: right;
+            color: #18233d;
+            padding-top: 20px;
+        }
+        ol >li, ul>p {
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.45;
+            letter-spacing: normal;
+            text-align: right;
+            color: #18233d;
+        }
+      .contacts-title {
+        font-size: 22px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        text-align: right;
+        color: #18233d;
+        ul, p {
+            font-size: 18px;
+            font-weight: normal !important;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.45;
+            letter-spacing: normal;
+            text-align: right;
+            color: #18233d;
+
+        }
+      }  
+    }
+}
+
+@media (max-width:320px){
+    .privacy .p-header{
+        height: 200px;
+         .title {
+        font-size: 24px;
+    }
+}
+    .privacy-container {
+        h2,h3{
+            font-size: 18px !important;
+        }
+        ol >li, ul>p {
+            font-size: 16px !important;
+        }
+        .contacts-title {
+            font-size: 18px !important;
+            ul, p {
+                font-size: 16px !important;
+            }
+        }
+    } 
+} 
+@media (min-width: 321px) and (max-width:768px){
+    .privacy .p-header {
+        height: 200px;
+        .title {
+        font-size: 24px;
+    }
+}
+    .privacy-container {
+        h2,h3{
+            font-size: 18px !important;
+        }
+        ol >li, ul>p {
+            font-size: 16px !important;
+        }
+        .contacts-title {
+            font-size: 18px !important;
+            ul, p {
+                font-size: 16px !important;
+            }
+        }
+    } 
+
+}

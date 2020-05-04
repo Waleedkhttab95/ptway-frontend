@@ -21,8 +21,8 @@ import {
 const { Panel } = Collapse;
 const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
 
-function callback(key) {
-  console.log(key);
+function callback() {
+  // console.log(key);
 }
 
 class Projects extends React.Component {
@@ -286,19 +286,21 @@ class Projects extends React.Component {
                       className="project-panel"
                       header={
                         <div className="panel-title">
-                          {/* <div className="panel-mob">
-                            <div>{elm.projectName}</div>{' '}
+                          <div className="panel-mob">
+                            <div className="applicant-num-mob">
+                              {elm.projectName}
+                            </div>{' '}
                             <div className="applicant-num-mob">
                               {' '}
                               عدد المتقدمين :
                             </div>
-                            <div className="offers-num">
+                            <div className="offers-num applicant-num-mob">
                               {allProjects.JobAdsCount[index]}
                             </div>
-                          </div> */}
-                          <div>{elm.projectName}</div>{' '}
+                          </div>
+                          <div className="p-n-mob">{elm.projectName}</div>{' '}
                           <div>
-                            <div className="offers-num">
+                            <div className="offers-num p-n-mob">
                               {allProjects.JobAdsCount[index]}
                             </div>
                           </div>

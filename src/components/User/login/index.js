@@ -61,7 +61,7 @@ class UserLoginForm extends React.Component {
                   valuePropName: 'checked',
                   initialValue: true
                 })(<Checkbox>تذكرني</Checkbox>)}
-                {user.error && (
+                {user.error && user.error.response && (
                   <Alert message={user.error.response.data} type="error" />
                 )}
               </Form.Item>
@@ -81,10 +81,8 @@ class UserLoginForm extends React.Component {
               {/* </Form.Item> */}
             </Form>
           </div>
-          <div style={{ width: '100%' }}>
-            <Footer />
-          </div>
         </div>
+        <Footer />
       </React.Fragment>
     );
   }

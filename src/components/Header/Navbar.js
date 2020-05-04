@@ -60,51 +60,56 @@ class Navbar extends React.Component {
     const { i18n } = this.props;
     return (
       <React.Fragment>
-        <Row className="navbar">
-          <img
-            src={ptwayLogo}
-            alt="PTway_Logo"
-            onClick={() => history.push('/')}
-            style={{ cursor: 'pointer' }}
-          />
-          <div className="menu">
-            <Link to="/home/about-us"> من نحن</Link>
-            <Link to="/user/signup">الأفراد</Link>
-            <Link to="/company/signup">الشركات</Link>
-          </div>
-          <div></div>
-          <div className="options">
-            <Select
-              className="basic-single"
-              styles={colourStyles}
-              classNamePrefix="select"
-              isSearchable={false}
-              isClearable={false}
-              value={options.filter(option => option.value === i18n.language)}
-              onChange={() =>
-                i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
-              }
-              options={options}
+        <Row className="navbar fixed-navbar">
+          <div className="navbar-cont">
+            <img
+              src={ptwayLogo}
+              alt="PTway_Logo"
+              onClick={() => history.push('/')}
+              style={{ cursor: 'pointer' }}
             />
-            <RSelect defaultValue="تسجيل الدخول" className="login">
-              <RSelect.Option
-                value="companyLogin"
-                onClick={() => history.push('/company/login')}
+            <div className="menu">
+              <Link to="/home/about-us"> من نحن</Link>
+              <Link to="/user/signup">الأفراد</Link>
+              <Link to="/company/signup">الشركات</Link>
+            </div>
+            <div className="options">
+              <Select
+                className="basic-single"
+                styles={colourStyles}
+                classNamePrefix="select"
+                isSearchable={false}
+                isClearable={false}
+                value={options.filter(option => option.value === i18n.language)}
+                onChange={() =>
+                  i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
+                }
+                options={options}
+              />
+              <RSelect
+                defaultValue="تسجيل الدخول"
+                className="login"
+                dropdownClassName="popup-dropdown"
               >
-                شركة
-              </RSelect.Option>
-              <RSelect.Option
-                value="userLogin"
-                onClick={() => {
-                  history.push('/user/login');
-                }}
-              >
-                باحث عن عمل
-              </RSelect.Option>
-            </RSelect>
+                <RSelect.Option
+                  value="companyLogin"
+                  onClick={() => history.push('/company/login')}
+                >
+                  شركة
+                </RSelect.Option>
+                <RSelect.Option
+                  value="userLogin"
+                  onClick={() => {
+                    history.push('/user/login');
+                  }}
+                >
+                  باحث عن عمل
+                </RSelect.Option>
+              </RSelect>
+            </div>
           </div>
         </Row>
-        <Row className="drawer-mobile">
+        <Row className="drawer-mobile fixed-navbar">
           <i
             className="fa fa-bars"
             aria-hidden="true"

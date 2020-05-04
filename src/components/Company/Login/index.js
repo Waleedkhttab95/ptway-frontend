@@ -35,7 +35,14 @@ class CompanyLoginForm extends React.Component {
             <h3 className="login-form-title">تسجيل دخول</h3>
             <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
               {company.error && (
-                <Alert type="error" message={company.error.response.data} />
+                <Alert
+                  type="error"
+                  message={
+                    company.error.response
+                      ? company.error.response.data
+                      : 'خطأ أثناء التسجيل'
+                  }
+                />
               )}
               <label className="login-form-label">البريد الالكتروني</label>
               <Form.Item>

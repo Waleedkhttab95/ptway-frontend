@@ -29,7 +29,6 @@ class CompanySignupForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-
         const { register, history } = this.props;
         await register({
           companyName: values.companyname,
@@ -55,7 +54,7 @@ class CompanySignupForm extends React.Component {
         <div className="company-signup-container">
           <div className="form-container">
             <h3 className="login-form-title">انشاء حساب جديد</h3>
-            {user.error ? (
+            {user.error && user.error.response ? (
               <Alert
                 message={user.error.response.data}
                 type="error"

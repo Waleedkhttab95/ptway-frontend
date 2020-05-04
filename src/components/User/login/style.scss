@@ -1,17 +1,20 @@
-.user-login-container{
+.user-login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f3f3f3;
     width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-bottom: 70px;
 }
 .form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 112px;
+    // margin: 112px;
     padding: 50px 40px;
     width: 454px;
   height: 463px;
@@ -19,7 +22,7 @@
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   background-color: #ffffff;
 }
-.login-form-title{
+.login-form-title {
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;

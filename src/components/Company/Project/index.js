@@ -76,7 +76,39 @@ class Project extends React.Component {
           ? jobOffers.job.map(elm => {
               return (
                 <div className="project" key={elm._id}>
-                  <h4>{elm.job_Name}</h4>
+                  <h4 className="web-view">{elm.job_Name}</h4>
+                  {/* here is mobile view */}
+                  <div className="mobile-view">
+                    <h4>{elm.job_Name}</h4>
+                    <Dropdown
+                      overlay={
+                        <SideMenu
+                          {...this.state}
+                          {...elm}
+                          deleteJob={this.deleteJob}
+                          deleteConfirmation={() =>
+                            this.deleteConfirmation(elm._id)
+                          }
+                          CloseConfirmationMsg={e => {
+                            e.stopPropagation();
+                            this.setState({
+                              confirmMsg: false,
+                              lockConfirmMsg: false
+                            });
+                            window.location.reload();
+                          }}
+                          cancel={this.cancel}
+                          lockJobModal={this.lockJobModal}
+                          lockConfirmation={() => this.lockJob(elm._id)}
+                        />
+                      }
+                      placement="topCenter"
+                      trigger="hover"
+                    >
+                      <span className="options-menu">...</span>
+                    </Dropdown>
+                  </div>
+                  {/* end of mobile view */}
                   <h4 className="date-mob">
                     <span className="project-date-mob">التاريخ : </span>
                     {moment(elm.createDate).format('ll')}
@@ -144,7 +176,7 @@ class Project extends React.Component {
                     placement="topCenter"
                     trigger="hover"
                   >
-                    <span className="options-menu">...</span>
+                    <span className="options-menu web-view">...</span>
                   </Dropdown>
                 </div>
               );

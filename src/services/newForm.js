@@ -45,7 +45,13 @@ const newForm = {
       company: params.company,
       ptwayMember: params.ptwayMember
     });
-  }
+  },
+  contactUs: params =>
+    baseRequest.post('/contactUs', {
+      name: params.name,
+      message: params.message,
+      email: params.email
+    })
 };
 
 export default newForm;
