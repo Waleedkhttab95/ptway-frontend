@@ -8,6 +8,9 @@ import { userLogin } from '../../../store/actions/userAction';
 import Header from '../../Header';
 
 class UserLoginForm extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -61,8 +64,8 @@ class UserLoginForm extends React.Component {
                   valuePropName: 'checked',
                   initialValue: true
                 })(<Checkbox>تذكرني</Checkbox>)}
-                {user.error && user.error.response && (
-                  <Alert message={user.error.response.data} type="error" />
+                {user.loginError && user.loginError.response && (
+                  <Alert message={user.loginError.response.data} type="error" />
                 )}
               </Form.Item>
               {/* <Form.Item className="check-user-existance"> */}

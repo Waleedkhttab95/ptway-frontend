@@ -42,10 +42,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-menu">
-          <Link to="/home/about-us">من نحن </Link>
+          <Link to="/about-us">من نحن </Link>
           <Link to="/user/signup">الأفراد</Link>
           <Link to="/company/signup">الشركات</Link>
-          <Link to="/home/common-questions">الأسئلة الشائعة</Link>
+          <Link to="/common-questions">الأسئلة الشائعة</Link>
           <Link to="/policy-and-privacy">السياسة والخصوصية</Link>
         </div>
         <div className="footer-logo">

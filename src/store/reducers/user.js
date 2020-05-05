@@ -1,7 +1,8 @@
 import baseRequest from '../../_core/';
 const initialUser = {
   isAdmin: false,
-  loggedIn: false
+  loggedIn: false,
+  error: ''
 };
 
 const user = (state = initialUser, action) => {
@@ -21,7 +22,7 @@ const user = (state = initialUser, action) => {
     case 'USER_SIGNUP_ERROR':
       return {
         // ...state,
-        error: action.payload
+        signupError: action.payload
       };
     case 'COMPANY_SIGNUP_SUCCESS':
       baseRequest.setLocalStorage({
@@ -38,7 +39,7 @@ const user = (state = initialUser, action) => {
     case 'COMPANY_SIGNUP_ERROR':
       return {
         // ...state,
-        error: action.payload
+        signupError: action.payload
       };
     case 'LOGIN_ADMIN_SUCCESS':
       baseRequest.setLocalStorage({
@@ -81,7 +82,7 @@ const user = (state = initialUser, action) => {
     case 'USER_LOGIN_ERROR':
       return {
         // ...state,
-        error: action.payload
+        loginError: action.payload
       };
     case 'COMPANY_LOGIN_SUCCESS':
       baseRequest.setLocalStorage({
@@ -98,7 +99,7 @@ const user = (state = initialUser, action) => {
     case 'COMPANY_LOGIN_ERROR':
       return {
         // ...state,
-        error: action.payload
+        loginError: action.payload
       };
     case 'LOGOUT_SUCCESS':
       baseRequest.setLocalStorage({

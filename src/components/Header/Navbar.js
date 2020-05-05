@@ -69,7 +69,7 @@ class Navbar extends React.Component {
               style={{ cursor: 'pointer' }}
             />
             <div className="menu">
-              <Link to="/home/about-us"> من نحن</Link>
+              <Link to="/about-us"> من نحن</Link>
               <Link to="/user/signup">الأفراد</Link>
               <Link to="/company/signup">الشركات</Link>
             </div>
@@ -145,7 +145,7 @@ class Navbar extends React.Component {
           visible={this.state.visible}
         >
           <div className="navbar-mobile">
-            <Link to="/home/about-us"> من نحن</Link>
+            <Link to="/about-us"> من نحن</Link>
             <Link to="/user/login">الأفراد</Link>
             <Link to="/company/login">الشركات</Link>
             <a>
