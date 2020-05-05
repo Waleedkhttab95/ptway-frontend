@@ -55,7 +55,8 @@ class Job extends React.Component {
       <div className="user-container">
         <Header />
         <Row className="job-section">
-          <Col md={6} xs={24} sm={24} className="right-section">
+          <Col md={6} xs={24} sm={24} >
+            <div className="right-section">
             {offer.company ? (
               <React.Fragment>
                 {imagePath !== 'null' ? (
@@ -92,18 +93,7 @@ class Job extends React.Component {
                 <Spin size="large" />
               </div>
             )}
-
-            {/* <span className="job-owner-name">{compnayName}</span>
-            <div className="job-owner-info">
-              <p>
-                <i className="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {info}
-              </p>
-              <p>
-                <i className="fa fa-map-marker" aria-hidden="true"></i>
-                {Country}, {City}, {address}
-              </p>
-            </div> */}
+            </div>
 
           </Col>
           <Col md={16} xs={24} sm={24} className="left-section">

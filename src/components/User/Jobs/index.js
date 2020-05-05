@@ -2,12 +2,13 @@ import React from 'react';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import './style.scss';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin, Typography } from 'antd';
 import { connect } from 'react-redux';
 import { jobOffers, applyJob } from '../../../store/actions/user/jobOffers';
 import _ from 'lodash';
 import FilterAndSearch from '../Filter';
 
+const { Paragraph } = Typography;
 class Jobs extends React.Component {
   state = {
     loading: true,
@@ -162,9 +163,11 @@ class Jobs extends React.Component {
                             </div>
                           </div>
                           <div className="post-body">
-                            <span className="post-description">
-                              {elm.jobAd.descreption}
+                          <Paragraph ellipsis={{ rows: 5, expandable: false }} className="post-description">
+                            <span>
+                              {elm.jobAd.descreption + '...'} 
                             </span>
+                            </Paragraph>
                           </div>
                         </div>
                         <div className="post-actions-btns">
