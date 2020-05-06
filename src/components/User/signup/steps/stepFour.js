@@ -87,7 +87,7 @@ const step4Form = props => {
               <button
                 // style={{ marginLeft: 8 }}
                 onClick={props.prev}
-                className="prev-btn"
+                className="prev-btn prev-btn-mob"
               >
                 السابق
               </button>
