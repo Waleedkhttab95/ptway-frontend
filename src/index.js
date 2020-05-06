@@ -34,16 +34,16 @@ i18n
     //     user: store.getState().user
     //   });
     // });
-    if (document.getElementById('root').hasChildNodes()) {
-      ReactDOM.hydrate(
-        <I18nextProvider i18n={i18n}>
-          <Provider store={store}>
-            <App />
-          </Provider>
-        </I18nextProvider>,
-        document.getElementById('root')
-      );
-    } else {
+    // if (document.getElementById('root').hasChildNodes()) {
+      // ReactDOM.hydrate(
+      //   <I18nextProvider i18n={i18n}>
+      //     <Provider store={store}>
+      //       <App />
+      //     </Provider>
+      //   </I18nextProvider>,
+      //   document.getElementById('root')
+      // );
+    // } else {
       ReactDOM.render(
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
@@ -52,7 +52,7 @@ i18n
         </I18nextProvider>,
         document.getElementById('root')
       );
-    }
+    // }
 
     serviceWorker.unregister();
   });
