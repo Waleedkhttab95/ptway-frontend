@@ -44,7 +44,7 @@
 .form-fields{
     display: flex;
     flex-direction: column;
-    .info-label{
+    .info-label {
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -233,9 +233,6 @@ input.ant-calendar-picker-input.ant-input{
     .form-fields .info-label{
         margin-top: 15px;
     }
-    .steps-btns{
-        flex-direction: column;
-    }
     .prev-btn {
         margin-left: 0px;
     }
@@ -245,6 +242,10 @@ input.ant-calendar-picker-input.ant-input{
     .form-fields .first-row .elements {
         margin-left: 0;
     }
+    .first-step-btn, .prev-btn {
+        height: 36px;
+    }
+
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -266,9 +267,6 @@ input.ant-calendar-picker-input.ant-input{
     .form-fields .info-label{
         margin-top: 15px;
     }
-    .steps-btns{
-        flex-direction: column;
-    }
     .prev-btn {
         margin-left: 0px;
     }
@@ -277,5 +275,18 @@ input.ant-calendar-picker-input.ant-input{
     }
     .form-fields .first-row .elements {
         margin-left: 0;
+    }
+    .form-fields .country-text {
+        width: 100% !important;
+    }
+    .first-step-btn, .prev-btn {
+        height: 36px;
+        width: auto;
+    }
+     .prev-btn-mob {
+        background: transparent;
+        border: solid 1px #189bce;
+        color: #189bce;
+        margin-left: 5px;
     }
 }
