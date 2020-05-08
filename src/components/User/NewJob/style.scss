@@ -1,11 +1,13 @@
-.new-job-form {
+.container {
+    border-radius: 10px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    margin: 30px auto;
     max-width: 1000px;
     width: 100%;
-    margin: 30px auto;
+}
+.new-job-form {
     background: #fff;
     padding: 30px 120px;
-    border-radius: 10px;
-  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   .title {
     font-size: 48px;
     font-weight: 500;
@@ -21,11 +23,11 @@
     font-size: 20px;
     text-align: right;
     color: #18233d;
+    margin-top: 20px;
   }
   input {
     border: solid 1px #d9d9d9;
     background-color: #fdfdfd;
-    margin-bottom: 20px;
     height: 40px;
   }
   .radio-select {
@@ -41,7 +43,7 @@
 
   }
   .select {
-      margin-bottom: 20px;
+    //   margin-bottom: 20px;
       > div {
           border-top-width: 1.02px;
       }
@@ -53,26 +55,36 @@
     border-radius: 6px;
     background-color: #049ad0;
     color: #ffffff;
-    margin: 10px auto;
+    margin: 30px auto;
     display: block;
   }
 }
 
 @media (max-width:320px) {
+    .container {
+        max-width: fit-content;
+        }
     .new-job-form {
-        margin: 30px auto;
         padding: 30px 20px;
         .title {
             width: 100%
         }
+        .radio-select {
+            flex-direction: column;
+        }
     }
 }
 @media (min-width:321px) and (max-width:768px) {
+    .container {
+    max-width: 360px;
+    }
     .new-job-form {
-        margin: 30px auto;
-        padding: 30px 20px;
+        padding: 30px 10px;
         .title {
             width: 100%
+        }
+        .radio-select {
+            flex-direction: column;
         }
     }
 }
