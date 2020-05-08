@@ -51,7 +51,8 @@ import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
 import { Privacy } from './pages/landingPage/Privacy';
-
+import { NewJob } from './User/NewJob';
+import { CompanyJobs } from './User/NewJob/company';
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
 
@@ -234,6 +235,8 @@ const App = () => {
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
           <Route exact path="/policy-and-privacy" component={Privacy} />
+          <Route exact path="/get-new-job" component={NewJob} />
+          <Route exact path="/delivery-company" component={CompanyJobs} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
