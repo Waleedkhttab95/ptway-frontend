@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Input, Radio, Modal } from 'antd';
+import { Select, Input, Radio, Checkbox, Modal } from 'antd';
 import './style.scss';
 import LoginNavbar from '../../Header/LoginNavbar';
 import Footer from '../../Footer';
@@ -35,11 +35,9 @@ export class CompanyJobs extends React.Component {
     });
   };
 
-  handleMultipleSelectChange = e => {
-    const { value } = e.target;
+  handleCheckedChange = checkedValues => {
     this.setState({
-      //   jobType: [value]
-      jobType: value
+      jobType: checkedValues
     });
   };
 
@@ -60,7 +58,7 @@ export class CompanyJobs extends React.Component {
       !supervisorNumber ||
       !email ||
       !city ||
-      jobType ||
+      jobType.lenght === 0 ||
       !requiredStaff
     ) {
       this.setState({
@@ -81,6 +79,63 @@ export class CompanyJobs extends React.Component {
   };
 
   render() {
+    const companies = [
+      'كريم ناو ',
+      'نقوة',
+      'مرسول',
+      'جاهز',
+      'طلبات',
+      'toyou',
+      'فود بوي ',
+      'هنقرستيشن',
+      'سبرنت',
+      'تمت',
+      'uber eats',
+      'شقردي',
+      'داعم ديلفري',
+      'وصل',
+      'كاريدج',
+      'ازهلها',
+
+      'مؤسسة سناس للبريد DHL',
+      'SMSA',
+      'FEDEX / TNT',
+      'UPS',
+      'ARAMEX',
+      'SKYNET',
+      'NAQEL',
+      ' عبداللطيف جميل للنقل Smile',
+      'ZAJIL',
+      'ESNAD EXPRESS',
+      'اجلتي',
+      'اذريون الدولية التجارية',
+      'مواصلات الجزيره للخدمات اللوجستية',
+      'وكالة النظام الخليجي للشحن الدولي',
+      'شركة الحلول السريعة المتكاملة للمقاولات',
+      'نعناع',
+      'سوق.كوم',
+      'نون',
+      ' قولدن سنت',
+      ' أناس السعودية',
+      'زاد',
+      'مقاضي',
+      'نجري',
+      'سيفي',
+      'ابراهيم القرشي',
+      'سيفورا',
+      'جولي شيك',
+
+      'حصيل',
+
+      'Careem',
+      'Jeeny',
+      ' سيف كاب السائق ',
+      'كيان التاكسي',
+      'كاب تاكسي',
+      'امين كابتن',
+      'مرني'
+    ];
+
     const {
       cities,
       name,
@@ -102,9 +157,15 @@ export class CompanyJobs extends React.Component {
             <h2 className="title">سجل معنا</h2>
             <h4>اسم الشركة:</h4>
             <Select className="select" onChange={this.handleSelectChange}>
-              <Select.Option value="xx" key="xx" name="name">
-                xx
-              </Select.Option>
+              {_.isArray(companies)
+                ? companies.map(elm => {
+                    return (
+                      <Select.Option value={elm} key={elm} name="name">
+                        {elm}
+                      </Select.Option>
+                    );
+                  })
+                : ''}
             </Select>
             {error && !name && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
@@ -147,7 +208,7 @@ export class CompanyJobs extends React.Component {
                 يمكنك اختيار أكثر من خيار
               </span>
             </h4>
-            <Radio.Group
+            {/* <Radio.Group
               className="radio-select"
               name="jobType"
               onChange={this.handleMultipleSelectChange}
@@ -156,7 +217,12 @@ export class CompanyJobs extends React.Component {
               <Radio.Button value="موصل طلبات">موصل طلبات</Radio.Button>
               <Radio.Button value="موصل طرود">موصل طرود</Radio.Button>
               <Radio.Button value="متسوق">متسوق</Radio.Button>
-            </Radio.Group>
+            </Radio.Group> */}
+            <Checkbox.Group
+              className="checked-select"
+              options={['موصل طلبات', 'موصل طرود', 'متسوق']}
+              onChange={this.handleCheckedChange}
+            />
             {error && !jobType && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}

@@ -58,6 +58,13 @@
     margin: 30px auto;
     display: block;
   }
+  .checked-select {
+    display: flex;
+    >label {
+        font-size: 20px;
+        color: #18233d;
+    }
+  }
 }
 
 @media (max-width:320px) {
@@ -73,6 +80,9 @@
             flex-direction: column;
         }
     }
+    .checked-select {
+        flex-direction: column;
+    }
 }
 @media (min-width:321px) and (max-width:768px) {
     .container {
@@ -86,5 +96,8 @@
         .radio-select {
             flex-direction: column;
         }
+    }
+    .checked-select {
+        flex-direction: column;
     }
 }
