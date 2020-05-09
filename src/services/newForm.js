@@ -51,7 +51,28 @@ const newForm = {
       name: params.name,
       message: params.message,
       email: params.email
-    })
+    }),
+  deliveryCompany: ({
+    name,
+    company,
+    supervisor,
+    supervisorNumber,
+    email,
+    city,
+    jobType,
+    requiredStaff
+  }) => {
+    return baseRequest.post('/deliveryCompany', {
+      name,
+      company,
+      supervisor,
+      supervisorNumber,
+      email,
+      city,
+      jobType,
+      requiredStaff
+    });
+  }
 };
 
 export default newForm;
