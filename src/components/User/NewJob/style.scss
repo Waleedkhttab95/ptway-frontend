@@ -99,5 +99,12 @@
     }
     .checked-select {
         flex-direction: column;
+        >label {
+            width: 100%;
+        }
+        >label:nth-child(3) {
+            margin-right: 8px;
+        }
+        
     }
 }
