@@ -16,6 +16,9 @@ const { changePassword } = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
+  state = {
+    error: false
+  };
   async componentDidMount() {
     const { getCompanyInfo } = this.props;
     getCompanyInfo();
@@ -28,13 +31,24 @@ class CompanySetting extends React.Component {
     });
   };
   ChangePassword = async () => {
-    await changePassword({
-      prevPassword: this.state.prevPassword,
-      newPassword: this.state.newPassword
-    });
+    const { newPassword, rePassword, prevPassword } = this.state;
+    if (newPassword !== rePassword) {
+      this.setState({
+        error: true
+      });
+    } else {
+      await changePassword({
+        prevPassword,
+        newPassword
+      });
+      alert('تم تغير كلمة المرور');
+      window.location.reload();
+    }
   };
   render() {
     const { company } = this.props;
+    console.log('state', this.state);
+
     return (
       <React.Fragment>
         <Header />
@@ -64,6 +78,7 @@ class CompanySetting extends React.Component {
                   <Tab3
                     handleChange={this.handleChange}
                     ChangePassword={this.ChangePassword}
+                    {...this.state}
                   />
                 </TabPane>
               </Tabs>

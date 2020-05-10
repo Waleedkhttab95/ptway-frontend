@@ -139,7 +139,7 @@ class Header extends React.Component {
                   <Badge
                     count={unreadOffers.count}
                     showZero
-                    style={{ marginBottom: '10px' }}
+                    style={{ marginBottom: '10px', direction: 'ltr' }}
                   />
                   فرص العمل
                 </Link>
@@ -246,7 +246,7 @@ class Header extends React.Component {
                     <Badge
                       count={unreadOffers.count}
                       showZero
-                      style={{ marginBottom: '10px' }}
+                      style={{ marginBottom: '10px', direction: 'ltr' }}
                     />
                     فرص العمل
                   </Link>

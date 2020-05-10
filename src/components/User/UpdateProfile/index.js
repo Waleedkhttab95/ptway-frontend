@@ -437,7 +437,11 @@ class UpdateProfile extends React.Component {
                           onChange={this.handleLanguageChange}
                           mode="multiple"
                           autoFocus={true}
-                          maxTagCount={5}
+                          style={{
+                            maxHeight: '70px',
+                            height: 'auto',
+                            overflowY: 'scroll'
+                          }}
                         >
                           <Option name="language" value="العربية" key="العربية">
                             العربية{' '}
@@ -756,7 +760,11 @@ class UpdateProfile extends React.Component {
                         <Select
                           showArrow={true}
                           className="input-field"
-                          maxTagCount={5}
+                          style={{
+                            maxHeight: '70px',
+                            height: 'auto',
+                            overflowY: 'scroll'
+                          }}
                           mode="multiple"
                           onChange={this.handlePersonalSkillsChange}
                           defaultValue={
@@ -790,17 +798,11 @@ class UpdateProfile extends React.Component {
                           showArrow={true}
                           className="input-field"
                           mode="multiple"
-                          // placeholder={
-                          //   _.isArray(skills)
-                          //     ? skills.map(elm =>
-                          //         userInfo
-                          //           ? userInfo.skills.map(elm2 =>
-                          //               elm._id === elm2 ? elm.skillName + ' ' : ''
-                          //             )
-                          //           : ''
-                          //       )
-                          //     : ''
-                          // }
+                          style={{
+                            maxHeight: '70px',
+                            height: 'auto',
+                            overflowY: 'scroll'
+                          }}
                           defaultValue={
                             userInfo &&
                             userInfo.skills !== null &&
@@ -840,6 +842,11 @@ class UpdateProfile extends React.Component {
                           showArrow={true}
                           className="input-field"
                           mode="multiple"
+                          style={{
+                            maxHeight: '70px',
+                            height: 'auto',
+                            overflowY: 'scroll'
+                          }}
                           onChange={this.handleHoppiesChange}
                           defaultValue={
                             userInfo &&

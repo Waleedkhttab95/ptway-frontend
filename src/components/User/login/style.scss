@@ -129,7 +129,9 @@
   flex-direction: column;
 }
 .first-step-btn, .prev-btn {
-  width: auto;
+  width: 100%;
+  margin-top: 15px;
+
 }
 // .elm-mob {
 //   display: none;
@@ -161,7 +163,7 @@
   padding-bottom: 70px; 
 }
 .first-step-btn, .prev-btn {
-  width: auto;
+  width: 100%;
   margin-top: 15px;
 }
 .steps-form {

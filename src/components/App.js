@@ -51,6 +51,7 @@ import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
 import { Privacy } from './pages/landingPage/Privacy';
+import { Helmet } from 'react-helmet';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -58,6 +59,12 @@ import { Privacy } from './pages/landingPage/Privacy';
 const App = () => {
   return (
     <div className="App">
+      <Helmet titleTemplate="%s - PTway" defaultTitle="PTway ">
+        <meta
+          name="description"
+          content="منصة التوظيف الأسرع في العثور على وظائف جزئية تسد أوقات فراغك، تساعدك على إيجاد موظفيين مؤهلين لأوقات ذروة مشروعك، كسب المهارات والخبرات اللازمة لسوق العمل، حلول توظيف مناسبة لجميع قطاعات سوق العمل!"
+        />
+      </Helmet>
       <Router>
         <Switch>
           <Route exact path="/" component={Auth} />
@@ -225,12 +232,8 @@ const App = () => {
             component={ResetCompanyPassword}
           />
           <Route exact path="/resetPassword" component={SetNewPassword} />
-          <Route
-            exact
-            path="/home/common-questions"
-            component={CommenQuestions}
-          />
-          <Route exact path="/home/about-us" component={AboutUs} />
+          <Route exact path="/common-questions" component={CommenQuestions} />
+          <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
           <Route exact path="/policy-and-privacy" component={Privacy} />

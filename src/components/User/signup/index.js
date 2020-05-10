@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { userSignup, userInfo } from '../../../store/actions/userAction';
 import statatisticsService from '../../../services/statisticsService';
 import Header from '../../Header';
+import SEO from '../../SEO';
 
 const { allCountries, allCities, allMajors } = statatisticsService;
 const { Step } = Steps;
@@ -25,6 +26,7 @@ class UserSignup extends React.Component {
   };
 
   componentDidMount = async () => {
+    window.scrollTo(0, 0);
     const countries = await allCountries();
     if (countries) this.setState({ countries });
     const cities = await allCities();
@@ -206,6 +208,10 @@ class UserSignup extends React.Component {
     ];
     return (
       <React.Fragment>
+        <SEO
+          title="الأفراد"
+          description=" سجل معنا الآن! وأبدء خطوتك الأولى لكسب تجارب جديدة كل يوم"
+        />
         <Header />
         <Layout style={{ background: '#f3f3f3', height: '100%' }}>
           <div className="user-container">

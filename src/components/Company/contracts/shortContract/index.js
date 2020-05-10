@@ -56,7 +56,6 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-
     const { project, gender, personalSkills, date, country, city } = this.state;
     if (!project || !personalSkills || !gender || !date || !country || !city) {
       this.setState({
@@ -114,11 +113,9 @@ class AddNewAd extends React.Component {
                 <div className="new-ad-form">
                   <h2 className="new-ad-title">إضافة إعلان جديد</h2>
                   <p>
-                     قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته
-                    ضمن مشروع
+                    قم بتعبئة تفاصيل الإعلان الوظيفي الذي ترغب بإضافته ضمن مشروع
                   </p>
                   <div className="new-ad-details">
-                   
                     <br />
                     <br />
                     <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
@@ -160,16 +157,13 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل
-                      (بحد اقصى 12 ساعة)
-                        </label>
-                       
+                        <label>عدد ساعات العمل (بحد اقصى 12 ساعة)</label>
+
                         <Input
                           onChange={handleChange}
                           name="workHours"
                           type="number"
                           onBlur={handleBlur}
-                          
                         />
                         <br />
                         {errors.workHours && touched.workHours && (
@@ -200,9 +194,7 @@ class AddNewAd extends React.Component {
                           </span>
                         )}
                         <br />
-                        <label>
-                          الراتب
-                          (بحد ادنى 100 ريال / يوم)</label>
+                        <label>الراتب (بحد ادنى 100 ريال / يوم)</label>
                         <Input
                           onChange={handleChange}
                           name="salary"
@@ -220,9 +212,7 @@ class AddNewAd extends React.Component {
                         <br />
                       </div>
                       <div className="left-side">
-                        <label> 
-                          عدد أيام العمل
-                          (بحد اقصى 59 يوم)</label>
+                        <label>عدد أيام العمل (بحد اقصى 59 يوم)</label>
                         <Input
                           onChange={handleChange}
                           name="workDays"
@@ -284,6 +274,12 @@ class AddNewAd extends React.Component {
                       className="input-field"
                       mode="multiple"
                       onChange={this.handlePersonalSkillsChange}
+                      style={{
+                        maxHeight: '70px',
+                        height: 'auto',
+                        overflowY: 'scroll',
+                        width: '100%'
+                      }}
                     >
                       {_.isArray(pSkills)
                         ? pSkills.map(elm => {

@@ -7,6 +7,9 @@ import { companyLogin } from '../../../store/actions/userAction';
 import Footer from '../../Footer';
 import Header from '../../Header';
 class CompanyLoginForm extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -34,16 +37,6 @@ class CompanyLoginForm extends React.Component {
           <div className="form-container">
             <h3 className="login-form-title">تسجيل دخول</h3>
             <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
-              {company.error && (
-                <Alert
-                  type="error"
-                  message={
-                    company.error.response
-                      ? company.error.response.data
-                      : 'خطأ أثناء التسجيل'
-                  }
-                />
-              )}
               <label className="login-form-label">البريد الالكتروني</label>
               <Form.Item>
                 {getFieldDecorator('email', {
@@ -71,6 +64,17 @@ class CompanyLoginForm extends React.Component {
                 })(<Checkbox>تذكرني</Checkbox>)}
               </Form.Item>
               {/* <Form.Item className="check-user-existance"> */}
+              {company.loginError && (
+                <Alert
+                  type="error"
+                  message={
+                    company.loginError.response
+                      ? company.loginError.response.data
+                      : 'خطأ أثناء التسجيل'
+                  }
+                />
+              )}
+              <br />
               <div className="login-btn-cont">
                 <Button
                   type="primary"
