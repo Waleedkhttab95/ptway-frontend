@@ -13,6 +13,7 @@ import work from '../../../../images/vis1.svg';
 import education from '../../../../images/vis2.svg';
 import enviroment from '../../../../images/mv.svg';
 import Footer from '../../../Footer';
+import SEO from '../../../SEO';
 
 const AboutUs = () => {
   useEffect(() => {
@@ -20,6 +21,10 @@ const AboutUs = () => {
   }, []);
   return (
     <React.Fragment>
+      <SEO
+        title="من نحن"
+        description="منصة الكترونية تربط بين الشركات والباحثين عن عمل جزئي لتغطية احتياجهم من الكوادر البشرية"
+      />
       <div style={{ background: '#fff' }}>
         <Row className="about-us">
           <Navbar />

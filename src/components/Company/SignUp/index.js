@@ -8,6 +8,7 @@ import { companySignup } from '../../../store/actions/userAction';
 
 import { connect } from 'react-redux';
 import Header from '../../Header';
+import SEO from '../../SEO';
 
 const { getAllCompanyMajors, getCompanySMajor } = statatisticsService;
 const { Option } = Select;
@@ -18,6 +19,7 @@ class CompanySignupForm extends React.Component {
     jobTypes: []
   };
   componentDidMount = async () => {
+    window.scrollTo(0, 0);
     const sectors = await getAllCompanyMajors();
     const jobTypes = await getCompanySMajor();
     this.setState({
@@ -50,19 +52,14 @@ class CompanySignupForm extends React.Component {
     const { user } = this.props;
     return (
       <React.Fragment>
+        <SEO
+          title="الشركات"
+          description="سجل شركتك الآن! وأبدء خطوتك الأولى لإيجاد الموظف المناسب لك"
+        />
         <Header />
         <div className="company-signup-container">
           <div className="form-container">
             <h3 className="login-form-title">انشاء حساب جديد</h3>
-            {user.error && user.error.response ? (
-              <Alert
-                message={user.error.response.data}
-                type="error"
-                style={{ width: '100%' }}
-              />
-            ) : (
-              ''
-            )}
             <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
               <label className="login-form-label">اسم الجهة</label>
               <Form.Item>
@@ -131,6 +128,16 @@ class CompanySignupForm extends React.Component {
                   initialValue: true
                 })(<Checkbox>الموافقة على الشروط</Checkbox>)}
               </Form.Item> */}
+              {user.signupError && user.signupError.response ? (
+                <Alert
+                  message={user.signupError.response.data}
+                  type="error"
+                  style={{ width: '100%' }}
+                />
+              ) : (
+                ''
+              )}
+              <br />
               <div className="login-btn-cont">
                 <Button
                   type="primary"

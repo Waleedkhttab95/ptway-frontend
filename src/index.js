@@ -14,8 +14,7 @@ const resources = {
   ar: require('./ar.json')
 };
 
-
-const trackingId = "UA-142610001-1"; // Replace with your Google Analytics tracking ID
+const trackingId = 'UA-142610001-1'; // Replace with your Google Analytics tracking ID
 ReactGA.initialize(trackingId);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -35,14 +34,25 @@ i18n
     //     user: store.getState().user
     //   });
     // });
-    ReactDOM.render(
-      <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </I18nextProvider>,
-      document.getElementById('root')
-    );
+    // if (document.getElementById('root').hasChildNodes()) {
+      // ReactDOM.hydrate(
+      //   <I18nextProvider i18n={i18n}>
+      //     <Provider store={store}>
+      //       <App />
+      //     </Provider>
+      //   </I18nextProvider>,
+      //   document.getElementById('root')
+      // );
+    // } else {
+      ReactDOM.render(
+        <I18nextProvider i18n={i18n}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </I18nextProvider>,
+        document.getElementById('root')
+      );
+    // }
 
     serviceWorker.unregister();
   });

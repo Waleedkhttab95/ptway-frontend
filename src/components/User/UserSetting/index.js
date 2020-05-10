@@ -10,7 +10,9 @@ import {
 } from '../../../store/actions/user/setting';
 class Setting extends React.Component {
   state = {
-    status: 1
+    status: 1,
+    error: false,
+    visible: false
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -22,29 +24,46 @@ class Setting extends React.Component {
 
   submitChanges = async () => {
     const { updatePassword, updateEmailNotification } = this.props;
-    const { prevPassword, newPassword, status } = this.state;
+    const { prevPassword, newPassword, status, rePassword } = this.state;
     const data = {
       prevPassword,
       newPassword
     };
-    updatePassword(data);
-
-    updateEmailNotification({
-      status: status === 'نعم' ? 'true' : 'false'
-    });
+    if (newPassword !== rePassword) {
+      this.setState({
+        error: true
+      });
+    } else if (prevPassword && newPassword && rePassword) {
+      updatePassword(data);
+    } else {
+      updateEmailNotification({
+        status: status === 'نعم' ? 'true' : 'false'
+      });
+    }
   };
 
-  // componentDidUpdate() {
-  //   const { history } = this.props;
-  //   if (
-  //     this.props.userSetting.newPassword === 'غيّرنا لك الرقم السري' ||
-  //     this.props.userSetting.emailNotification === 'Done . '
-  //   ) {
-  //     history.push('/user/home');
-  //   } else {
-  //     console.log('fail');
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { history } = this.props;
+    console.log(
+      'prevProps.userSetting.emailNotification',
+      prevProps.userSetting.emailNotification,
+      this.props.userSetting.emailNotification
+    );
+
+    if (
+      prevProps.userSetting.newPassword !==
+        this.props.userSetting.newPassword ||
+      prevProps.userSetting.emailNotification !==
+        this.props.userSetting.emailNotification
+    ) {
+      // history.push('/user/home');
+      this.setState({
+        visible: true
+      });
+    } else {
+      console.log('fail');
+    }
+  }
   // handleCancel = () => {
   //   this.setState({
   //     visible: false
@@ -52,12 +71,13 @@ class Setting extends React.Component {
   // };
   render() {
     const { userSetting } = this.props;
+    const { error, newPassword, rePassword } = this.state;
     return (
       <React.Fragment>
         <Header />
         {userSetting.newPassword === 'غيّرنا لك الرقم السري' ||
         userSetting.emailNotification === 'Done . ' ? (
-          <Modal visible={true} closable={false} footer={false}>
+          <Modal visible={this.state.visible} closable={false} footer={false}>
             <div className="success-modal">
               <h2>تم تغير الاعدادات بنجاح</h2>
               <br />
@@ -97,6 +117,18 @@ class Setting extends React.Component {
                     name="newPassword"
                     onChange={this.handleChange}
                   />
+                  <span>تأكيد كلمة المرور الجديدة</span>
+                  <Input
+                    className="account-input"
+                    type="password"
+                    name="rePassword"
+                    onChange={this.handleChange}
+                  />
+                  {error && newPassword !== rePassword && (
+                    <span style={{ color: 'red' }}>
+                      كلمة المرور غير متطابقة
+                    </span>
+                  )}
                 </div>
               </Col>
               <Col className="account-options">

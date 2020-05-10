@@ -56,7 +56,6 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-
     const { project, gender, personalSkills, date, country, city } = this.state;
     if (!project || !personalSkills || !gender || !date || !country || !city) {
       this.setState({
@@ -118,7 +117,6 @@ class AddNewAd extends React.Component {
                     ضمن مشروع
                   </p>
                   <div className="new-ad-details">
-                  
                     <br />
                     <br />
                     <label>المشروع الأساسي الذي سيندرج تحته الإعلان</label>
@@ -160,9 +158,7 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل
-                          (بحد اقصى 6 ساعات )
-                        </label>
+                        <label>عدد ساعات العمل (بحد اقصى 6 ساعات )</label>
                         <Input
                           onChange={handleChange}
                           name="workHours"
@@ -198,9 +194,7 @@ class AddNewAd extends React.Component {
                           </span>
                         )}
                         <br />
-                        <label>الراتب
-                          (بحد ادنى 1500 ريال / شهريا)
-                        </label>
+                        <label>الراتب (بحد ادنى 1500 ريال / شهريا)</label>
                         <Input
                           onChange={handleChange}
                           name="salary"
@@ -218,9 +212,7 @@ class AddNewAd extends React.Component {
                         <br />
                       </div>
                       <div className="left-side">
-                        <label>عدد أيام العمل في الاسبوع
-                          
-                        </label>
+                        <label>عدد أيام العمل في الاسبوع</label>
                         <Input
                           onChange={handleChange}
                           name="workDays"
@@ -282,6 +274,12 @@ class AddNewAd extends React.Component {
                       className="input-field"
                       mode="multiple"
                       onChange={this.handlePersonalSkillsChange}
+                      style={{
+                        maxHeight: '70px',
+                        height: 'auto',
+                        overflowY: 'scroll',
+                        width: '100%'
+                      }}
                     >
                       {_.isArray(pSkills)
                         ? pSkills.map(elm => {

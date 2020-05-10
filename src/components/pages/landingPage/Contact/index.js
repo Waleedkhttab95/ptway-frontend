@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Input } from 'antd';
+import { Row, Input, Modal } from 'antd';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -10,7 +10,8 @@ class ContactUs extends React.Component {
   state = {
     name: '',
     email: '',
-    message: ''
+    message: '',
+    SuccessMsg: false
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -22,6 +23,9 @@ class ContactUs extends React.Component {
     e.preventDefault();
     const { name, email, message } = this.state;
     await contactUs({ name, email, message });
+    this.setState({
+      SuccessMsg: true
+    });
   };
   render() {
     return (
@@ -43,6 +47,7 @@ class ContactUs extends React.Component {
               placeholder="الإيميل"
               name="email"
               onChange={this.handleChange}
+              value={this.state.email}
             />
           </div>
           <TextArea
@@ -50,6 +55,7 @@ class ContactUs extends React.Component {
             placeholder="أكتب رسالتك هنا"
             name="message"
             onChange={this.handleChange}
+            value={this.state.message}
           />
           <button className="send-btn" onClick={this.send}>
             ارسال
@@ -65,6 +71,28 @@ class ContactUs extends React.Component {
             <button>سجل كباحث عن عمل</button>
           </Link>
         </div>
+        <Modal visible={this.state.SuccessMsg} closable={false} footer={false}>
+          <div className="success-modal">
+            <i className="fa fa-check-circle check-icon" aria-hidden="true"></i>
+            <h2>تم إرسال رسالتك بنجاح</h2>
+            <button
+              onClick={() =>
+                this.setState(
+                  {
+                    name: '',
+                    email: '',
+                    message: ''
+                  },
+                  () => {
+                    this.setState({ SuccessMsg: false });
+                  }
+                )
+              }
+            >
+              حسناً
+            </button>
+          </div>
+        </Modal>
       </Row>
     );
   }

@@ -30,30 +30,30 @@ const HowItWorks = () => {
             للحصول على متطوعين ، فاذا كنت تمثل هذه القطاعات أو مايشابهها انظم
             معنا
             <br />
+            <Link to="/user/signup" className="tag-link">
+              {'<'} انضم معنا
+            </Link>
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
               تطوع_صحي &nbsp;#تطوع_خيري&nbsp; #تطوع_اجتماعي# &nbsp;
             </span>
             <img src={voluntery} alt="voluntery" className="tag-icon" />
             <br />
-            <Link to="/user/signup" className="tag-link">
-              {'<'} انضم معنا &nbsp; &nbsp;
-            </Link>
           </TabPane>
           <TabPane tab=" عقود" key="2">
             هذا الخيار يساعدك على إيجاد موظفين لعقود مؤقتة أو موسمية قد تمتد
             لشهر أو عدة أشهر تناسب الشركات التي تحصل على عقود مؤقتة مثل المشاريع
             أو تعمل اثناء المواسم الطويله مثل الصيف
             <br />
+            <Link to="/user/signup" className="tag-link">
+              {'<'} انضم معنا
+            </Link>
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
               وظائف_صيفية &nbsp;#رمضان&nbsp; #مشاريع# &nbsp;
             </span>
             <img src={contract} alt="contract" className="tag-icon" />
             <br />
-            <Link to="/user/signup" className="tag-link">
-              {'<'} انضم معنا &nbsp; &nbsp;
-            </Link>
           </TabPane>
           <TabPane tab="جزئي" key="3">
             يساعدك هذا الخيار الحصول على موظفين بدوام جزئي لتغطية أوقات الذروة
@@ -61,30 +61,30 @@ const HowItWorks = () => {
             ووظائف نهاية الأسبوع مثل المطاعم والمقاهي والشركات الناشئة وقطاع
             التجزئة.
             <br />
+            <Link to="/user/signup" className="tag-link">
+              {'<'} انضم معنا
+            </Link>
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
               مطاعم &nbsp;#مقاهي&nbsp; #شركات_ناشئة# &nbsp;
             </span>
             <img src={partial} alt="partial" className="tag-icon" />
             <br />
-            <Link to="/user/signup" className="tag-link">
-              {'<'} انضم معنا &nbsp; &nbsp;
-            </Link>
           </TabPane>
           <TabPane tab="يومي" key="4">
             تستطيع من خلال هذا الخيار الحصول على موظفين للعمل ليوم واحد أو لعدة
             أيام حسب الطلب، يناسب الشركات المهتمة بتنظيم المعارض والمؤتمرات
             والإحتفالات والتسويق والترويج
             <br />
+            <Link to="/user/signup" className="tag-link">
+              {'<'} انضم معنا
+            </Link>
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
               المناسبات &nbsp;#مواسم_السعودية&nbsp; #المعارض# &nbsp; &nbsp;
             </span>
             <img src={calender} alt="calender" className="tag-icon" />
             <br />
-            <Link to="/user/signup" className="tag-link">
-              {'<'} انضم معنا &nbsp; &nbsp;
-            </Link>
           </TabPane>
         </Tabs>
       </Col>
