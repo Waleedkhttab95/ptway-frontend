@@ -4,7 +4,7 @@ import './style.scss';
 import LoginNavbar from '../../Header/LoginNavbar';
 import Footer from '../../Footer';
 
-export class CompanyNewJob extends React.Component {
+export class UserNewJob extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -14,46 +14,40 @@ export class CompanyNewJob extends React.Component {
             <h2 className="title">سجل معنا</h2>
             <h4>الإسم الثلاثي:</h4>
             <Input />
+            <h4>الجنس:</h4>
+            <Radio.Group
+              onChange={this.handleChange}
+              className="radio-select"
+              name="gender"
+            >
+              <Radio.Button value="ذكر">ذكر</Radio.Button>
+              <Radio.Button value="أنثى">أنثى</Radio.Button>
+            </Radio.Group>
             <h4>البريد الإلكتروني:</h4>
-            <Input />
-            <h4>تأكيد البريد الالكتروني:</h4>
             <Input />
             <h4>رقم الجوال:</h4>
             <Input />
             <h4>تأكيد رقم الجوال:</h4>
             <Input />
-            <h4>اسم الشركة:</h4>
+            <h4>شركتك السابقة؟</h4>
+            <Input />
+            <h4>المسمى الوظيفي السابق:</h4>
             <Input />
             <h4>
-              موقع الشركة:{' '}
-              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
-                مثال: مدينة الرياض، حي الملك فهد.
-              </span>
+              الوظيفة المرغوبة: <span>يمكنك اختيار 3 فقط</span>
             </h4>
-            <Input />
-            <h4>القطاع:</h4>
-            <Input />
-            <h4>المجال:</h4>
-            <Input />
-            <h4>حجم الشركة:</h4>
-            <Select className="select">
-              <Select.Option value="xx"> xx</Select.Option>
+            <Select>
+              <Select.Option value="xx">xx</Select.Option>
             </Select>
-            <h4>وصف الشركة:</h4>
-            <Input.TextArea row={4} />
-
-            <h4>موقع الشركة الالكتروني:</h4>
-            <Input />
-
-            <h4>
-              المسمى الوظيفي المطلوب:{' '}
-              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
-                يمكنك اختيار 3 فقط
-              </span>
-            </h4>
-            <Select className="select">
-              <Select.Option value="xx"> xx</Select.Option>
-            </Select>
+            <h4>هل تملك خبرة؟ </h4>
+            <Radio.Group
+              onChange={this.handleChange}
+              className="radio-select"
+              name="exp"
+            >
+              <Radio.Button value="نعم">نعم</Radio.Button>
+              <Radio.Button value="لا">لا</Radio.Button>
+            </Radio.Group>
             <h4>عدد سنوات الخبرة؟</h4>
             <Radio.Group
               onChange={this.handleChange}
@@ -65,16 +59,19 @@ export class CompanyNewJob extends React.Component {
               <Radio.Button value="5-7">5 - 7 سنوات</Radio.Button>
               <Radio.Button value="+8">8+</Radio.Button>
             </Radio.Group>
-
-            <h4>نوع العقد: </h4>
+            <h4>هل يمكنك العمل خارج مدينتك؟</h4>
             <Radio.Group
               onChange={this.handleChange}
               className="radio-select"
-              name=""
+              name="work-abroad"
             >
-              <Radio.Button value="full-time">Full-time</Radio.Button>
-              <Radio.Button value="part-time">Part-time</Radio.Button>
+              <Radio.Button value="نعم">نعم</Radio.Button>
+              <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            <h4>حسابك الشخصي في Linkedin:</h4>
+            <Input />
+            <h4>حمل سيرتك الذاتية:</h4>
+            <Input />
             <button>ارسال</button>
           </form>
         </div>
