@@ -9,8 +9,12 @@ import _ from 'lodash';
 import deliveryComp from '../../../images/deliveryComp.svg';
 const { allCities } = statatisticsService;
 const { deliveryCompany } = TempForm;
+const { TextArea } = Input;
+
+
 
 export class CompanyJobs extends React.Component {
+
   state = {
     cities: '',
     error: false,
@@ -50,7 +54,8 @@ export class CompanyJobs extends React.Component {
       email,
       city,
       jobType,
-      requiredStaff
+      requiredStaff,
+      description
     } = this.state;
     if (
       !name ||
@@ -59,12 +64,14 @@ export class CompanyJobs extends React.Component {
       !email ||
       !city ||
       jobType.lenght === 0 ||
-      !requiredStaff
+      !requiredStaff ||
+      !description
     ) {
       this.setState({
         error: true
       });
     } else {
+      console.log(this.state)
       await deliveryCompany(this.state);
       this.setState({
         visible: true
@@ -85,12 +92,12 @@ export class CompanyJobs extends React.Component {
       'مرسول',
       'جاهز',
       'طلبات',
-      'toyou',
+      'تو يو',
       'فود بوي ',
       'هنقرستيشن',
       'سبرنت',
       'تمت',
-      'uber eats',
+      'اوبر ايتس',
       'شقردي',
       'داعم ديلفري',
       'وصل',
@@ -98,15 +105,15 @@ export class CompanyJobs extends React.Component {
       'ازهلها',
 
       'مؤسسة سناس للبريد DHL',
-      'SMSA',
-      'FEDEX / TNT',
-      'UPS',
-      'ARAMEX',
-      'SKYNET',
-      'NAQEL',
-      ' عبداللطيف جميل للنقل Smile',
-      'ZAJIL',
-      'ESNAD EXPRESS',
+      'سمسا',
+      'فيديكس / تي ان تي',
+      'أوبس',
+      'أرامكس',
+      'سكاي نت',
+      'ناقل',
+      ' عبداللطيف جميل للنقل سمايل',
+      'زاجل',
+      'إسناد اكسبرس',
       'اجلتي',
       'اذريون الدولية التجارية',
       'مواصلات الجزيره للخدمات اللوجستية',
@@ -119,6 +126,9 @@ export class CompanyJobs extends React.Component {
       ' أناس السعودية',
       'زاد',
       'مقاضي',
+      'والم',
+      'ذا تشيفز',
+      'شدة',
       'نجري',
       'سيفي',
       'ابراهيم القرشي',
@@ -127,8 +137,8 @@ export class CompanyJobs extends React.Component {
 
       'حصيل',
 
-      'Careem',
-      'Jeeny',
+      'كريم',
+      'جيني',
       ' سيف كاب السائق ',
       'كيان التاكسي',
       'كاب تاكسي',
@@ -145,6 +155,7 @@ export class CompanyJobs extends React.Component {
       city,
       jobType,
       requiredStaff,
+      description,
       error
     } = this.state;
 
@@ -227,11 +238,25 @@ export class CompanyJobs extends React.Component {
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
             <h4>عدد الموظفين المطلوب:</h4>
-            <Input name="requiredStaff" onChange={this.handleChange} />
+            <Input type="number" name="requiredStaff" onChange={this.handleChange} />
             {error && !requiredStaff && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
+
+<h4>الوصف:</h4>
+
+<TextArea
+                      rows={4}
+                      className="textarea-field"
+                      onChange={this.handleChange}
+                      name="description"
+                    />
+
+{error && !description && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <button onClick={this.send}>ارسال</button>
+
           </form>
         </div>
         <Modal
@@ -250,7 +275,7 @@ export class CompanyJobs extends React.Component {
             </h3>
             <br />
             <button>
-              <a href="https://www.ptway.net/user/login">
+              <a href="https://www.ptway.net/company/signup">
                 <span className="coloor">سجل في PTway</span>
               </a>
             </button>

@@ -60,6 +60,7 @@ const newForm = {
     email,
     city,
     jobType,
+    description,
     requiredStaff
   }) => {
     return baseRequest.post('/deliveryCompany', {
@@ -70,6 +71,7 @@ const newForm = {
       email,
       city,
       jobType,
+      description,
       requiredStaff
     });
   }
