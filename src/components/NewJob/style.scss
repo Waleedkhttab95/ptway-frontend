@@ -96,6 +96,21 @@
         color: #00263e;
     }
 }
+.upload-cv-btn {
+    background: #d0d0d0 !important;
+    height: 36px !important;
+}
+.upload-file-input {
+    height: 62px;
+>span {
+    left:10px !important;
+    right: auto !important;
+    >span {
+        display: flex !important;
+        align-items: center;
+    }
+}
+}
 
 @media (max-width:320px) {
     .container {

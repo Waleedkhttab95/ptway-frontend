@@ -1,8 +1,8 @@
 import React from 'react';
 import { Select, Input, Radio } from 'antd';
 import './style.scss';
-import LoginNavbar from '../../Header/LoginNavbar';
-import Footer from '../../Footer';
+import LoginNavbar from '../Header/LoginNavbar';
+import Footer from '../Footer';
 
 export class CompanyNewJob extends React.Component {
   render() {

@@ -72,6 +72,36 @@ const newForm = {
       jobType,
       requiredStaff
     });
+  },
+  getUserNewJob: ({
+    name,
+    email,
+    mobile,
+    Cv,
+    gender,
+    Experience,
+    lastCompany,
+    lastJobPosition,
+    YearsOfExperience,
+    WorkingOutOfCity,
+    jobTitle,
+    Linkedin
+  }) => {
+    let formData = new FormData();
+    formData.append('file', Cv);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('mobile', mobile);
+    formData.append('gender', gender);
+    formData.append('Experience', Experience);
+    formData.append('lastCompany', lastCompany);
+    formData.append('lastJobPosition', lastJobPosition);
+    formData.append('YearsOfExperience', YearsOfExperience);
+    formData.append('WorkingOutOfCity', WorkingOutOfCity);
+    formData.append('jobTitle', jobTitle);
+    formData.append('Linkedin', Linkedin);
+
+    return baseRequest.post('/jobless', formData);
   }
 };
 

@@ -1,11 +1,10 @@
 import React from 'react';
-import userJob from '../../../images/job1.svg';
-import companyJob from '../../../images/job2.svg';
-
+import userJob from '../../images/job1.svg';
+import companyJob from '../../images/job2.svg';
 import './style.scss';
-import LoginNavbar from '../../Header/LoginNavbar';
-import Footer from '../../Footer';
-import history from '../../../_core/history';
+import LoginNavbar from '../Header/LoginNavbar';
+import Footer from '../Footer';
+import history from '../../_core/history';
 
 export class GetNewJob extends React.Component {
   render() {

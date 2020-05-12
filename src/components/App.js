@@ -51,11 +51,11 @@ import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
 import { Privacy } from './pages/landingPage/Privacy';
-import { GetNewJob } from './User/NewJob';
-import { UserNewJob } from './User/NewJob/user';
-import { CompanyNewJob } from './User/NewJob/company';
+import { GetNewJob } from './NewJob';
+import { UserNewJob } from './NewJob/user';
+import { CompanyNewJob } from './NewJob/company';
 
-import { DeliveryCompany } from './User/NewJob/deliveryCompany';
+import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
 
 // DELETE ME

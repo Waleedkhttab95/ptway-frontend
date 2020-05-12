@@ -1,12 +1,12 @@
 import React from 'react';
 import { Select, Input, Checkbox, Modal } from 'antd';
 import './style.scss';
-import LoginNavbar from '../../Header/LoginNavbar';
-import Footer from '../../Footer';
-import statatisticsService from '../../../services/statisticsService';
-import TempForm from '../../../services/newForm';
+import LoginNavbar from '../Header/LoginNavbar';
+import Footer from '../Footer';
+import statatisticsService from '../../services/statisticsService';
+import TempForm from '../../services/newForm';
 import _ from 'lodash';
-import deliveryComp from '../../../images/deliveryComp.svg';
+import deliveryComp from '../../images/deliveryComp.svg';
 const { allCities } = statatisticsService;
 const { deliveryCompany } = TempForm;
 
