@@ -198,7 +198,7 @@ export class DeliveryCompany extends React.Component {
             {error && !email && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
-            <h4>المنطقة:</h4>
+            <h4>المدينة:</h4>
             <Select className="select" onChange={this.handleSelectChange}>
               {_.isArray(cities)
                 ? cities.map(elm => {
