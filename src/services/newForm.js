@@ -60,6 +60,7 @@ const newForm = {
     email,
     city,
     jobType,
+    description,
     requiredStaff
   }) => {
     return baseRequest.post('/deliveryCompany', {
@@ -70,6 +71,7 @@ const newForm = {
       email,
       city,
       jobType,
+      description,
       requiredStaff
     });
   },
@@ -100,7 +102,6 @@ const newForm = {
     formData.append('WorkingOutOfCity', WorkingOutOfCity);
     formData.append('jobTitle', jobTitle);
     formData.append('Linkedin', Linkedin);
-
     return baseRequest.post('/jobless', formData);
   },
   getCompanyNewJob: ({
