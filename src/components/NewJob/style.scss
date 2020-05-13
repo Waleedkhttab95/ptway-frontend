@@ -62,6 +62,7 @@
     color: #ffffff;
     margin: 30px auto;
     display: block;
+    cursor: pointer;
   }
   .checked-select {
     display: flex;
@@ -108,7 +109,7 @@
 .upload-file-input {
     height: 62px;
 >span {
-    left:10px !important;
+    left:2px !important;
     right: auto !important;
     >span {
         display: flex !important;

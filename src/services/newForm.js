@@ -103,6 +103,37 @@ const newForm = {
     formData.append('jobTitle', jobTitle);
     formData.append('Linkedin', Linkedin);
     return baseRequest.post('/jobless', formData);
+  },
+  getCompanyNewJob: ({
+    name,
+    mobile,
+    email,
+    companyName,
+    companyLocation,
+    companySector,
+    companyType,
+    companySize,
+    companyInfo,
+    companyWebsite,
+    jobTitle,
+    YearsOfExperience,
+    contract
+  }) => {
+    return baseRequest.post('/companyjob', {
+      name,
+      mobile,
+      email,
+      companyName,
+      companyLocation,
+      companySector,
+      companyType,
+      companySize,
+      companyInfo,
+      companyWebsite,
+      jobTitle,
+      YearsOfExperience,
+      contract
+    });
   }
 };
 
