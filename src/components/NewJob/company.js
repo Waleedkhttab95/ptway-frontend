@@ -19,6 +19,12 @@ export class CompanyNewJob extends React.Component {
   };
 
   handleSelectChange = (value, option) => {
+    this.setState({
+      companySize: option.key
+    });
+  };
+
+  handleMultiSelectChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
       jobTitle: ids
@@ -64,6 +70,14 @@ export class CompanyNewJob extends React.Component {
       'Quality Assurance',
       'Retail / Service'
     ];
+    const companySize = [
+      '1-10',
+      '11-50',
+      '101-250',
+      '251-500',
+      '501-1000',
+      '1000+'
+    ];
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -107,11 +121,16 @@ export class CompanyNewJob extends React.Component {
             <Input onChange={this.handleChange} name="companyType" />
             <h4>حجم الشركة:</h4>
             <Select className="select" onChange={this.handleSelectChange}>
-              <Select.Option value="xx"> xx</Select.Option>
+              {companySize.map(elm => (
+                <Select.Option value={elm} key={elm}>
+                  {' '}
+                  {elm}
+                </Select.Option>
+              ))}
             </Select>
             <h4>وصف الشركة:</h4>
             <Input.TextArea
-              row={4}
+              row={6}
               onChange={this.handleChange}
               name="companyInfo"
             />
@@ -127,7 +146,7 @@ export class CompanyNewJob extends React.Component {
             </h4>
             <Select
               className="select"
-              onChange={this.handleSelectChange}
+              onChange={this.handleMultiSelectChange}
               mode="multiple"
               showArrow={true}
             >
