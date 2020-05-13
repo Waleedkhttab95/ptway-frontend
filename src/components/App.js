@@ -51,6 +51,12 @@ import AboutUs from '../components/pages/landingPage/AboutUs';
 import JobForm from './JobForm';
 import DeliveryForm from './Delivery';
 import { Privacy } from './pages/landingPage/Privacy';
+
+import { GetNewJob } from './NewJob';
+import { UserNewJob } from './NewJob/user';
+import { CompanyNewJob } from './NewJob/company';
+
+import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
 
 // DELETE ME
@@ -237,6 +243,11 @@ const App = () => {
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
           <Route exact path="/policy-and-privacy" component={Privacy} />
+          <Route exact path="/get-new-job" component={GetNewJob} />
+          <Route exact path="/user-new-job" component={UserNewJob} />
+          <Route exact path="/company-new-job" component={CompanyNewJob} />
+
+          <Route exact path="/delivery-company" component={DeliveryCompany} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>

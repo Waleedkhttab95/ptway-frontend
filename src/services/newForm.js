@@ -51,7 +51,90 @@ const newForm = {
       name: params.name,
       message: params.message,
       email: params.email
-    })
+    }),
+  deliveryCompany: ({
+    name,
+    company,
+    supervisor,
+    supervisorNumber,
+    email,
+    city,
+    jobType,
+    description,
+    requiredStaff
+  }) => {
+    return baseRequest.post('/deliveryCompany', {
+      name,
+      company,
+      supervisor,
+      supervisorNumber,
+      email,
+      city,
+      jobType,
+      description,
+      requiredStaff
+    });
+  },
+  getUserNewJob: ({
+    name,
+    email,
+    mobile,
+    Cv,
+    gender,
+    Experience,
+    lastCompany,
+    lastJobPosition,
+    YearsOfExperience,
+    WorkingOutOfCity,
+    jobTitle,
+    Linkedin
+  }) => {
+    let formData = new FormData();
+    formData.append('file', Cv);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('mobile', mobile);
+    formData.append('gender', gender);
+    formData.append('Experience', Experience);
+    formData.append('lastCompany', lastCompany);
+    formData.append('lastJobPosition', lastJobPosition);
+    formData.append('YearsOfExperience', YearsOfExperience);
+    formData.append('WorkingOutOfCity', WorkingOutOfCity);
+    formData.append('jobTitle', jobTitle);
+    formData.append('Linkedin', Linkedin);
+    return baseRequest.post('/jobless', formData);
+  },
+  getCompanyNewJob: ({
+    name,
+    mobile,
+    email,
+    companyName,
+    companyLocation,
+    companySector,
+    companyType,
+    companySize,
+    companyInfo,
+    companyWebsite,
+    jobTitle,
+    YearsOfExperience,
+    contract
+  }) => {
+    return baseRequest.post('/companyjob', {
+      name,
+      mobile,
+      email,
+      companyName,
+      companyLocation,
+      companySector,
+      companyType,
+      companySize,
+      companyInfo,
+      companyWebsite,
+      jobTitle,
+      YearsOfExperience,
+      contract
+    });
+  }
 };
 
 export default newForm;
