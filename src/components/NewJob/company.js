@@ -4,13 +4,24 @@ import './style.scss';
 import LoginNavbar from '../Header/LoginNavbar';
 import Footer from '../Footer';
 import TempForm from '../../services/newForm';
+import statatisticsService from '../../services/statisticsService';
+import _ from 'lodash';
+const { allCities } = statatisticsService;
+
 const { getCompanyNewJob } = TempForm;
 export class CompanyNewJob extends React.Component {
   state = {
     visible: false,
     error: false,
+    cities: '',
     jobTitle: []
   };
+  componentDidMount() {
+    const cities = allCities();
+    this.setState({
+      cities
+    });
+  }
   handleChange = e => {
     const { value, name } = e.target;
     this.setState({
@@ -20,7 +31,7 @@ export class CompanyNewJob extends React.Component {
 
   handleSelectChange = (value, option) => {
     this.setState({
-      companySize: option.key
+      [option.props.name]: option.key
     });
   };
 
@@ -33,8 +44,39 @@ export class CompanyNewJob extends React.Component {
 
   send = async e => {
     e.preventDefault();
-    const { jobTitle } = this.state;
-    if (jobTitle.length > 3) {
+    const {
+      jobTitle,
+      city,
+      name,
+      email,
+      mobile,
+      companySize,
+      companyLocation,
+      companyName,
+      companySector,
+      companyType,
+      companyInfo,
+      companyWebsite,
+      YearsOfExperience,
+      contract
+    } = this.state;
+    if (
+      jobTitle.length == 0 ||
+      jobTitle.length > 3 ||
+      !city ||
+      !name ||
+      !email ||
+      !mobile ||
+      !companySize ||
+      !companyLocation ||
+      !companyName ||
+      !companySector ||
+      !companyType ||
+      !companyInfo ||
+      !companyWebsite ||
+      !YearsOfExperience ||
+      !contract
+    ) {
       this.setState({
         error: true
       });
@@ -70,7 +112,7 @@ export class CompanyNewJob extends React.Component {
       'Quality Assurance',
       'Retail / Service'
     ];
-    const companySize = [
+    const CompanySize = [
       '1-10',
       '11-50',
       '101-250',
@@ -78,6 +120,26 @@ export class CompanyNewJob extends React.Component {
       '501-1000',
       '1000+'
     ];
+    const {
+      cities,
+      city,
+      error,
+      name,
+      email,
+      mobile,
+      remobile,
+      jobTitle,
+      companySize,
+      companyLocation,
+      companyName,
+      companySector,
+      companyType,
+      companyInfo,
+      companyWebsite,
+      YearsOfExperience,
+      contract
+    } = this.state;
+    const sectors = ['حكومي', ' خاص', ' غير  ربحي'];
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -86,8 +148,14 @@ export class CompanyNewJob extends React.Component {
             <h2 className="title">سجل معنا</h2>
             <h4>الإسم الثلاثي:</h4>
             <Input onChange={this.handleChange} name="name" />
+            {error && !name && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>البريد الإلكتروني:</h4>
             <Input onChange={this.handleChange} name="email" />
+            {error && !email && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>تأكيد البريد الالكتروني:</h4>
             <Input onChange={this.handleChange} name="reemail" />
             {this.state.email !== this.state.reemail &&
@@ -99,15 +167,34 @@ export class CompanyNewJob extends React.Component {
               )}
             <h4>رقم الجوال:</h4>
             <Input onChange={this.handleChange} name="mobile" />
+            {error && !mobile && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>تأكيد رقم الجوال:</h4>
             <Input onChange={this.handleChange} name="remobile" />
-            {this.state.mobile !== this.state.remobile &&
-              this.state.remobile &&
-              this.state.mobile && (
-                <span style={{ color: 'red' }}>رقم الجوال غير متطابق</span>
-              )}
+            {mobile !== remobile && remobile && mobile && (
+              <span style={{ color: 'red' }}>رقم الجوال غير متطابق</span>
+            )}
+            <h4>المدينة:</h4>
+            <Select className="select" onChange={this.handleSelectChange}>
+              {_.isArray(cities)
+                ? cities.map(elm => {
+                    return (
+                      <Select.Option value={elm.value} key={elm.id} name="city">
+                        {elm.value}
+                      </Select.Option>
+                    );
+                  })
+                : ''}
+            </Select>
+            {error && !city && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <h4>اسم الشركة:</h4>
             <Input onChange={this.handleChange} name="companyName" />
+            {error && !companyName && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>
               موقع الشركة:{' '}
               <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
@@ -115,29 +202,52 @@ export class CompanyNewJob extends React.Component {
               </span>
             </h4>
             <Input onChange={this.handleChange} name="companyLocation" />
+            {error && !companyLocation && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>القطاع:</h4>
-            <Input onChange={this.handleChange} name="companySector" />
-            <h4>المجال:</h4>
-            <Input onChange={this.handleChange} name="companyType" />
-            <h4>حجم الشركة:</h4>
             <Select className="select" onChange={this.handleSelectChange}>
-              {companySize.map(elm => (
-                <Select.Option value={elm} key={elm}>
+              {sectors.map(elm => (
+                <Select.Option value={elm} key={elm} name="companySector">
                   {' '}
                   {elm}
                 </Select.Option>
               ))}
             </Select>
+            {error && !companySector && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            <h4>المجال:</h4>
+            <Input onChange={this.handleChange} name="companyType" />
+            {error && !companyType && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            <h4>حجم الشركة:</h4>
+            <Select className="select" onChange={this.handleSelectChange}>
+              {CompanySize.map(elm => (
+                <Select.Option value={elm} key={elm} name="companySize">
+                  {' '}
+                  {elm}
+                </Select.Option>
+              ))}
+            </Select>
+            {error && !companySize && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>وصف الشركة:</h4>
             <Input.TextArea
               row={6}
               onChange={this.handleChange}
               name="companyInfo"
             />
-
+            {error && !companyInfo && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>موقع الشركة الالكتروني:</h4>
             <Input onChange={this.handleChange} name="companyWebsite" />
-
+            {error && !companyWebsite && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>
               المسمى الوظيفي المطلوب:{' '}
               <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
@@ -159,8 +269,11 @@ export class CompanyNewJob extends React.Component {
                 );
               })}
             </Select>
-            {this.state.jobTitle && this.state.jobTitle.length > 3 && (
+            {jobTitle && jobTitle.length > 3 && (
               <span style={{ color: 'red' }}>يمكنك اختيار 3 خيارات فقط</span>
+            )}
+            {error && jobTitle.length == 0 && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
             <h4>عدد سنوات الخبرة؟</h4>
             <Radio.Group
@@ -173,7 +286,9 @@ export class CompanyNewJob extends React.Component {
               <Radio.Button value="5-7">5 - 7 سنوات</Radio.Button>
               <Radio.Button value="+8">8+</Radio.Button>
             </Radio.Group>
-
+            {error && !YearsOfExperience && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>نوع العقد: </h4>
             <Radio.Group
               onChange={this.handleChange}
@@ -183,6 +298,9 @@ export class CompanyNewJob extends React.Component {
               <Radio.Button value="full-time">Full-time</Radio.Button>
               <Radio.Button value="part-time">Part-time</Radio.Button>
             </Radio.Group>
+            {error && !contract && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <button onClick={this.send}>ارسال</button>
           </form>
         </div>

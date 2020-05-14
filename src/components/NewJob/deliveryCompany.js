@@ -11,9 +11,6 @@ const { allCities } = statatisticsService;
 const { deliveryCompany } = TempForm;
 const { TextArea } = Input;
 
-
-
-
 export class DeliveryCompany extends React.Component {
   state = {
     cities: '',
@@ -71,7 +68,6 @@ export class DeliveryCompany extends React.Component {
         error: true
       });
     } else {
-      console.log(this.state)
       await deliveryCompany(this.state);
       this.setState({
         visible: true
@@ -238,25 +234,28 @@ export class DeliveryCompany extends React.Component {
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
             <h4>عدد الموظفين المطلوب:</h4>
-            <Input type="number" name="requiredStaff" onChange={this.handleChange} />
+            <Input
+              type="number"
+              name="requiredStaff"
+              onChange={this.handleChange}
+            />
             {error && !requiredStaff && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
 
-<h4>الوصف:</h4>
+            <h4>الوصف:</h4>
 
-<TextArea
-                      rows={4}
-                      className="textarea-field"
-                      onChange={this.handleChange}
-                      name="description"
-                    />
+            <TextArea
+              rows={4}
+              className="textarea-field"
+              onChange={this.handleChange}
+              name="description"
+            />
 
-{error && !description && (
+            {error && !description && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
             <button onClick={this.send}>ارسال</button>
-
           </form>
         </div>
         <Modal
