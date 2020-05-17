@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Drawer, Button, Col, Badge } from 'antd';
+import { Row, Drawer, Button, Col, Badge, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
@@ -152,7 +152,39 @@ class Header extends React.Component {
                     فرص العمل
                   </Link>
 
-                  <div>حسابي</div>
+                  <div
+                    className={
+                      window.location.href.includes('/user/account/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    {' '}
+                    <Select
+                      defaultValue="حسابي"
+                      className={
+                        window.location.href.includes('/user/account/setting')
+                          ? 'setting-select-active setting-select'
+                          : 'setting-select'
+                      }
+                    >
+                      <Select.Option
+                        value="setting"
+                        onClick={() => history.push('/user/account/setting')}
+                      >
+                        اعدادات الحساب
+                      </Select.Option>
+                      <Select.Option
+                        value="logout"
+                        onClick={async () => {
+                          await this.props.logout();
+                          history.push('/');
+                        }}
+                      >
+                        تسجيل الخروج
+                      </Select.Option>
+                    </Select>
+                  </div>
                 </div>
               </div>
             </Row>
@@ -273,7 +305,38 @@ class Header extends React.Component {
                     المشاريع والعروض الوظيفية
                   </Link>
 
-                  <div>حسابي</div>
+                  <div
+                    className={
+                      window.location.href.includes('/company/setting')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    <Select
+                      defaultValue="حسابي"
+                      className={
+                        window.location.href.includes('/company/setting')
+                          ? 'setting-select-active setting-select'
+                          : 'setting-select'
+                      }
+                    >
+                      <Select.Option
+                        value="setting"
+                        onClick={() => history.push('/company/setting')}
+                      >
+                        اعدادات الحساب
+                      </Select.Option>
+                      <Select.Option
+                        value="logout"
+                        onClick={async () => {
+                          await this.props.logout();
+                          history.push('/');
+                        }}
+                      >
+                        تسجيل الخروج
+                      </Select.Option>
+                    </Select>
+                  </div>
                 </div>
               </div>
             </Row>

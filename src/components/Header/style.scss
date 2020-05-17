@@ -381,7 +381,7 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
         height: 70px;
         .menu {
          display: flex;
-         width: 300px;
+         width: 400px;
          justify-content: space-around;
          height: 70px;
          >div, a{
@@ -414,6 +414,33 @@ ul.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-me
     }
 }
 
+.setting-select {
+    >div {
+        border: none;
+        color: #343434 !important;
+        font-size: 16px;
+        width: 115px;
+        >div {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+        >span {
+            color: #343434 !important;
+            margin-top: -2px !important;
+            margin-right: 5px !important;
+            right: 0px !important;
+        }
+    }
+    >div:hover , >div:focus {
+        border: none;
+        box-shadow: none;
+    }
+}
+.setting-select-active {
+    >div {
+        background: #f2f2f2;
+    }
+}
 @media (max-width:320px) {
 .drawer-mobile{
     display: flex;
