@@ -15,8 +15,6 @@ class User extends React.Component {
   }
   render() {
     const { status } = this.props.user.userInfo;
-    console.log('status', this.props.user);
-
     return (
       <div>
         {this.props.user.userInfo && !status ? (

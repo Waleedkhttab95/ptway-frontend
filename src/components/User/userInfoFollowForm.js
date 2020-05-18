@@ -6,6 +6,7 @@ import statatisticsService from '../../services/statisticsService';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { userInfo } from '../../store/actions/userAction';
+import LoginNavbar from '../Header/LoginNavbar';
 const { allCities, allMajors } = statatisticsService;
 
 class UserInfoFollow extends React.Component {
@@ -53,11 +54,9 @@ class UserInfoFollow extends React.Component {
   };
   render() {
     const { cities, majors } = this.state;
-    console.log('cities', this.state);
-
     return (
       <React.Fragment>
-        <Header />
+        {/* <LoginNavbar /> */}
         <div className="user-container">
           <div className="user-home">
             <form
