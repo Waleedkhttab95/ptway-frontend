@@ -6,10 +6,16 @@ export const changePassword = params => {
     payload: setting.updatePassword(params)
   };
 };
-export const changeEmailNotification = params => {
 
+export const changeEmailNotification = params => {
   return {
     type: 'UPDATE_EMAIL_NOTIFICATION',
     payload: setting.updateEmailNotification(params)
+  };
+};
+
+export const closeSuccessModal = () => {
+  return {
+    type: 'CLOSE_SUCCESS_MODAL'
   };
 };
