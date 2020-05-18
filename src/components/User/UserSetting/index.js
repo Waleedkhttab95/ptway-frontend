@@ -6,8 +6,10 @@ import Footer from '../../Footer';
 import { connect } from 'react-redux';
 import {
   changePassword,
-  changeEmailNotification
+  changeEmailNotification,
+  closeSuccessModal
 } from '../../../store/actions/user/setting';
+
 class Setting extends React.Component {
   state = {
     status: 1,
@@ -42,53 +44,33 @@ class Setting extends React.Component {
     }
   };
 
-  componentDidUpdate(prevProps) {
-    const { history } = this.props;
-    console.log(
-      'prevProps.userSetting.emailNotification',
-      prevProps.userSetting.emailNotification,
-      this.props.userSetting.emailNotification
-    );
-
-    if (
-      prevProps.userSetting.newPassword !==
-        this.props.userSetting.newPassword ||
-      prevProps.userSetting.emailNotification !==
-        this.props.userSetting.emailNotification
-    ) {
-      // history.push('/user/home');
-      this.setState({
-        visible: true
-      });
-    } else {
-      console.log('fail');
-    }
-  }
-  // handleCancel = () => {
-  //   this.setState({
-  //     visible: false
-  //   });
-  // };
   render() {
     const { userSetting } = this.props;
     const { error, newPassword, rePassword } = this.state;
+    console.log('userSetting', userSetting);
+
     return (
       <React.Fragment>
         <Header />
-        {userSetting.newPassword === 'غيّرنا لك الرقم السري' ||
-        userSetting.emailNotification === 'Done . ' ? (
-          <Modal visible={this.state.visible} closable={false} footer={false}>
-            <div className="success-modal">
-              <h2>تم تغير الاعدادات بنجاح</h2>
-              <br />
-              <button onClick={() => this.props.history.push('/user/home')}>
-                حسناً
-              </button>
-            </div>
-          </Modal>
-        ) : (
-          ''
-        )}
+        <Modal
+          visible={
+            userSetting.changeNotificationSuccess.showSuccessMsg ||
+            userSetting.changePasswordSuccess.showSuccessMsg
+          }
+          closable={false}
+          footer={false}
+          onCancel={() => {
+            this.props.closeSuccessModal();
+          }}
+        >
+          <div className="success-modal">
+            <h2>تم تغير الاعدادات بنجاح</h2>
+            <br />
+            <button onClick={() => this.props.history.push('/user/home')}>
+              حسناً
+            </button>
+          </div>
+        </Modal>
         <div className="user-container setting-mob">
           <div className="setting-body">
             <div className="setting-container">
@@ -166,7 +148,9 @@ const mapStateToProps = ({ userSetting }) => {
 const mapDispatchToProps = dispatch => {
   return {
     updatePassword: params => dispatch(changePassword(params)),
-    updateEmailNotification: params => dispatch(changeEmailNotification(params))
+    updateEmailNotification: params =>
+      dispatch(changeEmailNotification(params)),
+    closeSuccessModal: () => dispatch(closeSuccessModal())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Setting);

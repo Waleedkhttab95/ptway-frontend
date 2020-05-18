@@ -58,6 +58,7 @@ import { CompanyNewJob } from './NewJob/company';
 
 import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
+import UserInfo from './User/userInfoFollowForm';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -248,6 +249,7 @@ const App = () => {
           <Route exact path="/company-new-job" component={CompanyNewJob} />
 
           <Route exact path="/delivery-company" component={DeliveryCompany} />
+          <Route exact path="/user-info" component={UserInfo} />
 
           <Route to="*" component={ErrorPage} />
         </Switch>
