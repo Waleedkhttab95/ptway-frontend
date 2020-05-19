@@ -46,7 +46,6 @@ class UserInfo extends React.Component {
       status
       // hoppies
     } = this.props.user.userInfo;
-    console.log('status', status);
 
     return (
       <div>

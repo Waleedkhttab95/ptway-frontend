@@ -22,8 +22,6 @@ class CompanyHome extends React.Component {
 
   render() {
     const { company } = this.props;
-    console.log('status', company);
-
     return (
       <div>
         {company.companyInfo.info && !company.companyInfo.status ? (
