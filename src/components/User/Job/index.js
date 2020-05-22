@@ -156,7 +156,7 @@ class Job extends React.Component {
                 </div>
               </div>
             </div>
-            {!apply ? (
+            {apply ? (
               <button className="not-intersted-btn">
                 لقد تقدمت للوظيفة سابقاً
               </button>
