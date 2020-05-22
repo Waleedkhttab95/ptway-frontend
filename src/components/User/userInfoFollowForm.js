@@ -105,9 +105,16 @@ class UserInfoFollow extends React.Component {
                 تاريخ الميلاد
               </h5>
               <DatePicker
-                className="user-signup-datepicker"
+                className="user-signup-datepicker date-web"
                 placeholder="اختر التاريخ"
                 onChange={this.DateChange}
+              />
+              <Input
+                type="date"
+                onChange={this.handleInputChange}
+                className="input-field date-mobile"
+                placeholder="اختر التاريخ"
+                name="birthDate"
               />
               <br />
               <br />

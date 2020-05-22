@@ -400,12 +400,24 @@ class UpdateProfile extends React.Component {
                         <h5 className="title-field">تاريخ الميلاد</h5>
                         <DatePicker
                           onChange={this.DateChange}
-                          className="input-field"
+                          className="input-field date-web"
                           placeholder={
                             userInfo
                               ? moment(userInfo.birthDate).format('MMM-d-YY')
                               : ''
                           }
+                        />
+                        <Input
+                          type="date"
+                          name="birthDate"
+                          onChange={this.handleInputChange}
+                          className="input-field date-mobile"
+                          placeholder={
+                            userInfo
+                              ? moment(userInfo.birthDate).format('MMM-d-YY')
+                              : ''
+                          }
+                          value={this.state.birthDate}
                         />
 
                         <h5 className="title-field">الحالة الاجتماعية</h5>
