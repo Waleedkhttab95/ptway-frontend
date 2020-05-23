@@ -236,8 +236,15 @@ class AddNewAd extends React.Component {
                   <label>تاريخ بدء العمل</label>
                   <DatePicker
                     onChange={this.DateChange}
-                    className="input-field"
+                    className="input-field date-web"
                     placeholder=""
+                  />
+                  <Input
+                    type="date"
+                    name="date"
+                    onChange={this.handleChange}
+                    className="input-field date-mobile"
+                    value={this.state.date}
                   />
                   <br />
                   {error && !this.state.gender && (

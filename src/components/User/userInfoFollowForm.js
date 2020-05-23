@@ -1,12 +1,11 @@
 import React from 'react';
-import Header from '../Header';
 import Footer from '../Footer';
 import { Input, Select, DatePicker, Radio } from 'antd';
 import statatisticsService from '../../services/statisticsService';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { userInfo } from '../../store/actions/userAction';
-import LoginNavbar from '../Header/LoginNavbar';
+import history from '../../_core/history';
 const { allCities, allMajors } = statatisticsService;
 
 class UserInfoFollow extends React.Component {
@@ -49,7 +48,7 @@ class UserInfoFollow extends React.Component {
       fullName: firstName + ' ' + lastName
     });
 
-    const { history } = this.props;
+    // const { history } = this.props;
     history.push('/user/home');
   };
   render() {
@@ -106,9 +105,16 @@ class UserInfoFollow extends React.Component {
                 تاريخ الميلاد
               </h5>
               <DatePicker
-                className="user-signup-datepicker"
+                className="user-signup-datepicker date-web"
                 placeholder="اختر التاريخ"
                 onChange={this.DateChange}
+              />
+              <Input
+                type="date"
+                onChange={this.handleInputChange}
+                className="input-field date-mobile"
+                placeholder="اختر التاريخ"
+                name="birthDate"
               />
               <br />
               <br />
