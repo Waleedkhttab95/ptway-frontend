@@ -18,8 +18,10 @@ export class UserNewJob extends React.Component {
     jobTitle: [],
     cities: ''
   };
-  componentDidMount() {
-    const cities = allCities();
+
+  async componentDidMount() {
+    const cities = await allCities();
+
     this.setState({
       cities
     });
@@ -74,8 +76,9 @@ export class UserNewJob extends React.Component {
       !YearsOfExperience ||
       !WorkingOutOfCity ||
       !Linkedin ||
-      !Cv ||
-      reMobile
+
+      !Cv 
+
     ) {
       this.setState({
         error: true
@@ -242,7 +245,7 @@ export class UserNewJob extends React.Component {
               className="radio-select"
               name="YearsOfExperience"
             >
-              <Radio.Button value="0-1">0 - سنة</Radio.Button>
+              <Radio.Button value="0-1">0 - 1 سنة</Radio.Button>
               <Radio.Button value="2-4">2 - 4 سنوات</Radio.Button>
               <Radio.Button value="5-7">5 - 7 سنوات</Radio.Button>
               <Radio.Button value="+8">8+</Radio.Button>
