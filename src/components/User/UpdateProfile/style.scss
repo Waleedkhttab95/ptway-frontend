@@ -185,6 +185,9 @@
     font-weight: 700;
     font-size: 10pt;
   }
+  .date-mobile {
+      display: none;
+  }
 @media (max-width:320px) {
     .collapse-line{
         width: 35%;
@@ -227,6 +230,12 @@
     .general-skills {
       flex-direction: column;
     }    
+    .date-mobile {
+        display: block;
+    }
+    .date-web {
+        display: none;
+    }
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -271,6 +280,12 @@
     }
     .general-skills {
       flex-direction: column;
-    }   
+    }  
+    .date-mobile {
+        display: block;
+    } 
+    .date-web {
+        display: none;
+    }
 
 }

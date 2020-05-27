@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.scss';
 import Footer from '../../../Footer';
-import { Input, Select, DatePicker, Modal } from 'antd';
+import { Input, Select, DatePicker, Modal, Spin } from 'antd';
 import Header from '../../../Header';
 import projects from '../../../../services/company/projects';
 import { loadState } from '../../../../_core/localStorage';
@@ -21,7 +21,8 @@ class AddNewAd extends React.Component {
   state = {
     allProjects: '',
     SuccessMsg: false,
-    error: false
+    error: false,
+    sending: false
   };
   async componentDidMount() {
     const contractId = this.props.match.params.id;
@@ -62,6 +63,9 @@ class AddNewAd extends React.Component {
         error: true
       });
     } else {
+      this.setState({
+        sending: true
+      });
       const data = {
         contract: this.state.contractId,
         jobDetails: values.jobDetails,
@@ -82,7 +86,8 @@ class AddNewAd extends React.Component {
       const { history } = this.props;
       if (loadState().loggedIn) {
         this.setState({
-          SuccessMsg: true
+          SuccessMsg: true,
+          sending: false
         });
       } else {
         history.push('/company/login');
@@ -91,7 +96,14 @@ class AddNewAd extends React.Component {
   };
 
   render() {
-    const { allProjects, countries, cities, pSkills, error } = this.state;
+    const {
+      allProjects,
+      countries,
+      cities,
+      pSkills,
+      error,
+      sending
+    } = this.state;
     const { loggedIn } = loadState();
 
     return (
@@ -229,8 +241,16 @@ class AddNewAd extends React.Component {
                         <label>تاريخ بدء العمل</label>
                         <DatePicker
                           onChange={this.DateChange}
-                          className="input-field"
+                          className="input-field date-web"
                           placeholder=""
+                        />
+                        <Input
+                          type="date"
+                          name="date"
+                          onChange={handleChange}
+                          className="input-field date-mobile"
+                          value={this.state.date}
+                          onBlur={handleBlur}
                         />
                         <br />
                         {error && !this.state.date && (
@@ -361,8 +381,14 @@ class AddNewAd extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <button className="add-new-ad-btn">
-                    أضف الإعلان الوظيفي
+                  <button
+                    className={
+                      sending
+                        ? 'applay-job-btn-loading add-new-ad-btn'
+                        : 'add-new-ad-btn'
+                    }
+                  >
+                    {sending ? <Spin size="small" /> : ' أضف الإعلان الوظيفي'}
                   </button>
                   <Modal
                     visible={this.state.SuccessMsg}

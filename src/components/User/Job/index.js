@@ -14,7 +14,8 @@ import moment from 'moment';
 class Job extends React.Component {
   state = {
     jobStatus: false,
-    jobInfo: false
+    jobInfo: false,
+    sending: false
   };
 
   async componentDidMount() {
@@ -38,11 +39,15 @@ class Job extends React.Component {
   };
 
   applyJob = async jobId => {
+    this.setState({
+      sending: true
+    });
     const { applyJob } = this.props;
     const result = await applyJob({ jobId });
     if (result) {
       this.setState({
-        jobStatus: true
+        jobStatus: true,
+        sending: false
       });
     }
   };
@@ -51,50 +56,50 @@ class Job extends React.Component {
     const { offer } = this.props;
     const { Country, City, Contract, apply, job } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
+    const { sending } = this.state;
     return (
       <div className="user-container">
         <Header />
         <Row className="job-section">
-          <Col md={6} xs={24} sm={24} >
+          <Col md={6} xs={24} sm={24}>
             <div className="right-section">
-            {offer.company ? (
-              <React.Fragment>
-                {imagePath !== 'null' ? (
-                  <img src={imagePath} alt="user" className="picture" />
-                ) : (
-                  <i
-                    className="fa fa-user-circle-o"
-                    aria-hidden="true"
-                    style={{
-                      fontSize: '45px',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  ></i>
-                )}
-                <span className="job-owner-name">{compnayName}</span>
-                <div className="job-owner-info">
-                  <p>
+              {offer.company ? (
+                <React.Fragment>
+                  {imagePath !== 'null' ? (
+                    <img src={imagePath} alt="user" className="picture" />
+                  ) : (
                     <i
-                      className="fa fa-exclamation-circle"
+                      className="fa fa-user-circle-o"
                       aria-hidden="true"
+                      style={{
+                        fontSize: '45px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
                     ></i>
-                    {info}
-                  </p>
+                  )}
+                  <span className="job-owner-name">{compnayName}</span>
+                  <div className="job-owner-info">
+                    <p>
+                      <i
+                        className="fa fa-exclamation-circle"
+                        aria-hidden="true"
+                      ></i>
+                      {info}
+                    </p>
 
-                  <p>
-                    <i className="fa fa-map-marker" aria-hidden="true"></i>
-                    {Country}, {City}, {address}
-                  </p>
+                    <p>
+                      <i className="fa fa-map-marker" aria-hidden="true"></i>
+                      {Country}, {City}, {address}
+                    </p>
+                  </div>
+                </React.Fragment>
+              ) : (
+                <div className="spinner-loading">
+                  <Spin size="large" />
                 </div>
-              </React.Fragment>
-            ) : (
-              <div className="spinner-loading">
-                <Spin size="large" />
-              </div>
-            )}
+              )}
             </div>
-
           </Col>
           <Col md={16} xs={24} sm={24} className="left-section">
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
@@ -157,11 +162,15 @@ class Job extends React.Component {
               </button>
             ) : (
               <button
-                className="applay-job-btn"
+                className={
+                  sending
+                    ? 'applay-job-btn-loading applay-job-btn '
+                    : 'applay-job-btn'
+                }
                 // onClick={this.jobInfo}
                 onClick={() => this.applyJob(job._id)}
               >
-                تقدم للوظيفة
+                {sending ? <Spin size="small" /> : 'تقدم للوظيفة'}
               </button>
             )}
 

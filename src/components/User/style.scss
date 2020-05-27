@@ -346,6 +346,9 @@ svg.CircularProgressbar{
     width: 150px;
     margin-bottom: 20px;
 }
+.country-text >div, .major-text>div {
+    border-top-width: 1.02px;
+}
 
 @media (max-width:320px) {
 .user-home .user-profile .left-section .skills-general-info {
@@ -387,6 +390,9 @@ svg.CircularProgressbar{
 }
 .user-progress {
     display: none !important;
+}
+.user-info-update {
+    padding: 20px !important;
 }
 }
 
@@ -439,5 +445,8 @@ svg.CircularProgressbar{
 }
 .user-progress {
     display: none !important;
+}
+.user-info-update {
+    padding: 20px !important;
 }
 }
