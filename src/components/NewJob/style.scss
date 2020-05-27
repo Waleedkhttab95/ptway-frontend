@@ -101,6 +101,10 @@
         font-size: 20px;
         color: #00263e;
     }
+    >div:focus, >div:active {
+        border: solid 3px #069ad0;
+        background: #1890ff;
+    }
 }
 .upload-cv-btn {
     background: #d0d0d0 !important;

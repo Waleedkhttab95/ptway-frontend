@@ -87,7 +87,8 @@ const newForm = {
     YearsOfExperience,
     WorkingOutOfCity,
     jobTitle,
-    Linkedin
+    Linkedin,
+    city
   }) => {
     let formData = new FormData();
     formData.append('file', Cv);
@@ -102,6 +103,7 @@ const newForm = {
     formData.append('WorkingOutOfCity', WorkingOutOfCity);
     formData.append('jobTitle', jobTitle);
     formData.append('Linkedin', Linkedin);
+    formData.append('city', city);
     return baseRequest.post('/jobless', formData);
   },
   getCompanyNewJob: ({
@@ -117,7 +119,8 @@ const newForm = {
     companyWebsite,
     jobTitle,
     YearsOfExperience,
-    contract
+    contract,
+    city
   }) => {
     return baseRequest.post('/companyjob', {
       name,
@@ -132,7 +135,8 @@ const newForm = {
       companyWebsite,
       jobTitle,
       YearsOfExperience,
-      contract
+      contract,
+      city
     });
   }
 };

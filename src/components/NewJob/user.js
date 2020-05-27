@@ -5,14 +5,25 @@ import LoginNavbar from '../Header/LoginNavbar';
 import Footer from '../Footer';
 import { UploadCV } from './UploadCV';
 import TempForm from '../../services/newForm';
+import statatisticsService from '../../services/statisticsService';
+import _ from 'lodash';
+
+const { allCities } = statatisticsService;
 const { getUserNewJob } = TempForm;
 
 export class UserNewJob extends React.Component {
   state = {
     visible: false,
     error: false,
-    jobTitle: []
+    jobTitle: [],
+    cities: ''
   };
+  componentDidMount() {
+    const cities = allCities();
+    this.setState({
+      cities
+    });
+  }
   handleChange = e => {
     const { value, name } = e.target;
     this.setState({
@@ -20,17 +31,52 @@ export class UserNewJob extends React.Component {
     });
   };
 
-  handleSelectChange = (value, option) => {
+  handleMultiSelectChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
       jobTitle: ids
     });
   };
 
+  handleSelectChange = (value, option) => {
+    this.setState({
+      [option.props.name]: option.key
+    });
+  };
+
   send = async e => {
     e.preventDefault();
-    const { jobTitle } = this.state;
-    if (jobTitle.length > 3) {
+    const {
+      jobTitle,
+      name,
+      gender,
+      mobile,
+      email,
+      lastCompany,
+      lastJobPosition,
+      Experience,
+      YearsOfExperience,
+      WorkingOutOfCity,
+      Linkedin,
+      Cv,
+      reMobile
+    } = this.state;
+    if (
+      jobTitle.length > 3 ||
+      jobTitle.length == 0 ||
+      !name ||
+      !gender ||
+      !mobile ||
+      !email ||
+      !lastCompany ||
+      !lastJobPosition ||
+      !Experience ||
+      !YearsOfExperience ||
+      !WorkingOutOfCity ||
+      !Linkedin ||
+      !Cv ||
+      reMobile
+    ) {
       this.setState({
         error: true
       });
@@ -66,6 +112,25 @@ export class UserNewJob extends React.Component {
       'Quality Assurance',
       'Retail / Service'
     ];
+    const {
+      error,
+      cities,
+      city,
+      jobTitle,
+      name,
+      gender,
+      mobile,
+      email,
+      lastCompany,
+      lastJobPosition,
+      Experience,
+      YearsOfExperience,
+      WorkingOutOfCity,
+      Linkedin,
+      Cv,
+      reMobile
+    } = this.state;
+
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -74,6 +139,9 @@ export class UserNewJob extends React.Component {
             <h2 className="title">سجل معنا</h2>
             <h4>الإسم الثلاثي:</h4>
             <Input onChange={this.handleChange} name="name" />
+            {error && !name && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>الجنس:</h4>
             <Radio.Group
               onChange={this.handleChange}
@@ -83,21 +151,52 @@ export class UserNewJob extends React.Component {
               <Radio.Button value="ذكر">ذكر</Radio.Button>
               <Radio.Button value="أنثى">أنثى</Radio.Button>
             </Radio.Group>
+            {error && !gender && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>البريد الإلكتروني:</h4>
             <Input onChange={this.handleChange} name="email" />
+            {error && !email && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>رقم الجوال:</h4>
             <Input onChange={this.handleChange} name="mobile" />
+            {error && !mobile && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>تأكيد رقم الجوال:</h4>
             <Input onChange={this.handleChange} name="reMobile" />
-            {this.state.mobile !== this.state.reMobile &&
-              this.state.reMobile &&
-              this.state.mobile && (
-                <span style={{ color: 'red' }}>رقم الجوال غير متطابق</span>
-              )}
+            {mobile !== reMobile && reMobile && mobile && (
+              <span style={{ color: 'red' }}>رقم الجوال غير متطابق</span>
+            )}
+            {error && !reMobile && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            <h4>المدينة:</h4>
+            <Select className="select" onChange={this.handleSelectChange}>
+              {_.isArray(cities)
+                ? cities.map(elm => {
+                    return (
+                      <Select.Option value={elm.value} key={elm.id} name="city">
+                        {elm.value}
+                      </Select.Option>
+                    );
+                  })
+                : ''}
+            </Select>
+            {error && !city && (
+              <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
+            )}
             <h4>شركتك السابقة؟</h4>
             <Input onChange={this.handleChange} name="lastCompany" />
+            {error && !lastCompany && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>المسمى الوظيفي السابق:</h4>
             <Input onChange={this.handleChange} name="lastJobPosition" />
+            {error && !lastJobPosition && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>
               الوظيفة المرغوبة:{' '}
               <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
@@ -106,7 +205,7 @@ export class UserNewJob extends React.Component {
             </h4>
             <Select
               className="select"
-              onChange={this.handleSelectChange}
+              onChange={this.handleMultiSelectChange}
               mode="multiple"
               showArrow={true}
             >
@@ -119,8 +218,11 @@ export class UserNewJob extends React.Component {
                 );
               })}
             </Select>
-            {this.state.jobTitle.length > 3 && this.state.jobTitle && (
+            {jobTitle.length > 3 && jobTitle && (
               <span style={{ color: 'red' }}>يمكنك اختيار 3 خيارات فقط</span>
+            )}
+            {error && jobTitle.length == 0 && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
             <h4>هل تملك خبرة؟ </h4>
             <Radio.Group
@@ -131,6 +233,9 @@ export class UserNewJob extends React.Component {
               <Radio.Button value="نعم">نعم</Radio.Button>
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            {error && !Experience && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>عدد سنوات الخبرة؟</h4>
             <Radio.Group
               onChange={this.handleChange}
@@ -142,6 +247,9 @@ export class UserNewJob extends React.Component {
               <Radio.Button value="5-7">5 - 7 سنوات</Radio.Button>
               <Radio.Button value="+8">8+</Radio.Button>
             </Radio.Group>
+            {error && !YearsOfExperience && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>هل يمكنك العمل خارج مدينتك؟</h4>
             <Radio.Group
               onChange={this.handleChange}
@@ -151,13 +259,22 @@ export class UserNewJob extends React.Component {
               <Radio.Button value="نعم">نعم</Radio.Button>
               <Radio.Button value="لا">لا</Radio.Button>
             </Radio.Group>
+            {error && !WorkingOutOfCity && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>حسابك الشخصي في Linkedin:</h4>
             <Input onChange={this.handleChange} name="Linkedin" />
+            {error && !Linkedin && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <h4>حمل سيرتك الذاتية:</h4>
             <Input
               suffix={<UploadCV updateState={Cv => this.setState({ Cv })} />}
               className="upload-file-input"
             />
+            {error && !Cv && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
             <button onClick={this.send}>ارسال</button>
           </form>
         </div>
