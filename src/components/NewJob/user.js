@@ -18,8 +18,10 @@ export class UserNewJob extends React.Component {
     jobTitle: [],
     cities: ''
   };
+
   async componentDidMount() {
     const cities = await allCities();
+
     this.setState({
       cities
     });
@@ -74,7 +76,9 @@ export class UserNewJob extends React.Component {
       !YearsOfExperience ||
       !WorkingOutOfCity ||
       !Linkedin ||
+
       !Cv 
+
     ) {
       this.setState({
         error: true
