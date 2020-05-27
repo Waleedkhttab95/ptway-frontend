@@ -16,11 +16,12 @@ export class CompanyNewJob extends React.Component {
     cities: '',
     jobTitle: []
   };
-  componentDidMount() {
-    const cities = allCities();
+  async componentDidMount() {
+    const cities = await allCities();
     this.setState({
       cities
     });
+
   }
   handleChange = e => {
     const { value, name } = e.target;
@@ -51,7 +52,6 @@ export class CompanyNewJob extends React.Component {
       email,
       mobile,
       companySize,
-      companyLocation,
       companyName,
       companySector,
       companyType,
@@ -68,12 +68,10 @@ export class CompanyNewJob extends React.Component {
       !email ||
       !mobile ||
       !companySize ||
-      !companyLocation ||
       !companyName ||
       !companySector ||
       !companyType ||
       !companyInfo ||
-      !companyWebsite ||
       !YearsOfExperience ||
       !contract
     ) {
@@ -130,7 +128,6 @@ export class CompanyNewJob extends React.Component {
       remobile,
       jobTitle,
       companySize,
-      companyLocation,
       companyName,
       companySector,
       companyType,
@@ -146,7 +143,69 @@ export class CompanyNewJob extends React.Component {
         <div className="container">
           <form className="new-job-form">
             <h2 className="title">سجل معنا</h2>
-            <h4>الإسم الثلاثي:</h4>
+            
+            <h4>اسم الشركة:</h4>
+            <Input onChange={this.handleChange} name="companyName" />
+            {error && !companyName && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            {/* <h4>
+              موقع الشركة:{' '}
+              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
+                مثال: مدينة الرياض، حي الملك فهد.
+              </span>
+            </h4>
+            <Input onChange={this.handleChange} name="companyLocation" />
+            {error && !companyLocation && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )} */}
+            <h4>القطاع:</h4>
+            <Select className="select" onChange={this.handleSelectChange}>
+              {sectors.map(elm => (
+                <Select.Option value={elm} key={elm} name="companySector">
+                  {' '}
+                  {elm}
+                </Select.Option>
+              ))}
+            </Select>
+            {error && !companySector && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            <h4>
+              المجال :{' '}
+              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
+               مثال : تقني , موارد بشرية , تجزئة 
+              </span>
+            </h4>
+
+            <Input onChange={this.handleChange} name="companyType" />
+            {error && !companyType && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+            <h4>حجم الشركة:</h4>
+            <Select className="select" onChange={this.handleSelectChange}>
+              {CompanySize.map(elm => (
+                <Select.Option value={elm} key={elm} name="companySize">
+                  {' '}
+                  {elm}
+                </Select.Option>
+              ))}
+            </Select>
+            {error && !companySize && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+         
+         <h4>
+              موقع الشركة الإلكتروني :{' '}
+              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
+               (URL) 
+              </span>
+            </h4>
+            <Input onChange={this.handleChange} name="companyWebsite" />
+         
+            <h4>
+
+            <h4>اسم المسؤول الثلاثي :</h4>
             <Input onChange={this.handleChange} name="name" />
             {error && !name && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
@@ -190,71 +249,12 @@ export class CompanyNewJob extends React.Component {
             {error && !city && (
               <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>
             )}
-            <h4>اسم الشركة:</h4>
-            <Input onChange={this.handleChange} name="companyName" />
-            {error && !companyName && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>
-              موقع الشركة:{' '}
-              <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
-                مثال: مدينة الرياض، حي الملك فهد.
-              </span>
-            </h4>
-            <Input onChange={this.handleChange} name="companyLocation" />
-            {error && !companyLocation && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>القطاع:</h4>
-            <Select className="select" onChange={this.handleSelectChange}>
-              {sectors.map(elm => (
-                <Select.Option value={elm} key={elm} name="companySector">
-                  {' '}
-                  {elm}
-                </Select.Option>
-              ))}
-            </Select>
-            {error && !companySector && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>المجال:</h4>
-            <Input onChange={this.handleChange} name="companyType" />
-            {error && !companyType && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>حجم الشركة:</h4>
-            <Select className="select" onChange={this.handleSelectChange}>
-              {CompanySize.map(elm => (
-                <Select.Option value={elm} key={elm} name="companySize">
-                  {' '}
-                  {elm}
-                </Select.Option>
-              ))}
-            </Select>
-            {error && !companySize && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>وصف الشركة:</h4>
-            <Input.TextArea
-              row={6}
-              onChange={this.handleChange}
-              name="companyInfo"
-            />
-            {error && !companyInfo && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>موقع الشركة الالكتروني:</h4>
-            <Input onChange={this.handleChange} name="companyWebsite" />
-            {error && !companyWebsite && (
-              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
-            )}
-            <h4>
               المسمى الوظيفي المطلوب:{' '}
               <span style={{ color: '#d0d0d0', fontSize: '20px' }}>
                 يمكنك اختيار 3 فقط
               </span>
-            </h4>
-            <Select
+
+              <Select
               className="select"
               onChange={this.handleMultiSelectChange}
               mode="multiple"
@@ -275,13 +275,26 @@ export class CompanyNewJob extends React.Component {
             {error && jobTitle.length == 0 && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
+            </h4>
+
+            <h4>الوصف الوظيفي :</h4>
+            <Input.TextArea
+              row={6}
+              onChange={this.handleChange}
+              name="companyInfo"
+            />
+            {error && !companyInfo && (
+              <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
+            )}
+
+         
             <h4>عدد سنوات الخبرة؟</h4>
             <Radio.Group
               onChange={this.handleChange}
               className="radio-select"
               name="YearsOfExperience"
             >
-              <Radio.Button value="0-1">0 - سنة</Radio.Button>
+              <Radio.Button value="0-1">0 - 1 سنة </Radio.Button>
               <Radio.Button value="2-4">2 - 4 سنوات</Radio.Button>
               <Radio.Button value="5-7">5 - 7 سنوات</Radio.Button>
               <Radio.Button value="+8">8+</Radio.Button>
@@ -297,6 +310,8 @@ export class CompanyNewJob extends React.Component {
             >
               <Radio.Button value="full-time">Full-time</Radio.Button>
               <Radio.Button value="part-time">Part-time</Radio.Button>
+              <Radio.Button value="part-time">Temporary</Radio.Button>
+
             </Radio.Group>
             {error && !contract && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
