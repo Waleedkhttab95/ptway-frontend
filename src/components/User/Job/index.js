@@ -60,6 +60,19 @@ class Job extends React.Component {
     return (
       <div className="user-container">
         <Header />
+        <Modal
+          visible={offer.error.showErrorMsg}
+          onCancel={this.handleCancel}
+          footer={false}
+        >
+          <div className="success-modal">
+            <h2> نأسف لهذا، لقد تم حذف الاعلان من قبل الشركة المعلنة</h2>
+            <br />
+            <button onClick={() => this.props.history.push('/user/jobs')}>
+              العودة للرئيسية
+            </button>
+          </div>
+        </Modal>
         <Row className="job-section">
           <Col md={6} xs={24} sm={24}>
             <div className="right-section">
