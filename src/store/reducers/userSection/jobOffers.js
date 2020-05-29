@@ -35,6 +35,11 @@ const Jobs = (state = initialState, action) => {
         ...state,
         job: action.payload
       };
+    case 'CLOSE_ERROR_MODAL':
+      return {
+        ...state,
+        error: {}
+      };
     default:
       return state;
   }

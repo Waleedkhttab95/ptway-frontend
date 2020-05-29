@@ -6,7 +6,8 @@ import Footer from '../../Footer';
 import {
   jobOffer,
   companyDetails,
-  applyJob
+  applyJob,
+  closeERRORModal
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -53,7 +54,7 @@ class Job extends React.Component {
   };
 
   render() {
-    const { offer } = this.props;
+    const { offer, closeModal } = this.props;
     const { Country, City, Contract, apply, job } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
@@ -61,15 +62,20 @@ class Job extends React.Component {
       <div className="user-container">
         <Header />
         <Modal
-          visible={offer.error.showErrorMsg && !offer.company}
+          visible={offer.error.showErrorMsg}
           onCancel={this.handleCancel}
           footer={false}
         >
           <div className="success-modal">
             <h2> نأسف لهذا، لقد تم حذف الاعلان من قبل الشركة المعلنة</h2>
             <br />
-            <button onClick={() => this.props.history.push('/user/jobs')}>
-              العودة للرئيسية
+            <button
+              onClick={async () => {
+                await this.props.history.push('/user/jobs');
+                closeModal();
+              }}
+            >
+              تصفح الإعلانات
             </button>
           </div>
         </Modal>
@@ -247,7 +253,8 @@ const mapDispatchToProps = dispatch => {
   return {
     jobOffer: params => dispatch(jobOffer(params)),
     company: params => dispatch(companyDetails(params)),
-    applyJob: params => dispatch(applyJob(params))
+    applyJob: params => dispatch(applyJob(params)),
+    closeModal: () => dispatch(closeERRORModal())
   };
 };
 

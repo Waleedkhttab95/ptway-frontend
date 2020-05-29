@@ -177,6 +177,10 @@
     background-color: #f3f3f3;
 }
 
+button {
+    border: none !important;
+}
+
 @media (max-width:320px) {
     .user-home {
         padding: 12px 15px;

@@ -141,7 +141,7 @@
 //     border-color: transparent;
 // }
 .first-step-btn, .prev-btn{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -215,7 +215,7 @@ input.ant-calendar-picker-input.ant-input{
 }
 .prev-btn-mob {
     background: transparent;
-    border: solid 1px #189bce;
+    border: solid 1px #189bce !important;
     color: #189bce;
     margin-left: 5px;
 }
@@ -253,7 +253,7 @@ input.ant-calendar-picker-input.ant-input{
     }
     .prev-btn-mob {
         background: transparent;
-        border: solid 1px #189bce;
+        border: solid 1px #189bce !important;
         color: #189bce;
         margin-left: 5px;
     }
@@ -297,7 +297,7 @@ input.ant-calendar-picker-input.ant-input{
     }
      .prev-btn-mob {
         background: transparent;
-        border: solid 1px #189bce;
+        border: solid 1px #189bce !important;
         color: #189bce;
         margin-left: 5px;
     }
