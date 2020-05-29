@@ -61,7 +61,7 @@ class Job extends React.Component {
       <div className="user-container">
         <Header />
         <Modal
-          visible={offer.error.showErrorMsg}
+          visible={offer.error.showErrorMsg && !offer.company}
           onCancel={this.handleCancel}
           footer={false}
         >
