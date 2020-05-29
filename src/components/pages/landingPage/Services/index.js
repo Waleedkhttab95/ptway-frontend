@@ -22,8 +22,9 @@ const HowItWorks = () => {
       >
         <Tabs
           defaultActiveKey="4"
-          // animated={false}
+          animated={true}
           className="works-tab"
+          tabPosition="top"
         >
           <TabPane tab=" تطوعي" key="1" className="custom-tab">
             مجاناً تستطيع الجهات الخيرية والقطاع غير الربحي استخدام المنصة
