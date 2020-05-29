@@ -21,12 +21,13 @@ const HowItWorks = () => {
         className="services-tabs"
       >
         <Tabs
-          defaultActiveKey="4"
+          defaultActiveKey="1"
           animated={true}
           className="works-tab"
           tabPosition="top"
+          keyboard={true}
         >
-          <TabPane tab=" تطوعي" key="1" className="custom-tab">
+          <TabPane tab=" تطوعي" key="4" className="custom-tab">
             مجاناً تستطيع الجهات الخيرية والقطاع غير الربحي استخدام المنصة
             للحصول على متطوعين ، فاذا كنت تمثل هذه القطاعات أو مايشابهها انظم
             معنا
@@ -39,6 +40,23 @@ const HowItWorks = () => {
               تطوع_صحي &nbsp;#تطوع_خيري&nbsp; #تطوع_اجتماعي# &nbsp;
             </span>
             <img src={voluntery} alt="voluntery" className="tag-icon" />
+            <br />
+          </TabPane>
+
+          <TabPane tab="جزئي" key="3">
+            يساعدك هذا الخيار الحصول على موظفين بدوام جزئي لتغطية أوقات الذروة
+            أو حتى تخليص الأعمال بجميع الاوقات لوظائف مسائية و وظائف صباحية
+            ووظائف نهاية الأسبوع مثل المطاعم والمقاهي والشركات الناشئة وقطاع
+            التجزئة.
+            <br />
+            <Link to="/user/signup" className="tag-link">
+              {'<'} انضم معنا
+            </Link>
+            <p className="tag-title">مناسب لـ</p>
+            <span className="tag">
+              مطاعم &nbsp;#مقاهي&nbsp; #شركات_ناشئة# &nbsp;
+            </span>
+            <img src={partial} alt="partial" className="tag-icon" />
             <br />
           </TabPane>
           <TabPane tab=" عقود" key="2">
@@ -56,23 +74,7 @@ const HowItWorks = () => {
             <img src={contract} alt="contract" className="tag-icon" />
             <br />
           </TabPane>
-          <TabPane tab="جزئي" key="3">
-            يساعدك هذا الخيار الحصول على موظفين بدوام جزئي لتغطية أوقات الذروة
-            أو حتى تخليص الأعمال بجميع الاوقات لوظائف مسائية و وظائف صباحية
-            ووظائف نهاية الأسبوع مثل المطاعم والمقاهي والشركات الناشئة وقطاع
-            التجزئة.
-            <br />
-            <Link to="/user/signup" className="tag-link">
-              {'<'} انضم معنا
-            </Link>
-            <p className="tag-title">مناسب لـ</p>
-            <span className="tag">
-              مطاعم &nbsp;#مقاهي&nbsp; #شركات_ناشئة# &nbsp;
-            </span>
-            <img src={partial} alt="partial" className="tag-icon" />
-            <br />
-          </TabPane>
-          <TabPane tab="يومي" key="4">
+          <TabPane tab="يومي" key="1">
             تستطيع من خلال هذا الخيار الحصول على موظفين للعمل ليوم واحد أو لعدة
             أيام حسب الطلب، يناسب الشركات المهتمة بتنظيم المعارض والمؤتمرات
             والإحتفالات والتسويق والترويج
