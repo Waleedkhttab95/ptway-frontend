@@ -15,7 +15,12 @@ const Contracts = props => {
   return (
     <Row className="works-section" style={{ direction: 'initial' }}>
       <h2 className="title">كيف نعمل؟</h2>
-      <Tabs defaultActiveKey="2" className="w-tabs">
+      <Tabs
+        defaultActiveKey="2"
+        className="w-tabs"
+        // animated={false}
+        tabBarStyle={{ float: ' right' }}
+      >
         <TabPane tab="للأفراد" key="1">
           <Row className="tab-row">
             <Col md={12} sm={12} xs={12} className="tab-content">

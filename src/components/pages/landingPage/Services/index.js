@@ -24,7 +24,11 @@ const HowItWorks = () => {
           animated={false}
           className="works-tab"
           // tabPosition="top"
-          tabBarStyle={{ '-webkit-backface-visibility': ' hidden' }}
+          tabBarStyle={{
+            '-webkit-backface-visibility': ' hidden',
+            display: 'inline',
+            textAlign: 'right'
+          }}
           // size="small"
           // tabBarGutter="5"
         >
@@ -38,6 +42,7 @@ const HowItWorks = () => {
             <Link to="/user/signup" className="tag-link">
               {'<'} انضم معنا
             </Link>
+            <br />
             <p className="tag-title">مناسب لـ</p>
             <span className="tag">
               تطوع_صحي &nbsp;#تطوع_خيري&nbsp; #تطوع_اجتماعي# &nbsp;
