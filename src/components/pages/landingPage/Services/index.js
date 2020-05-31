@@ -21,7 +21,7 @@ const HowItWorks = () => {
       >
         <Tabs
           defaultActiveKey="1"
-          animated={true}
+          animated={false}
           className="works-tab"
           tabPosition="top"
           keyboard={true}
