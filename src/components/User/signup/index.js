@@ -11,6 +11,7 @@ import { userSignup, userInfo } from '../../../store/actions/userAction';
 import statatisticsService from '../../../services/statisticsService';
 import Header from '../../Header';
 import SEO from '../../SEO';
+import moment from 'moment';
 
 const { allCountries, allCities, allMajors } = statatisticsService;
 const { Step } = Steps;
@@ -36,7 +37,7 @@ class UserSignup extends React.Component {
   };
 
   next = () => {
-    const { city, gender, birthDate, firstName, lastName, major } = this.state;
+    const { city, gender, firstName, lastName, major } = this.state;
     let current = this.state.current;
     switch (current) {
       case 0:
@@ -51,10 +52,10 @@ class UserSignup extends React.Component {
         }
         break;
       case 1:
-        if (!gender || !birthDate) {
+        if (!gender) {
           this.setState({
-            genderError: 'هذا الحقل مطلوب',
-            dateError: 'هذا الحقل مطلوب'
+            genderError: 'هذا الحقل مطلوب'
+            // dateError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -88,6 +89,35 @@ class UserSignup extends React.Component {
     });
   };
 
+  handleWebDateChange = (value, name) => {
+    const age = moment().diff(value, 'years');
+    if (age <= 16) {
+      this.setState({
+        dateError: 'يجب أن يكون عمرك أكبر من 15 عاماً'
+      });
+    } else {
+      this.setState({
+        [name]: value,
+        dateError: ''
+      });
+    }
+  };
+
+  handleMobileDateChange = e => {
+    const { name, value } = e.target;
+    const age = moment().diff(value, 'years');
+    if (age <= 16) {
+      this.setState({
+        dateError: 'يجب أن يكون عمرك أكبر من 15 عاماً'
+      });
+    } else {
+      this.setState({
+        name: value,
+        dateError: ''
+      });
+    }
+  };
+
   handleInputsChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -104,6 +134,7 @@ class UserSignup extends React.Component {
       password,
       gender,
       birthDate,
+      name,
       city,
       major,
       // reEmail,
@@ -132,7 +163,7 @@ class UserSignup extends React.Component {
 
       await userExtraInfo({
         gender,
-        birthDate,
+        birthDate: birthDate || name,
         city,
         major,
         fullName: firstName + ' ' + lastName
@@ -146,6 +177,7 @@ class UserSignup extends React.Component {
   render() {
     const { current, countries, cities, majors } = this.state;
     const { user } = this.props;
+    console.log('state', this.state);
 
     const steps = [
       {
@@ -167,6 +199,8 @@ class UserSignup extends React.Component {
         content: (
           <Step2
             handleChange={this.handleChange}
+            handleMobileDateChange={this.handleMobileDateChange}
+            handleWebDateChange={this.handleWebDateChange}
             handleRadioChange={this.handleInputsChange}
             state={this.state}
             next={() => this.next()}
