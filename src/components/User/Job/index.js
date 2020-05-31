@@ -55,7 +55,14 @@ class Job extends React.Component {
 
   render() {
     const { offer, closeModal } = this.props;
-    const { Country, City, Contract, apply, job } = offer.jobOffer;
+    const {
+      Country,
+      City,
+      Contract,
+      apply,
+      job,
+      contractType
+    } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
     return (
@@ -155,7 +162,12 @@ class Job extends React.Component {
                   <p className="main-info-desc">
                     {Country}, {City}, {address}
                   </p>
-                  <div className="job-sub-heading">عدد أيام العمل</div>
+                  <div className="job-sub-heading">
+                    {' '}
+                    {contractType == '160'
+                      ? 'عدد أشهر العمل'
+                      : 'عدد أيام العمل'}
+                  </div>
                   <p className="main-info-desc">{job ? job.work_days : ''}</p>
                   <div className="job-sub-heading">مبلغ الراتب</div>
                   <p className="main-info-desc">{job ? job.salary : ''}</p>
