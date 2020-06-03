@@ -89,6 +89,9 @@
     left: 10px;
     top: 10px;
 }
+.mobile-select {
+    display: none;
+}
 
 
 @media (max-width:320px) {
@@ -107,6 +110,12 @@
         margin-left: 2px !important;
 
     }
+    .mobile-select {
+        display: block;
+    }
+    .web-select {
+        display: none;
+    }
 }
 @media (min-width:321px) and (max-width:768px) { 
     .jobs-actions {
@@ -124,4 +133,11 @@
         margin-left: 2px !important;
 
     }
+    .mobile-select {
+        display: block;
+    }
+    .web-select {
+        display: none;
+    }
+    
 }

@@ -72,30 +72,57 @@ class Jobs extends React.Component {
       }
     }
   }
-  handleFilterChange = (value, option) => {
-    this.setState(
-      {
-        [option.props.name]: option.key
-      },
-      () => {
-        const { filterOption, offers, basedOffersArray } = this.state;
-        let sortedOffers;
+  handleFilterChange = (e, option) => {
+    if (!option) {
+      const { name, value } = e.target;
+      this.setState(
+        {
+          [name]: value
+        },
+        () => {
+          const { filterOption, offers, basedOffersArray } = this.state;
+          let sortedOffers;
 
-        if (filterOption === 'new') {
-          sortedOffers = basedOffersArray;
-        } else {
-          var sorted = new Array();
-          for (var i = offers.length - 1; i >= 0; i--) {
-            sorted.push(offers[i]);
+          if (filterOption === 'new') {
+            sortedOffers = basedOffersArray;
+          } else {
+            var sorted = new Array();
+            for (var i = offers.length - 1; i >= 0; i--) {
+              sorted.push(offers[i]);
+            }
+            sortedOffers = sorted;
           }
-          sortedOffers = sorted;
-        }
 
-        this.setState({
-          offers: sortedOffers
-        });
-      }
-    );
+          this.setState({
+            offers: sortedOffers
+          });
+        }
+      );
+    } else {
+      this.setState(
+        {
+          [option.props.name]: option.key
+        },
+        () => {
+          const { filterOption, offers, basedOffersArray } = this.state;
+          let sortedOffers;
+
+          if (filterOption === 'new') {
+            sortedOffers = basedOffersArray;
+          } else {
+            var sorted = new Array();
+            for (var i = offers.length - 1; i >= 0; i--) {
+              sorted.push(offers[i]);
+            }
+            sortedOffers = sorted;
+          }
+
+          this.setState({
+            offers: sortedOffers
+          });
+        }
+      );
+    }
   };
 
   handleSearch = e => {
@@ -111,9 +138,17 @@ class Jobs extends React.Component {
     });
   };
 
+  handleMobileChange = e => {
+    const { name, value } = e.target;
+    console.log('name, value', name, value);
+
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     const { offers, loading, totalPages, count, search } = this.state;
-
     return (
       <React.Fragment>
         <div>
@@ -163,10 +198,11 @@ class Jobs extends React.Component {
                             </div>
                           </div>
                           <div className="post-body">
-                          <Paragraph ellipsis={{ rows: 5, expandable: false }} className="post-description">
-                            <span>
-                              {elm.jobAd.descreption + '...'} 
-                            </span>
+                            <Paragraph
+                              ellipsis={{ rows: 5, expandable: false }}
+                              className="post-description"
+                            >
+                              <span>{elm.jobAd.descreption + '...'}</span>
                             </Paragraph>
                           </div>
                         </div>

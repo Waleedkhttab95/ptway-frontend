@@ -185,6 +185,7 @@ class UserSignup extends React.Component {
         content: (
           <Step1
             handleChange={this.handleChange}
+            handleInputsChange={this.handleInputsChange}
             countries={countries}
             cities={cities}
             state={this.state}
