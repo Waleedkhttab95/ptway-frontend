@@ -1,9 +1,17 @@
 import React from 'react';
-import { DatePicker, Radio } from 'antd';
+import { DatePicker, Radio, Input } from 'antd';
 import personalInfoIcon from '../../../../images/personal-info-icon.svg';
 
 const step2Form = props => {
-  const { handleChange, state, steps, current, handleRadioChange } = props;
+  const {
+    handleChange,
+    state,
+    steps,
+    current,
+    handleRadioChange,
+    handleMobileDateChange,
+    handleWebDateChange
+  } = props;
   const { genderError, dateError } = state;
   return (
     <div className="steps-form">
@@ -38,13 +46,20 @@ const step2Form = props => {
             تاريخ الميلاد
           </label>
           <DatePicker
-            className="user-signup-datepicker"
+            className="user-signup-datepicker date-web"
             placeholder="اختر التاريخ"
-            onChange={value => handleChange(value, 'birthDate')}
+            onChange={value => handleWebDateChange(value, 'birthDate')}
             value={state.birthDate}
           />
+          <Input
+            type="date"
+            name="birthDate"
+            onChange={handleMobileDateChange}
+            className="input-field date-mobile"
+            value={state.name}
+          />
           <span style={{ color: 'red' }}>
-            {dateError && !state.birthDate ? dateError : ''}
+            {dateError && (!state.birthDate || !state.name) ? dateError : ''}
           </span>
           <div className="steps-btns">
             {current > 0 && (

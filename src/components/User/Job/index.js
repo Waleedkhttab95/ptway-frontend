@@ -6,7 +6,8 @@ import Footer from '../../Footer';
 import {
   jobOffer,
   companyDetails,
-  applyJob
+  applyJob,
+  closeERRORModal
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -53,13 +54,38 @@ class Job extends React.Component {
   };
 
   render() {
-    const { offer } = this.props;
-    const { Country, City, Contract, apply, job } = offer.jobOffer;
+    const { offer, closeModal } = this.props;
+    const {
+      Country,
+      City,
+      Contract,
+      apply,
+      job,
+      contractType
+    } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
     return (
       <div className="user-container">
         <Header />
+        <Modal
+          visible={offer.error.showErrorMsg}
+          onCancel={this.handleCancel}
+          footer={false}
+        >
+          <div className="success-modal">
+            <h2> نأسف لهذا، لقد تم حذف الاعلان من قبل الشركة المعلنة</h2>
+            <br />
+            <button
+              onClick={async () => {
+                await this.props.history.push('/user/jobs');
+                closeModal();
+              }}
+            >
+              تصفح الإعلانات
+            </button>
+          </div>
+        </Modal>
         <Row className="job-section">
           <Col md={6} xs={24} sm={24}>
             <div className="right-section">
@@ -136,7 +162,12 @@ class Job extends React.Component {
                   <p className="main-info-desc">
                     {Country}, {City}, {address}
                   </p>
-                  <div className="job-sub-heading">عدد أيام العمل</div>
+                  <div className="job-sub-heading">
+                    {' '}
+                    {contractType == '160'
+                      ? 'عدد أشهر العمل'
+                      : 'عدد أيام العمل'}
+                  </div>
                   <p className="main-info-desc">{job ? job.work_days : ''}</p>
                   <div className="job-sub-heading">مبلغ الراتب</div>
                   <p className="main-info-desc">{job ? job.salary : ''}</p>
@@ -234,7 +265,8 @@ const mapDispatchToProps = dispatch => {
   return {
     jobOffer: params => dispatch(jobOffer(params)),
     company: params => dispatch(companyDetails(params)),
-    applyJob: params => dispatch(applyJob(params))
+    applyJob: params => dispatch(applyJob(params)),
+    closeModal: () => dispatch(closeERRORModal())
   };
 };
 

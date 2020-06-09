@@ -32,7 +32,8 @@ class UpdateProfile extends React.Component {
     major: [],
     universities: [],
     education_levels: [],
-    updateSuccessMsg: false
+    updateSuccessMsg: false,
+    datebirthError: false
   };
   async componentDidMount() {
     const userInfo = await getinformation();
@@ -152,8 +153,31 @@ class UpdateProfile extends React.Component {
     });
   };
 
+  handleDateMobileChange = e => {
+    const { name, value } = e.target;
+    const age = moment().diff(value, 'years');
+    if (age <= 16) {
+      this.setState({
+        datebirthError: true
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        [name]: value,
+        datebirthError: false
+      });
+    }
+  };
+
   DateChange = date => {
-    this.setState({ birthDate: date });
+    const age = moment().diff(date, 'years');
+    if (age <= 16) {
+      this.setState({
+        datebirthError: true
+      });
+    } else {
+      this.setState({ birthDate: date, datebirthError: false });
+    }
   };
 
   educationDegreeHandle = async (value, option) => {
@@ -247,7 +271,8 @@ class UpdateProfile extends React.Component {
       countries,
       cities,
       categories,
-      education_levels
+      education_levels,
+      datebirthError
     } = this.state;
     const hoppies = [
       'القراءة',
@@ -410,7 +435,7 @@ class UpdateProfile extends React.Component {
                         <Input
                           type="date"
                           name="birthDate"
-                          onChange={this.handleInputChange}
+                          onChange={this.handleDateMobileChange}
                           className="input-field date-mobile"
                           placeholder={
                             userInfo
@@ -419,6 +444,11 @@ class UpdateProfile extends React.Component {
                           }
                           value={this.state.birthDate}
                         />
+                        {datebirthError && (
+                          <span style={{ color: 'red', fontSize: '12px' }}>
+                            يجب أن يكون عمرك أكبر من 15 عاماً
+                          </span>
+                        )}
 
                         <h5 className="title-field">الحالة الاجتماعية</h5>
 

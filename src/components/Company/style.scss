@@ -107,6 +107,8 @@
         font-weight: bold;
         color:#fff;
         cursor: pointer;
+        -webkit-border-before-style: none;
+        -webkit-border-after-style: none;
     }
 .company-left-section h2 {
     font-size: 16px;
@@ -173,6 +175,10 @@
     height: 32px;
     border-radius: 6px;
     background-color: #f3f3f3;
+}
+
+button {
+    border: none !important;
 }
 
 @media (max-width:320px) {

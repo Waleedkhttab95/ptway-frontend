@@ -79,7 +79,13 @@
     font-size: 25px;
   text-align: center;
   color: #00263e;
-  padding-top: 100px;
+  padding-top: 10px;
+}
+.sub-title {
+    font-size: 25px;
+    text-align: center;
+    color: #3598d4;
+    padding-top: 30px;
 }
 .user-type {
     display: flex;
@@ -89,7 +95,7 @@
     margin: auto;
     >div {
         width: 214px;
-        height: 142px;
+        height: 160px;
         border-radius: 20px;
         border: solid 2px #d9d9d9;
         background-color: #ffffff;
@@ -99,7 +105,12 @@
         justify-content: center;
         align-items: center;
         font-size: 20px;
-        color: #00263e;
+        color: #3598d4;
+        font-weight: bold;
+        >p {
+            font-size: 16px;
+            color: gray
+        }
     }
     >div:focus, >div:active {
         border: solid 3px #069ad0;

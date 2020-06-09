@@ -2,7 +2,8 @@ const initialState = {
   jobOffers: '',
   jobOffer: '',
   company: '',
-  job: ''
+  job: '',
+  error: {}
 };
 
 const Jobs = (state = initialState, action) => {
@@ -17,6 +18,13 @@ const Jobs = (state = initialState, action) => {
         ...state,
         jobOffer: action.payload
       };
+    case 'JOB_OFFER_ERROR':
+      return {
+        ...state,
+        error: {
+          showErrorMsg: true
+        }
+      };
     case 'COMPANY_DETAILS_SUCCESS':
       return {
         ...state,
@@ -26,6 +34,11 @@ const Jobs = (state = initialState, action) => {
       return {
         ...state,
         job: action.payload
+      };
+    case 'CLOSE_ERROR_MODAL':
+      return {
+        ...state,
+        error: {}
       };
     default:
       return state;

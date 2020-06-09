@@ -244,7 +244,7 @@ const App = () => {
           <Route exact path="/job-form" component={JobForm} />
           <Route exact path="/delivery" component={DeliveryForm} />
           <Route exact path="/policy-and-privacy" component={Privacy} />
-          <Route exact path="/get-new-job" component={GetNewJob} />
+          <Route exact path="/new-step-new-challenge" component={GetNewJob} />
           <Route exact path="/user-new-job" component={UserNewJob} />
           <Route exact path="/company-new-job" component={CompanyNewJob} />
 
