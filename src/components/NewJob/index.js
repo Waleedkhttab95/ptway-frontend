@@ -13,6 +13,10 @@ export class GetNewJob extends React.Component {
         <LoginNavbar />
         <div className="container">
           <div className="sub-container">
+            <h2 className="sub-title">
+              معاً لنجعل التحديات المتمثلة في كوفيد-١٩ <br />
+              محفزاً لتحقيق التنمية المستدامة!
+            </h2>
             <h3 className="main-title">هل أنت..</h3>
             <div className="user-type">
               <div
@@ -21,7 +25,8 @@ export class GetNewJob extends React.Component {
                 }}
               >
                 <img src={userJob} alt="userJob" />
-                باحث عن عمل
+                مستعد للتحدي
+                <p>الأفراد</p>
               </div>
               <div
                 onClick={() => {
@@ -29,7 +34,8 @@ export class GetNewJob extends React.Component {
                 }}
               >
                 <img src={companyJob} alt="companyJob" />
-                شركة
+                ميدان التحدي
+                <p>الشركات</p>
               </div>
             </div>
           </div>
