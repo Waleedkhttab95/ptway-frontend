@@ -87,7 +87,9 @@ class UpdateProfile extends React.Component {
       per_skill: info.personal_Skills ? info.personal_Skills : '',
       skill: info.skills ? info.skills : '',
       jobCategory:
-        info.jobCategory.length !== 0 ? info.jobCategory.map(e => e._id) : null,
+        info.jobCategory && info.jobCategory.length !== 0
+          ? info.jobCategory.map(e => e._id)
+          : [],
       userStatus: info.userStatus ? info.userStatus : '',
       availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
@@ -377,7 +379,7 @@ class UpdateProfile extends React.Component {
                           showArrow={true}
                           className="input-field"
                           defaultValue={
-                            userInfo
+                            userInfo && userInfo.jobCategory
                               ? userInfo.jobCategory.map(e => e.jobName)
                               : []
                           }
