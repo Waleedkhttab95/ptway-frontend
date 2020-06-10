@@ -159,6 +159,7 @@
 @media (min-width:321px) and (max-width:768px) {
     .container {
     max-width: 360px;
+    min-height: 100vh;
     }
     .new-job-form {
         padding: 30px 10px;
