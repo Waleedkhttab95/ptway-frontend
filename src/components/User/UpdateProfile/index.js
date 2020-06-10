@@ -112,15 +112,7 @@ class UpdateProfile extends React.Component {
       [option.props.name]: option.key
     });
   };
-  handleNormalSelectChange = e => {
-    const { name, value } = e.target;
-    console.log('name,value', name, value);
 
-    // const ids = value.map(elm => elm.key);
-    // this.setState({
-    //   [name]: ids
-    // });
-  };
   handleSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -269,8 +261,6 @@ class UpdateProfile extends React.Component {
     }
   };
   render() {
-    console.log('state', this.state);
-
     const {
       skills,
       pSkills,
@@ -361,20 +351,19 @@ class UpdateProfile extends React.Component {
                           name="fullName"
                         />
                         <h5 className="title-field">الجنس</h5>
-                        <select
-                          className="input-field mobile-select"
-                          placeholder={this.state.gender}
-                          onChange={this.handleInputChange}
-                          name="gender"
-                        >
-                          <option name="gender" value="male" key="ذكر">
-                            ذكر{' '}
-                          </option>
-                          <option name="gender" value="female" key="أنثى">
-                            أنثى{' '}
-                          </option>
-                        </select>
 
+                        <Select
+                          className="input-field"
+                          placeholder={this.state.gender}
+                          onChange={this.handleChange}
+                        >
+                          <Option name="gender" value="male" key="ذكر">
+                            ذكر{' '}
+                          </Option>
+                          <Option name="gender" value="female" key="أنثى">
+                            أنثى{' '}
+                          </Option>
+                        </Select>
                         <h5 className="title-field">رقم الجوال</h5>
 
                         <Input
@@ -384,54 +373,53 @@ class UpdateProfile extends React.Component {
                           name="mobile"
                         />
                         <h5 className="title-field">الإهتمامات الوظيفية</h5>
-                        <select
+                        <Select
                           showArrow={true}
-                          className="input-normal-select-field"
-                          // defaultValue={
-                          //   userInfo
-                          //     ? userInfo.jobCategory.map(e => e.jobName)
-                          //     : []
-                          // }
-                          onChange={this.handleNormalSelectChange}
-                          multiple
+                          className="input-field"
+                          defaultValue={
+                            userInfo
+                              ? userInfo.jobCategory.map(e => e.jobName)
+                              : []
+                          }
+                          onChange={this.handleCategoryChange}
+                          mode="multiple"
                         >
                           {_.isArray(categories)
                             ? categories.map(elm => {
                                 return (
-                                  <option
+                                  <Option
                                     value={elm.jobName}
                                     key={elm._id}
                                     name="jobCategory"
                                   >
                                     {elm.jobName}
-                                  </option>
+                                  </Option>
                                 );
                               })
                             : ''}
-                        </select>
-
+                        </Select>
                         <h5 className="title-field">الأوقات المتاحة</h5>
-                        <select
-                          className="input-normal-select-field"
+                        <Select
+                          className="input-field"
                           placeholder={
                             userInfo ? userInfo.availabilityStatus : ''
                           }
-                          onChange={this.handleNormalSelectChange}
+                          onChange={this.handleChange}
                         >
                           {_.isArray(availabilityStatus)
                             ? availabilityStatus.map(elm => {
                                 return (
-                                  <option
+                                  <Option
                                     value={elm}
                                     key={elm}
                                     name="availabilityStatus"
                                   >
                                     {elm}
-                                  </option>
+                                  </Option>
                                 );
                               })
                             : ''}
-                        </select>
+                        </Select>
                       </div>
                       <div>
                         <h5 className="title-field">تاريخ الميلاد</h5>
@@ -463,26 +451,26 @@ class UpdateProfile extends React.Component {
                         )}
 
                         <h5 className="title-field">الحالة الاجتماعية</h5>
-                        <select
-                          className="input-field mobile-select"
+
+                        <Select
+                          className="input-field"
                           placeholder={userInfo ? userInfo.social_Status : ''}
-                          onChange={this.handleInputChange}
-                          name="social_Status"
+                          onChange={this.handleChange}
                         >
-                          <option name="social_Status" value="أعزب" key="أعزب">
+                          <Option name="social_Status" value="أعزب" key="أعزب">
                             أعزب{' '}
-                          </option>
-                          <option
+                          </Option>
+                          <Option
                             name="social_Status"
                             value="متزوج"
                             key="متزوج"
                           >
                             متزوج{' '}
-                          </option>
-                        </select>
+                          </Option>
+                        </Select>
                         <h5 className="title-field">اللغات</h5>
-                        <select
-                          className="input-field web-select"
+                        <Select
+                          className="input-field"
                           defaultValue={
                             userInfo && userInfo.languages !== null
                               ? userInfo.languages
@@ -497,41 +485,40 @@ class UpdateProfile extends React.Component {
                             overflowY: 'scroll'
                           }}
                         >
-                          <option name="language" value="العربية" key="العربية">
+                          <Option name="language" value="العربية" key="العربية">
                             العربية{' '}
-                          </option>
-                          <option
+                          </Option>
+                          <Option
                             name="language"
                             value="الانجليزية"
                             key="الانجليزية"
                           >
                             الانجليزية{' '}
-                          </option>
-                          <option
+                          </Option>
+                          <Option
                             name="language"
                             value="الفرنسية"
                             key="الفرنسية"
                           >
                             الفرنسية{' '}
-                          </option>
-                          <option
+                          </Option>
+                          <Option
                             name="language"
                             value="الاسبانية"
                             key="الاسبانية"
                           >
                             الاسبانية{' '}
-                          </option>
-                          <option name="language" value="الكورية" key="الكورية">
+                          </Option>
+                          <Option name="language" value="الكورية" key="الكورية">
                             الكورية{' '}
-                          </option>
-                          <option name="language" value="أوردو" key="أوردو">
+                          </Option>
+                          <Option name="language" value="أوردو" key="أوردو">
                             أوردو{' '}
-                          </option>
-                        </select>
-
+                          </Option>
+                        </Select>
                         <h5 className="title-field">حالة المستخدم</h5>
                         <Select
-                          className="input-field web-select"
+                          className="input-field"
                           placeholder={userInfo ? userInfo.userStatus : ''}
                           onChange={this.handleChange}
                         >

@@ -47,7 +47,7 @@ const step3Form = props => {
           <label className="info-label">التخصص العام</label>
           <Select
             onChange={value => handleSelect(value, 'major')}
-            className="major-text web-select"
+            className="major-text"
             value={state.major}
           >
             {_.isArray(majors)
@@ -60,24 +60,6 @@ const step3Form = props => {
                 })
               : ''}
           </Select>
-
-          <select
-            onChange={handleChange}
-            className="major-text mobile-select"
-            value={state.major}
-            name="major"
-          >
-            {_.isArray(majors)
-              ? majors.map(elm => {
-                  return (
-                    <option value={elm.id} key={elm.id}>
-                      {elm.value}
-                    </option>
-                  );
-                })
-              : ''}
-          </select>
-
           <span style={{ color: 'red' }}>
             {majorError && !state.major ? majorError : ''}
           </span>

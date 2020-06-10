@@ -4,14 +4,7 @@ import countryIcon from '../../../../images/home-country-icon.svg';
 import _ from 'lodash';
 const { Option } = Select;
 const step1Form = props => {
-  const {
-    handleChange,
-    cities,
-    state,
-    steps,
-    current,
-    handleInputsChange
-  } = props;
+  const { handleChange, cities, state, steps, current } = props;
   const { cityError } = state;
 
   return (
@@ -27,7 +20,7 @@ const step1Form = props => {
           <Select
             name="city"
             onChange={value => handleChange(value, 'city')}
-            className="country-text web-select"
+            className="country-text"
             value={state.city}
           >
             {_.isArray(cities)
@@ -40,22 +33,6 @@ const step1Form = props => {
                 })
               : ''}
           </Select>
-          <select
-            name="city"
-            onChange={handleInputsChange}
-            className="country-text mobile-select"
-            value={state.city}
-          >
-            {_.isArray(cities)
-              ? cities.map(elm => {
-                  return (
-                    <option value={elm.id} key={elm.id}>
-                      {elm.value}
-                    </option>
-                  );
-                })
-              : ''}
-          </select>
           <span style={{ color: 'red' }}>
             {cityError && !state.city ? cityError : ''}
           </span>
