@@ -83,6 +83,35 @@
     display: none;
 }
 
+.applicants-container {
+    margin-bottom: 30px;
+    .app-title {
+        height: 38px;
+        border-radius: 2px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        font-size: 14px;
+        text-align: center;
+        color: #3b3b3b;
+        padding-top: 5px;
+        margin-top: 15px;
+    }
+    .applicants-names{
+        height: 700px;
+        overflow-y: scroll;
+        direction: ltr;
+                .applicant {
+                    width: 585px;
+                    height: 74px;
+                    background-color: #ffffff;
+                    margin: 0;
+                    border: none;
+                    margin-bottom: 2px;
+                    box-shadow: none;
+                }
+    }
+}
+
 @media (max-width: 320px) {
     .company-container {
         overflow-y: scroll;

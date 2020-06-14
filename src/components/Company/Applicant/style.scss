@@ -15,9 +15,9 @@
   padding: 30px 50px;
 }
 .accept-applicant {
-  max-width: 288px;
+  max-width: 144px;
   width: 100%;
-  height: 55px;
+  height: 36px;
   border-radius: 6px;
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   background-color: #3598d4;
@@ -33,9 +33,9 @@
   margin-bottom: 20px;
 }
 .reject-applicant {
-  max-width: 288px;
+  max-width: 144px;
   width: 100%;
-  height: 55px;
+  height: 36px;
   border-radius: 6px;
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
   background-color: #3b3b3b;
@@ -48,6 +48,7 @@
   text-align: center;
   color: #ffffff;
   margin-bottom: 20px;
+  margin-right: 15px;
 }
 .hour-work {
     display: flex;
@@ -73,6 +74,19 @@
     display: flex;
     width: 60%;
     justify-content: space-between;
+  }
+}
+
+.applicant-info {
+    background: #fff;
+    text-align: center;
+    padding: 30px;
+  .applicant-degrees, .applicant-general {
+    display: flex;
+    text-align: right;
+    >div {
+      width: 100%;
+    }
   }
 }
 

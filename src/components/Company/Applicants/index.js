@@ -5,9 +5,11 @@ import Filter from '../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-import { Spin } from 'antd';
-import { Link } from 'react-router-dom';
-const { getCandidates, acceptUser, getMoreCandidates } = applicants;
+import { Spin, Row, Col } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
+import FilterAndSearch from '../Filter';
+import Applicant from '../Applicant';
+const { getCandidates, acceptUser, getMoreCandidates, getUser } = applicants;
 
 class Applicants extends React.Component {
   state = {
@@ -34,6 +36,15 @@ class Applicants extends React.Component {
     );
   }
 
+  applicantCV = async userId => {
+    const user = await getUser({ userId });
+    console.log('user', user);
+    this.setState({
+      user,
+      userId
+    });
+  };
+
   acceptUser = async userId => {
     const { jobId, candidates } = this.state;
     await acceptUser({
@@ -59,88 +70,50 @@ class Applicants extends React.Component {
   };
 
   render() {
-    const { candidates, loading, moreAds, count } = this.state;
-
+    const { candidates, loading, moreAds, count, user, userId } = this.state;
+    console.log('candidates', candidates);
     return (
       <React.Fragment>
         <Header />
         <div className="company-container">
-          {/* <Filter /> */}
-          <div className="applicant-header">
-            <h3>اسم المتقدم</h3>
-            <h3>السيرة الذاتية</h3>
-            {/* <h3>اسم المشروع</h3>
-            <h3>اسم العرض</h3>*/}
-            <h3>قبول</h3>
-          </div>
-          {_.isArray(candidates.Bresult) ? (
-            candidates.Bresult.length > 0 ? (
-              candidates.Bresult.map(elm => (
-                <div className="applicant" key={elm.candidateName._id}>
-                  <h4>
-                    {elm.candidateName.firstName +
-                      ' ' +
-                      elm.candidateName.lastName}
-                  </h4>
-                  <div>
-                    <Link
-                      className="display-cv"
-                      target="_blank"
-                      to={`/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`}
-                    >
-                      عرض
-                    </Link>
-                  </div>
-                  <div>
-                    <button
-                      className="accept-user"
-                      onClick={() => this.acceptUser(elm.candidateName._id)}
-                    >
-                      موافق
-                    </button>
-                  </div>
-                  <button
-                    className="display-cv-mob"
-                    onClick={() =>
-                      this.props.history.push(
-                        `/applicant/profile/job/${this.state.jobId}/user/${elm.candidateName._id}`
-                      )
-                    }
-                  >
-                    عرض السيرة الذاتية
-                  </button>
-                </div>
-              ))
-            ) : (
-              <div
-                style={{
-                  fontSize: '20px',
-                  textAlign: 'center',
-                  paddingTop: '20px'
-                }}
-              >
-                {' '}
-                لا توجد نتائج{' '}
+          <Row className="applicants-container">
+            <FilterAndSearch />
+            <Col md={12} sm={24}>
+              <h2 className="app-title">السيرة الذاتية</h2>
+              {user && <Applicant {...user} />}
+            </Col>
+            <Col md={12} sm={24}>
+              <h2 className="app-title">اسم المتقدم</h2>
+              <div className="applicants-names">
+                {_.isArray(candidates.Bresult)
+                  ? candidates.Bresult.length > 0
+                    ? candidates.Bresult.map(elm => (
+                        <div
+                          className="applicant"
+                          key={elm.candidateName._id}
+                          onClick={() =>
+                            this.applicantCV(elm.candidateName._id)
+                          }
+                        >
+                          <img src="" />
+                          <div>
+                            <h4>
+                              {' '}
+                              {elm.candidateName.firstName +
+                                ' ' +
+                                elm.candidateName.lastName}
+                            </h4>
+                            <h3>مشروع تأمين أفرع الشركة التجارية </h3>
+                          </div>
+                        </div>
+                      ))
+                    : ''
+                  : ''}
               </div>
-            )
-          ) : (
-            <div className="spinner-loading">
-              <Spin size="large" />
-            </div>
-          )}
-          {!loading && moreAds.totalPages !== count && (
-            <button
-              className="more-projects-offers-btn"
-              onClick={this.displayMore}
-              style={{ marginTop: '30px' }}
-            >
-              عرض المزيد
-            </button>
-          )}
+            </Col>
+          </Row>
         </div>
-        {/* <div style={{ position: 'absolute', width: '100%', bottom: '0' }}> */}
         <Footer />
-        {/* </div> */}
       </React.Fragment>
     );
   }
