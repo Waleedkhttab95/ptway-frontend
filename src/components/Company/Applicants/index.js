@@ -14,7 +14,7 @@ class Applicants extends React.Component {
     candidates: '',
     count: 1,
     moreAds: '',
-    loading: true
+    loading: false
   };
   async componentDidMount() {
     const jobId = this.props.match.params.id;
