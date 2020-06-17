@@ -80,7 +80,7 @@ class Applicants extends React.Component {
             <FilterAndSearch />
             <Col md={12} sm={24}>
               <h2 className="app-title">السيرة الذاتية</h2>
-              {user && <Applicant {...user} />}
+              {user && <Applicant user={user} userId={userId} />}
             </Col>
             <Col md={12} sm={24}>
               <h2 className="app-title">اسم المتقدم</h2>
@@ -89,13 +89,22 @@ class Applicants extends React.Component {
                   ? candidates.Bresult.length > 0
                     ? candidates.Bresult.map(elm => (
                         <div
-                          className="applicant"
+                          className="applicant-cv-info"
                           key={elm.candidateName._id}
                           onClick={() =>
                             this.applicantCV(elm.candidateName._id)
                           }
                         >
-                          <img src="" />
+                          {elm.candidateName && elm.candidateName.imagePath ? (
+                            <img
+                              src={elm.candidateName.imagePath}
+                              className="u-pic"
+                            />
+                          ) : (
+                            <img
+                              src={require('../../../images/pure-avatar.png')}
+                            />
+                          )}
                           <div>
                             <h4>
                               {' '}

@@ -59,6 +59,7 @@ import { CompanyNewJob } from './NewJob/company';
 import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
 import UserInfo from './User/userInfoFollowForm';
+import WholeCV from './Company/Applicant/WholeCV';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -237,6 +238,11 @@ const App = () => {
             exact
             path="/company/resetPassword"
             component={ResetCompanyPassword}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/applicant-cv/id=:userId"
+            component={WholeCV}
           />
           <Route exact path="/resetPassword" component={SetNewPassword} />
           <Route exact path="/common-questions" component={CommenQuestions} />
