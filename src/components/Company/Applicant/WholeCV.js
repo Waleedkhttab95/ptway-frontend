@@ -124,7 +124,12 @@ class WholeCV extends React.Component {
                   <div>
                     <div>
                       <h4>التخصص والقسم :</h4>
-                      <p>{(user.public_Major, user.spicifc_Major || ' ')} </p>
+                      <p>
+                        {
+                          (user.public_Major && user.public_Major.majorName,
+                          (user.spMajor && user.spMajor.majorName) || ' ')
+                        }{' '}
+                      </p>
                     </div>
                     <div>
                       <h4>المستوى الدراسي :</h4>
