@@ -37,11 +37,15 @@ class Applicants extends React.Component {
   }
 
   applicantCV = async userId => {
+    this.setState({
+      loading:true
+    })
     const user = await getUser({ userId });
     console.log('user', user);
     this.setState({
       user,
-      userId
+      userId,
+      loading:false
     });
   };
 
@@ -112,7 +116,7 @@ class Applicants extends React.Component {
                                 ' ' +
                                 elm.candidateName.lastName}
                             </h4>
-                            <h3>مشروع تأمين أفرع الشركة التجارية </h3>
+                            <h3>{elm.jobAd.job_Name} </h3>
                           </div>
                         </div>
                       ))
