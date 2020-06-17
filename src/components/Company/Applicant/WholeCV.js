@@ -12,7 +12,7 @@ class WholeCV extends React.Component {
   async componentDidMount() {
     const userId = this.props.match.params.userId;
     const { jobId } = this.props.match.params;
-    const user = await getUser({ userId });
+    const user = await getUser({ userId, jobId });
     this.setState({
       userId,
       jobId,
@@ -29,7 +29,8 @@ class WholeCV extends React.Component {
     this.props.history.push(`/applicants/job/id=${jobId}`);
   };
   render() {
-    const { user } = this.state;
+    const data = this.state.user;
+    const user = data.info ? data.info : data;
     return (
       <React.Fragment>
         <Header />
@@ -69,7 +70,7 @@ class WholeCV extends React.Component {
                 <div className="details-user-info">
                   <span>
                     <i className="fa fa-envelope" aria-hidden="true"></i>
-                    {user.email}
+                    {data.email}
                   </span>
                   <span>
                     <i className="fa fa-mobile" aria-hidden="true"></i>
@@ -81,7 +82,8 @@ class WholeCV extends React.Component {
                   </span>
                   <span>
                     <i className="fa fa-map-marker" aria-hidden="true"></i>
-                    {user.country}, {user.city}
+                    {user.country && user.country.countryName},{' '}
+                    {user.city && user.city.cityName}
                   </span>
                 </div>
               </div>
@@ -109,7 +111,10 @@ class WholeCV extends React.Component {
                   <div>
                     <div>
                       <h4>الجامعة :</h4>
-                      <p>{user.university || ' '} </p>
+                      <p>
+                        {(user.universty && user.universty.universtyName) ||
+                          ' '}{' '}
+                      </p>
                     </div>
                     <div>
                       <h4>المرحلة الدراسية :</h4>
@@ -136,7 +141,7 @@ class WholeCV extends React.Component {
                     <h3>المهارات العامة : </h3>
                     {_.isArray(user.skills)
                       ? user.skills.map(elm => {
-                          return <p key={elm}>{elm}</p>;
+                          return <p key={elm._id}>{elm.skillName}</p>;
                         })
                       : ''}
                   </div>
@@ -144,7 +149,7 @@ class WholeCV extends React.Component {
                     <h3>المهارات الشخصية : </h3>
                     {_.isArray(user.personal_Skills)
                       ? user.personal_Skills.map(elm => {
-                          return <p key={elm}>{elm}</p>;
+                          return <p key={elm._id}>{elm.skillName}</p>;
                         })
                       : ''}
                   </div>

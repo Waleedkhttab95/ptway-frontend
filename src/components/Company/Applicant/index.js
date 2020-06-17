@@ -9,10 +9,11 @@ const { acceptUser } = applicants;
 class Applicant extends React.Component {
   state = { user: '' };
   async componentDidMount() {
-    const { user, userId } = this.props;
+    const { user, userId, jobId } = this.props;
     this.setState({
       user,
-      userId
+      userId,
+      jobId
     });
   }
   acceptUser = async () => {
@@ -36,39 +37,47 @@ class Applicant extends React.Component {
   }
 
   render() {
-    const { user, userId } = this.state;
+    const { user, userId, jobId } = this.state;
+    console.log('user', this.props);
+
     return (
       <div className="applicant-info">
         <Link
-          to={`/applicant-cv/id=${userId}`}
+          to={`/applicant-cv/id=${userId}&job_id=${jobId}`}
           style={{ textAlign: 'center', colo: '#009ad0' }}
         >
           مشاهدة كامل السيرة الذاتية
         </Link>
-        <h3>{user.fullName}</h3>
+        <h3>{user.info && user.info.fullName}</h3>
         <h3 style={{ color: '#898989' }}>
-          {user.country}, {user.city}{' '}
+          {user.info && user.info.country.countryName},{' '}
+          {user.info && user.info.city.cityName}{' '}
         </h3>
         <h2 className="heading">الدراسات والشهادات</h2>
         <div className="applicant-degrees">
           <div>
             <div>
               <h4>الجامعة :</h4>
-              <p>{user.university || ' '} </p>
+              <p>{(user.info && user.info.universty.universtyName) || ' '} </p>
             </div>
             <div>
               <h4>المرحلة الدراسية :</h4>
-              <p>{user.education_degree || ''}</p>
+              <p>{(user.info && user.info.education_degree) || ''}</p>
             </div>
           </div>
           <div>
             <div>
               <h4>التخصص والقسم :</h4>
-              <p>{(user.public_Major, user.spicifc_Major || ' ')} </p>
+              <p>
+                {
+                  (user.info && user.info.public_Major.majorName,
+                  (user.info && user.info.spMajor) || ' ')
+                }{' '}
+              </p>
             </div>
             <div>
               <h4>المستوى الدراسي :</h4>
-              <p>{user.study_degree || ' '}</p>
+              <p>{(user.info && user.info.study_degree) || ' '}</p>
             </div>
           </div>
         </div>
@@ -76,23 +85,23 @@ class Applicant extends React.Component {
         <div className="applicant-general">
           <div>
             <h3>المهارات العامة : </h3>
-            {_.isArray(user.skills)
-              ? user.skills.map(elm => {
-                  return <p key={elm}>{elm}</p>;
+            {user.info && _.isArray(user.info.skills)
+              ? user.info.skills.map(elm => {
+                  return <p key={elm.id}>{elm.skillName}</p>;
                 })
               : ''}
             <h3>اللغات : </h3>
-            {_.isArray(user.languages)
-              ? user.languages.map(elm => {
+            {user.info && _.isArray(user.info.languages)
+              ? user.info.languages.map(elm => {
                   return <p key={elm}>{elm}</p>;
                 })
               : ''}
           </div>
           <div>
             <h3>المهارات الشخصية : </h3>
-            {_.isArray(user.personal_Skills)
-              ? user.personal_Skills.map(elm => {
-                  return <p key={elm}>{elm}</p>;
+            {user.info && _.isArray(user.info.personal_Skills)
+              ? user.info.personal_Skills.map(elm => {
+                  return <p key={elm._id}>{elm.skillName}</p>;
                 })
               : ''}
           </div>

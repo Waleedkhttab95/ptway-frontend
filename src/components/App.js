@@ -241,7 +241,7 @@ const App = () => {
           />
           <CompanyAuthenticatedRoute
             exact
-            path="/applicant-cv/id=:userId"
+            path="/applicant-cv/id=:userId&job_id=:jobId"
             component={WholeCV}
           />
           <Route exact path="/resetPassword" component={SetNewPassword} />

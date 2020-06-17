@@ -72,7 +72,15 @@ class Applicants extends React.Component {
   };
 
   render() {
-    const { candidates, loading, moreAds, count, user, userId } = this.state;
+    const {
+      candidates,
+      loading,
+      moreAds,
+      count,
+      user,
+      userId,
+      jobId
+    } = this.state;
     console.log('candidates', candidates);
     return (
       <React.Fragment>
@@ -87,7 +95,9 @@ class Applicants extends React.Component {
                 size="large"
                 style={{ marginTop: '50px' }}
               >
-                {user && <Applicant user={user} userId={userId} />}
+                {user && (
+                  <Applicant user={user} userId={userId} jobId={jobId} />
+                )}
               </Spin>
             </Col>
             <Col md={12} sm={24}>
