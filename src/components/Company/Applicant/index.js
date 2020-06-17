@@ -71,7 +71,7 @@ class Applicant extends React.Component {
               <p>
                 {
                   (user.info && user.info.public_Major.majorName,
-                  (user.info && user.info.spMajor) || ' ')
+                  (user.info && user.info.spMajor.majorName) || ' ')
                 }{' '}
               </p>
             </div>
