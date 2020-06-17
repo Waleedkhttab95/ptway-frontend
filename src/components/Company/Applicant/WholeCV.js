@@ -112,7 +112,7 @@ class WholeCV extends React.Component {
                     <div>
                       <h4>الجامعة :</h4>
                       <p>
-                        {(user.universty && user.universty.universtyName) ||
+                        {(user.universty ? user.universty.universtyName : '') ||
                           ' '}{' '}
                       </p>
                     </div>
@@ -126,8 +126,8 @@ class WholeCV extends React.Component {
                       <h4>التخصص والقسم :</h4>
                       <p>
                         {
-                          (user.public_Major && user.public_Major.majorName,
-                          (user.spMajor && user.spMajor.majorName) || ' ')
+                          (user.public_Major ? user.public_Major.majorName : '',
+                          user.spMajor ? user.spMajor.majorName : '')
                         }{' '}
                       </p>
                     </div>

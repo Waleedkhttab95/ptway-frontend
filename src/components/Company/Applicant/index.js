@@ -58,7 +58,11 @@ class Applicant extends React.Component {
           <div>
             <div>
               <h4>الجامعة :</h4>
-              <p>{(user.info && user.info.universty.universtyName) || ' '} </p>
+              <p>
+                {(user.info && user.info.universty
+                  ? user.info.universty.universtyName
+                  : '') || ' '}{' '}
+              </p>
             </div>
             <div>
               <h4>المرحلة الدراسية :</h4>
@@ -70,8 +74,12 @@ class Applicant extends React.Component {
               <h4>التخصص والقسم :</h4>
               <p>
                 {
-                  (user.info && user.info.public_Major.majorName,
-                  (user.info && user.info.spMajor.majorName) || ' ')
+                  (user.info && user.info.public_Major
+                    ? user.info.public_Major.majorName
+                    : '',
+                  (user.info && user.info.spMajor
+                    ? user.info.spMajor.majorName
+                    : '') || ' ')
                 }{' '}
               </p>
             </div>
