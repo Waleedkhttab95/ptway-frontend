@@ -12,7 +12,8 @@ const applicants = {
       jobAd: params.jobId,
       acceptedName: params.userId
     }),
-  getUser: params => baseRequest.get(`/get/userinfo?id=${params.userId}`),
+  getUser: params =>
+    baseRequest.get(`/get/userinfo?id=${params.userId}&jobAd=${params.jobId}`),
   getMoreCandidates: params =>
     baseRequest.get(
       `/getOneCandi?pageNo=${params.pageNo}&jobAd=${params.jobAd}`

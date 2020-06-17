@@ -35,10 +35,11 @@ class Applicants extends React.Component {
   }
 
   applicantCV = async userId => {
+    const { jobId } = this.state;
     this.setState({
       loading: true
     });
-    const user = await getUser({ userId });
+    const user = await getUser({ userId, jobId });
     this.setState({
       user,
       userId,
