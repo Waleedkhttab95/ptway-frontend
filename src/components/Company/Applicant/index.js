@@ -1,22 +1,18 @@
 import React from 'react';
 import './style.scss';
-import { Col } from 'antd';
-import Header from '../../Header';
-import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-const { getUser, acceptUser } = applicants;
+import { Link } from 'react-router-dom';
+
+const { acceptUser } = applicants;
 
 class Applicant extends React.Component {
   state = { user: '' };
   async componentDidMount() {
-    const userId = this.props.match.params.id;
-    const { jobId } = this.props.match.params;
-    const user = await getUser({ userId });
+    const { user, userId } = this.props;
     this.setState({
-      userId,
-      jobId,
-      user
+      user,
+      userId
     });
   }
   acceptUser = async () => {
@@ -28,140 +24,87 @@ class Applicant extends React.Component {
     });
     this.props.history.push(`/applicants/job/id=${jobId}`);
   };
+
+  async componentDidUpdate(prevProp) {
+    const { user, userId } = this.props;
+    if (prevProp !== this.props) {
+      this.setState({
+        user,
+        userId
+      });
+    }
+  }
+
   render() {
-    const { user } = this.state;
+    const { user, userId } = this.state;
     return (
-      <React.Fragment>
-        <Header />
-        <div className="company-container">
-          <div className="applicant-profile">
-            <Col
-              md={6}
-              lg={6}
-              xl={6}
-              xs={24}
-              sm={24}
-              className="applicant-right-section"
-            >
-              <div className="btns-container">
-                <button className="accept-applicant" onClick={this.acceptUser}>
-                  قبول المتقدم
-                </button>
-                {/* <button className="reject-applicant">رفض المتقدم</button> */}
-              </div>
-              <div className="personal-info">
-                <div className="user-pic-info">
-                  {user.imagePath !== 'null' ? (
-                    <img src={user.imagePath} alt="user" className="u-pic" />
-                  ) : (
-                    <i
-                      className="fa fa-user-circle"
-                      aria-hidden="true"
-                      style={{ fontSize: '60px' }}
-                    ></i>
-                  )}
-                  <span className="fullname">{user.fullName}</span>
-                  {/* <span className="job-date">يعمل منذ 11/02/2018</span> */}
-                  {/* <span className="job-type">{user.about}</span> */}
-                </div>
-                <div className="details-user-info">
-                  <span>
-                    <i className="fa fa-envelope" aria-hidden="true"></i>
-                    {user.email}
-                  </span>
-                  <span>
-                    <i className="fa fa-mobile" aria-hidden="true"></i>
-                    {user.mobile}
-                  </span>
-                  <span>
-                    <i className="fa fa-user" aria-hidden="true"></i>
-                    {user.gender}
-                  </span>
-                  <span>
-                    <i className="fa fa-map-marker" aria-hidden="true"></i>
-                    {user.country}, {user.city}
-                  </span>
-                </div>
-              </div>
-              <div className="hour-work">
-                <h3>عدد ساعات العمل</h3>
-                <div className="hours-num">{user.work_Hours}</div>
-              </div>
-            </Col>
-            <Col
-              md={18}
-              lg={18}
-              xl={18}
-              xs={24}
-              sm={24}
-              className="applicant-details"
-            >
-              <div>
-                <h3 className="h-title heading">نبذة عامة</h3>
-                <p>{user.about}</p>
-              </div>
-              <div className="cv-education">
-                <h3 className="h-title heading">الدراسات والشهادات</h3>
-                <div>
-                  <p>
-                    الدراسة الحالية :
-                    {user.education_degree !== 'undefined'
-                      ? user.education_degree
-                      : ''}
-                  </p>
-                  <p>الشهادة الجامعية :{user.study_degree}</p>
-                </div>
-                <div>
-                  <p>المستوى التعليمي : {user.Education_level} </p>
-                  <p> الجامعة :{user.universty}</p>
-                </div>
-                <div>
-                  <p>التخصص العام : {user.public_Major} </p>
-                  <p>التخصص الدقيق : {user.spicifc_Major} </p>
-                </div>
-              </div>
-              <div className="cv-skills-">
-                <h3 className="h-title heading">المهارات واللغات</h3>
-                <div>
-                  <div>
-                    <h3>المهارات العامة : </h3>
-                    {_.isArray(user.skills)
-                      ? user.skills.map(elm => {
-                          return <p key={elm}>{elm}</p>;
-                        })
-                      : ''}
-                  </div>
-                  <div>
-                    <h3>المهارات الشخصية : </h3>
-                    {_.isArray(user.personal_Skills)
-                      ? user.personal_Skills.map(elm => {
-                          return <p key={elm}>{elm}</p>;
-                        })
-                      : ''}
-                  </div>
-                </div>
-                <h3>اللغات : </h3>
-                {_.isArray(user.languages)
-                  ? user.languages.map(elm => {
-                      return <p key={elm}>{elm}</p>;
-                    })
-                  : ''}
-              </div>
-              <div>
-                <h3 className="h-title heading">التواصل الالكتروني</h3>
-                <p>
-                  الموقع الشخصي :{' '}
-                  {user.personal_web ? user.personal_web : 'لا يوجد'}
-                </p>
-                <p>الفيسبوك : {user.facebook ? user.facebook : 'لا يوجد'} </p>
-                <p>التويتر : {user.twitter ? user.twitter : 'لا يوجد'} </p>
-                <p>لينكيد ان : {user.linkedin ? user.linkedin : 'لا يوجد'}</p>
-              </div>
-            </Col>
+      <div className="applicant-info">
+        <Link
+          to={`/applicant-cv/id=${userId}`}
+          style={{ textAlign: 'center', colo: '#009ad0' }}
+        >
+          مشاهدة كامل السيرة الذاتية
+        </Link>
+        <h3>{user.fullName}</h3>
+        <h3 style={{ color: '#898989' }}>
+          {user.country}, {user.city}{' '}
+        </h3>
+        <h2 className="heading">الدراسات والشهادات</h2>
+        <div className="applicant-degrees">
+          <div>
+            <div>
+              <h4>الجامعة :</h4>
+              <p>{user.university || ' '} </p>
+            </div>
+            <div>
+              <h4>المرحلة الدراسية :</h4>
+              <p>{user.education_degree || ''}</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <h4>التخصص والقسم :</h4>
+              <p>{(user.public_Major, user.spicifc_Major || ' ')} </p>
+            </div>
+            <div>
+              <h4>المستوى الدراسي :</h4>
+              <p>{user.study_degree || ' '}</p>
+            </div>
           </div>
         </div>
-        <Footer />
-      </React.Fragment>
+        <h2 className="h-title heading">معلومات عامة</h2>
+        <div className="applicant-general">
+          <div>
+            <h3>المهارات العامة : </h3>
+            {_.isArray(user.skills)
+              ? user.skills.map(elm => {
+                  return <p key={elm}>{elm}</p>;
+                })
+              : ''}
+            <h3>اللغات : </h3>
+            {_.isArray(user.languages)
+              ? user.languages.map(elm => {
+                  return <p key={elm}>{elm}</p>;
+                })
+              : ''}
+          </div>
+          <div>
+            <h3>المهارات الشخصية : </h3>
+            {_.isArray(user.personal_Skills)
+              ? user.personal_Skills.map(elm => {
+                  return <p key={elm}>{elm}</p>;
+                })
+              : ''}
+          </div>
+        </div>
+
+        <div className="btns-container">
+          <button className="accept-applicant" onClick={this.acceptUser}>
+            قبول المتقدم
+          </button>
+          <button className="reject-applicant">رفض المتقدم</button>
+        </div>
+      </div>
     );
   }
 }
