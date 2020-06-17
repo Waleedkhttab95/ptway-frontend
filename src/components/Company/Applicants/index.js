@@ -96,7 +96,11 @@ class Applicants extends React.Component {
                   ? candidates.Bresult.length > 0
                     ? candidates.Bresult.map(elm => (
                         <div
-                          className="applicant-cv-info"
+                          className={
+                            !elm.user.isRead
+                              ? 'applicant-cv-info is-read'
+                              : 'applicant-cv-info'
+                          }
                           key={elm.user.candidateName._id}
                           onClick={() =>
                             this.applicantCV(elm.user.candidateName._id)
