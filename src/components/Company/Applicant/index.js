@@ -25,7 +25,7 @@ class Applicant extends React.Component {
     this.props.history.push(`/applicants/job/id=${jobId}`);
   };
 
-  async componentDidUpdate(prevProp) {
+  componentDidUpdate(prevProp) {
     const { user, userId } = this.props;
     if (prevProp !== this.props) {
       this.setState({

@@ -1,13 +1,11 @@
 import React from 'react';
 import './style.scss';
 import Header from '../../Header';
-import Filter from '../Filter';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
 import { Spin, Row, Col } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
-import FilterAndSearch from '../Filter';
+// import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
 const { getCandidates, acceptUser, getMoreCandidates, getUser } = applicants;
 
@@ -38,14 +36,13 @@ class Applicants extends React.Component {
 
   applicantCV = async userId => {
     this.setState({
-      loading:true
-    })
+      loading: true
+    });
     const user = await getUser({ userId });
-    console.log('user', user);
     this.setState({
       user,
       userId,
-      loading:false
+      loading: false
     });
   };
 
@@ -81,10 +78,16 @@ class Applicants extends React.Component {
         <Header />
         <div className="company-container">
           <Row className="applicants-container">
-            <FilterAndSearch />
+            {/* <FilterAndSearch /> */}
             <Col md={12} sm={24}>
               <h2 className="app-title">السيرة الذاتية</h2>
-              {user && <Applicant user={user} userId={userId} />}
+              <Spin
+                spinning={loading}
+                size="large"
+                style={{ marginTop: '50px' }}
+              >
+                {user && <Applicant user={user} userId={userId} />}
+              </Spin>
             </Col>
             <Col md={12} sm={24}>
               <h2 className="app-title">اسم المتقدم</h2>
@@ -94,16 +97,13 @@ class Applicants extends React.Component {
                     ? candidates.Bresult.map(elm => (
                         <div
                           className="applicant-cv-info"
-                          key={elm.candidateName._id}
+                          key={elm.user.candidateName._id}
                           onClick={() =>
-                            this.applicantCV(elm.candidateName._id)
+                            this.applicantCV(elm.user.candidateName._id)
                           }
                         >
-                          {elm.candidateName && elm.candidateName.imagePath ? (
-                            <img
-                              src={elm.candidateName.imagePath}
-                              className="u-pic"
-                            />
+                          {elm.imagePath && elm.imagePath !== 'null' ? (
+                            <img src={elm.imagePath} className="u-pic" />
                           ) : (
                             <img
                               src={require('../../../images/pure-avatar.png')}
@@ -112,11 +112,11 @@ class Applicants extends React.Component {
                           <div>
                             <h4>
                               {' '}
-                              {elm.candidateName.firstName +
+                              {elm.user.candidateName.firstName +
                                 ' ' +
-                                elm.candidateName.lastName}
+                                elm.user.candidateName.lastName}
                             </h4>
-                            <h3>{elm.jobAd.job_Name} </h3>
+                            <h3>{elm.user.jobAd.job_Name} </h3>
                           </div>
                         </div>
                       ))
