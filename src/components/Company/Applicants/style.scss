@@ -105,7 +105,6 @@
                 .applicant-cv-info {
                     width: 585px;
                     height: 74px;
-                    background-color: #ffffff;
                     margin: 0;
                     border: none;
                     margin-bottom: 2px;
@@ -144,10 +143,15 @@
                     display: none;
                 }
             }
-                .is-read {
-                    background: rgba(235, 243, 248, 0.6);
-                    border-bottom: solid 2px #f7f7f7;
-                }
+            .un-read {
+                background: rgba(235, 243, 248, 0.6);
+                border-bottom: solid 2px #f7f7f7;
+            }
+            .active {
+                    background-color: #ffffff;
+
+            }
+
     }
 }
 

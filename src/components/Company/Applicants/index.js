@@ -14,8 +14,7 @@ class Applicants extends React.Component {
     candidates: '',
     count: 1,
     moreAds: '',
-    loading: false,
-    isReadClass: false
+    loading: false
   };
   async componentDidMount() {
     const jobId = this.props.match.params.id;
@@ -35,8 +34,9 @@ class Applicants extends React.Component {
     );
   }
 
-  applicantCV = async userId => {
+  applicantCV = async (userId, index) => {
     const { jobId } = this.state;
+
     this.setState({
       loading: true
     });
@@ -45,7 +45,7 @@ class Applicants extends React.Component {
       user,
       userId,
       loading: false,
-      isReadClass: true
+      selected: index
     });
   };
 
@@ -82,9 +82,8 @@ class Applicants extends React.Component {
       user,
       userId,
       jobId,
-      isReadClass
+      selected
     } = this.state;
-    console.log('candidates', candidates);
     return (
       <React.Fragment>
         <Header />
@@ -111,15 +110,13 @@ class Applicants extends React.Component {
                     ? candidates.Bresult.map((elm, index) => (
                         <div
                           className={
-                            !elm.user.isRead
-                              ? 'applicant-cv-info is-read'
-                              : // : isReadClass && !index
-                                'applicant-cv-info'
-                            // : ' applicant-cv-info is-read'
+                            elm.user.isRead || selected == index
+                              ? ' applicant-cv-info active'
+                              : 'applicant-cv-info un-read'
                           }
                           key={elm.user.candidateName._id}
                           onClick={() =>
-                            this.applicantCV(elm.user.candidateName._id)
+                            this.applicantCV(elm.user.candidateName._id, index)
                           }
                         >
                           <div>
