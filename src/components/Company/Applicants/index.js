@@ -14,7 +14,8 @@ class Applicants extends React.Component {
     candidates: '',
     count: 1,
     moreAds: '',
-    loading: false
+    loading: false,
+    applicantsInfoLoading: true
   };
   async componentDidMount() {
     const jobId = this.props.match.params.id;
@@ -22,7 +23,8 @@ class Applicants extends React.Component {
     this.setState(
       {
         jobId,
-        candidates
+        candidates,
+        applicantsInfoLoading: false
       },
       () => {
         if (candidates.totalPages > 1) {
@@ -77,6 +79,7 @@ class Applicants extends React.Component {
     const {
       candidates,
       loading,
+      applicantsInfoLoading,
       moreAds,
       count,
       user,
@@ -89,75 +92,85 @@ class Applicants extends React.Component {
         <Header />
         <div className="company-container">
           <Row className="applicants-container">
-            {/* <FilterAndSearch /> */}
-            <Col md={12} sm={24} className="mobile-view">
-              <h2 className="app-title">السيرة الذاتية</h2>
-              <Spin
-                spinning={loading}
-                size="large"
-                style={{ marginTop: '50px' }}
-              >
-                {user && (
-                  <Applicant user={user} userId={userId} jobId={jobId} />
-                )}
-              </Spin>
-            </Col>
-            <Col md={12} sm={24}>
-              <h2 className="app-title">اسم المتقدم</h2>
-              <div className="applicants-names">
-                {_.isArray(candidates.Bresult)
-                  ? candidates.Bresult.length > 0
-                    ? candidates.Bresult.map((elm, index) => (
-                        <div
-                          className={
-                            elm.user.isRead || selected == index
-                              ? ' applicant-cv-info active'
-                              : 'applicant-cv-info un-read'
-                          }
-                          key={elm.user.candidateName._id}
-                          onClick={() =>
-                            this.applicantCV(elm.user.candidateName._id, index)
-                          }
-                        >
-                          <div>
-                            {elm.imagePath && elm.imagePath !== 'null' ? (
-                              <img src={elm.imagePath} className="u-pic" />
-                            ) : (
-                              <img
-                                src={require('../../../images/pure-avatar.png')}
-                              />
-                            )}
-                            <div className="app-content">
-                              <h4>
-                                {' '}
-                                {elm.user.candidateName.firstName +
-                                  ' ' +
-                                  elm.user.candidateName.lastName}
-                              </h4>
-                              <h3>
-                                <span className="job-title-mob">
-                                  المسمى الوظيفي:{' '}
-                                </span>{' '}
-                                {elm.user.jobAd.job_Name}{' '}
-                              </h3>
-                            </div>
-                          </div>
-                          <button
-                            className="cv-btn-mobile"
+            <Spin
+              spinning={applicantsInfoLoading}
+              size="large"
+              style={{ marginTop: '50px' }}
+            >
+              {/* <FilterAndSearch /> */}
+              <Col md={12} sm={24} className="mobile-view">
+                <h2 className="app-title">السيرة الذاتية</h2>
+                <Spin
+                  spinning={loading}
+                  size="large"
+                  style={{ marginTop: '50px' }}
+                >
+                  {user && (
+                    <Applicant user={user} userId={userId} jobId={jobId} />
+                  )}
+                </Spin>
+              </Col>
+              <Col md={12} sm={24}>
+                <h2 className="app-title">اسم المتقدم</h2>
+
+                <div className="applicants-names">
+                  {_.isArray(candidates.Bresult)
+                    ? candidates.Bresult.length > 0
+                      ? candidates.Bresult.map((elm, index) => (
+                          <div
+                            className={
+                              elm.user.isRead || selected == index
+                                ? ' applicant-cv-info active'
+                                : 'applicant-cv-info un-read'
+                            }
+                            key={elm.user.candidateName._id}
                             onClick={() =>
-                              this.props.history.push(
-                                `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}`
+                              this.applicantCV(
+                                elm.user.candidateName._id,
+                                index
                               )
                             }
                           >
-                            مشاهدة السيرة الذاتية
-                          </button>
-                        </div>
-                      ))
-                    : ''
-                  : ''}
-              </div>
-            </Col>
+                            <div>
+                              {elm.imagePath && elm.imagePath !== 'null' ? (
+                                <img src={elm.imagePath} className="u-pic" />
+                              ) : (
+                                <img
+                                  src={require('../../../images/pure-avatar.png')}
+                                />
+                              )}
+                              <div className="app-content">
+                                <h4>
+                                  {' '}
+                                  {elm.user.candidateName.firstName +
+                                    ' ' +
+                                    elm.user.candidateName.lastName}
+                                </h4>
+                                <h3>
+                                  <span className="job-title-mob">
+                                    المسمى الوظيفي:{' '}
+                                  </span>{' '}
+                                  {elm.user.jobAd.job_Name}{' '}
+                                </h3>
+                              </div>
+                            </div>
+                            <button
+                              className="cv-btn-mobile"
+                              onClick={() =>
+                                this.props.history.push(
+                                  `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}`
+                                )
+                              }
+                            >
+                              مشاهدة السيرة الذاتية
+                            </button>
+                          </div>
+                        ))
+                      : ''
+                    : ''}
+                </div>
+              </Col>
+            </Spin>
           </Row>
         </div>
         <Footer />
