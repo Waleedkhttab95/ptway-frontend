@@ -201,6 +201,84 @@
     padding-top: 5px;
     text-align: center;
 }
+.job-header-title {
+    height: 38px;
+        border-radius: 2px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        font-size: 14px;
+        text-align: center;
+        color: #3b3b3b;
+        padding-top: 5px;
+        margin-top: 15px;
+}
+.jobs-section {
+    height: 900px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-left: 1px;
+    .job {
+        width: 585px;
+        height: 160px;
+        margin: 0;
+        border: none;
+        background-color: #ffffff;
+        margin-bottom: 2px;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        cursor: pointer;
+        .top-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: solid 1px #d4d4d4;
+            padding-bottom: 5px;
+                .job-img {
+                    width: 48px;
+                    height: 48px;
+                    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+                    border-radius: 50%;
+                    border: none;
+                    margin: 0 12px;
+                }
+            .job-content {
+                h3 {
+                    font-size: 14px;
+                    line-height: 1.36;
+                    text-align: right;
+                    color: #009ad0;
+                }
+                h4 {
+                    font-size: 12px;
+                    line-height: 1.71;
+                    text-align: right;
+                }
+
+            }
+        }
+        .job-description {
+            font-size: 12px;
+            line-height: 1.71;
+            color: #000000;
+            padding-right: 20px;
+
+        }
+        .job-mobile-btn {
+            display: none;
+        }
+    }
+    .un-read {
+        background: rgba(235, 243, 248, 0.6);
+        border-bottom: solid 2px #f7f7f7;
+    }
+    .active {
+            background-color: #ffffff;
+
+    }
+}
 
 @media (max-width:320px){
     .jobs-details{
@@ -257,6 +335,24 @@
     }
     .jobs-details .job-post .post-body .details-btn {
         margin-top: 0px;
+    }
+    .job-mobile-btn {
+            width: 156px !important;
+            height: 36px !important;
+            border-radius: 2px;
+            background-color: #d8d8d8;
+            width: 106px;
+            height: 17px;
+            font-size: 12px;
+            text-align: center;
+            color: #3b3b3b;
+            display: block !important;
+            // margin: auto !important;
+            margin-top: 12px !important;
+            margin-right: 90px;
+    }
+    .jobs-section .job {
+        height: 212px;
     }
 
 }

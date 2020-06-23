@@ -4,9 +4,15 @@ import Footer from '../../Footer';
 import './style.scss';
 import { Row, Col, Spin, Typography } from 'antd';
 import { connect } from 'react-redux';
-import { jobOffers, applyJob } from '../../../store/actions/user/jobOffers';
+import {
+  jobOffers,
+  jobOffer,
+  applyJob
+} from '../../../store/actions/user/jobOffers';
 import _ from 'lodash';
 import FilterAndSearch from '../Filter';
+import Job from '../Job';
+import { Link } from 'react-router-dom';
 
 const { Paragraph } = Typography;
 class Jobs extends React.Component {
@@ -14,7 +20,9 @@ class Jobs extends React.Component {
     loading: true,
     count: 1,
     search: '',
-    offers: ''
+    offers: '',
+    pageLoading: true,
+    jobLoading: false
   };
   async componentDidMount() {
     const { offersData } = this.props;
@@ -49,17 +57,18 @@ class Jobs extends React.Component {
     }
   };
 
-  displayMore = () => {
-    this.setState(
-      {
-        count: this.state.count + 1
-      },
-      async () => {
-        const { offersData } = this.props;
-        await offersData(this.state.count);
-      }
-    );
-  };
+  // displayMore = () => {
+  //   this.setState(
+  //     {
+  //       count: this.state.count + 1
+  //     },
+  //     async () => {
+  //       const { offersData } = this.props;
+  //       await offersData(this.state.count);
+  //     }
+  //   );
+  // };
+
   componentDidUpdate(prevProps) {
     if (prevProps.offers.result) {
       if (prevProps.offers.result !== this.props.offers.result) {
@@ -138,127 +147,122 @@ class Jobs extends React.Component {
     });
   };
 
-  handleMobileChange = e => {
-    const { name, value } = e.target;
-    console.log('name, value', name, value);
+  getJob = async (jobId, index) => {
+    const {
+      jobOffer
+      //  company
+    } = this.props;
 
+    const job = await jobOffer({ id: jobId });
+    // await company({ id: job.value.job.company });
     this.setState({
-      [name]: value
+      job,
+      jobId,
+      jobLoading: false,
+      selected: index
     });
   };
 
   render() {
-    const { offers, loading, totalPages, count, search } = this.state;
+    const {
+      offers,
+      job,
+      jobId,
+      // count,
+      // search,
+      selected,
+      jobLoading
+    } = this.state;
+    console.log('job before', job);
+
     return (
       <React.Fragment>
         <div>
           <Header />
           <div className="user-container">
             <div className="user-jobs">
-              <FilterAndSearch
+              {/* <FilterAndSearch
                 handleChange={this.handleFilterChange}
                 handleSearch={this.handleSearch}
-              />
-              <Row className="jobs-details">
-                {_.isArray(offers) ? (
-                  offers.map(elm => {
-                    return (
-                      <Col
-                        md={5}
-                        xs={24}
-                        sm={24}
-                        className="job-post"
-                        key={elm.jobAd._id}
-                      >
-                        <div>
-                          <div className="post-header">
-                            {elm.imagePath && elm.imagePath !== 'null' ? (
-                              <img src={elm.imagePath} alt="" />
-                            ) : (
-                              <i
-                                className="fa fa-picture-o"
-                                aria-hidden="true"
-                                style={{
-                                  fontSize: '45px',
-                                  display: 'flex',
-                                  alignItems: 'center'
-                                }}
-                              ></i>
-                            )}
-                            <div className="job-owner-info">
-                              <span className="job-owner-title">
-                                {elm.jobAd.job_Name}
-                              </span>
-                              <span className="job-owner-location">
-                                {elm.compName}
-                              </span>
-                              {/* <span className="job-owner-mobile">
-                              الرقم : 0002163477555
-                            </span> */}
+              /> */}
+              <Row>
+                <Col md={12} sm={24} className="mobile-view">
+                  <h2 className="job-header-title">السيرة الذاتية</h2>
+                  <Spin
+                    spinning={jobLoading}
+                    size="large"
+                    style={{ marginTop: '50px' }}
+                  >
+                    {job && <Job job={job} jobId={jobId} />}
+                  </Spin>
+                </Col>
+                <Col md={12} sm={24}>
+                  <h2 className="job-header-title">اسم المتقدم</h2>
+                  <div className="jobs-section">
+                    {_.isArray(offers) ? (
+                      offers.map((elm, index) => {
+                        return (
+                          <div
+                            className={
+                              !elm.jobAd.isLock || selected == index
+                                ? 'job active'
+                                : selected !== index
+                                ? 'job'
+                                : 'job un-read'
+                            }
+                            key={elm.jobAd._id}
+                            onClick={() => this.getJob(elm.jobAd._id, index)}
+                          >
+                            <div className="top-section">
+                              {elm.imagePath && elm.imagePath !== 'null' ? (
+                                <img
+                                  className="job-img"
+                                  src={elm.imagePath}
+                                  alt=""
+                                />
+                              ) : (
+                                <img
+                                  className="job-img"
+                                  src={require('../../../images/pure-avatar.png')}
+                                />
+                              )}
+                              <div className="job-content">
+                                <h3>{elm.jobAd.job_Name}</h3>
+                                <h4>{elm.compName}</h4>
+                              </div>
+                            </div>
+                            <div>
+                              <Paragraph
+                                ellipsis={{ rows: 5, expandable: false }}
+                                className="job-description"
+                              >
+                                <span>{elm.jobAd.descreption + '...'}</span>
+                              </Paragraph>
+                              <Link to={`/user/job/${elm.jobAd._id}`}>
+                                <button className="job-mobile-btn">
+                                  مشاهدة التفاصيل
+                                </button>
+                              </Link>
                             </div>
                           </div>
-                          <div className="post-body">
-                            <Paragraph
-                              ellipsis={{ rows: 5, expandable: false }}
-                              className="post-description"
-                            >
-                              <span>{elm.jobAd.descreption + '...'}</span>
-                            </Paragraph>
-                          </div>
-                        </div>
-                        <div className="post-actions-btns">
-                          {elm.status ? (
-                            <div className="post-status">تم التقدم للعمل</div>
-                          ) : (
-                            <React.Fragment>
-                              <div
-                                className="post-status"
-                                style={{ marginBottom: '15px' }}
-                              >
-                                لم يتم التقدم
-                              </div>
-                              {elm.jobAd.isLock ? (
-                                <div className="job-completed">
-                                  {' '}
-                                  لقد اكتمل العدد
-                                </div>
-                              ) : (
-                                ''
-                              )}
-                            </React.Fragment>
-                          )}
-                          {elm.jobAd.isLock ? (
-                            <span></span>
-                          ) : (
-                            <button
-                              className="details-btn"
-                              onClick={() =>
-                                this.props.history.push(
-                                  `/user/job/${elm.jobAd._id}`
-                                )
-                              }
-                            >
-                              التفاصيل
-                            </button>
-                          )}
-                        </div>
-                      </Col>
-                    );
-                  })
-                ) : (
-                  <div
-                    className="spinner-loading"
-                    // style={{ width: '100%', margin: '0 auto' }}
-                  >
-                    <Spin size="large" />
+                        );
+                      })
+                    ) : (
+                      <div
+                        className="spinner-loading"
+                        // style={{ width: '100%', margin: '0 auto' }}
+                      >
+                        <Spin size="large" />
+                      </div>
+                    )}
                   </div>
-                )}
+                </Col>
               </Row>
-              {!loading && totalPages !== count && !search && (
+              {/* {!loading && totalPages !== count && !search && (
                 <button className="display-more" onClick={this.displayMore}>
                   عرض المزيد
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -276,7 +280,8 @@ const mapStateToProps = ({ jobOffers }) => {
 const mapDispatchToProps = dispatch => {
   return {
     offersData: pageNo => dispatch(jobOffers(pageNo)),
-    applyJob: params => dispatch(applyJob(params))
+    applyJob: params => dispatch(applyJob(params)),
+    jobOffer: params => dispatch(jobOffer(params))
   };
 };
 
