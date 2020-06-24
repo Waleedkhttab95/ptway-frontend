@@ -236,6 +236,7 @@
             justify-content: flex-start;
             border-bottom: solid 1px #d4d4d4;
             padding-bottom: 5px;
+            position: relative;
                 .job-img {
                     width: 48px;
                     height: 48px;
@@ -257,6 +258,10 @@
                     text-align: right;
                 }
 
+            }
+            .job-status {
+                position: absolute;
+                left: 17px;
             }
         }
         .job-description {
