@@ -17,14 +17,8 @@
             margin-bottom: 20px;
         }
     }
-    .left-section{
-        border-radius: 10px;
-        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-        background-color: #ffffff;
-        margin-right: 20px;
-        padding: 60px 50px;
-    }
 }
+        
 .job-owner-name {
     font-size: 16px;
     font-weight: bold;
@@ -62,6 +56,7 @@
   letter-spacing: normal;
   text-align: center;
   color: #222222;
+  padding-top: 30px;
 }
 .job-contact-number{
   font-size: 14px;
@@ -263,6 +258,17 @@
     color: #000000;
 }
 
+.job-container {
+    height: 900px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: #fff;
+}
+.job-wrapper {
+    background: #fff;
+ padding: 0 30px;
+}
+
 @media (max-width:320px) {
     .job-section {
         display: flex;
@@ -298,5 +304,8 @@
     }
     .not-intersted-btn {
         padding: 0 30px;
+    }
+    .jobs-section .job .job-description {
+        max-width: 300px;
     }
 }

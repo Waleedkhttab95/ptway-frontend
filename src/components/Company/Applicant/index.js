@@ -38,8 +38,6 @@ class Applicant extends React.Component {
 
   render() {
     const { user, userId, jobId } = this.state;
-    console.log('user', this.props);
-
     return (
       <div className="applicant-info">
         <Link

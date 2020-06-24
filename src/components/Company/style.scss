@@ -168,13 +168,17 @@
     color: #ffffff;
 }
 .applicants-num {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    width: 75px;
+    height: 32px;
+    border-radius: 6px;
+}
+.applicants-col {
+    align-items: center;
     height: 32px;
     border-radius: 6px;
     background-color: #f3f3f3;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 button {

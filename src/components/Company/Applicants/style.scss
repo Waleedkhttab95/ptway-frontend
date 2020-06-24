@@ -103,9 +103,9 @@
         direction: ltr;
         margin-left: 1px;
                 .applicant-cv-info {
-                    width: 575px;
-                    height: 60px;
-                    background-color: #ffffff;
+
+                    width: 585px;
+                    height: 74px;
                     margin: 0;
                     border: none;
                     margin-bottom: 2px;
@@ -146,10 +146,15 @@
                     display: none;
                 }
             }
-                .is-read {
-                    background: rgba(235, 243, 248, 0.6);
-                    border-bottom: solid 2px #f7f7f7;
-                }
+            .un-read {
+                background: rgba(235, 243, 248, 0.6);
+                border-bottom: solid 2px #f7f7f7;
+            }
+            .active {
+                    background-color: #ffffff;
+
+            }
+
     }
 }
 
