@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import { Modal, Radio, Spin } from 'antd';
+import { Link } from 'react-router-dom';
 
 import {
   jobOffer,
@@ -109,15 +110,14 @@ class Job extends React.Component {
             {imagePath && imagePath !== 'null' ? (
               <img src={imagePath} className="picture" />
             ) : (
-              <i
-                className="fa fa-user-circle-o"
-                aria-hidden="true"
+              <img
+                className="job-img"
                 style={{
-                  fontSize: '45px',
-                  display: 'flex',
-                  alignItems: 'center'
+                  width: '150px',
+                  height: '150px'
                 }}
-              ></i>
+                src={require('../../../images/pure-avatar.png')}
+              />
             )}
             <h5 className="job-title">{job ? job.job_Name : ''}</h5>
             <p>
@@ -233,9 +233,9 @@ class Job extends React.Component {
                 سيصلك تنبيه بالقبول أو الرفض بمجرد مشاهدة سيرتك الذاتية من
                 الشركة
               </p>
-              <button onClick={() => this.props.history.push('/user/jobs')}>
-                العودة للرئيسية
-              </button>
+              <Link to="/user/jobs">
+                <button>العودة للرئيسية</button>
+              </Link>
             </div>
           </Modal>
         </div>
