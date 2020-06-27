@@ -230,6 +230,25 @@ class Jobs extends React.Component {
                                 <h3>{elm.jobAd.job_Name}</h3>
                                 <h4>{elm.compName}</h4>
                               </div>
+                              <div className="job-status">
+                                {elm.status ? (
+                                  <div>تم التقدم للعمل</div>
+                                ) : (
+                                  <React.Fragment>
+                                    <div style={{ color: '#7696f5' }}>
+                                      لم يتم التقدم
+                                    </div>
+                                    {elm.jobAd.isLock ? (
+                                      <div style={{ color: '#ffa76a' }}>
+                                        {' '}
+                                        لقد اكتمل العدد
+                                      </div>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </React.Fragment>
+                                )}
+                              </div>
                             </div>
                             <div>
                               <Paragraph

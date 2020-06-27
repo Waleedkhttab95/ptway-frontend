@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.scss';
-import { Row, Col, Modal, Radio, Spin } from 'antd';
-import Header from '../../Header';
-import Footer from '../../Footer';
+import { Modal, Radio, Spin } from 'antd';
+import { Link } from 'react-router-dom';
+
 import {
   jobOffer,
   companyDetails,
@@ -23,7 +23,7 @@ class Job extends React.Component {
     const { jobOffer, company, jobId } = this.props;
     const id = this.props.match ? this.props.match.params.id : '';
     const job = await jobOffer({ id: jobId || id });
-    await company({ id: job.value.job.company });
+    await company({ id: job.value.job.company || job.company });
   }
 
   applyJobSuccessMsg = () => {
@@ -53,7 +53,7 @@ class Job extends React.Component {
     }
   };
 
-  componentDidUpdate(prevProp) {
+  async componentDidUpdate(prevProp) {
     const { job, jobId } = this.props;
     if (prevProp !== this.props) {
       this.setState({
@@ -96,52 +96,35 @@ class Job extends React.Component {
             </button>
           </div>
         </Modal>
-        {/* <Col md={6} xs={24} sm={24}>
-            <div className="right-section">
-              {offer.company ? (
-                <React.Fragment>
-                  {imagePath !== 'null' ? (
-                    <img src={imagePath} alt="user" className="picture" />
-                  ) : (
-                    <i
-                      className="fa fa-user-circle-o"
-                      aria-hidden="true"
-                      style={{
-                        fontSize: '45px',
-                        display: 'flex',
-                        alignItems: 'center'
-                      }}
-                    ></i>
-                  )}
-                  <span className="job-owner-name">{compnayName}</span>
-                  <div className="job-owner-info">
-                    <p>
-                      <i
-                        className="fa fa-exclamation-circle"
-                        aria-hidden="true"
-                      ></i>
-                      {info}
-                    </p>
 
-                    <p>
-                      <i className="fa fa-map-marker" aria-hidden="true"></i>
-                      {Country}, {City}, {address}
-                    </p>
-                  </div>
-                </React.Fragment>
-              ) : (
-                <div className="spinner-loading">
-                  <Spin size="large" />
-                </div>
-              )}
-            </div>
-          </Col>
-           */}
         <div className="job-wrapper">
-          <h5 className="job-title">{job ? job.job_Name : ''}</h5>
-          {/* <h5 className="job-title" style={{ color: '#898989' }}>
-            {job && job.Country} {job && job.City}{' '}
-          </h5> */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '20px'
+            }}
+          >
+            {imagePath && imagePath !== 'null' ? (
+              <img src={imagePath} className="picture" />
+            ) : (
+              <img
+                className="job-img"
+                style={{
+                  width: '150px',
+                  height: '150px'
+                }}
+                src={require('../../../images/pure-avatar.png')}
+              />
+            )}
+            <h5 className="job-title">{job ? job.job_Name : ''}</h5>
+            <p>
+              <i className="fa fa-map-marker" aria-hidden="true"></i>
+              {Country}, {City}, {address}
+            </p>
+          </div>
           <div>
             <div className="job-heading">
               <i className="fa fa-suitcase" aria-hidden="true"></i>
@@ -250,9 +233,9 @@ class Job extends React.Component {
                 سيصلك تنبيه بالقبول أو الرفض بمجرد مشاهدة سيرتك الذاتية من
                 الشركة
               </p>
-              <button onClick={() => this.props.history.push('/user/jobs')}>
-                العودة للرئيسية
-              </button>
+              <Link to="/user/jobs">
+                <button>العودة للرئيسية</button>
+              </Link>
             </div>
           </Modal>
         </div>

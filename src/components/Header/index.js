@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Drawer, Button, Col, Badge, Select } from 'antd';
+import { Row, Drawer, Button, Col, Badge, Select, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
@@ -30,7 +30,8 @@ class Header extends React.Component {
     newAdPopUp: false,
     addProject: false,
     userVisible: false,
-    companyVisible: false
+    companyVisible: false,
+    nonProjectsExistModal: false
   };
 
   async componentDidMount() {
@@ -38,6 +39,7 @@ class Header extends React.Component {
     if (loadState().role === 'user') {
       unreadJobOffers();
     }
+
     if (loadState().role === 'user' || loadState().role === 'company') {
       getContracts();
     }
@@ -63,7 +65,8 @@ class Header extends React.Component {
       userVisible: false,
       companyVisible: false,
       postJobPopup: false,
-      newAdPopUp: false
+      newAdPopUp: false,
+      nonProjectsExistModal: false
     });
   };
 
@@ -80,30 +83,48 @@ class Header extends React.Component {
   postJob = () => {
     this.setState({
       addProject: false,
+      nonProjectsExistModal: false,
       postJobPopup: true
     });
   };
 
   newAd = () => {
-    const { addProject } = this.props;
+    const { addProject, company } = this.props;
     const { projectName, projectDescription } = this.state;
+    console.log('companySection', company);
+
     addProject({
       projectName,
       projectDescription
     });
-    this.setState({
-      postJobPopup: false,
-      addProject: false,
-      newAdPopUp: true
-    });
+    console.log(
+      'company.companyInfo.companyStatistic.projects',
+      company.companyStatistic.projects
+    );
+
+    if (company.companyInfo && company.companyStatistic.projects !== 0) {
+      this.setState({
+        postJobPopup: false,
+        addProject: false,
+        newAdPopUp: true
+      });
+    } else {
+      this.setState({
+        addProject: false,
+        postJobPopup: false,
+        nonProjectsExistModal: true
+      });
+    }
   };
 
   render() {
-    const { contracts } = this.props;
+    const { contracts, company } = this.props;
+    const { nonProjectsExistModal } = this.state;
     // const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
+    console.log('companycompany', company);
 
     return (
       <React.Fragment>
@@ -432,6 +453,20 @@ class Header extends React.Component {
           }}
           closable={this.onClose}
         />
+        <Modal
+          visible={nonProjectsExistModal}
+          closable={true}
+          footer={false}
+          className="ad-modal"
+          onCancel={this.onClose}
+        >
+          <div className="non-exist-project-modal">
+            <h3> يجب عليك اضافة مشروع أولا</h3>
+            <h3>هل ترغب في اضافة مشروع جديد؟</h3>
+            <button onClick={this.postJob}>اضافة مشروع جديد</button>
+          </div>
+        </Modal>
+
         <AddNewAdModal
           newAdPopUp={this.state.newAdPopUp}
           contractsTypes={contracts}
@@ -443,11 +478,12 @@ class Header extends React.Component {
   }
 }
 
-const mapPropsToState = ({ user, userS, companyProjects }) => {
+const mapPropsToState = ({ user, userS, companyProjects, companySection }) => {
   return {
     user,
     userS,
-    contracts: companyProjects
+    contracts: companyProjects,
+    company: companySection
   };
 };
 const mapPropsToDispatch = dispatch => {
