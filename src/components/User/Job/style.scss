@@ -165,6 +165,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px 50px;
+    cursor: pointer;
     >h2{
         font-size: 20px;
         font-weight: bold;
@@ -259,7 +260,7 @@
 }
 
 .job-container {
-    height: 900px;
+    height: 1100px;
     overflow-y: scroll;
     overflow-x: hidden;
     background: #fff;
@@ -267,6 +268,9 @@
 .job-wrapper {
     background: #fff;
  padding: 0 30px;
+}
+.header-view{
+    display: none;
 }
 
 @media (max-width:320px) {
@@ -281,6 +285,16 @@
     }
     .not-intersted-btn {
         padding: 0 30px;
+    }
+    .jobs-section .job .top-section .job-status {
+        left: 5px;
+        top: -13px;
+    }
+    .header-view{
+        display: block;
+    }
+    .job-container {
+        height: 1250px;
     }
 }
 
@@ -307,5 +321,15 @@
     }
     .jobs-section .job .job-description {
         max-width: 300px;
+    }
+    .jobs-section .job .top-section .job-status {
+        left: 5px;
+        top: -13px;
+    }
+    .header-view{
+        display: block;
+    }
+    .job-container {
+        height: 1250px;
     }
 }

@@ -156,9 +156,7 @@ class Jobs extends React.Component {
 
     const job = await jobOffer({ id: jobId });
     // await company({ id: job.value.job.company });
-    const clicked = array.push(index);
-    console.log('array', array, clicked);
-
+    array.push(index);
     this.setState({
       job,
       jobId,

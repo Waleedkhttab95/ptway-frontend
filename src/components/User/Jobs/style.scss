@@ -213,7 +213,7 @@
         margin-top: 15px;
 }
 .jobs-section {
-    height: 900px;
+    height: 1100px;
         overflow-y: scroll;
         overflow-x: hidden;
         margin-left: 1px;
@@ -314,6 +314,25 @@
     // .jobs-details .job-post .post-body .apply-job-btn , .jobs-details .job-post .post-body .details-btn {
     //     width: 180px;
     // }
+    .job-mobile-btn {
+        width: 156px !important;
+        height: 36px !important;
+        border-radius: 2px;
+        background-color: #d8d8d8;
+        width: 106px;
+        height: 17px;
+        font-size: 12px;
+        text-align: center;
+        color: #3b3b3b;
+        display: block !important;
+        // margin: auto !important;
+        margin-top: 12px !important;
+        margin-right: 90px;
+}
+.jobs-section .job {
+    height: 212px;
+    width: auto;
+}
 }
 
 @media (min-width:321px) and (max-width:768px){
@@ -358,6 +377,7 @@
     }
     .jobs-section .job {
         height: 212px;
+        width: auto;
     }
 
 }

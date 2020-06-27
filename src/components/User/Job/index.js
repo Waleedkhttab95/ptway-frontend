@@ -11,6 +11,7 @@ import {
 } from '../../../store/actions/user/jobOffers';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import Header from '../../Header';
 
 class Job extends React.Component {
   state = {
@@ -65,6 +66,7 @@ class Job extends React.Component {
 
   render() {
     const { offer, closeModal } = this.props;
+
     const {
       Country,
       City,
@@ -75,9 +77,13 @@ class Job extends React.Component {
     } = offer.jobOffer;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
+    const isLock = job ? job.isLock : false;
 
     return (
       <div className="user-container job-container">
+        <div className="header-view">
+          <Header />
+        </div>
         <Modal
           visible={offer.error.showErrorMsg}
           onCancel={this.handleCancel}
@@ -185,6 +191,8 @@ class Job extends React.Component {
             <button className="not-intersted-btn">
               لقد تقدمت للوظيفة سابقاً
             </button>
+          ) : isLock ? (
+            <button className="not-intersted-btn">لقد اكتمل العدد</button>
           ) : (
             <button
               className={
@@ -233,9 +241,7 @@ class Job extends React.Component {
                 سيصلك تنبيه بالقبول أو الرفض بمجرد مشاهدة سيرتك الذاتية من
                 الشركة
               </p>
-              <Link to="/user/jobs">
-                <button>العودة للرئيسية</button>
-              </Link>
+              <button onClick={() => window.location.reload()}>حسناً</button>
             </div>
           </Modal>
         </div>
