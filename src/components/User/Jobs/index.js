@@ -11,7 +11,7 @@ import {
 } from '../../../store/actions/user/jobOffers';
 import _ from 'lodash';
 import FilterAndSearch from '../Filter';
-import Job from '../Job';
+import Job from '../Job/jobBreif';
 import { Link } from 'react-router-dom';
 let array = [];
 const { Paragraph } = Typography;
