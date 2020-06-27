@@ -1,7 +1,7 @@
 .job-section {
     display: flex;
     margin: 32px 135px;
-  > div .right-section{
+  .right-section{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -16,6 +16,14 @@
             border-radius: 50%;
             margin-bottom: 20px;
         }
+    }
+    .left-section {
+        background: #fff;
+        border-radius: 7px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        margin: 20px 30px;
+        padding: 50px;
     }
 }
         
@@ -165,6 +173,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px 50px;
+    cursor: pointer;
     >h2{
         font-size: 20px;
         font-weight: bold;
@@ -259,7 +268,7 @@
 }
 
 .job-container {
-    height: 900px;
+    height: 1100px;
     overflow-y: scroll;
     overflow-x: hidden;
     background: #fff;
@@ -267,6 +276,9 @@
 .job-wrapper {
     background: #fff;
  padding: 0 30px;
+}
+.header-view{
+    display: none;
 }
 
 @media (max-width:320px) {
@@ -282,6 +294,16 @@
     .not-intersted-btn {
         padding: 0 30px;
     }
+    .jobs-section .job .top-section .job-status {
+        left: 5px;
+        top: -13px;
+    }
+    .header-view{
+        display: block;
+    }
+    .job-container {
+        height: 1250px;
+    }
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -293,6 +315,7 @@
             width: auto;
             // height: auto;
             margin-left: 0px;
+            margin-right: 0px;
         }
          .left-section {
             width: auto;
@@ -300,6 +323,7 @@
             margin-right: 0px; 
             margin-top: 20px;
             padding: 60px 20px;
+            margin: 10px;
         }
     }
     .not-intersted-btn {
@@ -307,5 +331,15 @@
     }
     .jobs-section .job .job-description {
         max-width: 300px;
+    }
+    .jobs-section .job .top-section .job-status {
+        left: 5px;
+        top: -13px;
+    }
+    .header-view{
+        display: block;
+    }
+    .job-container {
+        height: 1250px;
     }
 }
