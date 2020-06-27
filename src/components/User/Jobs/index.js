@@ -13,7 +13,7 @@ import _ from 'lodash';
 import FilterAndSearch from '../Filter';
 import Job from '../Job';
 import { Link } from 'react-router-dom';
-
+let array = [];
 const { Paragraph } = Typography;
 class Jobs extends React.Component {
   state = {
@@ -22,7 +22,8 @@ class Jobs extends React.Component {
     search: '',
     offers: '',
     pageLoading: true,
-    jobLoading: false
+    jobLoading: false,
+    clicked: []
   };
   async componentDidMount() {
     const { offersData } = this.props;
@@ -155,11 +156,15 @@ class Jobs extends React.Component {
 
     const job = await jobOffer({ id: jobId });
     // await company({ id: job.value.job.company });
+    const clicked = array.push(index);
+    console.log('array', array, clicked);
+
     this.setState({
       job,
       jobId,
       jobLoading: false,
-      selected: index
+      selected: index,
+      clicked: array
     });
   };
 
@@ -171,9 +176,10 @@ class Jobs extends React.Component {
       // count,
       // search,
       selected,
-      jobLoading
+      jobLoading,
+      clicked
     } = this.state;
-    console.log('job before', job);
+    console.log('job before', clicked);
 
     return (
       <React.Fragment>
@@ -204,10 +210,10 @@ class Jobs extends React.Component {
                         return (
                           <div
                             className={
-                              !elm.jobAd.isLock || selected == index
+                              elm.isRead ||
+                              selected == index ||
+                              clicked.includes(index)
                                 ? 'job active'
-                                : selected !== index
-                                ? 'job'
                                 : 'job un-read'
                             }
                             key={elm.jobAd._id}
