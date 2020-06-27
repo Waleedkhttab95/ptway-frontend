@@ -187,7 +187,7 @@ class Jobs extends React.Component {
               /> */}
               <Row>
                 <Col md={12} sm={24} className="mobile-view">
-                  <h2 className="job-header-title">السيرة الذاتية</h2>
+                  <h2 className="job-header-title">التفاصيل</h2>
                   <Spin
                     spinning={jobLoading}
                     size="large"
@@ -197,7 +197,7 @@ class Jobs extends React.Component {
                   </Spin>
                 </Col>
                 <Col md={12} sm={24}>
-                  <h2 className="job-header-title">اسم المتقدم</h2>
+                  <h2 className="job-header-title">العرض الوظيفي</h2>
                   <div className="jobs-section">
                     {_.isArray(offers) ? (
                       offers.map((elm, index) => {

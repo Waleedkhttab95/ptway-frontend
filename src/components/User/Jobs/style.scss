@@ -74,13 +74,13 @@
                     color: #bdbdbd;
                 }
             }
-            
+
         }
         .post-body{
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            
+
         }
         .post-description{
             font-size: 14px;
@@ -150,11 +150,11 @@
             color: #fff;
             cursor: pointer;
             // margin-top: 50px;
-           
+
         }
     }
-    
-    
+
+
 }
 .display-more{
     width: 140px;
@@ -240,8 +240,6 @@
                 .job-img {
                     width: 48px;
                     height: 48px;
-                    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
-                    border-radius: 50%;
                     border: none;
                     margin: 0 12px;
                 }
@@ -294,7 +292,7 @@
         margin-left: 0px;
         padding-right: 10px;
         height: 373px;
-        
+
     }
 }
     .user-jobs {
