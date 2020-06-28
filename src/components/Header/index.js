@@ -91,7 +91,6 @@ class Header extends React.Component {
   newAd = () => {
     const { addProject, company } = this.props;
     const { projectName, projectDescription } = this.state;
-    console.log('companySection', company);
 
     addProject({
       projectName,
@@ -124,7 +123,6 @@ class Header extends React.Component {
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
-    console.log('companycompany', company);
 
     return (
       <React.Fragment>
