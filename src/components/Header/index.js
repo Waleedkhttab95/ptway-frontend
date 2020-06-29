@@ -88,7 +88,7 @@ class Header extends React.Component {
     });
   };
 
-  newAd = () => {
+  NonExistProjectNewAd = () => {
     const { addProject, company } = this.props;
     const { projectName, projectDescription } = this.state;
 
@@ -114,6 +114,21 @@ class Header extends React.Component {
         nonProjectsExistModal: true
       });
     }
+  };
+
+  newAd = () => {
+    const { addProject } = this.props;
+    const { projectName, projectDescription } = this.state;
+
+    addProject({
+      projectName,
+      projectDescription
+    });
+    this.setState({
+      postJobPopup: false,
+      addProject: false,
+      newAdPopUp: true
+    });
   };
 
   render() {
@@ -286,7 +301,7 @@ class Header extends React.Component {
                   </Button>
                   {this.state.addProject && (
                     <div className="add-project-popup">
-                      <div onClick={this.newAd}>
+                      <div onClick={this.NonExistProjectNewAd}>
                         <i className="fa fa-plus-circle" aria-hidden="true"></i>
                         إضافة إعلان بمشروع سابق
                       </div>
