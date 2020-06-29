@@ -9,7 +9,6 @@ import {
   jobOffer,
   applyJob
 } from '../../../store/actions/user/jobOffers';
-import _ from 'lodash';
 import FilterAndSearch from '../Filter';
 import Job from '../Job/jobBreif';
 import { Link } from 'react-router-dom';
@@ -20,7 +19,7 @@ class Jobs extends React.Component {
     loading: true,
     count: 1,
     search: '',
-    offers: '',
+    offers: [],
     pageLoading: true,
     jobLoading: false,
     clicked: [],
@@ -45,12 +44,14 @@ class Jobs extends React.Component {
 
   fetchData = async () => {
     const { offersData } = this.props;
-    const { count, pages } = this.state;
-
+    const { count, pages, offers } = this.state;
     if (pages >= count) {
       const jobOffersData = await offersData(this.state.count);
       this.setState({
-        offers: jobOffersData.value.result,
+        offers:
+          offers.length !== 0
+            ? offers.concat(jobOffersData.value.result)
+            : jobOffersData.value.result,
         basedOffersArray: jobOffersData.value.result,
         count: count + 1,
         pages: jobOffersData.value.totalPages
@@ -222,7 +223,7 @@ class Jobs extends React.Component {
                     ref="divScroll"
                     id="jobs-section-scroll"
                   >
-                    {_.isArray(offers) ? (
+                    {offers ? (
                       offers.map((elm, index) => {
                         return (
                           <div

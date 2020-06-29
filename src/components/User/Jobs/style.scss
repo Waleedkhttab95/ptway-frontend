@@ -217,6 +217,7 @@
         overflow-y: scroll;
         overflow-x: hidden;
         margin-left: 1px;
+        background: #fff;
     .job {
         width: 585px;
         height: 160px;
@@ -230,6 +231,7 @@
         justify-content: center;
         padding: 10px;
         cursor: pointer;
+        border-bottom: solid 1px #d4d4d4;
         .top-section {
             display: flex;
             align-items: center;
