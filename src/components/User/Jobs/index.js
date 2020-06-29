@@ -54,7 +54,8 @@ class Jobs extends React.Component {
             : jobOffersData.value.result,
         basedOffersArray: jobOffersData.value.result,
         count: count + 1,
-        pages: jobOffersData.value.totalPages
+        pages: jobOffersData.value.totalPages,
+        pageLoading: false
       });
     }
   };
@@ -166,6 +167,9 @@ class Jobs extends React.Component {
   };
 
   getJob = async (jobId, index) => {
+    this.setState({
+      jobLoading: true
+    });
     const {
       jobOffer
       //  company
@@ -192,6 +196,7 @@ class Jobs extends React.Component {
       // search,
       selected,
       jobLoading,
+      pageLoading,
       clicked
     } = this.state;
 
@@ -205,107 +210,103 @@ class Jobs extends React.Component {
                 handleChange={this.handleFilterChange}
                 handleSearch={this.handleSearch}
               /> */}
-              <Row>
-                <Col md={12} sm={24} className="mobile-view">
-                  <h2 className="job-header-title">السيرة الذاتية</h2>
-                  <Spin
-                    spinning={jobLoading}
-                    size="large"
-                    style={{ marginTop: '50px' }}
-                  >
-                    {job && <Job job={job} jobId={jobId} />}
-                  </Spin>
-                </Col>
-                <Col md={12} sm={24}>
-                  <h2 className="job-header-title">اسم المتقدم</h2>
-                  <div
-                    className="jobs-section"
-                    ref="divScroll"
-                    id="jobs-section-scroll"
-                  >
-                    {offers ? (
-                      offers.map((elm, index) => {
-                        return (
-                          <div
-                            className={
-                              elm.isRead ||
-                              selected == index ||
-                              clicked.includes(index)
-                                ? 'job active'
-                                : 'job un-read'
-                            }
-                            key={elm.jobAd._id}
-                            onClick={() => this.getJob(elm.jobAd._id, index)}
-                          >
-                            <div className="top-section">
-                              {elm.imagePath && elm.imagePath !== 'null' ? (
-                                <img
-                                  className="job-img"
-                                  src={elm.imagePath}
-                                  alt=""
-                                />
-                              ) : (
-                                <img
-                                  className="job-img"
-                                  src={require('../../../images/pure-avatar.png')}
-                                />
-                              )}
-                              <div className="job-content">
-                                <h3>{elm.jobAd.job_Name}</h3>
-                                <h4>{elm.compName}</h4>
-                              </div>
-                              <div className="job-status">
-                                {elm.status ? (
-                                  <div>تم التقدم للعمل</div>
-                                ) : (
-                                  <React.Fragment>
-                                    <div style={{ color: '#7696f5' }}>
-                                      لم يتم التقدم
-                                    </div>
-                                    {elm.jobAd.isLock ? (
-                                      <div style={{ color: '#ffa76a' }}>
-                                        {' '}
-                                        لقد اكتمل العدد
-                                      </div>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </React.Fragment>
-                                )}
-                              </div>
-                            </div>
-                            <div>
-                              <Paragraph
-                                ellipsis={{ rows: 5, expandable: false }}
-                                className="job-description"
+              <Spin
+                spinning={pageLoading}
+                size="large"
+                style={{ marginTop: '50px' }}
+              >
+                <Row>
+                  <Col md={12} sm={24} className="mobile-view">
+                    <h2 className="job-header-title">السيرة الذاتية</h2>
+                    <Spin
+                      spinning={jobLoading}
+                      size="large"
+                      style={{ marginTop: '50px' }}
+                    >
+                      {job && <Job job={job} jobId={jobId} />}
+                    </Spin>
+                  </Col>
+                  <Col md={12} sm={24}>
+                    <h2 className="job-header-title">اسم المتقدم</h2>
+                    <div
+                      className="jobs-section"
+                      ref="divScroll"
+                      id="jobs-section-scroll"
+                    >
+                      {offers
+                        ? offers.map((elm, index) => {
+                            return (
+                              <div
+                                className={
+                                  elm.isRead ||
+                                  selected == index ||
+                                  clicked.includes(index)
+                                    ? 'job active'
+                                    : 'job un-read'
+                                }
+                                key={elm.jobAd._id}
+                                onClick={() =>
+                                  this.getJob(elm.jobAd._id, index)
+                                }
                               >
-                                <span>{elm.jobAd.descreption + '...'}</span>
-                              </Paragraph>
-                              <Link to={`/user/job/${elm.jobAd._id}`}>
-                                <button className="job-mobile-btn">
-                                  مشاهدة التفاصيل
-                                </button>
-                              </Link>
-                            </div>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div
-                        className="spinner-loading"
-                        // style={{ width: '100%', margin: '0 auto' }}
-                      >
-                        <Spin size="large" />
-                      </div>
-                    )}
-                  </div>
-                </Col>
-              </Row>
-              {/* {!loading && totalPages !== count && !search && (
-                <button className="display-more" onClick={this.displayMore}>
-                  عرض المزيد
-                </button>
-              )} */}
+                                <div className="top-section">
+                                  {elm.imagePath && elm.imagePath !== 'null' ? (
+                                    <img
+                                      className="job-img"
+                                      src={elm.imagePath}
+                                      alt=""
+                                    />
+                                  ) : (
+                                    <img
+                                      className="job-img"
+                                      src={require('../../../images/pure-avatar.png')}
+                                    />
+                                  )}
+                                  <div className="job-content">
+                                    <h3>{elm.jobAd.job_Name}</h3>
+                                    <h4>{elm.compName}</h4>
+                                  </div>
+                                  <div className="job-status">
+                                    {elm.status ? (
+                                      <div>تم التقدم للعمل</div>
+                                    ) : (
+                                      <React.Fragment>
+                                        <div style={{ color: '#7696f5' }}>
+                                          لم يتم التقدم
+                                        </div>
+                                        {elm.jobAd.isLock ? (
+                                          <div style={{ color: '#ffa76a' }}>
+                                            {' '}
+                                            لقد اكتمل العدد
+                                          </div>
+                                        ) : (
+                                          ''
+                                        )}
+                                      </React.Fragment>
+                                    )}
+                                  </div>
+                                </div>
+                                <div>
+                                  <Paragraph
+                                    ellipsis={{ rows: 5, expandable: false }}
+                                    className="job-description"
+                                  >
+                                    <span>{elm.jobAd.descreption + '...'}</span>
+                                  </Paragraph>
+                                  <Link to={`/user/job/${elm.jobAd._id}`}>
+                                    <button className="job-mobile-btn">
+                                      مشاهدة التفاصيل
+                                    </button>
+                                  </Link>
+                                </div>
+                              </div>
+                            );
+                          })
+                        : ''}
+                    </div>
+                  </Col>
+                </Row>
+              </Spin>
             </div>
           </div>
         </div>
