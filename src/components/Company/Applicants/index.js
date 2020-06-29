@@ -136,7 +136,7 @@ class Applicants extends React.Component {
                                 <img src={elm.imagePath} className="u-pic" />
                               ) : (
                                 <img
-                                  src={require('../../../images/pure-avatar.png')}
+                                  src={require('../../../images/person.png')}
                                 />
                               )}
                               <div className="app-content">

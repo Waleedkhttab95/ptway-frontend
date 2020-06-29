@@ -23,24 +23,64 @@ class Jobs extends React.Component {
     offers: '',
     pageLoading: true,
     jobLoading: false,
-    clicked: []
+    clicked: [],
+    isFetching: false,
+    pages: 1
   };
   async componentDidMount() {
+    await this.fetchData();
+    this.refs.divScroll.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (
+      this.refs.divScroll.scrollTop + this.refs.divScroll.clientHeight >=
+      this.refs.divScroll.scrollHeight
+    ) {
+      this.setState({
+        isFetching: true
+      });
+    }
+  };
+
+  fetchData = async () => {
     const { offersData } = this.props;
-    const jobOffersData = await offersData(this.state.count);
-    this.setState(
-      {
+    const { count, pages } = this.state;
+
+    if (pages >= count) {
+      const jobOffersData = await offersData(this.state.count);
+      this.setState({
         offers: jobOffersData.value.result,
-        basedOffersArray: jobOffersData.value.result
-      },
-      () => {
-        if (jobOffersData.value.totalPages > 1) {
-          this.setState({
-            loading: false
-          });
-        }
+        basedOffersArray: jobOffersData.value.result,
+        count: count + 1,
+        pages: jobOffersData.value.totalPages
+      });
+    }
+  };
+
+  fetchMoreListItems = () => {
+    this.fetchData();
+    this.setState({
+      isFetching: false
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.offers.result) {
+      if (prevProps.offers.result !== this.props.offers.result) {
+        const offers = prevProps.offers.result.concat(this.props.offers.result);
+        this.setState({
+          offers,
+          basedOffersArray: offers,
+          totalPages: this.props.offers.totalPages
+        });
       }
-    );
+    }
+    const { isFetching } = this.state;
+    if (isFetching) {
+      if (!isFetching) return;
+      this.fetchMoreListItems();
+    }
   }
 
   jobOffer = async id => {
@@ -58,30 +98,6 @@ class Jobs extends React.Component {
     }
   };
 
-  // displayMore = () => {
-  //   this.setState(
-  //     {
-  //       count: this.state.count + 1
-  //     },
-  //     async () => {
-  //       const { offersData } = this.props;
-  //       await offersData(this.state.count);
-  //     }
-  //   );
-  // };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.offers.result) {
-      if (prevProps.offers.result !== this.props.offers.result) {
-        const offers = prevProps.offers.result.concat(this.props.offers.result);
-        this.setState({
-          offers,
-          basedOffersArray: offers,
-          totalPages: this.props.offers.totalPages
-        });
-      }
-    }
-  }
   handleFilterChange = (e, option) => {
     if (!option) {
       const { name, value } = e.target;
@@ -177,7 +193,6 @@ class Jobs extends React.Component {
       jobLoading,
       clicked
     } = this.state;
-    console.log('job before', clicked);
 
     return (
       <React.Fragment>
@@ -201,8 +216,13 @@ class Jobs extends React.Component {
                   </Spin>
                 </Col>
                 <Col md={12} sm={24}>
+
                   <h2 className="job-header-title">العرض الوظيفي</h2>
-                  <div className="jobs-section">
+                  <div
+                    className="jobs-section"
+                    ref="divScroll"
+                    id="jobs-section-scroll"
+                  >
                     {_.isArray(offers) ? (
                       offers.map((elm, index) => {
                         return (
