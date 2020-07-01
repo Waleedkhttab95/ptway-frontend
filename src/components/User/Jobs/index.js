@@ -67,17 +67,7 @@ class Jobs extends React.Component {
     });
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.offers.result) {
-      if (prevProps.offers.result !== this.props.offers.result) {
-        const offers = prevProps.offers.result.concat(this.props.offers.result);
-        this.setState({
-          offers,
-          basedOffersArray: offers,
-          totalPages: this.props.offers.totalPages
-        });
-      }
-    }
+  componentDidUpdate() {
     const { isFetching } = this.state;
     if (isFetching) {
       if (!isFetching) return;
