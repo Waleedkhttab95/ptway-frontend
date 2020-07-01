@@ -63,11 +63,11 @@ class ContactUs extends React.Component {
         </form>
         <h3> ابدأ الآن</h3>
         <div className="btns">
-          <Link to="/company/login">
+          <Link to="/company/signup">
             <button>سجل شركتك الأن</button>
           </Link>
 
-          <Link to="/user/login">
+          <Link to="/user/signup">
             <button>سجل كباحث عن عمل</button>
           </Link>
         </div>

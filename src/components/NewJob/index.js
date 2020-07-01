@@ -13,7 +13,7 @@ export class GetNewJob extends React.Component {
         <LoginNavbar />
         <div className="container">
           <div className="sub-container">
-            <h2 className="sub-title">
+            <h2 className="sub-title2">
               معاً لنجعل التحديات المتمثلة في كوفيد-١٩ <br />
               محفزاً لتحقيق التنمية المستدامة!
             </h2>
