@@ -101,12 +101,16 @@ class WholeCV extends React.Component {
               className="applicant-details"
             >
               <div>
-                <h3 className="h-title heading">نبذة عامة</h3>
+                <h3 className="h-title heading">
+                <i style={{marginLeft:"10px"}} className="fa fa-info-circle" aria-hidden="true"></i>
+                  نبذة عامة</h3>
                 <p>{user.about}</p>
               </div>
 
               <div className="cv-education">
-                <h3 className="h-title heading">الدراسات والشهادات</h3>
+                <h3 className="h-title heading">
+                <i style={{marginLeft:"10px"}} className="fa fa-graduation-cap" aria-hidden="true"></i>
+                  الدراسات والشهادات</h3>
                 <div className="applicant-degrees">
                   <div>
                     <div>
@@ -118,7 +122,7 @@ class WholeCV extends React.Component {
                     </div>
                     <div>
                       <h4>المرحلة الدراسية :</h4>
-                      <p>{user.education_degree || ''}</p>
+                      <p>{data.education_degree || ''}</p>
                     </div>
                   </div>
                   <div>
@@ -133,19 +137,21 @@ class WholeCV extends React.Component {
                     </div>
                     <div>
                       <h4>المستوى الدراسي :</h4>
-                      <p>{user.study_degree || ' '}</p>
+                      <p>{data.Education_level || ' '}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="cv-skills-">
-                <h3 className="h-title heading">المهارات واللغات</h3>
+                <h3 className="h-title heading">
+                <i style={{marginLeft:"10px"}} className="fa fa-language" aria-hidden="true"></i>
+                  المهارات واللغات</h3>
                 <div>
                   <div>
                     <h3>المهارات العامة : </h3>
                     {_.isArray(user.skills)
-                      ? user.skills.map(elm => {
+                      ? data.skills.map(elm => {
                           return <p key={elm._id}>{elm.skillName}</p>;
                         })
                       : ''}
@@ -153,7 +159,7 @@ class WholeCV extends React.Component {
                   <div>
                     <h3>المهارات الشخصية : </h3>
                     {_.isArray(user.personal_Skills)
-                      ? user.personal_Skills.map(elm => {
+                      ? data.personal_Skills.map(elm => {
                           return <p key={elm._id}>{elm.skillName}</p>;
                         })
                       : ''}
@@ -167,7 +173,9 @@ class WholeCV extends React.Component {
                   : ''}
               </div>
               <div>
-                <h3 className="h-title heading">التواصل الالكتروني</h3>
+                <h3 className="h-title heading">
+                <i style={{marginLeft:"10px"}} className="fa fa-globe" aria-hidden="true"></i>
+                  التواصل الالكتروني</h3>
                 <p>
                   الموقع الشخصي :{' '}
                   {user.personal_web ? user.personal_web : 'لا يوجد'}

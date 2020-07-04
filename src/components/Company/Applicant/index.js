@@ -51,7 +51,10 @@ class Applicant extends React.Component {
           {user.info && user.info.country.countryName},{' '}
           {user.info && user.info.city.cityName}{' '}
         </h3>
-        <h2 className="heading">الدراسات والشهادات</h2>
+        <h2 className="heading">
+        <i style={{marginLeft:"10px"}} className="fa fa-graduation-cap" aria-hidden="true"></i>
+          الدراسات والشهادات</h2>
+
         <div className="applicant-degrees">
           <div>
             <div>
@@ -64,7 +67,7 @@ class Applicant extends React.Component {
             </div>
             <div>
               <h4>المرحلة الدراسية :</h4>
-              <p>{(user.info && user.info.education_degree) || ''}</p>
+              <p>{(user.info && user.education_degree) || ''}</p>
             </div>
           </div>
           <div>
@@ -83,16 +86,19 @@ class Applicant extends React.Component {
             </div>
             <div>
               <h4>المستوى الدراسي :</h4>
-              <p>{(user.info && user.info.study_degree) || ' '}</p>
+              <p>{(user.info && user.Education_level) || ' '}</p>
             </div>
           </div>
         </div>
-        <h2 className="h-title heading">معلومات عامة</h2>
+        <h2 className="heading">
+        <i style={{marginLeft:"10px"}} className="fa fa-lightbulb-o" aria-hidden="true"></i>
+          الدراسات والشهادات</h2>
         <div className="applicant-general">
           <div>
-            <h3>المهارات العامة : </h3>
+            <h3>
+              المهارات العامة : </h3>
             {user.info && _.isArray(user.info.skills)
-              ? user.info.skills.map(elm => {
+              ? user.skills.map(elm => {
                   return <p key={elm.id}>{elm.skillName}</p>;
                 })
               : ''}
@@ -106,7 +112,7 @@ class Applicant extends React.Component {
           <div>
             <h3>المهارات الشخصية : </h3>
             {user.info && _.isArray(user.info.personal_Skills)
-              ? user.info.personal_Skills.map(elm => {
+              ? user.personal_Skills.map(elm => {
                   return <p key={elm._id}>{elm.skillName}</p>;
                 })
               : ''}

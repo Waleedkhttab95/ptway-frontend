@@ -7,10 +7,10 @@
     "node": "10.16.0"
   },
   "dependencies": {
+    "@ant-design/icons": "4.0.0-rc.0",
     "@coreui/coreui": "^2.1.12",
     "@coreui/react": "^2.5.2",
     "antd": "^3.23.5",
-    "@ant-design/icons": "4.0.0-rc.0",
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.8.0",
@@ -37,7 +37,6 @@
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "3.1.1",
     "react-select": "^3.0.8",
-    "react-snap": "^1.23.0",
     "reactstrap": "^8.0.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
@@ -52,7 +51,6 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
     "sitemap": "babel-node ./src/sitemap.js",
     "predeploy": "npm run sitemap",
     "test": "react-scripts test",
