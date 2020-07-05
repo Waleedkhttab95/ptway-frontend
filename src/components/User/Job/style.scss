@@ -85,7 +85,7 @@
     letter-spacing: normal;
     text-align: right;
     color: #222222;
-    margin-top: 67px;
+    // margin-top: 20px;
     border-bottom: solid 1px #d4d4d4;
     padding-bottom: 12px;
   >i {
@@ -95,7 +95,7 @@
 .main-info-details{
     display: flex;
     flex-direction: column;
-    padding: 18px 25px;
+    padding: 5px 25px;
 }
 .job-sub-heading{
   font-size: 14px;
@@ -323,7 +323,7 @@
             margin-right: 0px; 
             margin-top: 20px;
             padding: 60px 20px;
-            margin: 10px;
+            margin: 10px 0;
         }
     }
     .not-intersted-btn {

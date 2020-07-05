@@ -119,8 +119,8 @@ class Job extends React.Component {
               <img
                 className="job-img"
                 style={{
-                  width: '150px',
-                  height: '150px'
+                  width: '100px',
+                  height: '100px'
                 }}
                 src={require('../../../images/pure-avatar.png')}
               />
