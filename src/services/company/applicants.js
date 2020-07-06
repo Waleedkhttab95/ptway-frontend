@@ -12,6 +12,10 @@ const applicants = {
       jobAd: params.jobId,
       acceptedName: params.userId
     }),
+  rejectUser: params =>
+    baseRequest.put('/rejectCandidate', {
+      id: params.id
+    }),
   getUser: params =>
     baseRequest.get(`/get/userinfo?id=${params.userId}&jobAd=${params.jobId}`),
   getMoreCandidates: params =>

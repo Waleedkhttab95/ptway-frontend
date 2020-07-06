@@ -14,6 +14,10 @@ const settings = {
       lastName: params.lastName,
       email: params.email,
       password: params.password
+    }),
+  updateCompanyName: params =>
+    baseRequest.put('changeCompanyName', {
+      name: params.name
     })
 };
 export default settings;

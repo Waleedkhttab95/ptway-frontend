@@ -104,7 +104,7 @@
         margin-left: 1px;
         background: #fff;
                 .applicant-cv-info {
-
+                    position: relative;
                     width: 585px;
                     height: 74px;
                     margin: 0;
@@ -147,6 +147,12 @@
                 }
                 .cv-btn-mobile {
                     display: none;
+                }
+                .applicant-status {
+                    position: absolute;
+                    font-size: 12px;
+                    top: 20px;
+                    left: 35px;
                 }
             }
             .un-read {

@@ -9,7 +9,8 @@ const setting = {
   updateEmailNotification: params =>
     baseRequest.put('/changeEmailNotification', {
       status: params.status
-    })
+    }),
+  deactivateAccount: () => baseRequest.put('/disableAccount')
 };
 
 export default setting;

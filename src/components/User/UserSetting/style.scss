@@ -110,6 +110,23 @@
 .setting-mob {
     padding-top: 32px;
 }
+.deactivate-modal {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button {
+        width: 150px;
+        margin-top: 20px;
+    }
+}
+.deactivate-account {
+    width: 400px;
+    height: 40px;
+    background: red !important;
+    margin-right: 20px;
+}
 
 @media (max-width:320px) {
     .setting-mob {

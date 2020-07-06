@@ -4,10 +4,10 @@ import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
-const { acceptUser } = applicants;
+const { acceptUser, rejectUser } = applicants;
 
 class Applicant extends React.Component {
-  state = { user: '' };
+  state = { user: '', status: false };
   async componentDidMount() {
     const { user, userId, jobId } = this.props;
     this.setState({
@@ -23,7 +23,9 @@ class Applicant extends React.Component {
       jobId,
       userId
     });
-    this.props.history.push(`/applicants/job/id=${jobId}`);
+    this.setState({
+      status: true
+    });
   };
 
   componentDidUpdate(prevProp) {
@@ -36,6 +38,11 @@ class Applicant extends React.Component {
     }
   }
 
+  rejectUser = async () => {
+    const { userId } = this.state;
+    await rejectUser({ id: userId });
+    window.location.reload();
+  };
   render() {
     const { user, userId, jobId } = this.state;
     return (
@@ -52,8 +59,13 @@ class Applicant extends React.Component {
           {user.info && user.info.city.cityName}{' '}
         </h3>
         <h2 className="heading">
-        <i style={{marginLeft:"10px"}} className="fa fa-graduation-cap" aria-hidden="true"></i>
-          الدراسات والشهادات</h2>
+          <i
+            style={{ marginLeft: '10px' }}
+            className="fa fa-graduation-cap"
+            aria-hidden="true"
+          ></i>
+          الدراسات والشهادات
+        </h2>
 
         <div className="applicant-degrees">
           <div>
@@ -91,12 +103,16 @@ class Applicant extends React.Component {
           </div>
         </div>
         <h2 className="heading">
-        <i style={{marginLeft:"10px"}} className="fa fa-lightbulb-o" aria-hidden="true"></i>
-          الدراسات والشهادات</h2>
+          <i
+            style={{ marginLeft: '10px' }}
+            className="fa fa-lightbulb-o"
+            aria-hidden="true"
+          ></i>
+          الدراسات والشهادات
+        </h2>
         <div className="applicant-general">
           <div>
-            <h3>
-              المهارات العامة : </h3>
+            <h3>المهارات العامة : </h3>
             {user.info && _.isArray(user.info.skills)
               ? user.skills.map(elm => {
                   return <p key={elm.id}>{elm.skillName}</p>;
@@ -118,12 +134,17 @@ class Applicant extends React.Component {
               : ''}
           </div>
         </div>
-
-        <div className="btns-container">
+        <div
+          className={
+            this.state.status ? 'btns-container btns-hidden' : 'btns-container'
+          }
+        >
           <button className="accept-applicant" onClick={this.acceptUser}>
             قبول المتقدم
           </button>
-          <button className="reject-applicant">رفض المتقدم</button>
+          <button className="reject-applicant" onClick={this.rejectUser}>
+            رفض المتقدم
+          </button>
         </div>
       </div>
     );

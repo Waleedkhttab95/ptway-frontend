@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Col, Input, Radio, Modal } from 'antd';
+import { Col, Input, Radio, Modal, Button, message } from 'antd';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import { connect } from 'react-redux';
@@ -9,12 +9,15 @@ import {
   changeEmailNotification,
   closeSuccessModal
 } from '../../../store/actions/user/setting';
-
+import setting from '../../../services/user/setting.js';
+import { logout } from '../../../store/actions/userAction';
+const { deactivateAccount } = setting;
 class Setting extends React.Component {
   state = {
     status: 1,
     error: false,
-    visible: false
+    visible: false,
+    deacivateVisible: false
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -44,10 +47,26 @@ class Setting extends React.Component {
     }
   };
 
+  activateModal = () => {
+    this.setState({
+      deacivateVisible: true
+    });
+  };
+  deactiveAccount = async () => {
+    await this.setState({
+      deacivateVisible: false
+    });
+    await deactivateAccount();
+    await message.success(
+      'تم ايقاف حسابك، تستيطع التواصل مع الموقع لإعادة تفعيله'
+    );
+    await this.props.logout();
+    this.props.history.push('/');
+  };
+
   render() {
     const { userSetting } = this.props;
-    const { error, newPassword, rePassword } = this.state;
-    console.log('userSetting', userSetting);
+    const { error, newPassword, rePassword, deacivateVisible } = this.state;
 
     return (
       <React.Fragment>
@@ -128,6 +147,27 @@ class Setting extends React.Component {
                   </div>
                 </div>
               </Col>
+              <Button
+                className="deactivate-account"
+                onClick={this.activateModal}
+              >
+                ايقاف الحساب
+              </Button>
+              <Modal
+                visible={deacivateVisible}
+                closable={false}
+                footer={false}
+                onCancel={() =>
+                  this.setState({
+                    deacivateVisible: false
+                  })
+                }
+              >
+                <div className="deactivate-modal">
+                  <h3>هل أنت متأكد من ايقاف الحساب؟ </h3>
+                  <Button onClick={this.deactiveAccount}>نعم</Button>
+                </div>
+              </Modal>
             </div>
             <button className="save-setting-btn" onClick={this.submitChanges}>
               حفظ التعديلات
@@ -150,7 +190,8 @@ const mapDispatchToProps = dispatch => {
     updatePassword: params => dispatch(changePassword(params)),
     updateEmailNotification: params =>
       dispatch(changeEmailNotification(params)),
-    closeSuccessModal: () => dispatch(closeSuccessModal())
+    closeSuccessModal: () => dispatch(closeSuccessModal()),
+    logout: () => dispatch(logout())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Setting);

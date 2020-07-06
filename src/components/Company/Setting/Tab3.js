@@ -3,7 +3,7 @@ import './style.scss';
 import { Input, Button } from 'antd';
 const Tab3 = ({
   handleChange,
-  ChangePassword,
+  ChangeSetting,
   error,
   newPassword,
   rePassword
@@ -24,13 +24,21 @@ const Tab3 = ({
             كلمة المرور غير متطابقة
           </span>
         )}
+
+        <h3 className="heading">تعديل اسم الشركة</h3>
+        <Input
+          placeholder="اسم الشركة الجديد"
+          onChange={handleChange}
+          name="companyName"
+        />
+
         <Button
-          onClick={ChangePassword}
+          onClick={ChangeSetting}
           style={{
             width: '250px',
             backgroundColor: '#1f3f54',
             height: '40px',
-            marginBottom: '20px'
+            margin: '50px auto'
           }}
         >
           {' '}

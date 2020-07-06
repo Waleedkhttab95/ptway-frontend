@@ -164,6 +164,26 @@ class Applicants extends React.Component {
                             >
                               مشاهدة السيرة الذاتية
                             </button>
+                            <div className="applicant-status">
+                              {elm.user.status === 'waiting' ? (
+                                <span style={{ color: '#ffa76a' }}>
+                                  {' '}
+                                  قيد الانتظار{' '}
+                                </span>
+                              ) : elm.user.status === 'Accepted' ? (
+                                <span style={{ color: '#5fcf84' }}>
+                                  {' '}
+                                  مقبول{' '}
+                                </span>
+                              ) : elm.user.status === 'rejected' ? (
+                                <span style={{ color: '#d66b6b' }}>
+                                  {' '}
+                                  مرفوض{' '}
+                                </span>
+                              ) : (
+                                ''
+                              )}
+                            </div>
                           </div>
                         ))
                       : ''

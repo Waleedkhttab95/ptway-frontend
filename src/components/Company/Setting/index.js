@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Header from '../../Header';
-import { Col, Tabs } from 'antd';
+import { Col, Tabs, message } from 'antd';
 import CompanyInfo from '../CompanyInfo';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
@@ -12,7 +12,7 @@ import { companyInfo } from '../../../store/actions/company/home';
 import settings from '../../../services/company/setting';
 import Footer from '../../Footer';
 
-const { changePassword } = settings;
+const { changePassword, updateCompanyName } = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
@@ -30,24 +30,30 @@ class CompanySetting extends React.Component {
       [name]: value
     });
   };
-  ChangePassword = async () => {
-    const { newPassword, rePassword, prevPassword } = this.state;
-    if (newPassword !== rePassword) {
-      this.setState({
-        error: true
-      });
-    } else {
-      await changePassword({
-        prevPassword,
-        newPassword
-      });
-      alert('تم تغير كلمة المرور');
+  ChangeSetting = async () => {
+    const { newPassword, rePassword, prevPassword, companyName } = this.state;
+    if (newPassword && prevPassword && rePassword) {
+      if (newPassword !== rePassword) {
+        this.setState({
+          error: true
+        });
+      } else {
+        await changePassword({
+          prevPassword,
+          newPassword
+        });
+        await message.success('تم تغير كلمة المرور');
+        window.location.reload();
+      }
+    }
+    if (companyName) {
+      await updateCompanyName({ name: companyName });
+      await message.success('تم تغير اسم الشركة');
       window.location.reload();
     }
   };
   render() {
     const { company } = this.props;
-    console.log('state', this.state);
 
     return (
       <React.Fragment>
@@ -77,7 +83,7 @@ class CompanySetting extends React.Component {
                 <TabPane tab="الإعدادات العامة" key="3">
                   <Tab3
                     handleChange={this.handleChange}
-                    ChangePassword={this.ChangePassword}
+                    ChangeSetting={this.ChangeSetting}
                     {...this.state}
                   />
                 </TabPane>
