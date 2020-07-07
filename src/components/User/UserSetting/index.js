@@ -93,66 +93,73 @@ class Setting extends React.Component {
         <div className="user-container setting-mob">
           <div className="setting-body">
             <div className="setting-container">
-              <Col className="account-info">
-                <h4 className="heading">تعديل معلومات الحساب</h4>
-                <div className="account-fields">
-                  {/* <span>البريد الالكتروني</span>
-                <Input className="account-input" type="email" /> */}
-                  <span> كلمة المرور القديمة</span>
+              <div className="top-section">
+                <Col className="account-info">
+                  <h4 className="heading">تعديل معلومات الحساب</h4>
+                  <div className="account-fields">
+                    <span> كلمة المرور القديمة</span>
 
-                  <Input
-                    className="account-input"
-                    type="password"
-                    name="prevPassword"
-                    onChange={this.handleChange}
-                  />
-                  <span style={{ color: 'red', marginTop: '5px' }}>
-                    {userSetting.passwordError && this.state.prevPassword
-                      ? userSetting.passwordError.response.data
-                      : ''}
-                  </span>
-                  <span>كلمة المرور الجديدة</span>
-                  <Input
-                    className="account-input"
-                    type="password"
-                    name="newPassword"
-                    onChange={this.handleChange}
-                  />
-                  <span>تأكيد كلمة المرور الجديدة</span>
-                  <Input
-                    className="account-input"
-                    type="password"
-                    name="rePassword"
-                    onChange={this.handleChange}
-                  />
-                  {error && newPassword !== rePassword && (
-                    <span style={{ color: 'red' }}>
-                      كلمة المرور غير متطابقة
-                    </span>
-                  )}
-                </div>
-              </Col>
-              <Col className="account-options">
-                <h4 className="heading">خيارات الحساب</h4>
-                <div className="email-setting">
-                  <h6>ارسال الاشعارات عن طريق الايميل</h6>
-                  <div className="checkbox-options">
-                    <Radio.Group
+                    <Input
+                      className="account-input"
+                      type="password"
+                      name="prevPassword"
                       onChange={this.handleChange}
-                      value={this.state.status}
-                      name="status"
-                      options={['نعم', 'لا']}
-                      className="check-option"
                     />
+                    <span style={{ color: 'red', marginTop: '5px' }}>
+                      {userSetting.passwordError && this.state.prevPassword
+                        ? userSetting.passwordError.response.data
+                        : ''}
+                    </span>
+                    <span>كلمة المرور الجديدة</span>
+                    <Input
+                      className="account-input"
+                      type="password"
+                      name="newPassword"
+                      onChange={this.handleChange}
+                    />
+                    <span>تأكيد كلمة المرور الجديدة</span>
+                    <Input
+                      className="account-input"
+                      type="password"
+                      name="rePassword"
+                      onChange={this.handleChange}
+                    />
+                    {error && newPassword !== rePassword && (
+                      <span style={{ color: 'red' }}>
+                        كلمة المرور غير متطابقة
+                      </span>
+                    )}
                   </div>
-                </div>
-              </Col>
-              <Button
-                className="deactivate-account"
-                onClick={this.activateModal}
-              >
-                ايقاف الحساب
-              </Button>
+                </Col>
+                <Col className="account-options">
+                  <h4 className="heading">خيارات الحساب</h4>
+                  <div className="email-setting">
+                    <h6>ارسال الاشعارات عن طريق الايميل</h6>
+                    <div className="checkbox-options">
+                      <Radio.Group
+                        onChange={this.handleChange}
+                        value={this.state.status}
+                        name="status"
+                        options={['نعم', 'لا']}
+                        className="check-option"
+                      />
+                    </div>
+                  </div>
+                </Col>
+              </div>
+              <button className="save-setting-btn" onClick={this.submitChanges}>
+                حفظ التعديلات
+              </button>
+              <div style={{ marginTop: '30px' }}>
+                <h4 className="heading"> ايقاف الحساب</h4>
+                <p>اذا كنت ترغب في ايفاف تفعيل حسابك</p>
+                <Button
+                  className="deactivate-account"
+                  onClick={this.activateModal}
+                >
+                  ايقاف الحساب
+                </Button>
+              </div>
               <Modal
                 visible={deacivateVisible}
                 closable={false}
@@ -165,13 +172,21 @@ class Setting extends React.Component {
               >
                 <div className="deactivate-modal">
                   <h3>هل أنت متأكد من ايقاف الحساب؟ </h3>
-                  <Button onClick={this.deactiveAccount}>نعم</Button>
+                  <div>
+                    <Button
+                      onClick={() =>
+                        this.setState({
+                          deacivateVisible: false
+                        })
+                      }
+                    >
+                      لا
+                    </Button>
+                    <Button onClick={this.deactiveAccount}>نعم</Button>
+                  </div>
                 </div>
               </Modal>
             </div>
-            <button className="save-setting-btn" onClick={this.submitChanges}>
-              حفظ التعديلات
-            </button>
           </div>
           <Footer />
         </div>

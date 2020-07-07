@@ -8,13 +8,14 @@ import { Spin, Row, Col } from 'antd';
 // import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
 const { getCandidates, acceptUser, getMoreCandidates, getUser } = applicants;
-
+let array = [];
 class Applicants extends React.Component {
   state = {
     candidates: '',
     count: 1,
     moreAds: '',
     loading: false,
+    clicked: [],
     applicantsInfoLoading: true
   };
   async componentDidMount() {
@@ -43,11 +44,13 @@ class Applicants extends React.Component {
       loading: true
     });
     const user = await getUser({ userId, jobId });
+    array.push(index);
     this.setState({
       user,
       userId,
       loading: false,
-      selected: index
+      selected: index,
+      clicked: array
     });
   };
 
@@ -85,7 +88,8 @@ class Applicants extends React.Component {
       user,
       userId,
       jobId,
-      selected
+      selected,
+      clicked
     } = this.state;
     return (
       <React.Fragment>
@@ -119,7 +123,9 @@ class Applicants extends React.Component {
                       ? candidates.Bresult.map((elm, index) => (
                           <div
                             className={
-                              elm.user.isRead || selected == index
+                              elm.user.isRead ||
+                              selected == index ||
+                              clicked.includes(index)
                                 ? ' applicant-cv-info active'
                                 : 'applicant-cv-info un-read'
                             }

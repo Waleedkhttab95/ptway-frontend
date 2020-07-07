@@ -10,10 +10,12 @@
     margin-top:82px;
     margin-bottom:82px;
     padding-bottom: 70px !important;
-  .setting-container{
+  .setting-container {
+      padding: 73px 50px;  
+    .top-section{
       display: flex;
-      padding: 73px 50px;
   }
+}
 }
 
 .heading{
@@ -92,7 +94,7 @@
 }
 .save-setting-btn {
     display: block;
-    margin: auto;
+    margin:50px auto;
     width: 190px;
     height: 40px;
     border-radius: 6px;
@@ -117,15 +119,17 @@
     justify-content: center;
     align-items: center;
     button {
-        width: 150px;
+        width: 100px;
         margin-top: 20px;
+        margin-left: 10px;
     }
 }
 .deactivate-account {
-    width: 400px;
+    max-width: 500px;
     height: 40px;
-    background: red !important;
+    background: #f5222dc9 !important;
     margin-right: 20px;
+    float: right !important;
 }
 
 @media (max-width:320px) {
@@ -136,10 +140,12 @@
         width: auto;
         margin: 0px 15px 32px 15px;
         .setting-container {
-            flex-direction: column;
             padding: 23px 10px;
+            .top-section {
+            flex-direction: column;
             width: 100%;
         }
+    }
     }
     .account-fields .account-input {
         width: 230px;
@@ -158,10 +164,12 @@
         width: auto;
         margin: 0px 15px 32px 15px;
         .setting-container {
-            flex-direction: column;
             padding: 23px 10px;
+            .top-section {
+            flex-direction: column;
             width: 100%;
         }
+    }
     }
     .account-fields .account-input {
         width: 280px;
