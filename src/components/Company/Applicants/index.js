@@ -116,7 +116,7 @@ class Applicants extends React.Component {
 
                 <div className="applicants-names">
                   {_.isArray(candidates.Bresult) ? (
-                    candidates.Bresult.length == !0 ? (
+                    candidates.Bresult.length !== 0 ? (
                       candidates.Bresult.map((elm, index) => (
                         <div
                           className={
