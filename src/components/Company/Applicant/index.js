@@ -40,6 +40,7 @@ class Applicant extends React.Component {
 
   rejectUser = async () => {
     const { userId } = this.state;
+
     await rejectUser({ id: userId });
     window.location.reload();
   };
