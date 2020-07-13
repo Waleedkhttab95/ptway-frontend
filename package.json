@@ -27,6 +27,7 @@
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.9.0",
     "react-ga": "^2.7.0",
+    "react-gtm-module": "^2.0.10",
     "react-helmet": "^6.0.0",
     "react-html-table-to-excel": "^2.0.0",
     "react-i18next": "^11.2.6",
