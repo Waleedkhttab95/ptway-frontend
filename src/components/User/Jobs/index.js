@@ -224,76 +224,87 @@ class Jobs extends React.Component {
                       ref="divScroll"
                       id="jobs-section-scroll"
                     >
-                      {offers
-                        ? offers.map((elm, index) => {
-                            return (
-                              <div
-                                className={
-                                  elm.isRead ||
-                                  selected == index ||
-                                  clicked.includes(index)
-                                    ? 'job active'
-                                    : 'job un-read'
-                                }
-                                key={elm.jobAd._id}
-                                onClick={() =>
-                                  this.getJob(elm.jobAd._id, index)
-                                }
-                              >
-                                <div className="top-section">
-                                  {elm.imagePath && elm.imagePath !== 'null' ? (
-                                    <img
-                                      className="job-img"
-                                      src={elm.imagePath}
-                                      alt=""
-                                    />
-                                  ) : (
-                                    <img
-                                      className="job-img"
-                                      src={require('../../../images/pure-avatar.png')}
-                                    />
-                                  )}
-                                  <div className="job-content">
-                                    <h3>{elm.jobAd.job_Name}</h3>
-                                    <h4>{elm.compName}</h4>
-                                  </div>
-                                  <div className="job-status">
-                                    {elm.status ? (
-                                      <div>تم التقدم للعمل</div>
-                                    ) : (
-                                      <React.Fragment>
-                                        <div style={{ color: '#7696f5' }}>
-                                          لم يتم التقدم
-                                        </div>
-                                        {elm.jobAd.isLock ? (
-                                          <div style={{ color: '#ffa76a' }}>
-                                            {' '}
-                                            لقد اكتمل العدد
-                                          </div>
-                                        ) : (
-                                          ''
-                                        )}
-                                      </React.Fragment>
-                                    )}
-                                  </div>
+                      {offers ? (
+                        offers.map((elm, index) => {
+                          return (
+                            <div
+                              className={
+                                elm.isRead ||
+                                selected == index ||
+                                clicked.includes(index)
+                                  ? 'job active'
+                                  : 'job un-read'
+                              }
+                              key={elm.jobAd._id}
+                              onClick={() => this.getJob(elm.jobAd._id, index)}
+                            >
+                              <div className="top-section">
+                                {elm.imagePath && elm.imagePath !== 'null' ? (
+                                  <img
+                                    className="job-img"
+                                    src={elm.imagePath}
+                                    alt=""
+                                  />
+                                ) : (
+                                  <img
+                                    className="job-img"
+                                    src={require('../../../images/pure-avatar.png')}
+                                  />
+                                )}
+                                <div className="job-content">
+                                  <h3>{elm.jobAd.job_Name}</h3>
+                                  <h4>{elm.compName}</h4>
                                 </div>
-                                <div>
-                                  <Paragraph
-                                    ellipsis={{ rows: 5, expandable: false }}
-                                    className="job-description"
-                                  >
-                                    <span>{elm.jobAd.descreption + '...'}</span>
-                                  </Paragraph>
-                                  <Link to={`/user/job/${elm.jobAd._id}`}>
-                                    <button className="job-mobile-btn">
-                                      مشاهدة التفاصيل
-                                    </button>
-                                  </Link>
+                                <div className="job-status">
+                                  {elm.status ? (
+                                    <div>تم التقدم للعمل</div>
+                                  ) : (
+                                    <React.Fragment>
+                                      <div style={{ color: '#7696f5' }}>
+                                        لم يتم التقدم
+                                      </div>
+                                      {elm.jobAd.isLock ? (
+                                        <div style={{ color: '#ffa76a' }}>
+                                          {' '}
+                                          لقد اكتمل العدد
+                                        </div>
+                                      ) : (
+                                        ''
+                                      )}
+                                    </React.Fragment>
+                                  )}
                                 </div>
                               </div>
-                            );
-                          })
-                        : ''}
+                              <div>
+                                <Paragraph
+                                  ellipsis={{ rows: 5, expandable: false }}
+                                  className="job-description"
+                                >
+                                  <span>{elm.jobAd.descreption + '...'}</span>
+                                </Paragraph>
+                                <Link to={`/user/job/${elm.jobAd._id}`}>
+                                  <button className="job-mobile-btn">
+                                    مشاهدة التفاصيل
+                                  </button>
+                                </Link>
+                              </div>
+                            </div>
+                          );
+                        })
+                      ) : offers.length == 0 ? (
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            paddingTop: '30px',
+                            fontSize: '18px'
+                          }}
+                        >
+                          {' '}
+                          لا يوجد عروض وظيفية
+                        </div>
+                      ) : (
+                        ''
+                      )}
                     </div>
                   </Col>
                 </Row>

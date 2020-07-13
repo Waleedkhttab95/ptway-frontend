@@ -305,12 +305,10 @@ class UserInfo extends React.Component {
                   </div>
                   <div>
                     <h3 className="h-title heading">التواصل الالكتروني</h3>
-                    <p>
-                      الموقع الشخصي : {personal_web ? personal_web : 'لا يوجد'}
-                    </p>
-                    <p>الفيسبوك : {facebook ? facebook : 'لا يوجد'} </p>
-                    <p>التويتر : {twitter ? twitter : 'لا يوجد'} </p>
-                    <p>لينكيد ان : {linkedin ? linkedin : 'لا يوجد'}</p>
+                    {personal_web && <p>الموقع الشخصي : {personal_web}</p>}
+                    {facebook && <p>الفيسبوك : {facebook} </p>}
+                    {twitter && <p>التويتر : {twitter} </p>}
+                    {linkedin && <p>لينكيد ان : {linkedin}</p>}
                   </div>
                 </div>
               </Col>

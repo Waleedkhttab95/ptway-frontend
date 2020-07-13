@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { Spin, Row, Col } from 'antd';
 // import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
-const { getCandidates, acceptUser, getMoreCandidates, getUser } = applicants;
+const { getCandidates, getMoreCandidates, getUser } = applicants;
 let array = [];
 class Applicants extends React.Component {
   state = {
@@ -16,7 +16,8 @@ class Applicants extends React.Component {
     moreAds: '',
     loading: false,
     clicked: [],
-    applicantsInfoLoading: true
+    applicantsInfoLoading: true,
+    status: ''
   };
   async componentDidMount() {
     const jobId = this.props.match.params.id;
@@ -37,7 +38,7 @@ class Applicants extends React.Component {
     );
   }
 
-  applicantCV = async (userId, index) => {
+  applicantCV = async (userId, index, status) => {
     const { jobId } = this.state;
 
     this.setState({
@@ -50,18 +51,8 @@ class Applicants extends React.Component {
       userId,
       loading: false,
       selected: index,
-      clicked: array
-    });
-  };
-
-  acceptUser = async userId => {
-    const { jobId, candidates } = this.state;
-    await acceptUser({
-      jobId,
-      userId
-    });
-    this.setState({
-      candidates: candidates.Bresult.filter(e => e.candidateName._id !== userId)
+      clicked: array,
+      status
     });
   };
 
@@ -89,7 +80,8 @@ class Applicants extends React.Component {
       userId,
       jobId,
       selected,
-      clicked
+      clicked,
+      status
     } = this.state;
     return (
       <React.Fragment>
@@ -110,7 +102,12 @@ class Applicants extends React.Component {
                   style={{ marginTop: '50px' }}
                 >
                   {user && (
-                    <Applicant user={user} userId={userId} jobId={jobId} />
+                    <Applicant
+                      user={user}
+                      userId={userId}
+                      jobId={jobId}
+                      status={status}
+                    />
                   )}
                 </Spin>
               </Col>
@@ -118,82 +115,90 @@ class Applicants extends React.Component {
                 <h2 className="app-title">اسم المتقدم</h2>
 
                 <div className="applicants-names">
-                  {_.isArray(candidates.Bresult)
-                    ? candidates.Bresult.length > 0
-                      ? candidates.Bresult.map((elm, index) => (
-                          <div
-                            className={
-                              elm.user.isRead ||
-                              selected == index ||
-                              clicked.includes(index)
-                                ? ' applicant-cv-info active'
-                                : 'applicant-cv-info un-read'
-                            }
-                            key={elm.user.candidateName._id}
+                  {_.isArray(candidates.Bresult) ? (
+                    candidates.Bresult.length == !0 ? (
+                      candidates.Bresult.map((elm, index) => (
+                        <div
+                          className={
+                            elm.user.isRead ||
+                            selected == index ||
+                            clicked.includes(index)
+                              ? ' applicant-cv-info active'
+                              : 'applicant-cv-info un-read'
+                          }
+                          key={elm.user.candidateName._id}
+                          onClick={() =>
+                            this.applicantCV(
+                              elm.user.candidateName._id,
+                              index,
+                              elm.user.status
+                            )
+                          }
+                        >
+                          <div>
+                            {elm.imagePath && elm.imagePath !== 'null' ? (
+                              <img src={elm.imagePath} className="u-pic" />
+                            ) : (
+                              <img
+                                src={require('../../../images/person.png')}
+                              />
+                            )}
+                            <div className="app-content">
+                              <h4>
+                                {' '}
+                                {elm.user.candidateName.firstName +
+                                  ' ' +
+                                  elm.user.candidateName.lastName}
+                              </h4>
+                              <h3>
+                                <span className="job-title-mob">
+                                  المسمى الوظيفي:{' '}
+                                </span>{' '}
+                                {elm.user.jobAd.job_Name}{' '}
+                              </h3>
+                            </div>
+                          </div>
+                          <button
+                            className="cv-btn-mobile"
                             onClick={() =>
-                              this.applicantCV(
-                                elm.user.candidateName._id,
-                                index
+                              this.props.history.push(
+                                `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}`
                               )
                             }
                           >
-                            <div>
-                              {elm.imagePath && elm.imagePath !== 'null' ? (
-                                <img src={elm.imagePath} className="u-pic" />
-                              ) : (
-                                <img
-                                  src={require('../../../images/person.png')}
-                                />
-                              )}
-                              <div className="app-content">
-                                <h4>
-                                  {' '}
-                                  {elm.user.candidateName.firstName +
-                                    ' ' +
-                                    elm.user.candidateName.lastName}
-                                </h4>
-                                <h3>
-                                  <span className="job-title-mob">
-                                    المسمى الوظيفي:{' '}
-                                  </span>{' '}
-                                  {elm.user.jobAd.job_Name}{' '}
-                                </h3>
-                              </div>
-                            </div>
-                            <button
-                              className="cv-btn-mobile"
-                              onClick={() =>
-                                this.props.history.push(
-                                  `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}`
-                                )
-                              }
-                            >
-                              مشاهدة السيرة الذاتية
-                            </button>
-                            <div className="applicant-status">
-                              {elm.user.status === 'waiting' ? (
-                                <span style={{ color: '#ffa76a' }}>
-                                  {' '}
-                                  قيد الانتظار{' '}
-                                </span>
-                              ) : elm.user.status === 'Accepted' ? (
-                                <span style={{ color: '#5fcf84' }}>
-                                  {' '}
-                                  مقبول{' '}
-                                </span>
-                              ) : elm.user.status === 'rejected' ? (
-                                <span style={{ color: '#d66b6b' }}>
-                                  {' '}
-                                  مرفوض{' '}
-                                </span>
-                              ) : (
-                                ''
-                              )}
-                            </div>
+                            مشاهدة السيرة الذاتية
+                          </button>
+                          <div className="applicant-status">
+                            {elm.user.status === 'waiting' ? (
+                              <span style={{ color: '#ffa76a' }}>
+                                {' '}
+                                قيد الانتظار{' '}
+                              </span>
+                            ) : elm.user.status === 'Accepted' ? (
+                              <span style={{ color: '#5fcf84' }}> مقبول </span>
+                            ) : elm.user.status === 'rejected' ? (
+                              <span style={{ color: '#d66b6b' }}> مرفوض </span>
+                            ) : (
+                              ''
+                            )}
                           </div>
-                        ))
-                      : ''
-                    : ''}
+                        </div>
+                      ))
+                    ) : (
+                      <div
+                        style={{
+                          textAlign: 'center',
+                          paddingTop: '30px',
+                          fontSize: '18px'
+                        }}
+                      >
+                        {' '}
+                        لا يوجد متقدمين
+                      </div>
+                    )
+                  ) : (
+                    ''
+                  )}
                 </div>
               </Col>
             </Spin>

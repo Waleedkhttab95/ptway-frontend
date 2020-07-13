@@ -174,7 +174,7 @@ class Header extends React.Component {
                     }
                   >
                     <Badge
-                      count={unreadOffers.count}
+                      count={unreadOffers.count !== 0 ? unreadOffers.count : ''}
                       showZero
                       style={{
                         marginBottom: '20px',

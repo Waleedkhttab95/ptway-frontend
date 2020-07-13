@@ -3,17 +3,19 @@ import './style.scss';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { message } from 'antd';
 
 const { acceptUser, rejectUser } = applicants;
 
 class Applicant extends React.Component {
   state = { user: '', status: false };
   async componentDidMount() {
-    const { user, userId, jobId } = this.props;
+    const { user, userId, jobId, status } = this.props;
     this.setState({
       user,
       userId,
-      jobId
+      jobId,
+      status
     });
   }
   acceptUser = async () => {
@@ -23,28 +25,33 @@ class Applicant extends React.Component {
       jobId,
       userId
     });
-    this.setState({
-      status: true
-    });
+    this.setState(
+      {
+        status: true
+      },
+      () => {
+        message.success('تم قبول المرشح');
+      }
+    );
   };
 
   componentDidUpdate(prevProp) {
-    const { user, userId } = this.props;
+    const { user, userId, status } = this.props;
     if (prevProp !== this.props) {
       this.setState({
         user,
-        userId
+        userId,
+        status
       });
     }
   }
 
-  rejectUser = async () => {
-    const { userId } = this.state;
-    await rejectUser({ id: userId });
+  rejectUser = async id => {
+    await rejectUser({ id });
     window.location.reload();
   };
   render() {
-    const { user, userId, jobId } = this.state;
+    const { user, userId, jobId, status } = this.state;
     return (
       <div className="applicant-info">
         <Link
@@ -134,18 +141,25 @@ class Applicant extends React.Component {
               : ''}
           </div>
         </div>
-        <div
-          className={
-            this.state.status ? 'btns-container btns-hidden' : 'btns-container'
-          }
-        >
-          <button className="accept-applicant" onClick={this.acceptUser}>
-            قبول المتقدم
-          </button>
-          <button className="reject-applicant" onClick={this.rejectUser}>
-            رفض المتقدم
-          </button>
-        </div>
+        {status !== 'Accepted' && (
+          <div
+            className={
+              this.state.status
+                ? 'btns-container btns-hidden'
+                : 'btns-container'
+            }
+          >
+            <button className="accept-applicant" onClick={this.acceptUser}>
+              قبول المتقدم
+            </button>
+            <button
+              className="reject-applicant"
+              onClick={() => this.rejectUser(user.info._id)}
+            >
+              رفض المتقدم
+            </button>
+          </div>
+        )}
       </div>
     );
   }
