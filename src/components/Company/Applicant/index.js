@@ -8,7 +8,7 @@ import { message } from 'antd';
 const { acceptUser, rejectUser } = applicants;
 
 class Applicant extends React.Component {
-  state = { user: '', status: false };
+  state = { user: '', status: '' };
   async componentDidMount() {
     const { user, userId, jobId, status } = this.props;
     this.setState({
@@ -27,7 +27,7 @@ class Applicant extends React.Component {
     });
     this.setState(
       {
-        status: true
+        status: 'Accepted'
       },
       () => {
         message.success('تم قبول المرشح');
@@ -53,6 +53,7 @@ class Applicant extends React.Component {
   };
   render() {
     const { user, userId, jobId, status } = this.state;
+
     return (
       <div className="applicant-info">
         <Link
@@ -144,13 +145,7 @@ class Applicant extends React.Component {
         </div>
 
         {status !== 'Accepted' && (
-          <div
-            className={
-              this.state.status
-                ? 'btns-container btns-hidden'
-                : 'btns-container'
-            }
-          >
+          <div>
             <button className="accept-applicant" onClick={this.acceptUser}>
               قبول المتقدم
             </button>
