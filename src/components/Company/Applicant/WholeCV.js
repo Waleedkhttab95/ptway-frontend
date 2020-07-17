@@ -5,18 +5,20 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-const { getUser, acceptUser } = applicants;
+const { getUser, acceptUser, rejectUser } = applicants;
 
 class WholeCV extends React.Component {
   state = { user: '' };
   async componentDidMount() {
     const userId = this.props.match.params.userId;
-    const { jobId } = this.props.match.params;
+    const { jobId, applicantId, status } = this.props.match.params;
     const user = await getUser({ userId, jobId });
     this.setState({
       userId,
       jobId,
-      user
+      user,
+      applicantId,
+      status
     });
   }
   acceptUser = async () => {
@@ -28,9 +30,15 @@ class WholeCV extends React.Component {
     });
     this.props.history.push(`/applicants/job/id=${jobId}`);
   };
+
+  rejectUser = async id => {
+    await rejectUser({ id });
+    // window.location.reload();
+  };
   render() {
     const data = this.state.user;
     const user = data.info ? data.info : data;
+    const { applicantId, status } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -44,16 +52,23 @@ class WholeCV extends React.Component {
               sm={24}
               className="applicant-right-section"
             >
-              <div className="btns-container">
-                <button
-                  className="accept-applicant"
-                  onClick={this.acceptUser}
-                  style={{ maxWidth: '280px', height: '50px' }}
-                >
-                  قبول المتقدم
-                </button>
-                {/* <button className="reject-applicant">رفض المتقدم</button> */}
-              </div>
+              {status !== 'Accepted' && (
+                <div className="btns-container">
+                  <button
+                    className="accept-applicant"
+                    onClick={this.acceptUser}
+                    style={{ maxWidth: '280px', height: '50px' }}
+                  >
+                    قبول المتقدم
+                  </button>
+                  <button
+                    className="reject-applicant"
+                    onClick={() => this.rejectUser(applicantId)}
+                  >
+                    رفض المتقدم
+                  </button>
+                </div>
+              )}
               <div className="personal-info">
                 <div className="user-pic-info">
                   {user.imagePath !== 'null' ? (
@@ -102,15 +117,25 @@ class WholeCV extends React.Component {
             >
               <div>
                 <h3 className="h-title heading">
-                <i style={{marginLeft:"10px"}} className="fa fa-info-circle" aria-hidden="true"></i>
-                  نبذة عامة</h3>
+                  <i
+                    style={{ marginLeft: '10px' }}
+                    className="fa fa-info-circle"
+                    aria-hidden="true"
+                  ></i>
+                  نبذة عامة
+                </h3>
                 <p>{user.about}</p>
               </div>
 
               <div className="cv-education">
                 <h3 className="h-title heading">
-                <i style={{marginLeft:"10px"}} className="fa fa-graduation-cap" aria-hidden="true"></i>
-                  الدراسات والشهادات</h3>
+                  <i
+                    style={{ marginLeft: '10px' }}
+                    className="fa fa-graduation-cap"
+                    aria-hidden="true"
+                  ></i>
+                  الدراسات والشهادات
+                </h3>
                 <div className="applicant-degrees">
                   <div>
                     <div>
@@ -145,8 +170,13 @@ class WholeCV extends React.Component {
 
               <div className="cv-skills-">
                 <h3 className="h-title heading">
-                <i style={{marginLeft:"10px"}} className="fa fa-language" aria-hidden="true"></i>
-                  المهارات واللغات</h3>
+                  <i
+                    style={{ marginLeft: '10px' }}
+                    className="fa fa-language"
+                    aria-hidden="true"
+                  ></i>
+                  المهارات واللغات
+                </h3>
                 <div>
                   <div>
                     <h3>المهارات العامة : </h3>
@@ -174,8 +204,13 @@ class WholeCV extends React.Component {
               </div>
               <div>
                 <h3 className="h-title heading">
-                <i style={{marginLeft:"10px"}} className="fa fa-globe" aria-hidden="true"></i>
-                  التواصل الالكتروني</h3>
+                  <i
+                    style={{ marginLeft: '10px' }}
+                    className="fa fa-globe"
+                    aria-hidden="true"
+                  ></i>
+                  التواصل الالكتروني
+                </h3>
                 <p>
                   الموقع الشخصي :{' '}
                   {user.personal_web ? user.personal_web : 'لا يوجد'}
