@@ -97,7 +97,7 @@
         margin-top: 15px;
     }
     .applicants-names{
-        height: 900px;
+        height: 700px;
         overflow-y: scroll;
         overflow-x: hidden;
         direction: ltr;
@@ -120,7 +120,6 @@
                     text-align: right;
                     display: flex;
                     flex-direction: row-reverse;
-                    align-items: center;
                     cursor: pointer;
 
                     .app-content {

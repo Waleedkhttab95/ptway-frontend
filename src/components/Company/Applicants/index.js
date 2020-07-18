@@ -11,34 +11,37 @@ const { getCandidates, getMoreCandidates, getUser } = applicants;
 let array = [];
 class Applicants extends React.Component {
   state = {
-    candidates: '',
+    candidates: [],
     count: 1,
     moreAds: '',
     loading: false,
     clicked: [],
     applicantsInfoLoading: true,
-    status: ''
+    status: '',
+    isFetching: false,
+    pages: 1
   };
   async componentDidMount() {
-    const jobId = this.props.match.params.id;
-    const candidates = await getCandidates({ jobId });
-    this.setState(
-      {
-        jobId,
-        candidates,
-        applicantsInfoLoading: false
-      },
-      () => {
-        if (candidates.totalPages > 1) {
-          this.setState({
-            loading: false
-          });
-        }
-      }
-    );
+    await this.fetchData();
+    this.refs.divScroll.addEventListener('scroll', this.handleScroll);
   }
-
-  applicantCV = async (userId, index, status) => {
+  handleScroll = () => {
+    if (
+      this.refs.divScroll.scrollTop + this.refs.divScroll.clientHeight >=
+      this.refs.divScroll.scrollHeight
+    ) {
+      this.setState({
+        isFetching: true
+      });
+    }
+  };
+  fetchMoreListItems = () => {
+    this.fetchData();
+    this.setState({
+      isFetching: false
+    });
+  };
+  applicantCV = async (userId, index, status, applicantId) => {
     const { jobId } = this.state;
 
     this.setState({
@@ -52,37 +55,56 @@ class Applicants extends React.Component {
       loading: false,
       selected: index,
       clicked: array,
-      status
+      status,
+      applicantId
     });
   };
 
-  displayMore = async () => {
-    let count = this.state.count + 1;
-    const { candidates, jobId } = this.state;
-    const moreAds = await getMoreCandidates({ pageNo: count, jobAd: jobId });
-    this.setState({
-      candidates: {
-        Bresult: candidates.Bresult.concat(moreAds.Bresult)
-      },
-      moreAds,
-      count
-    });
+  fetchData = async () => {
+    const { count, pages, candidates } = this.state;
+
+    const jobId = this.props.match.params.id;
+    console.log('jere', pages, count);
+
+    if (pages >= count) {
+      const candidatesData = await getCandidates({ jobId });
+      console.log('candidatesData', candidates);
+      console.log('candidates', candidates);
+
+      this.setState({
+        jobId,
+        candidates:
+          candidates.length !== 0
+            ? candidates.concat(candidatesData.Bresult)
+            : candidatesData.Bresult,
+        applicantsInfoLoading: false,
+        count: count + 1,
+        pages: candidatesData.totalPages
+      });
+    }
   };
+  componentDidUpdate() {
+    const { isFetching } = this.state;
+    if (isFetching) {
+      if (!isFetching) return;
+      this.fetchMoreListItems();
+    }
+  }
 
   render() {
     const {
       candidates,
       loading,
       applicantsInfoLoading,
-      moreAds,
-      count,
       user,
       userId,
       jobId,
       selected,
       clicked,
-      status
+      status,
+      applicantId
     } = this.state;
+    console.log('candidatescandidates', candidates);
     return (
       <React.Fragment>
         <Header />
@@ -107,6 +129,7 @@ class Applicants extends React.Component {
                       userId={userId}
                       jobId={jobId}
                       status={status}
+                      applicantId={applicantId}
                     />
                   )}
                 </Spin>
@@ -114,10 +137,10 @@ class Applicants extends React.Component {
               <Col md={12} sm={24}>
                 <h2 className="app-title">اسم المتقدم</h2>
 
-                <div className="applicants-names">
-                  {_.isArray(candidates.Bresult) ? (
-                    candidates.Bresult.length !== 0 ? (
-                      candidates.Bresult.map((elm, index) => (
+                <div className="applicants-names" ref="divScroll">
+                  {_.isArray(candidates) && candidates.length !== 0 ? (
+                    candidates.length !== 0 ? (
+                      candidates.map((elm, index) => (
                         <div
                           className={
                             elm.user.isRead ||
@@ -131,7 +154,8 @@ class Applicants extends React.Component {
                             this.applicantCV(
                               elm.user.candidateName._id,
                               index,
-                              elm.user.status
+                              elm.user.status,
+                              elm.user._id
                             )
                           }
                         >
@@ -162,7 +186,7 @@ class Applicants extends React.Component {
                             className="cv-btn-mobile"
                             onClick={() =>
                               this.props.history.push(
-                                `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}`
+                                `/applicant-cv/id=${elm.user.candidateName._id}&job_id=${jobId}&status=${elm.user.status}&applicantId=${elm.user._id}`
                               )
                             }
                           >

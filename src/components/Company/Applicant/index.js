@@ -10,12 +10,13 @@ const { acceptUser, rejectUser } = applicants;
 class Applicant extends React.Component {
   state = { user: '', status: '' };
   async componentDidMount() {
-    const { user, userId, jobId, status } = this.props;
+    const { user, userId, jobId, status, applicantId } = this.props;
     this.setState({
       user,
       userId,
       jobId,
-      status
+      status,
+      applicantId
     });
   }
   acceptUser = async () => {
@@ -36,12 +37,13 @@ class Applicant extends React.Component {
   };
 
   componentDidUpdate(prevProp) {
-    const { user, userId, status } = this.props;
+    const { user, userId, status, applicantId } = this.props;
     if (prevProp !== this.props) {
       this.setState({
         user,
         userId,
-        status
+        status,
+        applicantId
       });
     }
   }
@@ -49,10 +51,10 @@ class Applicant extends React.Component {
 
   rejectUser = async id => {
     await rejectUser({ id });
-    window.location.reload();
+    // window.location.reload();
   };
   render() {
-    const { user, userId, jobId, status } = this.state;
+    const { user, userId, jobId, status, applicantId } = this.state;
 
     return (
       <div className="applicant-info">
@@ -151,7 +153,7 @@ class Applicant extends React.Component {
             </button>
             <button
               className="reject-applicant"
-              onClick={() => this.rejectUser(user.info._id)}
+              onClick={() => this.rejectUser(applicantId)}
             >
               رفض المتقدم
             </button>
