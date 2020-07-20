@@ -2,7 +2,9 @@ import baseRequest from '../../_core';
 
 const applicants = {
   getCandidates: params =>
-    baseRequest.get(`/getOneCandi?jobAd=${params.jobId}`),
+    baseRequest.get(
+      `/getOneCandi?jobAd=${params.jobId}&pageNo=${params.pageNo}`
+    ),
 
   getAcceptedCandidates: params =>
     baseRequest.get(`/getOneAccepted?jobAd=${params.jobId}`),

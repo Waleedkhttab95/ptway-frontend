@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { Spin, Row, Col } from 'antd';
 // import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
-const { getCandidates, getMoreCandidates, getUser } = applicants;
+const { getCandidates, getUser } = applicants;
 let array = [];
 class Applicants extends React.Component {
   state = {
@@ -64,12 +64,8 @@ class Applicants extends React.Component {
     const { count, pages, candidates } = this.state;
 
     const jobId = this.props.match.params.id;
-    console.log('jere', pages, count);
-
     if (pages >= count) {
-      const candidatesData = await getCandidates({ jobId });
-      console.log('candidatesData', candidates);
-      console.log('candidates', candidates);
+      const candidatesData = await getCandidates({ jobId, pageNo: count });
 
       this.setState({
         jobId,
