@@ -100,7 +100,6 @@ class Applicants extends React.Component {
       status,
       applicantId
     } = this.state;
-    console.log('candidatescandidates', candidates);
     return (
       <React.Fragment>
         <Header />

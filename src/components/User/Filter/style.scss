@@ -49,8 +49,11 @@
             width: 100% !important;
             height: 34px;
             border-radius: 5px;
-            border: solid 1px #d9d9d9;
+            border: transparent;
             background-color: #fcfcfc;
+            div {
+                border-top-width: 1.02px;
+            }
         }
         .filter-btn {
             width: 107px;
