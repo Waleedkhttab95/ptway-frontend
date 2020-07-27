@@ -84,7 +84,7 @@
 }
 
 .applicants-container {
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     .app-title {
         height: 38px;
         border-radius: 2px;
@@ -105,7 +105,7 @@
         background: #fff;
                 .applicant-cv-info {
                     position: relative;
-                    width: 585px;
+                    max-width: 585px;
                     height: 74px;
                     margin: 0;
                     border: none;
@@ -165,7 +165,73 @@
 
     }
 }
+.applicants-header{
+    height: 106px;
+    background: #ffffff;
+    margin-top: 18px;
+    margin-bottom: -13px;
+    .top{
+        display: flex;
+        max-width: 55%;
+        justify-content: space-between;
+        padding-top: 19px;
+        margin-right: 40px;
+        h3{
+            font-family: 'DINNextLTW23';
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+            color:#494949 ;
+            .name{
+                color: #b5b5b5;
+            }
+        }
+    }
+    .bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 39px;
+        h4{
+        font-family: 'DINNextLTW23';
+        font-size: 14px;
+        font-weight: 500;
+        text-align: right;
+        color: #009ad0;
+        }
+        .left-side{
+            & div{
+                width: 270px;
+                margin-right: 8px;
+                & div{
+                    border-top-width: 1px;
+                }
+            }
+        }
+    }
+}
+.applicants-filter{
+    margin-top: 17px;
+    display: flex;
+    justify-content: center;
+    .menu{
+        border: none;
+        width: 169px;
+    }
+    .menu-icon{
+        width: 22px;
+        height: 15px;
+        margin-left: 5px;
+    }
 
+}
+li.ant-menu-item.ant-menu-item-selected{
+    background: none !important;
+    border-right: solid !important;
+}
+.icon path:hover {
+    fill: #DA4567;
+  }
 @media (max-width: 320px) {
     .company-container {
         overflow-y: scroll;

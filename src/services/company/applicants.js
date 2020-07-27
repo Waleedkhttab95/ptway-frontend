@@ -27,6 +27,14 @@ const applicants = {
   getMoreAcceptedCandidates: params =>
     baseRequest.get(
       `/getOneAccepted?pageNo=${params.pageNo}&jobAd=${params.jobAd}`
+    ),
+  addToFavList: params =>
+    baseRequest.put('/addToFavList', {
+      id: params.id
+    }),
+  getFavCandidates: params =>
+    baseRequest.get(
+      `/getFavCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}`
     )
 };
 

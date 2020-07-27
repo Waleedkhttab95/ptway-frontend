@@ -5,18 +5,20 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { message } from 'antd';
 
-const { acceptUser, rejectUser } = applicants;
+const { acceptUser, rejectUser, addToFavList } = applicants;
 
+let array = [];
 class Applicant extends React.Component {
-  state = { user: '', status: '' };
+  state = { user: '', status: '', addedToFav: false };
   async componentDidMount() {
-    const { user, userId, jobId, status, applicantId } = this.props;
+    const { user, userId, jobId, status, applicantId, isFavorite } = this.props;
     this.setState({
       user,
       userId,
       jobId,
       status,
-      applicantId
+      applicantId,
+      isFavorite
     });
   }
   acceptUser = async () => {
@@ -37,13 +39,14 @@ class Applicant extends React.Component {
   };
 
   componentDidUpdate(prevProp) {
-    const { user, userId, status, applicantId } = this.props;
+    const { user, userId, status, applicantId, isFavorite } = this.props;
     if (prevProp !== this.props) {
       this.setState({
         user,
         userId,
         status,
-        applicantId
+        applicantId,
+        isFavorite
       });
     }
   }
@@ -52,22 +55,48 @@ class Applicant extends React.Component {
     await rejectUser({ id });
     // window.location.reload();
   };
-  render() {
-    const { user, userId, jobId, status, applicantId } = this.state;
 
+  addToFavourite = async id => {
+    await addToFavList({ id });
+    array.push(id);
+    this.setState({
+      addedToFav: true
+    });
+  };
+  render() {
+    const {
+      user,
+      userId,
+      jobId,
+      status,
+      applicantId,
+      addedToFav,
+      isFavorite
+    } = this.state;
     return (
       <div className="applicant-info">
-        <Link
-          to={`/applicant-cv/id=${userId}&job_id=${jobId}`}
-          style={{ textAlign: 'center', colo: '#009ad0' }}
-        >
-          مشاهدة كامل السيرة الذاتية
-        </Link>
-        <h3>{user.info && user.info.fullName}</h3>
-        <h3 style={{ color: '#898989' }}>
-          {user.info && user.info.country.countryName},{' '}
-          {user.info && user.info.city.cityName}{' '}
-        </h3>
+        <div className="title">
+          <Link
+            to={`/applicant-cv/id=${userId}&job_id=${jobId}`}
+            style={{ textAlign: 'center', colo: '#009ad0' }}
+          >
+            مشاهدة كامل السيرة الذاتية
+          </Link>
+          <h3>{user.info && user.info.fullName}</h3>
+          <h3 style={{ color: '#898989' }}>
+            {user.info && user.info.country.countryName},{' '}
+            {user.info && user.info.city.cityName}{' '}
+          </h3>
+
+          <img
+            src={
+              array.includes(applicantId) || isFavorite
+                ? require('../../../images/fav2.svg')
+                : require('../../../images/fav.svg')
+            }
+            onClick={() => this.addToFavourite(applicantId)}
+          />
+        </div>
         <h2 className="heading">
           <i
             style={{ marginLeft: '10px' }}
