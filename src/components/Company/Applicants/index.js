@@ -94,9 +94,10 @@ class Applicants extends React.Component {
         jobId,
         pageNo: favPages
       });
+      console.log('favCandidates', favCandidates);
       this.setState({
         candidates:
-          candidates.length !== 0
+          favPages !== 1
             ? candidates.concat(favCandidates.Bresult)
             : favCandidates.Bresult,
         favPages: favCandidates.totalPages,
@@ -111,7 +112,7 @@ class Applicants extends React.Component {
       });
       this.setState({
         candidates:
-          candidates.length !== 0
+          rejectPages !== 1
             ? candidates.concat(rejectedCandidates.Bresult)
             : rejectedCandidates.Bresult,
         rejectPages: rejectedCandidates.totalPages,
@@ -126,7 +127,7 @@ class Applicants extends React.Component {
       });
       this.setState({
         candidates:
-          candidates.length !== 0
+          acceptPages !== 1
             ? candidates.concat(acceptedCandidates.Bresult)
             : acceptedCandidates.Bresult,
         acceptPages: acceptedCandidates.totalPages,
