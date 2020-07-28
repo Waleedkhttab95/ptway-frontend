@@ -28,7 +28,8 @@ class Applicants extends React.Component {
     rejectPages: 1,
     rejectCount: 1,
     acceptPages: 1,
-    acceptCount: 1
+    acceptCount: 1,
+    sort: 1
   };
   async componentDidMount() {
     await this.fetchData();
@@ -81,12 +82,14 @@ class Applicants extends React.Component {
       acceptCount,
       favPages,
       favCount,
-      filter
+      filter,
+      sort
     } = this.state;
 
     const jobId = this.props.match.params.id;
     if (filter === 'fav' && favPages >= favCount) {
       const favCandidates = await getFilteredCandidates({
+        sort,
         filter,
         jobId,
         pageNo: favPages
@@ -101,6 +104,7 @@ class Applicants extends React.Component {
       });
     } else if (filter === 'reject' && rejectPages >= rejectCount) {
       const rejectedCandidates = await getFilteredCandidates({
+        sort,
         filter,
         jobId,
         pageNo: rejectPages
@@ -115,6 +119,7 @@ class Applicants extends React.Component {
       });
     } else if (filter === 'accept' && acceptPages >= acceptCount) {
       const acceptedCandidates = await getFilteredCandidates({
+        sort,
         filter,
         jobId,
         pageNo: acceptPages
@@ -128,7 +133,11 @@ class Applicants extends React.Component {
         acceptCount: acceptCount + 1
       });
     } else if (filter === 'all' && pages >= count) {
-      const candidatesData = await getCandidates({ jobId, pageNo: count });
+      const candidatesData = await getCandidates({
+        jobId,
+        pageNo: count,
+        sort
+      });
 
       this.setState({
         jobId,
@@ -208,6 +217,24 @@ class Applicants extends React.Component {
     );
   };
 
+  sortApplicants = value => {
+    this.setState(
+      {
+        sort: value === 'latest' ? 1 : -1,
+        pages: 1,
+        count: 1,
+        favCount: 1,
+        favPages: 1,
+        rejectPages: 1,
+        rejectCount: 1,
+        acceptPages: 1,
+        acceptCount: 1
+      },
+      () => {
+        this.fetchData();
+      }
+    );
+  };
   render() {
     const {
       candidates,
@@ -269,7 +296,7 @@ class Applicants extends React.Component {
                       </h4>
                       <div className="left-side">
                         <span>الترتيب :</span>
-                        <Select>
+                        <Select onChange={this.sortApplicants}>
                           <Select.Option value="latest">الأحدث</Select.Option>
                           <Select.Option value="eariest">الأقدم</Select.Option>
                         </Select>

@@ -3,7 +3,7 @@ import baseRequest from '../../_core';
 const applicants = {
   getCandidates: params =>
     baseRequest.get(
-      `/getOneCandi?jobAd=${params.jobId}&pageNo=${params.pageNo}`
+      `/getOneCandi?jobAd=${params.jobId}&pageNo=${params.pageNo}&sort=${params.sort}`
     ),
 
   getAcceptedCandidates: params =>
@@ -34,7 +34,7 @@ const applicants = {
     }),
   getFilteredCandidates: params =>
     baseRequest.get(
-      `/getFilterCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}&filter=${params.filter}`
+      `/getFilterCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}&filter=${params.filter}&sort=${params.sort}`
     )
 };
 
