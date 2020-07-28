@@ -8,7 +8,7 @@ import { Spin, Row, Col, Menu, Select } from 'antd';
 // import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
 
-const { getCandidates, getUser, getFavCandidates } = applicants;
+const { getCandidates, getUser, getFilteredCandidates } = applicants;
 let array = [];
 class Applicants extends React.Component {
   state = {
@@ -22,9 +22,13 @@ class Applicants extends React.Component {
     isFetching: false,
     pages: 1,
     statistics: '',
-    allCandidates: true,
+    filter: 'all',
     favCount: 1,
-    favPages: 1
+    favPages: 1,
+    rejectPages: 1,
+    rejectCount: 1,
+    acceptPages: 1,
+    acceptCount: 1
   };
   async componentDidMount() {
     await this.fetchData();
@@ -68,18 +72,25 @@ class Applicants extends React.Component {
 
   fetchData = async () => {
     const {
-      allCandidates,
       count,
       pages,
       candidates,
-      fav,
+      rejectPages,
+      rejectCount,
+      acceptPages,
+      acceptCount,
       favPages,
-      favCount
+      favCount,
+      filter
     } = this.state;
 
     const jobId = this.props.match.params.id;
-    if (fav && favPages >= favCount) {
-      const favCandidates = await getFavCandidates({ jobId, pageNo: favPages });
+    if (filter === 'fav' && favPages >= favCount) {
+      const favCandidates = await getFilteredCandidates({
+        filter,
+        jobId,
+        pageNo: favPages
+      });
       this.setState({
         candidates:
           candidates.length !== 0
@@ -88,7 +99,35 @@ class Applicants extends React.Component {
         favPages: favCandidates.totalPages,
         favCount: favCount + 1
       });
-    } else if (allCandidates && pages >= count) {
+    } else if (filter === 'reject' && rejectPages >= rejectCount) {
+      const rejectedCandidates = await getFilteredCandidates({
+        filter,
+        jobId,
+        pageNo: rejectPages
+      });
+      this.setState({
+        candidates:
+          candidates.length !== 0
+            ? candidates.concat(rejectedCandidates.Bresult)
+            : rejectedCandidates.Bresult,
+        rejectPages: rejectedCandidates.totalPages,
+        rejectCount: rejectCount + 1
+      });
+    } else if (filter === 'accept' && acceptPages >= acceptCount) {
+      const acceptedCandidates = await getFilteredCandidates({
+        filter,
+        jobId,
+        pageNo: acceptPages
+      });
+      this.setState({
+        candidates:
+          candidates.length !== 0
+            ? candidates.concat(acceptedCandidates.Bresult)
+            : acceptedCandidates.Bresult,
+        acceptPages: acceptedCandidates.totalPages,
+        acceptCount: acceptCount + 1
+      });
+    } else if (filter === 'all' && pages >= count) {
       const candidatesData = await getCandidates({ jobId, pageNo: count });
 
       this.setState({
@@ -117,13 +156,38 @@ class Applicants extends React.Component {
     }
   }
 
-  getFavouriteCandidates = async () => {
+  favouriteCandidates = async () => {
     this.setState(
       {
-        fav: true,
-        allCandidates: false,
+        filter: 'fav',
         favPages: 1,
         favCount: 1
+      },
+      () => {
+        this.fetchData();
+      }
+    );
+  };
+
+  acceptedCandidates = async () => {
+    this.setState(
+      {
+        filter: 'accept',
+        acceptPages: 1,
+        acceptCount: 1
+      },
+      () => {
+        this.fetchData();
+      }
+    );
+  };
+
+  rejectedCandidates = async () => {
+    this.setState(
+      {
+        filter: 'reject',
+        rejectPages: 1,
+        rejectCount: 1
       },
       () => {
         this.fetchData();
@@ -134,8 +198,7 @@ class Applicants extends React.Component {
   getAllCandidates = () => {
     this.setState(
       {
-        fav: false,
-        allCandidates: true,
+        filter: 'all',
         pages: 1,
         count: 1
       },
@@ -353,7 +416,10 @@ class Applicants extends React.Component {
                       src={require('../../../images/tick.svg')}
                       className="menu-icon"
                     />
-                    <span> القبول المبدئي </span>
+                    <span onClick={this.acceptedCandidates}>
+                      {' '}
+                      القبول المبدئي{' '}
+                    </span>
                   </>
                 </Menu.Item>
                 <Menu.Item key="3">
@@ -362,7 +428,7 @@ class Applicants extends React.Component {
                       src={require('../../../images/star.svg')}
                       className="menu-icon"
                     />
-                    <span onClick={this.getFavouriteCandidates}> المفضلة </span>
+                    <span onClick={this.favouriteCandidates}> المفضلة </span>
                   </>
                 </Menu.Item>
                 {/* <Menu.Item key="4">
@@ -380,7 +446,7 @@ class Applicants extends React.Component {
                       src={require('../../../images/close.svg')}
                       className="menu-icon"
                     />
-                    <span> المرفوضين </span>
+                    <span onClick={this.rejectedCandidates}> المرفوضين </span>
                   </>
                 </Menu.Item>
               </Menu>

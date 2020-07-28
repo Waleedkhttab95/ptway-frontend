@@ -32,9 +32,9 @@ const applicants = {
     baseRequest.put('/addToFavList', {
       id: params.id
     }),
-  getFavCandidates: params =>
+  getFilteredCandidates: params =>
     baseRequest.get(
-      `/getFavCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}`
+      `/getFilterCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}&filter=${params.filter}`
     )
 };
 
