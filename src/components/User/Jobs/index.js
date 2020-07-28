@@ -2,8 +2,9 @@ import React from 'react';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import './style.scss';
-import { Row, Col, Spin, Typography } from 'antd';
+import { Row, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import {
   jobOffers,
   jobOffer,
@@ -13,7 +14,7 @@ import FilterAndSearch from '../Filter';
 import Job from '../Job/jobBreif';
 import { Link } from 'react-router-dom';
 let array = [];
-const { Paragraph } = Typography;
+
 class Jobs extends React.Component {
   state = {
     loading: true,
@@ -275,13 +276,37 @@ class Jobs extends React.Component {
                                   )}
                                 </div>
                               </div>
-                              <div>
-                                <Paragraph
-                                  ellipsis={{ rows: 5, expandable: false }}
-                                  className="job-description"
-                                >
-                                  <span>{elm.jobAd.descreption + '...'}</span>
-                                </Paragraph>
+                              <div className="description">
+                                <div>
+                                  <h3>
+                                    نوع العقد:{' '}
+                                    <span>
+                                      {elm.jobAd?.contract?.contractName}
+                                    </span>
+                                  </h3>
+                                  <h3>
+                                    مبلغ الراتب:{' '}
+                                    <span>{elm.jobAd.salary} </span>
+                                  </h3>
+                                  <h3>
+                                    مدة العقد:{' '}
+                                    <span>{elm.jobAd.work_days} </span>{' '}
+                                  </h3>
+                                </div>
+                                <div>
+                                  <h3>
+                                    تاريخ بدء العمل:{' '}
+                                    <span>
+                                      {moment(elm.jobAd.startDate).format(
+                                        'MMM D YY'
+                                      )}
+                                    </span>
+                                  </h3>
+                                  <h3>
+                                    ساعات العمل اليومية:{' '}
+                                    <span>{elm.jobAd.work_hours}</span>
+                                  </h3>
+                                </div>
                                 <Link to={`/user/job/${elm.jobAd._id}`}>
                                   <button className="job-mobile-btn">
                                     مشاهدة التفاصيل
