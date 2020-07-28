@@ -217,11 +217,10 @@
         overflow-y: scroll;
         overflow-x: hidden;
         margin-left: 1px;
-        background: #fff;
+        background: #f3f3f3;
     .job {
-        // width: 585px;
         height: 160px;
-        margin: 0;
+        margin: 7px 0 7px 7px;
         border: none;
         background-color: #ffffff;
         margin-bottom: 2px;
@@ -231,7 +230,6 @@
         justify-content: center;
         padding: 10px;
         cursor: pointer;
-        border-bottom: solid 1px #d4d4d4;
         .top-section {
             display: flex;
             align-items: center;
@@ -264,11 +262,24 @@
                 left: 17px;
             }
         }
-        .job-description {
-            font-size: 12px;
-            line-height: 1.71;
-            color: #000000;
-            padding-right: 20px;
+        .description {
+            padding-top: 10px;
+            div {
+                display: flex;
+                padding-right: 12px;
+                align-items: center;
+                h3 {
+                    font-family: 'DINNextLTW23';
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-align: right;
+                    color: #343434;
+                    margin-left: 30px;
+                    span {
+                        color: #898989;
+                    }
+                }
+            }
 
         }
         .job-mobile-btn {
