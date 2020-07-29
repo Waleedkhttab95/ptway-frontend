@@ -112,7 +112,7 @@ class CompanyDetails extends React.Component {
                           className="applicants-col"
                           onClick={() =>
                             this.props.history.push(
-                              `/applicants/job/id=${elm.advId}`
+                              `/applicants/job/id=${elm.advId}&name=${elm.advName}`
                             )
                           }
                         >

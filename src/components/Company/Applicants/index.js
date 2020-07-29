@@ -32,6 +32,10 @@ class Applicants extends React.Component {
     sort: 1
   };
   async componentDidMount() {
+    const { name } = this.props.match.params;
+    this.setState({
+      projectName: name
+    });
     await this.fetchData();
     this.refs.divScroll.addEventListener('scroll', this.handleScroll);
   }
@@ -229,7 +233,8 @@ class Applicants extends React.Component {
         rejectPages: 1,
         rejectCount: 1,
         acceptPages: 1,
-        acceptCount: 1
+        acceptCount: 1,
+        candidates: []
       },
       () => {
         this.fetchData();
@@ -249,7 +254,8 @@ class Applicants extends React.Component {
       status,
       applicantId,
       statistics,
-      isFavorite
+      isFavorite,
+      projectName
     } = this.state;
     return (
       <React.Fragment>
@@ -268,12 +274,7 @@ class Applicants extends React.Component {
                     <div className="top">
                       <h3>
                         {' '}
-                        اسم المشروع:{' '}
-                        <span className="name">
-                          {candidates[0]
-                            ? candidates[0].user.jobAd.job_Name
-                            : ''}
-                        </span>
+                        اسم المشروع: <span className="name">{projectName}</span>
                       </h3>
                       <h3>
                         {' '}
