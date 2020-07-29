@@ -17,12 +17,16 @@ const AddNewProjectModal = props => {
         <div className="new-project-form">
           <label>اسم المشروع</label>
           <Input onChange={props.onChange} name="projectName" />
+          {props.error && <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>}
+          <br />
           <label>وصف المشروع</label>
           <TextArea
             row={4}
             onChange={props.onChange}
             name="projectDescription"
           />
+          {props.error && <span style={{ color: 'red' }}>هذا الحقل مطلوب</span>}
+          <br />
           <button className="new-project-btn" onClick={props.newAd}>
             انشاء مشروع جديد
           </button>

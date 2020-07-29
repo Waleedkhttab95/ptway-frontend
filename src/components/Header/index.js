@@ -119,21 +119,26 @@ class Header extends React.Component {
   newAd = () => {
     const { addProject } = this.props;
     const { projectName, projectDescription } = this.state;
-
-    addProject({
-      projectName,
-      projectDescription
-    });
-    this.setState({
-      postJobPopup: false,
-      addProject: false,
-      newAdPopUp: true
-    });
+    if (!projectName || !projectDescription) {
+      this.setState({
+        error: true
+      });
+    } else {
+      addProject({
+        projectName,
+        projectDescription
+      });
+      this.setState({
+        postJobPopup: false,
+        addProject: false,
+        newAdPopUp: true
+      });
+    }
   };
 
   render() {
     const { contracts, company } = this.props;
-    const { nonProjectsExistModal } = this.state;
+    const { nonProjectsExistModal, error } = this.state;
     // const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
@@ -465,6 +470,7 @@ class Header extends React.Component {
             this.setState({ [e.target.name]: e.target.value });
           }}
           closable={this.onClose}
+          error={error}
         />
         <Modal
           visible={nonProjectsExistModal}

@@ -204,7 +204,7 @@ const App = () => {
           />
           <CompanyAuthenticatedRoute
             exact
-            path="/applicants/job/id=:id"
+            path="/applicants/job/id=:id&name=:name"
             component={Applicants}
           />
           <CompanyAuthenticatedRoute

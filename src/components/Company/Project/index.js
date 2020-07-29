@@ -117,7 +117,9 @@ class Project extends React.Component {
                     <button
                       className="applicants-btn"
                       onClick={() =>
-                        history.push(`/applicants/job/id=${elm._id}`)
+                        history.push(
+                          `/applicants/job/id=${elm._id}&name=${elm.job_Name}`
+                        )
                       }
                     >
                       عرض
@@ -137,7 +139,9 @@ class Project extends React.Component {
                     <button
                       className="applicants-btn-mob"
                       onClick={() =>
-                        history.push(`/applicants/job/id=${elm._id}`)
+                        history.push(
+                          `/applicants/job/id=${elm._id}&name=${elm.job_Name}`
+                        )
                       }
                     >
                       عرض المتقدمين
