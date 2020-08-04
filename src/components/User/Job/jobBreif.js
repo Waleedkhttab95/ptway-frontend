@@ -24,7 +24,7 @@ class Job extends React.Component {
     const { jobOffer, company, jobId } = this.props;
     const id = this.props.match ? this.props.match.params.id : '';
     const job = await jobOffer({ id: jobId || id });
-    await company({ id: job.value.job.company || job.company });
+    await company({ id: job.value.job.company._id || job.company._id });
   }
 
   applyJobSuccessMsg = () => {
