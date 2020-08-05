@@ -91,7 +91,7 @@ class Job extends React.Component {
             <div className="right-section">
               {offer.company ? (
                 <React.Fragment>
-                  {imagePath !== 'null' ? (
+                  {imagePath ? (
                     <img src={imagePath} alt="user" className="picture" />
                   ) : (
                     <img

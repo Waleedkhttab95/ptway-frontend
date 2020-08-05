@@ -55,8 +55,9 @@ class Job extends React.Component {
   };
 
   async componentDidUpdate(prevProp) {
-    const { job, jobId } = this.props;
+    const { job, jobId, company } = this.props;
     if (prevProp !== this.props) {
+      await company({ id: job.value.job.company || job.company });
       this.setState({
         job,
         jobId
@@ -78,7 +79,7 @@ class Job extends React.Component {
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
     const isLock = job ? job.isLock : false;
-
+    console.log('imagePath', imagePath);
     return (
       <div className="user-container job-container">
         <div className="header-view">
@@ -113,8 +114,15 @@ class Job extends React.Component {
               marginTop: '20px'
             }}
           >
-            {imagePath && imagePath !== 'null' ? (
-              <img src={imagePath} className="picture" />
+            {imagePath ? (
+              <img
+                src={imagePath}
+                className="picture"
+                style={{
+                  width: '100px',
+                  height: '100px'
+                }}
+              />
             ) : (
               <img
                 className="job-img"
