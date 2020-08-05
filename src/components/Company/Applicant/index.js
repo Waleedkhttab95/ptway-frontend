@@ -51,9 +51,20 @@ class Applicant extends React.Component {
     }
   }
 
+
   rejectUser = async id => {
     await rejectUser({ id });
-    // window.location.reload();
+
+    this.setState(
+      {
+        status: 'rejected'
+      },
+      () => {
+        message.success('تم رفض المرشح');
+
+      }
+    );
+
   };
 
   addToFavourite = async id => {
@@ -77,7 +88,7 @@ class Applicant extends React.Component {
       <div className="applicant-info">
         <div className="title">
           <Link
-            to={`/applicant-cv/id=${userId}&job_id=${jobId}`}
+            to={`/applicant-cv/id=${userId}&job_id=${jobId}&status=${status}&applicantId=${applicantId}`}
             style={{ textAlign: 'center', colo: '#009ad0' }}
           >
             مشاهدة كامل السيرة الذاتية
@@ -86,6 +97,9 @@ class Applicant extends React.Component {
           <h3 style={{ color: '#898989' }}>
             {user.info && user.info.country.countryName},{' '}
             {user.info && user.info.city.cityName}{' '}
+            <br/>
+            {user.info && user.info.mobile}{' '}
+
           </h3>
 
           <img
@@ -173,6 +187,7 @@ class Applicant extends React.Component {
               : ''}
           </div>
         </div>
+
         {status !== 'Accepted' && (
           <div>
             <button className="accept-applicant" onClick={this.acceptUser}>

@@ -38,7 +38,7 @@ const generalStatistics = {
   getPeriodAds: params => {
     return baseRequest
       .get(
-        `/get/dailyUpdateByDateBeforeMonth/?date=${params.start_date}&date2=${params.end_date}`,
+        `/get/dailyUpdateBybetweendates/?date=${params.start_date}&date2=${params.end_date}`,
         loadState()
       )
       .then(result => {
