@@ -8,9 +8,10 @@ import moment from 'moment';
 import {
   jobOffers,
   jobOffer,
-  applyJob
+  applyJob,
+  companyDetails
 } from '../../../store/actions/user/jobOffers';
-import FilterAndSearch from '../Filter';
+// import FilterAndSearch from '../Filter';
 import Job from '../Job/jobBreif';
 import { Link } from 'react-router-dom';
 let array = [];
@@ -161,20 +162,18 @@ class Jobs extends React.Component {
     this.setState({
       jobLoading: true
     });
-    const {
-      jobOffer
-      //  company
-    } = this.props;
+    const { jobOffer, company } = this.props;
 
     const job = await jobOffer({ id: jobId });
-    // await company({ id: job.value.job.company });
+    const companyInfo = await company({ id: job.value.job.company._id });
     array.push(index);
     this.setState({
       job,
       jobId,
       jobLoading: false,
       selected: index,
-      clicked: array
+      clicked: array,
+      companyInfo
     });
   };
 
@@ -188,7 +187,8 @@ class Jobs extends React.Component {
       selected,
       jobLoading,
       pageLoading,
-      clicked
+      clicked,
+      companyInfo
     } = this.state;
 
     return (
@@ -215,7 +215,13 @@ class Jobs extends React.Component {
                       size="large"
                       style={{ marginTop: '50px' }}
                     >
-                      {job && <Job job={job} jobId={jobId} />}
+                      {job && (
+                        <Job
+                          job={job}
+                          jobId={jobId}
+                          companyDetails={companyInfo}
+                        />
+                      )}
                     </Spin>
                   </Col>
                   <Col md={12} sm={24}>
@@ -352,7 +358,8 @@ const mapDispatchToProps = dispatch => {
   return {
     offersData: pageNo => dispatch(jobOffers(pageNo)),
     applyJob: params => dispatch(applyJob(params)),
-    jobOffer: params => dispatch(jobOffer(params))
+    jobOffer: params => dispatch(jobOffer(params)),
+    company: params => dispatch(companyDetails(params))
   };
 };
 

@@ -21,10 +21,9 @@ class Job extends React.Component {
   };
 
   async componentDidMount() {
-    const { jobOffer, company, jobId } = this.props;
+    const { jobOffer, jobId } = this.props;
     const id = this.props.match ? this.props.match.params.id : '';
-    const job = await jobOffer({ id: jobId || id });
-    await company({ id: job.value.job.company._id || job.company._id });
+    await jobOffer({ id: jobId || id });
   }
 
   applyJobSuccessMsg = () => {
@@ -54,20 +53,8 @@ class Job extends React.Component {
     }
   };
 
-  async componentDidUpdate(prevProp) {
-    const { job, jobId, company } = this.props;
-    if (prevProp !== this.props) {
-      await company({ id: job.value.job.company || job.company });
-      this.setState({
-        job,
-        jobId
-      });
-    }
-  }
-
   render() {
     const { offer, closeModal } = this.props;
-
     const {
       Country,
       City,
@@ -76,7 +63,8 @@ class Job extends React.Component {
       job,
       contractType
     } = offer.jobOffer;
-    const { compnayName, imagePath, address, info } = offer.company;
+    const { imagePath, address } = offer.company;
+
     const { sending } = this.state;
     const isLock = job ? job.isLock : false;
     console.log('imagePath', imagePath);
@@ -114,7 +102,7 @@ class Job extends React.Component {
               marginTop: '20px'
             }}
           >
-            {imagePath ? (
+            {imagePath && imagePath !== 'null' ? (
               <img
                 src={imagePath}
                 className="picture"
