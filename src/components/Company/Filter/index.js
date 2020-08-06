@@ -1,5 +1,5 @@
 import React from 'react';
-// import './style.scss';
+import '../../User/Filter/style.scss';
 import { Select } from 'antd';
 import _ from 'lodash';
 
