@@ -274,7 +274,7 @@ class Applicants extends React.Component {
                     <div className="top">
                       <h3>
                         {' '}
-                        اسم المشروع: <span className="name">{projectName}</span>
+                        اسم الوظيفة: <span className="name">{projectName}</span>
                       </h3>
                       <h3>
                         {' '}
