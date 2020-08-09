@@ -20,11 +20,9 @@ class Job extends React.Component {
   };
 
   async componentDidMount() {
-    const { jobOffer, company } = this.props;
+    const { jobOffer } = this.props;
     const { id } = this.props.match.params;
-    const job = await jobOffer({ id });
-
-    await company({ id: job.value.job.company._id });
+    await jobOffer({ id });
   }
 
   applyJobSuccessMsg = () => {
@@ -92,7 +90,7 @@ class Job extends React.Component {
             <div className="right-section">
               {offer.company ? (
                 <React.Fragment>
-                  {imagePath !== 'null' ? (
+                  {imagePath ? (
                     <img src={imagePath} alt="user" className="picture" />
                   ) : (
                     <img

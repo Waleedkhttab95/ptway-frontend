@@ -351,7 +351,7 @@ class Applicants extends React.Component {
                               }
                             >
                               <div>
-                                {elm.imagePath && elm.imagePath !== 'null' ? (
+                                {elm.image && elm.image.imagePath !== 'null' ? (
                                   <img src={elm.imagePath} className="u-pic" />
                                 ) : (
                                   <img
