@@ -30,7 +30,8 @@ const projects = {
       salary: params.salary,
       gender: params.gender,
       personal_Skills,
-      required_Number: params.required_Number
+      required_Number: params.required_Number,
+      jobCategory: params.jobCategory
     });
   },
   deleteProject: params => baseRequest.delete(`deleteproject?id=${params.id}`),
