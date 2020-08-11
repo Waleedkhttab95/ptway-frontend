@@ -2,7 +2,15 @@ import React from 'react';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Input, Collapse, Select, DatePicker, Modal, Spin } from 'antd';
+import {
+  Input,
+  Collapse,
+  Select,
+  DatePicker,
+  Modal,
+  Spin,
+  TreeSelect
+} from 'antd';
 import Avatar from './UploadFile';
 import cvServices from '../../../services/user/cv';
 import statatisticsService from '../../../services/statisticsService';
@@ -14,6 +22,8 @@ const { TextArea } = Input;
 const { Panel } = Collapse;
 const { Option } = Select;
 const { allCities, allCountries } = statatisticsService;
+
+const { SHOW_PARENT } = TreeSelect;
 const {
   getSkills,
   getPersonalSkills,
@@ -76,7 +86,7 @@ class UpdateProfile extends React.Component {
       education_level: info.Education_level ? info.Education_level : '',
       education_degree: info.education_degree ? info.education_degree : '',
       study_degree: info.study_degree ? info.study_degree : '',
-      language: info.languages ? info.languages : [],
+      language: info.languagesWithLevel ? info.languagesWithLevel : [],
       hoppies:
         info.hoppies && info.hoppies[0] !== 'undefined' ? info.hoppies : [],
       personal_web: info.personal_web ? info.personal_web : '',
@@ -129,10 +139,7 @@ class UpdateProfile extends React.Component {
     });
   };
   handleLanguageChange = (value, option) => {
-    const ids = option.map(elm => elm.key);
-    this.setState({
-      language: ids
-    });
+    this.setState({ language: value });
   };
   handleHoppiesChange = (value, option) => {
     const ids = option.map(elm => elm.key);
@@ -320,6 +327,37 @@ class UpdateProfile extends React.Component {
         })
       : '';
 
+    const children = ['مبتديء', 'متوسط', 'متقدم'];
+    const lang = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية'];
+    const languagesProps = lang.map(elm => {
+      return {
+        title: elm,
+        value: elm,
+        key: elm,
+        children: children.map(subElm => {
+          return {
+            title: subElm,
+            value: `${elm}-${subElm}`,
+            key: `${elm}-${subElm}`
+          };
+        })
+      };
+    });
+
+    const tProps = {
+      treeData: languagesProps,
+      // value: this.state.languagesWithLevel,
+      onChange: this.handleLanguageChange,
+      treeCheckable: true,
+      showCheckedStrategy: SHOW_PARENT,
+      multiple: true,
+      className: 'input-field',
+      // placeholder: 'اللغة',
+      style: {
+        width: '100%'
+      }
+    };
+
     return (
       <div className="user-container">
         <Header />
@@ -471,53 +509,8 @@ class UpdateProfile extends React.Component {
                           </Option>
                         </Select>
                         <h5 className="title-field">اللغات</h5>
-                        <Select
-                          className="input-field"
-                          defaultValue={
-                            userInfo && userInfo.languages !== null
-                              ? userInfo.languages
-                              : []
-                          }
-                          onChange={this.handleLanguageChange}
-                          mode="multiple"
-                          autoFocus={true}
-                          style={{
-                            maxHeight: '70px',
-                            height: 'auto',
-                            overflowY: 'scroll'
-                          }}
-                        >
-                          <Option name="language" value="العربية" key="العربية">
-                            العربية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الانجليزية"
-                            key="الانجليزية"
-                          >
-                            الانجليزية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الفرنسية"
-                            key="الفرنسية"
-                          >
-                            الفرنسية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الاسبانية"
-                            key="الاسبانية"
-                          >
-                            الاسبانية{' '}
-                          </Option>
-                          <Option name="language" value="الكورية" key="الكورية">
-                            الكورية{' '}
-                          </Option>
-                          <Option name="language" value="أوردو" key="أوردو">
-                            أوردو{' '}
-                          </Option>
-                        </Select>
+                        <TreeSelect {...tProps} />
+
                         <h5 className="title-field">حالة المستخدم</h5>
                         <Select
                           className="input-field"
