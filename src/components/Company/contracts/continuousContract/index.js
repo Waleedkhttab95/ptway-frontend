@@ -175,7 +175,7 @@ class AddNewAd extends React.Component {
                     )}
                     <br />
                     <br />
-                    <label>تصنيف الوظيفة</label>
+                    <label>تصنيف الوظيفة  </label>
                     <Select
                       className="project-selection selector"
                       onChange={this.handleSelectChange}

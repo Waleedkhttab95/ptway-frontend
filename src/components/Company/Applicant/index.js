@@ -161,7 +161,7 @@ class Applicant extends React.Component {
             className="fa fa-lightbulb-o"
             aria-hidden="true"
           ></i>
-          الدراسات والشهادات
+         المهارات و اللغات 
         </h2>
         <div className="applicant-general">
           <div>

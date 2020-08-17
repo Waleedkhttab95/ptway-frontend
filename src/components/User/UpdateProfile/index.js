@@ -509,7 +509,53 @@ class UpdateProfile extends React.Component {
                           </Option>
                         </Select>
                         <h5 className="title-field">اللغات</h5>
-                        <TreeSelect {...tProps} />
+                        <Select
+                          className="input-field"
+                          defaultValue={
+                            userInfo && userInfo.languages !== null
+                              ? userInfo.languages
+                              : []
+                          }
+                          onChange={this.handleLanguageChange}
+                          mode="multiple"
+                          autoFocus={true}
+                          style={{
+                            maxHeight: '70px',
+                            height: 'auto',
+                            overflowY: 'scroll'
+                          }}
+                        >
+                          <Option name="language" value="العربية" key="العربية">
+                            العربية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الانجليزية"
+                            key="الانجليزية"
+                          >
+                            الانجليزية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الفرنسية"
+                            key="الفرنسية"
+                          >
+                            الفرنسية{' '}
+                          </Option>
+                          <Option
+                            name="language"
+                            value="الاسبانية"
+                            key="الاسبانية"
+                          >
+                            الاسبانية{' '}
+                          </Option>
+                          <Option name="language" value="الكورية" key="الكورية">
+                            الكورية{' '}
+                          </Option>
+                          <Option name="language" value="أوردو" key="أوردو">
+                            أوردو{' '}
+                          </Option>
+                        </Select>
 
                         <h5 className="title-field">حالة المستخدم</h5>
                         <Select

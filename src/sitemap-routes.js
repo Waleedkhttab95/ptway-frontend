@@ -6,22 +6,8 @@ export default (
     <Switch>
       <Route exact path="/" />
       <Route exact path="/admin/general/statistics" />
-      <Route exact path="/admin" />
-      <Route path="/admin/statistics" />
-      <Route exact path="/admin/percentage" />
-      <Route exact path="/admin/company" />
-      <Route exact path="/admin/search/user" />
-      <Route exact path="/admin/search/company" />
-      <Route exact path="/admin/content/cities" />
-      <Route exact path="/admin/content/universities" />
-      <Route exact path="/admin/content/majors" />
-      <Route exact path="/admin/ads/company" />
-      <Route exact path="/admin/ads/search" />
-      <Route exact path="/admin/setting/user" />
-      <Route exact path="/admin/setting/company" />
       <Route exact path="/user/signup" />
       <Route exact path="/user/home" />
-
       <Route exact path="/user/jobs" />
       <Route exact path="/user/job/:id" />
       <Route exact path="/user/account/setting" />

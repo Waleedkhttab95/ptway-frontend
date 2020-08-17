@@ -77,10 +77,10 @@ const CV = {
 
     if (language != null) {
       for (var i = 0; i < language.length; i++) {
-        formData.append('languagesWithLevel[]', language[i]);
+        formData.append('language[]', language[i]);
       }
     } else {
-      formData.append('languagesWithLevel', language);
+      formData.append('language', language);
     }
     if (jobCategory != null) {
       for (var i = 0; i < jobCategory.length; i++) {
