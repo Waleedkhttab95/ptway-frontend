@@ -75,13 +75,7 @@ const CV = {
       formData.append('personal_Skills', per_skill);
     }
 
-    if (language != null) {
-      for (var i = 0; i < language.length; i++) {
-        formData.append('language[]', language[i]);
-      }
-    } else {
-      formData.append('language', language);
-    }
+
     if (jobCategory != null) {
       for (var i = 0; i < jobCategory.length; i++) {
         formData.append('jobCategory[]', jobCategory[i]);
@@ -89,9 +83,8 @@ const CV = {
     } else {
       formData.append('jobCategory', jobCategory);
     }
-
     formData.append('image', file);
-    // formData.append('languages', [language]);
+    formData.append('languagesWithLevel', JSON.stringify(language));
     formData.append('fullName', fullName);
     formData.append('gender', gender);
     formData.append('mobile', mobile);
