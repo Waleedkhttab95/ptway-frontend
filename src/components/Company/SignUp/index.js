@@ -1,23 +1,31 @@
 import React from 'react';
 import './style.scss';
-import { Form, Icon, Input, Button, Checkbox, Select, Alert } from 'antd';
-import { Link } from 'react-router-dom';
+import { Steps, Layout } from 'antd';
+import Step1 from './steps/stepOne';
+import Step2 from './steps/stepTwo';
+import Step3 from './steps/stepThree';
 import Footer from '../../Footer';
+import { connect } from 'react-redux';
 import statatisticsService from '../../../services/statisticsService';
 import { companySignup } from '../../../store/actions/userAction';
-
-import { connect } from 'react-redux';
-import Header from '../../Header';
 import SEO from '../../SEO';
-
+import Header from '../../Header';
 const { getAllCompanyMajors, getCompanySMajor } = statatisticsService;
-const { Option } = Select;
 
-class CompanySignupForm extends React.Component {
+const { Step } = Steps;
+
+class CompanySignup extends React.Component {
   state = {
+    current: 0,
+    city: '',
+    country: '',
+    countryErr: '',
+    cityError: '',
+    steps: '',
     sectors: [],
     jobTypes: []
   };
+
   componentDidMount = async () => {
     window.scrollTo(0, 0);
     const sectors = await getAllCompanyMajors();
@@ -27,29 +35,139 @@ class CompanySignupForm extends React.Component {
       jobTypes
     });
   };
-  handleSubmit = async e => {
-    e.preventDefault();
-    this.props.form.validateFields(async (err, values) => {
-      if (!err) {
-        const { register, history } = this.props;
-        await register({
-          companyName: values.companyname,
-          email: values.email,
-          password: values.password,
-          sector: values.sector,
-          specialist: values.type,
-          status: values.sector === '5c56c3572e168a2c30fe5dde' ? false : true
-        });
 
-        history.push('/company/profile');
-      }
+  next = () => {
+    const {
+      jobType,
+      sector,
+      Name,
+      phone,
+      position,
+      email,
+      password
+    } = this.state;
+    let current = this.state.current;
+    switch (current) {
+      case 0:
+        if (!jobType || !sector) {
+          this.setState({
+            error: 'هذا الحقل مطلوب'
+          });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
+        }
+        break;
+      case 1:
+        if (!Name || !phone || !position) {
+          this.setState({
+            error: 'هذا الحقل مطلوب'
+          });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
+        }
+        break;
+      case 2:
+        if (!email || !password) {
+          this.setState({
+            error: 'هذا الحقل مطلوب'
+          });
+        }
+        break;
+    }
+  };
+
+  prev = () => {
+    const current = this.state.current - 1;
+    this.setState({ current });
+  };
+
+  handleChange = (value, name) => {
+    this.setState({
+      ...this.state,
+      [name]: value
     });
   };
 
+  handleInputsChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  signup = async () => {
+    const {
+      companyName,
+      email,
+      password,
+      sector,
+      jobTitle,
+      Name,
+      phone,
+      position
+    } = this.state;
+    const { register, history } = this.props;
+    await register({
+      companyName,
+      email,
+      password,
+      sector,
+      specialist: jobTitle,
+      Name,
+      phone,
+      position,
+      status: sector === '5c56c3572e168a2c30fe5dde' ? false : true
+    });
+
+    history.push('/company/home');
+  };
+
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { jobTypes, sectors } = this.state;
-    const { user } = this.props;
+    const { current } = this.state;
+
+    const steps = [
+      {
+        title: 'اسم الجهة ونشاط العمل',
+        content: (
+          <Step1
+            handleChange={this.handleChange}
+            handleInputsChange={this.handleInputsChange}
+            state={this.state}
+            next={() => this.next()}
+            current={current}
+            steps={1}
+          />
+        )
+      },
+      {
+        title: 'معلومات شخصية',
+        content: (
+          <Step2
+            handleInputsChange={this.handleInputsChange}
+            state={this.state}
+            next={() => this.next()}
+            prev={() => this.prev()}
+            current={current}
+            steps={2}
+          />
+        )
+      },
+      {
+        title: 'معلومات الحساب',
+        content: (
+          <Step3
+            handleChange={this.handleInputsChange}
+            state={this.state}
+            prev={() => this.prev()}
+            current={current}
+            steps={2}
+            signup={this.signup}
+          />
+        )
+      }
+    ];
     return (
       <React.Fragment>
         <SEO
@@ -57,110 +175,28 @@ class CompanySignupForm extends React.Component {
           description="سجل شركتك الآن! وأبدء خطوتك الأولى لإيجاد الموظف المناسب لك"
         />
         <Header />
-        <div className="company-signup-container">
-          <div className="form-container">
-            <h3 className="login-form-title">انشاء حساب جديد</h3>
-            <Form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
-              <label className="login-form-label">اسم الجهة</label>
-              <Form.Item>
-                {getFieldDecorator('companyname', {
-                  rules: [{ required: true, message: 'الرجاء ادخال اسم الجهة' }]
-                })(<Input prefix={<Icon />} />)}
-              </Form.Item>
-              <label className="login-form-label">البريد الالكتروني</label>
-              <Form.Item>
-                {getFieldDecorator('email', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'الرجاء ادخال البريد الالكتروني'
-                    }
-                  ]
-                })(<Input prefix={<Icon />} />)}
-              </Form.Item>
-              <label className="login-form-label">نشاط العمل</label>
-              <Form.Item>
-                {getFieldDecorator('type', {
-                  rules: [
-                    { required: true, message: 'الرجاء ادخال نشاط العمل' }
-                  ]
-                })(
-                  <Select className="type-selector">
-                    {jobTypes.map(elm => {
-                      return (
-                        <Option value={elm.id} key={elm.id}>
-                          {elm.value}
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                )}
-              </Form.Item>
-              <label className="login-form-label">القطاع</label>
-              <Form.Item>
-                {getFieldDecorator('sector', {
-                  rules: [
-                    { required: true, message: 'الرجاء ادخال قطاع العمل' }
-                  ]
-                })(
-                  <Select className="sector-selector">
-                    {sectors.map(elm => {
-                      return (
-                        <Option value={elm.id} key={elm.id}>
-                          {elm.value}
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                )}
-              </Form.Item>
-              <label className="login-form-label">كلمة المرور</label>
-              <Form.Item>
-                {getFieldDecorator('password', {
-                  rules: [
-                    { required: true, message: 'الرجاء ادخال كلمة المرور' }
-                  ]
-                })(<Input prefix={<Icon />} type="password" />)}
-              </Form.Item>
-              {/* <Form.Item>
-                {getFieldDecorator('remember', {
-                  valuePropName: 'checked',
-                  initialValue: true
-                })(<Checkbox>الموافقة على الشروط</Checkbox>)}
-              </Form.Item> */}
-              {user.signupError && user.signupError.response ? (
-                <Alert
-                  message={user.signupError.response.data}
-                  type="error"
-                  style={{ width: '100%' }}
-                />
-              ) : (
-                ''
-              )}
-              <br />
-              <div className="login-btn-cont">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button login-form-btn"
-                >
-                  ابدأ الآن
-                </Button>
+        <Layout style={{ background: '#f3f3f3', height: '100%' }}>
+          <div className="user-container company-sign">
+            <div className="signup-form">
+              <Steps current={current}>
+                {steps.map(item => (
+                  <Step key={item.title} />
+                ))}
+              </Steps>
+              <div className="steps-header">
+                <span> اسم الجهة ونشاط العمل</span>
+                <span>معلومات شخصية</span>
+                <span>معلومات الحساب</span>
               </div>
-              <div className="create-new-account">
-                لديك حساب؟ <Link to="/company/login">تسجيل دخول</Link>
-              </div>
-            </Form>
+              <div className="steps-content">{steps[current].content}</div>
+            </div>
           </div>
-          <div style={{ width: '100%' }}>
-            <Footer />
-          </div>
-        </div>
+          <Footer />
+        </Layout>
       </React.Fragment>
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     user: state.user
@@ -174,10 +210,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const CompanyRegistration = Form.create({ name: 'CompanySignupForm' })(
-  CompanySignupForm
-);
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CompanyRegistration);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanySignup);
