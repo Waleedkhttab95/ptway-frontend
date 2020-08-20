@@ -46,15 +46,16 @@ class UpdateProfile extends React.Component {
     datebirthError: false
   };
   async componentDidMount() {
+    console.log('heeere');
     const userInfo = await getinformation();
     const skills = await getSkills();
     const pSkills = await getPersonalSkills();
     const major = await getMajor();
     const universities = await getUniversity();
     const countries = await allCountries();
-    const cities = await allCities();
+    // const cities = await allCities();
     const categories = await jobCategories();
-
+    console.log('userInfo.info', userInfo.info);
     const info = userInfo.info;
     if (info.public_Major && !info.spMajor) {
       const subMajor = await getSubMajor({ id: info.public_Major._id });
@@ -69,7 +70,7 @@ class UpdateProfile extends React.Component {
       universities,
       userInfo: info,
       countries,
-      cities,
+      cities: [],
       categories,
       fullName: info.fullName,
       gender: info.gender,
@@ -141,7 +142,16 @@ class UpdateProfile extends React.Component {
   };
   handleLanguageChange = (value, label, extra) => {
     // const allData = extra.allCheckedNodes.map(elm => elm.node.props);
+    // console.log('***', label);
+    // value.map((elm, index) => {
+    //   if (elm.includes('-')) {
     this.setState({ language: value });
+    // } else {
+    //   this.setState({
+    //     langError: true
+    //   });
+    // }
+    // });
   };
   handleHoppiesChange = (value, option) => {
     const ids = option.map(elm => elm.key);
@@ -284,7 +294,8 @@ class UpdateProfile extends React.Component {
       categories,
       education_levels,
       datebirthError,
-      language
+      language,
+      langError
     } = this.state;
     const hoppies = [
       'القراءة',
@@ -346,10 +357,10 @@ class UpdateProfile extends React.Component {
         })
       };
     });
-
+    console.log('langError', langError);
     const tProps = {
       treeData: languagesProps,
-      value: this.state.language,
+      value: language,
       //placeholder: this.state.language ? this.state.language.map(elm => {
       //     console.log('value', elm.value);
       //     return elm.value;
