@@ -122,12 +122,12 @@ const statatisticsService = {
   },
   companiesInfo: () => {
     return baseRequest
-      .get('/get/companiesInfo', loadState())
+      .get('/get/companiesInfo')
       .then(companiesInfo => companiesInfo);
   },
   allCities: () => {
-    return baseRequest.get('/getcity', loadState()).then(cityData => {
-      return cityData.map(elm => {
+    return baseRequest.get('/getcity?type=city').then(cityData => {
+      return JSON.parse(cityData.cities).map(elm => {
         return {
           id: elm._id,
           value: elm.cityName,
@@ -139,23 +139,19 @@ const statatisticsService = {
   getAllCompaniesBSpecialist: params => {
     return baseRequest
       .get(
-        `/get/searchCompanyByCompanySpecialist/?CompanySp=${params.CompanySp}`,
-        loadState()
+        `/get/searchCompanyByCompanySpecialist/?CompanySp=${params.CompanySp}`
       )
       .then(result => result)
       .catch(e => console.log(e));
   },
   getAllCompaniesBSector: params => {
     return baseRequest
-      .get(
-        `/get/searchCompanyBySector/?sectorName=${params.sectorName}`,
-        loadState()
-      )
+      .get(`/get/searchCompanyBySector/?sectorName=${params.sectorName}`)
       .then(result => result)
       .catch(e => console.log(e));
   },
   getAllCompanies: () => {
-    return baseRequest.get('/get/allCompanies', loadState()).then(companies => {
+    return baseRequest.get('/get/allCompanies').then(companies => {
       return companies.map(value => {
         return {
           id: value._id,
@@ -167,7 +163,7 @@ const statatisticsService = {
   },
   getCompanyProjects: params => {
     return baseRequest
-      .get(`/getprojectsById/?_id=${params.id}`, loadState())
+      .get(`/getprojectsById/?_id=${params.id}`)
       .then(projects => {
         return projects.map(elm => {
           return {
@@ -181,7 +177,7 @@ const statatisticsService = {
   },
   getAllUniversities: () => {
     return baseRequest
-      .get('/get/allUniversty', loadState())
+      .get('/get/allUniversty')
       .then(result => {
         return result.map(elm => {
           return {

@@ -46,16 +46,14 @@ class UpdateProfile extends React.Component {
     datebirthError: false
   };
   async componentDidMount() {
-    console.log('heeere');
     const userInfo = await getinformation();
     const skills = await getSkills();
     const pSkills = await getPersonalSkills();
     const major = await getMajor();
     const universities = await getUniversity();
     const countries = await allCountries();
-    // const cities = await allCities();
+    const cities = await allCities();
     const categories = await jobCategories();
-    console.log('userInfo.info', userInfo.info);
     const info = userInfo.info;
     if (info.public_Major && !info.spMajor) {
       const subMajor = await getSubMajor({ id: info.public_Major._id });
@@ -70,7 +68,7 @@ class UpdateProfile extends React.Component {
       universities,
       userInfo: info,
       countries,
-      cities: [],
+      cities,
       categories,
       fullName: info.fullName,
       gender: info.gender,
