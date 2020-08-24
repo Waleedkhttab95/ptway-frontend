@@ -73,28 +73,32 @@ const statatisticsService = {
     });
   },
   allMajors: () => {
-    return baseRequest.get('/get/majors', loadState()).then(majors => {
-      return majors.map(value => {
-        return {
-          id: value._id,
-          value: value.majorName,
-          label: value.majorName,
-          key: value.key
-        };
+    return baseRequest
+      .get('/get/majors?type=major', loadState())
+      .then(majors => {
+        return JSON.parse(majors.public_Major).map(value => {
+          return {
+            id: value._id,
+            value: value.majorName,
+            label: value.majorName,
+            key: value.key
+          };
+        });
       });
-    });
   },
   getAllCompanyMajors: () => {
-    return baseRequest.get('/getsectors', loadState()).then(majors => {
-      return majors.map(value => {
-        return {
-          id: value._id,
-          value: value.sectorName,
-          label: value.sectorName,
-          key: value.key
-        };
+    return baseRequest
+      .get('/getsectors?type=sector', loadState())
+      .then(majors => {
+        return JSON.parse(majors.sectors).map(value => {
+          return {
+            id: value._id,
+            value: value.sectorName,
+            label: value.sectorName,
+            key: value.key
+          };
+        });
       });
-    });
   },
   sMajor: majorId => {
     return baseRequest
@@ -110,15 +114,17 @@ const statatisticsService = {
       });
   },
   getCompanySMajor: () => {
-    return baseRequest.get('/getspec', loadState()).then(specialMajor => {
-      return specialMajor.map(elm => {
-        return {
-          id: elm._id,
-          value: elm.specialistName,
-          label: elm.specialistName
-        };
+    return baseRequest
+      .get('/getspec?type=sMajor', loadState())
+      .then(specialMajor => {
+        return JSON.parse(specialMajor.Cs).map(elm => {
+          return {
+            id: elm._id,
+            value: elm.specialistName,
+            label: elm.specialistName
+          };
+        });
       });
-    });
   },
   companiesInfo: () => {
     return baseRequest

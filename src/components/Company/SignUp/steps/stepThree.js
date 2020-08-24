@@ -3,11 +3,13 @@ import { Input } from 'antd';
 
 const step3Form = props => {
   const { handleChange, state, current, steps } = props;
-  const { error } = state;
+  const { emailError, passwordError } = state;
+
   return (
     <div className="steps-form">
       <div className="form-content signupf">
-        <span className="f-title">معلومات الحساب</span>
+        {/* <img src={personalInfoIcon} /> */}
+        {/* <span className="f-title">معلومات الحساب</span> */}
         <span className="line"></span>
         <div className="form-fields">
           <label className="info-label">البريد الالكتروني</label>
@@ -19,7 +21,7 @@ const step3Form = props => {
             value={state.email}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.email ? error : ''}
+            {emailError && !state.email ? emailError : ''}
           </span>
           <label className="info-label">كلمة المرور</label>
           <Input
@@ -30,7 +32,7 @@ const step3Form = props => {
             value={state.password}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.password ? error : ''}
+            {passwordError && !state.password ? passwordError : ''}
           </span>
           <label className="info-label">تأكيد كلمة المرور</label>
           <Input
@@ -45,8 +47,10 @@ const step3Form = props => {
               : ''}
           </span>
 
-          {props.error && (
-            <span style={{ color: 'red' }}>{props.error.response.data}</span>
+          {props.error && props.error.signupError && (
+            <span style={{ color: 'red' }}>
+              {props.error.signupError.response.data}
+            </span>
           )}
 
           <div className="steps-btns">

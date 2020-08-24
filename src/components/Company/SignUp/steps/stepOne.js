@@ -3,7 +3,14 @@ import { Select, Input } from 'antd';
 const { Option } = Select;
 const step1Form = props => {
   const { handleChange, handleInputsChange, state, steps, current } = props;
-  const { error, jobTypes, sectors, companyName } = state;
+  const {
+    jobTypeError,
+    sectorError,
+    companyNameError,
+    jobTypes,
+    sectors,
+    companyName
+  } = state;
 
   return (
     <div className="steps-form">
@@ -17,7 +24,7 @@ const step1Form = props => {
             value={companyName}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.companyName ? error : ''}
+            {companyNameError && !state.companyName ? companyNameError : ''}
           </span>
           <span className="info-label">نشاط العمل</span>
           <Select
@@ -35,7 +42,7 @@ const step1Form = props => {
             })}
           </Select>
           <span style={{ color: 'red' }}>
-            {error && !state.jobType ? error : ''}
+            {jobTypeError && !state.jobType ? jobTypeError : ''}
           </span>
           <span className="info-label">القطاع</span>
           <Select
@@ -53,7 +60,7 @@ const step1Form = props => {
             })}
           </Select>
           <span style={{ color: 'red' }}>
-            {error && !state.sector ? error : ''}
+            {sectorError && !state.sector ? sectorError : ''}
           </span>
           {current < steps && (
             <button

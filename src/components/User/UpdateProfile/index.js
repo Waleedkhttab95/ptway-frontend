@@ -140,16 +140,8 @@ class UpdateProfile extends React.Component {
   };
   handleLanguageChange = (value, label, extra) => {
     // const allData = extra.allCheckedNodes.map(elm => elm.node.props);
-    // console.log('***', label);
-    // value.map((elm, index) => {
-    //   if (elm.includes('-')) {
-    this.setState({ language: value });
-    // } else {
-    //   this.setState({
-    //     langError: true
-    //   });
-    // }
-    // });
+    const data = value.filter(elm => elm.split('-').length == 2);
+    this.setState({ language: data });
   };
   handleHoppiesChange = (value, option) => {
     const ids = option.map(elm => elm.key);
@@ -355,7 +347,6 @@ class UpdateProfile extends React.Component {
         })
       };
     });
-    console.log('langError', langError);
     const tProps = {
       treeData: languagesProps,
       value: language,
