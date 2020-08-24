@@ -2,13 +2,19 @@ import baseRequest from '../../_core';
 
 const CV = {
   getSkills: () => {
-    return baseRequest.get('/get/skills').then(result => result);
+    return baseRequest
+      .get('/get/skills?type=skill')
+      .then(result => JSON.parse(result.skills));
   },
   getPersonalSkills: () => {
-    return baseRequest.get('/get/p_skills').then(result => result);
+    return baseRequest
+      .get('/get/p_skills?type=pskill')
+      .then(result => JSON.parse(result.PersonalS));
   },
   getMajor: () => {
-    return baseRequest.get('/get/majors').then(result => result);
+    return baseRequest
+      .get('/get/majors?type=major')
+      .then(result => JSON.parse(result.public_Major));
   },
   getSubMajor: params => {
     return baseRequest
@@ -16,7 +22,9 @@ const CV = {
       .then(result => result);
   },
   getUniversity: () => {
-    return baseRequest.get('/get/universty').then(result => result);
+    return baseRequest
+      .get('/get/universty?type=university')
+      .then(result => JSON.parse(result.universty));
   },
   getinformation: () => {
     return baseRequest.get('/getuserinfo/edit').then(result => result);
@@ -111,7 +119,9 @@ const CV = {
     });
   },
   jobCategories: () =>
-    baseRequest.get('/get/allJobCategory').then(result => result)
+    baseRequest
+      .get('/get/allJobCategory?type=category')
+      .then(result => JSON.parse(result.jobs))
 };
 
 export default CV;

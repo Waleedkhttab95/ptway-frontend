@@ -4,12 +4,10 @@ import personalInfoIcon from '../../../../images/personal-info-icon.svg';
 
 const step2Form = props => {
   const { state, steps, current, handleInputsChange } = props;
-  const { error, Name, position, phone } = state;
+  const { nameError, phoneError, positionError, Name, position, phone } = state;
   return (
     <div className="steps-form">
       <div className="form-content">
-        <img src={personalInfoIcon} />
-        <span className="f-title">معلومات شخصية</span>
         <span className="line"></span>
         <div className="form-fields">
           <label className="info-label">اسم المشرف </label>
@@ -20,7 +18,7 @@ const step2Form = props => {
             value={Name}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.Name ? error : ''}
+            {nameError && !state.Name ? nameError : ''}
           </span>
           <label className="info-label" style={{ marginTop: '0px' }}>
             رقم التواصل
@@ -32,7 +30,7 @@ const step2Form = props => {
             value={phone}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.phone ? error : ''}
+            {phoneError && !state.phone ? phoneError : ''}
           </span>
           <label className="info-label" style={{ marginTop: '0px' }}>
             المركز الوظيفي
@@ -44,7 +42,7 @@ const step2Form = props => {
             value={position}
           />
           <span style={{ color: 'red' }}>
-            {error && !state.position ? error : ''}
+            {positionError && !state.position ? positionError : ''}
           </span>
           <div className="steps-btns">
             {current > 0 && (

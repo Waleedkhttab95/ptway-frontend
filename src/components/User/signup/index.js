@@ -235,7 +235,7 @@ class UserSignup extends React.Component {
             current={current}
             steps={3}
             signup={this.signup}
-            {...user}
+            error={user}
           />
         )
       }

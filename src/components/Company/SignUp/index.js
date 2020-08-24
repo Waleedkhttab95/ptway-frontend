@@ -44,14 +44,17 @@ class CompanySignup extends React.Component {
       phone,
       position,
       email,
-      password
+      password,
+      companyName
     } = this.state;
     let current = this.state.current;
     switch (current) {
       case 0:
-        if (!jobType || !sector) {
+        if (!jobType || !sector || !companyName) {
           this.setState({
-            error: 'هذا الحقل مطلوب'
+            jobTypeError: 'هذا الحقل مطلوب',
+            sectorError: 'هذا الحقل مطلوب',
+            companyNameError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -61,7 +64,9 @@ class CompanySignup extends React.Component {
       case 1:
         if (!Name || !phone || !position) {
           this.setState({
-            error: 'هذا الحقل مطلوب'
+            nameError: 'هذا الحقل مطلوب',
+            phoneError: 'هذا الحقل مطلوب',
+            positionError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -71,7 +76,8 @@ class CompanySignup extends React.Component {
       case 2:
         if (!email || !password) {
           this.setState({
-            error: 'هذا الحقل مطلوب'
+            emailError: 'هذا الحقل مطلوب',
+            passwordError: 'هذا الحقل مطلوب'
           });
         }
         break;
@@ -108,20 +114,27 @@ class CompanySignup extends React.Component {
       phone,
       position
     } = this.state;
-    const { register, history } = this.props;
-    await register({
-      companyName,
-      email,
-      password,
-      sector,
-      specialist: jobTitle,
-      Name,
-      phone,
-      position,
-      status: sector === '5c56c3572e168a2c30fe5dde' ? false : true
-    });
+    if (!email || !password) {
+      this.setState({
+        emailError: 'هذا الحقل مطلوب',
+        passwordError: 'هذا الحقل مطلوب'
+      });
+    } else {
+      const { register, history } = this.props;
+      await register({
+        companyName,
+        email,
+        password,
+        sector,
+        specialist: jobTitle,
+        Name,
+        phone,
+        position,
+        status: sector === '5c56c3572e168a2c30fe5dde' ? false : true
+      });
 
-    history.push('/company/home');
+      history.push('/company/home');
+    }
   };
 
   render() {
@@ -164,6 +177,7 @@ class CompanySignup extends React.Component {
             current={current}
             steps={2}
             signup={this.signup}
+            error={this.props.user}
           />
         )
       }

@@ -34,20 +34,6 @@ const step4Form = props => {
                 {emailError && !state.email ? emailError : ''}
               </span>
             </div>
-            {/* <div className="elements elm-mob">
-              <label className="info-label">تأكيد البريد الالكتروني</label>
-              <Input
-                className="name-text"
-                name="reEmail"
-                onChange={handleChange}
-                type="email"
-              />
-              <span style={{ color: 'red' }}>
-                {state.email !== state.reEmail || !state.reEmail
-                  ? emailMatchError
-                  : ''}
-              </span>
-            </div> */}
           </div>
           <div className="first-row">
             <div className="elements">
@@ -78,8 +64,10 @@ const step4Form = props => {
               </span>
             </div>
           </div>
-          {props.error && (
-            <span style={{ color: 'red' }}>{props.error.response.data}</span>
+          {props.error && props.error.signupError && (
+            <span style={{ color: 'red' }}>
+              {props.error.signupError.response.data}
+            </span>
           )}
 
           <div className="steps-btns">
