@@ -42,7 +42,7 @@ const step3Form = props => {
             type="password"
           />
           <span style={{ color: 'red' }}>
-            {state.password !== state.rePassword || !state.rePassword
+            {state.password !== state.rePassword && state.rePassword
               ? 'كلمة المرور غير متطابقة'
               : ''}
           </span>
