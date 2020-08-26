@@ -84,9 +84,10 @@ class UpdateProfile extends React.Component {
       education_level: info.Education_level ? info.Education_level : '',
       education_degree: info.education_degree ? info.education_degree : '',
       study_degree: info.study_degree ? info.study_degree : '',
-      language: info.languagesWithLevel
-        ? JSON.parse(info.languagesWithLevel)
-        : [],
+      language:
+        info.languagesWithLevel && info.languagesWithLevel !== null
+          ? JSON.parse(info.languagesWithLevel)
+          : [],
       hoppies:
         info.hoppies && info.hoppies[0] !== 'undefined' ? info.hoppies : [],
       personal_web: info.personal_web ? info.personal_web : '',

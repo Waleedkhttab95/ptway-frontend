@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Steps, Layout } from 'antd';
+import { Steps, Layout, message } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
 import Step3 from './steps/stepThree';
@@ -132,8 +132,10 @@ class CompanySignup extends React.Component {
         position,
         status: sector === '5c56c3572e168a2c30fe5dde' ? false : true
       });
-
-      history.push('/company/home');
+      message.success(' يرجى تفعيل الحساب من خلال بريدك الالكتروني');
+      setTimeout(() => {
+        history.push('/');
+      }, 3000);
     }
   };
 

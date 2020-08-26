@@ -28,7 +28,7 @@ const user = (state = initialUser, action) => {
       baseRequest.setLocalStorage({
         ...action.payload,
         isAdmin: false,
-        loggedIn: true,
+        loggedIn: false,
         role: 'company'
       });
       return {
