@@ -40,7 +40,7 @@ const userServices = {
     baseRequest.post('/companyRegistreing', {
       companyName: params.companyName,
       email: params.email,
-      Name: params.name,
+      Name: params.Name,
       phone: params.phone,
       position: params.position,
       password: params.password,
