@@ -109,7 +109,7 @@ class CompanySignup extends React.Component {
       email,
       password,
       sector,
-      jobTitle,
+      jobType,
       Name,
       phone,
       position
@@ -126,7 +126,7 @@ class CompanySignup extends React.Component {
         email,
         password,
         sector,
-        specialist: jobTitle,
+        specialist: jobType,
         Name,
         phone,
         position,
@@ -141,7 +141,7 @@ class CompanySignup extends React.Component {
 
   render() {
     const { current } = this.state;
-
+    console.log('state', this.state);
     const steps = [
       {
         title: 'اسم الجهة ونشاط العمل',
