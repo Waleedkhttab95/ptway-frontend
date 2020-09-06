@@ -16,7 +16,7 @@
             color: #a6a6a6;
             width: 100%;
         }
-        > h3:nth-child(5){
+        > h3:nth-child(6){
             width: 30%;
         }
     }
@@ -83,32 +83,23 @@
         width: 100%;
         text-align: center;
         .applicants-btn {
-            width: 107px;
-            height: 32px;
-            border-radius: 6px;
             background-color: #636363;
-            font-size: 14px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.71;
-            letter-spacing: normal;
-            text-align: center;
-            color: #ffffff;
         }
+
         .accepted-btn {
+            background-color: #3b96d9;
+        }
+
+        .btn {
             width: 107px;
             height: 32px;
-            border-radius: 6px;
-            background-color: #3b96d9;
             font-size: 14px;
             font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
+            border-radius: 6px;
             line-height: 1.71;
-            letter-spacing: normal;
             text-align: center;
             color: #ffffff;
+            cursor: pointer;
         }
     }
     >span {
@@ -190,7 +181,8 @@
     padding: 10px 0 !important;
 }
 .btns-mob {
-    display: flex
+    display: flex;
+    justify-content: space-around;
 }
 .project .mobile-view {
     display: flex;
@@ -261,7 +253,8 @@
         padding: 10px 0 !important;
     }
     .btns-mob {
-        display: flex
+        display: flex;
+        justify-content: space-around;
     }
    .project .mobile-view {
         display: flex;

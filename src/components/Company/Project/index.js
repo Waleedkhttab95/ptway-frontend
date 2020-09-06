@@ -70,6 +70,7 @@ class Project extends React.Component {
           <h3>التاريخ</h3>
           <h3>المتقدمين</h3>
           <h3>المقبولين</h3>
+          <h3>العرض الوظيفي</h3>
           <h3></h3>
         </div>
         {_.isArray(jobOffers.job)
@@ -115,7 +116,7 @@ class Project extends React.Component {
                   </h4>
                   <div>
                     <button
-                      className="applicants-btn"
+                      className="applicants-btn btn"
                       onClick={() =>
                         history.push(
                           `/applicants/job/id=${elm._id}&name=${elm.job_Name}`
@@ -127,12 +128,20 @@ class Project extends React.Component {
                   </div>
                   <div>
                     <button
-                      className="accepted-btn"
+                      className="accepted-btn btn"
                       onClick={() =>
                         history.push(`/accepted/applicants/job/id=${elm._id}`)
                       }
                     >
                       عرض
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="accepted-btn btn"
+                      onClick={() => history.push(`/jobs/job_id=${elm._id}`)}
+                    >
+                      استعراض
                     </button>
                   </div>
                   <div className="btns-mob">

@@ -60,6 +60,7 @@ import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
 import UserInfo from './User/userInfoFollowForm';
 import WholeCV from './Company/Applicant/WholeCV';
+import CompanyJob from './Company/Project/job';
 
 // DELETE ME
 // import UserHomeClone from '../components/User/index_clone';
@@ -147,16 +148,6 @@ const App = () => {
             path="/user/home"
             component={UserHome}
           />
-
-          {/* THIS IS CLONE PAGE */}
-          {/* <UserAuthenticatedRoute
-            exact
-            path="/user/home-clone"
-            component={UserHomeClone}
-          /> */}
-
-          {/*  */}
-
           <UserAuthenticatedRoute exact path="/user/jobs" component={Jobs} />
           <UserAuthenticatedRoute exact path="/user/job/:id" component={Job} />
           <UserAuthenticatedRoute
@@ -244,6 +235,12 @@ const App = () => {
             path="/applicant-cv/id=:userId&job_id=:jobId&status=:status&applicantId=:applicantId"
             component={WholeCV}
           />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/jobs/job_id=:id"
+            component={CompanyJob}
+          />
+
           <Route exact path="/resetPassword" component={SetNewPassword} />
           <Route exact path="/common-questions" component={CommenQuestions} />
           <Route exact path="/about-us" component={AboutUs} />
