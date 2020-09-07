@@ -34,6 +34,11 @@ const projects = {
       jobCategory: params.jobCategory
     });
   },
+  getJobOffer: params => {
+    return baseRequest
+      .get(`/preview/getjob?id=${params.id}`)
+      .then(result => result);
+  },
   deleteProject: params => baseRequest.delete(`deleteproject?id=${params.id}`),
   updateProject: params =>
     baseRequest.put('put/project', {
