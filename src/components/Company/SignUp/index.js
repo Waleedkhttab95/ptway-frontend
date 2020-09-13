@@ -192,7 +192,7 @@ class CompanySignup extends React.Component {
           <div className="user-container company-sign">
             <div className="signup-form">
               <Row className="signup-form-container" justify="center" span={20}>
-                <Col md={8} sm={0} sx={0} className="form-second-section">
+                <Col md={8} sm={0} xs={0} className="form-second-section">
                   {current == 0 ? (
                     <>
                       <img src={require('../../../images/office.svg')} />
@@ -222,8 +222,8 @@ class CompanySignup extends React.Component {
                 <Col
                   lg={14}
                   md={18}
-                  sm={12}
-                  sx={24}
+                  sm={{ span: 24 }}
+                  xs={{ span: 24 }}
                   className="form-first-section"
                 >
                   <Steps current={current}>

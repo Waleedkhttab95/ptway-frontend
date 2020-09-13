@@ -59,26 +59,20 @@ const step2Form = props => {
             <img src={require('../../../../images/shield.svg')} />
             <span>معلوماتك سوف تستخدم لايجاد أفضل المرشحين لك.</span>
           </div>
-          <div className="steps-btns">
-            {current > 0 && (
-              <button
-                // style={{ marginLeft: 8 }}
-                onClick={props.prev}
-                className="second-btn prev-btn-mob"
-              >
-                السابق
-              </button>
-            )}
-            {current === steps && (
-              <button
-                type="primary"
-                className="submit-btn"
-                onClick={props.signup}
-              >
-                أنشر وظيفة
-              </button>
-            )}
-          </div>
+          {current === steps && (
+            <button
+              type="primary"
+              className="submit-btn"
+              onClick={props.signup}
+            >
+              أنشر وظيفة
+            </button>
+          )}
+          {current > 0 && (
+            <div onClick={props.prev} className="prev">
+              السابق
+            </div>
+          )}
         </div>
       </div>
     </div>
