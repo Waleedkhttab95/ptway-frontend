@@ -26,7 +26,6 @@ class Job extends React.Component {
   render() {
     const { offer, company } = this.state;
     const { Country, City, Contract, contractType, job } = offer;
-    console.log('offer', offer);
     const { companyName, imagePath, address, info } = company;
     return (
       <div className="user-container">

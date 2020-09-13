@@ -9,14 +9,17 @@ const step1Form = props => {
     companyNameError,
     jobTypes,
     sectors,
-    companyName
+    companyName,
+    emailError,
+    passwordError
   } = state;
 
   return (
-    <div className="steps-form">
+    <div className="com-steps-form">
       <div className="form-content">
+        <h5 className="section-title">معلومات الشركة</h5>
         <div className="form-fields">
-          <span className="info-label">اسم الجهة</span>
+          <span className="info-label">إسم المجموعة أو الشركة</span>
           <Input
             className="single-input"
             onChange={handleInputsChange}
@@ -25,6 +28,17 @@ const step1Form = props => {
           />
           <span style={{ color: 'red' }}>
             {companyNameError && !state.companyName ? companyNameError : ''}
+          </span>
+          <label className="info-label">البريد الالكتروني</label>
+          <Input
+            className="single-input"
+            name="email"
+            onChange={handleInputsChange}
+            type="email"
+            value={state.email}
+          />
+          <span style={{ color: 'red' }}>
+            {emailError && !state.email ? emailError : ''}
           </span>
           <span className="info-label">نشاط العمل</span>
           <Select
@@ -62,13 +76,24 @@ const step1Form = props => {
           <span style={{ color: 'red' }}>
             {sectorError && !state.sector ? sectorError : ''}
           </span>
+          <label className="info-label">كلمة المرور</label>
+          <Input
+            className="single-input"
+            name="password"
+            onChange={handleInputsChange}
+            type="password"
+            value={state.password}
+          />
+          <span style={{ color: 'red' }}>
+            {passwordError && !state.password ? passwordError : ''}
+          </span>
           {current < steps && (
             <button
               className="first-step-btn"
               type="primary"
               onClick={props.next}
             >
-              التالي
+              التالي - مسؤول التوظيف
             </button>
           )}
         </div>
