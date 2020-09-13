@@ -1,16 +1,16 @@
 import React from 'react';
-import { Input } from 'antd';
-import personalInfoIcon from '../../../../images/personal-info-icon.svg';
+import { Checkbox, Input, Select } from 'antd';
 
 const step2Form = props => {
-  const { state, steps, current, handleInputsChange } = props;
+  const { state, steps, current, handleInputsChange, handleChange } = props;
   const { nameError, phoneError, positionError, Name, position, phone } = state;
   return (
-    <div className="steps-form">
+    <div className="com-steps-form">
       <div className="form-content">
+        <h5 className="section-title">بيانات مسؤول التوظيف</h5>
         <span className="line"></span>
         <div className="form-fields">
-          <label className="info-label">اسم المشرف </label>
+          <label className="info-label">الإسم الأول والأخير </label>
           <Input
             className="single-input"
             onChange={handleInputsChange}
@@ -20,9 +20,7 @@ const step2Form = props => {
           <span style={{ color: 'red' }}>
             {nameError && !state.Name ? nameError : ''}
           </span>
-          <label className="info-label" style={{ marginTop: '0px' }}>
-            رقم التواصل
-          </label>
+          <label className="info-label">رقم الجوال</label>
           <Input
             className="single-input"
             onChange={handleInputsChange}
@@ -32,35 +30,52 @@ const step2Form = props => {
           <span style={{ color: 'red' }}>
             {phoneError && !state.phone ? phoneError : ''}
           </span>
-          <label className="info-label" style={{ marginTop: '0px' }}>
-            المركز الوظيفي
-          </label>
-          <Input
-            className="single-input"
-            onChange={handleInputsChange}
+          <label className="info-label">صفة المسؤول</label>
+          <Select
             name="position"
             value={position}
-          />
+            onChange={value => handleChange(value, 'position')}
+            className="country-text"
+          >
+            <Select.Option value="صاحب المشروع">صاحب المشروع</Select.Option>
+            <Select.Option value="مسؤول الموارد البشرية">
+              مسؤول الموارد البشرية
+            </Select.Option>
+            <Select.Option value="مدير الموارد البشرية">
+              مدير الموارد البشرية
+            </Select.Option>
+          </Select>
           <span style={{ color: 'red' }}>
             {positionError && !state.position ? positionError : ''}
           </span>
+
+          <Checkbox className="signup-check ">
+            بإنشاء حسابك معنا أنت توافق على سياسة الاستخدامو سياسة <br />
+            الخصوصية للموقع.
+          </Checkbox>
+
+          <div>
+            {' '}
+            <img src={require('../../../../images/shield.svg')} />
+            <span>معلوماتك سوف تستخدم لايجاد أفضل المرشحين لك.</span>
+          </div>
           <div className="steps-btns">
             {current > 0 && (
               <button
                 // style={{ marginLeft: 8 }}
                 onClick={props.prev}
-                className="prev-btn prev-btn-mob"
+                className="second-btn prev-btn-mob"
               >
                 السابق
               </button>
             )}
-            {current < steps && (
+            {current === steps && (
               <button
-                className="first-step-btn"
                 type="primary"
-                onClick={props.next}
+                className="submit-btn"
+                onClick={props.signup}
               >
-                التالي
+                أنشر وظيفة
               </button>
             )}
           </div>

@@ -1,54 +1,145 @@
 .company-sign {
-    .steps-form .form-content {
-        padding: 42px 65px 0 0;
+  .steps-form .form-content {
+    padding: 42px 65px 0 0;
+  }
+
+  .com-steps-form {
+    height: auto;
+    padding-bottom: 50px;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+    .section-title {
+      font-family: DINNextLTW23;
+      font-size: 28px;
+      text-align: center;
+      color: #18233d;
+      padding: 30px 0 0px 0;
+      margin-left: 80px;
     }
-    .steps-form {
-        height: auto;
-        padding-bottom: 50px;
+    .first-step-btn,
+    .second-btn,
+    .submit-btn,
+    .prev-btn {
+      width: 341px;
+      height: 40px;
+      margin-top: 45px;
+      cursor: pointer;
     }
-    .steps-header {
-        width: 600px;
-        span:nth-child(2) {
-            margin-right: 20px;
-        }
+
+    .second-btn,
+    .submit-btn {
+      width: 170px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.57;
+      text-align: center;
+      border-radius: 6px;
+      background-color: #3598d4;
+      color: #fff;
     }
-    .single-input {
-        margin: 5px 0;
-        max-width: 450px;
-        width: 100%;
-        height: 39px;
+    .second-btn {
+      background: #fff;
+      border-color: #3598d4;
+      color: #3598d4;
     }
-    .ant-select {
-        margin: 5px 0;
-       & div {
-        width: 450px;
-        // width: 100%;
-        height: 39px;
-       } 
+    .signup-check {
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 10px;
     }
-    .info-label {
-        margin-top: 5px;
+  }
+
+  .signup-form-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    width: 800px;
+    .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal {
+      width: 220px;
+      margin-right: 70px;
     }
+    .form-first-section {
+      padding: 40px 40px 0 0;
+    }
+    .form-second-section {
+      min-height: 810px;
+      box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+      text-align: center;
+      padding-top: 180px;
+
+      h3 {
+        font-family: DINNextLTW23;
+        font-size: 18px;
+        color: #18233d;
+        padding: 50px 0;
+      }
+      h6 {
+        font-family: DINNextLTW23;
+        font-size: 14px;
+        line-height: 1.93;
+        color: #8b919e;
+        padding-right: 50px;
+        text-align: justify;
+      }
+    }
+  }
+  .steps-header {
+    width: 250px;
+    margin-right: 70px;
+    span {
+      color: #059bd2;
+    }
+    span:nth-child(2) {
+      margin-right: 20px;
+    }
+  }
+  .single-input {
+    margin: 5px 0;
+    max-width: 341px;
+    width: 100%;
+    height: 32px;
+  }
+  label {
+    // margin-top: 25px;
+  }
+  .ant-select {
+    margin: 5px 0;
+    & div {
+      max-width: 341px;
+      width: 100%;
+      height: 32px;
+    }
+  }
+  .info-label {
+    margin-top: 25px;
+  }
 }
 @media (max-width: 768px) and (min-width: 321px) {
-    .company-sign {
-        .steps-form .form-content {
-            padding: 30px 13px;
-        }
-        .single-input {
-            margin: 5px 0;
-            width: 300px;
-            height: 39px;
-        }
-        .ant-select {
-            margin: 5px 0;
-           & div {
-            width: 300px;
-            // width: 100%;
-            height: 39px;
-           } 
-        }
-
+  .company-sign {
+    .steps-form .form-content {
+      padding: 30px 13px;
     }
-
+    .single-input {
+      margin: 5px 0;
+      width: 300px;
+      height: 39px;
+    }
+    .ant-select {
+      margin: 5px 0;
+      & div {
+        width: 250px;
+      }
+    }
+    .signup-form-container {
+      width: 350px;
+      .form-first-section {
+        padding: 40px 10px 0 0;
+      }
+      .form-second-section {
+        display: none;
+        min-height: 0;
+      }
+    }
+  }
 }

@@ -6,7 +6,7 @@ const step3Form = props => {
   const { emailError, passwordError } = state;
 
   return (
-    <div className="steps-form">
+    <div className="com-steps-form">
       <div className="form-content signupf">
         {/* <img src={personalInfoIcon} /> */}
         {/* <span className="f-title">معلومات الحساب</span> */}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Steps, Layout, message } from 'antd';
+import { Steps, Layout, message, Row, Col } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
 import Step3 from './steps/stepThree';
@@ -50,37 +50,31 @@ class CompanySignup extends React.Component {
     let current = this.state.current;
     switch (current) {
       case 0:
-        if (!jobType || !sector || !companyName) {
+        if (!jobType || !sector || !companyName || !email || !password) {
           this.setState({
             jobTypeError: 'هذا الحقل مطلوب',
             sectorError: 'هذا الحقل مطلوب',
-            companyNameError: 'هذا الحقل مطلوب'
-          });
-        } else {
-          current = this.state.current + 1;
-          this.setState({ current });
-        }
-        break;
-      case 1:
-        if (!Name || !phone || !position) {
-          this.setState({
-            nameError: 'هذا الحقل مطلوب',
-            phoneError: 'هذا الحقل مطلوب',
-            positionError: 'هذا الحقل مطلوب'
-          });
-        } else {
-          current = this.state.current + 1;
-          this.setState({ current });
-        }
-        break;
-      case 2:
-        if (!email || !password) {
-          this.setState({
+            companyNameError: 'هذا الحقل مطلوب',
             emailError: 'هذا الحقل مطلوب',
             passwordError: 'هذا الحقل مطلوب'
           });
+        } else {
+          current = this.state.current + 1;
+          this.setState({ current });
         }
         break;
+      // case 1:
+      //   if (!Name || !phone || !position) {
+      //     this.setState({
+      //       nameError: 'هذا الحقل مطلوب',
+      //       phoneError: 'هذا الحقل مطلوب',
+      //       positionError: 'هذا الحقل مطلوب'
+      //     });
+      //   } else {
+      //     current = this.state.current + 1;
+      //     this.setState({ current });
+      //   }
+      //   break;
     }
   };
 
@@ -114,10 +108,11 @@ class CompanySignup extends React.Component {
       phone,
       position
     } = this.state;
-    if (!email || !password) {
+    if (!Name || !phone || !position) {
       this.setState({
-        emailError: 'هذا الحقل مطلوب',
-        passwordError: 'هذا الحقل مطلوب'
+        nameError: 'هذا الحقل مطلوب',
+        phoneError: 'هذا الحقل مطلوب',
+        positionError: 'هذا الحقل مطلوب'
       });
     } else {
       const { register, history } = this.props;
@@ -144,7 +139,7 @@ class CompanySignup extends React.Component {
     console.log('state', this.state);
     const steps = [
       {
-        title: 'اسم الجهة ونشاط العمل',
+        title: 'إسم الشركة',
         content: (
           <Step1
             handleChange={this.handleChange}
@@ -157,32 +152,34 @@ class CompanySignup extends React.Component {
         )
       },
       {
-        title: 'معلومات شخصية',
+        title: 'مسؤول التوظيف',
         content: (
           <Step2
             handleInputsChange={this.handleInputsChange}
+            handleChange={this.handleChange}
             state={this.state}
             next={() => this.next()}
             prev={() => this.prev()}
             current={current}
-            steps={2}
-          />
-        )
-      },
-      {
-        title: 'معلومات الحساب',
-        content: (
-          <Step3
-            handleChange={this.handleInputsChange}
-            state={this.state}
-            prev={() => this.prev()}
-            current={current}
-            steps={2}
+            steps={1}
             signup={this.signup}
-            error={this.props.user}
           />
         )
       }
+      // {
+      //   title: 'معلومات الحساب',
+      //   content: (
+      //     <Step3
+      //       handleChange={this.handleInputsChange}
+      //       state={this.state}
+      //       prev={() => this.prev()}
+      //       current={current}
+      //       steps={2}
+      //       signup={this.signup}
+      //       error={this.props.user}
+      //     />
+      //   )
+      // }
     ];
     return (
       <React.Fragment>
@@ -194,17 +191,53 @@ class CompanySignup extends React.Component {
         <Layout style={{ background: '#f3f3f3', height: '100%' }}>
           <div className="user-container company-sign">
             <div className="signup-form">
-              <Steps current={current}>
-                {steps.map(item => (
-                  <Step key={item.title} />
-                ))}
-              </Steps>
-              <div className="steps-header">
-                <span> اسم الجهة ونشاط العمل</span>
-                <span>معلومات شخصية</span>
-                <span>معلومات الحساب</span>
-              </div>
-              <div className="steps-content">{steps[current].content}</div>
+              <Row className="signup-form-container" justify="center" span={20}>
+                <Col md={8} sm={0} sx={0} className="form-second-section">
+                  {current == 0 ? (
+                    <>
+                      <img src={require('../../../images/office.svg')} />
+                      <h3>لماذا تسجيل الشركة؟</h3>
+                      <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
+                      <h6> ✔️ تعيين أكثر من مسؤول </h6>
+                      <h6>
+                        ✔️ تسجيل فوري للموظفين <br />
+                        المسجلين بنفس بريد الشركة
+                      </h6>
+                    </>
+                  ) : current == 1 ? (
+                    <>
+                      <img src={require('../../../images/file-settings.svg')} />
+                      <h3>مسؤول التوظيف</h3>
+                      <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
+                      <h6> ✔️ تعيين أكثر من مسؤول </h6>
+                      <h6>
+                        ✔️ تسجيل فوري للموظفين <br />
+                        المسجلين بنفس بريد الشركة
+                      </h6>
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </Col>
+                <Col
+                  lg={14}
+                  md={18}
+                  sm={12}
+                  sx={24}
+                  className="form-first-section"
+                >
+                  <Steps current={current}>
+                    {steps.map(item => (
+                      <Step key={item.title} />
+                    ))}
+                  </Steps>
+                  <div className="steps-header">
+                    <span> إسم الشركة</span>
+                    <span>مسؤول التوظيف</span>
+                  </div>
+                  <div className="steps-content">{steps[current].content}</div>
+                </Col>
+              </Row>
             </div>
           </div>
           <Footer />
