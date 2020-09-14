@@ -62,6 +62,7 @@ class Job extends React.Component {
       job,
       contractType
     } = offer.jobOffer;
+    const isLock = job ? job.isLock : false;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
     return (
@@ -189,6 +190,8 @@ class Job extends React.Component {
               <button className="not-intersted-btn">
                 لقد تقدمت للوظيفة سابقاً
               </button>
+            ) : isLock ? (
+              <button className="not-intersted-btn">لقد اكتمل العدد</button>
             ) : (
               <button
                 className={

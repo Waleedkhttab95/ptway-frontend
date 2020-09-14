@@ -18,18 +18,12 @@
       margin-left: 80px;
     }
     .first-step-btn,
-    .second-btn,
-    .submit-btn,
-    .prev-btn {
-      width: 341px;
+    .submit-btn {
+      max-width: 341px;
+      width: 100%;
       height: 40px;
       margin-top: 45px;
       cursor: pointer;
-    }
-
-    .second-btn,
-    .submit-btn {
-      width: 170px;
       font-size: 12px;
       font-weight: bold;
       line-height: 1.57;
@@ -38,11 +32,14 @@
       background-color: #3598d4;
       color: #fff;
     }
-    .second-btn {
-      background: #fff;
-      border-color: #3598d4;
-      color: #3598d4;
+    .prev {
+      text-align: center;
+      margin-left: 85px;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #3498d4;
     }
+
     .signup-check {
       width: 100%;
       margin-top: 50px;
@@ -100,9 +97,7 @@
     width: 100%;
     height: 32px;
   }
-  label {
-    // margin-top: 25px;
-  }
+
   .ant-select {
     margin: 5px 0;
     & div {
@@ -120,21 +115,37 @@
     .steps-form .form-content {
       padding: 30px 13px;
     }
+    .signup-form {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .com-steps-form .section-title {
+      margin-left: 0;
+    }
     .single-input {
       margin: 5px 0;
-      width: 300px;
-      height: 39px;
+      width: 100%;
+      height: 32px;
     }
     .ant-select {
       margin: 5px 0;
       & div {
-        width: 250px;
+        width: 100%;
+        height: 32px;
       }
     }
+    .com-steps-form .prev {
+      margin-left: 30px;
+    }
     .signup-form-container {
-      width: 350px;
+      width: 100%;
+      .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal {
+        width: 0px;
+        margin-right: 0;
+        margin: auto;
+      }
       .form-first-section {
-        padding: 40px 10px 0 0;
+        padding: 40px 10px 0 0px;
       }
       .form-second-section {
         display: none;
