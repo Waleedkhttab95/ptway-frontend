@@ -192,7 +192,12 @@ class CompanySignup extends React.Component {
           <div className="user-container company-sign">
             <div className="signup-form">
               <Row className="signup-form-container" justify="center">
-                <Col span={20} push={2}>
+                <Col
+                  lg={{ span: 24, push: 0 }}
+                  md={{ span: 24, push: 0 }}
+                  sm={{ span: 20, push: 2 }}
+                  xs={{ span: 20, push: 2 }}
+                >
                   <Row justify="center">
                     <Col md={8} sm={0} xs={0} className="form-second-section">
                       {current == 0 ? (
