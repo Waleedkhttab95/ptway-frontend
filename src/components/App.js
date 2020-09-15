@@ -61,9 +61,7 @@ import { Helmet } from 'react-helmet';
 import UserInfo from './User/userInfoFollowForm';
 import WholeCV from './Company/Applicant/WholeCV';
 import CompanyJob from './Company/Project/job';
-
-// DELETE ME
-// import UserHomeClone from '../components/User/index_clone';
+import ReactivateAccount from './User/reactivateAccount';
 
 const App = () => {
   return (
@@ -164,6 +162,11 @@ const App = () => {
             exact
             path="/user/profile/update"
             component={UpdateProfile}
+          />
+          <Route
+            exact
+            path="/reactivate-account"
+            component={ReactivateAccount}
           />
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/company/login" component={CompanyLogin} />
