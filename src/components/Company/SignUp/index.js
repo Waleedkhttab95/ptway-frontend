@@ -3,7 +3,6 @@ import './style.scss';
 import { Steps, Layout, message, Row, Col } from 'antd';
 import Step1 from './steps/stepOne';
 import Step2 from './steps/stepTwo';
-import Step3 from './steps/stepThree';
 import Footer from '../../Footer';
 import { connect } from 'react-redux';
 import statatisticsService from '../../../services/statisticsService';
@@ -37,16 +36,7 @@ class CompanySignup extends React.Component {
   };
 
   next = () => {
-    const {
-      jobType,
-      sector,
-      Name,
-      phone,
-      position,
-      email,
-      password,
-      companyName
-    } = this.state;
+    const { jobType, sector, email, password, companyName } = this.state;
     let current = this.state.current;
     switch (current) {
       case 0:
@@ -63,18 +53,6 @@ class CompanySignup extends React.Component {
           this.setState({ current });
         }
         break;
-      // case 1:
-      //   if (!Name || !phone || !position) {
-      //     this.setState({
-      //       nameError: 'هذا الحقل مطلوب',
-      //       phoneError: 'هذا الحقل مطلوب',
-      //       positionError: 'هذا الحقل مطلوب'
-      //     });
-      //   } else {
-      //     current = this.state.current + 1;
-      //     this.setState({ current });
-      //   }
-      //   break;
     }
   };
 
@@ -166,20 +144,6 @@ class CompanySignup extends React.Component {
           />
         )
       }
-      // {
-      //   title: 'معلومات الحساب',
-      //   content: (
-      //     <Step3
-      //       handleChange={this.handleInputsChange}
-      //       state={this.state}
-      //       prev={() => this.prev()}
-      //       current={current}
-      //       steps={2}
-      //       signup={this.signup}
-      //       error={this.props.user}
-      //     />
-      //   )
-      // }
     ];
     return (
       <React.Fragment>
