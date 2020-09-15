@@ -191,51 +191,59 @@ class CompanySignup extends React.Component {
         <Layout style={{ background: '#f3f3f3', height: '100%' }}>
           <div className="user-container company-sign">
             <div className="signup-form">
-              <Row className="signup-form-container" justify="center" span={20}>
-                <Col md={8} sm={0} xs={0} className="form-second-section">
-                  {current == 0 ? (
-                    <>
-                      <img src={require('../../../images/office.svg')} />
-                      <h3>لماذا تسجيل الشركة؟</h3>
-                      <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
-                      <h6> ✔️ تعيين أكثر من مسؤول </h6>
-                      <h6>
-                        ✔️ تسجيل فوري للموظفين <br />
-                        المسجلين بنفس بريد الشركة
-                      </h6>
-                    </>
-                  ) : current == 1 ? (
-                    <>
-                      <img src={require('../../../images/file-settings.svg')} />
-                      <h3>مسؤول التوظيف</h3>
-                      <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
-                      <h6> ✔️ تعيين أكثر من مسؤول </h6>
-                      <h6>
-                        ✔️ تسجيل فوري للموظفين <br />
-                        المسجلين بنفس بريد الشركة
-                      </h6>
-                    </>
-                  ) : (
-                    ''
-                  )}
-                </Col>
-                <Col
-                  lg={14}
-                  md={18}
-                  sm={{ span: 24 }}
-                  xs={{ span: 24 }}
-                  className="form-first-section"
-                >
-                  <Steps current={current}>
-                    {steps.map(item => (
-                      <Step key={item.title} />
-                    ))}
-                  </Steps>
-                  <div className="steps-header">
-                    <span> إسم الشركة</span>
-                    <span>مسؤول التوظيف</span>
-                  </div>
-                  <div className="steps-content">{steps[current].content}</div>
+              <Row className="signup-form-container" justify="center">
+                <Col span={20} push={2}>
+                  <Row justify="center">
+                    <Col md={8} sm={0} xs={0} className="form-second-section">
+                      {current == 0 ? (
+                        <>
+                          <img src={require('../../../images/office.svg')} />
+                          <h3>لماذا تسجيل الشركة؟</h3>
+                          <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
+                          <h6> ✔️ تعيين أكثر من مسؤول </h6>
+                          <h6>
+                            ✔️ تسجيل فوري للموظفين <br />
+                            المسجلين بنفس بريد الشركة
+                          </h6>
+                        </>
+                      ) : current == 1 ? (
+                        <>
+                          <img
+                            src={require('../../../images/file-settings.svg')}
+                          />
+                          <h3>مسؤول التوظيف</h3>
+                          <h6> ✔️ مشاركة المرشحين مع زملاؤك </h6>
+                          <h6> ✔️ تعيين أكثر من مسؤول </h6>
+                          <h6>
+                            ✔️ تسجيل فوري للموظفين <br />
+                            المسجلين بنفس بريد الشركة
+                          </h6>
+                        </>
+                      ) : (
+                        ''
+                      )}
+                    </Col>
+                    <Col
+                      lg={14}
+                      md={18}
+                      sm={{ span: 24 }}
+                      xs={{ span: 24 }}
+                      className="form-first-section"
+                    >
+                      <Steps current={current}>
+                        {steps.map(item => (
+                          <Step key={item.title} />
+                        ))}
+                      </Steps>
+                      <div className="steps-header">
+                        <span> إسم الشركة</span>
+                        <span>مسؤول التوظيف</span>
+                      </div>
+                      <div className="steps-content">
+                        {steps[current].content}
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </div>
