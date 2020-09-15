@@ -11,12 +11,8 @@ const step4Form = props => {
     passwordMatchError
   } = state;
   return (
-    <div className="steps-form">
-      <div
-        className="form-content signupf"
-        // style={{ padding: '30px 53px 0 0' }}
-      >
-        {/* <img src={personalInfoIcon} /> */}
+    <div className="steps-form steps-form-user-signin">
+      <div className="form-content signupf">
         <span className="f-title">معلومات الحساب</span>
         <span className="line"></span>
         <div className="form-fields">

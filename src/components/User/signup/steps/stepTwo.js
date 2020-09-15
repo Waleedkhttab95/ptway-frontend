@@ -4,7 +4,6 @@ import personalInfoIcon from '../../../../images/personal-info-icon.svg';
 
 const step2Form = props => {
   const {
-    handleChange,
     state,
     steps,
     current,
@@ -14,7 +13,7 @@ const step2Form = props => {
   } = props;
   const { genderError, dateError } = state;
   return (
-    <div className="steps-form">
+    <div className="steps-form steps-form-user-signin">
       <div className="form-content">
         <img src={personalInfoIcon} />
         <span className="f-title">معلومات شخصية</span>
