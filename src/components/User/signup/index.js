@@ -149,6 +149,7 @@ class UserSignup extends React.Component {
       name,
       city,
       major,
+      jobCategory,
       // reEmail,
       rePassword
     } = this.state;
@@ -178,6 +179,7 @@ class UserSignup extends React.Component {
         birthDate: birthDate || name,
         city,
         major,
+        jobCategory,
         fullName: firstName + ' ' + lastName
       });
 

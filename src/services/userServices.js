@@ -28,7 +28,8 @@ const userServices = {
       public_Major: params.major,
       birthDate: params.birthDate,
       gender: params.gender,
-      fullName: params.fullName
+      fullName: params.fullName,
+      jobCategory: params.jobCategory
     }),
   login: params =>
     baseRequest
