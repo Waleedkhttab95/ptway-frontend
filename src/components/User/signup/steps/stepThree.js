@@ -74,6 +74,8 @@ const step3Form = props => {
             onChange={value => handleSelect(value, 'jobCategory')}
             className="major-text"
             value={state.jobCategory}
+            mode="multiple"
+            showArrow={true}
           >
             {_.isArray(categories)
               ? categories.map(elm => {
