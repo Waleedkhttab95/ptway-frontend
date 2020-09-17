@@ -165,15 +165,15 @@ class Jobs extends React.Component {
     const { jobOffer, company } = this.props;
 
     const job = await jobOffer({ id: jobId });
-    const companyInfo = await company({ id: job.value.job.company._id });
+    // const companyInfo = await company({ id: job.value.job.company._id });
     array.push(index);
     this.setState({
       job,
       jobId,
       jobLoading: false,
       selected: index,
-      clicked: array,
-      companyInfo
+      clicked: array
+      // companyInfo
     });
   };
 
@@ -187,8 +187,8 @@ class Jobs extends React.Component {
       selected,
       jobLoading,
       pageLoading,
-      clicked,
-      companyInfo
+      clicked
+      // companyInfo
     } = this.state;
 
     return (
@@ -219,7 +219,7 @@ class Jobs extends React.Component {
                         <Job
                           job={job}
                           jobId={jobId}
-                          companyDetails={companyInfo}
+                          // companyDetails={companyInfo}
                         />
                       )}
                     </Spin>

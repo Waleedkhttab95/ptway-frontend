@@ -54,6 +54,7 @@ class Job extends React.Component {
 
   render() {
     const { offer, closeModal } = this.props;
+    console.log('offer', offer);
     const {
       Country,
       City,
@@ -89,7 +90,8 @@ class Job extends React.Component {
         <Row className="job-section">
           <Col md={6} xs={24} sm={24}>
             <div className="right-section">
-              {offer.company ? (
+              {// offer.company
+              job ? (
                 <React.Fragment>
                   {imagePath ? (
                     <img src={imagePath} alt="user" className="picture" />
@@ -103,7 +105,9 @@ class Job extends React.Component {
                       src={require('../../../images/pure-avatar.png')}
                     />
                   )}
-                  <span className="job-owner-name">{compnayName}</span>
+                  <span className="job-owner-name">
+                    {job?.company?.companyName}
+                  </span>
                   <div className="job-owner-info">
                     <p>
                       <i
