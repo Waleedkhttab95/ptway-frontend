@@ -1,19 +1,20 @@
-
 .company-setting {
-    display: flex;
-    .right-side {
-        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-        background-color: #ffffff;
-        padding-right: 53px;
-        margin-right: 20px;
-        padding-top: 30px;
-    }
+  display: flex;
+  .right-side {
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    padding-right: 53px;
+    margin-right: 20px;
+    padding-top: 30px;
+  }
 }
-.contact-info, .social-info, .comp-location-info {
-    display: flex;
-    >div {
-        width: 100%
-    }
+.contact-info,
+.social-info,
+.comp-location-info {
+  display: flex;
+  > div {
+    width: 100%;
+  }
 }
 .sub-title {
   font-size: 14px;
@@ -37,12 +38,12 @@
   margin-bottom: 25px;
 }
 .sub-accounts {
-    display: flex;
-    justify-content: right;
-    margin: 50px 0;
+  display: flex;
+  justify-content: right;
+  margin: 50px 0;
 }
 .sub-account-btn {
-    width: 161px;
+  width: 161px;
   height: 35px;
   border-radius: 6px;
   background-color: #3598d4;
@@ -54,39 +55,39 @@
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
-//   margin-right: 30px;
+  //   margin-right: 30px;
 }
 .filter-input {
-    width: 251px;
+  width: 251px;
   height: 35px;
   border-radius: 5px;
   border: solid 1px #d9d9d9;
   background-color: #fcfcfc;
 }
 .sub-accounts-header {
-    display: flex;
-    justify-content: space-around;
-    border-bottom: solid 1px #e3e3e3;
-    >h3 {
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: right;
-        color: #3b3b3b;
-    }
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid 1px #e3e3e3;
+  > h3 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3b3b3b;
+  }
 }
 .sub-account {
-    height: 64px;
-//   opacity: 0.5;
+  height: 64px;
+  //   opacity: 0.5;
   border-radius: 5px;
   background-color: #f1f1f1;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  >h3 {
+  > h3 {
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -98,278 +99,284 @@
   }
 }
 .sub-account-odd {
-    height: 64px;
-    // opacity: 0.5;
-    border-radius: 5px;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    >h3 {
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: right;
-        color: #3b3b3b;
-      }
+  height: 64px;
+  // opacity: 0.5;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  > h3 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3b3b3b;
+  }
 }
 .account-setting {
-    padding-top: 50px;
-    padding-right: 50px;
-    padding-left: 30px;
-    height: auto;
-    .account-info{
-        display: flex;
-        flex-direction: column;
-        > input {
-             width: 414px;
-             height: 32px;
-             border-radius: 4px;
-             border: solid 1px #d9d9d9;
-             margin-bottom: 30px;
-         }
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-left: 30px;
+  height: auto;
+  .account-info {
+    display: flex;
+    flex-direction: column;
+    > input {
+      width: 414px;
+      height: 32px;
+      border-radius: 4px;
+      border: solid 1px #d9d9d9;
+      margin-bottom: 30px;
     }
+    .select-text {
+      max-width: 252px;
+      width: 100%;
+      div {
+        border-top-width: 1px;
+      }
+    }
+  }
 }
 
 .contact-way {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .new-sub-acc {
-    > h3 {
-        font-size: 20px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        color: #222222;
-        margin-top: 30px;
-    }
-    >p {
-        font-size: 16px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.5;
-        letter-spacing: normal;
-        text-align: center;
-        color: #ababab;
-    }
-    .sub-account-btn {
-        width: 234px;
-        height: 35px;
-        border-radius: 6px;
-        background-color: #3598d4;
-        font-size: 14px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.57;
-        letter-spacing: normal;
-        text-align: center;
-        color: #ffffff;
-        display: block;
-        margin: auto;
-        margin-top: 30px !important;
-        margin-bottom: 30px !important;
-    
-    }
+  > h3 {
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #222222;
+    margin-top: 30px;
+  }
+  > p {
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ababab;
+  }
+  .sub-account-btn {
+    width: 234px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #3598d4;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    display: block;
+    margin: auto;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+  }
 }
 .new-sub-form {
-    display: flex;
-    >div {
-        margin-left: 15px;
-        > label {
-            font-size: 14px;
-            font-weight: 500;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.57;
-            letter-spacing: normal;
-            text-align: right;
-            color: #b5b5b5;
-        }
-        >input {
-            width: 219px;
-             border: solid 1px #d9d9d9;
-             margin-bottom: 15px;
-        }
+  display: flex;
+  > div {
+    margin-left: 15px;
+    > label {
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.57;
+      letter-spacing: normal;
+      text-align: right;
+      color: #b5b5b5;
     }
+    > input {
+      width: 219px;
+      border: solid 1px #d9d9d9;
+      margin-bottom: 15px;
+    }
+  }
 }
 .search-mob {
-    width: 250px;
+  width: 250px;
 }
-.settings-tab >div{   
-    border-bottom: none;
-    >div >div >div >div >div >div {
-        width: auto !important;
-        color: #18233d !important;
-        font-size: 18px !important;
-
-    }
+.settings-tab > div {
+  border-bottom: none;
+  > div > div > div > div > div > div {
+    width: auto !important;
+    color: #18233d !important;
+    font-size: 18px !important;
+  }
 }
 
-
-@media (max-width:320px) {
-    .company-container {
-        padding: 30px 20px; 
-        .company-setting {
-           flex-direction: column;
-           .right-side {
-            padding-right: 0px;
-          margin-right: 0px;
-        } 
-        }
+@media (max-width: 320px) {
+  .company-container {
+    padding: 30px 20px;
+    .company-setting {
+      flex-direction: column;
+      .right-side {
+        padding-right: 0px;
+        margin-right: 0px;
+      }
     }
-    .contact-info, .social-info, .comp-location-info {
-        flex-direction: column;
-        padding-right: 15px;
-    }
-    .sub-accounts {
-        flex-direction: column;
-        margin: 50px 10px;
-    }
-    .search-mob {
-        width: 300px;
-        text-align: center;
-    }
-    .jobs-search-icon {
-        right: 10px;
-    }
-    .filter-title{
-        margin-top: 10px;
-    }
-    .filter-input {
-        margin-top: 10px;
-    }
-    .sub-account-btn{
-        margin-top: 10px;
-    }
-    .sub-account-odd{
-        height: auto;
-        flex-direction: column;
-        justify-content: right;
-        align-items: flex-start;
-        padding: 15px;
-    }
-    .sub-account{
-        height: auto;
-        flex-direction: column;
-        justify-content: right;
-        align-items: flex-start;
-        padding: 15px;
-    }
-    .sub-accounts-header{
-        display: none;
-    }
-    .heading {
-        padding-right: 13px;
-    }
+  }
+  .contact-info,
+  .social-info,
+  .comp-location-info {
+    flex-direction: column;
+    padding-right: 15px;
+  }
+  .sub-accounts {
+    flex-direction: column;
+    margin: 50px 10px;
+  }
+  .search-mob {
+    width: 300px;
+    text-align: center;
+  }
+  .jobs-search-icon {
+    right: 10px;
+  }
+  .filter-title {
+    margin-top: 10px;
+  }
+  .filter-input {
+    margin-top: 10px;
+  }
+  .sub-account-btn {
+    margin-top: 10px;
+  }
+  .sub-account-odd {
+    height: auto;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .sub-account {
+    height: auto;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .sub-accounts-header {
+    display: none;
+  }
+  .heading {
+    padding-right: 13px;
+  }
 }
 .account-setting .account-info > input {
-    width: 250px;
+  width: 250px;
 }
 .extra-info {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 .new-sub-form > div {
+  margin-left: 15px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.new-sub-form {
+  display: inherit;
+}
+.settings-tab > div {
+  > div > div > div > div > div > div {
+    font-size: 15px !important;
+  }
+}
+.account-setting .account-info > input {
+  width: 250px;
+}
+.extra-info {
+  padding-right: 10px;
+}
+
+@media (min-width: 321px) and (max-width: 678px) {
+  .company-container {
+    padding: 30px 20px;
+    .company-setting {
+      flex-direction: column;
+      .right-side {
+        padding-right: 0px;
+        margin-right: 0px;
+      }
+    }
+  }
+  .search-mob {
+    width: 300px;
+    text-align: center;
+  }
+  .jobs-search-icon {
+    right: 10px;
+  }
+
+  .contact-info,
+  .social-info,
+  .comp-location-info {
+    flex-direction: column;
+    padding-right: 15px;
+  }
+  .sub-accounts {
+    flex-direction: column;
+    margin: 50px 10px;
+  }
+  .filter-title {
+    margin-top: 10px;
+  }
+  .filter-input {
+    margin-top: 10px;
+  }
+  .sub-account-btn {
+    margin-top: 10px;
+  }
+  .sub-account-odd {
+    height: auto;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .sub-account {
+    height: auto;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  .sub-accounts-header {
+    display: none;
+  }
+  .heading {
+    padding-right: 13px;
+  }
+  .new-sub-form > div {
     margin-left: 15px;
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.new-sub-form {
+  }
+  .new-sub-form {
     display: inherit;
-}
-.settings-tab >div{   
-    >div >div >div >div >div >div {
-        font-size: 15px !important;
-
+  }
+  .settings-tab > div {
+    > div > div > div > div > div > div {
+      font-size: 15px !important;
     }
-}
-.account-setting .account-info > input {
-    width: 250px;
-}
-.extra-info {
-    padding-right: 10px;
-}
-
-@media (min-width:321px) and (max-width:678px) {
-    .company-container {
-        padding: 30px 20px; 
-        .company-setting {
-        flex-direction: column;
-            .right-side {
-                padding-right: 0px;
-              margin-right: 0px;
-            } 
-         }
-    }
-    .search-mob {
-        width: 300px;
-        text-align: center;
-    }
-    .jobs-search-icon {
-        right: 10px;
-    }
-
-    .contact-info, .social-info, .comp-location-info {
-        flex-direction: column;
-        padding-right: 15px;
-    }
-    .sub-accounts {
-        flex-direction: column;
-        margin: 50px 10px;
-    }
-    .filter-title{
-        margin-top: 10px;
-    }
-    .filter-input {
-        margin-top: 10px;
-    }
-    .sub-account-btn{
-        margin-top: 10px;
-    }
-    .sub-account-odd{
-        height: auto;
-        flex-direction: column;
-        justify-content: right;
-        align-items: flex-start;
-        padding: 15px;
-    }
-    .sub-account{
-        height: auto;
-        flex-direction: column;
-        justify-content: right;
-        align-items: flex-start;
-        padding: 15px;
-    }
-    .sub-accounts-header{
-        display: none;
-    }
-    .heading {
-        padding-right: 13px;
-    }
-    .new-sub-form > div {
-        margin-left: 15px;
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .new-sub-form {
-        display: inherit;
-    }
-    .settings-tab >div{   
-        >div >div >div >div >div >div {
-            font-size: 15px !important;
-    
-        }
-    }
+  }
 }

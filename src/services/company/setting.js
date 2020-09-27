@@ -18,6 +18,14 @@ const settings = {
   updateCompanyName: params =>
     baseRequest.put('changeCompanyName', {
       name: params.name
-    })
+    }),
+  changeSuperVisor: params =>
+    baseRequest.put('/changeSuperVisor', {
+      Name: params.Name,
+      position: params.position,
+      phone: params.phone
+    }),
+  getCompanySuperV: () => baseRequest.get('/getCompanySuperV')
 };
+
 export default settings;

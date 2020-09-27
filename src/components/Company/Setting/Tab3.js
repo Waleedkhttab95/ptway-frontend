@@ -1,12 +1,16 @@
 import React from 'react';
 import './style.scss';
-import { Input, Button } from 'antd';
+import { Input, Button, Select } from 'antd';
 const Tab3 = ({
   handleChange,
+  handleSelectChange,
   ChangeSetting,
   error,
   newPassword,
-  rePassword
+  rePassword,
+  Name,
+  position,
+  phone
 }) => {
   return (
     <div className="account-setting">
@@ -26,12 +30,34 @@ const Tab3 = ({
         )}
 
         <h3 className="heading">تعديل اسم الشركة</h3>
-        <Input
-          placeholder="اسم الشركة الجديد"
-          onChange={handleChange}
-          name="companyName"
-        />
+        <label className="sub-title">اسم الشركة الجديد</label>
+        <Input onChange={handleChange} name="companyName" />
 
+        <h3 className="heading">تعديل معلومات المشرف</h3>
+        <label className="sub-title">الاسم</label>
+        <Input onChange={handleChange} name="Name" value={Name} />
+        <label className="sub-title">رقم الجوال</label>
+        <Input onChange={handleChange} name="phone" value={phone} />
+        <label className="sub-title">صفة المشرف</label>
+        <Select
+          name="position"
+          onChange={handleSelectChange}
+          className="select-text"
+          value={position}
+        >
+          <Select.Option
+            value="صاحب المشروع
+          "
+          >
+            صاحب المشروع
+          </Select.Option>
+          <Select.Option value="مسؤول الموارد البشرية">
+            مسؤول الموارد البشرية
+          </Select.Option>
+          <Select.Option value="مدير الموارد البشرية">
+            مدير الموارد البشرية
+          </Select.Option>
+        </Select>
         <Button
           onClick={ChangeSetting}
           style={{
