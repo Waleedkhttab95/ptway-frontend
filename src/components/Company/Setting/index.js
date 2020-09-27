@@ -12,7 +12,12 @@ import { companyInfo } from '../../../store/actions/company/home';
 import settings from '../../../services/company/setting';
 import Footer from '../../Footer';
 
-const { changePassword, updateCompanyName } = settings;
+const {
+  changePassword,
+  updateCompanyName,
+  changeSuperVisor,
+  getCompanySuperV
+} = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
@@ -22,6 +27,14 @@ class CompanySetting extends React.Component {
   async componentDidMount() {
     const { getCompanyInfo } = this.props;
     getCompanyInfo();
+    const supervisorData = await getCompanySuperV();
+    const { Name, position, phone } = supervisorData.superVisor;
+    this.setState({
+      supervisorData,
+      Name,
+      position,
+      phone
+    });
   }
 
   handleChange = e => {
@@ -30,8 +43,23 @@ class CompanySetting extends React.Component {
       [name]: value
     });
   };
+
+  handleSelectChange = value => {
+    this.setState({
+      position: value
+    });
+  };
+
   ChangeSetting = async () => {
-    const { newPassword, rePassword, prevPassword, companyName } = this.state;
+    const {
+      newPassword,
+      rePassword,
+      prevPassword,
+      companyName,
+      Name,
+      position,
+      phone
+    } = this.state;
     if (newPassword && prevPassword && rePassword) {
       if (newPassword !== rePassword) {
         this.setState({
@@ -51,10 +79,15 @@ class CompanySetting extends React.Component {
       await message.success('تم تغير اسم الشركة');
       window.location.reload();
     }
+    if (Name || position || phone) {
+      await changeSuperVisor({ Name, position, phone });
+      await message.success('تم تغير معلومات المشرف بنجاح');
+      window.location.reload();
+    }
   };
   render() {
     const { company } = this.props;
-
+    const { Name, position, phone } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -75,7 +108,7 @@ class CompanySetting extends React.Component {
               <Tabs type="card" className="settings-tab">
                 <TabPane tab="حساب الشركة" key="1">
                   <br />
-                  <Tab1 {...company} />
+                  <Tab1 {...company} {...this.state} />
                 </TabPane>
                 <TabPane tab="الحسابات الفرعية" key="2">
                   <Tab2 />
@@ -84,7 +117,11 @@ class CompanySetting extends React.Component {
                   <Tab3
                     handleChange={this.handleChange}
                     ChangeSetting={this.ChangeSetting}
+                    handleSelectChange={this.handleSelectChange}
                     {...this.state}
+                    Name={Name}
+                    position={position}
+                    phone={phone}
                   />
                 </TabPane>
               </Tabs>
