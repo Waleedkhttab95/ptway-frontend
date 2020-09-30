@@ -37,7 +37,12 @@ const Tab3 = ({
         <label className="sub-title">الاسم</label>
         <Input onChange={handleChange} name="Name" value={Name} />
         <label className="sub-title">رقم الجوال</label>
-        <Input onChange={handleChange} name="phone" value={phone} />
+        <Input
+          type="number"
+          onChange={handleChange}
+          name="phone"
+          value={phone}
+        />
         <label className="sub-title">صفة المشرف</label>
         <Select
           name="position"

@@ -59,6 +59,13 @@ const step2Form = props => {
             <img src={require('../../../../images/shield.svg')} />
             <span>معلوماتك سوف تستخدم لايجاد أفضل المرشحين لك.</span>
           </div>
+          <br />
+          {props.error && props.error.signupError && (
+            <span style={{ color: 'red' }}>
+              {props.error.signupError.response.data}
+            </span>
+          )}
+
           {current === steps && (
             <button
               type="primary"

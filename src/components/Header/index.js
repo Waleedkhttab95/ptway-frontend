@@ -1,7 +1,17 @@
 import React from 'react';
-import { Row, Drawer, Button, Col, Badge, Select, Modal } from 'antd';
+import {
+  Row,
+  Drawer,
+  Button,
+  Col,
+  Badge,
+  Select,
+  Modal,
+  Dropdown,
+  Menu
+} from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
 import header from '../../images/Page1_header.svg';
 import { logout } from '../../store/actions/userAction';
@@ -21,6 +31,7 @@ import {
   addNewProject,
   allCotracts
 } from '../../store/actions/company/projects';
+import { UserMenuSetting, CompanyMenuSetting } from './setting_menu';
 
 class Header extends React.Component {
   state = {
@@ -40,7 +51,7 @@ class Header extends React.Component {
       unreadJobOffers();
     }
 
-    if (loadState().role === 'user' || loadState().role === 'company') {
+    if (loadState().role === 'company') {
       getContracts();
     }
   }
@@ -198,31 +209,21 @@ class Header extends React.Component {
                         : ''
                     }
                   >
-                    {' '}
-                    <Select
-                      defaultValue="حسابي"
-                      className={
-                        window.location.href.includes('/user/account/setting')
-                          ? 'setting-select-active setting-select'
-                          : 'setting-select'
+                    <Dropdown
+                      overlay={
+                        <UserMenuSetting
+                          logout={this.props.logout}
+                          history={history}
+                        />
                       }
                     >
-                      <Select.Option
-                        value="setting"
-                        onClick={() => history.push('/user/account/setting')}
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={e => e.preventDefault()}
                       >
-                        اعدادات الحساب
-                      </Select.Option>
-                      <Select.Option
-                        value="logout"
-                        onClick={async () => {
-                          await this.props.logout();
-                          history.push('/');
-                        }}
-                      >
-                        تسجيل الخروج
-                      </Select.Option>
-                    </Select>
+                        حسابي <DownOutlined />
+                      </a>
+                    </Dropdown>
                   </div>
                 </div>
               </div>
@@ -351,30 +352,21 @@ class Header extends React.Component {
                         : ''
                     }
                   >
-                    <Select
-                      defaultValue="حسابي"
-                      className={
-                        window.location.href.includes('/company/setting')
-                          ? 'setting-select-active setting-select'
-                          : 'setting-select'
+                    <Dropdown
+                      overlay={
+                        <CompanyMenuSetting
+                          logout={this.props.logout}
+                          history={history}
+                        />
                       }
                     >
-                      <Select.Option
-                        value="setting"
-                        onClick={() => history.push('/company/setting')}
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={e => e.preventDefault()}
                       >
-                        اعدادات الحساب
-                      </Select.Option>
-                      <Select.Option
-                        value="logout"
-                        onClick={async () => {
-                          await this.props.logout();
-                          history.push('/');
-                        }}
-                      >
-                        تسجيل الخروج
-                      </Select.Option>
-                    </Select>
+                        حسابي <DownOutlined />
+                      </a>
+                    </Dropdown>
                   </div>
                 </div>
               </div>

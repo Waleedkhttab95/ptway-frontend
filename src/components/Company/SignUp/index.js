@@ -141,6 +141,7 @@ class CompanySignup extends React.Component {
             current={current}
             steps={1}
             signup={this.signup}
+            error={this.props.user}
           />
         )
       }
