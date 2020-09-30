@@ -312,7 +312,7 @@ class UpdateProfile extends React.Component {
     ];
 
     const status = ['متفرغ', 'موظف', 'طالب'];
-    const availabilityStatus = ['صباحي', 'مسائي'];
+    const availabilityStatus = ['صباحي', 'مسائي',"صباحي و مسائي"];
     let skillsObj;
     let pSkillsObj;
     const updatedSkills = _.isArray(skills)

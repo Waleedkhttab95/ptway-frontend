@@ -65,7 +65,7 @@ const step2Form = props => {
               className="submit-btn"
               onClick={props.signup}
             >
-              أنشر وظيفة
+              إبدأ الأن
             </button>
           )}
           {current > 0 && (

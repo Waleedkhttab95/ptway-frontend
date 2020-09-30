@@ -213,7 +213,7 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل (بحد اقصى 6 ساعات )</label>
+                        <label>عدد ساعات العمل (بحد اقصى 8 ساعات )</label>
                         <Input
                           onChange={handleChange}
                           name="workHours"

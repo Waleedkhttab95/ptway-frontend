@@ -8,7 +8,7 @@ const validationSchema = yup.object().shape({
   workHours: yup
     .number()
     .min(1, 'يجب ان يكون عدد ساعات العمل بين 1 و 6')
-    .max(6, 'يجب ان يكون عدد ساعات العمل بين 1 و 6')
+    .max(8, 'يجب ان يكون عدد ساعات العمل بين 1 و 8')
     .required('هذا الحقل مطلوب'),
   salary: yup.number().min(1500, 'الحد الشهري الأدنى هو 1500'),
   jobDescription: yup.string().required('هذا الحقل مطلوب'),
