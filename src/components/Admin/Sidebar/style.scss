@@ -8,6 +8,27 @@
     background-image: url('../../../images/sidebar-1.png');
     background-size: cover;
     background-position: center center;
+    .sidebar-elm:hover{
+        color: white;
+        background-color: #40a9ff;
+        text-align: center;
+        width: 100%;
+        padding-top: 10px;
+    }
+    .sidebar-elm:visited{
+        background-color: #40a9ff;
+        text-align: center;
+        width: 100%;
+        padding-top: 10px;
+    }
+    .admin-logo > img{
+        height: 100px;
+        widows: 100px;
+    }
+    .ant-menu-item > a{
+        font-size: 18px;
+        font-weight: 500;
+    }
 }
 .sidebar-menu{
    height: 100vh;
@@ -31,27 +52,7 @@
     width: 100%;
     padding-top: 10px;
 }
-.sidebar-elm:hover{
-    color: white;
-    background-color: #40a9ff;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-}
-.sidebar-elm:visited{
-    background-color: #40a9ff;
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
-}
-.admin-logo > img{
-    height: 100px;
-    widows: 100px;
-}
-.ant-menu-item > a{
-    font-size: 18px;
-    font-weight: 500;
-}
+
 .ant-menu-submenu-title{
     font-size: 20px;
     font-weight: bold;
