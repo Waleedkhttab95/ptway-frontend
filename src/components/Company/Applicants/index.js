@@ -261,8 +261,13 @@ class Applicants extends React.Component {
       <React.Fragment>
         <Header />
         <div className="company-container">
-          <Row gutter={12}>
-            <Col lg={20} md={20} sm={24}>
+          <Row gutter={12} className="applicants-wrapper-mobile">
+            <Col
+              lg={{ span: 20 }}
+              md={{ span: 20 }}
+              sm={{ span: 24 }}
+              xs={{ span: 24 }}
+            >
               <Row className="applicants-container">
                 <Spin
                   spinning={applicantsInfoLoading}
@@ -425,7 +430,13 @@ class Applicants extends React.Component {
                 </Spin>
               </Row>
             </Col>
-            <Col lg={4} md={4} sm={24} className="applicants-filter">
+            <Col
+              lg={{ span: 4 }}
+              md={{ span: 4 }}
+              sm={{ span: 24 }}
+              xs={{ span: 24 }}
+              className="applicants-filter"
+            >
               <Menu className="menu" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                   <>
