@@ -80,14 +80,18 @@ class CompanySetting extends React.Component {
       window.location.reload();
     }
     if (Name || position || phone) {
-      await changeSuperVisor({ Name, position, phone });
-      await message.success('تم تغير معلومات المشرف بنجاح');
-      window.location.reload();
+      if (phone.length > 12 || phone.length < 9) {
+        this.setState({ phoneError: true });
+      } else {
+        await changeSuperVisor({ Name, position, phone });
+        await message.success('تم تغير معلومات المشرف بنجاح');
+        window.location.reload();
+      }
     }
   };
   render() {
     const { company } = this.props;
-    const { Name, position, phone } = this.state;
+    const { Name, position, phone, phoneError } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -122,6 +126,7 @@ class CompanySetting extends React.Component {
                     Name={Name}
                     position={position}
                     phone={phone}
+                    phoneError={phoneError}
                   />
                 </TabPane>
               </Tabs>

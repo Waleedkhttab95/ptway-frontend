@@ -12,6 +12,7 @@ const Tab3 = ({
   position,
   phone
 }) => {
+  console.log('phone.length', phone.length);
   return (
     <div className="account-setting">
       <div className="account-info">
@@ -39,10 +40,36 @@ const Tab3 = ({
         <label className="sub-title">رقم الجوال</label>
         <Input
           type="number"
+          max={12}
+          min={9}
           onChange={handleChange}
           name="phone"
           value={phone}
         />
+        {phone && phone.length < 9 && (
+          <span
+            style={{
+              color: 'red',
+              fontSize: '12px',
+              marginTop: '-25px',
+              marginBottom: '20px'
+            }}
+          >
+            يجب أن يكون رقم الجوال بين 9-12 رقم
+          </span>
+        )}
+        {phone && phone.length > 12 && (
+          <span
+            style={{
+              color: 'red',
+              fontSize: '12px',
+              marginTop: '-25px',
+              marginBottom: '20px'
+            }}
+          >
+            يجب أن يكون رقم الجوال بين 9-12 رقم
+          </span>
+        )}
         <label className="sub-title">صفة المشرف</label>
         <Select
           name="position"
