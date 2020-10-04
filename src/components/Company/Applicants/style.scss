@@ -1,70 +1,73 @@
-
 .applicant-header {
-    height: 38px;
-    border-radius: 5px;
-    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 30px;
-    padding-left: 22px;
-    > h3 {
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        color: #3b3b3b;
-        width: 100%;
-    }
+  height: 38px;
+  border-radius: 5px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+  padding-left: 22px;
+  > h3 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3b3b3b;
+    width: 100%;
+  }
 }
 .applicant {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 87px;
-    border-radius: 5px;
-    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-    margin-top: 10px;
-    > h4 {
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.71;
-        letter-spacing: normal;
-        text-align: center;
-        color: #000000;
-        width: 100%;
-    }
-     div {
-        width: 100%;
-        text-align: center;
-    }
-}
-.display-cv, .accept-user {
-    width: 107px;
-    height: 32px;
-    border-radius: 6px;
-    background-color: #f3f3f3;
-    border-color: #f3f3f3;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 87px;
+  border-radius: 5px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  margin-top: 10px;
+  > h4 {
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 500;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.71;
     letter-spacing: normal;
     text-align: center;
-    color: #626262;
+    color: #000000;
+    width: 100%;
   }
-  .display-cv{
-    padding: 6px 46px;
+  div {
+    width: 100%;
+    text-align: center;
   }
-.display-cv:hover, .display-cv:focus, .accept-user:hover, .accept-user:focus {
+}
+.display-cv,
+.accept-user {
+  width: 107px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #f3f3f3;
+  border-color: #f3f3f3;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: #626262;
+}
+.display-cv {
+  padding: 6px 46px;
+}
+.display-cv:hover,
+.display-cv:focus,
+.accept-user:hover,
+.accept-user:focus {
   width: 107px;
   height: 32px;
   border-radius: 6px;
@@ -79,335 +82,370 @@
   color: #ffffff;
   cursor: pointer;
 }
-.display-cv-mob{
-    display: none;
+.display-cv-mob {
+  display: none;
 }
 
 .applicants-container {
-    // margin-bottom: 30px;
-    .app-title {
-        height: 38px;
-        border-radius: 2px;
-        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-        background-color: #ffffff;
-        font-size: 14px;
-        text-align: center;
-        color: #3b3b3b;
-        padding-top: 5px;
-        margin-top: 15px;
-    }
-    .applicants-names{
-        height: 700px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        direction: ltr;
-        margin-left: 1px;
-        background: #fff;
-                .applicant-cv-info {
-                    position: relative;
-                    max-width: 585px;
-                    height: 74px;
-                    margin: 0;
-                    border: none;
-                    margin-bottom: 2px;
-                    box-shadow: none;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    border-bottom: solid 1px #f3f3f3;
-                    padding: 10px 20px 10px 10px;
-               div {
-                    text-align: right;
-                    display: flex;
-                    flex-direction: row-reverse;
-                    cursor: pointer;
-
-                    .app-content {
-                        display: flex;
-                        flex-direction: column;
-                        h4 {
-                            font-weight: bold;
-                            color: #009ad0;
-                            line-height: 1.36;
-                            font-size: 14px;
-                        }
-                        h3 .job-title-mob {
-                            display: none;
-                        }
-                    }
-                    > img {
-                        width: 48px;
-                        height: 48px;
-                        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
-                        border-radius: 50%;
-                        border: none;
-                        margin: 0 12px;
-                    }
-                }
-                .cv-btn-mobile {
-                    display: none;
-                }
-                .applicant-status {
-                    position: absolute;
-                    font-size: 12px;
-                    top: 20px;
-                    left: 35px;
-                }
-            }
-            .un-read {
-                background: rgba(235, 243, 248, 0.6);
-                border-bottom: solid 2px #f7f7f7;
-            }
-            .active {
-                    background-color: #ffffff;
-
-            }
-
-    }
-}
-.applicants-header{
-    height: 106px;
-    background: #ffffff;
-    margin-top: 18px;
-    margin-bottom: -13px;
-    .top{
-        display: flex;
-        max-width: 55%;
-        justify-content: space-between;
-        padding-top: 19px;
-        margin-right: 40px;
-        h3{
-            font-size: 14px;
-            font-weight: 500;
-            text-align: right;
-            color:#494949 ;
-            .name{
-                color: #b5b5b5;
-            }
-        }
-    }
-    .bottom{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 39px;
-        h4{
-        font-size: 14px;
-        font-weight: 500;
+  // margin-bottom: 30px;
+  .app-title {
+    height: 38px;
+    border-radius: 2px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    color: #3b3b3b;
+    padding-top: 5px;
+    margin-top: 15px;
+  }
+  .applicants-names {
+    height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    direction: ltr;
+    margin-left: 1px;
+    background: #fff;
+    .applicant-cv-info {
+      position: relative;
+      max-width: 585px;
+      height: 74px;
+      margin: 0;
+      border: none;
+      margin-bottom: 2px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-bottom: solid 1px #f3f3f3;
+      padding: 10px 20px 10px 10px;
+      div {
         text-align: right;
-        color: #009ad0;
-        }
-        .left-side{
-            & div{
-                width: 270px;
-                margin-right: 8px;
-                & div{
-                    border-top-width: 1px;
-                }
-            }
-        }
-    }
-}
-.applicants-filter{
-    margin-top: 17px;
-    display: flex;
-    justify-content: center;
-    .menu{
-        border: none;
-        width: 169px;
-    }
-    .menu-icon{
-        width: 22px;
-        height: 15px;
-        margin-left: 5px;
-    }
+        display: flex;
+        flex-direction: row-reverse;
+        cursor: pointer;
 
+        .app-content {
+          display: flex;
+          flex-direction: column;
+          h4 {
+            font-weight: bold;
+            color: #009ad0;
+            line-height: 1.36;
+            font-size: 14px;
+          }
+          h3 .job-title-mob {
+            display: none;
+          }
+        }
+        > img {
+          width: 48px;
+          height: 48px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          border: none;
+          margin: 0 12px;
+        }
+      }
+      .cv-btn-mobile {
+        display: none;
+      }
+      .applicant-status {
+        position: absolute;
+        font-size: 12px;
+        top: 20px;
+        left: 35px;
+      }
+    }
+    .un-read {
+      background: rgba(235, 243, 248, 0.6);
+      border-bottom: solid 2px #f7f7f7;
+    }
+    .active {
+      background-color: #ffffff;
+    }
+  }
 }
-li.ant-menu-item.ant-menu-item-selected{
-    background: none !important;
-    border-right: solid !important;
+.applicants-header {
+  height: 106px;
+  background: #ffffff;
+  margin-top: 18px;
+  margin-bottom: -13px;
+  .top {
+    display: flex;
+    max-width: 55%;
+    justify-content: space-between;
+    padding-top: 19px;
+    margin-right: 40px;
+    h3 {
+      font-family: 'DINNextLTW23';
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+      color: #494949;
+      .name {
+        color: #b5b5b5;
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 39px;
+    h4 {
+      font-family: 'DINNextLTW23';
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+      color: #009ad0;
+    }
+    .left-side {
+      & div {
+        width: 270px;
+        margin-right: 8px;
+        & div {
+          border-top-width: 1px;
+        }
+      }
+    }
+  }
+}
+.applicants-filter {
+  margin-top: 17px;
+  display: flex;
+  justify-content: center;
+  .menu {
+    border: none;
+    width: 169px;
+  }
+  .menu-icon {
+    width: 22px;
+    height: 15px;
+    margin-left: 5px;
+  }
+}
+li.ant-menu-item.ant-menu-item-selected {
+  background: none !important;
+  border-right: solid !important;
 }
 .icon path:hover {
-    fill: #DA4567;
-  }
+  fill: #da4567;
+}
 @media (max-width: 320px) {
-    .company-container {
-        overflow-y: scroll;
+  .company-container {
+    overflow-y: scroll;
+  }
+  .applicants-header {
+    height: auto;
+    .top {
+      max-width: 87%;
     }
-    .applicant-header {
-        display: none;
+    .bottom {
+      flex-direction: column;
     }
-    .applicant {
-        flex-direction: column;
-        height: auto;
-        align-items: flex-start;
-        padding-right: 20px;
+  }
+  .applicant-header {
+    display: none;
+  }
+  .applicant {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding-right: 20px;
 
-        > h4:nth-child(1) {
-            font-weight: bold;
-        }
-        > h4:nth-child(4) {
-            color: #1890ff;
-          }
-        > h4:nth-child(3) {
-            display: none
-        }
+    > h4:nth-child(1) {
+      font-weight: bold;
     }
-    .display-cv {
-        display: none;
+    > h4:nth-child(4) {
+      color: #1890ff;
     }
-    .display-cv-mob {
-        display: block;
-        margin: auto;
-        height: 32px;
-        border-radius: 6px;
-        background-color: #f3f3f3;
-        border-color: #f3f3f3;
-        font-size: 14px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.71;
-        letter-spacing: normal;
-        text-align: center;
-        color: #626262;
-        margin-bottom: 10px !important;
-        margin-top: 10px !important;
-      }
-      .jobs-actions {
-          flex-direction: column;
-          height: auto;
-          background: none;
-          align-items: flex-start;
-      }
-      .filter-btn {
-        display: none;
+    > h4:nth-child(3) {
+      display: none;
     }
-    .action-right-side {
-        margin-right: 0px !important;
-        margin-top: 20px;
-        margin-bottom: 10px;
+  }
+  .display-cv {
+    display: none;
+  }
+  .display-cv-mob {
+    display: block;
+    margin: auto;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    border-color: #f3f3f3;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #626262;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+  }
+  .jobs-actions {
+    flex-direction: column;
+    height: auto;
+    background: none;
+    align-items: flex-start;
+  }
+  .filter-btn {
+    display: none;
+  }
+  .action-right-side {
+    margin-right: 0px !important;
+    margin-top: 20px;
+    margin-bottom: 10px;
 
     .jobs-search-icon {
-        right: 45px;
+      right: 45px;
     }
   }
   .mobile-view {
-      display: none;
+    display: none;
   }
   .applicants-container {
     .applicants-names {
-        height: auto;
-        direction: rtl;
-        .applicant-cv-info {
-            flex-direction: row;
-        }
-    }
-}
-
-}
-
-@media (min-width:321px) and (max-width: 768px) {
-    .applicant-header {
-        display: none;
-    }
-    .applicant {
-        flex-direction: column;
-        height: auto;
-        align-items: flex-start;
-        padding-right: 20px;
-
-        > h4:nth-child(1) {
-            font-weight: bold;
-        }
-        > h4:nth-child(4) {
-          color: #1890ff !important;
-        }
-        > h4:nth-child(3) {
-            display: none
-        }
-    }
-    .display-cv{
-        display: none;
-    }
-    .display-cv-mob {
-        display: block;
-        margin: auto;
-        height: 32px;
-        border-radius: 6px;
-        background-color: #f3f3f3;
-        border-color: #f3f3f3;
-        font-size: 14px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.71;
-        letter-spacing: normal;
-        text-align: center;
-        color: #626262;
-        margin-bottom: 10px !important;
-        margin-top: 10px !important;
+      height: auto;
+      direction: rtl;
+      .applicant-cv-info {
+        flex-direction: row;
       }
-      .jobs-actions {
-        flex-direction: column;
-        height: auto;
-        background: none;
-        align-items: flex-start;
     }
-    .filter-btn {
-        display: none;
-    }
-    .action-right-side {
-        margin-right: 0px !important;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        .jobs-search-icon {
-            right: 45px;
-        }
-    }
-    .mobile-view {
-        display: none;
-    }
-    .applicants-container {
-        .applicants-names {
-            height: auto;
-            direction: rtl;
-            .applicant-cv-info
-            {
-                height: 162px;
-            div {
-                flex-direction: row;
-                .app-content {
-                    border-bottom: solid 1px #e2e2e2;
-                    width: 40%;
-                     align-items: flex-start;
-                    h3 {
-                        font-size: 12px;
-                        display: flex;
-                        .job-title-mob {
-                        display: block;
-                        color: #d8d8d8;
-                    }
-                }
-                }
-            }
+  }
+}
 
-            .cv-btn-mobile {
-                width: 156px !important;
-                height: 36px !important;
-                border-radius: 2px;
-                background-color: #d8d8d8;
-                width: 106px;
-                height: 17px;
-                font-size: 12px;
-                text-align: center;
-                color: #3b3b3b;
-                display: block !important;
-                // margin: auto !important;
-                margin-top: 12px !important;
-                margin-right: 90px;
-            }
-        }
-        }
+@media (min-width: 321px) and (max-width: 768px) {
+  .applicant-header {
+    display: none;
+  }
+  .applicants-wrapper-mobile {
+      position: relative;
+  }
+  .applicants-filter .menu {
+      width: 100%;
+      position: absolute;
+      top: 0;
+  }
+  .applicants-container {
+    position: absolute;
+    top: 220px;
+  }
+  .applicants-header {
+    height: auto;
+    padding-bottom: 20px;
+    .top {
+      max-width: 80%;
     }
+    .bottom {
+      flex-direction: column;
+      align-items: baseline;
+      .left-side div {
+        width: 180px;
+        div {
+          width: 180px;
+        }
+      }
+    }
+  }
+  .applicant {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding-right: 20px;
+
+    > h4:nth-child(1) {
+      font-weight: bold;
+    }
+    > h4:nth-child(4) {
+      color: #1890ff !important;
+    }
+    > h4:nth-child(3) {
+      display: none;
+    }
+  }
+  .display-cv {
+    display: none;
+  }
+  .display-cv-mob {
+    display: block;
+    margin: auto;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    border-color: #f3f3f3;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #626262;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+  }
+  .jobs-actions {
+    flex-direction: column;
+    height: auto;
+    background: none;
+    align-items: flex-start;
+  }
+  .filter-btn {
+    display: none;
+  }
+  .action-right-side {
+    margin-right: 0px !important;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .jobs-search-icon {
+      right: 45px;
+    }
+  }
+  .mobile-view {
+    display: none;
+  }
+  .applicants-container {
+    .applicants-names {
+      height: auto;
+      direction: rtl;
+      .applicant-cv-info {
+        height: 162px;
+        div {
+          flex-direction: row;
+          .app-content {
+            border-bottom: solid 1px #e2e2e2;
+            width: 40%;
+            align-items: flex-start;
+            h3 {
+              font-size: 12px;
+              display: flex;
+              .job-title-mob {
+                display: block;
+                color: #d8d8d8;
+              }
+            }
+          }
+        }
+
+        .cv-btn-mobile {
+          width: 156px !important;
+          height: 36px !important;
+          border-radius: 2px;
+          background-color: #d8d8d8;
+          width: 106px;
+          height: 17px;
+          font-size: 12px;
+          text-align: center;
+          color: #3b3b3b;
+          display: block !important;
+          // margin: auto !important;
+          margin-top: 12px !important;
+          margin-right: 90px;
+        }
+      }
+    }
+  }
 }

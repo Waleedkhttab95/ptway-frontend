@@ -22,6 +22,7 @@ const step2Form = props => {
           </span>
           <label className="info-label">رقم الجوال</label>
           <Input
+            type="number"
             className="single-input"
             onChange={handleInputsChange}
             name="phone"
