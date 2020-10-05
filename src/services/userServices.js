@@ -28,7 +28,8 @@ const userServices = {
       public_Major: params.major,
       birthDate: params.birthDate,
       gender: params.gender,
-      fullName: params.fullName
+      fullName: params.fullName,
+      jobCategory: params.jobCategory
     }),
   login: params =>
     baseRequest
@@ -40,6 +41,9 @@ const userServices = {
     baseRequest.post('/companyRegistreing', {
       companyName: params.companyName,
       email: params.email,
+      Name: params.Name,
+      phone: params.phone,
+      position: params.position,
       password: params.password,
       sector: params.sector,
       CompanySpecialist: params.specialist,

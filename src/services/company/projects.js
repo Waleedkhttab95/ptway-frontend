@@ -30,8 +30,14 @@ const projects = {
       salary: params.salary,
       gender: params.gender,
       personal_Skills,
-      required_Number: params.required_Number
+      required_Number: params.required_Number,
+      jobCategory: params.jobCategory
     });
+  },
+  getJobOffer: params => {
+    return baseRequest
+      .get(`/preview/getjob?id=${params.id}`)
+      .then(result => result);
   },
   deleteProject: params => baseRequest.delete(`deleteproject?id=${params.id}`),
   updateProject: params =>

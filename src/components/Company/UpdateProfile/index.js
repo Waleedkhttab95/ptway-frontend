@@ -20,34 +20,30 @@ class UpdateCompanyProfile extends React.Component {
 
   async componentDidMount() {
     const { getCompanyInfo } = this.props;
-    getCompanyInfo();
+    const allCompanyInfo = await getCompanyInfo();
     const countries = await allCountries();
     const cities = await allCities();
+    const { info } = allCompanyInfo.value;
+
     this.setState({
       countries,
-      cities
+      cities,
+      info,
+      city: info && info.city._id,
+      country: info && info.country._id,
+      about: info ? info.info : '',
+      vision: info ? info.vision : '',
+      message: info ? info.message : '',
+      address: info ? info.address : '',
+      personal_web:
+        info && info.personal_web !== 'undefined' ? info.personal_web : '',
+      facebook: info && info.facebook !== 'undefined' ? info.facebook : '',
+      linkedin: info && info.linkedin !== 'undefined' ? info.linkedin : '',
+      twitter: info && info.twitter !== 'undefined' ? info.twitter : '',
+      image: info ? info.imagePath : ''
     });
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      const { company } = this.props;
-      const { info } = company.companyInfo;
-      this.setState({
-        city: info ? info.city._id : '',
-        country: info ? info.country._id : '',
-        about: info ? info.info : '',
-        vision: info ? info.vision : '',
-        message: info ? info.message : '',
-        address: info ? info.address : '',
-        personal_web:
-          info && info.personal_web !== 'undefined' ? info.personal_web : '',
-        facebook: info && info.facebook !== 'undefined' ? info.facebook : '',
-        linkedin: info && info.linkedin !== 'undefined' ? info.linkedin : '',
-        twitter: info && info.twitter !== 'undefined' ? info.twitter : '',
-        image: info ? info.imagePath : ''
-      });
-    }
-  }
+
   handleChange = (value, option) => {
     this.setState({
       ...this.state,
@@ -69,9 +65,19 @@ class UpdateCompanyProfile extends React.Component {
     history.push('/company/setting');
   };
   render() {
-    const { countries, cities } = this.state;
-    const { company } = this.props;
-    const { info } = company.companyInfo;
+    const {
+      countries,
+      cities,
+      personal_web,
+      twitter,
+      facebook,
+      linkedin,
+      about,
+      address,
+      vision,
+      message,
+      info
+    } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -96,7 +102,9 @@ class UpdateCompanyProfile extends React.Component {
                         <Select
                           className="input-field input-filed-mob"
                           onChange={this.handleChange}
-                          placeholder={info ? info.country.countryName : ''}
+                          placeholder={
+                            info && info.country && info.country.countryName
+                          }
                         >
                           {_.isArray(countries)
                             ? countries.map(elm => {
@@ -118,7 +126,7 @@ class UpdateCompanyProfile extends React.Component {
                         <Select
                           className="input-field input-filed-mob"
                           onChange={this.handleChange}
-                          placeholder={info ? info.city.cityName : ''}
+                          placeholder={info && info.city && info.city.cityName}
                         >
                           {_.isArray(cities)
                             ? cities.map(elm => {
@@ -136,18 +144,13 @@ class UpdateCompanyProfile extends React.Component {
                         </Select>
                       </div>
                     </div>
-                    <h5
-                      className="title-field"
-                      placeholder={info ? info.address : ''}
-                    >
-                      العنوان{' '}
-                    </h5>
+                    <h5 className="title-field">العنوان</h5>
                     <TextArea
                       rows={4}
                       className="textarea-field"
                       onChange={this.handleInputChange}
                       name="address"
-                      placeholder={info ? info.address : ''}
+                      value={address}
                     />
                   </div>
                 </Panel>
@@ -164,7 +167,7 @@ class UpdateCompanyProfile extends React.Component {
                       className="textarea-field"
                       onChange={this.handleInputChange}
                       name="about"
-                      placeholder={info ? info.info : ''}
+                      value={about}
                     />
                     <br />
                     <br />
@@ -175,7 +178,7 @@ class UpdateCompanyProfile extends React.Component {
                       className="textarea-field"
                       onChange={this.handleInputChange}
                       name="vision"
-                      placeholder={info ? info.vision : ''}
+                      value={vision}
                     />
                     <br />
                     <br />
@@ -186,7 +189,7 @@ class UpdateCompanyProfile extends React.Component {
                       className="textarea-field"
                       onChange={this.handleInputChange}
                       name="message"
-                      placeholder={info ? info.message : ''}
+                      value={message}
                     />
                   </div>
                 </Panel>
@@ -204,22 +207,14 @@ class UpdateCompanyProfile extends React.Component {
                         style={{ marginLeft: '20px' }}
                         onChange={this.handleInputChange}
                         name="personal_web"
-                        placeholder={
-                          info && info.personal_web !== 'undefined'
-                            ? info.personal_web
-                            : ''
-                        }
+                        value={personal_web !== 'undefined' ? personal_web : ''}
                       />
                       <h5 className="title-field">رابط linkedin</h5>
                       <Input
                         className="input-field"
                         onChange={this.handleInputChange}
                         name="linkedin"
-                        placeholder={
-                          info && info.linkedin !== 'undefined'
-                            ? info.linkedin
-                            : ''
-                        }
+                        value={linkedin !== 'undefined' ? linkedin : ''}
                       />
                     </div>
                     <div>
@@ -229,22 +224,14 @@ class UpdateCompanyProfile extends React.Component {
                         style={{ marginLeft: '20px' }}
                         onChange={this.handleInputChange}
                         name="facebook"
-                        placeholder={
-                          info && info.facebook !== 'undefined'
-                            ? info.facebook
-                            : ''
-                        }
+                        value={facebook !== 'undefined' ? facebook : ''}
                       />
                       <h5 className="title-field">رابط تويتر</h5>
                       <Input
                         className="input-field"
                         onChange={this.handleInputChange}
                         name="twitter"
-                        placeholder={
-                          info && info.twitter !== 'undefined'
-                            ? info.twitter
-                            : ''
-                        }
+                        value={twitter !== 'undefined' ? twitter : ''}
                       />
                     </div>
                   </div>

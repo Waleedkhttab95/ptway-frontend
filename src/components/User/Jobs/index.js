@@ -2,36 +2,79 @@ import React from 'react';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import './style.scss';
-import { Row, Col, Spin, Typography } from 'antd';
+import { Row, Col, Spin } from 'antd';
 import { connect } from 'react-redux';
-import { jobOffers, applyJob } from '../../../store/actions/user/jobOffers';
-import _ from 'lodash';
-import FilterAndSearch from '../Filter';
+import moment from 'moment';
+import {
+  jobOffers,
+  jobOffer,
+  applyJob,
+  companyDetails
+} from '../../../store/actions/user/jobOffers';
+// import FilterAndSearch from '../Filter';
+import Job from '../Job/jobBreif';
+import { Link } from 'react-router-dom';
+let array = [];
 
-const { Paragraph } = Typography;
 class Jobs extends React.Component {
   state = {
     loading: true,
     count: 1,
     search: '',
-    offers: ''
+    offers: [],
+    pageLoading: true,
+    jobLoading: false,
+    clicked: [],
+    isFetching: false,
+    pages: 1
   };
   async componentDidMount() {
+    await this.fetchData();
+    this.refs.divScroll.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (
+      this.refs.divScroll.scrollTop + this.refs.divScroll.clientHeight >=
+      this.refs.divScroll.scrollHeight
+    ) {
+      this.setState({
+        isFetching: true
+      });
+    }
+  };
+
+  fetchData = async () => {
     const { offersData } = this.props;
-    const jobOffersData = await offersData(this.state.count);
-    this.setState(
-      {
-        offers: jobOffersData.value.result,
-        basedOffersArray: jobOffersData.value.result
-      },
-      () => {
-        if (jobOffersData.value.totalPages > 1) {
-          this.setState({
-            loading: false
-          });
-        }
-      }
-    );
+    const { count, pages, offers } = this.state;
+    if (pages >= count) {
+      const jobOffersData = await offersData(this.state.count);
+      this.setState({
+        offers:
+          offers.length !== 0
+            ? offers.concat(jobOffersData.value.result)
+            : jobOffersData.value.result,
+        basedOffersArray: jobOffersData.value.result,
+        count: count + 1,
+        pages: jobOffersData.value.totalPages,
+        pageLoading: false
+      });
+    }
+  };
+
+  fetchMoreListItems = () => {
+    this.fetchData();
+    this.setState({
+      isFetching: false
+    });
+  };
+
+  componentDidUpdate() {
+    const { isFetching } = this.state;
+    if (isFetching) {
+      if (!isFetching) return;
+      this.fetchMoreListItems();
+    }
   }
 
   jobOffer = async id => {
@@ -49,53 +92,57 @@ class Jobs extends React.Component {
     }
   };
 
-  displayMore = () => {
-    this.setState(
-      {
-        count: this.state.count + 1
-      },
-      async () => {
-        const { offersData } = this.props;
-        await offersData(this.state.count);
-      }
-    );
-  };
-  componentDidUpdate(prevProps) {
-    if (prevProps.offers.result) {
-      if (prevProps.offers.result !== this.props.offers.result) {
-        const offers = prevProps.offers.result.concat(this.props.offers.result);
-        this.setState({
-          offers,
-          basedOffersArray: offers,
-          totalPages: this.props.offers.totalPages
-        });
-      }
-    }
-  }
-  handleFilterChange = (value, option) => {
-    this.setState(
-      {
-        [option.props.name]: option.key
-      },
-      () => {
-        const { filterOption, offers, basedOffersArray } = this.state;
-        let sortedOffers;
+  handleFilterChange = (e, option) => {
+    if (!option) {
+      const { name, value } = e.target;
+      this.setState(
+        {
+          [name]: value
+        },
+        () => {
+          const { filterOption, offers, basedOffersArray } = this.state;
+          let sortedOffers;
 
-        if (filterOption === 'new') {
-          sortedOffers = basedOffersArray;
-        } else {
-          var sorted = new Array();
-          for (var i = offers.length - 1; i >= 0; i--) {
-            sorted.push(offers[i]);
+          if (filterOption === 'new') {
+            sortedOffers = basedOffersArray;
+          } else {
+            var sorted = new Array();
+            for (var i = offers.length - 1; i >= 0; i--) {
+              sorted.push(offers[i]);
+            }
+            sortedOffers = sorted;
           }
-          sortedOffers = sorted;
-        }
 
-        this.setState({
-          offers: sortedOffers
-        });
-      }
-    );
+          this.setState({
+            offers: sortedOffers
+          });
+        }
+      );
+    } else {
+      this.setState(
+        {
+          [option.props.name]: option.key
+        },
+        () => {
+          const { filterOption, offers, basedOffersArray } = this.state;
+          let sortedOffers;
+
+          if (filterOption === 'new') {
+            sortedOffers = basedOffersArray;
+          } else {
+            var sorted = new Array();
+            for (var i = offers.length - 1; i >= 0; i--) {
+              sorted.push(offers[i]);
+            }
+            sortedOffers = sorted;
+          }
+
+          this.setState({
+            offers: sortedOffers
+          });
+        }
+      );
+    }
   };
 
   handleSearch = e => {
@@ -111,8 +158,38 @@ class Jobs extends React.Component {
     });
   };
 
+  getJob = async (jobId, index) => {
+    this.setState({
+      jobLoading: true
+    });
+    const { jobOffer, company } = this.props;
+
+    const job = await jobOffer({ id: jobId });
+    // const companyInfo = await company({ id: job.value.job.company._id });
+    array.push(index);
+    this.setState({
+      job,
+      jobId,
+      jobLoading: false,
+      selected: index,
+      clicked: array
+      // companyInfo
+    });
+  };
+
   render() {
-    const { offers, loading, totalPages, count, search } = this.state;
+    const {
+      offers,
+      job,
+      jobId,
+      // count,
+      // search,
+      selected,
+      jobLoading,
+      pageLoading,
+      clicked
+      // companyInfo
+    } = this.state;
 
     return (
       <React.Fragment>
@@ -120,109 +197,149 @@ class Jobs extends React.Component {
           <Header />
           <div className="user-container">
             <div className="user-jobs">
-              <FilterAndSearch
+              {/* <FilterAndSearch
                 handleChange={this.handleFilterChange}
                 handleSearch={this.handleSearch}
-              />
-              <Row className="jobs-details">
-                {_.isArray(offers) ? (
-                  offers.map(elm => {
-                    return (
-                      <Col
-                        md={5}
-                        xs={24}
-                        sm={24}
-                        className="job-post"
-                        key={elm.jobAd._id}
-                      >
-                        <div>
-                          <div className="post-header">
-                            {elm.imagePath && elm.imagePath !== 'null' ? (
-                              <img src={elm.imagePath} alt="" />
-                            ) : (
-                              <i
-                                className="fa fa-picture-o"
-                                aria-hidden="true"
-                                style={{
-                                  fontSize: '45px',
-                                  display: 'flex',
-                                  alignItems: 'center'
-                                }}
-                              ></i>
-                            )}
-                            <div className="job-owner-info">
-                              <span className="job-owner-title">
-                                {elm.jobAd.job_Name}
-                              </span>
-                              <span className="job-owner-location">
-                                {elm.compName}
-                              </span>
-                              {/* <span className="job-owner-mobile">
-                              الرقم : 0002163477555
-                            </span> */}
-                            </div>
-                          </div>
-                          <div className="post-body">
-                          <Paragraph ellipsis={{ rows: 5, expandable: false }} className="post-description">
-                            <span>
-                              {elm.jobAd.descreption + '...'} 
-                            </span>
-                            </Paragraph>
-                          </div>
-                        </div>
-                        <div className="post-actions-btns">
-                          {elm.status ? (
-                            <div className="post-status">تم التقدم للعمل</div>
-                          ) : (
-                            <React.Fragment>
-                              <div
-                                className="post-status"
-                                style={{ marginBottom: '15px' }}
-                              >
-                                لم يتم التقدم
-                              </div>
-                              {elm.jobAd.isLock ? (
-                                <div className="job-completed">
-                                  {' '}
-                                  لقد اكتمل العدد
-                                </div>
-                              ) : (
-                                ''
-                              )}
-                            </React.Fragment>
-                          )}
-                          {elm.jobAd.isLock ? (
-                            <span></span>
-                          ) : (
-                            <button
-                              className="details-btn"
-                              onClick={() =>
-                                this.props.history.push(
-                                  `/user/job/${elm.jobAd._id}`
-                                )
+              /> */}
+
+              <Spin
+                spinning={pageLoading}
+                size="large"
+                style={{ marginTop: '50px' }}
+              >
+                <Row>
+                  <Col md={12} sm={24} className="mobile-view">
+                    <h2 className="job-header-title">التفاصيل</h2>
+                    <Spin
+                      spinning={jobLoading}
+                      size="large"
+                      style={{ marginTop: '50px' }}
+                    >
+                      {job && (
+                        <Job
+                          job={job}
+                          jobId={jobId}
+                          // companyDetails={companyInfo}
+                        />
+                      )}
+                    </Spin>
+                  </Col>
+                  <Col md={12} sm={24}>
+                    <h2 className="job-header-title">العرض الوظيفي</h2>
+                    <div
+                      className="jobs-section"
+                      ref="divScroll"
+                      id="jobs-section-scroll"
+                    >
+                      {offers ? (
+                        offers.map((elm, index) => {
+                          return (
+                            <div
+                              className={
+                                elm.isRead ||
+                                selected == index ||
+                                clicked.includes(index)
+                                  ? 'job active'
+                                  : 'job un-read'
                               }
+                              key={elm.jobAd._id}
+                              onClick={() => this.getJob(elm.jobAd._id, index)}
                             >
-                              التفاصيل
-                            </button>
-                          )}
+                              <div className="top-section">
+                                {elm.imagePath && elm.imagePath !== 'null' ? (
+                                  <img
+                                    className="job-img"
+                                    src={elm.imagePath}
+                                    alt=""
+                                  />
+                                ) : (
+                                  <img
+                                    className="job-img"
+                                    src={require('../../../images/pure-avatar.png')}
+                                  />
+                                )}
+                                <div className="job-content">
+                                  <h3>{elm.jobAd.job_Name}</h3>
+                                  <h4>{elm.compName}</h4>
+                                </div>
+                                <div className="job-status">
+                                  {elm.status ? (
+                                    <div>تم التقدم للعمل</div>
+                                  ) : (
+                                    <React.Fragment>
+                                      <div style={{ color: '#7696f5' }}>
+                                        لم يتم التقدم
+                                      </div>
+                                      {elm.jobAd.isLock ? (
+                                        <div style={{ color: '#ffa76a' }}>
+                                          {' '}
+                                          لقد اكتمل العدد
+                                        </div>
+                                      ) : (
+                                        ''
+                                      )}
+                                    </React.Fragment>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="description">
+                                <div>
+                                  <h3>
+                                    نوع العقد:{' '}
+                                    <span>
+                                      {elm.jobAd?.contract?.contractName}
+                                    </span>
+                                  </h3>
+                                  <h3>
+                                    مبلغ الراتب:{' '}
+                                    <span>{elm.jobAd.salary} </span>
+                                  </h3>
+                                  <h3>
+                                    مدة العقد:{' '}
+                                    <span>{elm.jobAd.work_days} </span>{' '}
+                                  </h3>
+                                </div>
+                                <div>
+                                  <h3>
+                                    تاريخ بدء العمل:{' '}
+                                    <span>
+                                      {moment(elm.jobAd.startDate).format(
+                                        'MMM D YY'
+                                      )}
+                                    </span>
+                                  </h3>
+                                  <h3>
+                                    ساعات العمل اليومية:{' '}
+                                    <span>{elm.jobAd.work_hours}</span>
+                                  </h3>
+                                </div>
+                                <Link to={`/user/job/${elm.jobAd._id}`}>
+                                  <button className="job-mobile-btn">
+                                    مشاهدة التفاصيل
+                                  </button>
+                                </Link>
+                              </div>
+                            </div>
+                          );
+                        })
+                      ) : offers.length == 0 ? (
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            paddingTop: '30px',
+                            fontSize: '18px'
+                          }}
+                        >
+                          {' '}
+                          لا يوجد عروض وظيفية
                         </div>
-                      </Col>
-                    );
-                  })
-                ) : (
-                  <div
-                    className="spinner-loading"
-                    // style={{ width: '100%', margin: '0 auto' }}
-                  >
-                    <Spin size="large" />
-                  </div>
-                )}
-              </Row>
-              {!loading && totalPages !== count && !search && (
-                <button className="display-more" onClick={this.displayMore}>
-                  عرض المزيد
-                </button>
-              )}
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  </Col>
+                </Row>
+              </Spin>
             </div>
           </div>
         </div>
@@ -240,7 +357,9 @@ const mapStateToProps = ({ jobOffers }) => {
 const mapDispatchToProps = dispatch => {
   return {
     offersData: pageNo => dispatch(jobOffers(pageNo)),
-    applyJob: params => dispatch(applyJob(params))
+    applyJob: params => dispatch(applyJob(params)),
+    jobOffer: params => dispatch(jobOffer(params)),
+    company: params => dispatch(companyDetails(params))
   };
 };
 

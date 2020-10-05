@@ -23,7 +23,7 @@ const FilterAndSearch = ({ handleSearch, handleChange }) => {
       <div className="action-left-side">
         <span className="filter-title">الترتيب :</span>
         <Select
-          className=" filter-options"
+          className=" filter-options web-select"
           placeholder="الأحدث"
           onChange={handleChange}
         >
@@ -41,6 +41,22 @@ const FilterAndSearch = ({ handleSearch, handleChange }) => {
               })
             : ''}
         </Select>
+        <select
+          className=" filter-options mobile-select"
+          placeholder="الأحدث"
+          onChange={handleChange}
+          name="filterOption"
+        >
+          {_.isArray(options)
+            ? options.map(elm => {
+                return (
+                  <option value={elm.value} key={elm.key} name="filterOption">
+                    {elm.value}
+                  </option>
+                );
+              })
+            : ''}
+        </select>
       </div>
     </div>
   );

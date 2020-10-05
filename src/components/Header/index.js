@@ -1,7 +1,17 @@
 import React from 'react';
-import { Row, Drawer, Button, Col, Badge, Select } from 'antd';
+import {
+  Row,
+  Drawer,
+  Button,
+  Col,
+  Badge,
+  Select,
+  Modal,
+  Dropdown,
+  Menu
+} from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import headerLogo from '../../images/ptwayLogoHeader.png';
 import userLogo from '../../images/transparent-colored.png';
 import header from '../../images/Page1_header.svg';
 import { logout } from '../../store/actions/userAction';
@@ -21,6 +31,7 @@ import {
   addNewProject,
   allCotracts
 } from '../../store/actions/company/projects';
+import { UserMenuSetting, CompanyMenuSetting } from './setting_menu';
 
 class Header extends React.Component {
   state = {
@@ -30,7 +41,8 @@ class Header extends React.Component {
     newAdPopUp: false,
     addProject: false,
     userVisible: false,
-    companyVisible: false
+    companyVisible: false,
+    nonProjectsExistModal: false
   };
 
   async componentDidMount() {
@@ -38,7 +50,8 @@ class Header extends React.Component {
     if (loadState().role === 'user') {
       unreadJobOffers();
     }
-    if (loadState().role === 'user' || loadState().role === 'company') {
+
+    if (loadState().role === 'company') {
       getContracts();
     }
   }
@@ -63,7 +76,8 @@ class Header extends React.Component {
       userVisible: false,
       companyVisible: false,
       postJobPopup: false,
-      newAdPopUp: false
+      newAdPopUp: false,
+      nonProjectsExistModal: false
     });
   };
 
@@ -80,26 +94,62 @@ class Header extends React.Component {
   postJob = () => {
     this.setState({
       addProject: false,
+      nonProjectsExistModal: false,
       postJobPopup: true
     });
+  };
+
+  NonExistProjectNewAd = () => {
+    const { addProject, company } = this.props;
+    const { projectName, projectDescription } = this.state;
+
+    addProject({
+      projectName,
+      projectDescription
+    });
+    console.log(
+      'company.companyInfo.companyStatistic.projects',
+      company.companyStatistic.projects
+    );
+
+    if (company.companyInfo && company.companyStatistic.projects !== 0) {
+      this.setState({
+        postJobPopup: false,
+        addProject: false,
+        newAdPopUp: true
+      });
+    } else {
+      this.setState({
+        addProject: false,
+        postJobPopup: false,
+        nonProjectsExistModal: true
+      });
+    }
   };
 
   newAd = () => {
     const { addProject } = this.props;
     const { projectName, projectDescription } = this.state;
-    addProject({
-      projectName,
-      projectDescription
-    });
-    this.setState({
-      postJobPopup: false,
-      addProject: false,
-      newAdPopUp: true
-    });
+    if (!projectName || !projectDescription) {
+      this.setState({
+        error: true
+      });
+    } else {
+      addProject({
+        projectName,
+        projectDescription
+      });
+      this.setState({
+        postJobPopup: false,
+        addProject: false,
+        newAdPopUp: true
+      });
+    }
   };
 
   render() {
-    const { contracts } = this.props;
+    const { contracts, company } = this.props;
+    const { nonProjectsExistModal, error } = this.state;
     // const { i18n } = this.props;
     const { role, loggedIn } = loadState();
     const list = [1, 2, 3, 4];
@@ -140,7 +190,7 @@ class Header extends React.Component {
                     }
                   >
                     <Badge
-                      count={unreadOffers.count}
+                      count={unreadOffers.count !== 0 ? unreadOffers.count : ''}
                       showZero
                       style={{
                         marginBottom: '20px',
@@ -159,31 +209,21 @@ class Header extends React.Component {
                         : ''
                     }
                   >
-                    {' '}
-                    <Select
-                      defaultValue="حسابي"
-                      className={
-                        window.location.href.includes('/user/account/setting')
-                          ? 'setting-select-active setting-select'
-                          : 'setting-select'
+                    <Dropdown
+                      overlay={
+                        <UserMenuSetting
+                          logout={this.props.logout}
+                          history={history}
+                        />
                       }
                     >
-                      <Select.Option
-                        value="setting"
-                        onClick={() => history.push('/user/account/setting')}
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={e => e.preventDefault()}
                       >
-                        اعدادات الحساب
-                      </Select.Option>
-                      <Select.Option
-                        value="logout"
-                        onClick={async () => {
-                          await this.props.logout();
-                          history.push('/');
-                        }}
-                      >
-                        تسجيل الخروج
-                      </Select.Option>
-                    </Select>
+                        حسابي <DownOutlined />
+                      </a>
+                    </Dropdown>
                   </div>
                 </div>
               </div>
@@ -267,7 +307,7 @@ class Header extends React.Component {
                   </Button>
                   {this.state.addProject && (
                     <div className="add-project-popup">
-                      <div onClick={this.newAd}>
+                      <div onClick={this.NonExistProjectNewAd}>
                         <i className="fa fa-plus-circle" aria-hidden="true"></i>
                         إضافة إعلان بمشروع سابق
                       </div>
@@ -312,30 +352,21 @@ class Header extends React.Component {
                         : ''
                     }
                   >
-                    <Select
-                      defaultValue="حسابي"
-                      className={
-                        window.location.href.includes('/company/setting')
-                          ? 'setting-select-active setting-select'
-                          : 'setting-select'
+                    <Dropdown
+                      overlay={
+                        <CompanyMenuSetting
+                          logout={this.props.logout}
+                          history={history}
+                        />
                       }
                     >
-                      <Select.Option
-                        value="setting"
-                        onClick={() => history.push('/company/setting')}
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={e => e.preventDefault()}
                       >
-                        اعدادات الحساب
-                      </Select.Option>
-                      <Select.Option
-                        value="logout"
-                        onClick={async () => {
-                          await this.props.logout();
-                          history.push('/');
-                        }}
-                      >
-                        تسجيل الخروج
-                      </Select.Option>
-                    </Select>
+                        حسابي <DownOutlined />
+                      </a>
+                    </Dropdown>
                   </div>
                 </div>
               </div>
@@ -431,7 +462,22 @@ class Header extends React.Component {
             this.setState({ [e.target.name]: e.target.value });
           }}
           closable={this.onClose}
+          error={error}
         />
+        <Modal
+          visible={nonProjectsExistModal}
+          closable={true}
+          footer={false}
+          className="ad-modal"
+          onCancel={this.onClose}
+        >
+          <div className="non-exist-project-modal">
+            <h3> يجب عليك اضافة مشروع أولا</h3>
+            <h3>هل ترغب في اضافة مشروع جديد؟</h3>
+            <button onClick={this.postJob}>اضافة مشروع جديد</button>
+          </div>
+        </Modal>
+
         <AddNewAdModal
           newAdPopUp={this.state.newAdPopUp}
           contractsTypes={contracts}
@@ -443,11 +489,12 @@ class Header extends React.Component {
   }
 }
 
-const mapPropsToState = ({ user, userS, companyProjects }) => {
+const mapPropsToState = ({ user, userS, companyProjects, companySection }) => {
   return {
     user,
     userS,
-    contracts: companyProjects
+    contracts: companyProjects,
+    company: companySection
   };
 };
 const mapPropsToDispatch = dispatch => {

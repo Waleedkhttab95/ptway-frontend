@@ -46,7 +46,10 @@ class UserInfo extends React.Component {
       status
       // hoppies
     } = this.props.user.userInfo;
-
+    console.log(
+      '-----',
+      languages?.map(elm => JSON.parse(elm))
+    );
     return (
       <div>
         <Header />
@@ -252,15 +255,24 @@ class UserInfo extends React.Component {
                       اللغات
                     </div>
                     <div className="sub-desc">
-                      {_.isArray(languages)
-                        ? languages.map(language => {
-                            return (
-                              <span key={language}>
-                                {language} <br />
-                              </span>
-                            );
-                          })
-                        : ''}
+                      {languages?.map(elm => {
+                        return (
+                          <div>
+                            {JSON.parse(elm)?.map((elm2, index) => {
+                              return (
+                                <div>
+                                  {`اللغة :${
+                                    JSON.parse(elm)[index].split('-')[0]
+                                  }, المستوي:${
+                                    JSON.parse(elm)[index].split('-')[1]
+                                  } `}
+                                </div>
+                              );
+                            })}
+                            <br />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <br />
@@ -305,12 +317,10 @@ class UserInfo extends React.Component {
                   </div>
                   <div>
                     <h3 className="h-title heading">التواصل الالكتروني</h3>
-                    <p>
-                      الموقع الشخصي : {personal_web ? personal_web : 'لا يوجد'}
-                    </p>
-                    <p>الفيسبوك : {facebook ? facebook : 'لا يوجد'} </p>
-                    <p>التويتر : {twitter ? twitter : 'لا يوجد'} </p>
-                    <p>لينكيد ان : {linkedin ? linkedin : 'لا يوجد'}</p>
+                    {personal_web && <p>الموقع الشخصي : {personal_web}</p>}
+                    {facebook && <p>الفيسبوك : {facebook} </p>}
+                    {twitter && <p>التويتر : {twitter} </p>}
+                    {linkedin && <p>لينكيد ان : {linkedin}</p>}
                   </div>
                 </div>
               </Col>

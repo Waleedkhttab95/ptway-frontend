@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Header from '../../Header';
-import { Col, Tabs } from 'antd';
+import { Col, Tabs, message } from 'antd';
 import CompanyInfo from '../CompanyInfo';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
@@ -12,7 +12,12 @@ import { companyInfo } from '../../../store/actions/company/home';
 import settings from '../../../services/company/setting';
 import Footer from '../../Footer';
 
-const { changePassword } = settings;
+const {
+  changePassword,
+  updateCompanyName,
+  changeSuperVisor,
+  getCompanySuperV
+} = settings;
 const { TabPane } = Tabs;
 
 class CompanySetting extends React.Component {
@@ -22,6 +27,14 @@ class CompanySetting extends React.Component {
   async componentDidMount() {
     const { getCompanyInfo } = this.props;
     getCompanyInfo();
+    const supervisorData = await getCompanySuperV();
+    const { Name, position, phone } = supervisorData.superVisor;
+    this.setState({
+      supervisorData,
+      Name,
+      position,
+      phone
+    });
   }
 
   handleChange = e => {
@@ -30,25 +43,55 @@ class CompanySetting extends React.Component {
       [name]: value
     });
   };
-  ChangePassword = async () => {
-    const { newPassword, rePassword, prevPassword } = this.state;
-    if (newPassword !== rePassword) {
-      this.setState({
-        error: true
-      });
-    } else {
-      await changePassword({
-        prevPassword,
-        newPassword
-      });
-      alert('تم تغير كلمة المرور');
+
+  handleSelectChange = value => {
+    this.setState({
+      position: value
+    });
+  };
+
+  ChangeSetting = async () => {
+    const {
+      newPassword,
+      rePassword,
+      prevPassword,
+      companyName,
+      Name,
+      position,
+      phone
+    } = this.state;
+    if (newPassword && prevPassword && rePassword) {
+      if (newPassword !== rePassword) {
+        this.setState({
+          error: true
+        });
+      } else {
+        await changePassword({
+          prevPassword,
+          newPassword
+        });
+        await message.success('تم تغير كلمة المرور');
+        window.location.reload();
+      }
+    }
+    if (companyName) {
+      await updateCompanyName({ name: companyName });
+      await message.success('تم تغير اسم الشركة');
       window.location.reload();
+    }
+    if (Name || position || phone) {
+      if (phone.length > 12 || phone.length < 9) {
+        this.setState({ phoneError: true });
+      } else {
+        await changeSuperVisor({ Name, position, phone });
+        await message.success('تم تغير معلومات المشرف بنجاح');
+        window.location.reload();
+      }
     }
   };
   render() {
     const { company } = this.props;
-    console.log('state', this.state);
-
+    const { Name, position, phone, phoneError } = this.state;
     return (
       <React.Fragment>
         <Header />
@@ -69,7 +112,7 @@ class CompanySetting extends React.Component {
               <Tabs type="card" className="settings-tab">
                 <TabPane tab="حساب الشركة" key="1">
                   <br />
-                  <Tab1 {...company} />
+                  <Tab1 {...company} {...this.state} />
                 </TabPane>
                 <TabPane tab="الحسابات الفرعية" key="2">
                   <Tab2 />
@@ -77,8 +120,13 @@ class CompanySetting extends React.Component {
                 <TabPane tab="الإعدادات العامة" key="3">
                   <Tab3
                     handleChange={this.handleChange}
-                    ChangePassword={this.ChangePassword}
+                    ChangeSetting={this.ChangeSetting}
+                    handleSelectChange={this.handleSelectChange}
                     {...this.state}
+                    Name={Name}
+                    position={position}
+                    phone={phone}
+                    phoneError={phoneError}
                   />
                 </TabPane>
               </Tabs>

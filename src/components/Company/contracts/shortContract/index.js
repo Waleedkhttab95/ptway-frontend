@@ -12,7 +12,7 @@ import moment from 'moment';
 import { Formik } from 'formik';
 import validationSchema from './validation';
 const { allCities, allCountries } = statatisticsService;
-const { getPersonalSkills } = cvServices;
+const { getPersonalSkills, jobCategories } = cvServices;
 const { getProjects, addNewAd } = projects;
 const { TextArea } = Input;
 const { Option } = Select;
@@ -30,12 +30,15 @@ class AddNewAd extends React.Component {
     const countries = await allCountries();
     const cities = await allCities();
     const pSkills = await getPersonalSkills();
+    const categories = await jobCategories();
+
     this.setState({
       contractId,
       allProjects,
       countries,
       cities,
-      pSkills
+      pSkills,
+      categories
     });
   }
 
@@ -57,7 +60,15 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-    const { project, gender, personalSkills, date, country, city } = this.state;
+    const {
+      project,
+      gender,
+      personalSkills,
+      date,
+      country,
+      city,
+      jobCategory
+    } = this.state;
     if (!project || !personalSkills || !gender || !date || !country || !city) {
       this.setState({
         error: true
@@ -80,7 +91,8 @@ class AddNewAd extends React.Component {
         salary: values.salary,
         country: this.state.country,
         city: this.state.city,
-        required_Number: values.required_Number
+        required_Number: values.required_Number,
+        jobCategory
       };
       await addNewAd(data);
       const { history } = this.props;
@@ -102,7 +114,8 @@ class AddNewAd extends React.Component {
       cities,
       pSkills,
       error,
-      sending
+      sending,
+      categories
     } = this.state;
     const { loggedIn } = loadState();
     console.log('state', this.state);
@@ -149,6 +162,29 @@ class AddNewAd extends React.Component {
                         : ''}
                     </Select>
                     {error && !this.state.project && (
+                      <span style={{ color: 'red', fontSize: '12px' }}>
+                        هذا الحقل مطلوب
+                      </span>
+                    )}
+                    <br />
+                    <br />
+                    <label>تصنيف الوظيفة</label>
+                    <Select
+                      className="project-selection selector"
+                      onChange={this.handleSelectChange}
+                    >
+                      {_.isArray(categories) &&
+                        categories.map(elm => (
+                          <Option
+                            value={elm.jobName}
+                            key={elm._id}
+                            name="jobCategory"
+                          >
+                            {elm.jobName}
+                          </Option>
+                        ))}
+                    </Select>
+                    {error && !this.state.jobCategory && (
                       <span style={{ color: 'red', fontSize: '12px' }}>
                         هذا الحقل مطلوب
                       </span>

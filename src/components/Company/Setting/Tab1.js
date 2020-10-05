@@ -3,6 +3,7 @@ import './style.scss';
 
 const Tab1 = props => {
   const { info } = props.companyInfo;
+  const { supervisorData } = props;
   return (
     <React.Fragment>
       <br />
@@ -15,6 +16,24 @@ const Tab1 = props => {
         <p className="sub-desc">{info ? info.vision : ''}</p>
         <h3 className="sub-title">رسالة الشركة</h3>
         <p className="sub-desc">{info ? info.message : ''}</p>
+        {supervisorData && supervisorData?.superVisor.Name && (
+          <>
+            <h3 className="sub-title">اسم المشرف</h3>
+            <p className="sub-desc">{supervisorData?.superVisor.Name}</p>
+          </>
+        )}
+        {supervisorData && supervisorData?.superVisor.phone && (
+          <>
+            <h3 className="sub-title">رقم الجوال</h3>
+            <p className="sub-desc">{supervisorData?.superVisor.phone}</p>
+          </>
+        )}
+        {supervisorData && supervisorData?.superVisor.position && (
+          <>
+            <h3 className="sub-title">صفة المشرف </h3>
+            <p className="sub-desc">{supervisorData?.superVisor.position}</p>
+          </>
+        )}
       </div>
 
       <h4 className="heading">

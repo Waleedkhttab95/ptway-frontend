@@ -96,6 +96,7 @@ class CompanyDetails extends React.Component {
                   <div>التاريخ</div>
                   <div>اسم المشروع</div>
                   <div>عدد المتقدمين</div>
+                  <div>المتقدمين</div>
                 </div>
                 {_.isArray(company.companyAds) ? (
                   company.companyAds.map(elm => {
@@ -106,6 +107,17 @@ class CompanyDetails extends React.Component {
                         <div className="project-status">{elm.projectName}</div>
                         <div>
                           <div className="applicants-num">{elm.candidates}</div>
+                        </div>
+                        <div
+                          className="applicants-col"
+                          onClick={() =>
+                            this.props.history.push(
+                              `/applicants/job/id=${elm.advId}&name=${elm.advName}`
+                            )
+                          }
+                        >
+                          {' '}
+                          عرض
                         </div>
                       </div>
                     );

@@ -74,13 +74,13 @@
                     color: #bdbdbd;
                 }
             }
-            
+
         }
         .post-body{
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            
+
         }
         .post-description{
             font-size: 14px;
@@ -150,11 +150,11 @@
             color: #fff;
             cursor: pointer;
             // margin-top: 50px;
-           
+
         }
     }
-    
-    
+
+
 }
 .display-more{
     width: 140px;
@@ -201,6 +201,102 @@
     padding-top: 5px;
     text-align: center;
 }
+.job-header-title {
+    height: 38px;
+        border-radius: 2px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        font-size: 14px;
+        text-align: center;
+        color: #3b3b3b;
+        padding-top: 5px;
+        margin-top: 15px;
+}
+.jobs-section {
+    height: 1100px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-left: 1px;
+        background: #f3f3f3;
+        direction: ltr;
+    .job {
+        height: 160px;
+        margin: 7px 0 7px 7px;
+        border: none;
+        background-color: #ffffff;
+        margin-bottom: 2px;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        cursor: pointer;
+        direction: rtl;
+        .top-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: solid 1px #d4d4d4;
+            padding-bottom: 5px;
+            position: relative;
+                .job-img {
+                    width: 48px;
+                    height: 48px;
+                    border: none;
+                    margin: 0 12px;
+                }
+            .job-content {
+                h3 {
+                    font-size: 14px;
+                    line-height: 1.36;
+                    text-align: right;
+                    color: #009ad0;
+                }
+                h4 {
+                    font-size: 12px;
+                    line-height: 1.71;
+                    text-align: right;
+                }
+
+            }
+            .job-status {
+                position: absolute;
+                left: 17px;
+            }
+        }
+        .description {
+            padding-top: 10px;
+            div {
+                display: flex;
+                padding-right: 12px;
+                align-items: center;
+                h3 {
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-align: right;
+                    color: #343434;
+                    margin-left: 30px;
+                    span {
+                        color: #898989;
+                    }
+                }
+            }
+
+        }
+        .job-mobile-btn {
+            display: none;
+        }
+    }
+    .un-read {
+        background: rgba(235, 243, 248, 0.6);
+        border-bottom: solid 2px #f7f7f7;
+    }
+    .active {
+            background-color: #ffffff;
+            margin: 7px 0 7px 3px;
+
+    }
+}
 
 @media (max-width:320px){
     .jobs-details{
@@ -211,7 +307,7 @@
         margin-left: 0px;
         padding-right: 10px;
         height: 373px;
-        
+
     }
 }
     .user-jobs {
@@ -231,6 +327,25 @@
     // .jobs-details .job-post .post-body .apply-job-btn , .jobs-details .job-post .post-body .details-btn {
     //     width: 180px;
     // }
+    .job-mobile-btn {
+        width: 156px !important;
+        height: 36px !important;
+        border-radius: 2px;
+        background-color: #d8d8d8;
+        width: 106px;
+        height: 17px;
+        font-size: 12px;
+        text-align: center;
+        color: #3b3b3b;
+        display: block !important;
+        // margin: auto !important;
+        margin-top: 12px !important;
+        margin-right: 90px;
+}
+.jobs-section .job {
+    height: 212px;
+    width: auto;
+}
 }
 
 @media (min-width:321px) and (max-width:768px){
@@ -257,6 +372,25 @@
     }
     .jobs-details .job-post .post-body .details-btn {
         margin-top: 0px;
+    }
+    .job-mobile-btn {
+            width: 156px !important;
+            height: 36px !important;
+            border-radius: 2px;
+            background-color: #d8d8d8;
+            width: 106px;
+            height: 17px;
+            font-size: 12px;
+            text-align: center;
+            color: #3b3b3b;
+            display: block !important;
+            // margin: auto !important;
+            margin-top: 12px !important;
+            margin-right: 90px;
+    }
+    .jobs-section .job {
+        height: 212px;
+        width: auto;
     }
 
 }

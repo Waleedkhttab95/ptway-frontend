@@ -20,10 +20,9 @@ class Job extends React.Component {
   };
 
   async componentDidMount() {
-    const { jobOffer, company } = this.props;
+    const { jobOffer } = this.props;
     const { id } = this.props.match.params;
-    const job = await jobOffer({ id });
-    await company({ id: job.value.job.company });
+    await jobOffer({ id });
   }
 
   applyJobSuccessMsg = () => {
@@ -55,6 +54,7 @@ class Job extends React.Component {
 
   render() {
     const { offer, closeModal } = this.props;
+    console.log('offer', offer);
     const {
       Country,
       City,
@@ -63,6 +63,7 @@ class Job extends React.Component {
       job,
       contractType
     } = offer.jobOffer;
+    const isLock = job ? job.isLock : false;
     const { compnayName, imagePath, address, info } = offer.company;
     const { sending } = this.state;
     return (
@@ -89,22 +90,24 @@ class Job extends React.Component {
         <Row className="job-section">
           <Col md={6} xs={24} sm={24}>
             <div className="right-section">
-              {offer.company ? (
+              {// offer.company
+              job ? (
                 <React.Fragment>
-                  {imagePath !== 'null' ? (
+                  {imagePath ? (
                     <img src={imagePath} alt="user" className="picture" />
                   ) : (
-                    <i
-                      className="fa fa-user-circle-o"
-                      aria-hidden="true"
+                    <img
+                      className="job-img"
                       style={{
-                        fontSize: '45px',
-                        display: 'flex',
-                        alignItems: 'center'
+                        width: '150px',
+                        height: '150px'
                       }}
-                    ></i>
+                      src={require('../../../images/pure-avatar.png')}
+                    />
                   )}
-                  <span className="job-owner-name">{compnayName}</span>
+                  <span className="job-owner-name">
+                    {job?.company?.companyName}
+                  </span>
                   <div className="job-owner-info">
                     <p>
                       <i
@@ -191,6 +194,8 @@ class Job extends React.Component {
               <button className="not-intersted-btn">
                 لقد تقدمت للوظيفة سابقاً
               </button>
+            ) : isLock ? (
+              <button className="not-intersted-btn">لقد اكتمل العدد</button>
             ) : (
               <button
                 className={

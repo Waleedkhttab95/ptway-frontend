@@ -2,7 +2,15 @@ import React from 'react';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Input, Collapse, Select, DatePicker, Modal, Spin } from 'antd';
+import {
+  Input,
+  Collapse,
+  Select,
+  DatePicker,
+  Modal,
+  Spin,
+  TreeSelect
+} from 'antd';
 import Avatar from './UploadFile';
 import cvServices from '../../../services/user/cv';
 import statatisticsService from '../../../services/statisticsService';
@@ -14,6 +22,8 @@ const { TextArea } = Input;
 const { Panel } = Collapse;
 const { Option } = Select;
 const { allCities, allCountries } = statatisticsService;
+
+const { SHOW_PARENT } = TreeSelect;
 const {
   getSkills,
   getPersonalSkills,
@@ -44,9 +54,7 @@ class UpdateProfile extends React.Component {
     const countries = await allCountries();
     const cities = await allCities();
     const categories = await jobCategories();
-
     const info = userInfo.info;
-
     if (info.public_Major && !info.spMajor) {
       const subMajor = await getSubMajor({ id: info.public_Major._id });
       this.setState({
@@ -76,7 +84,10 @@ class UpdateProfile extends React.Component {
       education_level: info.Education_level ? info.Education_level : '',
       education_degree: info.education_degree ? info.education_degree : '',
       study_degree: info.study_degree ? info.study_degree : '',
-      language: info.languages ? info.languages : [],
+      language:
+        info.languagesWithLevel && info.languagesWithLevel.length !== 0
+          ? JSON.parse(info.languagesWithLevel)
+          : [],
       hoppies:
         info.hoppies && info.hoppies[0] !== 'undefined' ? info.hoppies : [],
       personal_web: info.personal_web ? info.personal_web : '',
@@ -87,7 +98,9 @@ class UpdateProfile extends React.Component {
       per_skill: info.personal_Skills ? info.personal_Skills : '',
       skill: info.skills ? info.skills : '',
       jobCategory:
-        info.jobCategory.length !== 0 ? info.jobCategory.map(e => e._id) : null,
+        info.jobCategory && info.jobCategory.length !== 0
+          ? info.jobCategory.map(e => e._id)
+          : [],
       userStatus: info.userStatus ? info.userStatus : '',
       availabilityStatus: info.availabilityStatus ? info.availabilityStatus : ''
     });
@@ -126,11 +139,10 @@ class UpdateProfile extends React.Component {
       jobCategory: ids
     });
   };
-  handleLanguageChange = (value, option) => {
-    const ids = option.map(elm => elm.key);
-    this.setState({
-      language: ids
-    });
+  handleLanguageChange = (value, label, extra) => {
+    // const allData = extra.allCheckedNodes.map(elm => elm.node.props);
+    const data = value.filter(elm => elm.split('-').length == 2);
+    this.setState({ language: data });
   };
   handleHoppiesChange = (value, option) => {
     const ids = option.map(elm => elm.key);
@@ -272,7 +284,9 @@ class UpdateProfile extends React.Component {
       cities,
       categories,
       education_levels,
-      datebirthError
+      datebirthError,
+      language,
+      langError
     } = this.state;
     const hoppies = [
       'القراءة',
@@ -298,7 +312,7 @@ class UpdateProfile extends React.Component {
     ];
 
     const status = ['متفرغ', 'موظف', 'طالب'];
-    const availabilityStatus = ['صباحي', 'مسائي'];
+    const availabilityStatus = ['صباحي', 'مسائي',"صباحي و مسائي"];
     let skillsObj;
     let pSkillsObj;
     const updatedSkills = _.isArray(skills)
@@ -317,6 +331,41 @@ class UpdateProfile extends React.Component {
           });
         })
       : '';
+
+    const children = ['مبتديء', 'متوسط', 'متقدم'];
+    const lang = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية'];
+    const languagesProps = lang.map(elm => {
+      return {
+        title: elm,
+        value: elm,
+        key: elm,
+        children: children.map(subElm => {
+          return {
+            title: `${elm}-${subElm}`,
+            value: `${elm}-${subElm}`,
+            key: `${elm}-${subElm}`
+          };
+        })
+      };
+    });
+    const tProps = {
+      treeData: languagesProps,
+      value: language,
+      //placeholder: this.state.language ? this.state.language.map(elm => {
+      //     console.log('value', elm.value);
+      //     return elm.value;
+      //   })
+      // : []
+      // ,
+      onChange: this.handleLanguageChange,
+      multiple: true,
+      showArrow: true,
+      className: 'input-field',
+      disableCheckbox: true,
+      style: {
+        height: 'auto'
+      }
+    };
 
     return (
       <div className="user-container">
@@ -377,7 +426,7 @@ class UpdateProfile extends React.Component {
                           showArrow={true}
                           className="input-field"
                           defaultValue={
-                            userInfo
+                            userInfo && userInfo.jobCategory
                               ? userInfo.jobCategory.map(e => e.jobName)
                               : []
                           }
@@ -469,53 +518,8 @@ class UpdateProfile extends React.Component {
                           </Option>
                         </Select>
                         <h5 className="title-field">اللغات</h5>
-                        <Select
-                          className="input-field"
-                          defaultValue={
-                            userInfo && userInfo.languages !== null
-                              ? userInfo.languages
-                              : []
-                          }
-                          onChange={this.handleLanguageChange}
-                          mode="multiple"
-                          autoFocus={true}
-                          style={{
-                            maxHeight: '70px',
-                            height: 'auto',
-                            overflowY: 'scroll'
-                          }}
-                        >
-                          <Option name="language" value="العربية" key="العربية">
-                            العربية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الانجليزية"
-                            key="الانجليزية"
-                          >
-                            الانجليزية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الفرنسية"
-                            key="الفرنسية"
-                          >
-                            الفرنسية{' '}
-                          </Option>
-                          <Option
-                            name="language"
-                            value="الاسبانية"
-                            key="الاسبانية"
-                          >
-                            الاسبانية{' '}
-                          </Option>
-                          <Option name="language" value="الكورية" key="الكورية">
-                            الكورية{' '}
-                          </Option>
-                          <Option name="language" value="أوردو" key="أوردو">
-                            أوردو{' '}
-                          </Option>
-                        </Select>
+                        <TreeSelect {...tProps} />
+
                         <h5 className="title-field">حالة المستخدم</h5>
                         <Select
                           className="input-field"

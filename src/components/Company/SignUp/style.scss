@@ -1,48 +1,156 @@
-.company-signup-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.company-sign {
+  .steps-form .form-content {
+    padding: 42px 65px 0 0;
+  }
+
+  .com-steps-form {
     height: auto;
-    background-color: #f3f3f3;
-    width: 100%;
-}
-.form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 112px;
-    padding: 50px 40px;
-    width: 490px;
-    height: auto;
+    padding-bottom: 50px;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+    .section-title {
+ 
+      font-size: 28px;
+      text-align: center;
+      color: #18233d;
+      padding: 30px 0 0px 0;
+      margin-left: 80px;
+    }
+    .first-step-btn,
+    .submit-btn {
+      max-width: 341px;
+      width: 100%;
+      height: 40px;
+      margin-top: 45px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.57;
+      text-align: center;
+      border-radius: 6px;
+      background-color: #3598d4;
+      color: #fff;
+    }
+    .prev {
+      text-align: center;
+      margin-left: 85px;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #3498d4;
+    }
+
+    .signup-check {
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .signup-form-container {
+    background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-}
-.type-selector, .sector-selector {
-    width: 402px;
-    >div {
-        border-top-width: 1.02px;
+    width: 800px;
+    .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal {
+      width: 220px;
+      margin-right: 70px;
     }
-}
+    .form-first-section {
+      padding: 40px 40px 0 0;
+    }
+    .form-second-section {
+      min-height: 810px;
+      box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+      text-align: center;
+      padding-top: 180px;
 
-@media (max-width:320px) {
-    .form-container {
-        width: 290px;
-        margin: 80px;
-    }
-    .type-selector, .sector-selector {
-        width: 282px;
-    }
-}
+      h3 {
 
-@media (min-width:321px) and (max-width: 768px) {
-    .form-container {
-        width: 350px;
-        margin: 80px;
+        font-size: 18px;
+        color: #18233d;
+        padding: 50px 0;
+      }
+      h6 {
+
+        font-size: 14px;
+        line-height: 1.93;
+        color: #8b919e;
+        padding-right: 50px;
+        text-align: justify;
+      }
     }
-    .type-selector, .sector-selector {
-        width: 322px;
+  }
+  .steps-header {
+    width: 250px;
+    margin-right: 70px;
+    span {
+      color: #059bd2;
     }
+    span:nth-child(2) {
+      margin-right: 20px;
+    }
+  }
+  .single-input {
+    margin: 5px 0;
+    max-width: 341px;
+    width: 100%;
+    height: 32px;
+  }
+
+  .ant-select {
+    margin: 5px 0;
+    & div {
+      max-width: 341px;
+      width: 100%;
+      height: 32px;
+    }
+  }
+  .info-label {
+    margin-top: 25px;
+  }
+}
+@media (max-width: 768px) and (min-width: 321px) {
+  .company-sign {
+    .steps-form .form-content {
+      padding: 30px 13px;
+    }
+    .signup-form {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .com-steps-form .section-title {
+      margin-left: 0;
+    }
+    .single-input {
+      margin: 5px 0;
+      width: 100%;
+      height: 32px;
+    }
+    .ant-select {
+      margin: 5px 0;
+      & div {
+        width: 100%;
+        height: 32px;
+      }
+    }
+    .com-steps-form .prev {
+      margin-left: 30px;
+    }
+    .signup-form-container {
+      width: 100%;
+      .ant-steps.ant-steps-horizontal.ant-steps-label-horizontal {
+        width: 0px;
+        margin-right: 0;
+        margin: auto;
+      }
+      .form-first-section {
+        padding: 40px 0px 0 0px;
+      }
+      .form-second-section {
+        display: none;
+        min-height: 0;
+      }
+    }
+  }
 }

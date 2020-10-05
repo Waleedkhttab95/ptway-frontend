@@ -6,14 +6,19 @@ import _ from 'lodash';
 const { Option } = Select;
 
 const step3Form = props => {
-  const { handleChange, handleSelect, majors, state, current, steps } = props;
-  const { firstNameError, lastNameError, majorError } = state;
+  const {
+    handleChange,
+    handleSelect,
+    majors,
+    categories,
+    state,
+    current,
+    steps
+  } = props;
+  const { firstNameError, lastNameError, majorError, categoryError } = state;
   return (
-    <div className="steps-form ">
-      <div
-        className="form-content signupf"
-        //  style={{ padding: '30px 53px 0 0' }}
-      >
+    <div className="steps-form steps-form-user-signin">
+      <div className="form-content signupf">
         <img src={personalInfoIcon} />
         <span className="f-title">معلومات شخصية</span>
         <span className="line"></span>
@@ -63,7 +68,29 @@ const step3Form = props => {
           <span style={{ color: 'red' }}>
             {majorError && !state.major ? majorError : ''}
           </span>
-          {/* <Input  name="major" onChange={handleChange} /> */}
+
+          <label className="info-label">الإهتمامات الوظيفية</label>
+          <Select
+            onChange={value => handleSelect(value, 'jobCategory')}
+            className="major-text"
+            value={state.jobCategory}
+            mode="multiple"
+            showArrow={true}
+          >
+            {_.isArray(categories)
+              ? categories.map(elm => {
+                  return (
+                    <Option value={elm._id} key={elm._id}>
+                      {elm.jobName}
+                    </Option>
+                  );
+                })
+              : ''}
+          </Select>
+          <span style={{ color: 'red' }}>
+            {categoryError && !state.jobCategory ? categoryError : ''}
+          </span>
+
           <div className="steps-btns">
             {current > 0 && (
               <button

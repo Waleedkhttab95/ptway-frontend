@@ -12,7 +12,7 @@ import moment from 'moment';
 import { Formik } from 'formik';
 import validationSchema from './validation';
 const { allCities, allCountries } = statatisticsService;
-const { getPersonalSkills } = cvServices;
+const { getPersonalSkills, jobCategories } = cvServices;
 const { getProjects, addNewAd } = projects;
 const { TextArea } = Input;
 const { Option } = Select;
@@ -30,12 +30,14 @@ class AddNewAd extends React.Component {
     const countries = await allCountries();
     const cities = await allCities();
     const pSkills = await getPersonalSkills();
+    const categories = await jobCategories();
     this.setState({
       contractId,
       allProjects,
       countries,
       cities,
-      pSkills
+      pSkills,
+      categories
     });
   }
 
@@ -57,8 +59,24 @@ class AddNewAd extends React.Component {
     });
   };
   postAd = async values => {
-    const { project, gender, personalSkills, date, country, city } = this.state;
-    if (!project || !personalSkills || !gender || !date || !country || !city) {
+    const {
+      project,
+      gender,
+      personalSkills,
+      date,
+      country,
+      city,
+      jobCategory
+    } = this.state;
+    if (
+      !project ||
+      !personalSkills ||
+      !gender ||
+      !date ||
+      !country ||
+      !city ||
+      !jobCategory
+    ) {
       this.setState({
         error: true
       });
@@ -78,9 +96,10 @@ class AddNewAd extends React.Component {
         jobTitle: values.jobTitle,
         gender: this.state.gender,
         salary: values.salary,
-        country: this.state.country,
-        city: this.state.city,
-        required_Number: values.required_Number
+        country,
+        city,
+        required_Number: values.required_Number,
+        jobCategory
       };
       await addNewAd(data);
       const { history } = this.props;
@@ -102,7 +121,8 @@ class AddNewAd extends React.Component {
       cities,
       pSkills,
       error,
-      sending
+      sending,
+      categories
     } = this.state;
     const { loggedIn } = loadState();
 
@@ -155,6 +175,29 @@ class AddNewAd extends React.Component {
                     )}
                     <br />
                     <br />
+                    <label>تصنيف الوظيفة  </label>
+                    <Select
+                      className="project-selection selector"
+                      onChange={this.handleSelectChange}
+                    >
+                      {_.isArray(categories) &&
+                        categories.map(elm => (
+                          <Option
+                            value={elm.jobName}
+                            key={elm._id}
+                            name="jobCategory"
+                          >
+                            {elm.jobName}
+                          </Option>
+                        ))}
+                    </Select>
+                    {error && !this.state.jobCategory && (
+                      <span style={{ color: 'red', fontSize: '12px' }}>
+                        هذا الحقل مطلوب
+                      </span>
+                    )}
+                    <br />
+                    <br />
                     <label>المسمى الوظيفي المطلوب</label>
                     <Input
                       onChange={handleChange}
@@ -170,7 +213,7 @@ class AddNewAd extends React.Component {
                     <br />
                     <div className="group-questions">
                       <div className="right-side">
-                        <label>عدد ساعات العمل (بحد اقصى 6 ساعات )</label>
+                        <label>عدد ساعات العمل (بحد اقصى 8 ساعات )</label>
                         <Input
                           onChange={handleChange}
                           name="workHours"

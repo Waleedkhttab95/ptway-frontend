@@ -24,11 +24,11 @@ class CompanyHome extends React.Component {
     const { company } = this.props;
     return (
       <div>
-        {company.companyInfo && !company.companyInfo.status ? (
+        {/* {company.companyInfo && !company.companyInfo.status ? (
           <Redirect to={{ pathname: '/company/profile' }} />
         ) : (
-          <CompanyDetails {...this.props} />
-        )}
+          )} */}
+        <CompanyDetails {...this.props} />
       </div>
     );
   }

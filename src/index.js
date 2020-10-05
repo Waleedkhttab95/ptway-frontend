@@ -5,6 +5,7 @@ import store from './store/createStore';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module';
 // import { saveState } from './_core/localStorage';
 import i18n from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
@@ -18,6 +19,11 @@ const trackingId = 'UA-142610001-1'; // Replace with your Google Analytics track
 ReactGA.initialize(trackingId);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
+const tagManagerArgs = {
+  gtmId: 'GTM-MPBS7PG'
+};
+
+TagManager.initialize(tagManagerArgs);
 i18n
   .use(initReactI18next)
   .init({

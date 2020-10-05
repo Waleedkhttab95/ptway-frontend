@@ -59,9 +59,9 @@ import { CompanyNewJob } from './NewJob/company';
 import { DeliveryCompany } from './NewJob/deliveryCompany';
 import { Helmet } from 'react-helmet';
 import UserInfo from './User/userInfoFollowForm';
-
-// DELETE ME
-// import UserHomeClone from '../components/User/index_clone';
+import WholeCV from './Company/Applicant/WholeCV';
+import CompanyJob from './Company/Project/job';
+import ReactivateAccount from './User/reactivateAccount';
 
 const App = () => {
   return (
@@ -146,16 +146,6 @@ const App = () => {
             path="/user/home"
             component={UserHome}
           />
-
-          {/* THIS IS CLONE PAGE */}
-          {/* <UserAuthenticatedRoute
-            exact
-            path="/user/home-clone"
-            component={UserHomeClone}
-          /> */}
-
-          {/*  */}
-
           <UserAuthenticatedRoute exact path="/user/jobs" component={Jobs} />
           <UserAuthenticatedRoute exact path="/user/job/:id" component={Job} />
           <UserAuthenticatedRoute
@@ -172,6 +162,11 @@ const App = () => {
             exact
             path="/user/profile/update"
             component={UpdateProfile}
+          />
+          <Route
+            exact
+            path="/reactivate-account"
+            component={ReactivateAccount}
           />
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/company/login" component={CompanyLogin} />
@@ -203,7 +198,7 @@ const App = () => {
           />
           <CompanyAuthenticatedRoute
             exact
-            path="/applicants/job/id=:id"
+            path="/applicants/job/id=:id&name=:name"
             component={Applicants}
           />
           <CompanyAuthenticatedRoute
@@ -238,6 +233,17 @@ const App = () => {
             path="/company/resetPassword"
             component={ResetCompanyPassword}
           />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/applicant-cv/id=:userId&job_id=:jobId&status=:status&applicantId=:applicantId"
+            component={WholeCV}
+          />
+          <CompanyAuthenticatedRoute
+            exact
+            path="/jobs/job_id=:id"
+            component={CompanyJob}
+          />
+
           <Route exact path="/resetPassword" component={SetNewPassword} />
           <Route exact path="/common-questions" component={CommenQuestions} />
           <Route exact path="/about-us" component={AboutUs} />

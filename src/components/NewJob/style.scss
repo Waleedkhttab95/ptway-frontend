@@ -81,7 +81,7 @@
   color: #00263e;
   padding-top: 10px;
 }
-.sub-title {
+.sub-title2 {
     font-size: 25px;
     text-align: center;
     color: #3598d4;
@@ -149,16 +149,17 @@
     .checked-select {
         flex-direction: column;
     }
-    .user-type { 
+    .user-type {
         flex-direction: column;
     }
-    .main-title { 
+    .main-title {
         padding-top: 50px;
     }
 }
 @media (min-width:321px) and (max-width:768px) {
     .container {
     max-width: 360px;
+    min-height: 100vh;
     }
     .new-job-form {
         padding: 30px 10px;
@@ -177,15 +178,15 @@
         >label:nth-child(3) {
             margin-right: 8px;
         }
-        
+
     }
-    .user-type { 
+    .user-type {
         flex-direction: column;
         >div {
             margin-bottom: 20px;
         }
     }
-    .main-title { 
+    .main-title {
         padding-top: 50px;
     }
 }

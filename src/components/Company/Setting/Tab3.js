@@ -1,13 +1,18 @@
 import React from 'react';
 import './style.scss';
-import { Input, Button } from 'antd';
+import { Input, Button, Select } from 'antd';
 const Tab3 = ({
   handleChange,
-  ChangePassword,
+  handleSelectChange,
+  ChangeSetting,
   error,
   newPassword,
-  rePassword
+  rePassword,
+  Name,
+  position,
+  phone
 }) => {
+  console.log('phone.length', phone.length);
   return (
     <div className="account-setting">
       <div className="account-info">
@@ -24,13 +29,74 @@ const Tab3 = ({
             كلمة المرور غير متطابقة
           </span>
         )}
+
+        <h3 className="heading">تعديل اسم الشركة</h3>
+        <label className="sub-title">اسم الشركة الجديد</label>
+        <Input onChange={handleChange} name="companyName" />
+
+        <h3 className="heading">تعديل معلومات المشرف</h3>
+        <label className="sub-title">الاسم</label>
+        <Input onChange={handleChange} name="Name" value={Name} />
+        <label className="sub-title">رقم الجوال</label>
+        <Input
+          type="number"
+          max={12}
+          min={9}
+          onChange={handleChange}
+          name="phone"
+          value={phone}
+        />
+        {phone && phone.length < 9 && (
+          <span
+            style={{
+              color: 'red',
+              fontSize: '12px',
+              marginTop: '-25px',
+              marginBottom: '20px'
+            }}
+          >
+            يجب أن يكون رقم الجوال بين 9-12 رقم
+          </span>
+        )}
+        {phone && phone.length > 12 && (
+          <span
+            style={{
+              color: 'red',
+              fontSize: '12px',
+              marginTop: '-25px',
+              marginBottom: '20px'
+            }}
+          >
+            يجب أن يكون رقم الجوال بين 9-12 رقم
+          </span>
+        )}
+        <label className="sub-title">صفة المشرف</label>
+        <Select
+          name="position"
+          onChange={handleSelectChange}
+          className="select-text"
+          value={position}
+        >
+          <Select.Option
+            value="صاحب المشروع
+          "
+          >
+            صاحب المشروع
+          </Select.Option>
+          <Select.Option value="مسؤول الموارد البشرية">
+            مسؤول الموارد البشرية
+          </Select.Option>
+          <Select.Option value="مدير الموارد البشرية">
+            مدير الموارد البشرية
+          </Select.Option>
+        </Select>
         <Button
-          onClick={ChangePassword}
+          onClick={ChangeSetting}
           style={{
             width: '250px',
             backgroundColor: '#1f3f54',
             height: '40px',
-            marginBottom: '20px'
+            margin: '50px auto'
           }}
         >
           {' '}

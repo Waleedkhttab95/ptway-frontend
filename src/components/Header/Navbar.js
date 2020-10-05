@@ -74,7 +74,7 @@ class Navbar extends React.Component {
               <Link to="/company/signup">الشركات</Link>
             </div>
             <div className="options">
-              <Select
+              {/* <Select
                 className="basic-single"
                 styles={colourStyles}
                 classNamePrefix="select"
@@ -85,7 +85,7 @@ class Navbar extends React.Component {
                   i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')
                 }
                 options={options}
-              />
+              /> */}
               <RSelect
                 defaultValue="تسجيل الدخول"
                 className="login"

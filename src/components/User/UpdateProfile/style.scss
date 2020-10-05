@@ -191,6 +191,18 @@
   .date-mobile {
       display: none;
   }
+  .input-normal-select-field {
+    border-color: #d9d9d9;
+    background: #fff !important;
+    width: 341px;
+    box-shadow: none;
+    opacity: unset;
+    height: 32px;
+    border-radius: 4px;
+    /* border-top: solid 1px #d9d9d9 !important; */
+    // background-color: #fdfdfd;
+    margin-bottom: 12px;
+  }
 @media (max-width:320px) {
     .collapse-line{
         width: 35%;
@@ -239,6 +251,9 @@
     .date-web {
         display: none;
     }
+    .input-normal-select-field {
+        width: 300px;
+      }
 }
 
 @media (min-width:321px) and (max-width:768px) {
@@ -290,5 +305,8 @@
     .date-web {
         display: none;
     }
+    .input-normal-select-field {
+        width: 300px;
+      }
 
 }

@@ -2,13 +2,19 @@ import baseRequest from '../../_core';
 
 const CV = {
   getSkills: () => {
-    return baseRequest.get('/get/skills').then(result => result);
+    return baseRequest
+      .get('/get/skills?type=skill')
+      .then(result => JSON.parse(result.skills));
   },
   getPersonalSkills: () => {
-    return baseRequest.get('/get/p_skills').then(result => result);
+    return baseRequest
+      .get('/get/p_skills?type=pskill')
+      .then(result => JSON.parse(result.PersonalS));
   },
   getMajor: () => {
-    return baseRequest.get('/get/majors').then(result => result);
+    return baseRequest
+      .get('/get/majors?type=major')
+      .then(result => JSON.parse(result.public_Major));
   },
   getSubMajor: params => {
     return baseRequest
@@ -16,7 +22,9 @@ const CV = {
       .then(result => result);
   },
   getUniversity: () => {
-    return baseRequest.get('/get/universty').then(result => result);
+    return baseRequest
+      .get('/get/universty?type=university')
+      .then(result => JSON.parse(result.universty));
   },
   getinformation: () => {
     return baseRequest.get('/getuserinfo/edit').then(result => result);
@@ -75,13 +83,7 @@ const CV = {
       formData.append('personal_Skills', per_skill);
     }
 
-    if (language != null) {
-      for (var i = 0; i < language.length; i++) {
-        formData.append('languages[]', language[i]);
-      }
-    } else {
-      formData.append('languages', language);
-    }
+
     if (jobCategory != null) {
       for (var i = 0; i < jobCategory.length; i++) {
         formData.append('jobCategory[]', jobCategory[i]);
@@ -89,8 +91,8 @@ const CV = {
     } else {
       formData.append('jobCategory', jobCategory);
     }
-
     formData.append('image', file);
+    formData.append('languagesWithLevel', JSON.stringify(language));
     formData.append('fullName', fullName);
     formData.append('gender', gender);
     formData.append('mobile', mobile);
@@ -113,12 +115,13 @@ const CV = {
     formData.append('availabilityStatus', availabilityStatus);
 
     return baseRequest.put('/put/userinfo', formData).then(result => {
-
       return result;
     });
   },
   jobCategories: () =>
-    baseRequest.get('/get/allJobCategory').then(result => result)
+    baseRequest
+      .get('/get/allJobCategory?type=category')
+      .then(result => JSON.parse(result.jobs))
 };
 
 export default CV;

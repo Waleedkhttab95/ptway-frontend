@@ -12,6 +12,9 @@ import statatisticsService from '../../../services/statisticsService';
 import Header from '../../Header';
 import SEO from '../../SEO';
 import moment from 'moment';
+import cvServices from '../../../services/user/cv';
+
+const { jobCategories } = cvServices;
 
 const { allCountries, allCities, allMajors } = statatisticsService;
 const { Step } = Steps;
@@ -34,10 +37,19 @@ class UserSignup extends React.Component {
     if (cities) this.setState({ cities });
     const majors = await allMajors();
     if (majors) this.setState({ majors });
+    const categories = await jobCategories();
+    this.setState({ categories });
   };
 
   next = () => {
-    const { city, gender, firstName, lastName, major } = this.state;
+    const {
+      city,
+      gender,
+      firstName,
+      lastName,
+      major,
+      jobCategory
+    } = this.state;
     let current = this.state.current;
     switch (current) {
       case 0:
@@ -55,7 +67,6 @@ class UserSignup extends React.Component {
         if (!gender) {
           this.setState({
             genderError: 'هذا الحقل مطلوب'
-            // dateError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -63,11 +74,12 @@ class UserSignup extends React.Component {
         }
         break;
       case 2:
-        if (!firstName || !lastName || !major) {
+        if (!firstName || !lastName || !major || !jobCategory) {
           this.setState({
             firstNameError: 'هذا الحقل مطلوب',
             lastNameError: 'هذا الحقل مطلوب',
-            majorError: 'هذا الحقل مطلوب'
+            majorError: 'هذا الحقل مطلوب',
+            categoryError: 'هذا الحقل مطلوب'
           });
         } else {
           current = this.state.current + 1;
@@ -137,6 +149,7 @@ class UserSignup extends React.Component {
       name,
       city,
       major,
+      jobCategory,
       // reEmail,
       rePassword
     } = this.state;
@@ -166,6 +179,7 @@ class UserSignup extends React.Component {
         birthDate: birthDate || name,
         city,
         major,
+        jobCategory,
         fullName: firstName + ' ' + lastName
       });
 
@@ -175,9 +189,8 @@ class UserSignup extends React.Component {
   };
 
   render() {
-    const { current, countries, cities, majors } = this.state;
+    const { current, countries, cities, majors, categories } = this.state;
     const { user } = this.props;
-    console.log('state', this.state);
 
     const steps = [
       {
@@ -185,6 +198,7 @@ class UserSignup extends React.Component {
         content: (
           <Step1
             handleChange={this.handleChange}
+            handleInputsChange={this.handleInputsChange}
             countries={countries}
             cities={cities}
             state={this.state}
@@ -217,6 +231,7 @@ class UserSignup extends React.Component {
             handleChange={this.handleInputsChange}
             handleSelect={this.handleChange}
             majors={majors}
+            categories={categories}
             state={this.state}
             next={() => this.next()}
             prev={() => this.prev()}
@@ -235,7 +250,7 @@ class UserSignup extends React.Component {
             current={current}
             steps={3}
             signup={this.signup}
-            {...user}
+            error={user}
           />
         )
       }
@@ -264,9 +279,7 @@ class UserSignup extends React.Component {
               <div className="steps-content">{steps[current].content}</div>
             </div>
           </div>
-          {/* <div className="registration-footer"> */}
           <Footer />
-          {/* </div> */}
         </Layout>
       </React.Fragment>
     );
