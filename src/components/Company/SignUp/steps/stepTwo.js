@@ -29,6 +29,9 @@ const step2Form = props => {
           />
           <span style={{ color: 'red' }}>
             {phoneError && !state.phone ? phoneError : ''}
+            {phone && (phone?.length > 13 || phone?.length < 9) && (
+              <span>رقم الجوال يجب أن يكون بين 9-13 رقم </span>
+            )}
           </span>
           <label className="info-label">صفة المسؤول</label>
           <Select
