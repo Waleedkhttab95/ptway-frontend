@@ -305,10 +305,11 @@
     .date-web {
         display: none;
     }
-    .input-normal-select-field {
+    .input-normal-select-field { 
         width: 300px;
       }
       .ant-select-show-arrow.input-field.ant-select.ant-select-enabled {
-        min-height: 32px;
+        min-height: 32px !important;
+        height: auto;
     }
 }
