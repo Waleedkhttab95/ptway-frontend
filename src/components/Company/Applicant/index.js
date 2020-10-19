@@ -51,7 +51,6 @@ class Applicant extends React.Component {
     }
   }
 
-
   rejectUser = async id => {
     await rejectUser({ id });
 
@@ -61,10 +60,8 @@ class Applicant extends React.Component {
       },
       () => {
         message.success('تم رفض المرشح');
-
       }
     );
-
   };
 
   addToFavourite = async id => {
@@ -96,10 +93,8 @@ class Applicant extends React.Component {
           <h3>{user.info && user.info.fullName}</h3>
           <h3 style={{ color: '#898989' }}>
             {user.info && user.info.country.countryName},{' '}
-            {user.info && user.info.city.cityName}{' '}
-            <br/>
+            {user.info && user.info.city.cityName} <br />
             {user.info && user.info.mobile}{' '}
-
           </h3>
 
           <img
@@ -161,7 +156,7 @@ class Applicant extends React.Component {
             className="fa fa-lightbulb-o"
             aria-hidden="true"
           ></i>
-         المهارات و اللغات 
+          المهارات و اللغات
         </h2>
         <div className="applicant-general">
           <div>

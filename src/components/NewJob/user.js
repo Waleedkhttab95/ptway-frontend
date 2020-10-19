@@ -60,12 +60,11 @@ export class UserNewJob extends React.Component {
       YearsOfExperience,
       WorkingOutOfCity,
       Linkedin,
-      Cv,
-      reMobile
+      Cv
     } = this.state;
     if (
       jobTitle.length > 3 ||
-      jobTitle.length == 0 ||
+      jobTitle.length === 0 ||
       !name ||
       !gender ||
       !mobile ||
@@ -76,9 +75,7 @@ export class UserNewJob extends React.Component {
       !YearsOfExperience ||
       !WorkingOutOfCity ||
       !Linkedin ||
-
-      !Cv 
-
+      !Cv
     ) {
       this.setState({
         error: true
@@ -224,7 +221,7 @@ export class UserNewJob extends React.Component {
             {jobTitle.length > 3 && jobTitle && (
               <span style={{ color: 'red' }}>يمكنك اختيار 3 خيارات فقط</span>
             )}
-            {error && jobTitle.length == 0 && (
+            {error && jobTitle.length === 0 && (
               <span style={{ color: 'red' }}> هذا الحقل مطلوب</span>
             )}
             <h4>هل تملك خبرة؟ </h4>

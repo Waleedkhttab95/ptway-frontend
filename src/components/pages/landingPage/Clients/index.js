@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row } from 'antd';
 import './style.scss';
 // import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -51,7 +51,7 @@ import cmob20 from '../../../../images/clients/mobile/cmob20.svg';
 import cmob21 from '../../../../images/clients/mobile/cmob21.svg';
 import cmob22 from '../../../../images/clients/mobile/cmob22.svg';
 
-const Clients = props => {
+const Clients = () => {
   // const { i18n } = props;
   const images = [
     c3,

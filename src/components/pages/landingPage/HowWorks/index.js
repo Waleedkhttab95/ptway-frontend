@@ -10,8 +10,8 @@ import task from '../../../../images/user3.svg';
 
 import { withTranslation } from 'react-i18next';
 const { TabPane } = Tabs;
-const Contracts = props => {
-  const { i18n } = props;
+const Contracts = () => {
+  // const { i18n } = props;
   return (
     <Row className="works-section" style={{ direction: 'initial' }}>
       <h2 className="title">كيف نعمل؟</h2>

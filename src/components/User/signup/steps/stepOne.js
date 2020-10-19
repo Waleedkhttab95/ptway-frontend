@@ -10,7 +10,7 @@ const step1Form = props => {
   return (
     <div className="steps-form steps-form-user-signin">
       <div className="form-content">
-        <img src={countryIcon} />
+        <img src={countryIcon} alt="" />
         <span className="f-title">المدينة ومكان السكن</span>
         <span className="line"></span>
         <div className="form-fields">

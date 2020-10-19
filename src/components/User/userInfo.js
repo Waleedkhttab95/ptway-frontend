@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Row, Layout, Col, Spin, Alert } from 'antd';
+import { Row, Layout, Col, Alert } from 'antd';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import './style.scss';
 import _ from 'lodash';
@@ -42,14 +42,9 @@ class UserInfo extends React.Component {
       facebook,
       twitter,
       linkedin,
-      personal_web,
-      status
-      // hoppies
+      personal_web
     } = this.props.user.userInfo;
-    console.log(
-      '-----',
-      languages?.map(elm => JSON.parse(elm))
-    );
+
     return (
       <div>
         <Header />
