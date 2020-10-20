@@ -4,9 +4,10 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-import { Spin, Row, Col, Menu, Select } from 'antd';
+import { Spin, Row, Col, Menu, Select, Button } from 'antd';
 // import FilterAndSearch from '../Filter';
 import Applicant from '../Applicant';
+import AppointmentModal from './appointments_modal';
 
 const { getCandidates, getUser, getFilteredCandidates } = applicants;
 let array = [];
@@ -29,7 +30,8 @@ class Applicants extends React.Component {
     rejectCount: 1,
     acceptPages: 1,
     acceptCount: 1,
-    sort: 1
+    sort: 1,
+    appointmentModal: false
   };
   async componentDidMount() {
     const { name } = this.props.match.params;
@@ -241,6 +243,12 @@ class Applicants extends React.Component {
       }
     );
   };
+
+  showAppointmentsModal = () => {
+    this.setState({
+      appointmentModal: true
+    });
+  };
   render() {
     const {
       candidates,
@@ -277,6 +285,23 @@ class Applicants extends React.Component {
                   {/* <FilterAndSearch /> */}
                   <div className="applicants-header">
                     <div className="top">
+                      <Button
+                        className="interview-appoitment"
+                        onClick={this.showAppointmentsModal}
+                      >
+                        أرسل موعد المقابلة
+                      </Button>
+                      {this.state.appointmentModal && (
+                        <AppointmentModal
+                          jobId={jobId}
+                          modalVisiable={this.state.appointmentModal}
+                          closeModal={() =>
+                            this.setState({
+                              appointmentModal: false
+                            })
+                          }
+                        />
+                      )}
                       <h3>
                         {' '}
                         اسم الوظيفة: <span className="name">{projectName}</span>
@@ -297,10 +322,7 @@ class Applicants extends React.Component {
                       </h3>
                     </div>
                     <div className="bottom">
-                      <h4>
-                        {statistics.waitingUsersCount} شخص مازالو ينتظرونك
-                        للاطلاع على سيرهم الذاتية
-                      </h4>
+                      <h4>*الموعد سيصل لجميع المتقدمين</h4>
                       <div className="left-side">
                         <span>الترتيب :</span>
                         <Select onChange={this.sortApplicants}>
