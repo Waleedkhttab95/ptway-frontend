@@ -48,7 +48,7 @@ class EditableTable extends React.Component {
     },
     {
       title: 'المدينة',
-      dataIndex: 'city',
+      dataIndex: 'city.cityName',
       width: '10%',
       editable: true
     },
@@ -67,6 +67,12 @@ class EditableTable extends React.Component {
     {
       title: 'الراتب',
       dataIndex: 'salary',
+      width: '5%',
+      editable: true
+    },
+    {
+      title: 'العقد',
+      dataIndex: 'contract.contractName',
       width: '5%',
       editable: true
     },

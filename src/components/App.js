@@ -34,7 +34,7 @@ import CompanyLogin from './company/Login';
 import CompanyShortContract from './company/contracts/shortContract';
 import CompanyLongContract from './company/contracts/longContract';
 import CompanyContinuousContract from './company/contracts/continuousContract';
-import CompanySignup from './company/signup';
+import CompanySignup from './company/signUp';
 import CompanyHome from './company';
 import CompanyProjects from './company/Projects';
 import Applicants from './company/Applicants';
