@@ -173,12 +173,11 @@
   margin-bottom: -13px;
   .top {
     display: flex;
-    max-width: 55%;
     justify-content: space-between;
-    padding-top: 19px;
-    margin-right: 40px;
+    align-items: center;
+    padding: 18px 0;
+    margin: 0 40px;
     h3 {
-      font-family: 'DINNextLTW23';
       font-size: 14px;
       font-weight: 500;
       text-align: right;
@@ -187,6 +186,14 @@
         color: #b5b5b5;
       }
     }
+    .interview-appoitment {
+      width: 169px;
+      height: 32px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+      background-color: #009ad0;
+      font-size: 14px;
+    }
   }
   .bottom {
     display: flex;
@@ -194,7 +201,6 @@
     align-items: center;
     padding: 0 39px;
     h4 {
-      font-family: 'DINNextLTW23';
       font-size: 14px;
       font-weight: 500;
       text-align: right;
@@ -239,7 +245,10 @@ li.ant-menu-item.ant-menu-item-selected {
   .applicants-header {
     height: auto;
     .top {
-      max-width: 87%;
+      flex-direction: column;
+      button {
+        float: right;
+      }
     }
     .bottom {
       flex-direction: column;
@@ -316,18 +325,82 @@ li.ant-menu-item.ant-menu-item-selected {
     }
   }
 }
+.appointments-form {
+  padding: 0 40px;
+  .ant-select-selection {
+    border-top-width: 1.02px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #222222;
+  }
+  h5 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    color: #02d000;
+  }
+  .ant-collapse-borderless {
+    background: #fff;
+  }
+  .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.57;
+    text-align: right;
+    color: #b5b5b5;
+  }
+  .ant-calendar-picker {
+    width: 100%;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.22;
+    // text-align: right;
+    img {
+      position: absolute;
+      bottom: 32px;
+      right: 21px;
+    }
+  }
+  textarea {
+    resize: none;
+  }
+  .ant-divider.ant-divider-horizontal.ant-divider-with-text-left {
+    color: #767676;
+  }
+  .submit-btn {
+    display: block;
+    margin: auto;
+    width: 100%;
+    max-width: 191px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #3598d4;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.57;
+    text-align: center;
+    color: #ffffff;
+    float: none !important;
+  }
+}
 
 @media (min-width: 321px) and (max-width: 768px) {
   .applicant-header {
     display: none;
   }
   .applicants-wrapper-mobile {
-      position: relative;
+    position: relative;
   }
   .applicants-filter .menu {
-      width: 100%;
-      position: absolute;
-      top: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
   }
   .applicants-container {
     position: absolute;
@@ -337,7 +410,11 @@ li.ant-menu-item.ant-menu-item-selected {
     height: auto;
     padding-bottom: 20px;
     .top {
-      max-width: 80%;
+      flex-direction: column;
+      align-items: self-start;
+      button {
+        float: right;
+      }
     }
     .bottom {
       flex-direction: column;
@@ -446,6 +523,12 @@ li.ant-menu-item.ant-menu-item-selected {
           margin-right: 90px;
         }
       }
+    }
+  }
+  .appointments-form {
+    padding: 0;
+    .ant-form-item-label {
+      text-align: right;
     }
   }
 }

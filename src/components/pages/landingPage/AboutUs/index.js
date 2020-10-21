@@ -129,7 +129,7 @@ const AboutUs = () => {
             {/* <ul> */}
             <div className="message">
               <div>
-                <img src={enviroment} />
+                <img src={enviroment} alt="" />
               </div>
               <span>
                 &nbsp; توفير بيئة تفاعلية مشجعة ومحفزة للطلاب والخريجين لإكتساب

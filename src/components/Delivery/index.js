@@ -26,8 +26,6 @@ class JobForm extends React.Component {
   };
 
   handleDateChange = birthDate => {
-    // console.log('dateString', dateString, moment(birthDate));
-
     this.setState({
       birthDate: moment(birthDate)
     });
@@ -85,8 +83,6 @@ class JobForm extends React.Component {
   render() {
     const dateFormat = 'DD/MM/YYYY';
     const { error } = this.state;
-    // console.log('here', !/^\d{10}$/.test(this.state.mobile));
-
     return (
       <React.Fragment>
         <LoginNavbar />
@@ -267,7 +263,7 @@ class JobForm extends React.Component {
                   <img src={zad} alt="zad" />
                 </Radio.Button>
                 <Radio.Button value="hunger" alt="hunger">
-                  <img src={hunger} />
+                  <img src={hunger} alt="" />
                 </Radio.Button>
                 <Radio.Button value="kareem">
                   <img src={kareem} alt="kareem" />

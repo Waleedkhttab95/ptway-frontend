@@ -19,7 +19,7 @@ const step3Form = props => {
   return (
     <div className="steps-form steps-form-user-signin">
       <div className="form-content signupf">
-        <img src={personalInfoIcon} />
+        <img src={personalInfoIcon} alt="" />
         <span className="f-title">معلومات شخصية</span>
         <span className="line"></span>
         <div className="form-fields">

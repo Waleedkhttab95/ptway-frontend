@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Row,
-  Drawer,
-  Button,
-  Col,
-  Badge,
-  Select,
-  Modal,
-  Dropdown,
-  Menu
-} from 'antd';
+import { Row, Drawer, Button, Col, Badge, Modal, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import userLogo from '../../images/transparent-colored.png';
@@ -107,11 +97,6 @@ class Header extends React.Component {
       projectName,
       projectDescription
     });
-    console.log(
-      'company.companyInfo.companyStatistic.projects',
-      company.companyStatistic.projects
-    );
-
     if (company.companyInfo && company.companyStatistic.projects !== 0) {
       this.setState({
         postJobPopup: false,
@@ -148,13 +133,11 @@ class Header extends React.Component {
   };
 
   render() {
-    const { contracts, company } = this.props;
+    const { contracts } = this.props;
     const { nonProjectsExistModal, error } = this.state;
     // const { i18n } = this.props;
     const { role, loggedIn } = loadState();
-    const list = [1, 2, 3, 4];
     const { unreadOffers } = this.props.userS;
-
     return (
       <React.Fragment>
         {loggedIn && role === 'user' ? (
@@ -210,12 +193,7 @@ class Header extends React.Component {
                     }
                   >
                     <Dropdown
-                      overlay={
-                        <UserMenuSetting
-                          logout={this.props.logout}
-                          history={history}
-                        />
-                      }
+                      overlay={<UserMenuSetting logout={this.props.logout} />}
                     >
                       <a
                         className="ant-dropdown-link"
@@ -354,10 +332,7 @@ class Header extends React.Component {
                   >
                     <Dropdown
                       overlay={
-                        <CompanyMenuSetting
-                          logout={this.props.logout}
-                          history={history}
-                        />
+                        <CompanyMenuSetting logout={this.props.logout} />
                       }
                     >
                       <a

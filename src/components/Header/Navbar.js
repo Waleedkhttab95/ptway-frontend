@@ -1,14 +1,9 @@
 import React from 'react';
 import { Row, Drawer, Select as RSelect } from 'antd';
-import Select from 'react-select';
 import ptwayLogo from '../../images/PTway_Logo.svg';
 import { withTranslation } from 'react-i18next';
 import history from '../../_core/history';
 import { Link } from 'react-router-dom';
-const options = [
-  { value: 'en', label: 'En' },
-  { value: 'ar', label: 'Ar' }
-];
 
 const colourStyles = {
   input: () => ({
@@ -42,6 +37,7 @@ const colourStyles = {
     color: '#00263e'
   })
 };
+
 class Navbar extends React.Component {
   state = {
     visible: false
@@ -56,8 +52,8 @@ class Navbar extends React.Component {
       visible: false
     });
   };
+
   render() {
-    const { i18n } = this.props;
     return (
       <React.Fragment>
         <Row className="navbar fixed-navbar">

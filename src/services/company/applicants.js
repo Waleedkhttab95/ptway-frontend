@@ -35,7 +35,9 @@ const applicants = {
   getFilteredCandidates: params =>
     baseRequest.get(
       `/getFilterCandidates?jobAd=${params.jobId}&pageNo=${params.pageNo}&filter=${params.filter}&sort=${params.sort}`
-    )
+    ),
+  sendInterviewAppointments: values =>
+    baseRequest.post('/sendAppointment', values)
 };
 
 export default applicants;

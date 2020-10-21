@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './style.scss';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import { Row, Collapse, Dropdown, Button, Spin } from 'antd';
+import { Collapse, Dropdown, Button, Spin } from 'antd';
 import Project from '../Project';
 import FilterAndSearch from '../Filter';
 import SideMenu from './menu';
@@ -20,10 +20,6 @@ import {
 } from '../../../store/actions/company/projects';
 const { Panel } = Collapse;
 const { getProjects, deleteProject, updateProject, getMoreAds } = projects;
-
-function callback() {
-  // console.log(key);
-}
 
 class Projects extends React.Component {
   state = {
@@ -74,11 +70,9 @@ class Projects extends React.Component {
   };
 
   deleteConfirmation = async id => {
-    // const { allProjects } = this.state;
     await deleteProject({ id });
     this.setState({
       deleteModal: false,
-      // allProjects: allProjects.proj.filter(project => project._id !== id),
       confirmMsg: true
     });
   };
@@ -156,18 +150,6 @@ class Projects extends React.Component {
       }
     );
   };
-
-  // handleFilter = () => {
-  //   const { filterOption, allProjects, JobAdsCount, totalPages } = this.state;
-  //   const sortedProjects = allProjects.proj.sort((a, b) => {
-  //     if (filterOption === 'new')
-  //       return new Date(b.date).getTime() - new Date(a.date).getTime();
-  //     return new Date(a.date).getTime() - new Date(b.date).getTime();
-  //   });
-  //   this.setState({
-  //     allProjects: { proj: sortedProjects, JobAdsCount, totalPages }
-  //   });
-  // };
 
   onClose = () => {
     this.setState({
@@ -273,8 +255,6 @@ class Projects extends React.Component {
               closable={this.onClose}
             />
             <Collapse
-              // defaultActiveKey={['1']}
-              onChange={callback}
               expandIconPosition={expandIconPosition}
               className="projects-collapse"
             >
@@ -360,9 +340,7 @@ class Projects extends React.Component {
             )}
           </div>
         </div>
-        {/* <Row> */}
         <Footer />
-        {/* </Row> */}
       </React.Fragment>
     );
   }
