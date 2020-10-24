@@ -217,7 +217,7 @@ class AppointmentModalForm extends React.Component {
                       <Select>
                         {cities &&
                           cities?.map(elm => (
-                            <Select.Option value={elm.id} key={elm.id}>
+                            <Select.Option value={elm.value} key={elm.id}>
                               {elm.value}
                             </Select.Option>
                           ))}
@@ -237,7 +237,7 @@ class AppointmentModalForm extends React.Component {
                       ]
                     })(
                       <Select>
-                        <Select.Option value="5caf3248ffec65462ec2a05e">
+                        <Select.Option value="المملكة العربية السعودية">
                           المملكة العربية السعودية
                         </Select.Option>
                       </Select>
