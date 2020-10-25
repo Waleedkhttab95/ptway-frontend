@@ -8,6 +8,7 @@ const filteredData = fun => {
     return {
       companyName: elm.companyName,
       email: elm.email,
+      superVisor: elm.superVisor,
       sector: elm.sector,
       CompanySpecialist: elm.CompanySpecialist
         ? elm.CompanySpecialist.specialistName
@@ -65,16 +66,21 @@ class EditableTable extends React.Component {
     },
     {
       title: 'القطاع',
-      dataIndex: 'sector',
+      dataIndex: 'sector.sectorName',
       width: '15%'
     },
     {
       title: 'التخصص',
-      dataIndex: 'CompanySpecialist',
+      dataIndex: 'CompanySpecialist.specialistName',
       width: '15%'
     },
     {
-      title: 'حالة التأكيد',
+      title: 'رقم المشرف',
+      dataIndex: 'superVisor.phone',
+      width: '15%'
+    },
+    {
+      title: 'الحساب نشط؟',
       dataIndex: 'isActive',
       width: '15%'
     },
