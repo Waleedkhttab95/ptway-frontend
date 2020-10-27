@@ -1,241 +1,402 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import './statistics.scss';
-import {
-  ageStatistic,
-  cityStatistic,
-  majorStatistic
-} from '../../../store/actions/statisticsAction';
-import { Row, Col, Button, Cascader, Input } from 'antd';
+import { Row, Col, Button, Input, Form, Select, Result } from 'antd';
+import userData from '../../../services/user/cv';
 import statatisticsService from '../../../services/statisticsService';
-const {
-  allCountries,
-  allMajors,
-  sMajor,
-  allCities,
-  getDataDependCityAndMajor
-} = statatisticsService;
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-class AgeStatistics extends React.Component {
+const {
+  getMajor,
+  getSubMajor,
+  jobCategories,
+  getUniversity,
+  getSkills,
+  getPersonalSkills
+} = userData;
+const { allCities, SearchUsersFilter } = statatisticsService;
+
+class UserStatistics extends React.Component {
   state = {
     value: '',
     countries: [],
-    cities: []
+    cities: [],
+    showResult: false
   };
   async componentDidMount() {
-    const countries = await allCountries();
-    this.setState({ countries });
-
     const cities = await allCities();
     this.setState({ cities });
 
-    const majors = await allMajors();
+    const majors = await getMajor();
     this.setState({ majors });
+
+    const categories = await jobCategories();
+    this.setState({ jobCategories: categories });
+    const universities = await getUniversity();
+    this.setState({ universities });
+    const skills = await getSkills();
+    this.setState({ skills });
+    const personalSkills = await getPersonalSkills();
+    this.setState({ personalSkills });
   }
 
-  getCountryCityData = () => {
-    const { city } = this.props;
-    city({
-      city_id: this.state.city.id,
-      country_id: this.state.country.id
-    });
-  };
-
-  getMajorAndSubMajorData = () => {
-    const { major } = this.props;
-    major({
-      major: this.state.major.id,
-      spMajor: this.state.sub_major ? this.state.sub_major.id : undefined
-    });
-  };
-
-  cityChange = (value, selectedOptions) => {
-    this.setState({
-      city: selectedOptions[0]
-    });
-  };
-
-  countryChange = (value, selectedOptions) => {
-    this.setState({
-      country: selectedOptions[0]
-    });
-  };
-  majorChange = (value, selectedOptions) => {
-    this.setState(
-      {
-        major: selectedOptions[0]
-      },
-      () => {
-        const majorId = this.state.major.id;
-        sMajor(majorId).then(specialMajor => {
-          this.setState({ specialMajor });
-        });
-      }
-    );
-  };
-  majorSpecialChange = (value, selectedOptions) => {
-    this.setState({
-      sub_major: selectedOptions[0]
-    });
-  };
-  onChange = event => {
-    this.setState({
-      value: event.value
-    });
+  handleSubMajor = async (value, option) => {
+    const subMajor = await getSubMajor({ id: option.key });
+    this.setState({ subMajor });
   };
   ageCount = () => {
     const { age } = this.props;
     age(this.state.value);
   };
 
-  cityAndMajor = async () => {
-    const { country, city, major, sub_major } = this.state;
-    const cityAndMajor = await getDataDependCityAndMajor({
-      country: country.id,
-      city: city.id,
-      major: major.id,
-      spMajor: sub_major.id
+  onFinish = e => {
+    e.preventDefault();
+    this.props.form.validateFields(async (err, values) => {
+      if (!err) {
+        try {
+          const userData = await SearchUsersFilter({
+            ...values
+          });
+          this.setState({ showResult: true, userData });
+        } catch (error) {
+          console.log('error');
+        }
+      }
     });
-    if (cityAndMajor) this.setState({ cityAndMajor });
   };
-  render() {
-    const { age, city, major } = this.props.statistics;
-    const { cityAndMajor } = this.state;
-    return (
-      <React.Fragment>
-        <Row className="user-statistics">
-          <Col md={6} className="statistics">
-            <div className="user-stc-header">
-              {' '}
-              عدد المستخدمين بناءً على العمر{' '}
-            </div>
-            <Input
-              placeholder="ادخل عمر المستخدم"
-              onChange={this.onChange}
-              style={{ width: '200px' }}
-            />
-            <Button onClick={this.ageCount} className="submit user-stc-button">
-              {' '}
-              عرض
-            </Button>
-            <span className="user-stc-result">{age !== '' ? age : ''}</span>
-          </Col>
-          <Col md={6} className="statistics">
-            <div className="user-stc-header">
-              {' '}
-              عدد المستخدمين بناءً على المدينة{' '}
-            </div>
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.countries}
-              onChange={this.countryChange}
-              placeholder="اختر الدولة"
-            />
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.cities}
-              onChange={this.cityChange}
-              placeholder="اختر المدينة"
-            />
-            <Button
-              onClick={this.getCountryCityData}
-              className="submit user-stc-button"
-            >
-              {' '}
-              عرض
-            </Button>
-            <span className="user-stc-result">
-              {city !== undefined ? city.users : ''}
-            </span>
-          </Col>
-          <Col md={6} className="statistics">
-            <div className="user-stc-header">
-              عدد المستخدمين بناءً على التخصص{' '}
-            </div>
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.majors}
-              onChange={this.majorChange}
-              placeholder=" التخصص العام"
-            />
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.specialMajor}
-              onChange={this.majorSpecialChange}
-              placeholder="الفرع الخاص"
-            />
-            <Button
-              onClick={this.getMajorAndSubMajorData}
-              className="submit user-stc-button"
-            >
-              {' '}
-              عرض
-            </Button>
-            <span className="user-stc-result">
-              {major !== undefined ? major.users : ''}{' '}
-            </span>
-          </Col>
-        </Row>
-        <Row className="user-statistics">
-          <Col md={8} className="statistics">
-            <div className="user-stc-header">
-              عدد المستخدمين بناءً على التخصص والمدينة
-            </div>
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.countries}
-              onChange={this.countryChange}
-              placeholder="اختر الدولة"
-            />
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.cities}
-              onChange={this.cityChange}
-              placeholder="اختر المدينة"
-            />
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.majors}
-              onChange={this.majorChange}
-              placeholder=" التخصص العام"
-            />
-            <Cascader
-              className="dropdown-menu"
-              options={this.state.specialMajor}
-              onChange={this.majorSpecialChange}
-              placeholder="التخصص الدقيق"
-            />
+  onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo.fullName);
+  };
 
-            <Button
-              onClick={this.cityAndMajor}
-              className="submit user-stc-button"
-            >
-              {' '}
-              عرض
-            </Button>
-            <span className="user-stc-result">
-              {cityAndMajor ? cityAndMajor.users : ''}{' '}
-            </span>
-          </Col>
-        </Row>
-      </React.Fragment>
+  render() {
+    const {
+      subMajor,
+      jobCategories,
+      cities,
+      universities,
+      majors,
+      skills,
+      personalSkills,
+      showResult,
+      userData
+    } = this.state;
+    console.log('userData', userData);
+    const { getFieldDecorator } = this.props.form;
+    const certificate = [
+      { value: 'HS', viewValue: 'ثانوية عامة' },
+      { value: 'BHO', viewValue: 'بكالوريوس' },
+      { value: 'MASTER', viewValue: 'ماستر' },
+      { value: 'diploma', viewValue: 'دبلوم' },
+      { value: 'noncertificate', viewValue: 'لايوجد' }
+    ];
+
+    const hoppies = [
+      'القراءة',
+      'الكتابة',
+      'السباحة',
+      'الرياضة',
+      'العاب الفيديو'
+    ];
+
+    return (
+      <Row justify="center">
+        <Col span={9}>
+          <>
+            {showResult && (
+              <Result
+                status="success"
+                title="نتيجة البحث"
+                subTitle={userData?.usersCount}
+                style={{ textAlign: 'center' }}
+                extra={[
+                  userData?.users && (
+                    <div>
+                      <ReactHTMLTableToExcel
+                        id="test-table-xls-button"
+                        className="download-table-xls-button export-user"
+                        style={{ background: '#eee' }}
+                        table="table-to-xls"
+                        filename="tablexls"
+                        sheet="tablexls"
+                        buttonText={<>تصدير أسماء المستخدمين</>}
+                      />
+                      <table id="table-to-xls" style={{ display: 'none' }}>
+                        <tr>
+                          <th>الايميل</th>
+                        </tr>
+                        {userData &&
+                          userData?.users.map((elm, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{elm.user?.email}</td>
+                              </tr>
+                            );
+                          })}
+                      </table>
+                    </div>
+                  )
+                ]}
+              />
+            )}
+          </>
+        </Col>
+        <Col span={14}>
+          <Form
+            name="basic"
+            onSubmit={this.onFinish}
+            onFinishFailed={this.onFinishFailed}
+            className="appointments-form statistic-search-form"
+          >
+            <h3>البحث عن مستخدمين حسب؟</h3>
+
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">الجنس</label>
+                <Form.Item>
+                  {getFieldDecorator('gender')(
+                    <Select
+                      className="input-field"
+                      placeholder={this.state.gender}
+                      onChange={this.handleChange}
+                    >
+                      <Select.Option name="gender" value="male" key="ذكر">
+                        ذكر{' '}
+                      </Select.Option>
+                      <Select.Option name="gender" value="female" key="أنثى">
+                        أنثى{' '}
+                      </Select.Option>
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">الاسم</label>
+                <Form.Item>
+                  {getFieldDecorator('fullName')(<Input placeholder="" />)}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">الإهتمامات الوظيفية</label>
+                <Form.Item>
+                  {getFieldDecorator('jobCategory')(
+                    <Select showArrow={true} mode="multiple">
+                      {jobCategories &&
+                        jobCategories.map(elm => {
+                          return (
+                            <Select.Option value={elm._id} key={elm._id}>
+                              {elm.jobName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">رقم الجوال</label>
+                <Form.Item>
+                  {getFieldDecorator('mobile')(<Input type="number" />)}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">الجامعة</label>
+                <Form.Item>
+                  {getFieldDecorator('university')(
+                    <Select>
+                      {universities &&
+                        universities.map(elm => {
+                          return (
+                            <Select.Option
+                              value={elm._id}
+                              key={elm._id}
+                              name="university"
+                            >
+                              {elm.universtyName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">الشهادة</label>
+                <Form.Item name="study_degree">
+                  {getFieldDecorator('study_degree')(
+                    <Select>
+                      {certificate &&
+                        certificate.map(elm => (
+                          <Select.Option
+                            value={elm.viewValue}
+                            key={elm.viewValue}
+                          >
+                            {elm.viewValue}
+                          </Select.Option>
+                        ))}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">المدينة</label>
+                <Form.Item>
+                  {getFieldDecorator('city')(
+                    <Select>
+                      {cities &&
+                        cities?.map(elm => (
+                          <Select.Option value={elm.id} key={elm.id}>
+                            {elm.value}
+                          </Select.Option>
+                        ))}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">الدولة</label>
+                <Form.Item>
+                  {getFieldDecorator('country')(
+                    <Select>
+                      <Select.Option value="المملكة العربية السعودية">
+                        المملكة العربية السعودية
+                      </Select.Option>
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">التخصص الدقيق</label>
+                <Form.Item>
+                  {getFieldDecorator('s_Major')(
+                    <Select>
+                      {subMajor &&
+                        subMajor?.map(elm => {
+                          return (
+                            <Select.Option value={elm._id} key={elm._id}>
+                              {elm.majorName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">التخصص العام</label>
+                <Form.Item>
+                  {getFieldDecorator('public_major')(
+                    <Select onChange={this.handleSubMajor}>
+                      {majors &&
+                        majors.map(elm => {
+                          return (
+                            <Select.Option value={elm._id} key={elm._id}>
+                              {elm.majorName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}>
+                <label className="form-label">مهارات شخصية</label>
+                <Form.Item>
+                  {getFieldDecorator('p_skill')(
+                    <Select
+                      showArrow={true}
+                      mode="multiple"
+                      style={{
+                        maxHeight: '70px',
+                        height: 'auto',
+                        overflowY: 'scroll'
+                      }}
+                    >
+                      {personalSkills &&
+                        personalSkills.map(elm => {
+                          return (
+                            <Select.Option value={elm._id} key={elm._id}>
+                              {elm.skillName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <label className="form-label">مهارات عامة</label>
+                <Form.Item>
+                  {getFieldDecorator('skill')(
+                    <Select
+                      showArrow={true}
+                      mode="multiple"
+                      style={{
+                        maxHeight: '70px',
+                        height: 'auto',
+                        overflowY: 'scroll'
+                      }}
+                    >
+                      {skills &&
+                        skills.map(elm => {
+                          return (
+                            <Select.Option value={elm._id} key={elm._id}>
+                              {elm.skillName}
+                            </Select.Option>
+                          );
+                        })}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={12}></Col>
+              <Col span={12}>
+                <label className="form-label">الهوايات</label>
+                <Form.Item>
+                  {getFieldDecorator('hoppies')(
+                    <Select
+                      showArrow={true}
+                      mode="multiple"
+                      style={{
+                        maxHeight: '70px',
+                        height: 'auto',
+                        overflowY: 'scroll'
+                      }}
+                    >
+                      {hoppies &&
+                        hoppies.map(elm => (
+                          <Select.Option value={elm} key={elm}>
+                            {elm}
+                          </Select.Option>
+                        ))}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="submit-btn">
+                إرسال
+              </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    statistics: state.statistics
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    age: params => {
-      return dispatch(ageStatistic(params));
-    },
-    city: params => dispatch(cityStatistic(params)),
-    major: params => dispatch(majorStatistic(params))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(AgeStatistics);
+const AgeStatistics = Form.create({ name: 'basic' })(UserStatistics);
+
+export default AgeStatistics;
