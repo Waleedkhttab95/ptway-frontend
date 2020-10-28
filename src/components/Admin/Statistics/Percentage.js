@@ -5,15 +5,23 @@ import './statistics.scss';
 import baseRequest from '../../../_core/index';
 import { weeklyGrowth } from '../../../store/actions/statisticsAction';
 import { Row, Col, Card } from 'antd';
-import { HorizontalBar } from 'react-chartjs-2';
+import statatisticsService from '../../../services/statisticsService';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
+const { SearchUsersJobCategory } = statatisticsService;
 
 class Percentage extends React.Component {
   state = {
-    allUsers: ''
+    allUsers: '',
+    userJobCategory: 0,
+    exportUserData: false
   };
-  componentDidMount() {
+
+  async componentDidMount() {
     const { growthPercentage } = this.props;
     growthPercentage();
+    const userJobCategory = await SearchUsersJobCategory();
+    this.setState({ userJobCategory });
 
     baseRequest.get('/get/allUsers_Genders_CV').then(allUsers => {
       this.setState({
@@ -22,7 +30,7 @@ class Percentage extends React.Component {
     });
   }
   render() {
-    const { growth } = this.props.statistics;
+    const { userJobCategory } = this.state;
     const {
       NumberOfUsers,
       NumberOfMaleUsers,
@@ -30,26 +38,6 @@ class Percentage extends React.Component {
       NumberOfUsersWithCV
     } = this.state.allUsers;
 
-    const dataInfo = {
-      labels: [
-        'الأسبوع الأول',
-        'الأسبوع الثاني',
-        'الأسبوع الثالث',
-        'الأسبوع الرابع',
-        'الأسبوع الخامس'
-      ],
-      datasets: [
-        {
-          label: 'معدل النمو أسبوعياً',
-          backgroundColor: ' #9dceff',
-          borderColor: '#40a9ff',
-          borderWidth: 2,
-          hoverBackgroundColor: '#76bbff',
-          hoverBorderColor: '#3b9dff',
-          data: growth
-        }
-      ]
-    };
     return (
       <React.Fragment>
         <Row className="user-percentages">
@@ -108,9 +96,45 @@ class Percentage extends React.Component {
         </Row>
 
         <Row>
-          <Col md={10} className="weekly-growth">
-            <h3 className="card-text">معدل النمو اسبوعيا</h3>
-            <HorizontalBar data={dataInfo} />
+          <Col span={11} offset={12}>
+            <h4></h4>
+            <Card
+              title={
+                <h4 style={{ color: 'black', textAlign: 'right' }}>
+                  عدد المستخدمين الذين ليس لديهم تصنيف للوظيفة
+                </h4>
+              }
+              extra={
+                userJobCategory?.users && (
+                  <div>
+                    <ReactHTMLTableToExcel
+                      id="test-table-xls-button"
+                      className="download-table-xls-button export-user"
+                      table="table-to-xls"
+                      filename="tablexls"
+                      sheet="tablexls"
+                      buttonText={<>تصدير أسماء المستخدمين</>}
+                    />
+                    <table id="table-to-xls" style={{ display: 'none' }}>
+                      <tr>
+                        <th>الايميل</th>
+                      </tr>
+                      {userJobCategory &&
+                        userJobCategory?.users.map((elm, index) => {
+                          return (
+                            <tr key={index}>
+                              <td>{elm.user?.email}</td>
+                            </tr>
+                          );
+                        })}
+                    </table>
+                  </div>
+                )
+              }
+              style={{ width: '100%', borderRadius: '16px' }}
+            >
+              <b>{userJobCategory?.usersCount}</b>
+            </Card>
           </Col>
         </Row>
       </React.Fragment>

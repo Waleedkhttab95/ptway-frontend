@@ -1,11 +1,15 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Table, Form } from 'antd';
+import { Table, Form, message } from 'antd';
+import generalStatistics from '../../../services/generalStatistics';
+
 const EditableContext = React.createContext();
+const { blockCompany } = generalStatistics;
 
 const filteredData = fun => {
   return fun.companies.map(elm => {
     return {
+      id: elm._id,
       companyName: elm.companyName,
       email: elm.email,
       superVisor: elm.superVisor,
@@ -53,31 +57,44 @@ class EditableTable extends React.Component {
     }
   }
 
+  handleCompanyBlock = async record => {
+    try {
+      await blockCompany({ id: record.id });
+      message.success('لقد تم إيقاف الشركة بنجاح');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  blockCompany = (text, record) => {
+    return <a onClick={() => this.handleCompanyBlock(record)}>ايقاف</a>;
+  };
+
   columns = [
     {
       title: 'اسم الشركة',
       dataIndex: 'companyName',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'البريد الالكتروني',
       dataIndex: 'email',
-      width: '15%'
+      width: '20%'
     },
     {
       title: 'القطاع',
       dataIndex: 'sector.sectorName',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'التخصص',
       dataIndex: 'CompanySpecialist.specialistName',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'رقم المشرف',
       dataIndex: 'superVisor.phone',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'الحساب نشط؟',
@@ -87,6 +104,11 @@ class EditableTable extends React.Component {
     {
       title: 'حالة التفعيل',
       dataIndex: 'isConfirmed',
+      width: '15%'
+    },
+    {
+      title: 'ايقاف الشركة',
+      render: (text, record) => this.blockCompany(text, record),
       width: '15%'
     }
   ];

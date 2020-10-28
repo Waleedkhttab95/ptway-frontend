@@ -47,7 +47,8 @@ const generalStatistics = {
       .catch(error => {
         console.log('error', error);
       });
-  }
+  },
+  blockCompany: params => baseRequest.put('/blockCompany', params)
 };
 
 export default generalStatistics;
