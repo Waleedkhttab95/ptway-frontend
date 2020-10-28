@@ -14,9 +14,7 @@ const filteredData = fun => {
       email: elm.email,
       superVisor: elm.superVisor,
       sector: elm.sector,
-      CompanySpecialist: elm.CompanySpecialist
-        ? elm.CompanySpecialist.specialistName
-        : '',
+      CompanySpecialist: elm.CompanySpecialist,
       isActive: elm.isActive ? 'true' : 'false',
       isConfirmed: elm.isConfirmed ? 'true' : 'false'
     };

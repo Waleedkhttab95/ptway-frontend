@@ -102,7 +102,7 @@ class AppointmentModalForm extends React.Component {
               key="1"
               className="section-heading"
             >
-              <label className="form-label">الأيام المحددة في الأسبوع</label>
+              <label className="form-label"> الأيام المحددة في الأسبوع</label>
               <Form.Item>
                 {getFieldDecorator('days', {
                   rules: [
