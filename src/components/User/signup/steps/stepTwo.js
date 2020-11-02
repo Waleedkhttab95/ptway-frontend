@@ -25,7 +25,7 @@ const step2Form = props => {
               onChange={handleRadioChange}
               className="country-text"
               name="gender"
-              options={['ذكر', 'أنثى']}
+              options={['ذكر', 'انثى']}
               value={state.gender}
             />
             {/* <Checkbox className="check-option">نعم</Checkbox>

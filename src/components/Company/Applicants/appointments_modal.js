@@ -190,13 +190,13 @@ class AppointmentModalForm extends React.Component {
             >
               <Row gutter={20}>
                 <Col span={12}>
-                  <label className="form-label">رقم الجوال</label>
+                  <label className="form-label">رقم الجوال (اختياري(</label>
                   <Form.Item name="leadNumber">
                     {getFieldDecorator('leadNumber')(<Input />)}
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <label className="form-label">اسم مسؤول المقابلات</label>
+                  <label className="form-label">اسم مسؤول المقابلات (اختياري)</label>
                   <Form.Item name="leadName">
                     {getFieldDecorator('leadName')(<Input />)}
                   </Form.Item>
@@ -245,7 +245,7 @@ class AppointmentModalForm extends React.Component {
                   </Form.Item>
                 </Col>
               </Row>
-              <label className="form-label">العنوان</label>
+              <label className="form-label">تفاصيل إضافية</label>
               <Form.Item>
                 {getFieldDecorator('address', {
                   rules: [

@@ -406,7 +406,7 @@ class UpdateProfile extends React.Component {
                           <Option name="gender" value="male" key="ذكر">
                             ذكر{' '}
                           </Option>
-                          <Option name="gender" value="female" key="أنثى">
+                          <Option name="gender" value="female" key="انثى">
                             أنثى{' '}
                           </Option>
                         </Select>

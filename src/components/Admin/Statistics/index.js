@@ -159,11 +159,14 @@ class UserStatistics extends React.Component {
                       placeholder={this.state.gender}
                       onChange={this.handleChange}
                     >
-                      <Select.Option name="gender" value="male" key="ذكر">
+                      <Select.Option name="gender" value="ذكر" key="ذكر">
                         ذكر{' '}
                       </Select.Option>
-                      <Select.Option name="gender" value="female" key="أنثى">
+                      <Select.Option name="gender" value="أنثى" key="أنثى">
                         أنثى{' '}
+                      </Select.Option>
+                      <Select.Option name="gender" value="انثى" key="انثى">
+                        انثى{' '}
                       </Select.Option>
                     </Select>
                   )}
