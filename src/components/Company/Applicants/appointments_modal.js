@@ -14,22 +14,11 @@ import {
   Select
 } from 'antd';
 import moment from 'moment';
-import statatisticsService from '../../../services/statisticsService';
 import applicants from '../../../services/company/applicants';
 
 const { sendInterviewAppointments } = applicants;
 const { Panel } = Collapse;
-const { allCities } = statatisticsService;
 class AppointmentModalForm extends React.Component {
-  state = { cities: [] };
-  componentDidMount = async () => {
-    try {
-      const cities = await allCities();
-      this.setState({ cities });
-    } catch (error) {
-      console.log(error);
-    }
-  };
   onFinish = e => {
     e.preventDefault();
     this.props.form.validateFields(async (err, values) => {
@@ -56,7 +45,6 @@ class AppointmentModalForm extends React.Component {
   render() {
     const { modalVisiable, closeModal } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { cities } = this.state;
     const weekDays = [
       'الأحد',
       'الاثنين',
@@ -199,49 +187,6 @@ class AppointmentModalForm extends React.Component {
                   <label className="form-label">اسم مسؤول المقابلات</label>
                   <Form.Item name="leadName">
                     {getFieldDecorator('leadName')(<Input />)}
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={20}>
-                <Col span={12}>
-                  <label className="form-label">المدينة</label>
-                  <Form.Item>
-                    {getFieldDecorator('city', {
-                      rules: [
-                        {
-                          required: true,
-                          message: 'الرجاء ادخال المدينة'
-                        }
-                      ]
-                    })(
-                      <Select>
-                        {cities &&
-                          cities?.map(elm => (
-                            <Select.Option value={elm.value} key={elm.id}>
-                              {elm.value}
-                            </Select.Option>
-                          ))}
-                      </Select>
-                    )}
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <label className="form-label">الدولة</label>
-                  <Form.Item>
-                    {getFieldDecorator('country', {
-                      rules: [
-                        {
-                          required: true,
-                          message: 'الرجاء ادخال الدولة'
-                        }
-                      ]
-                    })(
-                      <Select>
-                        <Select.Option value="المملكة العربية السعودية">
-                          المملكة العربية السعودية
-                        </Select.Option>
-                      </Select>
-                    )}
                   </Form.Item>
                 </Col>
               </Row>
