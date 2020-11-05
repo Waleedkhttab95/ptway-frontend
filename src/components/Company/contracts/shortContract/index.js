@@ -53,6 +53,10 @@ class AddNewAd extends React.Component {
     this.setState({ date });
   };
 
+  DateMobileChange = e => {
+    this.setState({ date: e.target.value });
+  };
+
   handlePersonalSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -118,8 +122,6 @@ class AddNewAd extends React.Component {
       categories
     } = this.state;
     const { loggedIn } = loadState();
-    console.log('state', this.state);
-
     return (
       <React.Fragment>
         {loggedIn && <Header />}
@@ -284,7 +286,7 @@ class AddNewAd extends React.Component {
                         <Input
                           type="date"
                           name="date"
-                          onChange={handleChange}
+                          onChange={this.DateMobileChange}
                           className="input-field date-mobile"
                           value={this.state.date}
                           onBlur={handleBlur}

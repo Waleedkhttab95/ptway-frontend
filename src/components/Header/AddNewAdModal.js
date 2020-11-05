@@ -34,6 +34,7 @@ const AddNewAds = props => {
             <img src={shContractIc} alt="shContract" />
             <h4 className="cnt-sub-title">عقود يومية</h4>
             <p className="cnt-des"> مهمات لاتزيد عن 60 يوم </p>
+            <p className="cnt-des"> راتب يومي </p>
           </Col>
           <Col
             md={8}
@@ -48,6 +49,7 @@ const AddNewAds = props => {
             <img src={lngContract} alt="shContract" />
             <h4 className="cnt-sub-title">عقود مؤقتة</h4>
             <p className="cnt-des"> مهمات لا تزيد عن 6 أشهر </p>
+            <p className="cnt-des"> راتب شهري </p>
           </Col>
           <Col
             md={8}
@@ -62,14 +64,10 @@ const AddNewAds = props => {
             <img src={cuntContract} alt="shContract" />
             <h4 className="cnt-sub-title">عقود جزئية</h4>
             <p className="cnt-des"> مهمات بعقود سنوية وتتجدد </p>
+            <p className="cnt-des"> راتب شهري </p>
           </Col>
         </div>
       </div>
-      {/* <button className="ad-next-btn">
-        <Link to="/company/new/ad" style={{ color: '#fff' }}>
-          التالي
-        </Link>
-      </button> */}
     </Modal>
   );
 };

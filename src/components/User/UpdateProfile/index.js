@@ -596,6 +596,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                             onChange={this.handleChange}
                           >
                             {_.isArray(cities)
@@ -631,6 +632,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                             onChange={this.handleChange}
                           >
                             {_.isArray(universities)
@@ -748,6 +750,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                           >
                             {_.isArray(major)
                               ? major.map(elm => {

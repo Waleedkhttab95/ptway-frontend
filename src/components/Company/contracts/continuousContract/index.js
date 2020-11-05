@@ -52,6 +52,10 @@ class AddNewAd extends React.Component {
     this.setState({ date });
   };
 
+  DateMobileChange = e => {
+    this.setState({ date: e.target.value });
+  };
+
   handlePersonalSkillsChange = (value, option) => {
     const ids = option.map(elm => elm.key);
     this.setState({
@@ -175,7 +179,7 @@ class AddNewAd extends React.Component {
                     )}
                     <br />
                     <br />
-                    <label>تصنيف الوظيفة  </label>
+                    <label>تصنيف الوظيفة </label>
                     <Select
                       className="project-selection selector"
                       onChange={this.handleSelectChange}
@@ -290,7 +294,7 @@ class AddNewAd extends React.Component {
                         <Input
                           type="date"
                           name="date"
-                          onChange={handleChange}
+                          onChange={this.DateMobileChange}
                           className="input-field date-mobile"
                           value={this.state.date}
                           onBlur={handleBlur}
