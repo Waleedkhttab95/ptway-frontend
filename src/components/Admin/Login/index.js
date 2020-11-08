@@ -8,8 +8,6 @@ class Login extends Component {
     e.preventDefault();
     // const { history } = this.props;
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-      }
       const { adminLogin } = this.props;
       adminLogin({
         email: values.email,

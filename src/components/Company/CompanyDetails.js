@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Row, Layout, Alert, Col, Spin } from 'antd';
+import { Row, Layout, Col, Spin } from 'antd';
 import './style.scss';
 import CompanyInfo from './CompanyInfo';
 import _ from 'lodash';
@@ -63,11 +63,6 @@ class CompanyDetails extends React.Component {
                     : ''}
                 </div>
               </Col>
-              {/* <div className="user-rejected">
-              <div>الذين تم رفضهم</div>
-              <div className="user-stc-number">7,213</div>
-            </div>
-          */}
             </Row>
             <Row className="user-profile">
               <Col md={1}></Col>

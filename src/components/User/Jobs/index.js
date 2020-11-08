@@ -162,7 +162,7 @@ class Jobs extends React.Component {
     this.setState({
       jobLoading: true
     });
-    const { jobOffer, company } = this.props;
+    const { jobOffer } = this.props;
 
     const job = await jobOffer({ id: jobId });
     // const companyInfo = await company({ id: job.value.job.company._id });
@@ -237,7 +237,7 @@ class Jobs extends React.Component {
                             <div
                               className={
                                 elm.isRead ||
-                                selected == index ||
+                                selected === index ||
                                 clicked.includes(index)
                                   ? 'job active'
                                   : 'job un-read'
@@ -254,6 +254,7 @@ class Jobs extends React.Component {
                                   />
                                 ) : (
                                   <img
+                                    alt=""
                                     className="job-img"
                                     src={require('../../../images/pure-avatar.png')}
                                   />
@@ -322,7 +323,7 @@ class Jobs extends React.Component {
                             </div>
                           );
                         })
-                      ) : offers.length == 0 ? (
+                      ) : offers.length === 0 ? (
                         <div
                           style={{
                             textAlign: 'center',

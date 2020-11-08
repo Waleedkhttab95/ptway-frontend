@@ -64,7 +64,7 @@ class Job extends React.Component {
       contractType
     } = offer.jobOffer;
     const isLock = job ? job.isLock : false;
-    const { compnayName, imagePath, address, info } = offer.company;
+    const { imagePath, address, info } = offer.company;
     const { sending } = this.state;
     return (
       <div className="user-container">
@@ -167,7 +167,7 @@ class Job extends React.Component {
                   </p>
                   <div className="job-sub-heading">
                     {' '}
-                    {contractType == '160'
+                    {contractType === '160'
                       ? 'عدد أشهر العمل'
                       : 'عدد أيام العمل'}
                   </div>

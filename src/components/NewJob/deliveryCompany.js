@@ -264,7 +264,7 @@ export class DeliveryCompany extends React.Component {
           footer={false}
         >
           <div className="success-modal">
-            <img src={deliveryComp} />
+            <img src={deliveryComp} alt="" />
             <h2>
               تم استلام طلبك، وسيتم التواصل معك في حال إيجاد مرشحين مناسبين.
             </h2>

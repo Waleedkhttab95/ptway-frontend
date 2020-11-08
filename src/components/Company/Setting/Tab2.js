@@ -41,7 +41,7 @@ class Tab2 extends React.Component {
     await newSubUser(data);
     this.setState({ subaccountModal: false });
   };
-  handleCancel = e => {
+  handleCancel = () => {
     this.setState({
       subaccountModal: false
     });
@@ -106,7 +106,9 @@ class Tab2 extends React.Component {
           ? subUsers.users.map((elm, index) => {
               return (
                 <div
-                  className={index % 2 == 0 ? 'sub-account' : 'sub-account-odd'}
+                  className={
+                    index % 2 === 0 ? 'sub-account' : 'sub-account-odd'
+                  }
                   key={elm._id}
                 >
                   <h3>{elm.firstName + '   ' + elm.lastName}</h3>

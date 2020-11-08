@@ -23,7 +23,6 @@ const { Panel } = Collapse;
 const { Option } = Select;
 const { allCities, allCountries } = statatisticsService;
 
-const { SHOW_PARENT } = TreeSelect;
 const {
   getSkills,
   getPersonalSkills,
@@ -139,9 +138,8 @@ class UpdateProfile extends React.Component {
       jobCategory: ids
     });
   };
-  handleLanguageChange = (value, label, extra) => {
-    // const allData = extra.allCheckedNodes.map(elm => elm.node.props);
-    const data = value.filter(elm => elm.split('-').length == 2);
+  handleLanguageChange = value => {
+    const data = value.filter(elm => elm.split('-').length === 2);
     this.setState({ language: data });
   };
   handleHoppiesChange = (value, option) => {
@@ -285,8 +283,7 @@ class UpdateProfile extends React.Component {
       categories,
       education_levels,
       datebirthError,
-      language,
-      langError
+      language
     } = this.state;
     const hoppies = [
       'القراءة',
@@ -312,7 +309,7 @@ class UpdateProfile extends React.Component {
     ];
 
     const status = ['متفرغ', 'موظف', 'طالب'];
-    const availabilityStatus = ['صباحي', 'مسائي',"صباحي و مسائي"];
+    const availabilityStatus = ['صباحي', 'مسائي', 'صباحي و مسائي'];
     let skillsObj;
     let pSkillsObj;
     const updatedSkills = _.isArray(skills)
@@ -599,6 +596,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                             onChange={this.handleChange}
                           >
                             {_.isArray(cities)
@@ -634,6 +632,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                             onChange={this.handleChange}
                           >
                             {_.isArray(universities)
@@ -751,6 +750,7 @@ class UpdateProfile extends React.Component {
                                   : ''
                                 : ''
                             }
+                            showSearch
                           >
                             {_.isArray(major)
                               ? major.map(elm => {

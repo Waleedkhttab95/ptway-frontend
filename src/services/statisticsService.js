@@ -194,7 +194,9 @@ const statatisticsService = {
         });
       })
       .catch(e => console.log(e));
-  }
+  },
+  SearchUsersJobCategory: () => baseRequest.get('/SearchUsersJobCategory'),
+  SearchUsersFilter: params => baseRequest.post('/SearchUsersFilter', params)
 };
 
 export default statatisticsService;

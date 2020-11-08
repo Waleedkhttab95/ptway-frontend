@@ -10,18 +10,7 @@ const SideMenu = props => (
           ? 'project-options dropdown-custom-style'
           : 'project-options'
       }
-      // style= {props.deleteModal ?{ display:'none'} : ''}
     >
-      {/* <Menu.Item key="1">
-        <i
-          className="fa fa-pause"
-          aria-hidden="true"
-          style={{ marginLeft: '5px', color: '#3b96d9' }}
-        ></i>
-        إيقاف
-      </Menu.Item>
-      <Modal visible={props.pauseModal} closable={false} footer={false}></Modal> */}
-
       <Menu.Item key="1" onClick={props.editProjectModal}>
         <i
           className="fa fa-pencil"
@@ -88,9 +77,6 @@ const SideMenu = props => (
       <div className="success-modal">
         <i className="fa fa-check-circle check-icon" aria-hidden="true"></i>
         <h2>تم حذف المشروع بنجاح</h2>
-        {/* <p>
-          تم حذف الإعلان الوظيفي بشكل كامل من ضمن الإعلانات الوظيفية في المشروع
-        </p> */}
         <button onClick={props.CloseConfirmationMsg}>العودة</button>
       </div>
     </Modal>

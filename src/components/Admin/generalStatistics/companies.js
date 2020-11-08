@@ -1,13 +1,18 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Table, Form } from 'antd';
+import { Table, Form, message } from 'antd';
+import generalStatistics from '../../../services/generalStatistics';
+
 const EditableContext = React.createContext();
+const { blockCompany } = generalStatistics;
 
 const filteredData = fun => {
   return fun.companies.map(elm => {
     return {
+      id: elm._id,
       companyName: elm.companyName,
       email: elm.email,
+      superVisor: elm.superVisor,
       sector: elm.sector,
       CompanySpecialist: elm.CompanySpecialist
         ? elm.CompanySpecialist.specialistName
@@ -52,35 +57,58 @@ class EditableTable extends React.Component {
     }
   }
 
+  handleCompanyBlock = async record => {
+    try {
+      await blockCompany({ id: record.id });
+      message.success('لقد تم إيقاف الشركة بنجاح');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  blockCompany = (text, record) => {
+    return <a onClick={() => this.handleCompanyBlock(record)}>ايقاف</a>;
+  };
+
   columns = [
     {
       title: 'اسم الشركة',
       dataIndex: 'companyName',
-      width: '15%'
+      width: '10%'
     },
     {
       title: 'البريد الالكتروني',
       dataIndex: 'email',
-      width: '15%'
+      width: '20%'
     },
     {
       title: 'القطاع',
-      dataIndex: 'sector',
-      width: '15%'
+      dataIndex: 'sector.sectorName',
+      width: '10%'
     },
     {
       title: 'التخصص',
-      dataIndex: 'CompanySpecialist',
-      width: '15%'
+      dataIndex: 'CompanySpecialist.specialistName',
+      width: '10%'
     },
     {
-      title: 'حالة التأكيد',
+      title: 'رقم المشرف',
+      dataIndex: 'superVisor.phone',
+      width: '10%'
+    },
+    {
+      title: 'الحساب نشط؟',
       dataIndex: 'isActive',
       width: '15%'
     },
     {
       title: 'حالة التفعيل',
       dataIndex: 'isConfirmed',
+      width: '15%'
+    },
+    {
+      title: 'ايقاف الشركة',
+      render: (text, record) => this.blockCompany(text, record),
       width: '15%'
     }
   ];

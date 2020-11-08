@@ -1,5 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Row, Col, Collapse } from 'antd';
 import './style.scss';
 import { withTranslation } from 'react-i18next';
