@@ -293,11 +293,24 @@ class Jobs extends React.Component {
                                   </h3>
                                   <h3>
                                     مبلغ الراتب:{' '}
-                                    <span>{elm.jobAd.salary} </span>
+                                    <span>
+                                      {elm.jobAd.salary}
+                                      {''}
+                                      {elm.jobAd?.contract?.contractName ===
+                                      'مهمة قصيرة'
+                                        ? '/يومي'
+                                        : '/شهري'}
+                                    </span>
                                   </h3>
                                   <h3>
                                     مدة العقد:{' '}
-                                    <span>{elm.jobAd.work_days} </span>{' '}
+                                    <span>
+                                      {elm.jobAd.work_days}{' '}
+                                      {elm.jobAd?.contract?.contractName ===
+                                      'مهمة قصيرة'
+                                        ? 'يوم'
+                                        : 'شهر'}
+                                    </span>
                                   </h3>
                                 </div>
                                 <div>

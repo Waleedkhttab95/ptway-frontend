@@ -549,7 +549,7 @@ class CompanySearch extends Component {
                     </Modal>
                     <div className="company-name">
                       <span> اسم الشركة :</span>
-                      <span>{companyByMail.companyName}</span>
+                      <span>{companyByMail.company?.companyName}</span>
                       <img
                         className="update-company"
                         src={update_icon}
@@ -559,7 +559,7 @@ class CompanySearch extends Component {
                     </div>
                     <div className="company-name">
                       <span>البريد الالكتروني :</span>
-                      <span>{companyByMail.email}</span>
+                      <span>{companyByMail.company?.email}</span>
                       <img
                         className="update-company"
                         src={update_icon}
@@ -570,9 +570,9 @@ class CompanySearch extends Component {
                     <div className="company-name">
                       <span>التخصص :</span>
                       <span>
-                        {companyByMail.CompanySpecialist
-                          ? companyByMail.CompanySpecialist.specialistName
-                          : ''}
+                        {companyByMail.company?.CompanySpecialist &&
+                          companyByMail.company.CompanySpecialist
+                            .specialistName}
                       </span>
                       <img
                         className="update-company"
@@ -600,7 +600,10 @@ class CompanySearch extends Component {
                     </Modal>
                     <div className="company-name">
                       <span> القطاع:</span>
-                      <span>{companyByMail.sector}</span>
+                      <span>
+                        {companyByMail.company &&
+                          companyByMail.company?.sector.sectorName}
+                      </span>
                       <img
                         className="update-company"
                         src={update_icon}
@@ -627,18 +630,49 @@ class CompanySearch extends Component {
                     <div className="company-name">
                       <span> حالة التأكيد : </span>
                       <span>
-                        {companyByMail.isConfirmed ? 'مؤكد' : 'غير مؤكد'}
+                        {companyByMail.company?.isConfirmed
+                          ? 'مؤكد'
+                          : 'غير مؤكد'}
                       </span>
                     </div>
                     <div className="company-name">
                       <span> حالة التفعيل : </span>
                       <span>
-                        {companyByMail.isActive ? 'مفعل' : 'غير مفعل'}
+                        {companyByMail.company?.isActive ? 'مفعل' : 'غير مفعل'}
                       </span>
                     </div>
                     <div className="company-name">
+                      <span> اسم المشرف : </span>
+                      <span>
+                        {companyByMail.company &&
+                          companyByMail.company.superVisor?.name}
+                      </span>
+                    </div>
+                    <div className="company-name">
+                      <span> رقم هاتف المشرف : </span>
+                      <span>
+                        {companyByMail.company &&
+                          companyByMail.company.superVisor?.phone}
+                      </span>
+                    </div>
+                    <div className="company-name">
+                      <span> تصنيف المشرف : </span>
+                      <span>
+                        {companyByMail.company &&
+                          companyByMail.company.superVisor?.position}
+                      </span>
+                    </div>
+                    <div className="company-name">
+                      <span> عدد المشاريع : </span>
+                      <span>{companyByMail?.projects}</span>
+                    </div>
+                    <div className="company-name">
+                      <span> عدد الاعلانات : </span>
+                      <span>{companyByMail?.Ads}</span>
+                    </div>
+                    <div className="company-name">
                       <span> تاريخ الانشاء : </span>
-                      <span>{companyByMail.createDate}</span>
+                      <span>{companyByMail.company?.createDate}</span>
                     </div>
                   </Row>
                 )}
