@@ -1,0 +1,122 @@
+.interview-information {
+  padding: 38px 72px 33px;
+  box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  height: 1100px;
+
+  h5 {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    color: #18233d;
+  }
+
+  p {
+    opacity: 0.5;
+    font-size: 16px;
+    text-align: center;
+    color: #18233d;
+  }
+
+  .interview-days {
+    font-size: 16px;
+    text-align: right;
+    color: #18233d;
+  }
+  .interview-day {
+    background-color: #f3f3f3;
+    width: fit-content;
+    padding: 6px 20px;
+    margin: 5px;
+    color: #18233d;
+    border-radius: 3px;
+  }
+  .google-map-link {
+    float: unset !important;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.interview-btns {
+  max-width: 190px;
+  width: 100%;
+  height: 35px;
+  border-radius: 6px;
+}
+.ready {
+  background-color: #3598d4 !important;
+  margin-top: 70px;
+}
+.cancel {
+  background: #fff !important;
+  border: solid 1px #3598d4 !important;
+  color: #009ad0 !important;
+  margin-top: 15px;
+}
+
+.success-modal {
+  .ant-result {
+    padding: 32px;
+  }
+  .ant-result-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #222222;
+  }
+  .ant-result-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.69;
+    text-align: center;
+    color: #ababab;
+  }
+
+  .ready {
+    margin-top: 0;
+  }
+  .cancel {
+    margin-bottom: 40px;
+  }
+  .ant-result-extra > * {
+    margin-right: 0px;
+  }
+}
+
+.cancel-interview-modal {
+  padding: 80px;
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: #18233d;
+    margin-bottom: 40px;
+  }
+  .ant-checkbox-group-item {
+    display: block;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    width: fit-content;
+  }
+  .ant-checkbox-wrapper, .ant-checkbox {
+    font-size: 16px !important;
+    width: fit-content;
+  }
+  .ant-checkbox-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .btn {
+  width: 190px;
+  height: 35px;
+  border-radius: 6px;
+  margin: 20px auto;
+  display: block;
+}
+
+.send-btn {
+  background-color: #3598d4 !important;
+
+  }
+}
