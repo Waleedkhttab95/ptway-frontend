@@ -645,7 +645,7 @@ class CompanySearch extends Component {
                       <span> اسم المشرف : </span>
                       <span>
                         {companyByMail.company &&
-                          companyByMail.company.superVisor?.name}
+                          companyByMail.company.superVisor?.Name}
                       </span>
                     </div>
                     <div className="company-name">

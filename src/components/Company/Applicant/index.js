@@ -186,7 +186,7 @@ class Applicant extends React.Component {
         {status !== 'Accepted' && (
           <div>
             <button className="accept-applicant" onClick={this.acceptUser}>
-              قبول المتقدم
+              ترشيح المتقدم
             </button>
             <button
               className="reject-applicant"

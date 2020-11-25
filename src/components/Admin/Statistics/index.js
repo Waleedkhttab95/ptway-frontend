@@ -234,8 +234,8 @@ class UserStatistics extends React.Component {
                       {certificate &&
                         certificate.map(elm => (
                           <Select.Option
-                            value={elm.viewValue}
-                            key={elm.viewValue}
+                            value={elm.value}
+                            key={elm.value}
                           >
                             {elm.viewValue}
                           </Select.Option>

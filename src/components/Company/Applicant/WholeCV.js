@@ -59,7 +59,7 @@ class WholeCV extends React.Component {
                     onClick={this.acceptUser}
                     style={{ maxWidth: '280px', height: '50px' }}
                   >
-                    قبول المتقدم
+                    ترشيح المتقدم
                   </button>
                   <button
                     className="reject-applicant"
