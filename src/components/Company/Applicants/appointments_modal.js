@@ -28,8 +28,8 @@ class AppointmentModalForm extends React.Component {
           await sendInterviewAppointments({
             ...values,
             jobAd: jobId,
-            endDate: moment(values.endDate).format('DD/MM/YYYY'),
-            startDate: moment(values.startDate).format('DD/MM/YYYY')
+            endDate: moment(values.startDate[1]).format('DD/MM/YYYY'),
+            startDate: moment(values.startDate[0]).format('DD/MM/YYYY')
           });
           message.success('تم إرسال الدعوات بنجاح');
           closeModal();
@@ -111,34 +111,6 @@ class AppointmentModalForm extends React.Component {
               </Form.Item>
               <Row gutter={20}>
                 <Col span={12}>
-                  <label className="form-label">تاريخ نهاية المواعيد</label>
-                  <Form.Item>
-                    {getFieldDecorator('endDate', {
-                      rules: [
-                        {
-                          required: true,
-                          message: 'الرجاء ادخال تاريخ نهاية المواعيد'
-                        }
-                      ]
-                    })(<DatePicker placeholder="" />)}
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <label className="form-label">تاريخ بداية المواعيد</label>
-                  <Form.Item>
-                    {getFieldDecorator('startDate', {
-                      rules: [
-                        {
-                          required: true,
-                          message: 'الرجاء ادخال تاريخ بداية المواعيد'
-                        }
-                      ]
-                    })(<DatePicker placeholder="" />)}
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={20}>
-                <Col span={12}>
                   <label className="form-label">إلى</label>
                   <Form.Item>
                     {getFieldDecorator('endHour', {
@@ -162,6 +134,38 @@ class AppointmentModalForm extends React.Component {
                         }
                       ]
                     })(<Input />)}
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={20}>
+                <Col span={12}>
+                  {/* <label className="form-label">تاريخ نهاية المواعيد</label>
+                  <Form.Item>
+                    {getFieldDecorator('endDate', {
+                      rules: [
+                        {
+                          required: true,
+                          message: 'الرجاء ادخال تاريخ نهاية المواعيد'
+                        }
+                      ]
+                    })(<DatePicker placeholder="" />)}
+                  </Form.Item> */}
+                </Col>
+                <Col span={12}>
+                  <label className="form-label">تاريخ المواعيد</label>
+                  <Form.Item>
+                    {getFieldDecorator('startDate', {
+                      rules: [
+                        {
+                          required: true,
+                          message: 'الرجاء ادخال تاريخ المواعيد'
+                        }
+                      ]
+                    })(
+                      <DatePicker.RangePicker
+                        placeholder={['تاريخ البداية', 'تاريخ النهاية']}
+                      />
+                    )}
                   </Form.Item>
                 </Col>
               </Row>
@@ -206,7 +210,14 @@ class AppointmentModalForm extends React.Component {
               </Form.Item>
               <label className="form-label">رابط الموقع (خرائط قوقل)</label>
               <Form.Item>
-                {getFieldDecorator('googleMapAddress')(<Input />)}
+                {getFieldDecorator('googleMapAddress', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'الرجاء ادخال رابط الموقع'
+                    }
+                  ]
+                })(<Input />)}
               </Form.Item>
             </Panel>
           </Collapse>
