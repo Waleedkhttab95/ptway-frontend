@@ -4,10 +4,10 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import applicants from '../../../services/company/applicants';
 import _ from 'lodash';
-import { Spin, Row, Col, Menu, Select, Button } from 'antd';
-// import FilterAndSearch from '../Filter';
+import { Spin, Row, Col, Menu, Button, Radio, Checkbox } from 'antd';
 import Applicant from '../Applicant';
 import AppointmentModal from './appointments_modal';
+import { CalendarOutlined } from '@ant-design/icons';
 
 const { getCandidates, getUser, getFilteredCandidates } = applicants;
 let array = [];
@@ -30,6 +30,8 @@ class Applicants extends React.Component {
     rejectCount: 1,
     acceptPages: 1,
     acceptCount: 1,
+    appointmentPages: 1,
+    appoitmentCount: 1,
     sort: 1,
     appointmentModal: false
   };
@@ -89,6 +91,8 @@ class Applicants extends React.Component {
       favPages,
       favCount,
       filter,
+      appointmentPages,
+      appoitmentCount,
       sort
     } = this.state;
 
@@ -100,7 +104,6 @@ class Applicants extends React.Component {
         jobId,
         pageNo: favPages
       });
-      console.log('favCandidates', favCandidates);
       this.setState({
         candidates:
           favPages !== 1
@@ -108,6 +111,22 @@ class Applicants extends React.Component {
             : favCandidates.Bresult,
         favPages: favCandidates.totalPages,
         favCount: favCount + 1
+      });
+    }
+    if (filter === 'appointment' && appointmentPages >= appoitmentCount) {
+      const appointment = await getFilteredCandidates({
+        sort,
+        filter,
+        jobId,
+        pageNo: appointmentPages
+      });
+      this.setState({
+        candidates:
+          appointmentPages !== 1
+            ? candidates.concat(appointment.Bresult)
+            : appointment.Bresult,
+        appointmentPages: appointment.totalPages,
+        appoitmentCount: appoitmentCount + 1
       });
     } else if (filter === 'reject' && rejectPages >= rejectCount) {
       const rejectedCandidates = await getFilteredCandidates({
@@ -211,6 +230,19 @@ class Applicants extends React.Component {
     );
   };
 
+  appointment = async () => {
+    this.setState(
+      {
+        filter: 'appointment',
+        appointmentPages: 1,
+        appoitmentCount: 1
+      },
+      () => {
+        this.fetchData();
+      }
+    );
+  };
+
   getAllCandidates = () => {
     this.setState(
       {
@@ -224,7 +256,8 @@ class Applicants extends React.Component {
     );
   };
 
-  sortApplicants = value => {
+  sortApplicants = e => {
+    const { value } = e.target;
     this.setState(
       {
         sort: value === 'latest' ? 1 : -1,
@@ -285,23 +318,6 @@ class Applicants extends React.Component {
                   {/* <FilterAndSearch /> */}
                   <div className="applicants-header">
                     <div className="top">
-                      <Button
-                        className="interview-appoitment"
-                        onClick={this.showAppointmentsModal}
-                      >
-                        أرسل موعد المقابلة
-                      </Button>
-                      {this.state.appointmentModal && (
-                        <AppointmentModal
-                          jobId={jobId}
-                          modalVisiable={this.state.appointmentModal}
-                          closeModal={() =>
-                            this.setState({
-                              appointmentModal: false
-                            })
-                          }
-                        />
-                      )}
                       <h3>
                         {' '}
                         اسم الوظيفة: <span className="name">{projectName}</span>
@@ -320,16 +336,6 @@ class Applicants extends React.Component {
                           {statistics.acceptableUsersCount}
                         </span>
                       </h3>
-                    </div>
-                    <div className="bottom">
-                      <h4>*الموعد سيصل لجميع المتقدمين</h4>
-                      <div className="left-side">
-                        <span>الترتيب :</span>
-                        <Select onChange={this.sortApplicants}>
-                          <Select.Option value="latest">الأحدث</Select.Option>
-                          <Select.Option value="eariest">الأقدم</Select.Option>
-                        </Select>
-                      </div>
                     </div>
                   </div>
                   <Col md={12} sm={24} className="mobile-view">
@@ -459,6 +465,23 @@ class Applicants extends React.Component {
               xs={{ span: 24 }}
               className="applicants-filter"
             >
+              <Button
+                className="interview-appoitment"
+                onClick={this.showAppointmentsModal}
+              >
+                مواعيد المقابلات
+              </Button>
+              {this.state.appointmentModal && (
+                <AppointmentModal
+                  jobId={jobId}
+                  modalVisiable={this.state.appointmentModal}
+                  closeModal={() =>
+                    this.setState({
+                      appointmentModal: false
+                    })
+                  }
+                />
+              )}
               <Menu className="menu" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                   <>
@@ -478,31 +501,18 @@ class Applicants extends React.Component {
                       src={require('../../../images/tick.svg')}
                       className="menu-icon"
                     />
-                    <span onClick={this.acceptedCandidates}>
-                      {' '}
-                      القبول المبدئي{' '}
-                    </span>
+                    <span onClick={this.acceptedCandidates}> المرشحين </span>
                   </>
                 </Menu.Item>
                 <Menu.Item key="3">
                   <>
-                    <img
-                      src={require('../../../images/star.svg')}
-                      className="menu-icon"
-                    />
-                    <span onClick={this.favouriteCandidates}> المفضلة </span>
+                    {' '}
+                    <CalendarOutlined />{' '}
+                    <span onClick={this.appointment}> المقابلات </span>
                   </>
                 </Menu.Item>
-                {/* <Menu.Item key="4">
-                  <>
-                    <img
-                      src={require('../../../images/calendar.svg')}
-                      className="menu-icon"
-                    />
-                    <span> المقابلات </span>
-                  </>
-                </Menu.Item> */}
-                <Menu.Item key="5">
+
+                <Menu.Item key="4">
                   <>
                     <img
                       src={require('../../../images/close.svg')}
@@ -512,6 +522,25 @@ class Applicants extends React.Component {
                   </>
                 </Menu.Item>
               </Menu>
+              <div className="sort">
+                <Radio.Group
+                  onChange={this.sortApplicants}
+                  // value={value}
+                >
+                  ترتيب حسب
+                  <br />
+                  <Radio className="radio-style" value={'latest'}>
+                    الأحدث
+                  </Radio>
+                  <Radio className="radio-style" value={'eariest'}>
+                    الأقدم
+                  </Radio>
+                </Radio.Group>
+                <br /> <br />
+                تخصيص العرض
+                <br />
+                <Checkbox onChange={this.favouriteCandidates}>المفضلة</Checkbox>
+              </div>
             </Col>
           </Row>
         </div>

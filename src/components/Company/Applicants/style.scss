@@ -87,7 +87,6 @@
 }
 
 .applicants-container {
-  // margin-bottom: 30px;
   .app-title {
     height: 38px;
     border-radius: 2px;
@@ -167,10 +166,10 @@
   }
 }
 .applicants-header {
-  height: 106px;
+  height: 58px;
   background: #ffffff;
   margin-top: 18px;
-  margin-bottom: -13px;
+  margin-bottom: 8px;
   .top {
     display: flex;
     justify-content: space-between;
@@ -185,14 +184,6 @@
       .name {
         color: #b5b5b5;
       }
-    }
-    .interview-appoitment {
-      width: 169px;
-      height: 32px;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
-      background-color: #009ad0;
-      font-size: 14px;
     }
   }
   .bottom {
@@ -218,17 +209,48 @@
   }
 }
 .applicants-filter {
+  .interview-appoitment {
+    width: 168px;
+    height: 58px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+    background-color: #009ad0;
+    font-size: 14px;
+    float: none !important;
+  }
   margin-top: 17px;
-  display: flex;
-  justify-content: center;
   .menu {
-    border: none;
     width: 169px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    border-radius: 2px;
   }
   .menu-icon {
     width: 22px;
     height: 15px;
     margin-left: 5px;
+  }
+  .radio-style {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+  }
+  .sort {
+    border-radius: 4px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding: 20px 20px;
+    max-width: 173px;
+    width: 100%;
+    height: 248px;
+    .ant-radio-wrapper {
+      margin-right: 0;
+    }
+    
+    .ant-checkbox-wrapper {
+      display: inline;
+    }
   }
 }
 li.ant-menu-item.ant-menu-item-selected {
