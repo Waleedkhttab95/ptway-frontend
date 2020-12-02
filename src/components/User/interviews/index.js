@@ -86,7 +86,7 @@ export class Interviews extends React.Component {
                   </Spin>
                 </Col>
                 <Col md={12} sm={24}>
-                  <h2 className="job-header-title">العرض الوظيفي</h2>
+                  <h2 className="job-header-title">المواعيد</h2>
                   <div className="jobs-section" id="jobs-section-scroll">
                     <InfiniteScroll
                       dataLength={userInterviews.length}
