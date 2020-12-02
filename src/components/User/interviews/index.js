@@ -8,6 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import interviewsData from '../../../services/user/interviews';
 import { Interview } from './interview';
 import { Link } from 'react-router-dom';
+import { CalendarOutlined } from '@ant-design/icons';
 
 const { getInterviews, getInterview } = interviewsData;
 let array = [];
@@ -72,7 +73,7 @@ export class Interviews extends React.Component {
       <React.Fragment>
         <div>
           <Header />
-          <div className="user-container">
+          <div className="user-container interview-container">
             <div className="user-jobs">
               <Row>
                 <Col md={12} sm={24} className="mobile-view">
@@ -118,11 +119,7 @@ export class Interviews extends React.Component {
                                     alt=""
                                   />
                                 ) : (
-                                  <img
-                                    alt=""
-                                    className="job-img"
-                                    src={require('../../../images/pure-avatar.png')}
-                                  />
+                                  <CalendarOutlined />
                                 )}
                                 <div className="job-content">
                                   <h3>{elm.jobAd.job_Name}</h3>
@@ -135,34 +132,9 @@ export class Interviews extends React.Component {
                               <div className="description">
                                 <div>
                                   <h3>
-                                    نوع العقد:{' '}
-                                    <span>
-                                      {elm.jobAd?.contract?.contractName}
-                                    </span>
+                                    اسم الشركة:{' '}
+                                    <span>{elm.company.companyName} </span>
                                   </h3>
-                                  <h3>
-                                    مبلغ الراتب:{' '}
-                                    <span>
-                                      {elm.jobAd.salary}
-                                      {''}
-                                      {elm.jobAd?.contract?.contractName ===
-                                      'مهمة قصيرة'
-                                        ? '/يومي'
-                                        : '/شهري'}
-                                    </span>
-                                  </h3>
-                                  <h3>
-                                    مدة العقد:{' '}
-                                    <span>
-                                      {elm.jobAd.work_days}{' '}
-                                      {elm.jobAd?.contract?.contractName ===
-                                      'مهمة قصيرة'
-                                        ? 'يوم'
-                                        : 'شهر'}
-                                    </span>
-                                  </h3>
-                                </div>
-                                <div>
                                   <h3>
                                     تاريخ بدء العمل:{' '}
                                     <span>
@@ -170,10 +142,6 @@ export class Interviews extends React.Component {
                                         'MMM D YY'
                                       )}
                                     </span>
-                                  </h3>
-                                  <h3>
-                                    ساعات العمل اليومية:{' '}
-                                    <span>{elm.jobAd.work_hours}</span>
                                   </h3>
                                 </div>
                                 <Link to={`/user/interview/${elm._id}`}>
