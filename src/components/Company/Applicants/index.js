@@ -302,12 +302,12 @@ class Applicants extends React.Component {
       <React.Fragment>
         <Header />
         <div className="company-container">
-          <Row gutter={12} className="applicants-wrapper-mobile">
+          <Row type="flex" gutter={12} className="applicants-wrapper-mobile">
             <Col
-              lg={{ span: 20 }}
-              md={{ span: 20 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
+              lg={{ span: 20, order: 2 }}
+              md={{ span: 20, order: 2 }}
+              sm={{ span: 24, order: 2 }}
+              xs={{ span: 24, order: 2 }}
             >
               <Row className="applicants-container">
                 <Spin
@@ -459,10 +459,10 @@ class Applicants extends React.Component {
               </Row>
             </Col>
             <Col
-              lg={{ span: 4 }}
-              md={{ span: 4 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
+              lg={{ span: 4, order: 1 }}
+              md={{ span: 4, order: 1 }}
+              sm={{ span: 24, order: 1 }}
+              xs={{ span: 24, order: 1 }}
               className="applicants-filter"
             >
               <Button

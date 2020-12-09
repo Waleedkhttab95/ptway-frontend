@@ -21,22 +21,24 @@ export class Interview extends React.Component {
     }
   }
 
-  approveInterview = async appointmentId => {
+  approveInterview = async (appointmentId, jobId) => {
     await changeAppointmentStatus({
       appointmentId,
-      status: true
+      status: true,
+      jobAd: jobId
     });
     this.setState({
       showSuccessModal: true
     });
   };
 
-  cancelInterview = async () => {
+  cancelInterview = async jobId => {
     const { reason, appointmentId } = this.state;
     await changeAppointmentStatus({
       appointmentId,
       status: false,
-      reason
+      reason,
+      jobAd: jobId
     });
     this.setState({
       showCancelModal: false
@@ -127,7 +129,9 @@ export class Interview extends React.Component {
             <Row type="flex" justify="center">
               <Button
                 className="ready interview-btns"
-                onClick={() => this.approveInterview(appointment._id)}
+                onClick={() =>
+                  this.approveInterview(appointment._id, appointment.jobAd._id)
+                }
               >
                 نعم، أنا جاهز
               </Button>
@@ -215,7 +219,7 @@ export class Interview extends React.Component {
                   <Button
                     className={reason ? 'send-btn btn' : 'btn'}
                     disabled={!reason ? true : false}
-                    onClick={this.cancelInterview}
+                    onClick={() => this.cancelInterview(appointment.jobAd._id)}
                   >
                     أنشر
                   </Button>

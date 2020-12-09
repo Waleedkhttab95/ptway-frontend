@@ -35,7 +35,7 @@ export class Interviews extends React.Component {
     const { pages } = this.state;
     const userInterviews = await getInterviews({ pageNo: pages });
     this.setState({
-      userInterviews: userInterviews.appointments.appointments,
+      userInterviews: userInterviews.appointments,
       totalPages: userInterviews.totalPages,
       pages: pages + 1
     });
@@ -109,7 +109,9 @@ export class Interviews extends React.Component {
                                   : 'job un-read'
                               }
                               key={index}
-                              onClick={() => this.getJob(elm._id, index)}
+                              onClick={() =>
+                                this.getJob(elm.appointment._id, index)
+                              }
                             >
                               <div className="top-section">
                                 {elm.imagePath && elm.imagePath !== 'null' ? (
@@ -122,7 +124,10 @@ export class Interviews extends React.Component {
                                   <CalendarOutlined />
                                 )}
                                 <div className="job-content">
-                                  <h3>{elm.jobAd.job_Name}</h3>
+                                  <h3>
+                                    {elm.appointment &&
+                                      elm.appointment.jobAd.job_Name}
+                                  </h3>
                                   <h4>{elm.compName}</h4>
                                 </div>
                                 <div className="job-status">
@@ -133,18 +138,25 @@ export class Interviews extends React.Component {
                                 <div>
                                   <h3>
                                     اسم الشركة:{' '}
-                                    <span>{elm.company.companyName} </span>
+                                    <span>
+                                      {elm.appointment &&
+                                        elm.appointment.company
+                                          .companyName}{' '}
+                                    </span>
                                   </h3>
                                   <h3>
                                     تاريخ بدء العمل:{' '}
                                     <span>
-                                      {moment(elm.jobAd.startDate).format(
-                                        'MMM D YY'
-                                      )}
+                                      {moment(
+                                        elm.appointment &&
+                                          elm.appointment.startDate
+                                      ).format('MMM D YY')}
                                     </span>
                                   </h3>
                                 </div>
-                                <Link to={`/user/interview/${elm._id}`}>
+                                <Link
+                                  to={`/user/interview/${elm.appointment._id}`}
+                                >
                                   <button className="job-mobile-btn">
                                     مشاهدة التفاصيل
                                   </button>

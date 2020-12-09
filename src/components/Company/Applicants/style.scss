@@ -419,15 +419,7 @@ li.ant-menu-item.ant-menu-item-selected {
   .applicants-wrapper-mobile {
     position: relative;
   }
-  .applicants-filter .menu {
-    width: 100%;
-    position: absolute;
-    top: 0;
-  }
-  .applicants-container {
-    position: absolute;
-    top: 220px;
-  }
+
   .applicants-header {
     height: auto;
     padding-bottom: 20px;
@@ -448,6 +440,9 @@ li.ant-menu-item.ant-menu-item-selected {
         }
       }
     }
+  }
+  .applicants-filter .sort {
+    max-width: 100%;
   }
   .applicant {
     flex-direction: column;
