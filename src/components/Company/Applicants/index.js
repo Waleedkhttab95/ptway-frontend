@@ -168,7 +168,7 @@ class Applicants extends React.Component {
       this.setState({
         jobId,
         candidates:
-          candidates.length !== 0
+          pages !== 1
             ? candidates.concat(candidatesData.Bresult)
             : candidatesData.Bresult,
         applicantsInfoLoading: false,
