@@ -185,6 +185,17 @@ class Header extends React.Component {
                     فرص العمل
                   </Link>
 
+                  <Link
+                    to="/user/interviews"
+                    className={
+                      window.location.href.includes('/user/interviews')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    المقابلات
+                  </Link>
+
                   <div
                     className={
                       window.location.href.includes('/user/account/setting')
@@ -247,7 +258,16 @@ class Header extends React.Component {
                     />
                     فرص العمل
                   </Link>
-
+                  <Link
+                    to="/user/interviews"
+                    className={
+                      window.location.href.includes('/user/interviews')
+                        ? 'navbar-elm-active'
+                        : ''
+                    }
+                  >
+                    المقابلات
+                  </Link>
                   <Link to="/user/account/setting">حسابي</Link>
                   {/* <Link to="/user/notifications">تنبيهات</Link> */}
                   <div onBlur={this.close} tabIndex="0"></div>

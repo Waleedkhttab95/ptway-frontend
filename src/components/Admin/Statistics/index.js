@@ -159,11 +159,14 @@ class UserStatistics extends React.Component {
                       placeholder={this.state.gender}
                       onChange={this.handleChange}
                     >
-                      <Select.Option name="gender" value="male" key="ذكر">
+                      <Select.Option name="gender" value="ذكر" key="ذكر">
                         ذكر{' '}
                       </Select.Option>
-                      <Select.Option name="gender" value="female" key="أنثى">
+                      <Select.Option name="gender" value="أنثى" key="أنثى">
                         أنثى{' '}
+                      </Select.Option>
+                      <Select.Option name="gender" value="انثى" key="انثى">
+                        انثى{' '}
                       </Select.Option>
                     </Select>
                   )}
@@ -205,7 +208,7 @@ class UserStatistics extends React.Component {
               <Col span={12}>
                 <label className="form-label">الجامعة</label>
                 <Form.Item>
-                  {getFieldDecorator('university')(
+                  {getFieldDecorator('universty')(
                     <Select>
                       {universities &&
                         universities.map(elm => {
@@ -213,7 +216,7 @@ class UserStatistics extends React.Component {
                             <Select.Option
                               value={elm._id}
                               key={elm._id}
-                              name="university"
+                              name="universty"
                             >
                               {elm.universtyName}
                             </Select.Option>
@@ -231,8 +234,8 @@ class UserStatistics extends React.Component {
                       {certificate &&
                         certificate.map(elm => (
                           <Select.Option
-                            value={elm.viewValue}
-                            key={elm.viewValue}
+                            value={elm.value}
+                            key={elm.value}
                           >
                             {elm.viewValue}
                           </Select.Option>
@@ -275,7 +278,7 @@ class UserStatistics extends React.Component {
               <Col span={12}>
                 <label className="form-label">التخصص الدقيق</label>
                 <Form.Item>
-                  {getFieldDecorator('s_Major')(
+                  {getFieldDecorator('spMajor')(
                     <Select>
                       {subMajor &&
                         subMajor?.map(elm => {
@@ -292,7 +295,7 @@ class UserStatistics extends React.Component {
               <Col span={12}>
                 <label className="form-label">التخصص العام</label>
                 <Form.Item>
-                  {getFieldDecorator('public_major')(
+                  {getFieldDecorator('public_Major')(
                     <Select onChange={this.handleSubMajor}>
                       {majors &&
                         majors.map(elm => {

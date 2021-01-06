@@ -62,6 +62,8 @@ import UserInfo from './User/userInfoFollowForm';
 import WholeCV from './company/Applicant/WholeCV';
 import CompanyJob from './company/Project/job';
 import ReactivateAccount from './User/reactivateAccount';
+import { Interviews } from './User/interviews';
+import { Interview } from './User/interviews/interview';
 
 const App = () => {
   return (
@@ -162,6 +164,16 @@ const App = () => {
             exact
             path="/user/profile/update"
             component={UpdateProfile}
+          />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/interviews"
+            component={Interviews}
+          />
+          <UserAuthenticatedRoute
+            exact
+            path="/user/interview/:id"
+            component={Interview}
           />
           <Route
             exact

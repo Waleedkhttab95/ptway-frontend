@@ -147,6 +147,18 @@ class EditableTable extends React.Component {
       editable: true
     },
     {
+      title: 'عدد المرشحين',
+      dataIndex: 'candidatesNumber',
+      width: '10%',
+      editable: true
+    },
+    {
+      title: 'المسمى الوظيفي',
+      dataIndex: 'jobCategory.jobName',
+      width: '10%',
+      editable: true
+    },
+    {
       title: 'مفعل',
       dataIndex: 'isLock',
       width: '7%',

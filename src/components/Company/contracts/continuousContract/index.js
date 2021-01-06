@@ -236,10 +236,10 @@ class AddNewAd extends React.Component {
                           className="input-field"
                           onChange={this.handleSelectChange}
                         >
-                          <Option name="gender" value="male" key="ذكر">
+                          <Option name="gender" value="ذكر" key="ذكر">
                             ذكر{' '}
                           </Option>
-                          <Option name="gender" value="female" key="أنثى">
+                          <Option name="gender" value="انثى" key="انثى">
                             أنثى{' '}
                           </Option>
                           <Option name="gender" value="both" key="both">
